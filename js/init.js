@@ -27,6 +27,10 @@ $().ready(function(){
 		
 		center_panel.css("width", $(window).width()-left_w); 
 		//$(center_panel).width(window.document.width-left_w);
+		
+		var mapCanvas = $("#mapCanvas");	
+		mapCanvas.width($("#center_panel").width());
+		mapCanvas.height($("#center_panel").height());
 	};
 });
 
