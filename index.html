@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="css/mc.css"/>
+
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+
+<script type="text/javascript" src="js/MapCloud.js"></script>
+<script type="text/javascript" src="js/Class/Class.js"></script>
+<script type="text/javascript" src="js/Control/Ribbon.js"></script>
+
+<script type="text/javascript" src="js/init.js"></script>
+
+<title>MapCloud</title>
+</head>
+
+<body>
+<!-- logo panel -->
+<div id="logo_panel"></div>
+<!-- login panel -->
+<div id="login_panel">
+    <div class=login_label><a href="javascript:void(0)">登录</a></div>
+    <!--登录对话框-->
+    <div id="login_form"></div>
+</div>
+<div id="workbench">
+	<!-- header panel -->
+	<div id="head_panel" class="mc-theme-color"></div>
+    <div id="ribbon_panel">
+    	<div id="ribbon" class="mc-theme-color">
+        	<ul id="ribbon_tabs" class="mc-theme-color">
+            	<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">首页</a></li>
+            	<li id="map_tab"><a href="javascript:void(0)">地图</a></li>
+				<li id="layer_tab"><a href="javascript:void(0)">图层</a></li>
+				<li id="data_tab"><a href="javascript:void(0)">数据</a></li>
+				<li id="tool_tab"><a href="javascript:void(0)">工具</a></li>
+            </ul>
+        </div>
+    </div>
+	<div id="main_panel">
+    	<div id="left_panel" class="mc-column">
+        	<div id="layers_wrapper">
+            	<div id="layers_bar" class="mc-border-bottom">
+                	<a href="javascript:void(0)">country</a>
+                    <div class="mc-world-full mc-icon float_right" style="margin-top:7px;margin-right:8px;"></div>
+                </div>
+                <div id="layers_panel">
+                	<ul id="layers_tree">
+                    	<li id="layer_cities">
+                        	<div class="mc-layer">
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-open" style="background-color:#009"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="center_panel" class="mc-column"></div>
+        <div id="right_panel" class="mc-column"></div>
+	</div>
+</div>
+</body>
+</html>
