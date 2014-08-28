@@ -10,6 +10,7 @@
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/Class/Class.js"></script>
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
+<script type="text/javascript" src="js/Control/LayerTree.js"></script>
 
 <script type="text/javascript" src="js/init.js"></script>
 
@@ -42,15 +43,49 @@
 	<div id="main_panel">
     	<div id="left_panel" class="mc-column">
         	<div id="layers_wrapper">
-            	<div id="layers_bar" class="mc-border-bottom">
+            	<div id="layers_panel_title" class="mc-border-bottom">
                 	<a href="javascript:void(0)">country</a>
                     <div class="mc-world-full mc-icon float_right" style="margin-top:7px;margin-right:8px;"></div>
+                </div>
+                <div id="layers_panel_bar" class="mc-border-bottom">
+                	<div id="map_view_wrapper">
+	                	<div class="float_left mc-layer-item mc-icon"></div>
+    	                <div class="float_left mc-layer-item mc-icon mc-icon-eye-open"></div>
+        	            <div class="float_left mc-layer-item mc-icon mc-icon-lock-close"></div>
+					</div>
+					<div id="map_tool_wrapper">
+	                	<div class="float_left mc-layer-item mc-icon mc-icon-plus"></div>
+                        <div class="float_left mc-layer-item mc-icon mc-icon-minus"></div>
+                        <div class="float_left mc-layer-item mc-icon mc-icon-folder"></div>
+					</div>
                 </div>
                 <div id="layers_panel">
                 	<ul id="layers_tree">
                     	<li id="layer_cities">
                         	<div class="mc-layer">
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-open" style="background-color:#009"></div>
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-close"></div>
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-open"></div>
+                                <div class="float_left mc-layer-item mc-icon mc-icon-lock-close"></div>
+                                <div class="float_left mc-layer-item mc-icon mc-icon-point"></div>
+                                <div class="float_left mc-layer-name">cities</div>
+                            </div>
+                        </li>
+						<li id="layer_cities">
+                        	<div class="mc-layer">
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-expand"></div>
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-close"></div>
+                                <div class="float_left mc-layer-item mc-icon mc-icon-lock-open"></div>
+                                <div class="float_left mc-layer-item mc-icon mc-icon-point"></div>
+                                <div class="float_left mc-layer-name">rivers</div>
+                            </div>
+                        </li>
+						<li id="layer_cities">
+                        	<div class="mc-layer">
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-close"></div>
+                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-open"></div>
+                                <div class="float_left mc-layer-item mc-icon mc-icon-lock-close"></div>
+                                <div class="float_left mc-layer-item mc-icon mc-icon-point"></div>
+                                <div class="float_left mc-layer-name">country</div>
                             </div>
                         </li>
                     </ul>
