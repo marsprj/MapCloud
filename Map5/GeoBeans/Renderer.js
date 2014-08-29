@@ -187,6 +187,7 @@ GeoBeans.Renderer = GeoBeans.Class({
 	drawImage : function(image, x, y, w, h){
 		
 		this.context.drawImage(image, x, y, w, h);
+		//this.context.drawImage(image, x, y);
 		
 //		var context = this.context;
 //		
