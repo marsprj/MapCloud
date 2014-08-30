@@ -4,19 +4,18 @@ $().ready(function(){
 	
 	var ribbon = new MapCloud.Ribbon();
 	var layersTre = new MapCloud.LayerTree();
-	
-	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
+	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");
 		
-	var mapCanvas = document.getElementById("mapCanvas");
-	mapCanvas.width = $("#center_panel").width();
-	mapCanvas.height = $("#center_panel").height();
+	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
 	
 	var center = new GeoBeans.Geometry.Point(0,0);	
-	var layer  = new GeoBeans.Layer.AMapLayer("gaode");mapObj = new GeoBeans.Map("mapCanvas");
+	var layer  = new GeoBeans.Layer.AMapLayer("gaode");
+	mapObj = mapCanvas.map;
 	mapObj.setBaseLayer(layer);
 	mapObj.setCenter(center);
 	mapObj.setLevel(1);	
-	mapObj.draw();	
+
+	mapCanvas.resize();
 	
 	window.onresize = function(){
 		var left_panel = $("#left_panel");
@@ -29,9 +28,7 @@ $().ready(function(){
 		center_panel.css("height", $(window).height()-$("#head_panel").height()-$("#ribbon_wrapper").height());
 		//$(center_panel).width(window.document.width-left_w);
 		
-		var mapCanvas = document.getElementById("mapCanvas");
-		mapCanvas.width = $("#center_panel").width();
-		mapCanvas.height = $("#center_panel").height();
+		//mapCanvas.resize();
 	};
 });
 

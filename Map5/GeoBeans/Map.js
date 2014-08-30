@@ -35,9 +35,9 @@ GeoBeans.Map = GeoBeans.Class({
 	
 	maxScale : null,
 	
-	width : null,
+	//width : null,
 	
-	height : null,
+	//height : null,
 	
 	renderer : null,
 	
@@ -48,8 +48,8 @@ GeoBeans.Map = GeoBeans.Class({
 		this.layers = [];
 		
 		this.canvas = document.getElementById(id);
-		this.width = this.canvas.width;
-		this.height = this.canvas.height;
+		//this.width = this.canvas.width;
+		//this.height = this.canvas.height;
 		
 		this.center = new GeoBeans.Geometry.Point(0,0);
 		
@@ -108,6 +108,14 @@ GeoBeans.Map = GeoBeans.Class({
 	
 	getViewer : function(){
 		return this.viewer;
+	},
+	
+	getWidth : function(){
+		return this.canvas.width;
+	},
+	
+	getHeight : function(){
+		return this.canvas.height;
 	},
 	
 	/**
@@ -197,8 +205,8 @@ GeoBeans.Map = GeoBeans.Class({
 	updateMapExtent : function(resolution){
 		var cx = this.center.x;
 		var cy = this.center.y;
-		var vw = this.width;
-		var vh = this.height;
+		var vw = this.canvas.width;
+		var vh = this.canvas.height;
 		
 		var mw = resolution * vw / 2; 
 		var mh = resolution * vh / 2; 
@@ -238,7 +246,7 @@ GeoBeans.Map = GeoBeans.Class({
 	drawBackground : function(){
 		var context = this.renderer.context;
 		context.fillStyle = 'rgba(255,255,255,1)';
-		context.fillRect(0,0,this.width,this.height);
+		context.fillRect(0,0,this.canvas.width,this.canvas.height);
 	},
 	
 	scrollMap : function(){

@@ -57,8 +57,8 @@ GeoBeans.Transformation = GeoBeans.Class({
 	update : function(){
 		
 		var viewer = this.map.viewer;
-		var win_width = this.map.width;
-		var win_height= this.map.height;
+		var win_width = this.map.getWidth();
+		var win_height= this.map.getHeight();
 		
 		this.win_w = parseFloat(win_width);
 		this.win_h = parseFloat(win_height);

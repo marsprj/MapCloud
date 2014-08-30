@@ -73,6 +73,10 @@ li {
 	border-bottom:1px solid #e6e6e6;
 }
 
+.mc-border-right-light{
+	border-right:1px solid #e6e6e6;
+}
+
 .mc-border{
 	border:1px solid #e6e6e6;
 }
@@ -235,22 +239,25 @@ li {
 }
 
 .ribbon_panel{
+	float:left;
 	width:100%;
 	height:100%;
 	margin-left:60px;
 }
 
 .ribbon_group{
-	margin:5px;
-	border-right: 1px solid #CCC;
-	width:135px;
+	float:left;
+	margin:10px 0px;
+	padding:0px 10px;
+	height:64px;	
+	width:auto;
 }
 
 .ribbon-item{
 	float:left;
 	width:64px;
-	height:70px;
-	margin: 0px;
+	height:60px;
+	margin: 0px 10px;
 }
 
 .ribbon-item-over{
@@ -259,12 +266,14 @@ li {
 }
 
 .ribbon_image{
-	margin-top:5px;
+	margin-top:2px;
 	height:40px;
 }
 
 .ribbon_label{
 	text-align:center;
+	height:16px;
+	line-height:16px;
 }
 
 .mc-active-tab{

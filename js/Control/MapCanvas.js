@@ -1,24 +1,22 @@
-MapCloud.Ribbon = MapCloud.Class({
+MapCloud.MapCanvas = MapCloud.Class({
 	
-	initialize : function(){
+	map : null,
 
-		$("#ribbon_tabs li").each(function() {
-			$(this).mouseover(function(){
-				$(this).addClass("mc-theme-color-hover");
-			});
-			$(this).mouseout(function(){
-				$(this).removeClass("mc-theme-color-hover");
-			});
-			$(this).click(function(){
-				$("#ribbon_tabs li").each(function() {
-                    $(this).removeClass("mc-active-tab");
-                });
-				$(this).addClass("mc-active-tab");
-			});
-        });
+	initialize : function(canvas_id){
+		this.map = new GeoBeans.Map(canvas_id); 
 	},
 	
 	destory : function(){
+		this.map = null;
+	},
+	
+	resize : function(){
+		
+		var mapCanvas = document.getElementById("mapCanvas");
+		mapCanvas.width = $("#center_panel").width();
+		mapCanvas.height = $("#center_panel").height();
+		this.map.transformation.update();
+		this.map.draw();
 	}
 });
 	

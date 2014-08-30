@@ -11,6 +11,8 @@
 <script type="text/javascript" src="js/Class/Class.js"></script>
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
 <script type="text/javascript" src="js/Control/LayerTree.js"></script>
+<script type="text/javascript" src="js/Control/MapCanvas.js"></script>
+
 
 <!-- HTML5 Map Control Begin -->
 
@@ -63,7 +65,6 @@
         	<ul id="ribbon_tabs" class="mc-theme-color">
             	<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">首页</a></li>
             	<li id="map_tab"><a href="javascript:void(0)">地图</a></li>
-				<li id="layer_tab"><a href="javascript:void(0)">图层</a></li>
 				<li id="data_tab"><a href="javascript:void(0)">数据</a></li>
 				<li id="tool_tab"><a href="javascript:void(0)">工具</a></li>
             </ul>
@@ -71,19 +72,17 @@
         <div id="ribbon_container">
         	<div id="home_ribbon" class="ribbon_panel"></div>
         	<div id="map_ribbon" class="ribbon_panel">
-            	<div class="ribbon_group">
+            	<div class="ribbon_group mc-border-right-light">
                 	<div class="ribbon-item">
                     	<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
                         <div class="ribbon_label">新建地图</div>
                     </div>
                     <div class="ribbon-item">
                     	<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-                        <div class="ribbon_label">新建地图</div>
+                        <div class="ribbon_label">地图属性</div>
                     </div>
                 </div>
-            </div>
-            <div id="layer_ribbon" class="ribbon_panel">
-            	<div class="ribbon_group">
+                <div class="ribbon_group mc-border-right-light">
                 	<div class="ribbon-item">
                     	<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
                         <div class="ribbon_label">新建图层</div>
@@ -165,3 +164,4 @@
 </div>
 </body>
 </html>
+
