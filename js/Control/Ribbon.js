@@ -120,7 +120,8 @@ MapCloud.Ribbon = MapCloud.Class({
 	/* Map Event                                                  */
 	/**************************************************************/
 	onMapNew : function(){
-		alert("onMapNew");
+		var dlg = new MapCloud.NewMapDialog("new_map_dialog");
+		dlg.showDialog();
 	},
 	
 	onMapPropertis : function(){
@@ -158,7 +159,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 	
 	onDatabase : function(){
-		alert("onDatabase");
+		alert("onDatabase");		
 	},
 	
 	onDataImport : function(){

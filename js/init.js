@@ -4,20 +4,20 @@ var ribbonObj = null;
 $().ready(function(){
 	
 	var logo = new MapCloud.Logo();	
-	var layersTre = new MapCloud.LayerTree();
-	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");	
+	var layersTree = new MapCloud.LayerTree();	
 	ribbonObj = new MapCloud.Ribbon();
 	
 	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
 	
 //	var center = new GeoBeans.Geometry.Point(0,0);	
 //	var layer  = new GeoBeans.Layer.AMapLayer("gaode");
+//	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");	
 //	mapObj = mapCanvas.map;
 //	mapObj.setBaseLayer(layer);
 //	mapObj.setCenter(center);
 //	mapObj.setLevel(1);	
-
-	mapCanvas.resize();
+//
+//	mapCanvas.resize();
 	
 	window.onresize = function(){
 		var left_panel = $("#left_panel");
