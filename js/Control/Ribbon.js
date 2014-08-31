@@ -1,8 +1,14 @@
 MapCloud.Ribbon = MapCloud.Class({
 	
+	height_max : "100px",
+	height_min : "20px",
+	ribbon : null,
+	
 	initialize : function(){
 
 		var mcribbon = this;
+		
+		this.ribbon = $("#ribbon_wrapper").first();
 
 		this.hideAllRibbons();
 
@@ -48,6 +54,19 @@ MapCloud.Ribbon = MapCloud.Class({
 	
 	showRibbon : function(type){
 		$("#"+type+"_ribbon").css("display","block");
+	},
+	
+	expand : function(){
+		this.ribbon.css("height", this.height_max);
+	},
+	
+	collapse : function(){
+		this.ribbon.css("height", this.height_min);
+	},
+	
+	isCollapsed : function(){
+		return (this.ribbon.css("height") == this.height_min);
 	}
+	
 });
 	

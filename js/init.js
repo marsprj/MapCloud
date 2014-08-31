@@ -1,12 +1,13 @@
 var mapObj = null;
+var ribbonObj = null;
 
 $().ready(function(){
 	
-	var logo = new MapCloud.Logo();
-	var ribbon = new MapCloud.Ribbon();
+	var logo = new MapCloud.Logo();	
 	var layersTre = new MapCloud.LayerTree();
-	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");
-		
+	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");	
+	ribbonObj = new MapCloud.Ribbon();
+	
 	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
 	
 //	var center = new GeoBeans.Geometry.Point(0,0);	
