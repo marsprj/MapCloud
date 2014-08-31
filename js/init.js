@@ -2,18 +2,19 @@ var mapObj = null;
 
 $().ready(function(){
 	
+	var logo = new MapCloud.Logo();
 	var ribbon = new MapCloud.Ribbon();
 	var layersTre = new MapCloud.LayerTree();
 	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");
 		
 	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
 	
-	var center = new GeoBeans.Geometry.Point(0,0);	
-	var layer  = new GeoBeans.Layer.AMapLayer("gaode");
-	mapObj = mapCanvas.map;
-	mapObj.setBaseLayer(layer);
-	mapObj.setCenter(center);
-	mapObj.setLevel(1);	
+//	var center = new GeoBeans.Geometry.Point(0,0);	
+//	var layer  = new GeoBeans.Layer.AMapLayer("gaode");
+//	mapObj = mapCanvas.map;
+//	mapObj.setBaseLayer(layer);
+//	mapObj.setCenter(center);
+//	mapObj.setLevel(1);	
 
 	mapCanvas.resize();
 	
