@@ -168,7 +168,29 @@ li {
 	background-image:url(../images/Layers-40.png);
 }
 
+.mc-icon-layer_new{
+	background-image:url(../images/Layers-40.png);
+}
+
+.mc-icon-layer_vector{
+	background-image:url(../images/Layers-40.png);
+}
+.mc-icon-layer_wms{
+	background-image:url(../images/Layers-40.png);
+}
+.mc-icon-layers-wfs{
+	background-image:url(../images/Layers-40.png);
+}
+.mc-icon-file{
+	background-image:url(../images/Layers-40.png);
+}
+.mc-icon-database{
+	background-image:url(../images/Layers-40.png);
+}
 .mc-icon-layers{
+	background-image:url(../images/Layers-40.png);
+}
+.mc-icon-heatmap{
 	background-image:url(../images/Layers-40.png);
 }
 
@@ -258,11 +280,13 @@ li {
 	width:64px;
 	height:60px;
 	margin: 0px 10px;
+	cursor : pointer;
 }
 
 .ribbon-item-over{
 	border: 1px solid #CCC;
-	background-color:#B9FFFF;
+	/*background-color:#B9FFFF;*/
+	background-color:#eee;
 }
 
 .ribbon_image{
