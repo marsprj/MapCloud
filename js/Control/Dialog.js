@@ -7,7 +7,7 @@ MapCloud.Dialog = MapCloud.Class({
 		
 		this.panel = $("#"+id);
 		
-		this.panel.find(".mc-dialog-close").each(function(){
+		this.panel.find(".mc-dialog-close,.mc-dialog-close-button").each(function(){
 			$(this).click(function(){
 				that.closeDialog();
 			});
@@ -25,8 +25,21 @@ MapCloud.Dialog = MapCloud.Class({
 	},
 	
 	closeDialog : function() {
-		$(".mc-mask").css("display", "none");
+//		$(".mc-mask").css("display", "none");
 		this.panel.css("display", "none");
+		var that = this;
+		var flag = false;
+		$(document).find(".mc-dialog").each(function(){
+			if($(this).css("display") == "block" && $(this) != that){
+				flag = true;
+				return false;
+			}
+			return true;
+		});
+
+		if(!flag){
+			$(".mc-mask").css("display", "none");
+		}
 	},
 	
 	cleanup : function(){

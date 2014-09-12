@@ -3,11 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
+<link rel="stylesheet" type="text/css" href="css/Flexigrid-master/flexigrid.pack.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/mc.css"/>
 
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 
+<script src="js/jquery.ztree.core-3.5.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+var Msg = {}; //declare this or modify line 1 of core.js
+</script>
+
+
+<script type="text/javascript" src="js/Flexigrid-master/flexigrid.pack.js"></script>
+
 <script type="text/javascript" src="js/MapCloud.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/Class/Class.js"></script>
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
 <script type="text/javascript" src="js/Control/LayerTree.js"></script>
@@ -16,7 +28,38 @@
 
 <script type="text/javascript" src="js/Control/Dialog.js"></script>
 <script type="text/javascript" src="js/Control/NewMapDialog.js"></script>
+<script type="text/javascript" src="js/Control/NewLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/EditLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/CreateLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/PGISConnectDialog.js"></script>
+<script type="text/javascript" src="js/Control/DatabaseDialog.js"></script>
+<script type="text/javascript" src="js/Control/FileDialog.js"></script>
+<script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 
+
+<script type="text/javascript" src="Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+
+<!-- Geometry -->
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/Point.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+
+<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/GML.js"></script>
+
+<!-- Feature -->
+<script type="text/javascript" src="Map5/lib/GeoBeans/Filter.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Field.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Feature.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/FeatureType.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/Workspace.js"></script>
+<script type="text/javascript" src="Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
 
 <!-- HTML5 Map Control Begin -->
 <!--
@@ -71,7 +114,9 @@
         	<ul id="ribbon_tabs" class="mc-theme-color">
             	<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">首页</a></li>
             	<li id="map_tab"><a href="javascript:void(0)">地图</a></li>
+				<li id="layer_tab"><a href="javascript:void(0)">图层</a></li>
 				<li id="data_tab"><a href="javascript:void(0)">数据</a></li>
+				<li id="analysis_tab"><a href="javascript:void(0)">分析</a></li>
 				<li id="tool_tab"><a href="javascript:void(0)">工具</a></li>
             </ul>
         </div>
@@ -107,7 +152,61 @@
                     </div>
                 </div>                
             </div>
+           <div id="layer_ribbon" class="ribbon_panel">
+            	<div class="ribbon_group">
+                	<div class="ribbon-item">
+                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+                        <div class="ribbon_label">新建图层</div>
+                    </div>
+                    <div class="ribbon-item">
+                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers-edit"></div>
+                        <div class="ribbon_label">编辑图层</div>
+                    </div>
+                    <div class="ribbon-item">
+                    	<div class="ribbon_image mc-icon-ribbon mc-icon-map-publish"></div>
+                        <div class="ribbon_label">分享图层</div>
+                    </div>
+                </div>
+				<div class="ribbon_group">
+					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+						<div class="ribbon_image_16 mc-icon-layers-create"></div>
+						<div class="ribbon_label">新建图层</div>
+					</div>
+					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+						<div class="ribbon_image_16 mc-icon-layers-duplicate"></div>
+						<div class="ribbon_label">复制图层</div>
+					</div>
+					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+						<div class="ribbon_image_16 mc-icon-layers-remove"></div>
+						<div class="ribbon_label">删除图层</div>
+					</div>
+				</div>
+				<div class="ribbon_group">
+					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+						<div class="ribbon_image_16 mc-icon-layers-zoom"></div>
+						<div class="ribbon_label">图层定位</div>
+					</div>
+					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+						<div class="ribbon_image_16 mc-icon-map-select"></div>
+						<div class="ribbon_label">选择所有图层</div>
+					</div>
+				</div>
+            	<div class="ribbon_group">
+                	<div class="ribbon-item">
+                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+                        <div class="ribbon_label">导入图层</div>
+                    </div>
+                    <div class="ribbon-item">
+                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+                        <div class="ribbon_label">导出图层</div>
+                    </div>
+                </div>
+            </div>
 			<div id="data_ribbon" class="ribbon_panel">
+			</div>
+			<div id="analysis_ribbon" class="ribbon_panel">
+			</div>
+			<div id="tool_ribbon" class="ribbon_panel">
             	<div class="ribbon_group mc-border-right-light">
                 	<div class="ribbon-item">
                     	<div class="ribbon_image mc-icon-ribbon mc-icon-file"></div>
@@ -122,8 +221,6 @@
                         <div class="ribbon_label">导入数据</div>
                     </div>
                 </div>
-			</div>
-			<div id="tool_ribbon" class="ribbon_panel">
             	<div class="ribbon_group mc-border-right-light">
                 	<div class="ribbon-item">
                     	<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
@@ -199,14 +296,14 @@
         </div>
         <div id="right_panel" class="mc-column"></div>
 	</div>
-    <!-- New Map panel -->
     <div class="mc-mask"></div>
+    <!-- New Map panel -->
     <div id="new_map_dialog" class="mc-dialog">
         <div class="mc-dialog-header mc-border-bottom">
             <div class="mc-dialog-title">新建地图</div>
             <div class="mc-dialog-close"></div>
         </div>
-        <div class="mc-new-map-info">
+        <div class="mc-dialog-info">
             <div class="mc-map-name-wrapper">
                 <span>名称:</span><input id="map_name" type="text"/>
             </div>
@@ -252,12 +349,466 @@
                 -->
             </div>
         </div>
-        <div class="mc-new-map-bottom">
-        	<a href="javascript:void()">确定</a>
-        	<a href="javascript:void()">取消</a>
+        <div class="mc-dialog-bottom">
+        	<a href="javascript:void(0)">确定</a>
+        	<a href="javascript:void(0)" class="mc-dialog-close-button">取消</a>
         </div>
     </div>
-</div>
+    <!-- New layer panel -->
+	<div class="mc-dialog" id="new_layer_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">新建图层</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div class="mc-dialog-info-left">
+				list
+			</div>
+			<div class="mc-dialog-info-right">
+			</div>
+		</div>
+		<div class="mc-dialog-bottom">
+		  	<a href="javascript:void(0)">确定</a>
+        	<a href="javascript:void(0)" class="mc-dialog-close-button">取消</a>
+		</div>
+	</div>
+    <!-- WFS datasource panel -->
+	<div class="mc-dialog" id="wfs_datasource_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">WFS数据源</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div class="mc-tabs">
+				<ul class="mc-tabs-ul">
+					<li id="general_tab" class="active">
+						信息
+					</li>
+					<li id="display_tab">
+						高级
+					</li>
+				</ul>
+			</div>
+			<div id="wfs_datasource_dialog_form_div" class="mc-dialog-form-div">
+				<div class="mc-tab-form active_tab" >
+					<table>
+						<tr>
+							<td width="30%">
+								名称：
+							</td>
+							<td>
+								<input type="text" id="wfs_datasource_layer_name"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								地址：
+							</td>
+							<td>
+								<input type="text" id="wfs_datasource_layer_url"/>
+								<a href="#" id="wfs_datasource_get_info">获取信息</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								图层：
+							</td>
+							<td>
+								<select id="wfs_datasource_layers">
+								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="mc-tab-form" >
+					2
+				</div>
+			</div>
+		</div>
+		<div class="mc-dialog-bottom">
+		  	<a href="javascript:void(0)">确定</a>
+        	<a href="javascript:void(0)" class="mc-dialog-close-button">取消</a>
+		</div>
+	</div>
+    <!-- Edit layer panel -->
+	<div class="mc-dialog" id="edit_layer_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">编辑图层</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div class="mc-tabs">
+				<ul class="mc-tabs-ul">
+					<li id="general_tab" class="active">
+						通用
+					</li>
+					<li id="display_tab">
+						显示
+					</li>
+					<li id="display_tab">
+						标签
+					</li>
+				</ul>
+			</div>
+			<div id="edit_layer_dialog_form_div" class="mc-dialog-form-div">
+				<div class="mc-tab-form active_tab" >
+					<table>
+						<tr>
+							<td width="30%">
+								名称：
+							</td>
+							<td>
+								<input type="text"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								类型：
+							</td>
+							<td>
+								<select >
+									<option>点</option>
+									<option>线</option>
+									<option>面</option>
+									<option>影像</option>
+									<option>WFS</option>
+									<option>WMS</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					
+				</div>
+				<div class="mc-tab-form" >
+					<table>
+						<tr>
+							<td width="30%">
+								东：
+							</td>
+							<td>
+								<input type="text" value="180"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="30%">
+								南：
+							</td>
+							<td>
+								<input type="text" value="-90"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="30%">
+								西：
+							</td>
+							<td>
+								<input type="text" value="-180"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="30%">
+								北：
+							</td>
+							<td>
+								<input type="text" value="90"/>
+							</td>
+						</tr>
 
+					</table>
+				</div>
+				
+			</div>
+		</div>
+
+		<div class="mc-dialog-bottom">
+		  	<a href="javascript:void(0)">确定</a>
+        	<a href="javascript:void(0)" class="mc-dialog-close-button">取消</a>
+		</div>
+	</div>
+    <!-- Create layer panel -->
+	<div class="mc-dialog" id="create_layer_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">创建图层</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div id="create_layer_dialog_form_div"  class="mc-dialog-form-div">
+				<div class="mc-tab-form active_tab" >
+					<table style="display:block;overflow-y:auto;height:100%">
+						<tr>
+							<td width="20%">表名称：</td>
+							<td width="60%"><input type="text"/></td>
+						</tr>
+						<tr>
+							<td>类型：</td>
+							<td>
+								<label><input type="radio" name="geometrytype" checked="checked" value="1"/>点</label>
+								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="2"/>线</label>
+								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="3"/>多线</label>
+								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="4"/>面</label>
+								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="5"/>多面</label>
+							</td>
+						</tr>
+						<tr>
+							<td>投影：</td>
+							<td>
+								<a href="javascript:void(0)" id="projection">EPSG:4326</a>
+							</td>
+						</tr>
+						<tr>
+							<td>是否覆盖：</td>
+							<td>
+								<input type="checkbox" name="overwrite" value="yes" checked="checked"/>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">属性：</td>
+							<td valign="top">
+								<div id="create_layer_dialog_attributes">
+									<ul>
+										<li>
+											<input type="text"/>
+											<select style="margin-left:16px">
+												<option value="String">String</option>
+												<option value="Real">Real</option>
+												<option value="Integer">Integer</option>
+											</select>
+											<div class="delete_btn"></div>
+											<div class="add_btn"></div>
+										</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="mc-dialog-bottom">
+		  	<a href="javascript:void(0)">确定</a>
+        	<a href="javascript:void(0)" class="mc-dialog-close-button">取消</a>
+		</div>
+	</div>
+    <!-- PGIS connection panel -->
+	<div class="mc-dialog" id="pgis_connection_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">连接PostGIS数据库</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div id="pgis_connection_dialog_form_div" class="mc-dialog-form-div">
+				<div class="mc-tab-form active_tab">
+					<table>
+						<tr>
+							<td>名称：</td>
+							<td><input type="text" id="pgis_connection_name"/></td>
+						</tr>
+						<tr>
+							<td>地址：</td>
+							<td><input type="text" id="pgis_connection_host"/></td>
+						</tr>
+						<tr>
+							<td>端口：</td>
+							<td><input type="text" id="pgis_connection_port"/></td>
+						</tr>
+						<tr>
+							<td>数据库：</td>
+							<td><input type="text" id="pgis_connection_database"/></td>
+						</tr>
+						<tr>
+							<td>用户：</td>
+							<td><input type="text" id="pgis_connection_username"/></td>
+						</tr>
+						<tr>
+							<td>密码：</td>
+							<td><input type="password" id="pgis_connection_password"/></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><a href="javascript:void(0)" id="pgis_connection_test" class="btn"/>连接测试</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="mc-dialog-bottom">
+		  	<a href="javascript:void(s)">确定</a>
+        	<a href="javascript:void()" class="mc-dialog-close-button">取消</a>
+		</div>
+	</div>
+    <!-- Database panel -->
+	<div class="mc-dialog" id="database_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">数据库管理</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div id="database_dialog_form_div" class="mc-dialog-form-div">
+				<div class="mc-tab-form active_tab">
+					<div>
+						<div id="database-dialog-panel">
+							<fieldset>
+								<legend>数据库连接</legend>
+								<ul>
+									<li>
+										<select style="width:80px">
+											<option value="192.168.111.87">87</option>
+											<option value="192.168.111.150">150</option>
+										</select>
+									</li>
+									<li><a href="javascript:void(0)" id="database-dialog-connect">连接</a></li>
+									<li>|</li>
+									<li><a href="javascript:void(0)" id="database-dialog-create-connect">新建</a></li>
+									<li>|</li>
+									<li><a href="javascript:void(0)" id="database-dialog-connect-edit">编辑</a></li>
+									<li>|</li>
+									<li><a href="javascript:void(0)" id="database-dialog-connect-delete">删除</a></li>
+									<li></li>
+								</ul>
+							</fieldset>
+						</div>
+						<div class="btn-group" id="database_dialog_action">
+							<a href="#" class="btn btn-mini" id="database_dialog_action_btn">
+								操作
+								<span class="caret"></span>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li><a href="#" id="refresh-btn">刷新</a></li>
+								<li><a href="#" id="select-all-btn">全选</a></li>
+								<li><a href="#" id="unselect-all-btn">全不选</a></li>
+								<li><a href="#" id="rename-btn">重命名</a></li>
+								<li><a href="#" class="editfield_btn">编辑字段</a></li>
+								<li><a href="#" id="duplicate-btn">复制</a></li>
+								<li><a href="#" id="reset-btn">重置</a></li>
+								<li><a href="#" id="truncate-btn">截断</a></li>
+								<li><a href="#" class="delete_layers_btn">删除</a></li>
+							</ul>
+						</div>
+						<div style="display:inline-block;margin-left: 20px;"><input type="text" placeholder="过滤…"/></div>
+					</div>
+					<div style="margin-top:20px;height:300px">
+						<table width="100%" id="dbtable">
+							<thead>
+								<tr class="table_header">
+									<th width="180">表</th>
+									<th width="180">类型</th>
+									<th width="80">EPSG</th>
+									<th width="100">个数</th>
+									<th width="100">便捷操作</th>
+								</tr>
+							</thead>
+							<tr>
+								<td>cities</td>
+								<td>POINT</td>
+								<td>4326</td>
+								<td>638</td>
+								<td>
+									<a href="#" class="editfield_btn">编辑</a>
+									<a href="#" class="delete_layers_btn">删除</a>
+								</td>
+							</tr>
+							<tr>
+								<td>rivers</td>
+								<td>LINESTRING</td>
+								<td>4326</td>
+								<td>131</td>
+								<td>
+									<a href="#" class="editfield_btn">编辑</a>
+									<a href="#" class="delete_layers_btn">删除</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div style="margin-top:10px">
+						<div>
+							<a href="javascript:void(s)" id="database_dialog_import" class="btn">导入</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="mc-dialog-bottom">
+		  	<a href="javascript:void(s)">确定</a>
+        	<a href="javascript:void()" class="mc-dialog-close-button">取消</a>
+		</div>
+	</div>
+    <!-- Database panel -->
+	<div class="mc-dialog" id="file_dialog">
+		<div class="mc-dialog-header mc-border-bottom">
+			<div class="mc-dialog-title">文件管理</div>
+            <div class="mc-dialog-close"></div>
+		</div>
+		<div class="mc-dialog-info">
+			<div id="file_dialog_form_div" class="mc-dialog-form-div">
+				<div class="mc-tab-form active_tab">
+					<div style="height:320px;">
+						<div id="file_dialog_tree_div">
+							<ul id="file_tree" class="ztree" style="width:260px; overflow:auto;">				
+							</ul>
+						</div>
+						<div id="file_dialog_content">
+							<table class="file-dialog-content-flex">
+								<thead>
+									<tr>
+										<th width="180">文件名称</th>
+										<th width="80">文件大小</th>
+										<th width="130">更新时间</th>
+										<th width="90">类型</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>矢量数据</td>
+										<td></td>
+										<td>09.03.2014 02:45:09</td>
+										<td>文件夹</td>
+									</tr>
+									<tr>
+										<td>city.shp</td>
+										<td>300kb</td>
+										<td>09.03.2014 02:45:09</td>
+										<td>SHP</td>
+									</tr>
+									<tr>
+										<td>river.shp</td>
+										<td>300kb</td>
+										<td>09.03.2014 02:45:09</td>
+										<td>SHP</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+					<div id="file_dialog_toolbar">
+						<ul id="file_dialog_toolbar_menu">
+							<li>
+								<a id="file_dialog_toolbar_menu_refresh" class="iconbutton" href="#" title="更新文件夹"></a>
+							</li>
+<!--							<li>
+								<a id="file_dialog_toolbar_menu_select_all" class="iconbutton" href="#" title="选择所有"></a>
+							</li>
+-->							<li>
+								<a id="file_dialog_toolbar_menu_new_folder" class="iconbutton" href="#" title="新建文件夹"></a>
+							</li>
+							<li>
+								<a id="file_dialog_toolbar_menu_duplicate" class="iconbutton" href="#" title="复杂"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="mc-dialog-bottom">
+        	<a href="javascript:close(this)">确定</a>
+        	<a href="javascript:void()" class="mc-dialog-close-button">取消</a>
+        </div>
+	</div>
+
+
+</div>
+	
 </body>
 </html>

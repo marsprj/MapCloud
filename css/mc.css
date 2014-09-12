@@ -164,6 +164,10 @@ li {
 	background-image:url(../images/map-new-40.png);
 }
 
+.mc-icon-map-publish{
+	background-image:url(../images/map-publish-40.png);	
+}
+
 .mc-icon-layers{
 	background-image:url(../images/Layers-40.png);
 }
@@ -204,6 +208,38 @@ li {
 
 .mc-icon-thumb-amap{
 	background-image:url(../images/map-amap-thumb.png);
+}
+
+
+.mc-icon-layers-edit{
+	background-image:url(../images/layers-edit-40.png);	
+}
+
+.mc-icon-layers-create{
+	background-image:url(../images/layers-create-16.png);	
+}
+
+.mc-icon-layers-duplicate{
+	background-image:url(../images/layers-duplicate-16.png);	
+}
+
+.mc-icon-layers-remove{
+	background-image:url(../images/layers-remove-16.png);	
+}
+
+.mc-icon-layers-zoom{
+	background-image:url(../images/layers-remove-16.png);	
+}
+
+.mc-icon-map-select{
+	background-image:url(../images/layers-remove-16.png);	
+}
+.mc-icon-tool-merge{
+	background-image:url(../images/tool-merge-40.png);	
+}
+
+.mc-icon-tool-geocoder{
+	background-image:url(../images/tool-geocoders-40.png);
 }
 
 .mc-world-full{
@@ -281,10 +317,12 @@ li {
 
 .ribbon_group{
 	float:left;
-	margin:10px 0px;
+	margin:5px;
 	padding:0px 10px;
-	height:64px;	
+	height:72px;	
 	width:auto;
+	border-right: 1px solid #CCC;
+
 }
 
 .ribbon-item{
@@ -306,10 +344,27 @@ li {
 	height:40px;
 }
 
-.ribbon_label{
+/*.ribbon_label{
 	text-align:center;
 	height:16px;
 	line-height:16px;
+}
+*/
+.ribbon_label{
+	text-align:center;
+}
+
+.ribbon_button_16{
+	height: 16px;
+	padding: 3px 4px 3px 4px;
+	cursor:pointer;
+	clear:both;
+}
+
+.ribbon_image_16{
+	height:16px;
+	width:16px;
+	float:left;
 }
 
 .mc-active-tab{
@@ -319,6 +374,7 @@ li {
 
 li.mc-active-tab a{
 	color:#000;
+	display: block;
 }
 
 ul#ribbon_tabs li{
@@ -442,12 +498,14 @@ ul#ribbon_tabs li{
 	background-color:#fff;
 	top: 50%;
 	left: 50%;
-	margin-top: -250px;
-	margin-left: -250px;
+	margin-top: -120px;
+	margin-left: -180px;
 	border-radius: 6px;
 	font-family:"Microsoft YaHei" ! important;
 	font-size:16px;
 	z-index:100;
+	min-width: 360px;
+	min-height: 240px;
 }
 
 .mc-dialog-header{
@@ -455,13 +513,17 @@ ul#ribbon_tabs li{
 	/*background-color:#e6e6e6;*/
 }
 
-.mc-new-map-bottom{
-	height:60px;
+.mc-dialog-bottom{
+	height:50px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
 	margin:0px 20px;
 	border-top: 1px solid #e6e6e6;
 }
 
-.mc-new-map-bottom a{
+.mc-dialog-bottom a{
 	float:right;
 	color:#fff;
 	display:block;
@@ -487,11 +549,23 @@ ul#ribbon_tabs li{
 	background-image:url(../images/close-16.png);
 	background-repeat:no-repeat;
 	background-position:center;
+	cursor:pointer;
 }
 
-.mc-new-map-info{
+.mc-dialog-close:hover{
+	background-image:url(../images/close-22.png);
+
+}
+
+/*.mc-new-map-info{
 	margin:20px;
 	height:auto;
+}*/
+.mc-dialog-info{
+	margin:20px;
+	height:auto;
+	margin-bottom:50px;
+	font-size: 14px;
 }
 
 .mc-map-name-wrapper{
@@ -536,6 +610,9 @@ ul#ribbon_tabs li{
 
 #new_map_dialog{;
 	width:500px;
+	height:400px;
+	margin-left:-250px;
+	margin-top:-200px;
 	/*height:500px;*/
 	/*background-color:#09C;*/
 }
@@ -546,6 +623,480 @@ ul#ribbon_tabs li{
 	text-align:center;
 }
 
+.mc-dialog-close-button{
+}
+
+
 /***************************************************************************/
 /* New Map Dialog End                                                    */
+/***************************************************************************/
+
+/***************************************************************************/
+/* New Layer Dialog Begin                                                    */
+/***************************************************************************/
+
+#new_layer_dialog{
+	height:600px;
+	width:800px;
+	margin-left:-400px;
+	margin-top:-300px
+}
+
+.mc-dialog-info-left{
+	float:left;
+	width:260px;
+	border: 1px solid #e2e2e2;
+	border-radius:8px;
+	height:460px;
+}
+
+.mc-dialog-info-right{
+	float:right;
+	width:400px;
+	border: 1px solid #e2e2e2;
+	height:460px;
+}
+/***************************************************************************/
+/* New Layer Dialog End                                                    */
+/***************************************************************************/
+/***************************************************************************/
+/* WFS Layer Dialog Begin                                                  */
+/***************************************************************************/
+
+/***************************************************************************/
+/* WFS Layer Dialog End                                                  */
+/***************************************************************************/
+#wfs_datasource_dialog{
+	height:400px;
+	width:600px;
+	margin-left:-300px;
+	margin-top:-200px;
+}
+#wfs_datasource_dialog_form_div{
+	height:280px;
+}
+#wfs_datasource_get_info{
+	color: #0088cc;
+	text-decoration: underline;	
+}
+/***************************************************************************/
+/* Edit Layer Dialog Begin                                                  */
+/***************************************************************************/
+
+#edit_layer_dialog{
+	width:600px;
+	height:400px;
+	margin-left: -300px;
+	margin-top:-200px;
+}
+
+.mc-tabs{
+}
+
+.mc-tabs-ul{
+/*	padding: 0px;
+	margin:0px;
+	overflow: hidden;
+*/
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+	margin: 0px;
+	padding-left: 0px;
+	border-bottom: 1px solid #CCC;
+}
+
+.mc-tabs-ul li{
+	float:left;
+	width: 60px;
+	text-align: center;
+	background-color: #f2f2f2;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	margin-left: 2px;
+	z-index: 100;
+	cursor:pointer;
+}
+
+.mc-tabs-ul li.active{
+	background-color: #fff;
+	border-bottom: 0; 
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-bottom-color: transparent;
+}
+
+.mc-tabs-ul li:hover{
+	background-color:#ccc;
+}
+
+.mc-tabs-ul li.active:hover{
+	background-color:#fff;
+}
+
+.mc-dialog-form-div{
+	position: relative;
+}
+#edit_layer_dialog_form_div{
+	height: 200px;
+}
+
+.mc-tab-form{
+	display:none;
+	height: 100%;
+	top: 0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	position: absolute;
+	padding:4px;
+}
+
+.mc-tab-form table tr{
+	height:30px;
+	line-height:30px;
+}
+
+.mc-tab-form input[type="text"],.mc-tab-form input[type="password"]{
+	border:1px solid #ccc;
+	border-radius:4px;
+	padding-left: 4px;
+	height: 22px;
+}
+
+.active_tab{
+	display:block;
+}
+/***************************************************************************/
+/* Edit Layer Dialog End                                                    */
+/***************************************************************************/
+
+/***************************************************************************/
+/* Create Layer Dialog Begin                                                  */
+/***************************************************************************/
+
+#create_layer_dialog{
+	height:460px;
+	width:600px;
+	margin-left:-230px;
+	margin-top:-300px;
+}
+
+.mc-dialog-info > #create_layer_dialog{
+	overflow-y:auto;
+}
+#create_layer_dialog_form_div{
+	height:330px;
+}
+#projection{
+	color:#21759b;
+	text-decoration:underline;
+}
+
+.mc-tab-form select{
+	border: 1px solid #ccc;
+	border-radius:4px;
+	height:30px;
+	cursor:pointer;
+	padding-left: 6px;
+}
+
+#create_layer_dialog_attributes{
+}
+
+#create_layer_dialog_attributes li{
+	position:relative;
+	margin-top: 4px;
+}
+
+.delete_btn{
+	display: inline-block;
+	position: absolute;
+	top: 6px;
+	right: 80px;
+	height: 16px;
+	width: 16px;
+	background-image:url("../images/close-16.png");
+
+	cursor:pointer;
+}
+
+.add_btn{
+	display: inline-block;
+	position: absolute;
+	top: 6px;
+	right: 50px;
+	height: 20px;
+	width: 20px;	
+	background-image:url("../images/add-20.png");
+	cursor:pointer;
+}
+/***************************************************************************/
+/* Create Layer Dialog End                                                  */
+/***************************************************************************/
+
+/***************************************************************************/
+/* PGIS Connection Dialog Begin                                            */
+/***************************************************************************/
+#pgis_connection_dialog{
+	height:400px;
+	z-index:101;
+	margin-top: -200px;
+}
+
+#pgis_connection_dialog_form_div{
+	height:300px;
+}
+.mc-tab-form input[type="button"]{
+	height:30px;
+	border: 1px solid #e5e5e5;
+	border-radius: 9px;
+	cursor:pointer;
+	margin-top: 12px;
+	padding: 0 16px;
+}
+
+.btn{
+	color:#000;
+	border:1px solid #e5e5e5;
+	border-radius:4px;
+	padding:2px 4px;
+	cursor:pointer;
+	display: block;
+	text-align: center;
+	width: 80px;
+	background-color:#e5e5e5;
+}
+#pgis_connection_test{
+	margin: 4px 0px 0px 30px;
+
+}
+.btn:hover{
+	background-color:#ccc;
+}
+/***************************************************************************/
+/* PGIS Connection Dialog End                                              */
+/***************************************************************************/
+
+/***************************************************************************/
+/* Database Dialog Begin   												   */
+/***************************************************************************/
+
+#database_dialog{
+	height:620px;
+	width:800px;
+	margin-left: -400px;
+	margin-top:-310px;
+}
+#database_dialog_form_div{
+	height:500px;
+}
+
+#database_dialog fieldset{
+	border:1px solid #e5e5e5;
+}
+
+#database_dialog ul{
+	
+}
+
+#database-dialog-panel ul li{
+	float:left;
+	margin-left: 20px;
+}
+
+#database-dialog-panel ul li a{
+	color:#21759b;
+	border-bottom: 1px solid #21759b;
+	padding-top: 2px;
+	display: block;
+}
+
+#database_dialog_action{
+	margin-top:20px;
+	display: inline-block;
+}
+
+.caret{
+	display: inline-block;
+	width: 0;
+	height: 0;
+	vertical-align: top;
+	border-top: 4px solid #000;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;	
+}
+.btn-group{
+}
+
+.btn-mini{
+	width:40px;
+	font-size:11px;
+}
+
+.btn-mini .caret{
+	margin-top:8px;
+}
+.open>.dropdown-menu {
+	display: block;
+}
+.dropdown-menu{
+	position: absolute;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	list-style: none;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 6px;
+}
+
+.dropdown-menu li{
+	float:none;
+	clear:both;
+	width:100%;
+	height:24px;
+}
+
+.dropdown-menu li:hover{
+	background-color:#F8F5F5;
+}
+.dropdown-menu li a{
+	text-decoration: none;
+	width:100%;
+	display:block;
+	color: #333;
+	white-space: nowrap;
+	padding-left: 12px;
+
+}
+
+.hDiv tr{
+	height:25px;
+	line-height:20px;
+}
+
+
+#dbtable tr{
+	height:25px;
+	line-height:20px;
+}
+/*
+#dbtable{
+	margin-top:20px;
+	height:300px;
+}
+
+#dbtable table{
+	border-collapse:collapse;
+	border:1px solid #AAA;
+	text-align:center;
+}
+
+#dbtable .table_header{
+	
+}
+
+#dbtable table th{
+	border: 1px solid #AAA;	
+	background-color:#ddd;
+}
+
+#dbtable table td{
+	border: 1px solid #AAA;
+}
+
+#dbtable table tr{
+	cursor:pointer;
+}
+
+#dbtable table tr:hover{
+	background-color: #E7EFF5;
+}
+
+#dbtable table tr:hover a{
+	color: #21759b;
+	border-bottom: 1px solid #21759b;
+}
+
+#dbtable table tr:hover a:hover{
+	color:red;
+}
+*/
+/***************************************************************************/
+/* Database Dialog End   												   */
+/***************************************************************************/
+
+/***************************************************************************/
+/* File Dialog Begin   													   */
+/***************************************************************************/
+#file_dialog{
+	height:500px;
+	width:800px;
+	margin-left:-400px;
+	margin-top:-250px;
+}
+
+#file_dialog_form_div{
+	height:360px;
+}
+
+#file_dialog_tree_div{
+	float:left;
+	width:200px;
+	border:1px solid #ccc;
+	height: 99%;
+	border-radius: 8px;
+}
+
+#file_dialog_content{
+	float:right;
+	width:530px;
+	border:1px solid #ccc;
+	height: 99%;
+}
+
+
+.flexigrid{
+	height:100%;
+}
+
+#file_dialog_toolbar_menu{
+}
+
+#file_dialog_toolbar_menu li{
+	float:left;
+	margin-left: 4px;
+}
+
+.iconbutton{
+	height:16px;
+	width:16px;
+	display:block;
+}
+.iconbutton:hover{
+	background-position-x: -16px;	
+}
+#file_dialog_toolbar_menu_refresh{
+	background-image:url(../images/refresh.gif);
+}
+
+#file_dialog_toolbar_menu_select_all{
+	background-image:url(../images/refresh.gif);
+}
+
+#file_dialog_toolbar_menu_new_folder{
+	background-image:url(../images/folder_add.gif);	
+}
+
+#file_dialog_toolbar_menu_duplicate{
+	background-image:url(../images/table_multiple.gif);	
+}
+/***************************************************************************/
+/* File Dialog End     														*/
 /***************************************************************************/

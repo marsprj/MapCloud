@@ -18,7 +18,7 @@ $().ready(function(){
 //	mapObj.setLevel(1);	
 //
 //	mapCanvas.resize();
-	
+
 	window.onresize = function(){
 		var left_panel = $("#left_panel");
 		var center_panel = $("#center_panel");

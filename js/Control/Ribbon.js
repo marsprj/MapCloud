@@ -101,8 +101,49 @@ MapCloud.Ribbon = MapCloud.Class({
 				case 5:
 					that.onLayerAddWFS();
 					break;
-				// Data Events
 				case 6:
+					that.onLayerNew();
+					break;
+				case 7:
+					that.onEditLayer();
+					break;
+				case 9:
+					that.onCreateLayer();
+					break;
+				case 10:
+					//复制图层
+					that.onDuplicateLayer();
+					break;
+				case 11:
+					//删除图层
+					that.onDeleteLayer();
+					break;
+				case 12:
+					//图层定位
+					that.onZoomLayer();
+					break;
+				case 13:
+					//选择所有
+					that.onSelectAllLayers();
+					break;
+				case 14:
+					//导入图层
+					that.onImportLayer();
+					break;
+				case 15:
+					//导出图层
+					that.onExportLayer();
+					break;
+				// Tools Events
+				case 16:
+					that.onFile();
+					break;
+				case 17:
+					that.onDatabase();
+
+
+				// Data Events
+/*				case 6:
 					that.onFile();
 					break;
 				case 7:
@@ -111,7 +152,7 @@ MapCloud.Ribbon = MapCloud.Class({
 				case 8:
 					that.onDataImport();
 					break;
-				};
+*/				};
 			});
         });
 	},
@@ -120,8 +161,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	/* Map Event                                                  */
 	/**************************************************************/
 	onMapNew : function(){
-		var dlg = new MapCloud.NewMapDialog("new_map_dialog");
-		dlg.showDialog();
+		if(MapCloud.new_map_dlg == null){
+			MapCloud.new_map_dlg = new MapCloud.NewMapDialog("new_map_dialog");
+		}
+		MapCloud.new_map_dlg.showDialog();
 	},
 	
 	onMapPropertis : function(){
@@ -132,7 +175,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	/* Layer Event                                                */
 	/**************************************************************/
 	onLayerNew : function(){
-		alert("onLayerNew");
+		if(MapCloud.new_layer_dialog == null){
+			MapCloud.new_layer_dialog = new MapCloud.NewLayerDialog("new_layer_dialog");
+		}
+		MapCloud.new_layer_dialog.showDialog();
 	},
 	
 	onLayerAddVector : function(){
@@ -148,18 +194,71 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 	
 	onLayerAddWFS : function(){
-		alert("onLayerAddWFS");
+		if(MapCloud.wfs_datasource_dialog == null){
+			MapCloud.wfs_datasource_dialog = new MapCloud.WFSDatasourceDialog("wfs_datasource_dialog");
+		}
+		MapCloud.wfs_datasource_dialog.showDialog();
+	},
+
+	onEditLayer: function(){
+		if(MapCloud.edit_layer_dialog == null){
+			MapCloud.edit_layer_dialog = new MapCloud.EditLayerDialog("edit_layer_dialog");
+		}
+		
+		MapCloud.edit_layer_dialog.showDialog();
 	},
 	
+	onCreateLayer:function(){
+		if(MapCloud.create_layer_dialog == null){
+			MapCloud.create_layer_dialog = new MapCloud.CreateLayerDialog("create_layer_dialog");
+		}
+		MapCloud.create_layer_dialog.showDialog();
+	},
+	
+	onDuplicateLayer:function(){
+		if(confirm("你确定要复制图层吗？")){
+			alert("复制图层并刷新tree");
+		}
+	},
+
+	onDeleteLayer:function(){
+		if(confirm("你确定要删除图层吗？")){
+			alert("删除图层并刷新tree");
+		}
+	},
+
+	onZoomLayer:function(){
+		alert("图层定位");
+	},
+
+	onSelectAllLayers:function(){
+		alert("选择图层");
+	},
+	
+	onImportLayer:function(){
+		alert("导入图层");
+	},
+	
+	onExportLayer:function(){
+		alert("导出图层");
+	},
 	/**************************************************************/
 	/* Data Event                                                */
 	/**************************************************************/
 	onFile : function(){
-		alert("onFile");
+		if(MapCloud.file_dialog == null){
+			MapCloud.file_dialog = new MapCloud.FileDialog("file_dialog");
+		}
+		
+		MapCloud.file_dialog.showDialog();
+
 	},
 	
 	onDatabase : function(){
-		alert("onDatabase");		
+		if(MapCloud.database_dlg == null){
+			MapCloud.database_dlg = new MapCloud.DatabaseDialog("database_dialog");
+		}		
+		MapCloud.database_dlg.showDialog();
 	},
 	
 	onDataImport : function(){
