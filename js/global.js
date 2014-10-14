@@ -1,41 +1,41 @@
 
-//ĞÂ½¨µØÍ¼
+//æ–°å»ºåœ°å›¾
 MapCloud.new_map_dlg = null;
 
-//ĞÂ½¨Í¼²ã
+//æ–°å»ºå›¾å±‚
 MapCloud.new_layer_dialog = null;
 
-//±à¼­Í¼²ã
+//ç¼–è¾‘å›¾å±‚
 MapCloud.edit_layer_dialog = null;
 
-//Í¼²ãÕ¹Ê¾
+//å›¾å±‚å±•ç¤º
 MapCloud.layer_appearance_dialog = null;
 
-//´´½¨Í¼²ã
+//åˆ›å»ºå›¾å±‚
 MapCloud.create_layer_dialog = null;
 
-//ÎÄ¼ş¹ÜÀí
+//æ–‡ä»¶ç®¡ç†
 MapCloud.file_dialog = null;
 
-//Êı¾İ¿â¹ÜÀí
+//æ•°æ®åº“ç®¡ç†
 MapCloud.database_dlg = null;
 
-//Êı¾İ¿âÁ¬½Ó
+//æ•°æ®åº“è¿æ¥
 MapCloud.pgis_connection_dialog = null;
 
-//WFSÍ¼²ãÁ¬½Ó
+//WFSå›¾å±‚è¿æ¥
 MapCloud.wfs_datasource_dialog = null;
 
-//×ó²àË¢ĞÂ
+//å·¦ä¾§åˆ·æ–°
 MapCloud.refresh_panel = null;
 
-//WFSÍ¼²ã
+//WFSå›¾å±‚
 MapCloud.wfs_layer = null;
 
-//µ±Ç°Ñ¡ÖĞµÄÍ¼²ã
+//å½“å‰é€‰ä¸­çš„å›¾å±‚
 MapCloud.selected_layer = null;
 
-//µãÑùÊ½
+//ç‚¹æ ·å¼
 MapCloud.point_symbolizer = new GeoBeans.Style.PointSymbolizer();
 MapCloud.point_symbolizer.size = 5;
 MapCloud.point_symbolizer.fillColor = "rgba(126, 255, 212,1)";
@@ -46,7 +46,7 @@ MapCloud.point_symbolizer.outLineJoin =  GeoBeans.Style.LineJoin.ROUND;
 MapCloud.point_symbolizer.showOutline = true;
 
 
-//ÏßÑùÊ½
+//çº¿æ ·å¼
 MapCloud.line_symbolizer = new GeoBeans.Style.LineSymbolizer();
 MapCloud.line_symbolizer.width = 2;
 MapCloud.line_symbolizer.color = "rgba(0,0,255,1)";
@@ -54,7 +54,7 @@ MapCloud.line_symbolizer.outLineCap = GeoBeans.Style.LineCap.ROUND;;
 MapCloud.line_symbolizer.outLineJoin =  GeoBeans.Style.LineJoin.ROUND;
 MapCloud.line_symbolizer.showOutline = true;
 
-//ÃæÑùÊ½
+//é¢æ ·å¼
 MapCloud.polygon_symbolizer = new GeoBeans.Style.PolygonSymbolizer();
 MapCloud.polygon_symbolizer.fillColor = "rgba(129,255,213,1)";
 MapCloud.polygon_symbolizer.outLineWidth = 1;
@@ -132,7 +132,7 @@ MapCloud.hited_symbolizer.fillColor = "Red";
 MapCloud.hited_symbolizer.showOutline = false;
 
 
-//rgb×ª»»
+//rgbè½¬æ¢
 MapCloud.rgb2hex = function(rgb){
   if (rgb.charAt(0) == '#')
     return rgb;
