@@ -107,6 +107,9 @@ MapCloud.Ribbon = MapCloud.Class({
 				case 7:
 					that.onEditLayer();
 					break;
+				case 8:
+					that.onShareLayer();
+					break;
 				case 9:
 					that.onCreateLayer();
 					break;
@@ -161,10 +164,13 @@ MapCloud.Ribbon = MapCloud.Class({
 	/* Map Event                                                  */
 	/**************************************************************/
 	onMapNew : function(){
-		if(MapCloud.new_map_dlg == null){
+/*		if(MapCloud.new_map_dlg == null){
 			MapCloud.new_map_dlg = new MapCloud.NewMapDialog("new_map_dialog");
 		}
 		MapCloud.new_map_dlg.showDialog();
+*/
+		$("#newMapDialog").modal();
+		
 	},
 	
 	onMapPropertis : function(){
@@ -195,19 +201,44 @@ MapCloud.Ribbon = MapCloud.Class({
 	
 	onLayerAddWFS : function(){
 		if(MapCloud.wfs_datasource_dialog == null){
-			MapCloud.wfs_datasource_dialog = new MapCloud.WFSDatasourceDialog("wfs_datasource_dialog");
+			MapCloud.wfs_datasource_dialog = new MapCloud.WFSDatasourceDialog("wfsDatasourceDialog");
 		}
 		MapCloud.wfs_datasource_dialog.showDialog();
-	},
+/*		$("#wfsDatasourceDialog").modal();
+		$("#wfsDatasourceDialogTab a").click(function(e){
+			e.preventDefault()
+			$(this).tab("show");
+		});
+*/	},
 
 	onEditLayer: function(){
 		if(MapCloud.edit_layer_dialog == null){
-			MapCloud.edit_layer_dialog = new MapCloud.EditLayerDialog("edit_layer_dialog");
+			MapCloud.edit_layer_dialog = new MapCloud.EditLayerDialog("editLayerDialog");
 		}
-		
+		if($("#layers_row .layer_row.layer_row_selected").length == 0){
+			alert("请先选择图层");
+			return;			
+		}
+		var layer_id = $("#layers_row .layer_row.layer_row_selected").attr("value");
+		MapCloud.selected_layer = mapObj.layers[layer_id];
+		if(MapCloud.selected_layer == null){
+			return;
+		}
+		//设置修改的图层
+		MapCloud.edit_layer_dialog.setLayer(MapCloud.selected_layer);
 		MapCloud.edit_layer_dialog.showDialog();
 	},
 	
+	onShareLayer:function(){
+		$("#layerAppearanceDialog").modal();
+		$("#layerAppearanceDialog").find("#layerAppearanceDialogTab a").each(function(){
+			$(this).click(function(e){
+				e.preventDefault()
+				$(this).tab("show");
+			});
+		});
+	},
+
 	onCreateLayer:function(){
 		if(MapCloud.create_layer_dialog == null){
 			MapCloud.create_layer_dialog = new MapCloud.CreateLayerDialog("create_layer_dialog");
@@ -222,8 +253,25 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	onDeleteLayer:function(){
+		if($("#layers_row .layer_row.layer_row_selected").length == 0){
+			alert("请先选择图层");
+			return;			
+		}
+		var layer_id = $("#layers_row .layer_row.layer_row_selected").attr("value");
+		MapCloud.selected_layer = mapObj.layers[layer_id];
+		if(MapCloud.selected_layer == null){
+			return;
+		}
+
 		if(confirm("你确定要删除图层吗？")){
-			alert("删除图层并刷新tree");
+			var layer_name = MapCloud.selected_layer.name;
+			mapObj.removeLayer(layer_name);
+			if(MapCloud.refresh_panel ==null){
+				MapCloud.refresh_panel = new MapCloud.refresh("left_panel");
+			}
+			MapCloud.refresh_panel.refreshPanel();
+			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+			mapObj.draw();				
 		}
 	},
 

@@ -15,9 +15,6 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 	
 	cleanup : function(){
-		this.panel.find("#map_name").each(function(){
-			$(this).val("");
-		});
 	}
 	
 });

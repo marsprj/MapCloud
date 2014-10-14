@@ -12,20 +12,19 @@ html, body
 	overflow:hidden;
 }
 
-div{
+/*div{
 	display: block;
 	border-style: solid;
 	border-width: 0px;
 	overflow:hidden;
 }
-
-a{
+*/
+/*a{
 	outline: none;
-	/*color: #0088cc;*/
 	color: #ffffff;
 	text-decoration: none;
 }
-
+*/
 ul{
 	display:block;
 	list-style-type:none;
@@ -88,6 +87,7 @@ li {
 	margin:0px;
 	background-repeat:no-repeat;
 	background-position:center;
+	cursor:pointer;
 }
 
 .mc-icon-ribbon{
@@ -268,7 +268,7 @@ li {
 #login_panel{
 	position:absolute;
 	float:right;
-	top:10px;
+	top:6px;
 	right:30px;
 	z-index:2;
 }
@@ -291,6 +291,11 @@ li {
 	height:100px;
 	border-bottom:1px solid #CCC;
 	background-color:#f9f9f9;
+	
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
 }
 
 #ribbon{
@@ -302,6 +307,12 @@ li {
 	margin:0px 0px 0px 100px;
 }
 
+#ribbon_tabs li a{
+	color:#ffffff;
+}
+#ribbon_tabs li.mc-active-tab a{
+	color:#000;
+}
 #ribbon_container{
 	width:100%;
 	height:80px;
@@ -328,11 +339,13 @@ li {
 .ribbon-item{
 	float:left;
 	width:64px;
-	height:60px;
+	height:64px;
 	margin: 0px 10px;
 	cursor : pointer;
 }
-
+.ribbon-item-wide{
+	width:80px;
+}
 .ribbon-item-over{
 	border: 1px solid #CCC;
 	/*background-color:#B9FFFF;*/
@@ -355,7 +368,7 @@ li {
 }
 
 .ribbon_button_16{
-	height: 16px;
+	height: 24px;
 	padding: 3px 4px 3px 4px;
 	cursor:pointer;
 	clear:both;
@@ -389,7 +402,11 @@ ul#ribbon_tabs li{
 }
 
 #main_panel{
-	height:100%;
+	/*height:100%;*/
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	top: 121px;
 }
 
 #left_panel{
@@ -452,8 +469,36 @@ ul#ribbon_tabs li{
 }
 
 #center_panel{
-	height:100%;
+	/*height:100%;*/
 	/*background-color:#0F9;*/
+	position:absolute;
+	bottom: 0px;
+	top: 0px;
+	left: 301px;
+	right: 0px;
+}
+
+
+#mapCanvas_wrappper{
+/*	height:66%;*/
+	position:absolute;
+	bottom:30px;
+	left: 0px;
+	right: 0px;
+	top:0px;
+}
+#mapCanvas{
+	width:100%;
+	height:100%;
+}
+#datagrid_wrapper{
+/*	height:33%;*/
+	height:30px;
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	left:0px;
+	border-top:1px solid #ccc;
 }
 
 #map_bar_wrapper{
@@ -487,7 +532,51 @@ ul#ribbon_tabs li{
 	opacity:0.8;
 	z-index:10;
 }
+#right_panel{
+	position:absolute;
+	right:0px;
+	top:0px;
+	bottom:0px;
+	width:200px;
+	border-left: 1px solid #CCC;
+	display:none;
+}
 
+.panel-header{
+	height:30px;
+	overflow: hidden;
+	border-bottom: 1px solid #d3d3d3;
+	background: #f1f1f1
+}
+
+.panel-header .panel-header-collapse{
+	margin-top: 8px;
+	margin-left: 4px;
+}
+
+.panel-header .panel-header-content {
+	margin-top: 6px;
+	margin-left: 6px;	
+}
+
+.table-info{
+}
+
+.table-info tr{
+	height: 30px;
+}
+.table-info td{
+	border-bottom: 1px solid #ddd;
+	padding-left:10px;
+}
+
+.table-info tr.erow{
+	background: #f7f7f7;
+}
+
+.table-info tr td.table-info-key{
+	font-weight:bold;
+}
 /***************************************************************************/
 /* New Map Dialog Begin                                                    */
 /***************************************************************************/
@@ -565,7 +654,7 @@ ul#ribbon_tabs li{
 	margin:20px;
 	height:auto;
 	margin-bottom:50px;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .mc-map-name-wrapper{
@@ -685,9 +774,9 @@ ul#ribbon_tabs li{
 
 #edit_layer_dialog{
 	width:600px;
-	height:400px;
+	height:500px;
 	margin-left: -300px;
-	margin-top:-200px;
+	margin-top:-250px;
 }
 
 .mc-tabs{
@@ -739,7 +828,7 @@ ul#ribbon_tabs li{
 	position: relative;
 }
 #edit_layer_dialog_form_div{
-	height: 200px;
+	height: 350px;
 }
 
 .mc-tab-form{
@@ -753,6 +842,9 @@ ul#ribbon_tabs li{
 	padding:4px;
 }
 
+.mc-tab-form h2{
+	font-size: 14px;
+}
 .mc-tab-form table tr{
 	height:30px;
 	line-height:30px;
@@ -768,8 +860,101 @@ ul#ribbon_tabs li{
 .active_tab{
 	display:block;
 }
+
+#edit_layer_dialog_info_tab{
+	height:100%;
+	overflow-y:auto;
+}
+
+#layer_style{
+}
+
+/*.layer_field{
+	margin-left:40px;
+}
+*/
+.layer_value{
+	margin-left:10px;
+}
+#layer_style li{
+	position:relative;
+	margin-top:4px;
+}
+/*#layer_style li input{
+	margin-right:20px;
+	width: 140px;
+}
+*/
+.style_icon{
+	width:20px;
+	height:20px;
+	border:1px solid blue;
+	background-color:red;
+	background-position:center;
+	display:inline-block;
+	top: 2px;
+	position: absolute;
+	cursor:pointer;
+}
+.visible_btn{
+	display: block;
+	position: absolute;
+	top: 4px;
+	left: 10px;
+	height: 20px;
+	width: 20px;
+	cursor: pointer;
+}
 /***************************************************************************/
 /* Edit Layer Dialog End                                                    */
+/***************************************************************************/
+#layer_appearance_dialog{
+	height:400px;
+	width:500px;
+	margin-top:-200px;
+	margin-left:-250px;
+}
+
+#layer_appearance_dialog_form_div{
+	height:200px;
+}
+.colpick_full{
+	z-index:1090;
+}
+/***************************************************************************/
+/* Layer Appearance Dialog Begin                                           */
+/***************************************************************************/
+/*.color{
+	width:16px;
+	height:16px;
+	border: 1px solid #aaa;
+	display: inline-block;
+	vertical-align: bottom;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	float: left;
+	background-color: rgb(199, 78, 78);
+}
+*/
+.colorSelector {
+	position: relative;
+	width: 36px;
+	height: 36px;
+}
+
+.colorSelector div {
+	position: absolute;
+	top: 3px;
+	left: 0px;
+	width: 30px;
+	height: 30px;
+}
+.colorpicker{
+	z-index:200;
+}
+/***************************************************************************/
+/*  Layer Appearance Dialog End                                            */
 /***************************************************************************/
 
 /***************************************************************************/
@@ -813,19 +998,20 @@ ul#ribbon_tabs li{
 .delete_btn{
 	display: inline-block;
 	position: absolute;
-	top: 6px;
+	top: 4px;
 	right: 80px;
-	height: 16px;
-	width: 16px;
+	height: 20px;
+	width: 20px;
 	background-image:url("../images/close-16.png");
-
+	background-position: center;
+	background-repeat: no-repeat;
 	cursor:pointer;
 }
 
 .add_btn{
 	display: inline-block;
 	position: absolute;
-	top: 6px;
+	top: 4px;
 	right: 50px;
 	height: 20px;
 	width: 20px;	
@@ -857,7 +1043,7 @@ ul#ribbon_tabs li{
 	padding: 0 16px;
 }
 
-.btn{
+/*.btn{
 	color:#000;
 	border:1px solid #e5e5e5;
 	border-radius:4px;
@@ -868,13 +1054,15 @@ ul#ribbon_tabs li{
 	width: 80px;
 	background-color:#e5e5e5;
 }
+*/
 #pgis_connection_test{
 	margin: 4px 0px 0px 30px;
 
 }
-.btn:hover{
+/*.btn:hover{
 	background-color:#ccc;
 }
+*/
 /***************************************************************************/
 /* PGIS Connection Dialog End                                              */
 /***************************************************************************/
@@ -918,7 +1106,7 @@ ul#ribbon_tabs li{
 	display: inline-block;
 }
 
-.caret{
+/*.caret{
 	display: inline-block;
 	width: 0;
 	height: 0;
@@ -927,6 +1115,7 @@ ul#ribbon_tabs li{
 	border-right: 4px solid transparent;
 	border-left: 4px solid transparent;	
 }
+*/
 .btn-group{
 }
 
@@ -1099,4 +1288,101 @@ ul#ribbon_tabs li{
 }
 /***************************************************************************/
 /* File Dialog End     														*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Table Grid Begin   														*/
+/***************************************************************************/
+/*.table_grid{
+	cursor:pointer;
+}
+.table_grid tbody tr{
+	height:30px;
+}
+.table_grid tbody tr.erow{
+	background: #f7f7f7;
+	border-bottom: 1px solid #f7f7f7;
+}
+.table_grid tbody tr:hover{
+	background-color: #d9e6f4;
+}
+.table_grid tbody td{
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #fff;
+	white-space: nowrap;
+}
+*/
+.table_grid{
+}
+
+.table_grid .table_grid_content tr:hover{
+	cursor:pointer;
+	background: #d9e6f4;
+}
+
+.table_grid_header{
+	margin-right: 20px;
+}
+.table_grid_header tr{
+	height:25px;
+	line-height:20px;
+	font-weight: bold;
+	font-size: 14px;
+	background: #f9f9f9;
+}
+.table_grid_content{
+	overflow: auto;
+	width: 100%;
+}
+.table_grid_content td, .table_grid_header td{
+	border-right: 1px solid #e9e9e9;
+	border-left: 1px solid #fff;
+	border-bottom: 1px solid #ddd;
+	white-space: nowrap;
+	padding: 4px 0px 4px 4px;
+}
+.table_grid_content tr{
+	height:25px;
+}
+
+
+.table_grid_content tr.erow{
+	background: #f7f7f7;
+}
+
+.table_grid_content tr.trSelected{
+	background: #d9e6f4;
+}
+.table_grid_footer{
+	background: #f9f9f9;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	height: 30px; *
+}
+.table_grid_footer .mc-icon, .table_grid_footer input,.table_grid_footer span{
+	margin-left:12px;
+}
+.table_grid_footer input,.table_grid_footer span{
+	margin-top:-2px;
+}
+.table_grid_footer input{
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	width: 40px;
+	text-align: center;
+}
+.mc-icon-first{
+	background-image:url(../images/first.gif);
+}
+.mc-icon-prev{
+	background-image:url(../images/prev.gif);
+}
+.mc-icon-next{
+	background-image:url(../images/next.gif);
+}
+.mc-icon-last{
+	background-image:url(../images/last.gif);
+}
+/***************************************************************************/
+/* Table Grid Begin   														*/
 /***************************************************************************/

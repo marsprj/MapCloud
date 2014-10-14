@@ -3,11 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
+
 <link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
-<link rel="stylesheet" type="text/css" href="css/Flexigrid-master/flexigrid.pack.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/mc.css"/>
+<link rel="stylesheet" type="text/css" href="css/colpick/colpick.css" type="text/css">
+<!--<link rel="stylesheet" type="text/css" href="css/mc.css"/>-->
+<link rel="stylesheet" type="text/css" href="css/mc-new.css"/>
 
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+
+<script type="text/javascript" src="js/colpick/colpick.js"></script>
 
 <script src="js/jquery.ztree.core-3.5.js" type="text/javascript" charset="utf-8"></script>
 
@@ -16,7 +22,52 @@ var Msg = {}; //declare this or modify line 1 of core.js
 </script>
 
 
-<script type="text/javascript" src="js/Flexigrid-master/flexigrid.pack.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+
+
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Field.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Feature.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/FeatureType.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Workspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
+
 
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
@@ -26,10 +77,12 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/MapCanvas.js"></script>
 <script type="text/javascript" src="js/Control/Logo.js"></script>
 
+<script type="text/javascript" src="js/Control/Table.js"></script>
 <script type="text/javascript" src="js/Control/Dialog.js"></script>
 <script type="text/javascript" src="js/Control/NewMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/EditLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/LayerAppearanceDialog.js"></script>
 <script type="text/javascript" src="js/Control/CreateLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/PGISConnectDialog.js"></script>
 <script type="text/javascript" src="js/Control/DatabaseDialog.js"></script>
@@ -37,778 +90,862 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 
 
-<script type="text/javascript" src="Map5/lib/GeoBeans.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
-
-<!-- Geometry -->
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/Point.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/LineString.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
-
-<script type="text/javascript" src="Map5/lib/GeoBeans/Geometry/GML.js"></script>
-
-<!-- Feature -->
-<script type="text/javascript" src="Map5/lib/GeoBeans/Filter.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Field.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Feature.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/FeatureType.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/Workspace.js"></script>
-<script type="text/javascript" src="Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
-
-<!-- HTML5 Map Control Begin -->
-<!--
-<script type="text/javascript" src="Map5/GeoBeans.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/BaseTypes/Class.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/BaseTypes/Envelope.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/GeometryCollection.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/Point.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/LineString.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/LinearRing.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/Polygon.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/MultiPoint.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/MultiLineString.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Geometry/MultiPolygon.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Transformation.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/Tile.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/TileCache.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/TileLayer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/AMapLayer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/OsmLayer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/BingLayer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Feature.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Layer/FeatureLayer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Renderer.js"></script>
-<script type="text/javascript" src="Map5/GeoBeans/Map.js"></script>
--->
-<!-- HTML5 Map Control End -->
-
+<script type="text/javascript" src="js/refresh.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
 
 <title>MapCloud</title>
 </head>
 
 <body>
-<!-- logo panel -->
-<div id="logo_panel"></div>
-<!-- login panel -->
-<div id="login_panel">
-    <div class=login_label><a href="javascript:void(0)">ÁôªÂΩï</a></div>
-    <!--ÁôªÂΩïÂØπËØùÊ°Ü-->
-    <div id="login_form"></div>
-</div>
-<!-- Workbench panel -->
-<div id="workbench">
-	<!-- header panel -->
-	<div id="head_panel" class="mc-theme-color"></div>
-    <!-- header panel -->
-    <div id="ribbon_wrapper">
-    	<div id="ribbon" class="mc-theme-color">
-        	<ul id="ribbon_tabs" class="mc-theme-color">
-            	<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">È¶ñÈ°µ</a></li>
-            	<li id="map_tab"><a href="javascript:void(0)">Âú∞Âõæ</a></li>
-				<li id="layer_tab"><a href="javascript:void(0)">ÂõæÂ±Ç</a></li>
-				<li id="data_tab"><a href="javascript:void(0)">Êï∞ÊçÆ</a></li>
-				<li id="analysis_tab"><a href="javascript:void(0)">ÂàÜÊûê</a></li>
-				<li id="tool_tab"><a href="javascript:void(0)">Â∑•ÂÖ∑</a></li>
-            </ul>
-        </div>
-        <div id="ribbon_container">
-        	<div id="home_ribbon" class="ribbon_panel"></div>
-        	<div id="map_ribbon" class="ribbon_panel">
-            	<div class="ribbon_group mc-border-right-light">
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-                        <div class="ribbon_label">Êñ∞Âª∫Âú∞Âõæ</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-                        <div class="ribbon_label">Âú∞ÂõæÂ±ûÊÄß</div>
-                    </div>
-                </div>
-                <div class="ribbon_group mc-border-right-light">
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
-                        <div class="ribbon_label">Êñ∞Âª∫ÂõæÂ±Ç</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layer_vector"></div>
-                        <div class="ribbon_label">Áü¢ÈáèÂõæÂ±Ç</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layer_wms"></div>
-                        <div class="ribbon_label">WMSÂõæÂ±Ç</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
-                        <div class="ribbon_label">WFSÂõæÂ±Ç</div>
-                    </div>
-                </div>                
-            </div>
-           <div id="layer_ribbon" class="ribbon_panel">
-            	<div class="ribbon_group">
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
-                        <div class="ribbon_label">Êñ∞Âª∫ÂõæÂ±Ç</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers-edit"></div>
-                        <div class="ribbon_label">ÁºñËæëÂõæÂ±Ç</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-map-publish"></div>
-                        <div class="ribbon_label">ÂàÜ‰∫´ÂõæÂ±Ç</div>
-                    </div>
-                </div>
-				<div class="ribbon_group">
-					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
-						<div class="ribbon_image_16 mc-icon-layers-create"></div>
-						<div class="ribbon_label">Êñ∞Âª∫ÂõæÂ±Ç</div>
+	<div class="jumbotron" style="padding:0px;height:100%;background: #fff;">
+		<div class="container mc-theme-color">
+			<div class="navbar-header">
+				<div id="logo_panel"></div>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul>
+					<li class="dropdown pull-right">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color:white">ƒ˙∫√
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Œ“µƒ”¶”√</a></li>
+							<li><a href="#">Œ“µƒ’Àªß</a></li>
+							<li><a href="#">≤Ÿ◊˜ ÷≤·</a></li>
+							<li class="divider"></li>
+							<li><a href="#">ÕÀ≥ˆ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container" style="width:100%;padding:0px;">
+			<div id="ribbon_wrapper">
+				<div id="ribbon" class="mc-theme-color">
+					<ul id="ribbon_tabs" class="mc-theme-color">
+						<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)"> ◊“≥</a></li>
+						<li id="map_tab"><a href="javascript:void(0)">µÿÕº</a></li>
+						<li id="layer_tab"><a href="javascript:void(0)">Õº≤„</a></li>
+						<li id="data_tab"><a href="javascript:void(0)"> ˝æ›</a></li>
+						<li id="analysis_tab"><a href="javascript:void(0)">∑÷Œˆ</a></li>
+						<li id="tool_tab"><a href="javascript:void(0)">π§æﬂ</a></li>
+					</ul>
+				</div>
+				<div id="ribbon_container">
+					<div id="home_ribbon" class="ribbon_panel"></div>
+					<div id="map_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">–¬Ω®µÿÕº</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">µÿÕº Ù–‘</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+								<div class="ribbon_label">–¬Ω®Õº≤„</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_vector"></div>
+								<div class="ribbon_label"> ∏¡øÕº≤„</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_wms"></div>
+								<div class="ribbon_label">WMSÕº≤„</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">WFSÕº≤„</div>
+							</div>
+						</div>                
 					</div>
-					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
-						<div class="ribbon_image_16 mc-icon-layers-duplicate"></div>
-						<div class="ribbon_label">Â§çÂà∂ÂõæÂ±Ç</div>
+				   <div id="layer_ribbon" class="ribbon_panel">
+						<div class="ribbon_group">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+								<div class="ribbon_label">–¬Ω®Õº≤„</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-edit"></div>
+								<div class="ribbon_label">±‡º≠Õº≤„</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-publish"></div>
+								<div class="ribbon_label">∑÷œÌÕº≤„</div>
+							</div>
+						</div>
+						<div class="ribbon_group">
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-create"></div>
+								<div class="ribbon_label">–¬Ω®Õº≤„</div>
+							</div>
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-duplicate"></div>
+								<div class="ribbon_label">∏¥÷∆Õº≤„</div>
+							</div>
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-remove"></div>
+								<div class="ribbon_label">…æ≥˝Õº≤„</div>
+							</div>
+						</div>
+						<div class="ribbon_group">
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-zoom"></div>
+								<div class="ribbon_label">Õº≤„∂®Œª</div>
+							</div>
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-map-select"></div>
+								<div class="ribbon_label">À˘”–Õº≤„</div>
+							</div>
+						</div>
+						<div class="ribbon_group">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_label">µº»ÎÕº≤„</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_label">µº≥ˆÕº≤„</div>
+							</div>
+						</div>
 					</div>
-					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
-						<div class="ribbon_image_16 mc-icon-layers-remove"></div>
-						<div class="ribbon_label">Âà†Èô§ÂõæÂ±Ç</div>
+					<div id="data_ribbon" class="ribbon_panel">
+					</div>
+					<div id="analysis_ribbon" class="ribbon_panel">
+					</div>
+					<div id="tool_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-file"></div>
+								<div class="ribbon_label">Œƒº˛π‹¿Ì</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-database"></div>
+								<div class="ribbon_label"> ˝æ›ø‚π‹¿Ì</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_label">µº»Î ˝æ›</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
+								<div class="ribbon_label">»»¡¶Õº</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="ribbon_group">
-					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
-						<div class="ribbon_image_16 mc-icon-layers-zoom"></div>
-						<div class="ribbon_label">ÂõæÂ±ÇÂÆö‰Ωç</div>
+			</div>			
+		</div>
+		<div class="container" id="main_panel">
+			<div class="row" id="main_panel_row">
+				<div class="col-md-3 col-xs-3 col-lg-3 mc-panel-full" id="left_panel">
+					<div class="row" id="map_row">
+						<div class="col-md-10 col-xs-10 col-lg-10">
+							<a href="#">Sample</a>
+						</div>
+						<div class="col-md-2 col-xs-2 col-lg-2">
+							<div class="mc-icon glyphicon glyphicon-globe"></div>
+						</div>
 					</div>
-					<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
-						<div class="ribbon_image_16 mc-icon-map-select"></div>
-						<div class="ribbon_label">ÈÄâÊã©ÊâÄÊúâÂõæÂ±Ç</div>
+					<div class="row" id="layer_tool_row">
+						<div class="col-md-1">
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-ok mc-icon"></div>
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-eye-open mc-icon"></div>							
+						</div>
+						<div class="col-md-1 col-xs-1 col-md-offset-2">
+							<div class="glyphicon glyphicon-plus mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-minus mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-folder-close mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-user mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
+						</div>
+					</div>
+					<div class="row" id="layers_row">
+						<div class="row layer_row">
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-chevron-down mc-icon"></div>							
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-ok mc-icon"></div>							
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-eye-close mc-icon"></div>							
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="mc-icon" style="background-color:red;"></div>	
+							</div>
+							<div class="col-md-6 col-xs-1">
+								<span>country</span>
+							</div>
+							<div class="col-md-1 col-xs-1 layer_row_quick_tool">
+								<ul>
+									<li class="dropdown pull-right">
+										<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+											<b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#">∑≈¥Û÷¡∏√Õº≤„</a></li>
+											<li><a href="#">±‡º≠Õº≤„</a></li>
+											<li><a href="#">∑÷œÌÕº≤„</a></li>
+											<li><a href="#">…æ≥˝Õº≤„</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row layer_style_row">
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1">
+								<div class="mc-icon" style="background-color:blue;"></div>	
+							</div>
+							<div class="col-md-3 col-xs-3">
+								<span>name=China</span>
+							</div>
+						</div>
+						<div class="row layer_style_row">
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1">
+								<div class="mc-icon" style="background-color:green;"></div>	
+							</div>
+							<div class="col-md-3 col-xs-3">
+								<span>name=China</span>
+							</div>
+						</div>
+
+					</div>
+					
+				</div>
+				<div class="col-md-9 col-xs-9 col-lg-9 mc-panel-full" id="center_panel">
+					<div id="mapCanvas_wrappper">
+						<canvas id="mapCanvas" width="800" height="528"></canvas>
+					</div>
+					<div id="datagrid_wrapper">
+						<div class="panel-header">
+							<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
+							<div class="panel-header-content float_left">Feature Info</div>
+						</div>
+						<div id="datagrid_content">
+						</div>
+					</div>
+					<div id="map_bar_wrapper" class="mc-border" >
+						<div class="mc-icon mc-icon-plus"></div>
+						<div class="mc-icon mc-icon-minus"></div>
+						<div class="mc-icon mc-icon-info"></div>
+						<div class="mc-icon mc-icon-hand-up"></div>
+						<div class="mc-icon mc-icon-full-screen"></div>
+						<div class="mc-icon mc-icon-zoom-in"></div>
+						<div class="mc-icon mc-icon-pin"></div>
 					</div>
 				</div>
-            	<div class="ribbon_group">
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
-                        <div class="ribbon_label">ÂØºÂÖ•ÂõæÂ±Ç</div>
-                    </div>
-                    <div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
-                        <div class="ribbon_label">ÂØºÂá∫ÂõæÂ±Ç</div>
-                    </div>
-                </div>
-            </div>
-			<div id="data_ribbon" class="ribbon_panel">
-			</div>
-			<div id="analysis_ribbon" class="ribbon_panel">
-			</div>
-			<div id="tool_ribbon" class="ribbon_panel">
-            	<div class="ribbon_group mc-border-right-light">
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-file"></div>
-                        <div class="ribbon_label">Êñá‰ª∂ÁÆ°ÁêÜ</div>
-                    </div>
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-database"></div>
-                        <div class="ribbon_label">Êï∞ÊçÆÂ∫ìÁÆ°ÁêÜ</div>
-                    </div>
-					<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
-                        <div class="ribbon_label">ÂØºÂÖ•Êï∞ÊçÆ</div>
-                    </div>
-                </div>
-            	<div class="ribbon_group mc-border-right-light">
-                	<div class="ribbon-item">
-                    	<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
-                        <div class="ribbon_label">ÁÉ≠ÂäõÂõæ</div>
-                    </div>
-                </div>
-			</div>
-        </div>
-    </div>
-	<div id="main_panel">
-    	<div id="left_panel" class="mc-column">
-        	<div id="layers_wrapper">
-            	<div id="layers_panel_title" class="mc-border-bottom">
-                	<a href="javascript:void(0)">country</a>
-                    <div class="mc-world-full mc-icon float_right" style="margin-top:7px;margin-right:8px;"></div>
-                </div>
-                <div id="layers_panel_bar" class="mc-border-bottom">
-                	<div id="map_view_wrapper">
-	                	<div class="float_left mc-layer-item mc-icon"></div>
-    	                <div class="float_left mc-layer-item mc-icon mc-icon-eye-open"></div>
-        	            <div class="float_left mc-layer-item mc-icon mc-icon-lock-close"></div>
+				<div class="col-md-2 col-xs-2 col-lg-2 mc-panel-full" id="right_panel" style="display:none">
+					<div class="panel-header">
+						<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
+						<div class="panel-header-content float_left">Feature Info</div>
 					</div>
-					<div id="map_mini_toolbar_wrapper" class="float_right">
-	                	<div class="float_left mc-layer-item mc-icon mc-icon-plus"></div>
-                        <div class="float_left mc-layer-item mc-icon mc-icon-minus"></div>
-                        <div class="float_left mc-layer-item mc-icon mc-icon-folder"></div>
+					<div id="feature_info">
+						<table width="100%" class="table-info" cellpadding="0" cellspacing="0" border="0">
+							<tbody>
+							</tbody>
+						</table>
 					</div>
-                </div>
-                <div id="layers_panel">
-                	<ul id="layers_tree">
-                    	<li id="layer_cities">
-                        	<div class="mc-layer">
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-close"></div>
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-open"></div>
-                                <div class="float_left mc-layer-item mc-icon mc-icon-lock-close"></div>
-                                <div class="float_left mc-layer-item mc-icon mc-icon-point"></div>
-                                <div class="float_left mc-layer-name"><a href="javascript:void(0)">cities</a></div>
-                            </div>
-                        </li>
-						<li id="layer_cities">
-                        	<div class="mc-layer">
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-expand"></div>
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-close"></div>
-                                <div class="float_left mc-layer-item mc-icon mc-icon-lock-open"></div>
-                                <div class="float_left mc-layer-item mc-icon mc-icon-point"></div>
-                                <div class="float_left mc-layer-name"><a href="javascript:void(0)">rivers</a></div>
-                            </div>
-                        </li>
-						<li id="layer_cities">
-                        	<div class="mc-layer">
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-close"></div>
-                            	<div class="float_left mc-layer-item mc-icon mc-icon-eye-open"></div>
-                                <div class="float_left mc-layer-item mc-icon mc-icon-lock-close"></div>
-                                <div class="float_left mc-layer-item mc-icon mc-icon-point"></div>
-                                <div class="float_left mc-layer-name"><a href="javascript:void(0)">country</a></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div id="center_panel" class="mc-column">
-        	<canvas id="mapCanvas" width="800" height="528"></canvas>
-        	<div id="map_bar_wrapper" class="mc-border" >
-            	<div class="mc-icon mc-icon-plus"></div>
-                <div class="mc-icon mc-icon-minus"></div>
-                <div class="mc-icon mc-icon-info"></div>
-                <div class="mc-icon mc-icon-hand-up"></div>
-                <div class="mc-icon mc-icon-full-screen"></div>
-                <div class="mc-icon mc-icon-zoom-in"></div>
-                <div class="mc-icon mc-icon-pin"></div>
-            </div>
-        </div>
-        <div id="right_panel" class="mc-column"></div>
+				</div>
+			</div>
+		</div>
 	</div>
-    <div class="mc-mask"></div>
     <!-- New Map panel -->
-    <div id="new_map_dialog" class="mc-dialog">
-        <div class="mc-dialog-header mc-border-bottom">
-            <div class="mc-dialog-title">Êñ∞Âª∫Âú∞Âõæ</div>
-            <div class="mc-dialog-close"></div>
-        </div>
-        <div class="mc-dialog-info">
-            <div class="mc-map-name-wrapper">
-                <span>ÂêçÁß∞:</span><input id="map_name" type="text"/>
-            </div>
-            <div class="mc-map-gallery">
-            	<div class="mc-map-thumb-label">ÈÄâÊã©Â∫ïÂõæ...</div>
-                <div class="mc-map-thumb-row">
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">Á©∫Âú∞Âõæ</div>
-                        <div class="mc-map-thumb"></div>
-                    </div>
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">Áü¢ÈáèÂú∞Âõæ</div>
-                        <div class="mc-map-thumb mc-icon-thumb-vector"></div>
-                    </div>
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">ÂΩ±ÂÉèÂú∞Âõæ</div>
-                        <div class="mc-map-thumb mc-icon-thumb-image"></div>
-                    </div>
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">È´òÂæ∑Âú∞Âõæ</div>
-                        <div class="mc-map-thumb mc-icon-thumb-amap"></div>
-                    </div>
-                </div>
-                <!--
-				<div class="mc-map-thumb-row">
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">Á©∫Âú∞Âõæ</div>
-                        <div class="mc-map-thumb"></div>
-                    </div>
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">È´òÂæ∑Âú∞Âõæ</div>
-                        <div class="mc-map-thumb"></div>
-                    </div>
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">È´òÂæ∑Âú∞Âõæ</div>
-                        <div class="mc-map-thumb"></div>
-                    </div>
-                    <div class="mc-map-thumb-wrapper">
-                        <div class="mc-map-title">È´òÂæ∑Âú∞Âõæ</div>
-                        <div class="mc-map-thumb"></div>
-                    </div>
-                </div>
-                -->
-            </div>
-        </div>
-        <div class="mc-dialog-bottom">
-        	<a href="javascript:void(0)">Á°ÆÂÆö</a>
-        	<a href="javascript:void(0)" class="mc-dialog-close-button">ÂèñÊ∂à</a>
-        </div>
-    </div>
-    <!-- New layer panel -->
-	<div class="mc-dialog" id="new_layer_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">Êñ∞Âª∫ÂõæÂ±Ç</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div class="mc-dialog-info-left">
-				list
+    <div class="modal fade" id="newMapDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="newMapDialogLabel">–¬Ω®µÿÕº</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="" class="col-sm-4 control-label">√˚≥∆</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" placeholder="Text input" style="width:200px">
+							</div>
+						</div>
+					</form>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="caption text-center">
+								<h5>ø’∞◊µÿÕº</h5>
+							</div>
+							<a href="#" class="thumbnail">
+								<img src="images/map-vector-thumb.png" alt="ø’∞◊µÿÕº">
+							</a>							
+						</div>
+						<div class="col-md-3">
+							<div class="caption text-center">
+								<h5> ∏¡øµÿÕº</h5>
+							</div>
+							<a href="#" class="thumbnail">
+								<img src="images/map-vector-thumb.png" alt=" ∏¡øµÿÕº">
+							</a>							
+						</div>
+						<div class="col-md-3">
+							<div class="caption text-center">
+								<h5>”∞œÒµÿÕº</h5>
+							</div>
+							<a href="#" class="thumbnail">
+								<img src="images/map-image-thumb.png" alt="”∞œÒµÿÕº">
+							</a>							
+						</div>
+						<div class="col-md-3">
+							<div class="caption text-center">
+								<h5>∏ﬂµ¬µÿÕº</h5>
+							</div>
+							<a href="#" class="thumbnail">
+								<img src="images/map-amap-thumb.png" alt="∏ﬂµ¬µÿÕº">
+							</a>							
+						</div>
+					</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">πÿ±’</button>
+				<button type="button" class="btn btn-primary">»∑∂®</button>
+			  </div>
 			</div>
-			<div class="mc-dialog-info-right">
-			</div>
-		</div>
-		<div class="mc-dialog-bottom">
-		  	<a href="javascript:void(0)">Á°ÆÂÆö</a>
-        	<a href="javascript:void(0)" class="mc-dialog-close-button">ÂèñÊ∂à</a>
 		</div>
 	</div>
     <!-- WFS datasource panel -->
-	<div class="mc-dialog" id="wfs_datasource_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">WFSÊï∞ÊçÆÊ∫ê</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div class="mc-tabs">
-				<ul class="mc-tabs-ul">
-					<li id="general_tab" class="active">
-						‰ø°ÊÅØ
-					</li>
-					<li id="display_tab">
-						È´òÁ∫ß
-					</li>
-				</ul>
-			</div>
-			<div id="wfs_datasource_dialog_form_div" class="mc-dialog-form-div">
-				<div class="mc-tab-form active_tab" >
-					<table>
-						<tr>
-							<td width="30%">
-								ÂêçÁß∞Ôºö
-							</td>
-							<td>
-								<input type="text" id="wfs_datasource_layer_name"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Âú∞ÂùÄÔºö
-							</td>
-							<td>
-								<input type="text" id="wfs_datasource_layer_url"/>
-								<a href="#" id="wfs_datasource_get_info">Ëé∑Âèñ‰ø°ÊÅØ</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								ÂõæÂ±ÇÔºö
-							</td>
-							<td>
-								<select id="wfs_datasource_layers">
-								</select>
-							</td>
-						</tr>
-					</table>
+    <div class="modal fade" id="wfsDatasourceDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="newMapDialogLabel">WFS ˝æ›‘¥</h4>
 				</div>
-				<div class="mc-tab-form" >
-					2
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="wfsDatasourceDialogTab">
+						<li class="active"><a href="#wfsInfo">–≈œ¢</a></li>
+						<li><a href="#wfsAdvan">∏ﬂº∂</a><li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="wfsInfo">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_name" class="col-sm-2 control-label">√˚≥∆£∫</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" placeholder=" ‰»ÎÕº≤„√˚≥∆" style="" id="wfs_datasource_layer_name" value="wfs">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_url" class="col-sm-2 control-label">µÿ÷∑£∫</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" placeholder=" ‰»ÎÕº≤„µÿ÷∑" style="" id="wfs_datasource_layer_url" value="/geoserver/radi/ows">
+									</div>
+									<div class="col-sm-2">
+										<label class="control-label"><a href="#" class="navbar-link" id="wfs_datasource_get_info">ªÒ»°–≈œ¢</a></label>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="" class="col-sm-2 control-label">Õº≤„£∫</label>
+									<div class="col-sm-4">
+										<select class="form-control" id="wfs_datasource_layers">
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="wfsAdvan">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_epsg" class="col-sm-2 control-label">EPSG£∫</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="wfs_datasource_layer_epsg">
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_proj4" class="col-sm-2 control-label">Õ∂”∞£∫</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="wfs_datasource_layer_proj4">
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_xmin" class="col-sm-2 control-label">xMin£∫</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_xmin">
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_ymin" class="col-sm-2 control-label">yMin£∫</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_ymin">
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_xmax" class="col-sm-2 control-label">xMax£∫</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_xmax">
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_ymax" class="col-sm-2 control-label">yMax£∫</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_ymax">
+									</div>
+								</div>								
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">πÿ±’</button>
+					<button type="button" class="btn btn-primary btn-confirm">»∑∂®</button>
 				</div>
 			</div>
-		</div>
-		<div class="mc-dialog-bottom">
-		  	<a href="javascript:void(0)">Á°ÆÂÆö</a>
-        	<a href="javascript:void(0)" class="mc-dialog-close-button">ÂèñÊ∂à</a>
 		</div>
 	</div>
     <!-- Edit layer panel -->
-	<div class="mc-dialog" id="edit_layer_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">ÁºñËæëÂõæÂ±Ç</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div class="mc-tabs">
-				<ul class="mc-tabs-ul">
-					<li id="general_tab" class="active">
-						ÈÄöÁî®
-					</li>
-					<li id="display_tab">
-						ÊòæÁ§∫
-					</li>
-					<li id="display_tab">
-						Ê†áÁ≠æ
-					</li>
-				</ul>
-			</div>
-			<div id="edit_layer_dialog_form_div" class="mc-dialog-form-div">
-				<div class="mc-tab-form active_tab" >
-					<table>
-						<tr>
-							<td width="30%">
-								ÂêçÁß∞Ôºö
-							</td>
-							<td>
-								<input type="text"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Á±ªÂûãÔºö
-							</td>
-							<td>
-								<select >
-									<option>ÁÇπ</option>
-									<option>Á∫ø</option>
-									<option>Èù¢</option>
-									<option>ÂΩ±ÂÉè</option>
-									<option>WFS</option>
-									<option>WMS</option>
-								</select>
-							</td>
-						</tr>
-					</table>
-					
+    <div class="modal fade" id="editLayerDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close btn-cancel" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="newMapDialogLabel">±‡º≠Õº≤„</h4>
 				</div>
-				<div class="mc-tab-form" >
-					<table>
-						<tr>
-							<td width="30%">
-								‰∏úÔºö
-							</td>
-							<td>
-								<input type="text" value="180"/>
-							</td>
-						</tr>
-						<tr>
-							<td width="30%">
-								ÂçóÔºö
-							</td>
-							<td>
-								<input type="text" value="-90"/>
-							</td>
-						</tr>
-						<tr>
-							<td width="30%">
-								Ë•øÔºö
-							</td>
-							<td>
-								<input type="text" value="-180"/>
-							</td>
-						</tr>
-						<tr>
-							<td width="30%">
-								ÂåóÔºö
-							</td>
-							<td>
-								<input type="text" value="90"/>
-							</td>
-						</tr>
-
-					</table>
-				</div>
-				
-			</div>
-		</div>
-
-		<div class="mc-dialog-bottom">
-		  	<a href="javascript:void(0)">Á°ÆÂÆö</a>
-        	<a href="javascript:void(0)" class="mc-dialog-close-button">ÂèñÊ∂à</a>
-		</div>
-	</div>
-    <!-- Create layer panel -->
-	<div class="mc-dialog" id="create_layer_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">ÂàõÂª∫ÂõæÂ±Ç</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div id="create_layer_dialog_form_div"  class="mc-dialog-form-div">
-				<div class="mc-tab-form active_tab" >
-					<table style="display:block;overflow-y:auto;height:100%">
-						<tr>
-							<td width="20%">Ë°®ÂêçÁß∞Ôºö</td>
-							<td width="60%"><input type="text"/></td>
-						</tr>
-						<tr>
-							<td>Á±ªÂûãÔºö</td>
-							<td>
-								<label><input type="radio" name="geometrytype" checked="checked" value="1"/>ÁÇπ</label>
-								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="2"/>Á∫ø</label>
-								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="3"/>Â§öÁ∫ø</label>
-								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="4"/>Èù¢</label>
-								<label style="margin-left:20px"><input type="radio" name="geometrytype" value="5"/>Â§öÈù¢</label>
-							</td>
-						</tr>
-						<tr>
-							<td>ÊäïÂΩ±Ôºö</td>
-							<td>
-								<a href="javascript:void(0)" id="projection">EPSG:4326</a>
-							</td>
-						</tr>
-						<tr>
-							<td>ÊòØÂê¶Ë¶ÜÁõñÔºö</td>
-							<td>
-								<input type="checkbox" name="overwrite" value="yes" checked="checked"/>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top">Â±ûÊÄßÔºö</td>
-							<td valign="top">
-								<div id="create_layer_dialog_attributes">
-									<ul>
-										<li>
-											<input type="text"/>
-											<select style="margin-left:16px">
-												<option value="String">String</option>
-												<option value="Real">Real</option>
-												<option value="Integer">Integer</option>
-											</select>
-											<div class="delete_btn"></div>
-											<div class="add_btn"></div>
-										</li>
-									</ul>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="mc-dialog-bottom">
-		  	<a href="javascript:void(0)">Á°ÆÂÆö</a>
-        	<a href="javascript:void(0)" class="mc-dialog-close-button">ÂèñÊ∂à</a>
-		</div>
-	</div>
-    <!-- PGIS connection panel -->
-	<div class="mc-dialog" id="pgis_connection_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">ËøûÊé•PostGISÊï∞ÊçÆÂ∫ì</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div id="pgis_connection_dialog_form_div" class="mc-dialog-form-div">
-				<div class="mc-tab-form active_tab">
-					<table>
-						<tr>
-							<td>ÂêçÁß∞Ôºö</td>
-							<td><input type="text" id="pgis_connection_name"/></td>
-						</tr>
-						<tr>
-							<td>Âú∞ÂùÄÔºö</td>
-							<td><input type="text" id="pgis_connection_host"/></td>
-						</tr>
-						<tr>
-							<td>Á´ØÂè£Ôºö</td>
-							<td><input type="text" id="pgis_connection_port"/></td>
-						</tr>
-						<tr>
-							<td>Êï∞ÊçÆÂ∫ìÔºö</td>
-							<td><input type="text" id="pgis_connection_database"/></td>
-						</tr>
-						<tr>
-							<td>Áî®Êà∑Ôºö</td>
-							<td><input type="text" id="pgis_connection_username"/></td>
-						</tr>
-						<tr>
-							<td>ÂØÜÁ†ÅÔºö</td>
-							<td><input type="password" id="pgis_connection_password"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><a href="javascript:void(0)" id="pgis_connection_test" class="btn"/>ËøûÊé•ÊµãËØï</a></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="mc-dialog-bottom">
-		  	<a href="javascript:void(s)">Á°ÆÂÆö</a>
-        	<a href="javascript:void()" class="mc-dialog-close-button">ÂèñÊ∂à</a>
-		</div>
-	</div>
-    <!-- Database panel -->
-	<div class="mc-dialog" id="database_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">Êï∞ÊçÆÂ∫ìÁÆ°ÁêÜ</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div id="database_dialog_form_div" class="mc-dialog-form-div">
-				<div class="mc-tab-form active_tab">
-					<div>
-						<div id="database-dialog-panel">
-							<fieldset>
-								<legend>Êï∞ÊçÆÂ∫ìËøûÊé•</legend>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="editLayerDialogTab">
+						<li class="active"><a href="#general">Õ®”√</a></li>
+						<li><a href="#editLayerLabel">±Í«©</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="general">
+							<h5>Õº≤„ª˘±æ–≈œ¢</h5>
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="edit_layer_id" class="col-sm-2 control-label">Õº≤„ID£∫</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="edit_layer_id" readonly>
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="edit_layer_name" class="col-sm-2 control-label">√˚≥∆£∫</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="edit_layer_name">
+									</div>
+								</div>								
+								<div class="form-group form-group-sm">
+									<label for="edit_layer_type" class="col-sm-2 control-label">¿‡–Õ£∫</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="edit_layer_type" readonly>
+									</div>
+								</div>								
+							</form>
+							<h5>Õº≤„’π æ</h5>
+							<div id="layer_style">
 								<ul>
-									<li>
-										<select style="width:80px">
-											<option value="192.168.111.87">87</option>
-											<option value="192.168.111.150">150</option>
-										</select>
+									<li class="row">
+										<span class="glyphicon glyphicon-eye-open control-label col-sm-1"></span>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" style="height:28px"></input>
+										</div>
+										<span class="col-sm-1">=</span>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" style="height:28px"></input>
+										</div>
+										<div class="col-sm-1">
+											<span class="style_icon" style="background-color:#ff0000;border-color:#3e3ede"></span>
+										</div>
+										<span class="glyphicon glyphicon-remove control-label col-sm-1"></span>
+										<span class="glyphicon glyphicon glyphicon-plus-sign control-label col-sm-1"></span>
 									</li>
-									<li><a href="javascript:void(0)" id="database-dialog-connect">ËøûÊé•</a></li>
-									<li>|</li>
-									<li><a href="javascript:void(0)" id="database-dialog-create-connect">Êñ∞Âª∫</a></li>
-									<li>|</li>
-									<li><a href="javascript:void(0)" id="database-dialog-connect-edit">ÁºñËæë</a></li>
-									<li>|</li>
-									<li><a href="javascript:void(0)" id="database-dialog-connect-delete">Âà†Èô§</a></li>
-									<li></li>
 								</ul>
-							</fieldset>
+							</div>
 						</div>
-						<div class="btn-group" id="database_dialog_action">
-							<a href="#" class="btn btn-mini" id="database_dialog_action_btn">
-								Êìç‰Ωú
-								<span class="caret"></span>
-							</a>
-							
-							<ul class="dropdown-menu">
-								<li><a href="#" id="refresh-btn">Âà∑Êñ∞</a></li>
-								<li><a href="#" id="select-all-btn">ÂÖ®ÈÄâ</a></li>
-								<li><a href="#" id="unselect-all-btn">ÂÖ®‰∏çÈÄâ</a></li>
-								<li><a href="#" id="rename-btn">ÈáçÂëΩÂêç</a></li>
-								<li><a href="#" class="editfield_btn">ÁºñËæëÂ≠óÊÆµ</a></li>
-								<li><a href="#" id="duplicate-btn">Â§çÂà∂</a></li>
-								<li><a href="#" id="reset-btn">ÈáçÁΩÆ</a></li>
-								<li><a href="#" id="truncate-btn">Êà™Êñ≠</a></li>
-								<li><a href="#" class="delete_layers_btn">Âà†Èô§</a></li>
-							</ul>
+						<div class="tab-pane" id="editLayerLabel">
+						±Í«©“≥
 						</div>
-						<div style="display:inline-block;margin-left: 20px;"><input type="text" placeholder="ËøáÊª§‚Ä¶"/></div>
+
+
 					</div>
-					<div style="margin-top:20px;height:300px">
-						<table width="100%" id="dbtable">
-							<thead>
-								<tr class="table_header">
-									<th width="180">Ë°®</th>
-									<th width="180">Á±ªÂûã</th>
-									<th width="80">EPSG</th>
-									<th width="100">‰∏™Êï∞</th>
-									<th width="100">‰æøÊç∑Êìç‰Ωú</th>
-								</tr>
-							</thead>
-							<tr>
-								<td>cities</td>
-								<td>POINT</td>
-								<td>4326</td>
-								<td>638</td>
-								<td>
-									<a href="#" class="editfield_btn">ÁºñËæë</a>
-									<a href="#" class="delete_layers_btn">Âà†Èô§</a>
-								</td>
-							</tr>
-							<tr>
-								<td>rivers</td>
-								<td>LINESTRING</td>
-								<td>4326</td>
-								<td>131</td>
-								<td>
-									<a href="#" class="editfield_btn">ÁºñËæë</a>
-									<a href="#" class="delete_layers_btn">Âà†Èô§</a>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div style="margin-top:10px">
-						<div>
-							<a href="javascript:void(s)" id="database_dialog_import" class="btn">ÂØºÂÖ•</a>
-						</div>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">πÿ±’</button>
+					<button type="button" class="btn btn-primary btn-confirm">»∑∂®</button>
 				</div>
 			</div>
 		</div>
-
-		<div class="mc-dialog-bottom">
-		  	<a href="javascript:void(s)">Á°ÆÂÆö</a>
-        	<a href="javascript:void()" class="mc-dialog-close-button">ÂèñÊ∂à</a>
-		</div>
 	</div>
-    <!-- Database panel -->
-	<div class="mc-dialog" id="file_dialog">
-		<div class="mc-dialog-header mc-border-bottom">
-			<div class="mc-dialog-title">Êñá‰ª∂ÁÆ°ÁêÜ</div>
-            <div class="mc-dialog-close"></div>
-		</div>
-		<div class="mc-dialog-info">
-			<div id="file_dialog_form_div" class="mc-dialog-form-div">
-				<div class="mc-tab-form active_tab">
-					<div style="height:320px;">
-						<div id="file_dialog_tree_div">
-							<ul id="file_tree" class="ztree" style="width:260px; overflow:auto;">				
-							</ul>
-						</div>
-						<div id="file_dialog_content">
-							<table class="file-dialog-content-flex">
-								<thead>
-									<tr>
-										<th width="180">Êñá‰ª∂ÂêçÁß∞</th>
-										<th width="80">Êñá‰ª∂Â§ßÂ∞è</th>
-										<th width="130">Êõ¥Êñ∞Êó∂Èó¥</th>
-										<th width="90">Á±ªÂûã</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Áü¢ÈáèÊï∞ÊçÆ</td>
-										<td></td>
-										<td>09.03.2014 02:45:09</td>
-										<td>Êñá‰ª∂Â§π</td>
-									</tr>
-									<tr>
-										<td>city.shp</td>
-										<td>300kb</td>
-										<td>09.03.2014 02:45:09</td>
-										<td>SHP</td>
-									</tr>
-									<tr>
-										<td>river.shp</td>
-										<td>300kb</td>
-										<td>09.03.2014 02:45:09</td>
-										<td>SHP</td>
-									</tr>
-								</tbody>
-							</table>
+    <!-- Layer appearance panel -->
+    <div class="modal fade" id="layerAppearanceDialog" tabindex="-1" role="dialog" aria-labelledby="layerAppearanceDialog" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="layerAppearanceDialog">Õº≤„œ‘ æ</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="layerAppearanceDialogTab">
+						<li class="active"><a href="#visable">ø… ”ªØ</a></li>
+						<li><a href="#icon">Õº±Í</a></li>
+						<li><a href="#textlabel">Œƒ◊÷±Íº«</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="visable">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="layer_color" class="col-sm-2 control-label layer_point_type layer_polygon_type">ÃÓ≥‰—’…´</label>
+									<div class="col-sm-2  layer_point_type layer_polygon_type">
+										<div id="layer_color" class="colorSelector">
+											<div style="background-color: #0000ff"></div>
+										</div>
+									</div>
+									<label for="layer_color_transparency" class="col-sm-2 control-label layer_point_type layer_polygon_type">Õ∏√˜∂»</label>
+									<div class="col-sm-4 layer_point_type layer_polygon_type">
+										<input id="layer_color_transparency" data-slider-id='layer_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+									</div>
+									<div class="col-sm-1  layer_point_type layer_polygon_type" style="padding-left:0px;padding-right:0px;">
+										<input type="text" class="form-control" id="layer_color_transparency_value"  style="width:40px" value="100" readonly>
+									</div>
+									<label class="col-sm-1 control-label   layer_point_type layer_polygon_type" style="padding-left:0px;text-align:left">
+										%
+									</label>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="layer_size" class="col-sm-2 control-label layer_point_type">∑˚∫≈¥Û–°</label>
+									<div class="col-sm-2 layer_point_type">
+										<input type="text" class="form-control" id="layer_size">
+									</div>									
+								</div>
 
+								<fieldset id="layer_show_outline_fieldset">
+									<legend>œ‘ æ±ﬂøÚœﬂ<input type="checkbox" id="layer_show_outline" checked="true"/></legend>
+									<div class="form-group form-group-sm">
+										<label for="layer_border_color" class="col-sm-2 control-label">±ﬂøÚ—’…´</label>
+										<div class="col-sm-2" >
+											<div id="layer_border_color"  class="colorSelector">
+												<div style="background-color: #0000ff"></div>
+											</div>
+										</div>
+										<label for="layer_border_color_transparency" class="col-sm-2 control-label">Õ∏√˜∂»</label>
+										<div class="col-sm-4">
+											<input id="layer_border_color_transparency" data-slider-id='layer_border_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+										</div>
+										<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+											<input type="text" class="form-control" id="layer_border_color_transparency_value"  style="width:40px" value="100" readonly>
+										</div>
+										<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+											%
+										</label>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_color" class="col-sm-2 control-label">Line Cap</label>
+										<div class="col-sm-2">
+											<select id="layer_line_cap" class="form-control">
+												<option value="BUTT">∆Ω÷±±ﬂ‘µ</option>
+												<option value="ROUND">‘≤–Œœﬂ√±</option>
+												<option value="SQUARE">’˝∑Ω–Œœﬂ√±</option>
+											</select>
+										</div>
+										<label for="layer_color" class="col-sm-2 control-label">Line Join</label>
+										<div class="col-sm-2">
+											<select id="layer_line_join" class="form-control">
+												<option value="MITER">º‚Ω«</option>
+												<option value="BEVEL">–±Ω«</option>
+												<option value="ROUND">‘≤Ω«</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_size" class="col-sm-2 control-label">œﬂ∂ŒøÌ∂»</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_border_width" value="2">
+										</div>
+										<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+											px
+										</label>
+									</div>
+								</fieldset>
+								<fieldset class="layer_show_shadow" id="layer_show_shadow_fieldset">
+									<legend>œ‘ æ“ı”∞<input type="checkbox" id="layer_show_shadow" checked="true"/></legend>
+									<div class="form-group form-group-sm">
+										<label for="layer_shadow_color" class="col-sm-2 control-label">“ı”∞—’…´</label>
+										<div class="col-sm-2" >
+											<div id="layer_shadow_color"  class="colorSelector">
+												<div style="background-color: #0000ff"></div>
+											</div>
+										</div>
+										<label for="layer_shadow_color_transparency" class="col-sm-2 control-label">Õ∏√˜∂»</label>
+										<div class="col-sm-4">
+											<input id="layer_shadow_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+										</div>
+										<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+											<input type="text" class="form-control" id="layer_shadow_color_transparency_value"  style="width:40px" value="100" readonly>
+										</div>
+										<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+											%
+										</label>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_shadow_offset_x" class="col-sm-2 control-label">X&nbsp;œÚ∆´“∆</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_shadow_offset_x" value="3">
+										</div>
+										<label for="layer_shadow_offset_y" class="col-sm-2 control-label">Y&nbsp;œÚ∆´“∆</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_shadow_offset_y" value="3">
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_shadow_offset_x" class="col-sm-2 control-label">œ‘ æƒ£∫˝</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_shadow_blur" value="3">
+										</div>
+
+									</div>
+								</fieldset>
+							</form>
 						</div>
-					</div>
-					<div id="file_dialog_toolbar">
-						<ul id="file_dialog_toolbar_menu">
-							<li>
-								<a id="file_dialog_toolbar_menu_refresh" class="iconbutton" href="#" title="Êõ¥Êñ∞Êñá‰ª∂Â§π"></a>
-							</li>
-<!--							<li>
-								<a id="file_dialog_toolbar_menu_select_all" class="iconbutton" href="#" title="ÈÄâÊã©ÊâÄÊúâ"></a>
-							</li>
--->							<li>
-								<a id="file_dialog_toolbar_menu_new_folder" class="iconbutton" href="#" title="Êñ∞Âª∫Êñá‰ª∂Â§π"></a>
-							</li>
-							<li>
-								<a id="file_dialog_toolbar_menu_duplicate" class="iconbutton" href="#" title="Â§çÊùÇ"></a>
-							</li>
-						</ul>
+						<div class="tab-pane" id="icon">
+							<div class="row">
+								<div class="col-sm-8 icon-gallery">
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="col-sm-12 row">
+										<div id="icon-preview">
+										</div>
+									</div>
+									<div class="col-sm-12 row">
+										<form class="form-horizontal" role="form">
+											<div class="form-group form-group-sm">
+												<label for="icon_size" class="col-sm-5 control-label">Size:</label>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="icon_size">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>				
+							</div>
+						</div>
+						<div class="tab-pane" id="textlabel">
+							<form class="form-horizontal" role="form">
+								<fieldset id="label_show_fieldset">
+									<legend>Œƒ◊÷±Íº«<input type="checkbox" id="label_show"/></legend>
+									<div class="form-group form-group-sm">
+										<label for="label_field" class="col-sm-2 control-label">◊÷∂Œ</label>
+										<div class="col-sm-2">
+											<select id="label_field" class="form-control">
+												
+											</select>
+										</div>
+										<label for="label_font_family" class="col-sm-2 control-label">◊÷ÃÂ</label>
+										<div class="col-sm-2">
+											<select id="label_font_family" class="form-control">
+												<option value="Times New Roman">Times New Roman</option>
+												<option value="Arial">Arial</option>
+												<option value="verdana">verdana</option>
+											</select>									
+										</div>
+										<label for="label_font_size" class="col-sm-2 control-label">◊÷ÃÂ¥Û–°</label>
+										<div class="col-sm-1" style="padding-right:0px">
+											<input type="text" class="form-control" id="label_font_size" value="30">
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="label_font_weight" class="col-sm-2 control-label">◊÷ÃÂº”¥÷</label>
+										<div class="col-sm-2">
+											<select id="label_font_weight" class="form-control">
+												<option value="NORMAL">NORMAL</option>
+												<option value="ITALIC" selected="selected">ITALIC</option>
+												<option value="OBLIQURE">OBLIQURE</option>
+											</select>									
+										</div>
+										<label for="label_font_style" class="col-sm-2 control-label">◊÷ÃÂ¿‡–Õ</label>
+										<div class="col-sm-2">
+											<select id="label_font_style" class="form-control">
+												<option value="NORMAL">NORMAL</option>
+												<option value="BOLD">BOLD</option>
+												<option value="BOLDER">BOLDER</option>
+												<option value="LIGHTER">LIGHTER</option>
+											</select>									
+										</div>
+									</div>
+									<fieldset class="label_show_fill" id="label_show_fill_fieldset">
+										<legend>◊÷ÃÂÃÓ≥‰<input type="checkbox" id="label_show_fill" checked="true"/></legend>
+										<div class="form-group form-group-sm">
+											<label for="label_fill_color" class="col-sm-2 control-label">ÃÓ≥‰—’…´</label>
+											<div class="col-sm-2" >
+												<div id="label_fill_color"  class="colorSelector">
+													<div style="background-color: red"></div>
+												</div>
+											</div>
+											<label for="label_fill_color_transparency" class="col-sm-2 control-label">Õ∏√˜∂»</label>
+											<div class="col-sm-4">
+												<input id="label_fill_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+											</div>
+											<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+												<input type="text" class="form-control" id="label_fill_color_transparency_value"  style="width:40px" value="100" readonly>
+											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												%
+											</label>
+										</div>
+									</fieldset>
+									<fieldset id="label_show_outline_fieldset">
+										<legend>œ‘ æ±ﬂøÚœﬂ<input type="checkbox" id="label_show_outline" checked="true"/></legend>
+										<div class="form-group form-group-sm">
+											<label for="label_border_color" class="col-sm-2 control-label">±ﬂøÚ—’…´</label>
+											<div class="col-sm-2" >
+												<div id="label_border_color"  class="colorSelector">
+													<div style="background-color: black"></div>
+												</div>
+											</div>
+											<label for="label_border_color_transparency" class="col-sm-2 control-label">Õ∏√˜∂»</label>
+											<div class="col-sm-4">
+												<input id="label_border_color_transparency" data-slider-id='layer_border_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+											</div>
+											<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+												<input type="text" class="form-control" id="label_border_color_transparency_value"  style="width:40px" value="100" readonly>
+											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												%
+											</label>
+										</div>
+										<div class="form-group form-group-sm">
+											<label for="label_line_cap" class="col-sm-2 control-label">Line Cap</label>
+											<div class="col-sm-2">
+												<select id="label_line_cap" class="form-control">
+													<option value="BUTT">∆Ω÷±±ﬂ‘µ</option>
+													<option value="ROUND">‘≤–Œœﬂ√±</option>
+													<option value="SQUARE">’˝∑Ω–Œœﬂ√±</option>
+												</select>
+											</div>
+											<label for="label_line_join" class="col-sm-2 control-label">Line Join</label>
+											<div class="col-sm-2">
+												<select id="label_line_join" class="form-control">
+													<option value="MITER">º‚Ω«</option>
+													<option value="BEVEL">–±Ω«</option>
+													<option value="ROUND">‘≤Ω«</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group form-group-sm">
+											<label for="label_border_width" class="col-sm-2 control-label">œﬂ∂ŒøÌ∂»</label>
+											<div class="col-sm-2">
+												<input type="text" class="form-control" id="label_border_width" value="1">
+											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												px
+											</label>
+										</div>
+									</fieldset>
+									<fieldset class="label_show_shadow" id="label_show_shadow_fieldset">
+										<legend>œ‘ æ“ı”∞<input type="checkbox" id="label_show_shadow" checked="true"/></legend>
+										<div class="form-group form-group-sm">
+											<label for="label_shadow_color" class="col-sm-2 control-label">“ı”∞—’…´</label>
+											<div class="col-sm-2" >
+												<div id="label_shadow_color"  class="colorSelector">
+													<div style="background-color: Gray"></div>
+												</div>
+											</div>
+											<label for="label_shadow_color_transparency" class="col-sm-2 control-label">Õ∏√˜∂»</label>
+											<div class="col-sm-4">
+												<input id="label_shadow_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+											</div>
+											<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+												<input type="text" class="form-control" id="label_shadow_color_transparency_value"  style="width:40px" value="100" readonly>
+											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												%
+											</label>
+										</div>
+										<div class="form-group form-group-sm">
+											<label for="label_shadow_offset_x" class="col-sm-2 control-label">X&nbsp;œÚ∆´“∆</label>
+											<div class="col-sm-2">
+												<input type="text" class="form-control" id="label_shadow_offset_x" value="10">
+											</div>
+											<label for="label_shadow_offset_y" class="col-sm-2 control-label">Y&nbsp;œÚ∆´“∆</label>
+											<div class="col-sm-2">
+												<input type="text" class="form-control" id="label_shadow_offset_y" value="10">
+											</div>
+										</div>
+										<div class="form-group form-group-sm">
+											<label for="label_shadow_offset_x" class="col-sm-2 control-label">œ‘ æƒ£∫˝</label>
+											<div class="col-sm-2">
+												<input type="text" class="form-control" id="label_shadow_blur" value="10">
+											</div>
+										</div>
+									</fieldset>
+								</fieldset>
+							</form>
+						</div>						
 					</div>
 				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">πÿ±’</button>
+					<button type="button" class="btn btn-primary btn-confirm">»∑∂®</button>
+				</div>
 			</div>
-		</div>
-        <div class="mc-dialog-bottom">
-        	<a href="javascript:close(this)">Á°ÆÂÆö</a>
-        	<a href="javascript:void()" class="mc-dialog-close-button">ÂèñÊ∂à</a>
-        </div>
+		</div>		
 	</div>
 
-
-</div>
-	
 </body>
-</html>
