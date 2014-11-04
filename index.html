@@ -26,6 +26,8 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
 
+<script type="text/javascript" src="js/echarts-plain.js"></script>
+
 <script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
@@ -72,6 +74,9 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/Class/Class.js"></script>
+<script type="text/javascript" src="js/charts/Chart.js"></script>
+<script type="text/javascript" src="js/charts/WFSLayerChart.js"></script>
+
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
 <script type="text/javascript" src="js/Control/LayerTree.js"></script>
 <script type="text/javascript" src="js/Control/MapCanvas.js"></script>
@@ -88,7 +93,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/DatabaseDialog.js"></script>
 <script type="text/javascript" src="js/Control/FileDialog.js"></script>
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
-
+<script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -214,6 +219,13 @@ var Msg = {}; //declare this or modify line 1 of core.js
 						</div>
 					</div>
 					<div id="data_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">新建图表</div>
+							</div>
+
+						</div>
 					</div>
 					<div id="analysis_ribbon" class="ribbon_panel">
 					</div>
@@ -333,7 +345,34 @@ var Msg = {}; //declare this or modify line 1 of core.js
 								<span>name=China</span>
 							</div>
 						</div>
-
+						<div class="row chart_style_row">
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-eye-close mc-icon"></div>	
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class='glyphicon glyphicon-signal mc-icon'></div>
+							</div>
+							<div class="col-md-6 col-xs-6">
+								<span>id,cities_id</span>
+							</div>
+							<div class="col-md-1 col-xs-1 layer_row_quick_tool">
+								<ul>
+									<li class="dropdown pull-right">
+										<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+											<b class="glyphicon glyphicon-cog"></b>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#">放大至该图层</a></li>
+											<li><a href="#">编辑图层</a></li>
+											<li><a href="#">分享图层</a></li>
+											<li><a href="#">删除图层</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>							
+						</div>
 					</div>
 					
 				</div>
@@ -947,5 +986,222 @@ var Msg = {}; //declare this or modify line 1 of core.js
 			</div>
 		</div>		
 	</div>
+	<!-- New Chart panel -->
+    <div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="newMapDialogLabel">新建图表</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="newChartDialogTab">
+						<li class="active"><a href="#barChart">柱状图</a></li>
+						<li><a href="#pieChart">饼状图</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="barChart">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer" class="col-sm-2 control-label">WFS图层</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer form-control">
+										</select>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer_all_fields" class="col-sm-2 control-label">字段</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer_all_fields form-control">
+										</select>
+									</div>
+									<div class="col-sm-1" style="padding-top:6px;padding-bottom:6px;">
+										<div class="glyphicon glyphicon-plus-sign mc-icon" style="font-size:18px;"></div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm chart-text-div">
+									<label for="chart_text" class="col-sm-2 control-label">标题</label>
+									<div class="col-sm-4" >
+										<input class="chart_text form-control">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_height" class="col-sm-2 control-label">高</label>
+									<div class="col-sm-2">
+										<input class="chart_height form-control" value="80" />
+									</div>
+									<label for="chart_width" class="col-sm-2 control-label">宽</label>
+									<div class="col-sm-2">
+										<input class="chart_width form-control" value="10" />
+									</div>							
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_offset_x" class="col-sm-2 control-label">X向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_x form-control" value="0" />
+									</div>
+									<label for="chart_offset_y" class="col-sm-2 control-label">Y向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_y form-control" value="0" />
+									</div>	
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_legend" class="col-sm-2 control-label">图例</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<input id="chart_legend" type="checkbox">
+									</div>
+									<label for="chart_tooltip" class="col-sm-2 control-label">提示框</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<label>
+											<input id="chart_tooltip" type="checkbox" checked>
+										</label>
+									</div>							
+								</div>							
+								<fieldset class="chart-fieldset">
+									<legend>内边距（百分比）</legend>
+									<div class="form-group form-group-sm" style="padding-right:15px;">
+										<label for="chart_padding_left" class="col-sm-1 control-label">left</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_left" class="form-control" value="10%" />
+										</div>
+										<label for="chart_padding_right" class="col-sm-1 control-label">right</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_right" class="form-control" value="10%" />
+										</div>
+										<label for="chart_padding_top" class="col-sm-1 control-label">top</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_top" class="form-control" value="10%" />
+										</div>
+										<label for="chart_padding_bottom" class="col-sm-1 control-label">bottom</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_bottom" class="form-control" value="0%" />
+										</div>
+									</div>
+								</fieldset>						
+								<fieldset class="chart-fieldset">
+									<legend>X轴</legend>
+									<div class="form-group form-group-sm" style="padding-right:15px;">
+										<label for="chart_axis_label_x" class="col-sm-2 control-label">axisLabel</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_label_x" type="checkbox">
+										</div>
+										<label for="chart_split_line_x" class="col-sm-2 control-label">splitLine</label>
+										<div class="col-sm-1">
+											<input id="chart_split_line_x" type="checkbox">
+										</div>
+										<label for="chart_axis_line_x" class="col-sm-2 control-label">axisLine</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_line_x" type="checkbox">
+										</div>
+										<label for="chart_axis_tick_x" class="col-sm-2 control-label">axisTick</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_tick_x" type="checkbox">
+										</div>		
+									</div>
+								</fieldset>				
+								<fieldset class="chart-fieldset">
+									<legend>Y轴</legend>
+									<div class="form-group form-group-sm" style="padding-right:15px;">
+										<label for="chart_axis_label_y" class="col-sm-2 control-label">axisLabel</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_label_y" type="checkbox">
+										</div>
+										<label for="chart_split_line_y" class="col-sm-2 control-label">splitLine</label>
+										<div class="col-sm-1">
+											<input id="chart_split_line_y" type="checkbox">
+										</div>
+										<label for="chart_axis_line_y" class="col-sm-2 control-label">axisLine</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_line_y" type="checkbox">
+										</div>
+										<label for="chart_axis_tick_y" class="col-sm-2 control-label">axisTick</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_tick_y" type="checkbox">
+										</div>		
+									</div>
+								</fieldset>						
+							</form>
+						</div>
+						<div class="tab-pane" id="pieChart">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer" class="col-sm-2 control-label">WFS图层</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer form-control">
+										</select>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer_all_fields" class="col-sm-2 control-label">字段</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer_all_fields form-control">
+										</select>
+									</div>
+									<div class="col-sm-1" style="padding-top:6px;padding-bottom:6px;">
+										<div class="glyphicon glyphicon-plus-sign mc-icon" style="font-size:18px;"></div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm chart-text-div">
+									<label for="chart_text" class="col-sm-2 control-label">标题</label>
+									<div class="col-sm-4" >
+										<input class="chart_text form-control">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_height" class="col-sm-2 control-label">高</label>
+									<div class="col-sm-2">
+										<input class="chart_height form-control" value="10" />
+									</div>
+									<label for="chart_width" class="col-sm-2 control-label">宽</label>
+									<div class="col-sm-2">
+										<input class="chart_width form-control" value="10" />
+									</div>							
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_offset_x" class="col-sm-2 control-label">X向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_x form-control" value="0" />
+									</div>
+									<label for="chart_offset_y" class="col-sm-2 control-label">Y向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_y form-control" value="0" />
+									</div>	
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_legend" class="col-sm-2 control-label">图例</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<input id="chart_legend" type="checkbox">
+									</div>
+									<label for="chart_tooltip" class="col-sm-2 control-label">提示框</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<label>
+											<input id="chart_tooltip" type="checkbox" checked>
+										</label>
+									</div>							
+								</div>	
+								<div class="form-group form-group-sm">
+									<label for="chart_radius_min" class="col-sm-2 control-label">内半径</label>
+									<div class="col-sm-2">
+										<input class="chart_radius_min form-control" value="0%" />
+									</div>
+									<label for="chart_radius_max" class="col-sm-2 control-label">外半径</label>
+									<div class="col-sm-2">
+										<input class="chart_radius_max form-control" value="100%" />
+									</div>	
+								</div>
+
+							</form>
+						</div>
+					</div>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>				
+			</div>
+		</div>
+	</div>
+
 
 </body>

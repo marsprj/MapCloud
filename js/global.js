@@ -26,6 +26,9 @@ MapCloud.pgis_connection_dialog = null;
 //WFS图层连接
 MapCloud.wfs_datasource_dialog = null;
 
+//新建图表
+MapCloud.new_chart_dialog = null;
+
 //左侧刷新
 MapCloud.refresh_panel = null;
 
@@ -34,6 +37,12 @@ MapCloud.wfs_layer = null;
 
 //当前选中的图层
 MapCloud.selected_layer = null;
+
+//
+MapCloud.charts_array = new Array();
+
+//wfs对应的图表
+MapCloud.wfs_layer_chart = new Array();
 
 //点样式
 MapCloud.point_symbolizer = new GeoBeans.Style.PointSymbolizer();
@@ -177,3 +186,22 @@ MapCloud.rgba2Opacity = function(rgba){
 	var opacity = rgba.slice(index1 + 1, index2);
 	return opacity;
 };
+
+
+//调整chart位置
+MapCloud.resizeCharts = function(){
+	for(var i = 0; i < MapCloud.wfs_layer_chart.length; ++i){
+		var wfsLayerChart = MapCloud.wfs_layer_chart[i];
+		if(wfsLayerChart == null){
+			continue;
+		}
+		var chartsArray = wfsLayerChart.chartsArray;
+		for(var j = 0; j < chartsArray.length; ++j){
+			var chart = chartsArray[j];
+			if(chart.showFlag){
+				chart.resize();
+			}
+			
+		}
+	}	
+}

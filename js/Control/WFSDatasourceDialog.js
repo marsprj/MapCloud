@@ -14,7 +14,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.click(function(){
 			//dialog.closeDialog();
 		});
-		this.registerTabEvents();
+		// this.registerTabEvents();
 		
 
 		this.panel.find("#wfsDatasourceDialogTab a").each(function(){
@@ -148,6 +148,8 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				var refresh = new MapCloud.refresh("left_panel");
 				refresh.refreshPanel();
 
+				MapCloud.resizeCharts();
+
 /*				//设置属性
 				if(MapCloud.edit_layer_dialog == null){
 					MapCloud.edit_layer_dialog = new MapCloud.EditLayerDialog("edit_layer_dialog");
@@ -230,23 +232,23 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 	
 	},
 	
-	registerTabEvents:function(){
-		var that = this;
-		this.panel.find(".mc-tabs-ul li").each(function(index,element){
-			$(this).click(function(e){
-				that.panel.find(".mc-tab-form").each(function(){
-					$(this).removeClass("active_tab");
-				});
+	// registerTabEvents:function(){
+	// 	var that = this;
+	// 	this.panel.find(".mc-tabs-ul li").each(function(index,element){
+	// 		$(this).click(function(e){
+	// 			that.panel.find(".mc-tab-form").each(function(){
+	// 				$(this).removeClass("active_tab");
+	// 			});
 
-				that.panel.find(".mc-tab-form:eq(" +index + ")").addClass("active_tab");
+	// 			that.panel.find(".mc-tab-form:eq(" +index + ")").addClass("active_tab");
 
-				that.panel.find(".mc-tabs-ul li").removeClass("active");
-				$(this).addClass("active");
+	// 			that.panel.find(".mc-tabs-ul li").removeClass("active");
+	// 			$(this).addClass("active");
 
 				
-			});
-		});
-	},
+	// 		});
+	// 	});
+	// },
 	getDefaultStyle:function(){
 
 		//获得空间类型（点线面）

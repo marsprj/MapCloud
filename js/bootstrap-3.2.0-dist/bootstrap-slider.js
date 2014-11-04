@@ -450,10 +450,11 @@
 				// Bind touch handlers
 				this.mousedown = this._mousedown.bind(this);
 				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
+			} else {
+				// Bind mouse handlers
+				this.mousedown = this._mousedown.bind(this);
+				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 			}
-                        // Bind mouse handlers
-                        this.mousedown = this._mousedown.bind(this);
-                        this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 
 			// Bind tooltip-related handlers
 			if(this.options.tooltip === 'hide') {
@@ -841,6 +842,18 @@
 
 				this.percentage[this.dragged] = this.options.reversed ? 100 - percentage : percentage;
 				this._layout();
+				
+				if (this.touchCapable) {
+					document.removeEventListener("touchmove", this.mousemove, false);
+					document.removeEventListener("touchend", this.mouseup, false);
+				}
+
+				if(this.mousemove){
+					document.removeEventListener("mousemove", this.mousemove, false);
+				}
+				if(this.mouseup){
+					document.removeEventListener("mouseup", this.mouseup, false);
+				}
 
 				this.mousemove = this._mousemove.bind(this);
 				this.mouseup = this._mouseup.bind(this);
@@ -1065,7 +1078,7 @@
 				this.element.setAttribute('value', val);
 			},
 			_trigger: function(evt, val) {
-				val = val || undefined;
+				val = (val || val === 0) ? val : undefined;
 
 				var callbackFnArray = this.eventToCallbackMap[evt];
 				if(callbackFnArray && callbackFnArray.length) {
@@ -1142,7 +1155,14 @@
 				};
 			},
 			_css: function(elementRef, styleName, value) {
-				elementRef.style[styleName] = value;
+                if ($) {
+                    $.style(elementRef, styleName, value);
+                } else {
+                    var style = styleName.replace(/^-ms-/, "ms-").replace(/-([\da-z])/gi, function (all, letter) {
+                        return letter.toUpperCase();
+                    });
+                    elementRef.style[style] = value;
+                }
 			}
 		};
 

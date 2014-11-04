@@ -77,6 +77,48 @@ $().ready(function(){
 
 	});
 
+	mapObj.addEventListener("mousewheel", MapCloud.resizeCharts);
+
+
+
+	var canvas = mapObj.canvas;
+	var onMouseDown = function(e){
+		e.preventDefault();
+		var mouseX = e.layerX;
+		var mouseY = e.layerY;
+		var onMouseMove = function(e){
+			e.preventDefault();
+			var moveMouseX = e.layerX;
+			var moveMouseY = e.layerY;
+			var d_x = moveMouseX - mouseX;
+			var d_y = moveMouseY - mouseY;
+
+			for(var i = 0; i < MapCloud.wfs_layer_chart.length; ++i){
+				var wfsLayerChart = MapCloud.wfs_layer_chart[i];
+				if(wfsLayerChart == null){
+					continue;
+				}
+				var chartsArray = wfsLayerChart.chartsArray;
+				for(var j = 0; j < chartsArray.length; ++j){
+					var chart = chartsArray[j];
+					if(chart.showFlag){
+						chart.move(d_x,d_y);
+					}					
+				}
+			}			
+			mouseX = moveMouseX;
+			mouseY = moveMouseY;
+		};
+		var onMouseUp = function(e)	{
+			e.preventDefault();
+			canvas.removeEventListener("mousemove", onMouseMove);
+			canvas.removeEventListener("mouseup", onMouseUp);
+
+		}
+		canvas.addEventListener("mousemove", onMouseMove);
+		canvas.addEventListener("mouseup", onMouseUp);
+	}
+	canvas.addEventListener("mousedown", onMouseDown);
 
 /*
 	var symbolizer, rule, filter;

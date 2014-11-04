@@ -359,7 +359,7 @@ ul#ribbon_tabs li{
 	margin-right:0px;
 
 }
-.layer_row .layer_name{
+.layer_row .layer_name, .chart_style_row .chart_name{
 	cursor:pointer;
 }
 
@@ -367,19 +367,19 @@ ul#ribbon_tabs li{
 	background-color: #DFF1F8;
 }
 
-.layer_row .layer_row_quick_tool{
+.layer_row .layer_row_quick_tool, .chart_style_row .chart_row_quick_tool{
 	padding-right:0px;
 }
 
-.layer_row .layer_row_quick_tool ul{
+.layer_row .layer_row_quick_tool ul, .chart_style_row .chart_row_quick_tool ul{
 	margin:0px;
 }
 
-.layer_row .layer_row_quick_tool ul a.dropdown-toggle{
+.layer_row .layer_row_quick_tool ul a.dropdown-toggle,.chart_style_row .chart_row_quick_tool ul a.dropdown-toggle{
 	color:#fff;
 }
 
-.layer_row:hover .layer_row_quick_tool ul a.dropdown-toggle{
+.layer_row:hover .layer_row_quick_tool ul a.dropdown-toggle,.chart_style_row:hover .chart_row_quick_tool ul a.dropdown-toggle{
 	color:#000;
 }
 
@@ -390,10 +390,14 @@ ul#ribbon_tabs li{
 .layer_row_selected .layer_row_quick_tool ul a.dropdown-toggle{
 	color:#428bca;
 }
-.layer_style_row{
+.layer_style_row,.chart_style_row{
 	padding:6px;
 	margin-left:0px;
 	margin-right:0px;
+}
+
+.chart_style_row:hover{
+	background-color: #DFF1F8;
 }
 #center_panel{
 	position: relative;
@@ -726,4 +730,31 @@ legend {
 
 /***************************************************************************/
 /* Layer Appearance Dialog End                                           */
+/***************************************************************************/
+
+/***************************************************************************/
+/* New Chart Dialog Begin                                           */
+/***************************************************************************/
+.chart-div{
+	height:200px;
+	width: 200px;
+	position: absolute;
+	/*border: 1px solid #ccc;*/
+}
+#newChartDialog .modal-dialog{
+	width: 540px;
+}
+#newChartDialog .modal-body{
+	height:650px;
+	overflow-y: auto;
+}
+
+.chart-fieldset .col-sm-1{
+	padding-top:3px;
+}
+.chart-fieldset label{
+	padding-left: 0px;
+}
+/***************************************************************************/
+/* New Chart Dialog End    		                                        */
 /***************************************************************************/

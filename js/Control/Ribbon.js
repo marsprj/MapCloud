@@ -137,11 +137,15 @@ MapCloud.Ribbon = MapCloud.Class({
 					//导出图层
 					that.onExportLayer();
 					break;
-				// Tools Events
+				//Data Events
 				case 16:
+					that.addChart();
+					break;
+				// Tools Events
+				case 17:
 					that.onFile();
 					break;
-				case 17:
+				case 18:
 					that.onDatabase();
 
 
@@ -290,9 +294,24 @@ MapCloud.Ribbon = MapCloud.Class({
 	onExportLayer:function(){
 		alert("导出图层");
 	},
+
+
+
 	/**************************************************************/
 	/* Data Event                                                */
 	/**************************************************************/
+	addChart:function(){
+
+
+
+		if(MapCloud.new_chart_dialog == null){
+			MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
+		}
+		MapCloud.new_chart_dialog.showDialog();		
+		// MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
+		// MapCloud.new_chart_dialog.showDialog();	
+	},
+
 	onFile : function(){
 		if(MapCloud.file_dialog == null){
 			MapCloud.file_dialog = new MapCloud.FileDialog("file_dialog");
