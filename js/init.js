@@ -77,6 +77,7 @@ $().ready(function(){
 
 	});
 
+/*-------------------原有方式进行监听---------------------*/
 	mapObj.addEventListener("mousewheel", MapCloud.resizeCharts);
 
 
@@ -93,16 +94,58 @@ $().ready(function(){
 			var d_x = moveMouseX - mouseX;
 			var d_y = moveMouseY - mouseY;
 
+			var mapCanvasWidth = $("#mapCanvas").width();
+			var mapCanvasHeight = $("#mapCanvas").height();	
+
 			for(var i = 0; i < MapCloud.wfs_layer_chart.length; ++i){
 				var wfsLayerChart = MapCloud.wfs_layer_chart[i];
-				if(wfsLayerChart == null){
+				if(wfsLayerChart == null ||wfsLayerChart.showFlag == false){
 					continue;
 				}
 				var chartsArray = wfsLayerChart.chartsArray;
 				for(var j = 0; j < chartsArray.length; ++j){
 					var chart = chartsArray[j];
-					if(chart.showFlag){
-						chart.move(d_x,d_y);
+		
+					chart.move(d_x,d_y);//先调整位置,进行移动
+					// 再判断要不要显示
+					if(chart.screenX < 0 || chart.screenY < 0 || 
+						chart.screenX > mapCanvasWidth || chart.screenY > mapCanvasHeight){
+						//不需要显示的
+						if(chart.showFlag){
+							$("#" + chart.id).remove();		
+						}
+						chart.showFlag = false;
+					}else{
+						//需要显示的
+						var interSetFlag = false;
+						// 继而判断和以前的有没有交集
+						for(var k = 0; k < j; ++k){
+							var chartPre = chartsArray[k];
+							if(chartPre.showFlag && chart.intersectRect(chartPre)){
+								// 此时有交集
+								interSetFlag = true;
+								break;
+							}
+						}
+						if(interSetFlag){
+							$("#" + chart.id).remove();	
+							chart.showFlag = false;	
+						}else{
+							//此时没有交集，应该显示
+							if(chart.showFlag){
+								// 以前就显示的
+								var panel = $("#" + chart.id);
+								panel.height(chart.height);
+								panel.width(chart.width);
+								panel.css("left",chart.screenX);
+								panel.css("top",chart.screenY);					
+								chart.chart.resize();
+							}else{
+								// 以前没有的
+								chart.show();
+							}
+							chart.showFlag = true;					
+						}
 					}					
 				}
 			}			
@@ -120,6 +163,10 @@ $().ready(function(){
 	}
 	canvas.addEventListener("mousedown", onMouseDown);
 
+
+
+	
+	
 /*
 	var symbolizer, rule, filter;
 	var style = new GeoBeans.Style();

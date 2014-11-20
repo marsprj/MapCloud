@@ -292,7 +292,8 @@ MapCloud.refresh = MapCloud.Class({
 					if(wfsLayerChart == null){
 						return;
 					}
-					wfsLayerChart.show();					
+					wfsLayerChart.showFront();
+					// wfsLayerChart.show();					
 				}
 			})
 			

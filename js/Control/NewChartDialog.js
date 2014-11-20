@@ -116,9 +116,9 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 					fieldIndexArray.push(index);
 				}
 
-				//先设置居中
-				mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-				mapObj.draw();	
+				// //先设置居中
+				// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+				// mapObj.draw();	
 
 				//偏移
 				var chartOffsetX = null;
@@ -220,7 +220,7 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 						var chartsArray = new Array();
 						var features = wfsLayer.features;
 						for(var i = 0; i <features.length; ++i){
-						 // for(var i = 0; i <100; ++i){
+						 // for(var i = 0; i <2; ++i){
 							//字段对应的值
 							var feature = features[i];
 							var featureValues = feature.values;
@@ -243,7 +243,7 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 							yAxis.max = range[1];
 
 							xAxis.type = "category";
-							xAxis.data = fieldArray;
+							xAxis.data = [""];
 
 							var series = new Array();
 							for(var j = 0; j < fieldArray.length; ++j){
@@ -251,7 +251,8 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 								var serieObj = new Object();
 								serieObj.name = field;
 								serieObj.type = "bar";
-								serieObj.data = [featureValues[fieldIndexArray[j]]];
+								serieObj.data = [parseFloat(featureValues[fieldIndexArray[j]])];
+								// serieObj.data = [featureValues[fieldIndexArray[j]]];
 								series.push(serieObj);
 							}
 							option = {
@@ -274,7 +275,9 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 									yAxis:[
 											yAxis
 									],
-									series: series
+									series: series,
+									animation:false,
+									calculable:false
 									// series:[
 									// 	{
 									// 		name: '',
@@ -329,10 +332,12 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 						if(dialog.id != -1){
 							wfsLayerChart.removeCharts(dialog.id);
 							MapCloud.wfs_layer_chart[dialog.id] = wfsLayerChart;
-							wfsLayerChart.show();
+							// wfsLayerChart.show();
+							wfsLayerChart.showFront();
 						}else{
 							MapCloud.wfs_layer_chart.push(wfsLayerChart);
-							wfsLayerChart.show();
+							// wfsLayerChart.show();
+							wfsLayerChart.showFront();
 						}
 						dialog.closeDialog();
 
@@ -401,7 +406,10 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 								                }
 								            }		            						
 		            					}
-		            				]
+		            				],
+									animation:false,
+									calculable:false
+
 								};
 
 							if(dialog.id != -1){
@@ -412,7 +420,7 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 							}
 							var chart = new MapCloud.Chart(id,chartX,chartY,chartHeight,chartWidth,chartOffsetX,
 																chartOffsetY,option);						
-							chart.show();
+							// chart.show();
 							chartsArray.push(chart);
 
 						}
@@ -433,10 +441,12 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 						if(dialog.id != -1){
 							wfsLayerChart.removeCharts(dialog.id);
 							MapCloud.wfs_layer_chart[dialog.id] = wfsLayerChart;
-							wfsLayerChart.show();
+							// wfsLayerChart.show();
+							wfsLayerChart.showFront();
 						}else{
 							MapCloud.wfs_layer_chart.push(wfsLayerChart);
-							wfsLayerChart.show();
+							wfsLayerChart.showFront();
+							// wfsLayerChart.show();
 						}
 						dialog.closeDialog();
 
@@ -525,30 +535,6 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 		return null;
 	},
 
-	// //设置字段，并限制只有数值类型的才可以
-	// setWfsLayerFields : function(wfsLayer){
-	// 	this.panel.find(".chart_wfs_layer_fields_div").each(function(){
-	// 		$(this).empty();
-	// 	});		
-	// 	var wfsLayerName = wfsLayer.val();
-	// 	var layer = this.getLayer(wfsLayerName);
-	// 	if(layer != null){
-	// 		var fields = layer.featureType.fields;
-	// 		for(var i = 0; i < fields.length; ++i){
-	// 			var field = fields[i];
-	// 			var fieldType = field.type;
-	// 			var fieldTypeLower = fieldType.toLowerCase();
-	// 			if(fieldTypeLower == "int" || fieldTypeLower == "double" || fieldTypeLower == "float"){
-	// 				// var html = "<input type='checkbox' name='chart_wfs_layer_fields'>" + field.name;
-	// 				var html = "<label class='checkbox-inline'><input type='checkbox' name='chart_wfs_layer_fields' value='" 
-	// 				+ field.name + "'>" + field.name + "</label>";
-	// 				this.panel.find(".chart_wfs_layer_fields_div").each(function(){
-	// 					$(this).append(html);
-	// 				});
-	// 			}
-	// 		}
-	// 	}		
-	// },
 
 	//设置字段，并限制只有数值类型的才可以
 	setWfsLayerFields :function(wfsLayer){
@@ -608,10 +594,10 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 	getYAxisRangeByField:function(wfsLayer,fieldIndex){
 		var range = new Array();
 		var features = wfsLayer.features;
-		var min = features[0].values[fieldIndex];
-		var max = features[0].values[fieldIndex];
+		var min = parseFloat(features[0].values[fieldIndex]);
+		var max = parseFloat(features[0].values[fieldIndex]);
 		for(var i = 1; i < features.length;++i){
-			var value = features[i].values[fieldIndex];
+			var value = parseFloat(features[i].values[fieldIndex]);
 			if(value < min){
 				min = value;
 			}
@@ -623,7 +609,6 @@ MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 		range[1] = max;
 		return range;
 	},
-
 	//根据wfsLayer和option来初始化对话框
 	setLayerOption:function(wfsLayer,option,id){
 		if(wfsLayer == null || option == null){

@@ -25,6 +25,8 @@ MapCloud.Chart = MapCloud.Class({
 		this.option = option;
 
 		this.currentScale = mapObj.transformation.scale;
+
+		this.getPosition();
 	},
 
 	getPosition: function(){
@@ -43,7 +45,7 @@ MapCloud.Chart = MapCloud.Class({
 	},
 	show:function(){
 		// 为echarts对象加载数据 
-		this.getPosition();
+		// this.getPosition();
 		var div = "<div class='chart-div' style='left:" + this.screenX + "px;top:" + this.screenY + 
 			"px;height: " + this.height +  "px; width:" + this.width + "px' id='" 
 			+ this.id +　"'></div>";
@@ -70,8 +72,13 @@ MapCloud.Chart = MapCloud.Class({
 		panel.css("left",this.screenX);
 		panel.css("top",this.screenY);
 
-		if(this.screenX < 0 || this.screenY < 0){
-			$("#" + this.id).remove();
+		var mapCanvasWidth = $("#mapCanvas").width();
+		var mapCanvasHeight = $("#mapCanvas").height();
+		if(this.screenX < 0 || this.screenY < 0 || this.screenX > mapCanvasWidth || this.screenY > mapCanvasHeight){
+			if($("#" + this.id).length == 1){
+				this.chart.dispose();
+				$("#" + this.id).remove();				
+			}
 			
 		}else{
 			if($("#" + this.id).length == 0){
@@ -82,24 +89,13 @@ MapCloud.Chart = MapCloud.Class({
 
 	},
 
+
 	move:function(d_x,d_y){
-		var panel = $("#" + this.id);
+
 		this.screenX = this.screenX + d_x;
 		this.screenY = this.screenY + d_y;
-		panel.css("left",this.screenX);
-		panel.css("top",this.screenY);
 
-		// if(this.screenX < 0 || this.screenY < 0){
-		// 	$("#" + this.id).remove();
-		// }else{
-		// 	if($("#" + this.id).length == 0){
-		// 		this.reShow();
-		// 	}else{
-		// 		this.chart.resize();
-		// 	}
-		// }
 	},
-
 	reShow: function(){
 		var div = "<div class='chart-div' style='left:" + this.screenX + "px;top:" + this.screenY + 
 			"px;height: " + this.height +  "px; width:" + this.width + "px' id='" 
@@ -114,5 +110,33 @@ MapCloud.Chart = MapCloud.Class({
 
 	setOption:function(option){
 		this.option = option;
+	},
+
+
+	// 是否与另一个chart重叠
+	intersectRect:function(chart2){
+		var xmin_1 = this.screenX;
+		var ymin_1 = this.screenY;
+		var xmax_1 = this.screenX + this.width;
+		var ymax_1 = this.screenY + this.height;
+		var xmin_2 = chart2.screenX;
+		var ymin_2 = chart2.screenY;
+		var xmax_2 = chart2.screenX + chart2.width;
+		var ymax_2 = chart2.screenY + chart2.height;	
+
+		if(Math.abs(xmin_2 - xmin_1) <= this.width && Math.abs(ymin_2 - ymin_1) <= this.height){
+			return true;
+		}
+		return false;
+	},
+
+	// 调整位置和大小
+	resizeChartPosition:function(){
+		var scale = mapObj.transformation.scale;
+		var changeScale = scale / this.currentScale;
+		this.width = changeScale * this.width;
+		this.height = changeScale * this.height;
+		
+		this.getPosition();
 	}
 });

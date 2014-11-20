@@ -308,9 +308,9 @@ MapCloud.Ribbon = MapCloud.Class({
 			MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
 		}
 		MapCloud.new_chart_dialog.showDialog();		
-		// MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
-		// MapCloud.new_chart_dialog.showDialog();	
+
 	},
+
 
 	onFile : function(){
 		if(MapCloud.file_dialog == null){
@@ -330,6 +330,6 @@ MapCloud.Ribbon = MapCloud.Class({
 	
 	onDataImport : function(){
 		alert("onDataImport");
-	},
+	}
 });
 	
