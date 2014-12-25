@@ -94,7 +94,7 @@ MapCloud.EditLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 					var textRule =  new GeoBeans.Style.Rule(dialog.textSymbolizer, null);
 					rules[rules.length] = textRule;			
 				}
-				mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+				// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 				mapObj.draw();
 			});
 		});
@@ -201,7 +201,7 @@ MapCloud.EditLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 					var index = $(this).parent().parent().attr("value");
 //					var symbolizer = dialog.layer.style.rules[index].symbolizer;
 					var symbolizer = dialog.geoRules[index].symbolizer;
-					MapCloud.layer_appearance_dialog.setGeomSymbolizer(dialog.geomType,symbolizer,index,dialog.callback);
+					MapCloud.layer_appearance_dialog.setGeomSymbolizer(dialog.geomType,symbolizer,index,dialog.callback,null);
 					var fields = dialog.layer.featureType.fields;
 					MapCloud.layer_appearance_dialog.setLayerFields(fields);
 					var textSymbolizer = dialog.getTextSymbolizerByIndex(index);
@@ -363,7 +363,7 @@ MapCloud.EditLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 
 				var rule = dialog.geoRules[index];
 				var symbolizer = dialog.geoRules[index].symbolizer;
-				MapCloud.layer_appearance_dialog.setGeomSymbolizer(dialog.geomType,symbolizer,index,dialog.callback);
+				MapCloud.layer_appearance_dialog.setGeomSymbolizer(dialog.geomType,symbolizer,index,dialog.callback,null);
 				var fields = dialog.layer.featureType.fields;
 				MapCloud.layer_appearance_dialog.setLayerFields(fields);				
 				var textSymbolizer = dialog.getTextSymbolizerByIndex(index);
@@ -374,7 +374,7 @@ MapCloud.EditLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 	
 	//设置完style之后的回调函数
-	callback:function(symbolizer,textSymbolizer,index){
+	callback:function(symbolizer,textSymbolizer,index,layerIndex){
 		var fillColor = symbolizer.fillColor;
 		var outLineColor = symbolizer.outLineColor;
 		var color = symbolizer.color;
@@ -423,7 +423,7 @@ MapCloud.EditLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	
 		var allRules = this.getAllRules();
 		this.layer.style.rules = allRules;
-		mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+		// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 		mapObj.draw();	
 
 	},

@@ -112,6 +112,9 @@ MapCloud.refresh = MapCloud.Class({
 				for(var j = 0; j < ruleCount; ++j){
 					var rule = rules[j];
 					var symbolizer = rule.symbolizer;
+					if (symbolizer instanceof GeoBeans.Style.TextSymbolizer){
+						continue;
+					}
 					var icon = this.createSymbolizerIcon(symbolizer,geomType);
 					var filter = rule.filter;
 					var filterHtml = "";
@@ -126,7 +129,7 @@ MapCloud.refresh = MapCloud.Class({
 						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
 						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
 						 +	"	<div class=\"col-md-1 col-xs-1\">"
-						 +	"		<div class=\"mc-icon\" style=\"" + icon + "\"></div>"	
+						 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"	
 						 +	"	</div>"
 						 +	"	<div class=\"col-md-7 col-xs-7\">"
 						 +	"		<span>" + filterHtml + " </span>"
@@ -297,6 +300,48 @@ MapCloud.refresh = MapCloud.Class({
 				}
 			})
 			
+		});
+
+		var that = this;
+		this.panel.find(".layer_style_row .layer-style-icon").each(function(){
+			$(this).click(function(){
+				var layerID = $(this).parents(".layer_style_row").attr("value");
+				var layerStyleID = $(this).attr("value");
+				var layer = mapObj.layers[layerID];
+				if(layer == null){
+					return;
+				}
+				var layerStyle = layer.style;
+				if(layerStyle == null){
+					return;
+				}
+				var rules = layerStyle.rules;
+				if(rules == null){
+					return;
+				}
+				var rule = rules[layerStyleID];
+				if(rule == null){
+					return;
+				}
+				var symbolizer = rule.symbolizer;
+				if(symbolizer == null){
+					return;
+				}
+				if(MapCloud.layer_appearance_dialog == null){
+					MapCloud.layer_appearance_dialog = new MapCloud.LayerAppearanceDialog("layerAppearanceDialog");
+				}
+				var geomType = MapCloud.getLayerGeomType(layer);
+				MapCloud.layer_appearance_dialog.setGeomSymbolizer(geomType,symbolizer,layerStyleID,that.setSymoblizerCallback,layerID);
+				var fields = layer.featureType.fields;
+				var textSymoblizerIndex = that.getTextSymbolizerIndexByFilter(rule.filter,rules);
+				var textSymbolizer = null;
+				if(textSymoblizerIndex != -1){
+					textSymbolizer = rules[textSymoblizerIndex].symbolizer;
+				}
+				MapCloud.layer_appearance_dialog.setLayerFields(fields);
+				MapCloud.layer_appearance_dialog.setTextSymbolizer(textSymbolizer);
+				MapCloud.layer_appearance_dialog.showDialog();
+			});
 		})
 	},
 	
@@ -396,5 +441,68 @@ MapCloud.refresh = MapCloud.Class({
 				break;
 		}
 		return html;
+	},
+
+	//得到filter对应的TextSymbolizer的index
+	getTextSymbolizerIndexByFilter:function(filter,rules){
+		for(var i = 0; i < rules.length; ++i){
+			var rule = rules[i];
+			var symbolizer = rule.symbolizer;
+			if (!(symbolizer instanceof GeoBeans.Style.TextSymbolizer)){
+				continue;
+			}
+			var textFilter = rule.filter;
+			if(textFilter == null && filter == null){
+				return i;
+			}
+			if(textFilter != null && filter!= null && textFilter.field == filter.field 
+				&& textFilter.value == filter.value){
+				return i;
+			}
+		}
+		return -1;		
+	},
+
+
+	setSymoblizerCallback:function(symbolizer,textSymbolizer,index,layerIndex){
+		if(MapCloud.refresh_panel ==null){
+			MapCloud.refresh_panel = new MapCloud.refresh("left_panel");
+		}
+		var layer = mapObj.layers[layerIndex];
+		if(layer == null){
+			return;
+		}
+		var layerStyle = layer.style;
+		if(layerStyle == null){
+			return;
+		}
+		var rules = layerStyle.rules;
+		if(rules == null){
+			return;
+		}		
+		var rule = rules[index];
+		if(rule == null){
+			return;
+		}
+		rules[index].symbolizer = symbolizer;
+		var filter = rules[index].filter;
+		var textRule = new GeoBeans.Style.Rule();
+		textRule.filter =  filter;
+		textRule.symbolizer = textSymbolizer;
+
+		var oldTextSymolizerIndex = MapCloud.refresh_panel.getTextSymbolizerIndexByFilter(rule.filter,rules);
+		var oldTextSymbolizer = null;
+		// var oldTextSymbolizer = MapCloud.refresh_panel.getTextSymbolizerByFilter(rule.fitler,rules);
+		if(oldTextSymolizerIndex == -1 && textSymbolizer != null){
+			rules.push(textRule);
+		}
+		if(oldTextSymolizerIndex != -1 && textSymbolizer != null){
+			rules[oldTextSymolizerIndex].symbolizer = textSymbolizer;
+		}
+		if(oldTextSymolizerIndex != -1 && textSymbolizer == null){
+			rules.splice(oldTextSymolizerIndex,1);
+		}
+		MapCloud.refresh_panel.refreshPanel();	
+		mapObj.draw();	
 	}
 });

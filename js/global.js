@@ -250,3 +250,4 @@ MapCloud.resizeCharts = function(){
 }
 
 
+

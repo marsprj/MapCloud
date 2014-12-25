@@ -59,13 +59,18 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
@@ -258,7 +263,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 				<div class="col-md-3 col-xs-3 col-lg-3 mc-panel-full" id="left_panel">
 					<div class="row" id="map_row">
 						<div class="col-md-10 col-xs-10 col-lg-10">
-							<a href="#">Sample</a>
+							<a href="javascript:void(0)" id="map_name">Sample</a>
 						</div>
 						<div class="col-md-2 col-xs-2 col-lg-2">
 							<div class="mc-icon glyphicon glyphicon-globe"></div>
@@ -379,7 +384,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 					<div id="mapCanvas_wrappper">
 						<!-- <div id="mapCanvas_chart_div"></div> -->
 					<!-- <figure style="width: 100px; height: 80px;border:1px solid #ccc;" id="mapCanvas_chart_div"></figure> -->
-						<canvas id="mapCanvas" width="800" height="528"></canvas>
+						<!-- <canvas id="mapCanvas" width="800" height="528"></canvas> -->
 					</div>
 					
 					<div id="datagrid_wrapper">
@@ -429,48 +434,40 @@ var Msg = {}; //declare this or modify line 1 of core.js
 						<div class="form-group">
 							<label for="" class="col-sm-4 control-label">名称</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" placeholder="Text input" style="width:200px">
+								<input type="text" class="form-control" placeholder="请输入地图名称" style="width:200px" id="new_map_dialog_name">
 							</div>
 						</div>
 					</form>
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="caption text-center">
 								<h5>空白地图</h5>
 							</div>
-							<a href="#" class="thumbnail">
-								<img src="images/map-vector-thumb.png" alt="空白地图">
+							<a href="#" class="thumbnail selected" id="map_none">
+								<img src="images/map-none.png" alt="空白地图">
 							</a>							
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="caption text-center">
 								<h5>矢量地图</h5>
 							</div>
-							<a href="#" class="thumbnail">
+							<a href="#" class="thumbnail" id="map_vector">
 								<img src="images/map-vector-thumb.png" alt="矢量地图">
 							</a>							
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="caption text-center">
 								<h5>影像地图</h5>
 							</div>
-							<a href="#" class="thumbnail">
+							<a href="#" class="thumbnail" id="map_image">
 								<img src="images/map-image-thumb.png" alt="影像地图">
-							</a>							
-						</div>
-						<div class="col-md-3">
-							<div class="caption text-center">
-								<h5>高德地图</h5>
-							</div>
-							<a href="#" class="thumbnail">
-								<img src="images/map-amap-thumb.png" alt="高德地图">
 							</a>							
 						</div>
 					</div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary">确定</button>
+				<button type="button" class="btn btn-primary btn-confirm">确定</button>
 			  </div>
 			</div>
 		</div>

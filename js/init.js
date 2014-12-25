@@ -20,16 +20,25 @@ $().ready(function(){
 //	mapCanvas.resize();
 
 	
-	var ww = document.getElementById("mapCanvas_wrappper").clientWidth;
-	var wh = document.getElementById("mapCanvas_wrappper").clientHeight;
-	var canvas = document.getElementById('mapCanvas');
-	canvas.setAttribute("width", ww);
-	canvas.setAttribute("height", wh);
-	var context = canvas.getContext('2d');
-	context.fillStyle = 'rgba(0,255,0,0.25)';
-	context.fillRect(0,0,ww,wh);
 	
-	mapObj = new GeoBeans.Map("mapCanvas");
+	// var ww = document.getElementById("mapCanvas_wrappper").clientWidth;
+	// var wh = document.getElementById("mapCanvas_wrappper").clientHeight;
+	// var canvas = document.getElementById('mapCanvas');
+	// canvas.setAttribute("width", ww);
+	// canvas.setAttribute("height", wh);
+	// var context = canvas.getContext('2d');
+	// context.fillStyle = 'rgba(0,255,0,0.25)';
+	// context.fillRect(0,0,ww,wh);
+	
+	// mapObj = new GeoBeans.Map("mapCanvas");
+	mapObj = new GeoBeans.Map("mapCanvas_wrappper");
+	
+	// var center = new GeoBeans.Geometry.Point(0,0);	
+	// var layer = new GeoBeans.Layer.QSLayer("gaode","/QuadServer/maprequest?services=world_vector");
+	// mapObj.setBaseLayer(layer);
+	// mapObj.setCenter(center);
+	// mapObj.setLevel(2);	
+	// mapObj.draw();	
 
 
 	window.onresize = function(){
@@ -162,115 +171,4 @@ $().ready(function(){
 		canvas.addEventListener("mouseup", onMouseUp);
 	}
 	canvas.addEventListener("mousedown", onMouseDown);
-
-
-
-	
-	
-/*
-	var symbolizer, rule, filter;
-	var style = new GeoBeans.Style();
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "Aquamarine";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","Europe");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "Beige";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","Oceania");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "BurlyWood";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","Australia");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "CornflowerBlue";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","Asia");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "Cyan";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","Africa");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "DarkKhaki";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","North America");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "DarkOrange";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","Antarctica");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-
-	symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-	symbolizer.fillColor = "FireBrick";
-	symbolizer.outLineWidth = 0.3;
-	symbolizer.outLineColor = "Red";
-	symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-	symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-	symbolizer.showOutline = true;
-	filter = new GeoBeans.Filter("continent","South America");	
-	rule = new GeoBeans.Style.Rule(symbolizer, filter);
-	style.addRule(rule);
-	var layer = null;		
-
-	layer = new GeoBeans.Layer.WFSLayer("wfs",
-										"/geoserver/radi/ows?",
-										"radi:country",
-										"GML2");
-	layer.setStyle(style);	
-	mapObj.addLayer(layer);			
-	
-	mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-	mapObj.draw();
-	MapCloud.wfs_layer = layer;
-
-*/
 });
-

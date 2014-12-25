@@ -139,7 +139,10 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				MapCloud.wfs_layer = dialog.layer;
 
 				
-				mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+				if(mapObj.getViewer() == null){
+					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
+				}
+				// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 				mapObj.draw();	
 
 				dialog.closeDialog();
@@ -344,11 +347,12 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 	onFeatureHit:function(layer, selection, selection_old){
 	//console.log(feature.fid);
 		var i;
-		var len = selection_old.length;
-		for(i=0; i<len; i++){
-			var f = selection_old[i];
-			layer.drawFeature(f);
-		}
+		//不重新绘制以前的图层，即可实现有透明度不叠加的问题
+		// var len = selection_old.length;
+		// for(i=0; i<len; i++){
+		// 	var f = selection_old[i];
+		// 	layer.drawFeature(f);
+		// }
 		len = selection.length;
 		for(i=0; i<len; i++){
 			var f = selection[i];

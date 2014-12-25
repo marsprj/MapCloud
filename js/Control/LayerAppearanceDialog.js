@@ -5,6 +5,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 	textSymbolizer : null,
 	callback: null,
 	index: null,
+	layerIndex : null,
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		
@@ -200,7 +201,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 				dialog.closeDialog();
 //				dialog.callback(dialog.symbolizer,dialog.index);
-				dialog.callback(dialog.symbolizer,dialog.textSymbolizer, dialog.index);
+				dialog.callback(dialog.symbolizer,dialog.textSymbolizer, dialog.index,dialog.layerIndex);
 			});
 		});
 
@@ -231,11 +232,12 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 	
 	//根据geomSymbolizer的样式来设置可视化tab
-	setGeomSymbolizer:function(geomType,symbolizer,index,callback){
+	setGeomSymbolizer:function(geomType,symbolizer,index,callback,layerIndex){
 		this.geomType = geomType;
 		this.symbolizer = symbolizer;
 		this.callback = callback;
 		this.index = index;
+		this.layerIndex = layerIndex;
 
 		var colorRgba = symbolizer.color;
 		var width = symbolizer.width;

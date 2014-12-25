@@ -168,12 +168,12 @@ MapCloud.Ribbon = MapCloud.Class({
 	/* Map Event                                                  */
 	/**************************************************************/
 	onMapNew : function(){
-/*		if(MapCloud.new_map_dlg == null){
-			MapCloud.new_map_dlg = new MapCloud.NewMapDialog("new_map_dialog");
+		if(MapCloud.new_map_dlg == null){
+			MapCloud.new_map_dlg = new MapCloud.NewMapDialog("newMapDialog");
 		}
 		MapCloud.new_map_dlg.showDialog();
-*/
-		$("#newMapDialog").modal();
+
+		// $("#newMapDialog").modal();
 		
 	},
 	
