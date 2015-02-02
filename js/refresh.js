@@ -2,24 +2,24 @@ MapCloud.refresh = MapCloud.Class({
 	panel: null,
 	initialize : function(id){
 		var that = this;
-		
+
 		this.panel = $("#"+id);
 	},
-	
+
 	refreshPanel: function(){
 		$("#layers_row").empty();
 
 		if(mapObj == null){
 			return;
 		}
-		
+
 		var layers = mapObj.layers;
 		if(layers.length == 0){
 			return;
 		}
 
 		var html = "";
-		
+
 		var dialog = this;
 		for(var i = 0; i < layers.length; ++i){
 			var layer = layers[i];
@@ -43,16 +43,16 @@ MapCloud.refresh = MapCloud.Class({
 			// 	var iconHtml = this.createSymbolizerIcon(symbolizer,geomType);
 			// 	html	+= 	"<div class=\"row layer_row\" value=\"" + i + "\">"
 			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"mc-icon\"></div>"							
+			// 			+	"		<div class=\"mc-icon\"></div>"
 			// 			+	"	</div>"
 			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+			// 			+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"
 			// 			+	"	</div>"
 			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>"							
+			// 			+	"		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>"
 			// 			+	"	</div>"
 			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"mc-icon\" style=\"" + iconHtml +"\"></div>"	
+			// 			+	"		<div class=\"mc-icon\" style=\"" + iconHtml +"\"></div>"
 			// 			+	"	</div>"
 			// 			+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
 			// 			+	"		<span>" + name + "</span>"
@@ -78,16 +78,16 @@ MapCloud.refresh = MapCloud.Class({
 			// }else if(ruleCount > 1){
 				html	+= 	"<div class=\"row layer_row\" value=\"" + i + "\">"
 						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
+						+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"
 						+	"	</div>"
 						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+						+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"
 						+	"	</div>"
 						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
+						+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"
 						+	"	</div>"
 						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
+						+	"		<div class=\"mc-icon mc-icon-color\"></div>"
 						+	"	</div>"
 						+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
 						+	"		<span>" + name + "</span>"
@@ -98,7 +98,7 @@ MapCloud.refresh = MapCloud.Class({
 						+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
 						+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
 						+	"				</a>"
-						+	"				<ul class=\"dropdown-menu\">"
+						+	"				<ul class=\"mc-font dropdown-menu\">"
 						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
 						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
 						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
@@ -129,7 +129,7 @@ MapCloud.refresh = MapCloud.Class({
 						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
 						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
 						 +	"	<div class=\"col-md-1 col-xs-1\">"
-						 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"	
+						 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"
 						 +	"	</div>"
 						 +	"	<div class=\"col-md-7 col-xs-7\">"
 						 +	"		<span>" + filterHtml + " </span>"
@@ -141,7 +141,7 @@ MapCloud.refresh = MapCloud.Class({
 				html += chartHtml;
 			// }
 
-		}	
+		}
 		$("#layers_row").html(html);
 
 		//展示具体的style
@@ -152,17 +152,17 @@ MapCloud.refresh = MapCloud.Class({
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","none");
 					$(this).addClass("glyphicon-chevron-right");
-					$(this).removeClass("glyphicon-chevron-down");			
-					
+					$(this).removeClass("glyphicon-chevron-down");
+
 				}else{
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","block");
 					$(this).removeClass("glyphicon-chevron-right");
-					$(this).addClass("glyphicon-chevron-down");			
+					$(this).addClass("glyphicon-chevron-down");
 				}
 
 			});
-		
+
 		});
 
 		//选中layer
@@ -203,7 +203,7 @@ MapCloud.refresh = MapCloud.Class({
 				alert("share");
 			})
 		});
-		
+
 		this.panel.find(".layer_row_quick_tool_remove").each(function(){
 			$(this).click(function(){
 				var layer_id = $(this).parent().parent().parent().parent().parent().parent().attr("value");
@@ -213,7 +213,7 @@ MapCloud.refresh = MapCloud.Class({
 					mapObj.removeLayer(layer_name);
 					dialog.refreshPanel();
 					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-					mapObj.draw();	
+					mapObj.draw();
 
 					//同时删掉相应的图表
 					for(var i = 0; i < MapCloud.wfs_layer_chart.length;++i){
@@ -236,7 +236,7 @@ MapCloud.refresh = MapCloud.Class({
 				var text = $(this).parent().parent().parent().parent().parent().prev().children().html();
 				var layer_id = $(this).parent().parent().parent().parent().parent().parent().parent().children(".layer_row").attr('value');
 				var layer = mapObj.layers[layer_id];
-			
+
 				var option = null;
 				var wfsChartID = $(this).parents(".chart_style_row").attr("value");
 				var wfsLayerChart = MapCloud.wfs_layer_chart[wfsChartID];
@@ -255,10 +255,10 @@ MapCloud.refresh = MapCloud.Class({
 				if(MapCloud.new_chart_dialog == null){
 					MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
 				}
-				MapCloud.new_chart_dialog.showDialog();		
+				MapCloud.new_chart_dialog.showDialog();
 				MapCloud.new_chart_dialog.setLayerOption(layer,option,wfsChartID);
 			})
-		});	
+		});
 
 
 		this.panel.find(".chart_row_quick_tool_delete").each(function(){
@@ -274,7 +274,7 @@ MapCloud.refresh = MapCloud.Class({
 				var refresh = new MapCloud.refresh("left_panel");
 				refresh.refreshPanel();
 			})
-		});		
+		});
 
 		//图表显示与隐藏
 		this.panel.find(".chart_style_row .glyphicon-eye-open,.chart_style_row .glyphicon-eye-close").each(function(){
@@ -287,7 +287,7 @@ MapCloud.refresh = MapCloud.Class({
 					if(wfsLayerChart == null){
 						return;
 					}
-					wfsLayerChart.removeCharts(wfsChartID);					
+					wfsLayerChart.removeCharts(wfsChartID);
 				}else if($(this).hasClass("glyphicon-eye-close")){
 					$(this).removeClass("glyphicon-eye-close");
 					$(this).addClass('glyphicon-eye-open');
@@ -296,10 +296,10 @@ MapCloud.refresh = MapCloud.Class({
 						return;
 					}
 					wfsLayerChart.showFront();
-					// wfsLayerChart.show();					
+					// wfsLayerChart.show();
 				}
 			})
-			
+
 		});
 
 		var that = this;
@@ -344,7 +344,7 @@ MapCloud.refresh = MapCloud.Class({
 			});
 		})
 	},
-	
+
 	createSymbolizerIcon: function(symbolizer,geomType){
 		if(symbolizer == null || geomType == null){
 			return null;
@@ -399,7 +399,7 @@ MapCloud.refresh = MapCloud.Class({
 				var typeHtml = this.getChartTypeHtml(type);
 				html += typeHtml;
 				html += "</div>";
-				
+
 				var text = option.text;
 				html += "<div class=\"col-md-6 col-xs-6 chart_name\">"
 						+		"<span>" + text + "</span>"
@@ -455,12 +455,12 @@ MapCloud.refresh = MapCloud.Class({
 			if(textFilter == null && filter == null){
 				return i;
 			}
-			if(textFilter != null && filter!= null && textFilter.field == filter.field 
+			if(textFilter != null && filter!= null && textFilter.field == filter.field
 				&& textFilter.value == filter.value){
 				return i;
 			}
 		}
-		return -1;		
+		return -1;
 	},
 
 
@@ -479,7 +479,7 @@ MapCloud.refresh = MapCloud.Class({
 		var rules = layerStyle.rules;
 		if(rules == null){
 			return;
-		}		
+		}
 		var rule = rules[index];
 		if(rule == null){
 			return;
@@ -502,7 +502,7 @@ MapCloud.refresh = MapCloud.Class({
 		if(oldTextSymolizerIndex != -1 && textSymbolizer == null){
 			rules.splice(oldTextSymolizerIndex,1);
 		}
-		MapCloud.refresh_panel.refreshPanel();	
-		mapObj.draw();	
+		MapCloud.refresh_panel.refreshPanel();
+		mapObj.draw();
 	}
 });

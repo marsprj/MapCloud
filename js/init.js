@@ -2,25 +2,25 @@ var mapObj = null;
 var ribbonObj = null;
 
 $().ready(function(){
-	
-	var logo = new MapCloud.Logo();	
-	var layersTree = new MapCloud.LayerTree();	
+
+	var logo = new MapCloud.Logo();
+	var layersTree = new MapCloud.LayerTree();
 	ribbonObj = new MapCloud.Ribbon();
-	
-//	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
-	
-//	var center = new GeoBeans.Geometry.Point(0,0);	
+
+//	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1);
+
+//	var center = new GeoBeans.Geometry.Point(0,0);
 //	var layer  = new GeoBeans.Layer.AMapLayer("gaode");
-//	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");	
+//	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");
 //	mapObj = mapCanvas.map;
 //	mapObj.setBaseLayer(layer);
 //	mapObj.setCenter(center);
-//	mapObj.setLevel(1);	
+//	mapObj.setLevel(1);
 //
 //	mapCanvas.resize();
 
-	
-	
+
+
 	// var ww = document.getElementById("mapCanvas_wrappper").clientWidth;
 	// var wh = document.getElementById("mapCanvas_wrappper").clientHeight;
 	// var canvas = document.getElementById('mapCanvas');
@@ -29,31 +29,31 @@ $().ready(function(){
 	// var context = canvas.getContext('2d');
 	// context.fillStyle = 'rgba(0,255,0,0.25)';
 	// context.fillRect(0,0,ww,wh);
-	
+
 	// mapObj = new GeoBeans.Map("mapCanvas");
 	mapObj = new GeoBeans.Map("mapCanvas_wrappper");
-	
-	// var center = new GeoBeans.Geometry.Point(0,0);	
-	// var layer = new GeoBeans.Layer.QSLayer("gaode","/QuadServer/maprequest?services=world_vector");
-	// mapObj.setBaseLayer(layer);
-	// mapObj.setCenter(center);
-	// mapObj.setLevel(2);	
-	// mapObj.draw();	
+
+	var center = new GeoBeans.Geometry.Point(0,0);
+	var layer = new GeoBeans.Layer.QSLayer("gaode","/QuadServer/maprequest?services=world_image");
+	mapObj.setBaseLayer(layer);
+	mapObj.setCenter(center);
+	mapObj.setLevel(2);
+	mapObj.draw();
 
 
 	window.onresize = function(){
 		var left_panel = $("#left_panel");
 		var center_panel = $("#center_panel");
-		
+
 		var left_w = left_panel.width();
 		var left_h = left_panel.height();
-		
-		center_panel.css("width", $(window).width()-left_w); 
+
+		center_panel.css("width", $(window).width()-left_w);
 		center_panel.css("height", $(window).height()-$("#head_panel").height()-$("#ribbon_wrapper").height());
 		//$(center_panel).width(window.document.width-left_w);
-		
+
 		//mapCanvas.resize();
-		
+
 	};
 	var datagrid_collapsed = true;
 	$("#datagrid_wrapper .panel-header-collapse").click(function(){
@@ -104,7 +104,7 @@ $().ready(function(){
 			var d_y = moveMouseY - mouseY;
 
 			var mapCanvasWidth = $("#mapCanvas").width();
-			var mapCanvasHeight = $("#mapCanvas").height();	
+			var mapCanvasHeight = $("#mapCanvas").height();
 
 			for(var i = 0; i < MapCloud.wfs_layer_chart.length; ++i){
 				var wfsLayerChart = MapCloud.wfs_layer_chart[i];
@@ -114,14 +114,14 @@ $().ready(function(){
 				var chartsArray = wfsLayerChart.chartsArray;
 				for(var j = 0; j < chartsArray.length; ++j){
 					var chart = chartsArray[j];
-		
+
 					chart.move(d_x,d_y);//先调整位置,进行移动
 					// 再判断要不要显示
-					if(chart.screenX < 0 || chart.screenY < 0 || 
+					if(chart.screenX < 0 || chart.screenY < 0 ||
 						chart.screenX > mapCanvasWidth || chart.screenY > mapCanvasHeight){
 						//不需要显示的
 						if(chart.showFlag){
-							$("#" + chart.id).remove();		
+							$("#" + chart.id).remove();
 						}
 						chart.showFlag = false;
 					}else{
@@ -137,8 +137,8 @@ $().ready(function(){
 							}
 						}
 						if(interSetFlag){
-							$("#" + chart.id).remove();	
-							chart.showFlag = false;	
+							$("#" + chart.id).remove();
+							chart.showFlag = false;
 						}else{
 							//此时没有交集，应该显示
 							if(chart.showFlag){
@@ -147,17 +147,17 @@ $().ready(function(){
 								panel.height(chart.height);
 								panel.width(chart.width);
 								panel.css("left",chart.screenX);
-								panel.css("top",chart.screenY);					
+								panel.css("top",chart.screenY);
 								chart.chart.resize();
 							}else{
 								// 以前没有的
 								chart.show();
 							}
-							chart.showFlag = true;					
+							chart.showFlag = true;
 						}
-					}					
+					}
 				}
-			}			
+			}
 			mouseX = moveMouseX;
 			mouseY = moveMouseY;
 		};

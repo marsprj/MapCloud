@@ -1,70 +1,70 @@
 MapCloud.Ribbon = MapCloud.Class({
-	
+
 	height_max : "100px",
 	height_min : "20px",
 	ribbon : null,
-	
+
 	initialize : function(){
-	
+
 		this.ribbon = $("#ribbon_wrapper").first();
 
 		this.hideAllRibbons();
 		this.registerRibbonEvents();
-		
+
 		this.enableMneuEffect();
 		this.registerMenuEvents();
 	},
-	
+
 	destory : function(){
 	},
-	
+
 	hideAllRibbons : function(){
 		$(".ribbon_panel").each(function() {
-			$(this).css("display","none");					
+			$(this).css("display","none");
 		});
 	},
-	
+
 	showRibbon : function(type){
 		$("#"+type+"_ribbon").css("display","block");
 	},
-	
+
 	expand : function(){
-		this.ribbon.css("height", this.height_max);
+		//this.ribbon.css("height", this.height_max);
 	},
-	
+
 	collapse : function(){
-		this.ribbon.css("height", this.height_min);
+		//this.ribbon.css("height", this.height_min);
 	},
-	
+
 	isCollapsed : function(){
 		return (this.ribbon.css("height") == this.height_min);
 	},
-	
+
 	registerRibbonEvents : function(){
-	
-		var mcribbon = this;	
+
+		var mcribbon = this;
 		$("#ribbon_tabs li").each(function() {
-						
+
 			$(this).mouseover(function(){
 				$(this).addClass("mc-theme-color-hover");
 			});
 			$(this).mouseout(function(){
 				$(this).removeClass("mc-theme-color-hover");
-			});			
+			});
 			$(this).click(function(){
 				var id =  $(this).attr("id");
 				var type = id.substr(0, id.length-4);
 				$("#ribbon_tabs li").each(function() {
-                    $(this).removeClass("mc-active-tab");					
+                    $(this).removeClass("mc-active-tab");
                 });
 				$(this).addClass("mc-active-tab");
-				
+
 				mcribbon.hideAllRibbons();
 				mcribbon.showRibbon(type);
 			});
         });
 	},
-	
+
 	enableMneuEffect : function(){
 		$(".ribbon-item").each(function(index, element) {
 			$(this).mouseover(function(){
@@ -72,10 +72,10 @@ MapCloud.Ribbon = MapCloud.Class({
 			});
 			$(this).mouseout(function(){
 				$(this).removeClass("ribbon-item-over");
-			});	
+			});
         });
 	},
-	
+
 	registerMenuEvents : function(){
 		var that = this;
 		$(".ribbon-item").each(function(index, element) {
@@ -174,13 +174,13 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.new_map_dlg.showDialog();
 
 		// $("#newMapDialog").modal();
-		
+
 	},
-	
+
 	onMapPropertis : function(){
 		alert("onMapPropertis");
 	},
-	
+
 	/**************************************************************/
 	/* Layer Event                                                */
 	/**************************************************************/
@@ -190,19 +190,19 @@ MapCloud.Ribbon = MapCloud.Class({
 		}
 		MapCloud.new_layer_dialog.showDialog();
 	},
-	
+
 	onLayerAddVector : function(){
 		alert("onLayerAddVector");
 	},
-	
+
 	onLayerAddRaster : function(){
 		alert("onLayerAddRaster");
 	},
-	
+
 	onLayerAddWMS : function(){
 		alert("onLayerAddWMS");
 	},
-	
+
 	onLayerAddWFS : function(){
 		if(MapCloud.wfs_datasource_dialog == null){
 			MapCloud.wfs_datasource_dialog = new MapCloud.WFSDatasourceDialog("wfsDatasourceDialog");
@@ -221,7 +221,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		}
 		if($("#layers_row .layer_row.layer_row_selected").length == 0){
 			alert("请先选择图层");
-			return;			
+			return;
 		}
 		var layer_id = $("#layers_row .layer_row.layer_row_selected").attr("value");
 		MapCloud.selected_layer = mapObj.layers[layer_id];
@@ -232,7 +232,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.edit_layer_dialog.setLayer(MapCloud.selected_layer);
 		MapCloud.edit_layer_dialog.showDialog();
 	},
-	
+
 	onShareLayer:function(){
 		$("#layerAppearanceDialog").modal();
 		$("#layerAppearanceDialog").find("#layerAppearanceDialogTab a").each(function(){
@@ -249,7 +249,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		}
 		MapCloud.create_layer_dialog.showDialog();
 	},
-	
+
 	onDuplicateLayer:function(){
 		if(confirm("你确定要复制图层吗？")){
 			alert("复制图层并刷新tree");
@@ -259,7 +259,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	onDeleteLayer:function(){
 		if($("#layers_row .layer_row.layer_row_selected").length == 0){
 			alert("请先选择图层");
-			return;			
+			return;
 		}
 		var layer_id = $("#layers_row .layer_row.layer_row_selected").attr("value");
 		MapCloud.selected_layer = mapObj.layers[layer_id];
@@ -275,7 +275,7 @@ MapCloud.Ribbon = MapCloud.Class({
 			}
 			MapCloud.refresh_panel.refreshPanel();
 			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-			mapObj.draw();				
+			mapObj.draw();
 		}
 	},
 
@@ -286,11 +286,11 @@ MapCloud.Ribbon = MapCloud.Class({
 	onSelectAllLayers:function(){
 		alert("选择图层");
 	},
-	
+
 	onImportLayer:function(){
 		alert("导入图层");
 	},
-	
+
 	onExportLayer:function(){
 		alert("导出图层");
 	},
@@ -307,7 +307,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		if(MapCloud.new_chart_dialog == null){
 			MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
 		}
-		MapCloud.new_chart_dialog.showDialog();		
+		MapCloud.new_chart_dialog.showDialog();
 
 	},
 
@@ -316,20 +316,19 @@ MapCloud.Ribbon = MapCloud.Class({
 		if(MapCloud.file_dialog == null){
 			MapCloud.file_dialog = new MapCloud.FileDialog("file_dialog");
 		}
-		
+
 		MapCloud.file_dialog.showDialog();
 
 	},
-	
+
 	onDatabase : function(){
 		if(MapCloud.database_dlg == null){
 			MapCloud.database_dlg = new MapCloud.DatabaseDialog("database_dialog");
-		}		
+		}
 		MapCloud.database_dlg.showDialog();
 	},
-	
+
 	onDataImport : function(){
 		alert("onDataImport");
 	}
 });
-	

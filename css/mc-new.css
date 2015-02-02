@@ -26,6 +26,10 @@ ul {
 	border:1px solid #e6e6e6;
 }
 
+.mc-font{
+	font-size:12px;
+}
+
 .mc-icon{
 	display:block;
 	width:16px;
@@ -50,7 +54,7 @@ ul {
 }
 
 .mc-icon-map-publish{
-	background-image:url(../images/map-publish-40.png);	
+	background-image:url(../images/map-publish-40.png);
 }
 
 .mc-icon-layers{
@@ -97,30 +101,30 @@ ul {
 
 
 .mc-icon-layers-edit{
-	background-image:url(../images/layers-edit-40.png);	
+	background-image:url(../images/layers-edit-40.png);
 }
 
 .mc-icon-layers-create{
-	background-image:url(../images/layers-create-16.png);	
+	background-image:url(../images/layers-create-16.png);
 }
 
 .mc-icon-layers-duplicate{
-	background-image:url(../images/layers-duplicate-16.png);	
+	background-image:url(../images/layers-duplicate-16.png);
 }
 
 .mc-icon-layers-remove{
-	background-image:url(../images/layers-remove-16.png);	
+	background-image:url(../images/layers-remove-16.png);
 }
 
 .mc-icon-layers-zoom{
-	background-image:url(../images/layers-remove-16.png);	
+	background-image:url(../images/layers-remove-16.png);
 }
 
 .mc-icon-map-select{
-	background-image:url(../images/layers-remove-16.png);	
+	background-image:url(../images/layers-remove-16.png);
 }
 .mc-icon-tool-merge{
-	background-image:url(../images/tool-merge-40.png);	
+	background-image:url(../images/tool-merge-40.png);
 }
 
 .mc-icon-tool-geocoder{
@@ -202,7 +206,7 @@ ul {
 	height:100px;
 	border-bottom:1px solid #CCC;
 	background-color:#f9f9f9;
-	
+
 	-webkit-transition: all .5s ease-in-out;
 	-moz-transition: all .5s ease-in-out;
 	-o-transition: all .5s ease-in-out;
@@ -240,7 +244,7 @@ ul {
 	float:left;
 	margin:5px;
 	padding:0px 10px;
-	height:72px;	
+	height:72px;
 	width:auto;
 	border-right: 1px solid #CCC;
 
@@ -284,7 +288,7 @@ ul {
 	float:left;
 }
 .mc-active-tab{
-	background-color:#f9f9f9;	
+	background-color:#f9f9f9;
 	background-image:none;
 }
 
@@ -349,7 +353,7 @@ ul#ribbon_tabs li{
 	padding:0px;
 	margin-left:0px;
 	margin-right:0px;
-	
+
 }
 
 
@@ -466,7 +470,7 @@ ul#ribbon_tabs li{
 
 .panel-header .panel-header-content {
 	margin-top: 6px;
-	margin-left: 6px;	
+	margin-left: 6px;
 }
 
 .table_grid{
@@ -485,7 +489,7 @@ ul#ribbon_tabs li{
 	height:25px;
 	line-height:20px;
 	font-weight: bold;
-	font-size: 14px;
+	/* font-size: 14px; */
 	background: #f9f9f9;
 }
 .table_grid_content{
@@ -609,12 +613,12 @@ ul#ribbon_tabs li{
 }
 #layer_style{
 	height:400px;
-	overflow-y:auto; 
+	overflow-y:auto;
 	overflow-x: hidden;
 }
 #layer_style span{
 	padding-top:4px;
-	font-size:16px;
+	/* font-size:16px; */
 	cursor:pointer;
 }
 
@@ -659,13 +663,13 @@ ul#ribbon_tabs li{
 }
 
 #icon {
-	font-size:20px;
+	/* font-size:20px; */
 	padding-top:20px;
 
 }
 
 .icon-cell{
-	font-size:20px;
+	/* font-size:20px; */
 	border:1px solid #ccc;
 }
 
@@ -733,7 +737,7 @@ legend {
 	width:inherit; /* Or auto */
     padding:0 10px; /* To give a bit of padding on the left and right */
     border-bottom:none;
-    font-size: 16px;
+    /* font-size: 16px; */
 
 }
 
@@ -868,7 +872,7 @@ legend {
 	width: 10px;
 	background-image: url(../images/map-nav.png);
 	background-position: -33px bottom;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 	top:100px;
 	height: 28px;
 }
@@ -901,7 +905,7 @@ legend {
 
 .map-nav-zoom-label-street{
 	top:21px;
-	background-position: 0 -380px;	
+	background-position: 0 -380px;
 }
 
 .map-nav-zoom-label-city{

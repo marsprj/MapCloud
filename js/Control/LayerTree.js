@@ -1,5 +1,5 @@
 MapCloud.LayerTree = MapCloud.Class({
-	
+
 	initialize : function(){
 
 		$("#layers_tree li").each(function() {
@@ -17,8 +17,7 @@ MapCloud.LayerTree = MapCloud.Class({
 			});
         });
 	},
-	
+
 	destory : function(){
 	}
 });
-	

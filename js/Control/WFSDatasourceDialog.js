@@ -6,7 +6,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
-		
+
 		var dialog = this;
 
 		//获取到的图层列表
@@ -15,7 +15,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 			//dialog.closeDialog();
 		});
 		// this.registerTabEvents();
-		
+
 
 		this.panel.find("#wfsDatasourceDialogTab a").each(function(){
 			$(this).click(function(e){
@@ -117,33 +117,33 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 					return;
 				}
 
-	
+
 				dialog.layer = new GeoBeans.Layer.WFSLayer(layer_name,
 										server,
 										typename,
 										"GML2");
 				var symbolizer, rule, style;
 				symbolizer = dialog.getDefaultStyle();
-				
+
 				rule = new GeoBeans.Style.Rule(symbolizer, null);
 				style = new GeoBeans.Style();
 				style.addRule(rule);
 
 
-				dialog.layer.setStyle(style);	
+				dialog.layer.setStyle(style);
 				mapObj.addLayer(dialog.layer);
 
-				dialog.layer.resigterHitEvent(dialog.onFeatureHit);
+				//dialog.layer.resigterHitEvent(dialog.onFeatureHit);
 
 
 				MapCloud.wfs_layer = dialog.layer;
 
-				
+
 				if(mapObj.getViewer() == null){
-					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
+					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 				}
 				// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-				mapObj.draw();	
+				mapObj.draw();
 
 				dialog.closeDialog();
 				dialog.showFeaturesTable();
@@ -157,11 +157,11 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				if(MapCloud.edit_layer_dialog == null){
 					MapCloud.edit_layer_dialog = new MapCloud.EditLayerDialog("edit_layer_dialog");
 				}
-				MapCloud.edit_layer_dialog.showDialog(); 
+				MapCloud.edit_layer_dialog.showDialog();
 				MapCloud.edit_layer_dialog.setLayer(MapCloud.wfs_layer);
 
 
-				
+
 /*				var symbolizer, rule, style;
 				symbolizer = new GeoBeans.Style.PolygonSymbolizer();
 				//symbolizer.size = 2;
@@ -171,18 +171,18 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
 				symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
 				symbolizer.showOutline = true;
-				
+
 				rule = new GeoBeans.Style.Rule(symbolizer, null);
 				style = new GeoBeans.Style();
 				style.addRule(rule);
 
-				MapCloud.wfs_layer.setStyle(style);	
+				MapCloud.wfs_layer.setStyle(style);
 				mapObj.addLayer(MapCloud.wfs_layer);
-				
+
 				mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-				mapObj.draw();	
-*/			
-				
+				mapObj.draw();
+*/
+
 
 			});
 		});
@@ -215,13 +215,13 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				});
 			});
 		});
-		
+
 	},
-	
+
 	destory : function(){
 		MapCloud.Dialog.prototype.destory.apply(this, arguments);
 	},
-	
+
 	cleanup : function(){
 //		this.panel.find("#wfs_datasource_layer_name").each(function(){
 //			$(this).val("");
@@ -232,9 +232,9 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.find("#wfs_datasource_layers").each(function(){
 			$(this).empty();
 		});
-	
+
 	},
-	
+
 	// registerTabEvents:function(){
 	// 	var that = this;
 	// 	this.panel.find(".mc-tabs-ul li").each(function(index,element){
@@ -248,7 +248,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 	// 			that.panel.find(".mc-tabs-ul li").removeClass("active");
 	// 			$(this).addClass("active");
 
-				
+
 	// 		});
 	// 	});
 	// },
@@ -359,7 +359,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 			layer.drawFeature(f, MapCloud.hited_symbolizer);
 		}
 	},
-	
+
 	onFeatureTableSelected:function(trSelected){
 		if(trSelected == null){
 			return;
@@ -408,9 +408,9 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 					if(i % 2 == 1){
 						html += "<tr class=\"erow\">";
 					}else{
-						html += "<tr>";	
+						html += "<tr>";
 					}
-					
+
 					if(featureType.geomFieldName == field.name){
 						continue;
 					}
@@ -430,6 +430,5 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 	}
 
-		
+
 });
-	
