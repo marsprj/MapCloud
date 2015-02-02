@@ -33,12 +33,17 @@ $().ready(function(){
 	// mapObj = new GeoBeans.Map("mapCanvas");
 	mapObj = new GeoBeans.Map("mapCanvas_wrappper");
 
-	var center = new GeoBeans.Geometry.Point(0,0);
+	// var canvas = mapObj.getCanvas();
+	// var context = canvas.getContext('2d');
+	// context.fillStyle = 'rgba(0,255,0,0.25)';
+	// context.fillRect(0,0,ww,wh);
+
+/*	var center = new GeoBeans.Geometry.Point(0,0);
 	var layer = new GeoBeans.Layer.QSLayer("gaode","/QuadServer/maprequest?services=world_image");
 	mapObj.setBaseLayer(layer);
 	mapObj.setCenter(center);
 	mapObj.setLevel(2);
-	mapObj.draw();
+	mapObj.draw();*/
 
 
 	window.onresize = function(){

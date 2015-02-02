@@ -9,6 +9,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		this.ribbon = $("#ribbon_wrapper").first();
 
 		this.hideAllRibbons();
+		this.showRibbon('map');
 		this.registerRibbonEvents();
 
 		this.enableMneuEffect();
