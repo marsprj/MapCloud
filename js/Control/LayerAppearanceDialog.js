@@ -1,5 +1,5 @@
 MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
-	
+
 	geomType : null,
 	symbolizer : null,
 	textSymbolizer : null,
@@ -8,7 +8,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 	layerIndex : null,
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
-		
+
 		this.panel.find("#layerAppearanceDialogTab a").each(function(){
 			$(this).click(function(e){
 				e.preventDefault()
@@ -46,7 +46,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				$("#layer_color div").css("background-color","#" + hex);
 			},
 			onSubmit:function(hsb,hex,rgb,el,bySetColor) {
-				$("#layer_color div").css("background-color","#" + hex);	
+				$("#layer_color div").css("background-color","#" + hex);
 				$('#layer_color').colpickHide();
 			},
 		});
@@ -56,21 +56,21 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				$("#layer_border_color div").css("background-color","#" + hex);
 			},
 			onSubmit:function(hsb,hex,rgb,el,bySetColor) {
-				$("#layer_border_color div").css("background-color","#" + hex);	
+				$("#layer_border_color div").css("background-color","#" + hex);
 				$('#layer_border_color').colpickHide();
 			},
 		});
-		
+
 		$('#layer_shadow_color').colpick({
 			onChange:function(hsb,hex,rgb,el,bySetColor) {
 				$("#layer_shadow_color div").css("background-color","#" + hex);
 			},
 			onSubmit:function(hsb,hex,rgb,el,bySetColor) {
-				$("#layer_shadow_color div").css("background-color","#" + hex);	
+				$("#layer_shadow_color div").css("background-color","#" + hex);
 				$('#layer_shadow_color').colpickHide();
 			},
 		});
-		
+
 		/***********************文字标记初始化设置*********************/
 		//透明度
 		$("#label_fill_color_transparency").slider();
@@ -84,7 +84,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			$("#label_border_color_transparency_value").val(slideEvt.value);
 			$("#label_border_color div").css("opacity",slideEvt.value/100);
 		});
-		
+
 		$("#label_shadow_color_transparency").slider();
 		$("#label_shadow_color_transparency").on("slide",function(slideEvt){
 			$("#label_shadow_color_transparency_value").val(slideEvt.value);
@@ -97,7 +97,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				$("#label_fill_color div").css("background-color","#" + hex);
 			},
 			onSubmit:function(hsb,hex,rgb,el,bySetColor) {
-				$("#label_fill_color div").css("background-color","#" + hex);	
+				$("#label_fill_color div").css("background-color","#" + hex);
 				$('#label_fill_color').colpickHide();
 			},
 		});
@@ -108,7 +108,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				$("#label_border_color div").css("background-color","#" + hex);
 			},
 			onSubmit:function(hsb,hex,rgb,el,bySetColor) {
-				$("#label_border_color div").css("background-color","#" + hex);	
+				$("#label_border_color div").css("background-color","#" + hex);
 				$('#label_border_color').colpickHide();
 			},
 		});
@@ -119,7 +119,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				$("#label_shadow_color div").css("background-color","#" + hex);
 			},
 			onSubmit:function(hsb,hex,rgb,el,bySetColor) {
-				$("#label_shadow_color div").css("background-color","#" + hex);	
+				$("#label_shadow_color div").css("background-color","#" + hex);
 				$('#label_shadow_color').colpickHide();
 			},
 		});
@@ -138,7 +138,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 					fieldset.find("#label_font_style").prop("disabled",false);
 					fieldset.find("#label_font_size").prop("readonly",false);
 
-					
+
 					//字体填充
 					fieldset.find("#label_show_fill").each(function(){
 						$(this).change(function(){
@@ -148,7 +148,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 							}
 							dialog.changeShowFillState(this.checked);
 						});
-						dialog.changeShowFillState(this.checked);					
+						dialog.changeShowFillState(this.checked);
 					});
 					//边框线
 					fieldset.find("#label_show_outline").each(function(){
@@ -188,8 +188,8 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				}
 			});
 		});
-		
-		
+
+
 
 		//确定之后传递样式
 		this.panel.find(".btn-confirm").each(function(){
@@ -206,11 +206,11 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 		});
 
 	},
-	
+
 	destory : function(){
 		MapCloud.Dialog.prototype.destory.apply(this, arguments);
 	},
-	
+
 	cleanup : function(){
 	},
 
@@ -226,11 +226,11 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 				that.panel.find(".mc-tabs-ul li").removeClass("active");
 				$(this).addClass("active");
-				
+
 			});
 		});
 	},
-	
+
 	//根据geomSymbolizer的样式来设置可视化tab
 	setGeomSymbolizer:function(geomType,symbolizer,index,callback,layerIndex){
 		this.geomType = geomType;
@@ -249,14 +249,14 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 		var outLineWidth = symbolizer.outLineWidth;
 		var outLineJoin = symbolizer.outLineJoin;
 		var outLineCap = symbolizer.outLineCap;
-		
+
 		var showShadow = symbolizer.showShadow;
 		var shadowBlur = symbolizer.shadowBlur;
 		var shadowColorRgba = symbolizer.shadowColor;
 		var shadowOffsetX = symbolizer.shadowOffsetX;
 		var shadowOffsetY = symbolizer.shadowOffsetY;
 
-		var colorHex = null; 
+		var colorHex = null;
 		var color = null;
 		var colorTransparency = null;
 		if(colorRgba !=  null){
@@ -314,7 +314,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 		}
 //		$("#layer_line_cap").find("option[value=" + outLineCapType + "]").attr("selected","true");
 
-		
+
 		var outLineJoin = null;
 		switch(outLineJoin){
 			case GeoBeans.Style.LineJoin.BEVEL:{
@@ -331,7 +331,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			}
 			default:{
 				break;
-			}		
+			}
 		}
 //		$("#layer_line_join").find("option[value=" + outLineCapType + "]").attr("selected","true");
 
@@ -393,11 +393,11 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 					$("#layer_shadow_offset_y").prop("readonly",true);
 					$("#layer_shadow_blur").prop("readonly",true);
 					$('#layer_shadow_color_transparency').slider("disable");
-					
+
 				}
 				break;
 			}
-				
+
 			case "multipolygon":
 			case "polygon":{
 				this.panel.find(".layer_point_type").css("display","none");
@@ -419,7 +419,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			}
 			case "multilinestring":
 			case "linestring":{
-				this.panel.find(".layer_polygon_type, .layer_point_type").css("display","none");	
+				this.panel.find(".layer_polygon_type, .layer_point_type").css("display","none");
 				$("#layer_border_color div").css("background-color",color);
 				$("#layer_border_color div").css("opacity",colorTransparency);
 				$("#layer_border_color").colpickSetColor(colorHex);
@@ -453,9 +453,9 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			fieldset.find("#label_shadow_offset_x").prop("readonly",true);
 			fieldset.find("#label_shadow_offset_y").prop("readonly",true);
 			fieldset.find("#label_shadow_blur").prop("readonly",true);
-		
+
 			return;
-		}		
+		}
 
 		this.panel.find("#label_show").prop("checked",true);
 		var fieldset = $("#label_show_fieldset");
@@ -468,18 +468,18 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 		var showFill = textSymbolizer.showFill;
 		var fillColorRgba = textSymbolizer.fillColor;
-		
+
 		var showOutline = textSymbolizer.showOutline;
 		var outLineColorRgba = textSymbolizer.outLineColor;
 		var outLineWidth = textSymbolizer.outLineWidth;
 		var outLineJoin = textSymbolizer.outLineJoin;
-		var outLineCap = textSymbolizer.outLineCap; 
+		var outLineCap = textSymbolizer.outLineCap;
 
 		var showShadow = textSymbolizer.showShadow;
 		var shadowColorRgba = textSymbolizer.shadowColor;
 		var shadowOffsetX = textSymbolizer.shadowOffsetX;
 		var shadowOffsetY = textSymbolizer.shadowOffsetY;
-		
+
 		//基本属性
 		this.panel.find("#label_field").find("option[value=" + fieldname + "]").attr("selected",true);
 		this.panel.find("#label_font_family").find("option[value=\"" + fontFamily + "\"]").attr("selected",true);
@@ -553,7 +553,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			}
 			default:{
 				break;
-			}		
+			}
 		}
 
 		this.panel.find('#label_fill_color').attr('checked', showFill);
@@ -589,7 +589,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			this.panel.find("#label_shadow_color_transparency").slider("setValue",shadowColorTransparency*100);
 			this.panel.find("#label_shadow_color_transparency_value").val(shadowColorTransparency*100);
 		}
-	},	
+	},
 	//改变字体填充的状态
 	changeShowFillState: function(checked){
 		var fillFieldset = $("#label_show_fill_fieldset");
@@ -599,7 +599,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 		}else{
 			fillFieldset.addClass("disable-show");
 			fillFieldset.find('#label_fill_color_transparency').slider("disable");
-		}							
+		}
 
 	},
 
@@ -638,8 +638,8 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			shadowFieldset.find("#label_shadow_blur").prop("readonly",true);
 			shadowFieldset.find('#label_shadow_color_transparency').slider("disable");
 		}
-	},	
-		
+	},
+
 	//设置字段
 	setLayerFields: function(fields){
 		if(fields == null){
@@ -652,7 +652,7 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 				continue;
 			}
 			var type = field.type;
-			var name = field.name; 
+			var name = field.name;
 			if(type.toLowerCase() == "geometry"){
 				continue;
 			}
@@ -683,9 +683,9 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			var borderColor = dialog.panel.find("#layer_border_color div").css("background-color");
 			var borderColorTransparency = dialog.panel.find("#layer_border_color div").css("opacity");
 			borderColorRgba = MapCloud.rgb2rgba(borderColor,borderColorTransparency);
-			
+
 			borderWidth = dialog.panel.find("#layer_border_width").val();
-			
+
 			var lineCap = dialog.panel.find("#layer_line_cap").find("option:selected").attr("value");
 			switch(lineCap){
 				case "BUTT":{
@@ -732,8 +732,8 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			var shadowColor = dialog.panel.find("#layer_shadow_color div").css("background-color");
 			var shadowColorTransparency = dialog.panel.find("#layer_shadow_color div").css("opacity");
 			shadowColorRgba = MapCloud.rgb2rgba(shadowColor,shadowColorTransparency);
-			
-			
+
+
 			shadowOffsetX = dialog.panel.find("#layer_shadow_offset_x").val();
 			shadowOffsetY = dialog.panel.find("#layer_shadow_offset_y").val();
 
@@ -825,9 +825,9 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			var borderColor = this.panel.find("#label_border_color div").css("background-color");
 			var borderColorTransparency = this.panel.find("#label_border_color div").css("opacity");
 			labelBorderColorRgba = MapCloud.rgb2rgba(borderColor,borderColorTransparency);
-			
+
 			labelBorderWidth = this.panel.find("#label_border_width").val();
-			
+
 			var lineCap = this.panel.find("#label_line_cap").find("option:selected").attr("value");
 			switch(lineCap){
 				case "BUTT":{
@@ -873,8 +873,8 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			var shadowColor = this.panel.find("#label_shadow_color div").css("background-color");
 			var shadowColorTransparency = this.panel.find("#label_shadow_color div").css("opacity");
 			labelShadowColorRgba = MapCloud.rgb2rgba(shadowColor,shadowColorTransparency);
-			
-			
+
+
 			labelShadowOffsetX = this.panel.find("#label_shadow_offset_x").val();
 			labelShadowOffsetY = this.panel.find("#label_shadow_offset_y").val();
 
@@ -906,6 +906,5 @@ MapCloud.LayerAppearanceDialog = MapCloud.Class(MapCloud.Dialog, {
 			textSymbolizer.shadowBlur = labelShadowBlur;
 		}
 		return textSymbolizer;
-	},	
+	},
 });
-	
