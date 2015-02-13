@@ -12,133 +12,28 @@ MapCloud.refresh = MapCloud.Class({
 		if(mapObj == null){
 			return;
 		}
+		var html = "";
+
+		var baseLayer = mapObj.baseLayer;
+		if(baseLayer != null){
+			var baseLayerhtml = this.getBaseLayerHtml(baseLayer);
+			$("#baseLayer_row").html(baseLayerhtml);
+		}
 		
 		var layers = mapObj.layers;
-		if(layers.length == 0){
-			return;
-		}
 
-		var html = "";
-		
 		var dialog = this;
 		for(var i = 0; i < layers.length; ++i){
 			var layer = layers[i];
 			if(layer == null){
 				continue;
 			}
-			var name = layer.name;
-			var style = layer.style;
-			if(style == null){
-				continue;
+
+			if(layer instanceof GeoBeans.Layer.WFSLayer){
+				html += this.getWFSLayerHtml(i,layer);
+			}else if(layer instanceof GeoBeans.Layer.WMSLayer){
+				html += this.getWMSLayerHtml(i,layer);
 			}
-			var rules = style.rules;
-			if(rules == null){
-				continue;
-			}
-			var ruleCount = rules.length;
-			var geomType = MapCloud.getLayerGeomType(layer);
-			// if(ruleCount == 1){				//如果只有一个准则，则不用展开
-			// 	var rule = rules[0];
-			// 	var symbolizer = rule.symbolizer;
-			// 	var iconHtml = this.createSymbolizerIcon(symbolizer,geomType);
-			// 	html	+= 	"<div class=\"row layer_row\" value=\"" + i + "\">"
-			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"mc-icon\"></div>"							
-			// 			+	"	</div>"
-			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
-			// 			+	"	</div>"
-			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>"							
-			// 			+	"	</div>"
-			// 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			// 			+	"		<div class=\"mc-icon\" style=\"" + iconHtml +"\"></div>"	
-			// 			+	"	</div>"
-			// 			+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
-			// 			+	"		<span>" + name + "</span>"
-			// 			+	"	</div>"
-			// 			+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
-			// 			+   "		<ul>"
-			// 			+	"			<li class=\"dropdown pull-right\">"
-			// 			+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
-			// 			+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
-			// 			+	"				</a>"
-			// 			+	"				<ul class=\"dropdown-menu\">"
-			// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
-			// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
-			// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
-			// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
-			// 			+	"				</ul>"
-			// 			+	"			</li>"
-			// 			+	"		</ul>"
-			// 			+	"	</div>"
-			// 			+	"</div>";
-
-
-			// }else if(ruleCount > 1){
-				html	+= 	"<div class=\"row layer_row\" value=\"" + i + "\">"
-						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
-						+	"	</div>"
-						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
-						+	"	</div>"
-						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
-						+	"	</div>"
-						+	"	<div class=\"col-md-1 col-xs-1\">"
-						+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
-						+	"	</div>"
-						+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
-						+	"		<span>" + name + "</span>"
-						+	"	</div>"
-						+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
-						+   "		<ul>"
-						+	"			<li class=\"dropdown pull-right\">"
-						+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
-						+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
-						+	"				</a>"
-						+	"				<ul class=\"dropdown-menu\">"
-						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
-						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
-						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
-						+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
-						+	"				</ul>"
-						+	"			</li>"
-						+	"		</ul>"
-						+	"	</div>"
-						+	"</div>";
-
-				for(var j = 0; j < ruleCount; ++j){
-					var rule = rules[j];
-					var symbolizer = rule.symbolizer;
-					if (symbolizer instanceof GeoBeans.Style.TextSymbolizer){
-						continue;
-					}
-					var icon = this.createSymbolizerIcon(symbolizer,geomType);
-					var filter = rule.filter;
-					var filterHtml = "";
-					if(filter != null){
-						var value = filter.value;
-						var field = filter.field;
-						filterHtml = field + " = " + value;
-					}
-
-					html += "<div class=\"row layer_style_row\" value=\"" + i + "\" style=\"display:block\">"
-						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
-						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
-						 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
-						 +	"	<div class=\"col-md-1 col-xs-1\">"
-						 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"	
-						 +	"	</div>"
-						 +	"	<div class=\"col-md-7 col-xs-7\">"
-						 +	"		<span>" + filterHtml + " </span>"
-						 +	"	</div>"
-						 +	"</div>"
-
-				}
-				var chartHtml = this.getChartsHtml(layer);
-				html += chartHtml;
 			// }
 
 		}	
@@ -151,20 +46,45 @@ MapCloud.refresh = MapCloud.Class({
 				if($(this).hasClass("glyphicon-chevron-down")){
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","none");
+					$("#layers_row .wms_layer_row[value='" + id + "']").css("display","none");
 					$(this).addClass("glyphicon-chevron-right");
 					$(this).removeClass("glyphicon-chevron-down");			
-					
 				}else{
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","block");
+					$("#layers_row .wms_layer_row[value='" + id + "']").css("display","block");
 					$(this).removeClass("glyphicon-chevron-right");
 					$(this).addClass("glyphicon-chevron-down");			
 				}
-
 			});
-		
 		});
 
+		//图层的显示与隐藏
+		this.panel.find(".glyphicon-eye-open").each(function(){
+			$(this).click(function(){
+				var id = $(this).parent().parent().attr("value");
+				var layer = null;
+				if(id == "baseLayer"){
+					layer = mapObj.baseLayer;
+				}else{
+					layer = mapObj.layers[id];
+				}
+				if(layer == null){
+					return;
+				}
+				if($(this).hasClass("glyphicon-eye-open")){
+					$(this).removeClass("glyphicon-eye-open");
+					$(this).addClass("glyphicon-eye-close");
+					layer.setVisiable(false);
+					mapObj.draw();
+				}else{
+					$(this).removeClass("glyphicon-eye-close");
+					$(this).addClass("glyphicon-eye-open");					
+					layer.setVisiable(true);
+					mapObj.draw();
+				}
+			})
+		});
 		//选中layer
 		this.panel.find(".layer_name").each(function(){
 			$(this).click(function(){
@@ -212,7 +132,7 @@ MapCloud.refresh = MapCloud.Class({
 					var layer_name = MapCloud.selected_layer.name;
 					mapObj.removeLayer(layer_name);
 					dialog.refreshPanel();
-					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+					// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 					mapObj.draw();	
 
 					//同时删掉相应的图表
@@ -229,6 +149,14 @@ MapCloud.refresh = MapCloud.Class({
 					}
 				}
 			})
+		});
+
+		this.panel.find(".layer_row_quick_tool_remove_base").each(function(){
+			$(this).click(function(){
+				mapObj.removeBaseLayer();
+				mapObj.draw();
+				dialog.refreshPanel();
+			});
 		});
 
 		this.panel.find(".chart_row_quick_tool_edit").each(function(){
@@ -504,5 +432,189 @@ MapCloud.refresh = MapCloud.Class({
 		}
 		MapCloud.refresh_panel.refreshPanel();	
 		mapObj.draw();	
+	},
+
+	getBaseLayerHtml : function(baseLayer){
+		var html = "";
+		var name = baseLayer.name;
+		var icon = "mc-icon-image";
+		var url = baseLayer.url;
+		var type = url.slice(url.lastIndexOf("=") + 1, url.length);
+		if(type == "world_vector"){
+			icon = "mc-icon-vector";
+		}else if(type == "world_image"){
+			icon = "mc-icon-image";
+		}
+		// html	+= 	"<li class=\"row layer_row\" value=\"" + "baseLayer" + "\">"
+		html    +=	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"mc-icon " + icon + "\"></div>"	
+				+	"	</div>"
+				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"		<span>" + type + "</span>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul>"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
+				// +	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove_base\">删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>";
+		return html;				
+	},
+
+
+	getWMSLayerHtml : function(index,wmsLayer){
+		var html = "";
+		var name = wmsLayer.name;
+		html	= 	"<li class=\"row layer_row\" value=\"" + index + "\">"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
+				+	"	</div>"
+				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"		<span>" + name + "</span>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul>"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"</li>";	
+
+
+		var layers = wmsLayer.layers;
+		for(var i = 0; i < layers.length; ++i){
+			var layer = layers[i];
+			var row = "<div class=\"row wms_layer_row\" value=\"" + i + "\" style=\"display:block\">"
+					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
+					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
+					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
+					 +"	<div class=\"col-md-1 col-xs-1\">"
+					 +" 	<div class=\"mc-icon mc-icon-layer\"></div>"
+					 +"	</div>"
+					 +"	<div class=\"col-md-7 col-xs-7\">"
+					 +"		<span>" + layer + "</span>"
+					 +"	</div>"
+					 +"</div>";
+			html += row;
+
+		}					
+		return html;
+	},
+
+	getWFSLayerHtml : function(i,layer){
+		var name = layer.name;
+		var style = layer.style;
+		if(style == null){
+			return "";
+		}
+		var rules = style.rules;
+		if(rules == null){
+			return "";
+		}
+		var ruleCount = rules.length;
+		var geomType = MapCloud.getLayerGeomType(layer);
+		html	= 	"<li class=\"row layer_row\" value=\"" + i + "\">"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
+				+	"	</div>"
+				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"		<span>" + name + "</span>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul>"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>";
+				// +	"</li>";
+		// html += "<div class=\"row\">";
+		for(var j = 0; j < ruleCount; ++j){
+			var rule = rules[j];
+			var symbolizer = rule.symbolizer;
+			if (symbolizer instanceof GeoBeans.Style.TextSymbolizer){
+				continue;
+			}
+			var icon = this.createSymbolizerIcon(symbolizer,geomType);
+			var filter = rule.filter;
+			var filterHtml = "";
+			if(filter != null){
+				var value = filter.value;
+				var field = filter.field;
+				filterHtml = field + " = " + value;
+			}
+
+			html += "<div class=\"row layer_style_row\" value=\"" + i + "\" style=\"display:block\">"
+				 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
+				 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
+				 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
+				 +	"	<div class=\"col-md-1 col-xs-1\">"
+				 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"	
+				 +	"	</div>"
+				 +	"	<div class=\"col-md-7 col-xs-7\">"
+				 +	"		<span>" + filterHtml + " </span>"
+				 +	"	</div>"
+				 +	"</div>"
+		}
+		// html += "</div>";
+		var chartHtml = this.getChartsHtml(layer);
+		html += chartHtml;
+
+		html += "</li>";
+
+		return html;
 	}
 });

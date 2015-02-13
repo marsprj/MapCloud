@@ -133,7 +133,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				dialog.layer.setStyle(style);	
 				mapObj.addLayer(dialog.layer);
 
-				dialog.layer.resigterHitEvent(dialog.onFeatureHit);
+				// dialog.layer.resigterHitEvent(dialog.onFeatureHit);
 
 
 				MapCloud.wfs_layer = dialog.layer;

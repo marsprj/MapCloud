@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/colpick/colpick.css" type="text/css">
 <!--<link rel="stylesheet" type="text/css" href="css/mc.css"/>-->
 <link rel="stylesheet" type="text/css" href="css/mc-new.css"/>
-
+<link rel="stylesheet" type="text/css" href="../Map5/css/Map5.css"/>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 
 <script type="text/javascript" src="js/colpick/colpick.js"></script>
@@ -27,6 +27,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
 
 <script type="text/javascript" src="js/echarts-plain.js"></script>
+<script type="text/javascript" src="js/jquery-sortable.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
@@ -51,6 +52,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/FeatureType.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Workspace.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
@@ -65,6 +67,9 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
@@ -99,6 +104,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/FileDialog.js"></script>
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
+<script type="text/javascript" src="js/Control/WMSDialog.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -260,7 +266,171 @@ var Msg = {}; //declare this or modify line 1 of core.js
 		</div>
 		<div class="container" id="main_panel">
 			<div class="row" id="main_panel_row">
-				<div class="col-md-3 col-xs-3 col-lg-3 mc-panel-full" id="left_panel">
+				<div class="col-fixed mc-panel-full" id="left_panel">
+					<div class="row" id="map_row">
+						<div class="col-md-10 col-xs-10 col-lg-10">
+							<a href="javascript:void(0)" id="map_name">Sample</a>
+						</div>
+						<div class="col-md-2 col-xs-2 col-lg-2">
+							<div class="mc-icon glyphicon glyphicon-globe"></div>
+						</div>
+					</div>
+					<div class="row" id="layer_tool_row">
+						<div class="col-md-1">
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-ok mc-icon"></div>
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-eye-open mc-icon"></div>							
+						</div>
+						<div class="col-md-1 col-xs-1 col-md-offset-2">
+							<div class="glyphicon glyphicon-plus mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-minus mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-folder-close mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-user mc-icon"></div>										
+						</div>
+						<div class="col-md-1 col-xs-1">
+							<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
+						</div>
+					</div>
+					<div class="row" id="baseLayer_row">
+					</div>
+					<ul class="row" id="layers_row">
+					</ul>
+<!-- 					<ul class="row" id="layers_row">
+						<div class="row layer_row">
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-chevron-down mc-icon"></div>							
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-ok mc-icon"></div>							
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-eye-close mc-icon"></div>							
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="mc-icon" style="background-color:red;"></div>	
+							</div>
+							<div class="col-md-6 col-xs-1">
+								<span>country</span>
+							</div>
+							<div class="col-md-1 col-xs-1 layer_row_quick_tool">
+								<ul>
+									<li class="dropdown pull-right">
+										<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+											<b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#">放大至该图层</a></li>
+											<li><a href="#">编辑图层</a></li>
+											<li><a href="#">分享图层</a></li>
+											<li><a href="#">删除图层</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row layer_style_row">
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1">
+								<div class="mc-icon" style="background-color:blue;"></div>	
+							</div>
+							<div class="col-md-3 col-xs-3">
+								<span>name=China</span>
+							</div>
+						</div>
+						<div class="row layer_style_row">
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1">
+								<div class="mc-icon" style="background-color:green;"></div>	
+							</div>
+							<div class="col-md-3 col-xs-3">
+								<span>name=China</span>
+							</div>
+						</div>
+						<div class="row chart_style_row">
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1"></div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-eye-close mc-icon"></div>	
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class='glyphicon glyphicon-signal mc-icon'></div>
+							</div>
+							<div class="col-md-6 col-xs-6">
+								<span>id,cities_id</span>
+							</div>
+							<div class="col-md-1 col-xs-1 layer_row_quick_tool">
+								<ul>
+									<li class="dropdown pull-right">
+										<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+											<b class="glyphicon glyphicon-cog"></b>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#">放大至该图层</a></li>
+											<li><a href="#">编辑图层</a></li>
+											<li><a href="#">分享图层</a></li>
+											<li><a href="#">删除图层</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>							
+						</div>
+					</ul> -->
+				</div>
+				<div class="row row-right mc-panel-full">
+					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
+						<div id="mapCanvas_wrappper">
+							<!-- <div id="mapCanvas_chart_div"></div> -->
+						<!-- <figure style="width: 100px; height: 80px;border:1px solid #ccc;" id="mapCanvas_chart_div"></figure> -->
+							<!-- <canvas id="mapCanvas" width="800" height="528"></canvas> -->
+						</div>
+						
+						<div id="datagrid_wrapper">
+							<div class="panel-header">
+								<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
+								<div class="panel-header-content float_left">Feature Info</div>
+							</div>
+							<div id="datagrid_content">
+							</div>
+						</div>
+						<div id="map_bar_wrapper" class="mc-border" >
+							<div class="mc-icon mc-icon-plus"></div>
+							<div class="mc-icon mc-icon-minus"></div>
+							<div class="mc-icon mc-icon-info"></div>
+							<div class="mc-icon mc-icon-hand-up"></div>
+							<div class="mc-icon mc-icon-full-screen"></div>
+							<div class="mc-icon mc-icon-zoom-in"></div>
+							<div class="mc-icon mc-icon-pin"></div>
+						</div>
+					</div>
+					<div class="col-md-2 col-xs-2 col-lg-2 mc-panel-full" id="right_panel" style="display:none">
+						<div class="panel-header">
+							<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
+							<div class="panel-header-content float_left">Feature Info</div>
+						</div>
+						<div id="feature_info">
+							<table width="100%" class="table-info" cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+<!-- 				<div class="col-md-3 col-xs-3 col-lg-3 mc-panel-full" id="left_panel">
 					<div class="row" id="map_row">
 						<div class="col-md-10 col-xs-10 col-lg-10">
 							<a href="javascript:void(0)" id="map_name">Sample</a>
@@ -382,9 +552,6 @@ var Msg = {}; //declare this or modify line 1 of core.js
 				</div>
 				<div class="col-md-9 col-xs-9 col-lg-9 mc-panel-full" id="center_panel">
 					<div id="mapCanvas_wrappper">
-						<!-- <div id="mapCanvas_chart_div"></div> -->
-					<!-- <figure style="width: 100px; height: 80px;border:1px solid #ccc;" id="mapCanvas_chart_div"></figure> -->
-						<!-- <canvas id="mapCanvas" width="800" height="528"></canvas> -->
 					</div>
 					
 					<div id="datagrid_wrapper">
@@ -416,7 +583,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 							</tbody>
 						</table>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -472,6 +639,47 @@ var Msg = {}; //declare this or modify line 1 of core.js
 			</div>
 		</div>
 	</div>
+	<!-- WMS panel -->
+    <div class="modal fade" id="wmsDialog" tabindex="-1" role="dialog" aria-labelledby="wmsDialogLabel" aria-hidden="true" data-backdrop="true">
+    	<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="wmsDialogLabel">新建WMS图层</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group form-group-sm">
+							<label for="wms_name" class="col-sm-2 control-label">名称：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wms_name" value="wms">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="wms_url" class="col-sm-2 control-label">地址：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/geoserver/radi/ows?">
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><a href="#" class="navbar-link" id="wms_get_info">获取信息</a></label>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="" class="col-sm-2 control-label">图层：</label>
+							<div class="col-sm-10" id="wms_layers">
+								
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
     <!-- WFS datasource panel -->
     <div class="modal fade" id="wfsDatasourceDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">

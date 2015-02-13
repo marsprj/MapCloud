@@ -3,10 +3,12 @@ MapCloud.Ribbon = MapCloud.Class({
 	height_max : "100px",
 	height_min : "20px",
 	ribbon : null,
+	ribbonContainer : null,
 	
 	initialize : function(){
 	
 		this.ribbon = $("#ribbon_wrapper").first();
+		this.ribbonContainer = $("#ribbon_container").first();
 
 		this.hideAllRibbons();
 		this.registerRibbonEvents();
@@ -30,10 +32,14 @@ MapCloud.Ribbon = MapCloud.Class({
 	
 	expand : function(){
 		this.ribbon.css("height", this.height_max);
+		this.ribbonContainer.css("height","80px");
+		$("#main_panel").css("height","calc(100% - 122px)");
 	},
 	
 	collapse : function(){
 		this.ribbon.css("height", this.height_min);
+		this.ribbonContainer.css("height","0px");
+		$("#main_panel").css("height","calc(100% - 42px)");
 	},
 	
 	isCollapsed : function(){
@@ -200,7 +206,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 	
 	onLayerAddWMS : function(){
-		alert("onLayerAddWMS");
+		if(MapCloud.wms_dialog == null){
+			MapCloud.wms_dialog = new MapCloud.WMSDialog("wmsDialog");
+		}
+		MapCloud.wms_dialog.showDialog();
 	},
 	
 	onLayerAddWFS : function(){

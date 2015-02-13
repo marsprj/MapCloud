@@ -26,6 +26,9 @@ MapCloud.pgis_connection_dialog = null;
 //WFS图层连接
 MapCloud.wfs_datasource_dialog = null;
 
+//wms图层
+MapCloud.wms_dialog = null;
+
 //新建图表
 MapCloud.new_chart_dialog = null;
 
@@ -34,6 +37,9 @@ MapCloud.refresh_panel = null;
 
 //WFS图层
 MapCloud.wfs_layer = null;
+
+//WMS图层
+MapCloud.wms_layer = null;
 
 //当前选中的图层
 MapCloud.selected_layer = null;

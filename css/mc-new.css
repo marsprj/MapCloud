@@ -183,6 +183,17 @@ ul {
 	background-image:url(../images/color_swatch.gif);
 }
 
+.mc-icon-image{
+	background-image:url(../images/image.png);
+}
+
+.mc-icon-vector{
+	background-image:url(../images/vector.png);
+}
+
+.mc-icon-layer{
+	background-image:url(../images/layer.png);
+}
 #logo_panel{
 	position:absolute;
 	top: 5px;
@@ -227,6 +238,11 @@ ul {
 	width:100%;
 	height:80px;
 	overflow:hidden;
+
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;	
 }
 
 .ribbon_panel{
@@ -311,12 +327,27 @@ ul#ribbon_tabs li{
 	margin-right:0px;
 }
 
+.col-fixed{
+	width:320px;
+	float: left;
+}
+.row-right{
+	width:calc(100% - 320px);
+	margin-left: 0px;
+	margin-right: 0px;
+	float: left;
+}
 #main_panel{
-	position:absolute;
+/*	position:absolute;
 	top:122px;
 	bottom:0px;
 	left:0px;
-	right:0px;
+	right:0px;*/
+	height:calc(100% - 122px);
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;	
 }
 .mc-panel-full{
 	height:100%;
@@ -346,14 +377,14 @@ ul#ribbon_tabs li{
 	color: #696969;
 }
 #layers_row{
-	padding:0px;
+	padding:1px 0px 0px 0px;
 	margin-left:0px;
 	margin-right:0px;
 	
 }
 
 
-.layer_row{
+.layer_row,.layer_style_row,.chart_style_row,.wms_layer_row,#baseLayer_row{
 	padding:6px;
 	margin-left:0px;
 	margin-right:0px;
@@ -390,12 +421,10 @@ ul#ribbon_tabs li{
 .layer_row_selected .layer_row_quick_tool ul a.dropdown-toggle{
 	color:#428bca;
 }
-.layer_style_row,.chart_style_row{
-	padding:6px;
-	margin-left:0px;
-	margin-right:0px;
-}
 
+.layer_style_row{
+	padding-top: 10px;
+}
 .chart_style_row:hover{
 	background-color: #DFF1F8;
 }
@@ -772,152 +801,46 @@ legend {
 /* New Chart Dialog End    		                                        */
 /***************************************************************************/
 
+/***************************************************************************/
+/* WMS Dialog Begin                                           */
+/***************************************************************************/
+#wmsDialog{
+
+}
+#wms_layers{
+	max-height: 160px;
+	overflow-y: auto;
+	word-wrap: break-word;
+}
+
+#wms_layers label.checkbox-inline.col-sm-3{
+	margin-left: 0px;
+}
+
 
 /***************************************************************************/
-/* Map Nav Begin                                           */
+/* WMS Dialog End    		                                        */
 /***************************************************************************/
-.map-nav-wrapper{
-	height:214px;
-	width:62px;
-	position: absolute;
-	top: 80px;
-	left:40px;
-	/*border: 1px solid #ccc;*/
-}
-.map-nav-wrapper div{
-	position: absolute;
-}
-.map-nav-pan{
-	background-image: url(../images/map-nav.png);
-	width: 44px;
-	height: 44px;
-}
 
-.map-nav-pan div{
-	position: absolute;
-}
-.map-nav-button{
-	height: 15px;
-	width: 15px;
-	cursor: pointer;
-}
-
-.map-nav-pan-N{
-	left: 14px;
-	top: 0px;
-}
-.map-nav-pan-W{
-	left: 1px;
-	top: 12px;
-}
-
-.map-nav-pan-E{
-	left: 27px;
-	top: 12px;
-}
-
-.map-nav-pan-S{
-	left: 14px;
-	top: 25px;
-}
-
-.map-nav-zoom{
-	/*border: 1px solid #ccc;*/
-	height: 147px;
-	width: 62px;
-	top: 45px;
-}
-
-.map-nav-zoom .map-nav-button{
-	width: 22px;
-	height: 21px;
-	left: 12px;
-	overflow: hidden;
-	background-image: url(../images/map-nav.png);
-	background-repeat: no-repeat;
-	position: absolute;
-}
-
-.map-nav-zoom-in{
-	background-position: 0px -221px;
-}
-
-.map-nav-zoom-out{
-	background-position: 0 -265px;
-	top: 146px;
-}
-
-.map-nav-zoom-slider{
-	height: 118px;
-	top: 18px;
-	width: 37px;
-}
-
-.map-nav-zoom-slider-top{
-	left: 18px;
-	width: 10px;
-	background-image: url(../images/map-nav.png);
-	background-position: -23px -226px;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	height: 128px;
-}
-
-.map-nav-zoom-slider-bottom{
-	left: 19px;
-	width: 10px;
-	background-image: url(../images/map-nav.png);
-	background-position: -33px bottom;
-	background-repeat: no-repeat;	
-	top:100px;
-	height: 28px;
-}
-
-.map-nav-zoom-slider-bar{
-	background-image: url(../images/map-nav.png);
-	background-position: 0 -309px;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	height: 11px;
-	left: 13px;
-	width: 19px;
-	top: 90px;
-}
-
-.map-nav-zoom-labels{
-	top:0px;
-	display: none;
-}
-
-.map-nav-zoom-label{
-	width: 28px;
-	height: 21px;
-	background-image: url(../images/map-nav.png);
-	background-repeat: no-repeat;
-	overflow: hidden;
-	left: 34px;
-	cursor: pointer;
-}
-
-.map-nav-zoom-label-street{
-	top:21px;
-	background-position: 0 -380px;	
-}
-
-.map-nav-zoom-label-city{
-	top:57px;
-	background-position: 0 -401px;
-}
-
-.map-nav-zoom-label-province{
-	top:86px;
-	background-position: 0 -422px;
-}
-
-.map-nav-zoom-label-country{
-	top:110px;
-	background-position: 0 -443px;
-}
 /***************************************************************************/
-/* Map Nav End    		                                        */
+/* Drag Begin                                           */
+/***************************************************************************/
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+/*ul.example li.placeholder {
+  position: relative;
+}
+ol.example li.placeholder:before {
+  position: absolute;
+}*/
+/***************************************************************************/
+/* Drag End                                           */
 /***************************************************************************/
