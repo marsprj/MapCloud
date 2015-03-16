@@ -33,8 +33,6 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
 
-
-
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Point.js"></script>
@@ -76,6 +74,14 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
+
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
+
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
@@ -105,6 +111,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSDialog.js"></script>
+<script type="text/javascript" src="js/Control/TrackOverlay.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -389,6 +396,145 @@ var Msg = {}; //declare this or modify line 1 of core.js
 						</div>
 					</ul> -->
 				</div>
+				<div class="col-fixed mc-panel-full" id="left_panel_overlay">
+					<div class="row left_row">
+						<button type="button" class="btn btn-primary btn-confirm pull-right">返回</button>
+					</div>
+					<ul class="row" id="overlays_row">
+						<li class="row left_row overlay_row">
+							<div class="input-group">
+							  <span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker" ></span>
+							  <input type="text" class="form-control input-overlay-read" placeholder="" readonly value="点">
+							  <span class="input-group-btn" >
+							 	 <button class="btn btn-default" type="button">编辑</button>
+							  	 <button class="btn btn-default" type="button">删除</button>
+							  </span>
+							</div>						
+						</li>
+						<li class="row left_row overlay_row">
+							<div class="input-group">
+							  <span class="input-group-addon glyphicon glyphicon-align-justify span-overlay-marker" ></span>
+							  <input type="text" class="form-control input-overlay-read" placeholder="" readonly value="线">
+							  <span class="input-group-btn" >
+							 	 <button class="btn btn-default" type="button">编辑</button>
+							  	 <button class="btn btn-default" type="button">删除</button>
+							  </span>
+							</div>						
+						</li>
+						<li class="row left_row overlay_row">
+							<div class="input-group">
+							  <span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+							  <input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
+							  <span class="input-group-btn" >
+							 	 <button class="btn btn-default" type="button">编辑</button>
+							  	 <button class="btn btn-default" type="button">删除</button>
+							  </span>
+							</div>						
+						</li>						
+						<li class="row left_row overlay_row">
+							<div class="input-group">
+							  <span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+							  <input type="text" class="form-control input-overlay-read" placeholder="Username" readonly value="面">
+							  <span class="input-group-btn" >
+							 	 <button class="btn btn-default" type="button">编辑</button>
+							  	 <button class="btn btn-default" type="button">删除</button>
+							  </span>
+							</div>						
+						</li>	
+						<li class="row left_row overlay_row">
+							<div class="input-group">
+							  <span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+							  <input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
+							  <span class="input-group-btn" >
+							 	 <button class="btn btn-default" type="button">编辑</button>
+							  	 <button class="btn btn-default" type="button">删除</button>
+							  </span>
+							</div>						
+						</li>							
+					</ul>
+					<!--编辑状态-->
+<!-- 					<div class="row left_row">
+						<button type="button" class="btn btn-default col-md-offset-3">撤销</button>
+						<button type="button" class="btn btn-primary btn-confirm col-md-offset-1">保存</button>
+
+					</div>
+					<ul class="row" id="overlay_hit_row">
+						<li class="row left_row overlay_row">
+							<div class="input-group">
+							  <span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker" ></span>
+							  <input type="text" class="form-control input-overlay-read" placeholder="" value="点">
+							</div>						
+						</li>					
+					</ul>
+					<div class="row left_row_wrapper" id="overlay_add_value_row">
+						 <button type="button" class="btn glyphicon glyphicon-plus col-md-4 col-md-offset-4">
+						 	
+						 </button>
+					</div>
+					<ul class="row" id="overlay_hit_values_row">
+						<li class="row left_row">
+							<div class="col-md-4 overlay_key">
+								<input type="text" class="form-control " placeholder="" value="地址">
+							</div>
+							<div class="input-group col-md-8 overlay_value">
+								<input type="text" class="form-control " placeholder="" value="大屯路">
+								<span class="input-group-addon glyphicon glyphicon-trash span-overlay-marker" ></span>
+							</div>
+						</li>
+						<li class="row left_row">
+							<div class="col-md-4 overlay_key">
+								<input type="text" class="form-control " placeholder="" value="地址">
+							</div>
+							<div class="input-group col-md-8 overlay_value">
+								<input type="text" class="form-control " placeholder="" value="大屯路">
+								<span class="input-group-addon glyphicon glyphicon-trash span-overlay-marker" ></span>
+							</div>
+						</li>
+						<li class="row left_row">
+							<div class="col-md-4 overlay_key">
+								<input type="text" class="form-control " placeholder="Key" value="">
+							</div>
+							<div class="input-group col-md-8 overlay_value">
+								<input type="text" class="form-control " placeholder="Value" value="">
+								<span class="input-group-addon glyphicon glyphicon-trash span-overlay-marker" ></span>
+							</div>
+						</li>
+					</ul> -->
+					<!--选中状态-->
+<!-- 					<div class="row left_row_wrapper left_row_title">
+						<div class="col-md-3 left_row_title">名称</div>
+					</div>
+					<div class="row left_row overlay_row">
+						<div class="input-group">
+						  <span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker" ></span>
+						  <input type="text" class="form-control input-overlay-read" placeholder="" value="点" readonly>
+						</div>						
+					</div>					
+					<div class="row left_row_wrapper left_row_title">
+						<div class="col-md-3 left_row_title">属性</div>
+					</div>										
+					<ul class="row left_row_wrapper" id="overlay_hit_values_row">
+						<li class="row left_row">
+							<div class="col-md-5 overlay_key">
+								<input type="text" class="form-control " placeholder="Key" value="地址" readonly="">
+							</div>
+							<div class="col-md-7 overlay_value">
+								<input type="text" class="form-control " placeholder="Value" value="大屯路" readonly="">
+							</div>
+						</li>
+						<li class="row left_row">
+							<div class="col-md-5 overlay_key">
+								<input type="text" class="form-control " placeholder="Key" value="电话" readonly="">
+							</div>
+							<div class="col-md-7 overlay_value">
+								<input type="text" class="form-control " placeholder="Value" value="598741345" readonly="">
+							</div>
+						</li>
+					</ul>
+ -->
+
+
+				</div>
 				<div class="row row-right mc-panel-full">
 					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
 						<div id="mapCanvas_wrappper">
@@ -413,6 +559,13 @@ var Msg = {}; //declare this or modify line 1 of core.js
 							<div class="mc-icon mc-icon-full-screen"></div>
 							<div class="mc-icon mc-icon-zoom-in"></div>
 							<div class="mc-icon mc-icon-pin"></div>
+						</div>
+						<div id="map_overlay_wrapper" class="">
+							<div class="btn-group"><!-- btn-group-lg -->
+								<button type="button" class="btn btn-default" id="track_marker">点</button>
+								<button type="button" class="btn btn-default" id="track_polyline">线</button>
+								<button type="button" class="btn btn-default" id="track_polygon">面</button>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-2 col-xs-2 col-lg-2 mc-panel-full" id="right_panel" style="display:none">

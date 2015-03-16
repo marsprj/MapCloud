@@ -2,7 +2,9 @@ var mapObj = null;
 var ribbonObj = null;
 
 $().ready(function(){
-	 $("ul.example").sortable();
+
+
+	$(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");
 
 	var logo = new MapCloud.Logo();	
 	var layersTree = new MapCloud.LayerTree();	
@@ -40,7 +42,6 @@ $().ready(function(){
 	// mapObj.setCenter(center);
 	// mapObj.setLevel(2);	
 	// mapObj.draw();	
-
 
 	window.onresize = function(){
 		// var left_panel = $("#left_panel");

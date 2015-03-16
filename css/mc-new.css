@@ -194,6 +194,18 @@ ul {
 .mc-icon-layer{
 	background-image:url(../images/layer.png);
 }
+
+.mc-icon-marker{
+	background-image: url(../images/marker.png);
+}
+
+.mc-icon-line{
+	background-image: url(../images/polyline.png);
+}
+
+.mc-icon-polygon{
+	background-image: url(../images/polygon.png);
+}
 #logo_panel{
 	position:absolute;
 	top: 5px;
@@ -356,6 +368,7 @@ ul#ribbon_tabs li{
 #left_panel{
 	border-right:1px solid #ccc;
 	min-width:300px;
+	display: block;
 }
 #map_row{
 	padding:4px;
@@ -376,15 +389,20 @@ ul#ribbon_tabs li{
 	background-color: #f8f8f8;
 	color: #696969;
 }
-#layers_row{
+.left_row_wrapper,#layers_row,#overlays_row,#overlay_hit_row,#overlay_hit_values_row{
 	padding:1px 0px 0px 0px;
 	margin-left:0px;
 	margin-right:0px;
 	
 }
+.layer_row{
+	border: 1px solid #ccc; 
+	margin-top: 1px;	
+}
 
 
-.layer_row,.layer_style_row,.chart_style_row,.wms_layer_row,#baseLayer_row{
+
+.left_row,.layer_row,.layer_style_row,.chart_style_row,.wms_layer_row,#baseLayer_row{
 	padding:6px;
 	margin-left:0px;
 	margin-right:0px;
@@ -423,7 +441,8 @@ ul#ribbon_tabs li{
 }
 
 .layer_style_row{
-	padding-top: 10px;
+	padding-top: 20px;
+	padding-left: 0px;
 }
 .chart_style_row:hover{
 	background-color: #DFF1F8;
@@ -835,12 +854,91 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
-/*ul.example li.placeholder {
+ul.layers_row li {
   position: relative;
 }
-ol.example li.placeholder:before {
+ul.layers_row li:before {
   position: absolute;
-}*/
+}
 /***************************************************************************/
 /* Drag End                                           */
+/***************************************************************************/
+/***************************************************************************/
+/* Overlay Begin   														*/
+/***************************************************************************/
+#map_overlay_wrapper{
+	position: absolute;
+	top: 30px;
+	left: 310px;
+	z-index: 2;
+	display: none;
+}
+
+#map_overlay_wrapper .btn .normal{
+	background-color: #fff;
+}
+
+#left_panel_overlay{
+	display: none;
+	border-right: 1px solid #ccc;
+}
+
+.span-overlay-marker{
+	top: 0px;
+}
+
+.input-overlay-read{
+	background-color: #fff !important;
+	cursor: auto !important;
+	border-bottom-right-radius: 4px !important;
+	border-top-right-radius: 4px !important;
+}
+
+
+.overlay_row .input-group-btn{
+	display: none;
+}
+.overlay_row:hover{
+	background-color: #DFDFDF;
+}
+.overlay_key{
+	padding-left: 0px;
+	padding-right: 0px;	
+}
+.overlay_key input{
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;	
+}
+.overlay_value input{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+#overlay_hit_values_row .overlay_value{
+	padding-left: 0px;
+	padding-right: 0px;		
+}
+#overlay_hit_values_row input{
+	background-color: #fff !important;
+}
+.left_row_title{
+	padding: 10px;
+}
+.left_row_title div{
+	font-weight: bold;
+	border-radius: 0px;
+	border-bottom-width: 4px;
+	border-bottom-style: solid;
+	border-color: #99BBFF;
+	font-size: 16px;
+	padding: 4px;
+	letter-spacing: 10px;
+	text-align: center;
+}
+
+#overlay_edit_values_row .glyphicon-trash{
+	cursor: pointer;
+}
+/***************************************************************************/
+/* Overlay End   														*/
 /***************************************************************************/

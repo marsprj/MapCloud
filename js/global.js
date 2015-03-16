@@ -35,6 +35,9 @@ MapCloud.new_chart_dialog = null;
 //左侧刷新
 MapCloud.refresh_panel = null;
 
+//左侧overlaypanel
+MapCloud.overlay_panel = null;
+
 //WFS图层
 MapCloud.wfs_layer = null;
 
@@ -71,7 +74,7 @@ MapCloud.line_symbolizer.showOutline = true;
 
 //面样式
 MapCloud.polygon_symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-MapCloud.polygon_symbolizer.fillColor = "rgba(129,255,213,1)";
+MapCloud.polygon_symbolizer.fillColor = "rgba(0,255,255,1)";
 MapCloud.polygon_symbolizer.outLineWidth = 1;
 MapCloud.polygon_symbolizer.outLineColor = "rgba(255,0,0,1)";
 MapCloud.polygon_symbolizer.outLineCap = GeoBeans.Style.LineCap.ROUND;;

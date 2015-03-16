@@ -198,7 +198,11 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 	
 	onLayerAddVector : function(){
-		alert("onLayerAddVector");
+		if(MapCloud.overlay_panel == null){
+			MapCloud.overlay_panel = new MapCloud.TrackOverlay("left_panel_overlay",
+										"map_overlay_wrapper");
+		}
+		MapCloud.overlay_panel.show();
 	},
 	
 	onLayerAddRaster : function(){
