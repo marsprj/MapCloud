@@ -1,0 +1,660 @@
+MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
+	
+	rule : null,
+	type : null,
+
+	initialize : function(id){
+		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
+		var dialog = this;
+		this.rule = null;
+
+		this.panel.find("#wms-style-info-tab a").each(function(){
+			$(this).click(function(e){
+				e.preventDefault()
+				$(this).tab("show");
+			});
+		});
+
+		this.panel.find('[data-toggle="tooltip"]').tooltip();
+
+		//样式初始化
+		this.panel.find(".slider").each(function(){
+			$(this).slider();
+			$(this).on("slide",function(slideEvt){
+				var parent = $(this).parents(".form-group");
+				var input = parent.find(".slider-value")
+								.val(slideEvt.value + "%");
+				parent.find(".colorSelector div").css("opacity",
+							slideEvt.value/100);	
+			});
+		});
+
+		this.panel.find(".colorSelector").each(function(){
+			$(this).colpick({
+				color:'EEEEEE',
+				onChange:function(hsb,hex,rgb,el,bySetColor) {
+					$(el).children().css("background-color","#" + hex);
+
+				},
+				onSubmit:function(hsb,hex,rgb,el,bySetColor){
+					$(el).children().css("background-color","#" + hex);
+					$(el).colpickHide();
+				}
+			});
+		});
+
+		this.panel.find(".style_enable").each(function(){
+			$(this).change(function(){
+				var parent = $(this).parents(".form-group");
+				dialog.setSytleItemEnable(parent,this.checked);
+			});		
+		});		
+
+		var textPropCheck = this.panel.find("#style-text .text-prop .style_enable");
+		var textTextCheck = this.panel.find("#style-text .text-text .style_enable");
+		textPropCheck.change(function(){
+			// var checked = $(this).prop("checked");
+			if(this.checked){
+				textTextCheck.prop("checked",false);
+				var item = textTextCheck.parents(".form-group");
+				dialog.setSytleItemEnable(item,false);
+			}
+		});
+		
+		textTextCheck.change(function(){
+			// var checked = $(this).prop("checked");
+			if(this.checked){
+				textPropCheck.prop("checked",false);
+				var item = textPropCheck.parents(".form-group");
+				dialog.setSytleItemEnable(item,false);
+			}
+		});
+
+		this.panel.find(".btn-confirm").each(function(){
+			$(this).click(function(){
+				var rule = dialog.getRule();
+				MapCloud.wmsStyleMgr_dialog.setRule(rule);
+				dialog.closeDialog();
+			});
+		});
+
+	},
+
+	setRule : function(rule){
+		this.rule = rule;
+		this.displayRule(this.rule);
+	},
+
+	//设置每行的样式是否可用
+	setSytleItemEnable : function(item,checked){
+		var inputs = item.find("input[type='text']").not(".slider-value ,.slider");
+		var selects = item.find("select");
+		var sliderControl = item.find("input.slider");
+		var colorPicker = item.find(".colorSelector");
+		if(checked){		//可用
+			inputs.prop("readonly",false);
+			sliderControl.slider("enable");
+			selects.prop("disabled",false);
+
+		}else{
+			inputs.prop("readonly",true);
+			sliderControl.slider("disable");
+			selects.prop("disabled",true);
+		}
+	},
+
+	//按照样式初始化页面
+	displayRule : function(rule){
+		var symbolizer = rule.symbolizer;
+		if(symbolizer != null){
+			var type = symbolizer.type;
+			this.setType(type);
+			// this.type = type;
+			switch(type){
+				case GeoBeans.Symbolizer.Type.Point:
+					this.displayPointSymbolizer(symbolizer);
+					break;
+				case GeoBeans.Symbolizer.Type.Line:
+					this.displayLineSymbolizer(symbolizer);
+					break;
+				case GeoBeans.Symbolizer.Type.Polygon:
+					this.displayPolygonSymoblizer(symbolizer);
+					break;
+				default:
+					break;
+			}
+		}
+
+		var minScale = rule.minScale;
+		var minScaleItem = this.panel.find("#style-info .sytle-min-scale");
+		this.displayMinScale(minScaleItem,minScale);
+
+		var maxScale = rule.maxRule;
+		var maxScaleItem = this.panel.find("#style-info .sytle-max-scale");
+		this.displayMaxScale(maxScaleItem,maxScale);
+
+		var textSymbolizer = rule.textSymbolizer;
+		this.displayTextSymbolizer(textSymbolizer);
+	},
+
+	setType : function(type){
+		this.type = type; 
+		this.panel.find(".style-type .btn-group a").each(function(){
+			$(this).removeClass('btn-primary');
+		});
+		switch(type){
+			case GeoBeans.Symbolizer.Type.Point:
+				this.panel.find("#point_style").addClass("btn-primary");
+				break;
+			case GeoBeans.Symbolizer.Type.Line:
+				this.panel.find("#line_style").addClass("btn-primary");
+				break;
+			case GeoBeans.Symbolizer.Type.Polygon:
+				this.panel.find("#polygon_style").addClass("btn-primary");
+				break;
+			default:
+				break;
+		}
+	},
+
+	displayPointSymbolizer : function(symbolizer){
+		var stroke = symbolizer.stroke;
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		this.displayStroke(strokeItem,stroke);
+		var fill = symbolizer.fill;
+		var fillItem = this.panel.find("#style-info .style-fill");
+		this.displayFill(fillItem,fill);
+		var shadow = symbolizer.shadow;
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		this.displayShadow(shadowItem,shadow);
+		var size = symbolizer.size;
+		var markItem = this.panel.find("#style-info .style-mark");
+		this.displaySize(markItem,size);
+	},
+
+	displayLineSymbolizer : function(symbolizer){
+		var stroke = symbolizer.stroke;
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		this.displayStroke(strokeItem,stroke);
+		var shadow = symbolizer.shadow;
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		this.displayShadow(shadowItem,shadow);
+		var fillItem = this.panel.find("#style-info .style-fill");
+		this.undisplayStyleItem(fillItem);
+		var markItem = this.panel.find("#style-info .style-mark");
+		this.undisplayStyleItem(markItem);
+	},
+
+	displayPolygonSymoblizer : function(symbolizer){
+		var stroke = symbolizer.stroke;
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		this.displayStroke(strokeItem,stroke);
+		var fill = symbolizer.fill;
+		var fillItem = this.panel.find("#style-info .style-fill");
+		this.displayFill(fillItem,fill);
+		var shadow = this.shadow;
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		this.displayShadow(shadowItem,shadow);
+		var markItem = this.panel.find("#style-info .style-mark");
+		this.undisplayStyleItem(markItem);
+	},
+
+	displayStroke : function(strokeItem,stroke){
+		if(stroke == null){
+			 strokeItem.find(".style_enable").prop("checked",false);
+			 this.setSytleItemEnable(strokeItem,false);
+		}else{
+			strokeItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(strokeItem,true);
+			var color = stroke.color;
+			if(color != null){
+				var hex = color.getHex();
+				var opacity = color.getOpacity()*100;
+				opacity = parseInt(opacity.toFixed());
+				strokeItem.find(".colorSelector").colpickSetColor(hex);
+				strokeItem.find(".colorSelector div").css("background-color",hex);
+				strokeItem.find(".slider-value").val(opacity + "%");
+				strokeItem.find("input.slider").slider("setValue",opacity);
+
+			}
+			var width = stroke.width;
+			strokeItem.find(".stroke-width").val(width);
+			
+			var lineCap = stroke.lineCap;
+			if(lineCap != null){
+				strokeItem.find(".stroke-line-cap")
+					.find("option[value=" + lineCap + "]")
+					.attr("selected",true);
+			}
+
+			var lineJoin = stroke.lineJoin;
+			if(lineJoin != null){
+				strokeItem.find(".stroke-line-join")
+					.find("option[value=" + lineJoin + "]")
+					.attr("selected",true);
+			}
+		}
+	},
+
+	displayFill : function(fillItem,fill){
+		if(fill == null){
+			fillItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(fillItem,false);
+		}else{
+			fillItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(fillItem,true);
+			var color = fill.color;
+			if(color != null){
+				var hex = color.getHex();
+				var opacity = color.getOpacity();
+				var opacityPercent = opacity*100;
+				opacityPercent = parseInt(opacityPercent.toFixed());
+				fillItem.find(".colorSelector").colpickSetColor(hex);
+				fillItem.find(".colorSelector div").css("background-color",hex);
+				fillItem.find(".colorSelector div").css("opacity",opacity);
+				fillItem.find(".slider-value").val(opacityPercent + "%");
+				fillItem.find("input.slider").slider("setValue",opacityPercent);
+			}
+
+		}
+	},
+
+	displayShadow : function(shadowItem,shadow){
+		if(shadow == null){
+			shadowItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(shadowItem,false);
+		}else{
+			shadowItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(shadowItem,true);
+		}
+	},
+
+	displaySize : function(markItem,size){
+		if(size == null){
+			markItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(markItem,false);
+		}else{
+			markItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(markItem,true);
+			markItem.find(".mark-size").val(size);
+		}
+	},
+
+	displayMinScale : function(minScaleItem,scale){
+		
+		if(scale == null){
+			minScaleItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(minScaleItem,false);
+		}else{
+			minScaleItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(minScaleItem,true);
+			minScaleItem.find(".min-scale-value").val(scale);
+		}
+	},
+
+	displayMaxScale : function(maxScaleItem,scale){
+		
+		if(scale == null){
+			maxScaleItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(maxScaleItem,false);
+		}else{
+			maxScaleItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(maxScaleItem,true);
+			maxScaleItem.find(".max-scale-value").val(scale);
+		}
+	},
+
+	undisplayStyleItem : function(styleItem){
+		styleItem.find(".style_enable").prop("checked",false).prop("disabled",true);
+		this.setSytleItemEnable(styleItem,false);
+	},
+
+	displayTextSymbolizer : function(textSymbolizer){
+		var textPanel = this.panel.find("#style-text");
+		var propItem = textPanel.find(".text-prop");
+		var textItem = textPanel.find(".text-text");
+		var fontItem = textPanel.find(".text-font");
+		var strokeItem = textPanel.find(".text-stroke");
+		var fillItem = textPanel.find(".text-fill");
+		var shadowItem = textPanel.find(".text-shadow");
+		if(textSymbolizer == null){
+			this.displayTextProp(propItem,null);
+			this.displayTextText(textItem,null);
+			this.displayTextFont(fontItem,null);
+			this.displayStroke(strokeItem,null);
+			this.displayFill(fillItem,null);
+			this.displayShadow(shadowItem,null);
+		}else{
+			var labelProp = textSymbolizer.labelProp;
+			this.displayTextProp(propItem,labelProp);
+			var labelText = textSymbolizer.labelText;
+			this.displayTextText(textItem,labelText);
+			var font = textSymbolizer.font;
+			this.displayTextFont(fontItem,font);
+			var stroke = textSymbolizer.stroke;
+			this.displayStroke(strokeItem,stroke);
+			var fill = textSymbolizer.fill;
+			this.displayFill(fillItem,fill);
+			var shadow = textSymbolizer.shadow;
+			this.displayShadow(shadowItem,shadow);
+		}
+	},
+
+	displayTextProp : function(propItem,textProp){
+		if(textProp == null){
+			propItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(propItem,false);
+		}else{
+			propItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(propItem,true);
+			var html = "<option value='" + textProp + "''>"
+			+	textProp + "</option>";
+			propItem.find("select").append(html);
+
+		}
+	},
+
+	displayTextText : function(textItem,textText){
+		if(textText == null){
+			textItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(textItem,false);
+		}else{
+			textItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(textItem,true);
+			textItem.find("input[type='text']").val(textText);
+		}
+	},
+
+	displayTextFont : function(fontItem,textFont){
+		if(textFont == null){
+			fontItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(fontItem,false);
+		}else{
+			fontItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(fontItem,true);
+			var familySelect = fontItem.find(".font-family");
+			var family = textFont.family;
+			if(family != null){
+				familySelect.find("option[value='" + family + "']")
+					.attr("selected",true);
+			}
+
+			var styleSelect = fontItem.find(".font-style")
+			var style = textFont.style;
+			if(style != null){
+				styleSelect.find("option[value='" + style + "']")
+					.attr("selected",true);
+			}
+
+			var weightSelect = fontItem.find(".font-weight");
+			var weight = textFont.weight;
+			if(weight != null){
+				weightSelect.find("option[value='" + weight + "']")
+					.attr("selected",true);
+			}
+
+			var sizeInput = fontItem.find(".font-size");
+			var fontSize = textFont.size;
+			if(fontSize != null){
+				sizeInput.val(fontSize);
+			}
+		}
+	},
+
+	getRule : function(){
+		var rule = new GeoBeans.Rule();
+		var symbolizer = this.getSymbolizer();
+		rule.symbolizer = symbolizer;
+		var textSymbolizer = this.getTextSymbolizer();
+		rule.textSymbolizer = textSymbolizer;
+
+		var minScaleItem = this.panel.find("#style-info .sytle-min-scale");
+		var minScale = this.getMinScale(minScaleItem);
+		rule.minScale = minScale;
+
+		var maxScaleItem = this.panel.find("#style-info .sytle-max-scale");
+		var maxScale = this.getMaxScale(maxScaleItem);
+		rule.maxScale = maxScale;
+
+		return rule;
+	},
+
+	getSymbolizer : function(){
+		var symbolizer = null;
+		switch(this.type){
+			case GeoBeans.Symbolizer.Type.Point:{
+				symbolizer = this.getPointSymbolizer();
+				break;
+			}
+			case  GeoBeans.Symbolizer.Type.Line:{
+				symbolizer = this.getLineSymbolizer();
+				break;
+			}
+			case  GeoBeans.Symbolizer.Type.Polygon:{
+				symbolizer = this.getPolygonSymbolizer();
+				break;
+			}
+			default:
+				break;
+		}
+		return symbolizer;
+	},
+
+	getPointSymbolizer : function(){
+		var pointSymbolizer = new GeoBeans.Symbolizer.PointSymbolizer();
+
+		var fillItem = this.panel.find("#style-info .style-fill");
+		var fill = this.getFill(fillItem);
+		pointSymbolizer.fill = fill;
+
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		var stroke = this.getStroke(strokeItem);
+		pointSymbolizer.stroke = stroke;
+		
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		var shadow = this.getShadow(shadowItem);
+		pointSymbolizer.shadow = shadow;
+
+		var sizeItem = this.panel.find("#style-info .style-mark");
+		var size = this.getSize(sizeItem);
+		pointSymbolizer.size = size;
+
+		return pointSymbolizer;
+	},
+
+	getLineSymbolizer : function(){
+		var lineSymbolizer = new GeoBeans.Symbolizer.LineSymbolizer();
+
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		var stroke = this.getStroke(strokeItem);
+		lineSymbolizer.stroke = stroke;
+
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		var shadow = this.getShadow(shadowItem);
+		lineSymbolizer.shadow = shadow;
+
+		return lineSymbolizer;
+	},
+
+	getPolygonSymbolizer : function(){
+		var polygonSymbolizer = new GeoBeans.Symbolizer.PolygonSymbolizer();
+		
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		var stroke = this.getStroke(strokeItem);
+		polygonSymbolizer.stroke = stroke;		
+
+
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		var shadow = this.getShadow(shadowItem);
+		polygonSymbolizer.shadow = shadow;
+
+		var fillItem = this.panel.find("#style-info .style-fill");
+		var fill = this.getFill(fillItem);
+		polygonSymbolizer.fill = fill;
+
+		return polygonSymbolizer;
+	},
+
+	getFill : function(fillItem){
+		if(fillItem.length != 1){
+			return null;
+		}
+		var flag =  fillItem.find(".style_enable").prop("checked");
+		if(!flag){
+			return null;
+		}
+		var fill = new GeoBeans.Fill();
+		var colorItem = fillItem.find(".colorSelector div");
+		var backgroundColor = colorItem.css("background-color");
+		var opacity = colorItem.css("opacity");
+		var color = new GeoBeans.Color();
+		color.setByRgb(backgroundColor,opacity);
+		fill.color = color;
+		return fill;
+	},
+
+	getStroke : function(strokeItem){
+		if(strokeItem.length != 1){
+			return null;
+		}
+		var flag = strokeItem.find(".style_enable").prop("checked");
+		if(!flag){
+			return null;
+		}
+		var stroke = new GeoBeans.Stroke();
+		var colorItem = strokeItem.find(".colorSelector div");
+		var backgroundColor = colorItem.css("background-color");
+		var opacity = colorItem.css("opacity");
+		var color = new GeoBeans.Color();
+		color.setByRgb(backgroundColor,opacity);
+		stroke.color = color;
+
+		var strokeWidth = strokeItem.find(".stroke-width").val();
+		stroke.strokeWidth = parseFloat(strokeWidth);
+
+		var lineCap = strokeItem.find(".stroke-line-cap option:selected")
+								.val();
+		stroke.lineCap = lineCap;
+
+		var lineJoin = strokeItem.find(".stroke-line-join option:selected")
+								.val();
+		stroke.lineJoin = lineJoin;
+		return stroke;									
+		
+	},
+
+	getShadow : function(shadowItem){
+		return null;
+	},
+
+	getSize : function(markItem){
+		if(markItem.length != 1){
+			return null;
+		}
+		var flag = markItem.find(".style_enable").prop("checked");
+		if(!flag){
+			return null;
+		}
+		var size = markItem.find(".mark-size").val();
+		return size;
+	},
+
+
+	getMinScale : function(minScaleItem){
+		if(minScaleItem.length != 1){
+			return null;
+		}
+
+		var flag = minScaleItem.find(".style_enable").prop("checked");
+		if(!flag){
+			return null;
+		}
+
+		var minScale = minScaleItem.find(".min-scale-value").val();
+		return minScale;		
+	},
+
+	getMaxScale : function(maxScaleItem){
+		if(maxScaleItem.length != 1){
+			return null;
+		}
+
+		var flag = maxScaleItem.find(".style_enable").prop("checked");
+		if(!flag){
+			return null;
+		}
+
+		var maxScale = maxScaleItem.find(".max-scale-value").val();
+		return maxScale;
+	},
+
+
+	getTextSymbolizer : function(){
+		var textPanel = this.panel.find("#style-text");
+		var propItem = textPanel.find(".text-prop");
+		var textItem = textPanel.find(".text-text");
+		var propFlag = propItem.find(".style_enable").prop("checked");
+		var textFlag = textItem.find(".style_enable").prop("checked");
+		if(!propFlag && !textFlag){
+			return null;
+		}
+
+		var textSymbolizer = new GeoBeans.Symbolizer.TextSymbolizer();
+		if(propFlag){
+			var labelProp = propItem.find("select option:selected").val();
+			textSymbolizer.labelProp = labelProp;
+		}
+
+		if(textFlag){
+			var labelText = textItem.find("input[type='text']").val();
+			textSymbolizer.labelText = labelText;
+		}
+
+		var fontItem = textPanel.find(".text-font");
+		var font = this.getFont(fontItem);
+		textSymbolizer.font = font;
+
+		var strokeItem = this.panel.find("#style-info .style-stroke");
+		var stroke = this.getStroke(strokeItem);
+		textSymbolizer.stroke = stroke;		
+
+		var shadowItem = this.panel.find("#style-info .style-shadow");
+		var shadow = this.getShadow(shadowItem);
+		textSymbolizer.shadow = shadow;
+
+		var fillItem = this.panel.find("#style-info .style-fill");
+		var fill = this.getFill(fillItem);
+		textSymbolizer.fill = fill;
+
+		return textSymbolizer;
+	},
+
+	getFont : function(fontItem){
+		if(fontItem.length != 1){
+			return null;
+		}
+
+		var flag = fontItem.find(".style_enable").prop("checked");
+		if(!flag){
+			return null;
+		}
+
+		var font = new GeoBeans.Font();
+		var fontFamily = fontItem.find(".font-family option:selected").val();
+		font.fontFamily = fontFamily;
+
+		var fontStyle = fontItem.find(".font-style option:selected").val();
+		font.fontStyle = fontStyle;
+
+		var fontWeight = fontItem.find(".font-weight option:selected").val();
+		font.fontWeight = fontWeight;
+	
+		var fontSize = fontItem.find(".font-size").val();
+		font.fontSize = fontSize;
+
+		return font;
+	}
+
+
+
+});

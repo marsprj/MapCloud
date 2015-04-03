@@ -191,7 +191,7 @@ ul {
 	background-image:url(../images/vector.png);
 }
 
-.mc-icon-layer{
+.mc-icon-wmslayer{
 	background-image:url(../images/layer.png);
 }
 
@@ -734,8 +734,8 @@ ul#ribbon_tabs li{
 }
 .colorSelector {
 	position: relative;
-	width: 36px;
-	height: 36px;
+	width: 30px;
+	height: 30px;
 }
 
 .colorSelector div {
@@ -941,4 +941,197 @@ ul.layers_row li:before {
 }
 /***************************************************************************/
 /* Overlay End   														*/
+/***************************************************************************/
+/***************************************************************************/
+/* WMSStyleMgr Dialog Begin   														*/
+/***************************************************************************/
+#wms-style-mgr-dialog .modal-dialog{
+	width:740px; 
+}
+
+#wms-style-mgr-dialog .modal-body{
+	height: 600px;
+	/*overflow-y: auto;*/
+}
+
+#wms-style-mgr-dialog .modal-body .row{
+	margin-bottom: 20px;
+}
+
+#wms-style-mgr-dialog .modal-body .tab-content{
+	height: 440px;
+	border: 1px solid #ccc;
+	margin-top: 6px;	
+}
+#wms-style-mgr-dialog .display-style div{
+	height:60px;
+}
+
+#wms-style-mgr-dialog #display_styles_div{
+	/*height: 460px;*/
+}
+
+#wms-style-mgr-dialog #display_styles_div .parm-form{
+	padding: 4px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #F1F1F1;
+}
+#wms-style-mgr-dialog #display_styles_div .parm-form .form-group{
+	margin-bottom: 0px;
+}
+
+#wms-style-mgr-dialog #display_styles_div .color{
+	display: inline-block;
+	height: 19px;
+	width: 14px;
+}
+
+#wms-style-mgr-dialog #display_styles_div .color-ramp-div{
+	padding-left: 0px;
+	padding-right:0px;
+}
+#wms-style-mgr-dialog #display_styles_div .color-ramp-div ul{
+	width: 100%;
+}
+#wms-style-mgr-dialog #display_styles_div .color-ramp-div ul li{
+	margin-top:4px;
+}
+#wms-style-mgr-dialog #display_styles_div .color-ramp-item{
+	text-align: center;
+	cursor: pointer;
+}
+
+#wms-style-mgr-dialog #display_styles_div #styles_info_div{
+	padding: 4px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 100%;
+}
+#wms-style-mgr-dialog #display_styles_div #styles_info_div table{
+	width: 100%;
+	margin-bottom: 10px;
+}
+#styles_info_table tr:hover{
+	cursor: point;
+}
+
+#style_list_title{
+	font-weight: bold;
+}
+/*使之固定并且可scroll*/
+.table-block thead, .table-block tbody, .table-block tr, 
+.table-block td, .table-block th{
+ 	display: block;
+}
+.table-block tr:after {
+	content: ' ';
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+.table-block thead th {
+    height: 30px;
+    /*text-align: left;*/
+}
+
+.table-block tbody {
+    height: 360px;
+    overflow-y: auto;
+}
+.table-block tbody td, .table-block thead th {
+    width: 33%;
+    float: left;
+}
+.borderless tbody tr td, .borderless tbody tr th {
+    border: none;
+}
+#wms-style-mgr-dialog #display_styles_div .style-symbol{
+	height: 17px;
+	width: 17px;
+	background-color: #fba;
+	cursor: pointer;
+}
+/***************************************************************************/
+/* WMSStyleMgr Dialog End   														*/
+/***************************************************************************/
+/***************************************************************************/
+/* WMSStyle Dialog Begin   														*/
+/***************************************************************************/
+#wms-style-dialog{
+
+}
+
+#wms-style-dialog .tab-content{
+	height:300px;
+}
+#wms-style-info{
+	margin: 12px 6px;
+}
+
+#wms-style-info [class*="col-"]{
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-right: 6px;
+}
+
+#wms-style-info .col0-md-right-0{
+	margin-right: 0px;
+}
+
+#wms-style-info .control-label{
+	text-align: left;
+}
+
+#wms-style-info .colorSelector{
+	/*padding: 0px;*/
+	padding: 6px;
+	border-width: 0px;
+}
+
+#wms-style-info .colorSelector div{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	top : 0px;
+}
+#wms-style-info .form-group{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#wms-style-info .control-label-field{
+	text-align: right;
+	padding-right: 8px;
+}
+#wms-style-info .style_enable_label{
+	margin-right: 0px;
+	width: 12px;
+}
+#wms-style-info .slider{
+	width: 85%;
+}
+#wms-style-info input[type="text"]{
+	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#wms-style-info select{
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.slider .tooltip.top .tooltip-arrow{
+	border-top-color: #000 !important;
+}
+.slider .tooltip-inner{
+	padding: 3px 8px !important;
+	color: #fff !important;
+	background-color: #000 !important;	
+}
+
+/***************************************************************************/
+/* WMSStyle Dialog End   														*/
 /***************************************************************************/

@@ -32,6 +32,11 @@ MapCloud.wms_dialog = null;
 //新建图表
 MapCloud.new_chart_dialog = null;
 
+//wms样式管理器
+MapCloud.wmsStyleMgr_dialog = null;
+
+//wms样式
+MapCloud.wms_style_dialog = null;
 //左侧刷新
 MapCloud.refresh_panel = null;
 

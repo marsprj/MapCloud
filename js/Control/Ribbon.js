@@ -153,7 +153,14 @@ MapCloud.Ribbon = MapCloud.Class({
 					break;
 				case 18:
 					that.onDatabase();
-
+					break;
+				case 19:
+					break;
+				case 20:
+					break;
+				case 21:
+					that.onWMSStyle();
+					break;
 
 				// Data Events
 /*				case 6:
@@ -343,6 +350,13 @@ MapCloud.Ribbon = MapCloud.Class({
 	
 	onDataImport : function(){
 		alert("onDataImport");
+	},
+
+	onWMSStyle : function(){
+		if(MapCloud.wmsStyleMgr_dialog == null){
+			MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+		}
+		MapCloud.wmsStyleMgr_dialog.showDialog();
 	}
 });
 	

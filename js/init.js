@@ -4,7 +4,7 @@ var ribbonObj = null;
 $().ready(function(){
 
 
-	$(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");
+	// $(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");
 
 	var logo = new MapCloud.Logo();	
 	var layersTree = new MapCloud.LayerTree();	

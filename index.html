@@ -32,6 +32,8 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
@@ -57,6 +59,19 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Literal.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Tile.js"></script>
@@ -85,6 +100,20 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSStleManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSStyle.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Rule.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/FeatureStyle.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Symbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/PointSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/LineSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/PolygonSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/TextSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Font.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Stroke.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Fill.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/StyleReader.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/StyleWriter.js"></script>
 
 
 <script type="text/javascript" src="js/MapCloud.js"></script>
@@ -111,6 +140,8 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSDialog.js"></script>
+<script type="text/javascript" src="js/Control/WMSStyleMgrDialog.js"></script>
+<script type="text/javascript" src="js/Control/WMSStyleDialog.js"></script>
 <script type="text/javascript" src="js/Control/TrackOverlay.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
@@ -265,6 +296,12 @@ var Msg = {}; //declare this or modify line 1 of core.js
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
 								<div class="ribbon_label">热力图</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
+								<div class="ribbon_label">图层样式</div>
 							</div>
 						</div>
 					</div>
@@ -811,7 +848,8 @@ var Msg = {}; //declare this or modify line 1 of core.js
 						<div class="form-group form-group-sm">
 							<label for="wms_url" class="col-sm-2 control-label">地址：</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/geoserver/radi/ows?">
+								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/ows/user1/world/ims?">
+								<!-- value='/geoserver/radi/ows?' -->
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><a href="#" class="navbar-link" id="wms_get_info">获取信息</a></label>
@@ -1562,4 +1600,441 @@ var Msg = {}; //declare this or modify line 1 of core.js
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="wms-style-mgr-dialog" tabindex="-1" role="dialog" aria-labelledby="wmsStyleDialogLabel" aria-hidden="true"
+		data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="newMapDialogLabel">WMS样式管理器</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="input-group">
+								<div class="input-group-btn">
+		        					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="wms_style_name">All&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>
+		        					<ul class="dropdown-menu" role="menu" id="wms_style_type_list">
+							        	<li><a href="javascript:void(0)">All</a></li>
+							          	<li class="divider"></li>
+							          	<li><a href="javascript:void(0)">Point</a></li>
+							          	<li><a href="javascript:void(0)">LineString</a></li>
+							          	<li><a href="javascript:void(0)">Polygon</a></li>
+		       				 		</ul>
+		     					</div>	
+		     					<select id="wms_style_list" class="form-control" title="Please select a style ...">
+		     						<option>style1</option>
+		     						<option>style2</option>
+		     					</select>
+							</div>							
+						</div>
+						<div class="col-md-6">
+							<div class="btn-group btn-group-justified" role="group" aria-label="">
+								<a class="btn btn-default" id="add_style">增加</a>
+								<a class="btn btn-default" id="save_style">保存</a>
+								<a class="btn btn-default" id="remove_style">删除</a>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="margin-right: 8px;">
+						<div class="col-md-3">
+							<div class="list-group">
+								<a href="javascript:void(0)" class="list-group-item">单一样式</a>
+								<a href="javascript:void(0)" class="list-group-item">分级样式</a>
+								<a href="javascript:void(0)" class="list-group-item">自定义</a>
+							</div>
+						</div>
+						<div class="col-md-9" id="display_styles_div">
+							<form class="form-horizontal parm-form" role="form">
+								<div class="form-group">
+									<label class="col-md-2 control-label">
+										字段
+									</label>
+									<div class="col-md-3">
+										<select class="form-control" id="wms_map_layer_fields">
+
+										</select>
+									</div>
+									<div class="col-md-6 color-ramp-div">
+										<button type="button" class="btn btn-default dropdown-toggle btn-group-justified" data-toggle="dropdown" aria-expanded="false" id="select_color_ramp">
+											<div class="color-ramp-item">
+												<div class="color" style="background-color:#632593"></div><div class="color" style="background-color:#6c2a90"></div><div class="color" style="background-color:#762f8d"></div><div class="color" style="background-color:#80348a"></div><div class="color" style="background-color:#8a3987"></div><div class="color" style="background-color:#933e84"></div><div class="color" style="background-color:#9d4382"></div><div class="color" style="background-color:#a7487f"></div><div class="color" style="background-color:#b14e7c"></div><div class="color" style="background-color:#ba5379"></div><div class="color" style="background-color:#c45876"></div><div class="color" style="background-color:#ce5d74"></div><div class="color" style="background-color:#d86271"></div><div class="color" style="background-color:#e1676e"></div><div class="color" style="background-color:#eb6c6b"></div><div class="color" style="background-color:#f57168"></div><div class="color" style="background-color:#ff7766"></div>
+											</div>
+										</button>
+										<ul class="dropdown-menu" role="menu" id="">
+							        			<li>
+													<div class="color-ramp-item"><div class="color" style="background-color:#632593"></div><div class="color" style="background-color:#6c2a90"></div><div class="color" style="background-color:#762f8d"></div><div class="color" style="background-color:#80348a"></div><div class="color" style="background-color:#8a3987"></div><div class="color" style="background-color:#933e84"></div><div class="color" style="background-color:#9d4382"></div><div class="color" style="background-color:#a7487f"></div><div class="color" style="background-color:#b14e7c"></div><div class="color" style="background-color:#ba5379"></div><div class="color" style="background-color:#c45876"></div><div class="color" style="background-color:#ce5d74"></div><div class="color" style="background-color:#d86271"></div><div class="color" style="background-color:#e1676e"></div><div class="color" style="background-color:#eb6c6b"></div><div class="color" style="background-color:#f57168"></div><div class="color" style="background-color:#ff7766"></div></div>
+							        			</li>
+							        			<li>
+							        				<div class="color-ramp-item"><div class="color" style="background-color:#e80909"></div><div class="color" style="background-color:#da180a"></div><div class="color" style="background-color:#cd270c"></div><div class="color" style="background-color:#bf370e"></div><div class="color" style="background-color:#b2460f"></div><div class="color" style="background-color:#a55511"></div><div class="color" style="background-color:#976513"></div><div class="color" style="background-color:#8a7414"></div><div class="color" style="background-color:#7d8416"></div><div class="color" style="background-color:#6f9318"></div><div class="color" style="background-color:#62a219"></div><div class="color" style="background-color:#54b21b"></div><div class="color" style="background-color:#47c11d"></div><div class="color" style="background-color:#3ad01e"></div><div class="color" style="background-color:#2ce020"></div><div class="color" style="background-color:#1fef22"></div><div class="color" style="background-color:#12ff24"></div></div>
+							        			</li>
+							        			<li>
+							        				<div class="color-ramp-item"><div class="color" style="background-color:#015359"></div><div class="color" style="background-color:#005d53"></div><div class="color" style="background-color:#00684d"></div><div class="color" style="background-color:#007348"></div><div class="color" style="background-color:#007e42"></div><div class="color" style="background-color:#00883d"></div><div class="color" style="background-color:#009337"></div><div class="color" style="background-color:#009e32"></div><div class="color" style="background-color:#00a92c"></div><div class="color" style="background-color:#00b326"></div><div class="color" style="background-color:#00be21"></div><div class="color" style="background-color:#00c91b"></div><div class="color" style="background-color:#00d416"></div><div class="color" style="background-color:#00de10"></div><div class="color" style="background-color:#00e90b"></div><div class="color" style="background-color:#00f405"></div><div class="color" style="background-color:#00ff00"></div></div>
+							        			</li>
+							          			<!-- <li class="divider"></li> -->
+		       				 			</ul>
+									</div>
+								</div>
+							</form>
+							<!-- <form class="fomr-horizontal" id="styles_info_form">
+								<form
+							</form> -->
+							<div id="styles_info_div">
+								<table class="table table-hover borderless table-block" id="styles_info_table">
+									<thead>
+										<tr>
+											<th>样式</th>
+											<th>值</th>
+											<th>标签</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="style-symbol"></div>
+											</td>
+											<td>所有值</td>
+											<td>所有值</td>
+										</tr>
+										<tr id="style_list_title">
+											<td><span>&nbsp;</span></td>
+											<td>值列表</td>
+											<td>Country</td>
+										</tr>
+										<div>
+											<tr>
+												<td>
+													<div class="style-symbol"></div>
+												</td>
+												<td>China</td>
+												<td class="edit">China</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="style-symbol"></div>
+												</td>
+												<td>China</td>
+												<td class="edit">China</td>
+											</tr>
+										</div>
+																								
+									</tbody>
+								</table>
+							</div>
+							<div class="">
+								<div class="btn-group btn-group-justified" role="group" aria-label="">
+									<a class="btn btn-default" id="add_all_value">添加所有值</a>
+									<a class="btn btn-default" id="">删除</a>
+									<a class="btn btn-default" id="remove_style">删除所有值</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					
+
+			  	</div>
+			  	<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<!-- <button type="button" class="btn btn-primary btn-confirm">确定</button> -->
+			 	 </div>
+			</div>
+		</div>
+	</div>
+	<!---->
+	<div class="modal fade" id="wms-style-dialog" tabindex="-1" role="dialog" aria-labelledby="wms-style-dialogLabel" aria-hidden="true"
+		data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="newMapDialogLabel">WMS样式</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 style-type">
+							<div class="btn-group btn-group-justified" role="group">
+								<a class="btn btn-default" id="point_style">点</a>
+								<a class="btn btn-default" id="line_style">线</a>
+								<a class="btn btn-default" id="polygon_style">面</a>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="wms-style-info">
+						<ul class="nav nav-tabs" id="wms-style-info-tab">
+							<li class="active">
+								<a href="#style-info">样式</a>
+							</li>
+							<li class="">
+								<a href="#style-text">文字样式</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="style-info">
+								<form class="form-horizontal" role="form">
+									<div class="form-group style-stroke">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">线</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked>
+										</label>
+										<div class="col-md-1 col0-md-right-0">
+											<div class="btn btn-default colorSelector" title="线段颜色" data-toggle="tooltip" data-placement="top">
+									    		<div style="background-color: #EEEEEE"></div>
+									    	</div>
+										</div>
+										<div class="col-md-3 control-label">
+											<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<div class="col-md-1">
+											<input class="form-control slider-value" readonly="" value="100%" type="text" title="透明度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control stroke-width" value="2" type="text" title="线宽度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-2">
+											<select class="form-control stroke-line-cap" title="Line Cap" data-toggle="tooltip" data-placement="top">
+													<option value="butt">平直边缘</option>
+													<option value="round" selected="selected">圆形线帽</option>
+													<option value="square">正方形线帽</option>
+													<option value="max">Max</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select class="form-control stroke-line-join" title="Line Join" data-toggle="tooltip" data-placement="top">
+													<option value="miter">尖角</option>
+													<option value="miterRevert">miterRevert</option>
+													<option value="bevel">斜角</option>
+													<option value="round">圆角</option>
+													<option value="max">max</option>
+												</select>
+											</div>
+									</div>
+									    
+									<div class="form-group style-fill">
+										<label for="" class="col-md-1 control-label col0-md-right-0 control-label-field">填充</label>
+										<label class="col-md-1 control-label style_enable_label col0-md-right-0">
+									      	<input type="checkbox" class="style_enable"checked>
+									    </label>
+									    
+									    <label class="col-md-1 col0-md-right-0">
+									    	<div class="btn btn-default colorSelector" title="填充颜色" data-toggle="tooltip" data-placement="top">
+									    		<div style="background-color: #EEEEEE"></div>
+									    	</div>
+									    </label>
+									    <label class="col-md-3 control-label">
+									    	<input type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+									    </label>
+									    <div class="col-md-1">
+									    	<input class="form-control slider-value" readonly="" value="100%" type="text" title="透明度" data-toggle="tooltip" data-placement="top">
+									    </div>
+									</div>
+									<div class="form-group style-shadow">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">阴影</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked>
+										</label>
+										<div class="col-md-1 col0-md-right-0">
+											<div class="btn btn-default colorSelector" title="阴影颜色" data-toggle="tooltip" data-placement="top">
+									    		<div style="background-color: #EEEEEE"></div>
+									    	</div>
+										</div>
+										<div class="col-md-3 control-label">
+											<input type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<div class="col-md-1">
+											<input class="form-control slider-value" readonly="" value="100%" type="text" title="透明度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1 ">
+											<input class="form-control shadow-blur" value="2" type="text" title="模糊度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control shadow-x-dis" value="3" type="text" title="X向偏移量" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control shadow-y-dis" value="3" type="text" title="Y向偏移量" data-toggle="tooltip" data-placement="top">
+										</div>
+									</div>
+									<div class="form-group style-mark">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">点图标</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked>
+										</label>
+										<div class="col-md-1" style="margin-left:6px">
+											<input class="form-control mark-size" value="3" type="text" title="图标大小" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-2">
+											<select class="form-control mark_style" title="图标样式" data-toggle="tooltip" data-placement="top">
+												<option value="circle">圆</option>
+												<option value="square">方块</option>
+												<option value="star">星星</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group sytle-min-scale">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">最小比例尺</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked="">
+										</label>
+										<div class="col-md-1" style="margin-left:6px">
+											<input class="form-control min-scale-value" value="100" type="text" title="最小比例尺" data-toggle="tooltip" data-placement="right">
+										</div>
+									</div>
+									<div class="form-group sytle-max-scale">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">最大比例尺</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked="">
+										</label>
+										<div class="col-md-1" style="margin-left:6px">
+											<input class="form-control max-scale-value" value="100" type="text" title="最大比例尺" data-toggle="tooltip" data-placement="right">
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane" id="style-text">
+								<form class="form-horizontal" role="form">
+									<div class="form-group text-prop">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">字段</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked="" title="" data-toggle="tooltip" data-placement="top">
+										</label>
+										<div class="col-md-2" style="margin-left:6px">
+											<select class="form-control" title="字段" data-toggle="tooltip" data-placement="top">
+												<!-- <option value="name">name</option>
+												<option value="id">id</option>
+												<option value="popu">popu</option> -->
+											</select>
+										</div>
+									</div>
+									<div class="form-group text-text">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">文本</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked="" title="字段与文本只能选择一个">
+										</label>
+										<div class="col-md-2" style="margin-left:6px">
+											<input class="form-control" value="自定义文本" type="text" title="">
+										</div>
+									</div>
+									<div class="form-group text-font">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">字体</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked>
+										</label>
+										<div class="col-md-2" style="margin-left:6px">
+											<select class="form-control font-family" title="字体">
+												<option value="Times New Roman">Times New Roman</option>
+												<option value="Arial">Arial</option>
+												<option value="verdana">verdana</option>
+											</select>
+										</div>
+										<div class="col-md-2">
+											<select class="form-control font-style" title="样式" data-toggle="tooltip" data-placement="top">
+												<option value="noral">NORMAL</option>
+												<option value="italic" selected="selected">ITALIC</option>
+												<option value="oblique">OBLIQURE</option>
+											</select>
+										</div>
+										<div class="col-md-2">
+											<select class="form-control font-style" title="加粗" data-toggle="tooltip" data-placement="top">
+												<option value="normal">NORMAL</option>
+												<option value="bold">BOLD</option>
+											</select>
+										</div>
+										<div class="col-md-1">
+											<input class="form-control font-size" value="2" type="text" title="字体大小" data-toggle="tooltip" data-placement="top">
+										</div>
+									</div>
+									<div class="form-group text-stroke">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">线</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked>
+										</label>
+										<div class="col-md-1 col0-md-right-0">
+											<div class="btn btn-default colorSelector" title="线段颜色" data-toggle="tooltip" data-placement="top">
+									    		<div style="background-color: #EEEEEE"></div>
+									    	</div>
+										</div>
+										<div class="col-md-3 control-label">
+											<input id="stroke_transparency" data-slider-id='stroke_transparency_slider' type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<div class="col-md-1">
+											<input class="form-control slider-value" readonly="" value="100%" type="text" title="透明度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control" value="2" type="text" title="线宽度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-2">
+											<select id="layer_line_cap" class="form-control" title="Line Cap" data-toggle="tooltip" data-placement="top">
+													<option value="BUTT">平直边缘</option>
+													<option value="ROUND" selected="selected">圆形线帽</option>
+													<option value="SQUARE">正方形线帽</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select id="layer_line_join" class="form-control" title="Line Join" data-toggle="tooltip" data-placement="top">
+													<option value="MITER">尖角</option>
+													<option value="BEVEL">斜角</option>
+													<option value="ROUND">圆角</option>
+												</select>
+											</div>
+									</div>
+									    
+									    
+									<div class="form-group text-fill">
+										<label for="" class="col-md-1 control-label col0-md-right-0 control-label-field">填充</label>
+										<label class="col-md-1 control-label style_enable_label col0-md-right-0">
+									      	<input type="checkbox" class="style_enable"checked>
+									    </label>
+									    
+									    <label class="col-md-1 col0-md-right-0">
+									    	<div class="btn btn-default colorSelector" title="填充颜色">
+									    		<div style="background-color: #EEEEEE"></div>
+									    	</div>
+									    </label>
+									    <label class="col-md-3 control-label">
+									    	<input id="transparency" data-slider-id='transparency_slider' type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+									    </label>
+									    <div class="col-md-1">
+									    	<input class="form-control slider-value" readonly="" value="100%" type="text" title="透明度" data-toggle="tooltip" data-placement="top">
+									    </div>
+									</div>
+									<div class="form-group text-shadow">
+										<label class="col-md-1 control-label col0-md-right-0 control-label-field">阴影</label>
+										<label class="col-sm-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked>
+										</label>
+										<div class="col-md-1 col0-md-right-0">
+											<div class="btn btn-default colorSelector" title="阴影颜色" data-toggle="tooltip" data-placement="top">
+									    		<div style="background-color: #EEEEEE"></div>
+									    	</div>
+										</div>
+										<div class="col-md-3 control-label">
+											<input id="stroke_transparency" data-slider-id='stroke_transparency_slider' type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<div class="col-md-1">
+											<input class="form-control slider-value" readonly="" value="100%" type="text" title="透明度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control" value="2" type="text" title="模糊度" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control" value="3" type="text" title="X向偏移量" data-toggle="tooltip" data-placement="top">
+										</div>
+										<div class="col-md-1">
+											<input class="form-control" value="3" type="text" title="Y向偏移量" data-toggle="tooltip" data-placement="top">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+			 	 </div>
+			</div>
+		</div>
+	</div>
+
 </body>

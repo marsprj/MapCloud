@@ -1,6 +1,7 @@
 MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	layer : null,
+	wmsWorkspace : null,
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
@@ -22,8 +23,8 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 						return;
 					}
 
-					var wmsWorkspace = new GeoBeans.WMSWorkspace(wmsName,url,version);
-					wmsWorkspace.getLayers(dialog.getLayersCallback);
+					dialog.wmsWorkspace = new GeoBeans.WMSWorkspace(wmsName,url,version);
+					dialog.wmsWorkspace.getLayers(dialog.getLayersCallback);
 					dialog.panel.find("#wms_layers").html("");
 				});
 
@@ -63,7 +64,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 
 				var styles = [];
-				var layer = new GeoBeans.Layer.WMSLayer(wms_name,
+				var layer = new GeoBeans.Layer.WMSLayer(dialog.wmsWorkspace,wms_name,
 								wms_url,wms_layers,styles);
 				dialog.layer = layer;
 				MapCloud.wms_layer = dialog.layer;

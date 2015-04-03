@@ -25,37 +25,40 @@ MapCloud.refresh = MapCloud.Class({
 		}
 		var that = this;
 
-		$("ul#layers_row").sortable({
-		 	vertical: true,
-		 	nested : false,
-		 	handle : "li.layer_row",
-		 	onDrop: function($item, container, _super) {
-		 		_super($item, container);
-		 		var index = $item.attr("value");
-		 		var layer = mapObj.layers[parseInt(index)];
-		 		var layer_rows = $item.parent().children();
-		 		var newIndex = layer_rows.length - 1 - layer_rows.index($item);
-		 		if(newIndex != -1){
-		 			var step = newIndex - parseInt(index);
-		 			if(step > 0){
-		 				layer.up(step);
-		 			}else if(step < 0){
-		 				step = step * (-1);
-		 				layer.down(step);
-		 			}
-		 			mapObj.draw();
-		 			that.refreshPanel();
-		 		}
-		 	}
-			// onDrag: function ($item, position) {
-			//     // $item.css({
-			//     // 	border:"1px solid #ccc"
+		// 影响点击，暂时屏蔽
+		// $("ul#layers_row").sortable({
+		//  	vertical: true,
+		//  	nested : false,
+		//  	handle : "li.layer_row",
+		//  	onDrop: function($item, container, _super) {
+		//  		_super($item, container);
+		//  		var index = $item.attr("value");
+		//  		var layer = mapObj.layers[parseInt(index)];
+		//  		var layer_rows = $item.parent().children();
+		//  		var newIndex = layer_rows.length - 1 - layer_rows.index($item);
+		//  		if(newIndex != -1){
+		//  			var step = newIndex - parseInt(index);
+		//  			if(step > 0){
+		//  				layer.up(step);
+		//  			}else if(step < 0){
+		//  				step = step * (-1);
+		//  				layer.down(step);
+		//  			}
+		//  			mapObj.draw();
+		//  			that.refreshPanel();
+		//  		}
+		//  	}
+		// 	// onDrag: function ($item, position) {
+		// 	//     // $item.css({
+		// 	//     // 	border:"1px solid #ccc"
 
-			//     // }); 	
-			// 	$item.addClass("dragged");
-	 	// 		$("body").addClass("dragging");	
-			// }
-		});		
+		// 	//     // }); 	
+		// 	// 	$item.addClass("dragged");
+	 // 	// 		$("body").addClass("dragging");	
+		// 	// }
+		// });	
+
+
 		var html = "";
 
 		var baseLayer = mapObj.baseLayer;
@@ -274,9 +277,6 @@ MapCloud.refresh = MapCloud.Class({
 			
 		});
 
-		this.panel.find("#wms_transparency").each(function(){
-			$(this).slider();
-		});
 
 		var that = this;
 		this.panel.find(".layer_style_row .layer-style-icon").each(function(){
@@ -318,7 +318,37 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.layer_appearance_dialog.setTextSymbolizer(textSymbolizer);
 				MapCloud.layer_appearance_dialog.showDialog();
 			});
-		})
+		});
+
+		this.panel.find(".mc-icon-wmslayer").each(function(){
+			$(this).click(function(){
+				var wmsLayerIndex = $(this).parents(".layer_row").attr("value");							
+				if(wmsLayerIndex == null){
+					return;
+				}
+				var wmsLayer = mapObj.layers[parseInt(wmsLayerIndex)];
+				if(wmsLayer == null){
+					return;
+				}
+
+				var wmsMapLayerHtml = $(this).parents(".wms_layer_row")
+										.find(".wms-map-layer");
+				if(wmsMapLayerHtml.length == 0){
+					return;
+				}
+				var wmsMapLayerName = wmsMapLayerHtml.text();	
+				var wmsMapLayer = wmsLayer.getMapLayer(wmsMapLayerName);
+				if(wmsMapLayer == null){
+					return;
+				}
+
+				if(MapCloud.wmsStyleMgr_dialog == null){
+					MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+				}
+				MapCloud.wmsStyleMgr_dialog.showDialog();				
+				MapCloud.wmsStyleMgr_dialog.setWMSLayer(wmsLayer,wmsMapLayer);
+			});
+		});
 	},
 	
 	createSymbolizerIcon: function(symbolizer,geomType){
@@ -577,10 +607,10 @@ MapCloud.refresh = MapCloud.Class({
 					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
 					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">"
-					 +" 	<div class=\"mc-icon mc-icon-layer\"></div>"
+					 +" 	<div class=\"mc-icon mc-icon-wmslayer\"></div>"
 					 +"	</div>"
 					 +"	<div class=\"col-md-7 col-xs-7\">"
-					 +"		<span>" + layer + "</span>"
+					 +"		<span class='wms-map-layer'>" + layer + "</span>"
 					 +"	</div>"
 					 +"</div>";
 			html += row;
