@@ -2,6 +2,7 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	rule : null,
 	type : null,
+	fonts : null,
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
@@ -78,10 +79,35 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 
+		//拿到字体
+		if(this.fonts == null){
+			var fontManager = new GeoBeans.FontManager("/ows/user1/mgr","1.0.0");
+			this.fonts = fontManager.getFonts(this.getFontsCallback);
+			this.displayFonts(this.fonts);
+		}
+
+
 	},
 
-	setRule : function(rule){
+
+	displayFonts : function(fonts){
+		if(fonts == null){
+			return;
+		}
+		var html = "";
+		for(var i = 0; i < fonts.length;++i){
+			var font = fonts[i];
+			var face = font.face;
+			var family = font.family;
+			html += "<option value='" + family +
+					"'>" + face + "</option>";
+		}
+		this.panel.find(".font-family").html(html);
+	},
+	
+	setRule : function(rule,fields){
 		this.rule = rule;
+		this.displayFields(fields);
 		this.displayRule(this.rule);
 	},
 
@@ -103,6 +129,22 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 	},
 
+	//设置字段
+	displayFields : function(fields){
+		if(fields == null){
+			return;
+		}
+		var html = null;
+		var field = null;
+		var name = null;
+		for(var i = 0; i < fields.length;++i){
+			field = fields[i];
+			name = field.name;
+			html += "<option value='" + name + "''>"
+			+	name + "</option>";
+		}
+		this.panel.find("#style-text .text-prop select").html(html);
+	},
 	//按照样式初始化页面
 	displayRule : function(rule){
 		var symbolizer = rule.symbolizer;
@@ -347,9 +389,21 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		}else{
 			propItem.find(".style_enable").prop("checked",true);
 			this.setSytleItemEnable(propItem,true);
-			var html = "<option value='" + textProp + "''>"
-			+	textProp + "</option>";
-			propItem.find("select").append(html);
+			var option = propItem.find("select option[value='"+ textProp + "']");
+
+
+			if(option.length == 1){
+				option.attr("selected",true);
+			}else {
+				var html = "<option value='" + textProp + "''>"
+					+	textProp + "</option>";
+				option = propItem.find("select option[value='"+ textProp + "']");
+				option.attr("selected",true);
+			}
+			
+			
+
+			
 
 		}
 	},
@@ -530,7 +584,7 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		stroke.color = color;
 
 		var strokeWidth = strokeItem.find(".stroke-width").val();
-		stroke.strokeWidth = parseFloat(strokeWidth);
+		stroke.width = parseFloat(strokeWidth);
 
 		var lineCap = strokeItem.find(".stroke-line-cap option:selected")
 								.val();
@@ -614,15 +668,15 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		var font = this.getFont(fontItem);
 		textSymbolizer.font = font;
 
-		var strokeItem = this.panel.find("#style-info .style-stroke");
+		var strokeItem = textPanel.find(".text-stroke");
 		var stroke = this.getStroke(strokeItem);
 		textSymbolizer.stroke = stroke;		
 
-		var shadowItem = this.panel.find("#style-info .style-shadow");
+		var shadowItem = textPanel.find(".text-shadow");
 		var shadow = this.getShadow(shadowItem);
 		textSymbolizer.shadow = shadow;
 
-		var fillItem = this.panel.find("#style-info .style-fill");
+		var fillItem = textPanel.find(".text-fill");
 		var fill = this.getFill(fillItem);
 		textSymbolizer.fill = fill;
 
@@ -640,17 +694,17 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 
 		var font = new GeoBeans.Font();
-		var fontFamily = fontItem.find(".font-family option:selected").val();
-		font.fontFamily = fontFamily;
+		var fontFamily = fontItem.find(".font-family option:selected").attr("value");
+		font.family = fontFamily;
 
 		var fontStyle = fontItem.find(".font-style option:selected").val();
-		font.fontStyle = fontStyle;
+		font.style = fontStyle;
 
 		var fontWeight = fontItem.find(".font-weight option:selected").val();
-		font.fontWeight = fontWeight;
+		font.weight = fontWeight;
 	
 		var fontSize = fontItem.find(".font-size").val();
-		font.fontSize = fontSize;
+		font.size = fontSize;
 
 		return font;
 	}

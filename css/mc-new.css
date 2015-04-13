@@ -1038,8 +1038,8 @@ ul.layers_row li:before {
 }
 
 .table-block tbody {
-    height: 360px;
-    overflow-y: auto;
+/*    height: 360px;
+    overflow-y: auto;*/
 }
 .table-block tbody td, .table-block thead th {
     width: 33%;
@@ -1053,6 +1053,24 @@ ul.layers_row li:before {
 	width: 17px;
 	background-color: #fba;
 	cursor: pointer;
+	border: 1px solid #fff;
+}
+
+#styles_list_table thead tr th{
+	border : none;
+}
+#styles_list_table{
+	height : 330px;
+}
+#styles_list_table tbody{
+	height: 300px;
+    overflow-y: auto;
+}
+#styles_list_table tbody tr.selected{
+	background-color: #E4E4E4;
+}
+#styles_list_table tbody tr:hover{
+	background-color: #E4E4E4;	
 }
 /***************************************************************************/
 /* WMSStyleMgr Dialog End   														*/
