@@ -143,6 +143,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/WMSDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSStyleMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSStyleDialog.js"></script>
+<script type="text/javascript" src="js/Control/WMSStyleNameDialog.js"></script>
 <script type="text/javascript" src="js/Control/TrackOverlay.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
@@ -858,8 +859,27 @@ var Msg = {}; //declare this or modify line 1 of core.js
 						</div>
 						<div class="form-group form-group-sm">
 							<label for="" class="col-sm-2 control-label">图层：</label>
-							<div class="col-sm-10" id="wms_layers">
-								
+							<div class="col-sm-8" id="wms_layers">
+								<!-- <div class="input-group">
+							      	<span class="input-group-addon">
+							        	<input type="checkbox" aria-label="...">
+							     	 </span>
+							     	 <span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker"></span>
+							      	<input type="text" class="form-control" aria-label="...">
+							      	
+							    </div> -->
+
+							<div class="list-group">
+						        <a href="#" class="list-group-item">
+						            <span class="glyphicon glyphicon-map-marker glyphicon-geom-type"></span>cities<input type="checkbox" name="wms_layer">
+						        </a>
+						        <a href="#" class="list-group-item">
+						            <span class="glyphicon glyphicon-align-justify glyphicon-geom-type"></span>rivers<input type="checkbox" name="wms_layer">
+						        </a>
+						        <a href="#" class="list-group-item">
+						            <span class="glyphicon glyphicon-unchecked glyphicon-geom-type"></span>rivers<input type="checkbox" name="wms_layer">
+						        </a>
+						    </div>							 								
 							</div>
 						</div>
 					</form>
@@ -897,7 +917,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 								<div class="form-group form-group-sm">
 									<label for="wfs_datasource_layer_url" class="col-sm-2 control-label">地址：</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wfs_datasource_layer_url" value="/geoserver/radi/ows">
+										<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wfs_datasource_layer_url" value="/ows/user1/world/ims?">
 									</div>
 									<div class="col-sm-2">
 										<label class="control-label"><a href="#" class="navbar-link" id="wfs_datasource_get_info">获取信息</a></label>
@@ -1608,7 +1628,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title" id="newMapDialogLabel">WMS样式管理器</h4>
+					<h4 class="modal-title" id="newMapDialogLabel">样式管理器</h4>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -1743,7 +1763,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 			</div>
 		</div>
 	</div>
-	<!---->
+	<!--具体的样式-->
 	<div class="modal fade" id="wms-style-dialog" tabindex="-1" role="dialog" aria-labelledby="wms-style-dialogLabel" aria-hidden="true"
 		data-backdrop="true">
 		<div class="modal-dialog">
@@ -1942,7 +1962,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 											</select>
 										</div>
 										<div class="col-md-1">
-											<input class="form-control font-size" value="2" type="text" title="字体大小" data-toggle="tooltip" data-placement="top">
+											<input class="form-control font-size" value="12" type="text" title="字体大小" data-toggle="tooltip" data-placement="top">
 										</div>
 									</div>
 									<div class="form-group text-stroke">
@@ -2038,4 +2058,21 @@ var Msg = {}; //declare this or modify line 1 of core.js
 		</div>
 	</div>
 
+	<div class="modal fade" id="wms-style-name-dialog" tabindex="-1" role="dialog" aria-labelledby="wms-style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">新建样式</h4>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control" placeHolder="请输入样式名称" id="wms_style_add_name">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div> 
+	</div>
 </body>

@@ -1,9 +1,16 @@
 MapCloud.refresh = MapCloud.Class({
 	panel: null,
+
+	mgrUrl : "/ows/user1/mgr?",
+	layerID : null,
+	mapLayerID : null,
+	styleID : null,
+
 	initialize : function(id){
 		var that = this;
 		
 		this.panel = $("#"+id);
+		this.wmsStyleMgr = new GeoBeans.WMSStyleManager(this.mgrUrl); 
 	},
 
 	hide : function(){
@@ -23,7 +30,7 @@ MapCloud.refresh = MapCloud.Class({
 		if(mapObj == null){
 			return;
 		}
-		var that = this;
+		// var that = this;
 
 		// 影响点击，暂时屏蔽
 		// $("ul#layers_row").sortable({
@@ -69,7 +76,7 @@ MapCloud.refresh = MapCloud.Class({
 		
 		var layers = mapObj.layers;
 
-		var dialog = this;
+		var that = this;
 		for(var i = layers.length -1; i >= 0; --i){
 			var layer = layers[i];
 			if(layer == null){
@@ -90,31 +97,123 @@ MapCloud.refresh = MapCloud.Class({
 		this.panel.find(".glyphicon-chevron-down").each(function(){
 			$(this).click(
 			function(){
-				if($(this).hasClass("glyphicon-chevron-down")){
+				var li = $(this).parents("li");
+				var row = $(this).parents(".row");
+				var isWMSRow = false;
+				if(row.first().hasClass("wms_layer_row")){
+					isWMSRow = true;
+				}
+				if($(this).hasClass("mc-icon-down")){
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","none");
-					$("#layers_row .wms_layer_row[value='" + id + "']").css("display","none");
-					$(this).addClass("glyphicon-chevron-right");
-					$(this).removeClass("glyphicon-chevron-down");			
+					// $("#layers_row .wms_layer_row[value='" + id + "']").css("display","none");
+					if(isWMSRow){
+						// li.find(".wms_layer_style_row[value='" + id + "']")
+						// 	.css("display","none");
+						li.find(".wms_layer_style_row[lid='" + id + "']")
+							.slideUp();
+					}else{
+						// li.find(".row").css("display","none");
+						li.find(".row").slideUp();
+					}
+					$(this).css("transform","rotate(-90deg) translate(3px,0px)");
+					$(this).addClass("mc-icon-right");
+					$(this).removeClass("mc-icon-down");			
 				}else{
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","block");
-					$("#layers_row .wms_layer_row[value='" + id + "']").css("display","block");
-					$(this).removeClass("glyphicon-chevron-right");
-					$(this).addClass("glyphicon-chevron-down");			
+					if(isWMSRow){
+						// li.find(".wms_layer_style_row[value='" + id + "']")
+						// 	.css("display","block");
+						li.find(".wms_layer_style_row[lid='" + id + "']")
+							.slideDown();						
+					}else{
+						// li.find(".row").css("display","block");
+						li.find(".row").slideDown();
+					}
+					// $("#layers_row .wms_layer_row[value='" + id + "']").css("display","block");
+					li.find(".row").css("display","block");
+					$(this).removeClass("mc-icon-right");
+					$(this).addClass("mc-icon-down");
+					$(this).css("transform","rotate(0deg) translate(0px,0px)");
+					// $(this).removeClass("glyphicon-chevron-right");
+					// $(this).addClass("glyphicon-chevron-down");			
 				}
+			});
+		});
+
+		//样式的编辑
+		this.panel.find(".style-symbol").each(function(){
+			$(this).click(function(){
+				var row = $(this).parents(".wms_layer_style_row");
+				var sID = row.first().attr("sID");
+				var mapLayerID = row.first().attr("lID");
+				var layerID = $(this).parents(".layer_row").attr("value");
+				var layer = mapObj.layers[layerID];
+				if(layer == null){
+					return;
+				}
+				var style = null;
+				var mapLayer = null;
+				var fields = null;
+				if(mapLayerID == "-1"){
+					//此时是WFSLayer
+					style = layer.style;
+					fields = layer.featureType.fields;
+				}else{
+					mapLayer  = layer.mapLayers[mapLayerID];
+					if(mapLayer != null){
+						style = mapLayer.style;
+						fields = mapLayer.fields;
+					}
+				}
+				if(style == null){
+					return;
+				}
+				var rules = style.rules;
+				if(rules == null){
+					return;
+				}
+				var rule = rules[sID];
+				if(rule == null){
+					return;
+				}				
+				
+				if(MapCloud.wms_style_dialog == null){
+					MapCloud.wms_style_dialog = new MapCloud.WMSStyleDialog("wms-style-dialog");
+				}
+
+				that.layerID = layerID;
+				that.mapLayerID = mapLayerID;
+				that.styleID = sID;
+				MapCloud.wms_style_dialog.showDialog();	
+				MapCloud.wms_style_dialog.setRule(rule,
+					fields,"refresh");				
 			});
 		});
 
 		//图层的显示与隐藏
 		this.panel.find(".glyphicon-eye-open,.glyphicon-eye-close").each(function(){
 			$(this).click(function(){
-				var id = $(this).parent().parent().attr("value");
+				var li = $(this).parents("li");
+				var id = li.attr("value");
+				var row = $(this).parents(".row");
+				var isWMSRow = false;
+				if(row.first().hasClass("wms_layer_row")){
+					isWMSRow = true;
+				}
+				// var id = $(this).parent().parent().attr("value");
 				var layer = null;
+				var wmsLayer = null;
 				if(id == "baseLayer"){
 					layer = mapObj.baseLayer;
 				}else{
 					layer = mapObj.layers[id];
+					if(isWMSRow){
+						var mapLayerID = row.first().attr("value");
+						layer = layer.mapLayers[mapLayerID];
+					}
+					
 				}
 				if(layer == null){
 					return;
@@ -178,7 +277,7 @@ MapCloud.refresh = MapCloud.Class({
 				if(MapCloud.selected_layer != null){
 					var layer_name = MapCloud.selected_layer.name;
 					mapObj.removeLayer(layer_name);
-					dialog.refreshPanel();
+					that.refreshPanel();
 					// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 					mapObj.draw();	
 
@@ -202,7 +301,7 @@ MapCloud.refresh = MapCloud.Class({
 			$(this).click(function(){
 				mapObj.removeBaseLayer();
 				mapObj.draw();
-				dialog.refreshPanel();
+				that.refreshPanel();
 			});
 		});
 
@@ -278,7 +377,7 @@ MapCloud.refresh = MapCloud.Class({
 		});
 
 
-		var that = this;
+		// var that = this;
 		this.panel.find(".layer_style_row .layer-style-icon").each(function(){
 			$(this).click(function(){
 				var layerID = $(this).parents(".layer_style_row").attr("value");
@@ -347,6 +446,26 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				MapCloud.wmsStyleMgr_dialog.showDialog();				
 				MapCloud.wmsStyleMgr_dialog.setWMSLayer(wmsLayer,wmsMapLayer);
+			});
+		});
+
+		this.panel.find(".mc-icon-wfslayer").each(function(){
+			$(this).click(function(){
+				var li = $(this).parents("li");
+				var layerID = li.attr("value");
+				var wfsLayer = mapObj.layers[layerID];
+				if(wfsLayer == null){
+					return;
+				}
+				var style = wfsLayer.style;
+				if(style == null){
+					return;
+				}
+				if(MapCloud.wmsStyleMgr_dialog == null){
+					MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+				}
+				MapCloud.wmsStyleMgr_dialog.showDialog();
+				MapCloud.wmsStyleMgr_dialog.setWFSLayer(wfsLayer);
 			});
 		});
 	},
@@ -537,7 +656,7 @@ MapCloud.refresh = MapCloud.Class({
 				+	"		<div class=\"mc-icon " + icon + "\"></div>"	
 				+	"	</div>"
 				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
-				+	"		<span>" + type + "</span>"
+				+	"		<strong>" + type + "</strong>"
 				+	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul>"
@@ -563,19 +682,23 @@ MapCloud.refresh = MapCloud.Class({
 		var name = wmsLayer.name;
 		html	= 	"<li class=\"row layer_row\" value=\"" + index + "\">"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
 				+	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
 				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
-				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(wmsLayer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		html	+=	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
 				+	"	</div>"
 				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
-				+	"		<span>" + name + "</span>"
+				+	"		<strong>" + name + "</strong>"
 				+	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul class=\"layer_row_quick_tool_ul\">"
@@ -600,109 +723,345 @@ MapCloud.refresh = MapCloud.Class({
 
 
 		var layers = wmsLayer.layers;
-		for(var i = 0; i < layers.length; ++i){
-			var layer = layers[i];
+		var mapLayers = wmsLayer.mapLayers;
+		for(var i = 0; i < mapLayers.length; ++i){
+			var mapLayer = mapLayers[i];
+			if(mapLayer == null){
+				continue;
+			}
+			var name = mapLayer.name;
 			var row = "<div class=\"row wms_layer_row\" value=\"" + i + "\" style=\"display:block\">"
 					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
-					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
-					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">"
-					 +" 	<div class=\"mc-icon mc-icon-wmslayer\"></div>"
+					 +	"	<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
 					 +"	</div>"
-					 +"	<div class=\"col-md-7 col-xs-7\">"
-					 +"		<span class='wms-map-layer'>" + layer + "</span>"
+					 +"	<div class=\"col-md-1 col-xs-1\">";
+			if(mapLayer.visible){
+				row += "	<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>";
+			}else{
+				row += "	<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";
+			}
+			row	 +=" </div>"
+					 +"	<div class=\"col-md-1 col-xs-1\">"
+					 +" 	<div class=\"mc-icon mc-icon-wmslayer mc-icon-layer\"></div>"
+					 +"	</div>"
+					 +"	<div class=\"col-md-55 col-xs-5\">"
+					 +"		<strong class='wms-map-layer'>" + name + "</strong>"
 					 +"	</div>"
 					 +"</div>";
+			
 			html += row;
+			var styleHtml = this.getStyleHtml(i,mapLayer.style);
+			html += styleHtml;
 
 		}
 		html += "</li>";					
 		return html;
 	},
 
-	getWFSLayerHtml : function(i,layer){
-		var name = layer.name;
-		var style = layer.style;
+	getStyleHtml : function(index,style){
 		if(style == null){
 			return "";
 		}
+		var html = "";
 		var rules = style.rules;
-		if(rules == null){
-			return "";
+		if(rules.length == 1){
+			var rule = rules[0];
+			if(rule != null){
+				var filter = rule.filter;
+				if(filter == null){
+					var symbolizer = rule.symbolizer;
+					if(symbolizer != null){
+						var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
+						html += '<div class="row wms_layer_style_row" lID="'
+							 +			index+ '" sID="0">'
+							 + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 +  '	<div class="col-md-1 col-xs-1"></div>'
+							 +  '	<div class="col-md-1 col-xs-1"></div>'
+							 +  '	<div class="col-md-1 col-xs-1">'
+							 +       symbolizerHtml
+							 +  '	</div>'
+							 +  '</div>';
+						return html;
+					}
+				}
+			}
+		}else{
+			var field = MapCloud.wmsStyleMgr_dialog
+						.getProperyNameByRule(rules[0]); 
+			html += '<div class="row wms_layer_style_row" lID="' + index + '">'
+				 + 	'	<div class="col-md-1 col-xs-1"></div>'
+				 + 	'	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-5 col-xs-5"><strong>'
+				 +      field 
+				 +  '	</strong></div>'
+				 +  '</div>';
+
+			for(var i = 0; i < rules.length;++i){
+				var rule = rules[i];
+				if(rule == null){
+					continue;
+				}
+				var filter = rule.filter;
+				var value = null;
+				if(filter != null){
+					var expression1 = filter.expression1;
+					var expression2 = filter.expression2;
+					if(expression1 != null && 
+						expression1.type == GeoBeans.Expression.Type.Literal){
+						value = expression1.value;
+					}else if(expression2 != null && 
+						expression2.type == GeoBeans.Expression.Type.Literal){
+						value = expression2.value;
+					}					
+				}
+
+				var symbolizer = rule.symbolizer;
+				var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
+				html += '<div class="row wms_layer_style_row" lID="' 
+				 +			 index + '" sID="' + i + '">'
+				 + 	'	<div class="col-md-1 col-xs-1"></div>'
+				 + 	'	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-1 col-xs-1">'
+				 + 			symbolizerHtml
+				 +  '	</div>'
+				 +  '	<div class="col-md-5 col-xs-5">'
+				 +    		value
+				 + 	'	</div>'
+				 + 	'</div>';
+			}
+			return html;
 		}
-		var ruleCount = rules.length;
-		var geomType = MapCloud.getLayerGeomType(layer);
-		html	= 	"<li class=\"row layer_row\" value=\"" + i + "\">"
-				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
-				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
-				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1\">";
+		return "";
+	},
+
+	getSymbolizerHtml : function(symbolizer){
+		if(MapCloud.wmsStyleMgr_dialog == null){
+			MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+		}
+		var html = MapCloud.wmsStyleMgr_dialog
+						.getSymbolHtml(symbolizer);
+		return html;						
+	},
+
+	getWFSLayerHtml : function(index,layer){
+		var name = layer.name;
+		var style = layer.style;
+
+		html = 	"<li class=\"row layer_row\" value=\"" + index + "\">"
+			+	"	<div class=\"col-md-1 col-xs-1\">"
+			+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+			+	"	</div>"
+			+	"	<div class=\"col-md-1 col-xs-1\">"
+			+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+			+	"	</div>"
+			+	"	<div class=\"col-md-1 col-xs-1\">";
 		if(layer.visible){
 			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>";
 		}else{
-			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";
-		}				
-		html	+=	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
-				+	"	</div>"
-				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
-				+	"		<span>" + name + "</span>"
-				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
-				+   "		<ul class=\"layer_row_quick_tool_ul\">"
-				+	"			<li class=\"dropdown pull-right\">"
-				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
-				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
-				+	"				</a>"
-				+	"				<ul class=\"dropdown-menu\">"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
-				+	"				</ul>"
-				+	"			</li>"
-				+	"		</ul>"
-				+	"	</div>"
-				+	"	<br/>";
-				// +	"</li>";
-		// html += "<div class=\"row\">";
-		for(var j = 0; j < ruleCount; ++j){
-			var rule = rules[j];
-			var symbolizer = rule.symbolizer;
-			if (symbolizer instanceof GeoBeans.Style.TextSymbolizer){
-				continue;
-			}
-			var icon = this.createSymbolizerIcon(symbolizer,geomType);
-			var filter = rule.filter;
-			var filterHtml = "";
-			if(filter != null){
-				var value = filter.value;
-				var field = filter.field;
-				filterHtml = field + " = " + value;
-			}
-
-			html += "<div class=\"row layer_style_row\" value=\"" + i + "\" style=\"display:block\">"
-				 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
-				 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
-				 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
-				 +	"	<div class=\"col-md-1 col-xs-1\">"
-				 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"	
-				 +	"	</div>"
-				 +	"	<div class=\"col-md-7 col-xs-7\">"
-				 +	"		<span>" + filterHtml + " </span>"
-				 +	"	</div>"
-				 +	"</div>"
-		}
-		// html += "</div>";
-		var chartHtml = this.getChartsHtml(layer);
-		html += chartHtml;
-
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}	
+										
+		html+=	"	</div>"
+			+	"	<div class=\"col-md-1 col-xs-1\">"
+			+	"		<div class=\"mc-icon mc-icon-layer mc-icon-wfslayer\"></div>"	
+			+	"	</div>"
+			+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+			+	"		<strong>" + name + "</strong>"
+			+	"	</div>"
+			+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+			+   "		<ul class=\"layer_row_quick_tool_ul\">"
+			+	"			<li class=\"dropdown pull-right\">"
+			+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+			+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+			+	"				</a>"
+			+	"				<ul class=\"dropdown-menu\">"
+			// +	"					<li><a href='#'><input id='wms_transparency' data-slider-id='wms_transparency_slider' "
+			// +	"						type='text' class='form-control' data-slider-min='0' data-slider-max='100' "
+			// +	"						data-slider-step='1' data-slider-value='100'  data-slider-enabled='true'/></a></li>"
+			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
+			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
+			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
+			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+			+	"				</ul>"
+			+	"			</li>"
+			+	"		</ul>"
+			+	"	</div>"
+			+	"	<br/>";
+			// +	"</li>";	
+		var styleHtml = this.getStyleHtml(-1,style);
+		html += styleHtml;
 		html += "</li>";
-
 		return html;
+	},
+	// getWFSLayerHtml : function(i,layer){
+	// 	var name = layer.name;
+	// 	var style = layer.style;
+	// 	if(style == null){
+	// 		return "";
+	// 	}
+	// 	var rules = style.rules;
+	// 	if(rules == null){
+	// 		return "";
+	// 	}
+	// 	var ruleCount = rules.length;
+	// 	var geomType = MapCloud.getLayerGeomType(layer);
+	// 	html	= 	"<li class=\"row layer_row\" value=\"" + i + "\">"
+	// 			+	"	<div class=\"col-md-1 col-xs-1\">"
+	// 			+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+	// 			+	"	</div>"
+	// 			+	"	<div class=\"col-md-1 col-xs-1\">"
+	// 			+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+	// 			+	"	</div>"
+	// 			+	"	<div class=\"col-md-1 col-xs-1\">";
+	// 	if(layer.visible){
+	// 		html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>";
+	// 	}else{
+	// 		html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";
+	// 	}				
+	// 	html	+=	"	</div>"
+	// 			+	"	<div class=\"col-md-1 col-xs-1\">"
+	// 			+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
+	// 			+	"	</div>"
+	// 			+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+	// 			+	"		<strong>" + name + "</strong>"
+	// 			+	"	</div>"
+	// 			+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+	// 			+   "		<ul class=\"layer_row_quick_tool_ul\">"
+	// 			+	"			<li class=\"dropdown pull-right\">"
+	// 			+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+	// 			+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+	// 			+	"				</a>"
+	// 			+	"				<ul class=\"dropdown-menu\">"
+	// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
+	// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
+	// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
+	// 			+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+	// 			+	"				</ul>"
+	// 			+	"			</li>"
+	// 			+	"		</ul>"
+	// 			+	"	</div>"
+	// 			+	"	<br/>";
+	// 			// +	"</li>";
+	// 	// html += "<div class=\"row\">";
+	// 	for(var j = 0; j < ruleCount; ++j){
+	// 		var rule = rules[j];
+	// 		var symbolizer = rule.symbolizer;
+	// 		if (symbolizer instanceof GeoBeans.Style.TextSymbolizer){
+	// 			continue;
+	// 		}
+	// 		var icon = this.createSymbolizerIcon(symbolizer,geomType);
+	// 		var filter = rule.filter;
+	// 		var filterHtml = "";
+	// 		if(filter != null){
+	// 			var value = filter.value;
+	// 			var field = filter.field;
+	// 			filterHtml = field + " = " + value;
+	// 		}
+
+	// 		html += "<div class=\"row layer_style_row\" value=\"" + i + "\" style=\"display:block\">"
+	// 			 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
+	// 			 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
+	// 			 +	"	<div class=\"col-md-1 col-xs-1\"></div>"
+	// 			 +	"	<div class=\"col-md-1 col-xs-1\">"
+	// 			 +	"		<div class=\"mc-icon layer-style-icon\" value=\"" + j + "\" style=\"" + icon + "\"></div>"	
+	// 			 +	"	</div>"
+	// 			 +	"	<div class=\"col-md-7 col-xs-7\">"
+	// 			 +	"		<span>" + filterHtml + " </span>"
+	// 			 +	"	</div>"
+	// 			 +	"</div>"
+	// 	}
+	// 	// html += "</div>";
+	// 	var chartHtml = this.getChartsHtml(layer);
+	// 	html += chartHtml;
+
+	// 	html += "</li>";
+
+	// 	return html;
+	// },
+
+	setRule : function(rule){
+
+		var layer = mapObj.layers[this.layerID];
+		if(layer == null){
+			return;
+		}
+		var style = null;
+		var mapLayer = null;
+		if(this.mapLayerID == -1){
+			style = layer.style;
+		}else{
+			mapLayer = layer.mapLayers[this.mapLayerID];
+			if(mapLayer != null){
+				style = mapLayer.style;
+			}
+		}
+		if(style == null){
+			return;
+		}
+		var rules = style.rules;
+		if(rules == null){
+			return;
+		}
+		var ruleO = rules[this.styleID];
+		if(ruleO == null){
+			return;
+		}
+		ruleO.symbolizer = rule.symbolizer;
+		ruleO.textSymbolizer = rule.textSymbolizer;
+		var styleName = style.name;
+
+		if(styleName == "default"){
+			
+			mapObj.draw();
+			MapCloud.refresh_panel.refreshPanel();
+		}else{
+			var xml = this.wmsStyleMgr.writer.write(style);
+			 this.wmsStyleMgr.updateStyle(xml,styleName,this.updateCallback);
+		}
+
+		// if(mapLayer == null){
+		// 	return;
+		// }
+		// var style = mapLayer.style;
+		// if(style == null){
+		// 	return;
+		// }
+		// var rules = style.rules;
+		// if(rules == null){
+		// 	return;
+		// }
+		// rules[this.styleID].textSymbolizer = rule.textSymbolizer;
+		// rules[this.styleID].symbolizer = rule.symbolizer;
+		// var name = mapLayer.style_name;
+
+		// var xml = this.wmsStyleMgr.writer.write(style);
+		// this.wmsStyleMgr.updateStyle(xml,name,this.updateCallback);
+		
+	},
+
+	updateCallback : function(result){
+		if(result != "success"){
+			alert(result);
+		}
+
+		
+		var layer = mapObj.layers[MapCloud.refresh_panel.layerID];
+		if(layer == null){
+			return;
+		}
+		if(layer instanceof GeoBeans.Layer.WFSLayer){
+
+		}else if(layer instanceof GeoBeans.Layer.WMSLayer){
+			layer.update();
+		}
+		
+		mapObj.draw();
+		MapCloud.refresh_panel.refreshPanel();
 	}
 });

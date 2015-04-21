@@ -192,9 +192,12 @@ ul {
 }
 
 .mc-icon-wmslayer{
-	background-image:url(../images/layer.png);
+	background-image:url(../images/wms-layer.png);
 }
 
+.mc-icon-layer{
+	background-image:url(../images/wms-layer.png);
+}
 .mc-icon-marker{
 	background-image: url(../images/marker.png);
 }
@@ -402,11 +405,25 @@ ul#ribbon_tabs li{
 
 
 
-.left_row,.layer_row,.layer_style_row,.chart_style_row,.wms_layer_row,#baseLayer_row{
+/*.left_row,.layer_row,.layer_style_row,.chart_style_row,.wms_layer_row,#baseLayer_row{
 	padding:6px;
 	margin-left:0px;
 	margin-right:0px;
 
+}*/
+#left_panel .row{
+	padding:6px;
+	margin-left:0px;
+	margin-right:0px;
+	cursor: pointer;	
+}
+#layers_row{
+	padding : 0px !important;
+	height : calc(100% - 80px);
+}
+
+#left_panel .row .row .row{
+	padding-left: 0px;
 }
 .layer_row .layer_name, .chart_style_row .chart_name{
 	cursor:pointer;
@@ -440,9 +457,24 @@ ul#ribbon_tabs li{
 	color:#428bca;
 }
 
-.layer_style_row{
+.layer_style_row,.wms_layer_row{
 	padding-top: 20px;
 	padding-left: 0px;
+}
+
+.mc-icon-rotate{
+	/*animation:myfirst 2s;
+	-webkit-animation:myfirst 2s;*/
+	transition-property: all;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+	/*transition-delay: 2s;*/
+}
+.mc-icon-down{
+	/*transform: rotate(0deg) translate(0px, 0px);*/
+}
+.mc-icon-right{
+	/*transform: rotate(-90eg) translate(3px, 0px);*/
 }
 .chart_style_row:hover{
 	background-color: #DFF1F8;
@@ -836,6 +868,13 @@ legend {
 	margin-left: 0px;
 }
 
+#wms_layers .glyphicon-geom-type{
+	padding-right: 20px;
+}
+
+#wms_layers input[name="wms_layer"]{
+	float: right;
+}
 
 /***************************************************************************/
 /* WMS Dialog End    		                                        */
@@ -1055,6 +1094,13 @@ ul.layers_row li:before {
 	cursor: pointer;
 	border: 1px solid #fff;
 }
+.style-symbol{
+	height: 17px;
+	width: 17px;
+	background-color: #fba;
+	cursor: pointer;
+	border: 1px solid #fff;
+}
 
 #styles_list_table thead tr th{
 	border : none;
@@ -1153,3 +1199,23 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* WMSStyle Dialog End   														*/
 /***************************************************************************/
+
+/***************************************************************************/
+/* WMSStyleName Dialog Begin   														*/
+/***************************************************************************/
+#wms-style-name-dialog{
+
+}
+
+#wms-style-name-dialog .modal-dialog{
+	width: 300px;
+	margin: 100px auto;
+}
+
+#wms-style-name-dialog .modal-footer{
+	text-align: center;
+}
+/***************************************************************************/
+/* WMSStyleName Dialog End   														*/
+/***************************************************************************/
+

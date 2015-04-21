@@ -77,8 +77,12 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 
 
 				dialog.closeDialog();		
-				var refresh = new MapCloud.refresh("left_panel");
-				refresh.refreshPanel();						
+				// var refresh = new MapCloud.refresh("left_panel");
+				if(MapCloud.refresh_panel == null){
+					MapCloud.refresh_panel = 
+							new MapCloud.refresh("left_panel");
+				}
+				MapCloud.refresh_panel.refreshPanel();						
 			});
 		});
 	},
@@ -97,16 +101,55 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	getLayersCallback : function(layers){
-		var html = "";
-		var layer,name;
+		var html = "<list-group>";
+		var layer,name,geomType,layerTypeHtml;
+		var dialog = MapCloud.wms_dialog;
 		for(var i = 0; i < layers.length; ++i){
 			layer = layers[i];
 			name = layer.name;
-			html += "<label class=\"checkbox-inline col-sm-3\">"
-				 +  "<input name=\"wms_layer\" type=\"checkbox\" value=\"" + name + "\">"
-				 +  name + "</label>";
+			geomType = layer.geomType;
+			// html += "<label class=\"checkbox-inline col-sm-3\">"
+			// 	 +  "<input name=\"wms_layer\" type=\"checkbox\" value=\"" + name + "\">"
+			// 	 +  name + "</label>";
+			layerTypeHtml = dialog.getLayerGeomTypeHtml(geomType);
+			html += '<a href="#" class="list-group-item">'
+					+ layerTypeHtml + name 
+					+ '<input type="checkbox" name="wms_layer" value="'
+					+ name + '"></a>';
+			
 		}
-		$("#wms_layers").html(html);
+		html += "</list-group>";
+		dialog.panel.find("#wms_layers").html(html);
+	},
+
+	getLayerGeomTypeHtml : function(geomType){
+		var html = "";
+		switch(geomType){
+			case GeoBeans.Geometry.Type.POINT:
+			case GeoBeans.Geometry.Type.MULTIPOINT:{
+				html = '<span class="glyphicon glyphicon-map-marker '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+			case GeoBeans.Geometry.Type.LINESTRING:
+			case GeoBeans.Geometry.Type.MULTILINESTRING:{
+				html = '<span class="glyphicon glyphicon-align-justify '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+			case GeoBeans.Geometry.Type.POLYGON:
+			case GeoBeans.Geometry.Type.MULTIPOLYGON:{
+				html = '<span class="glyphicon glyphicon-unchecked  '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+			default :{
+				html = '<span class="glyphicon glyphicon-unchecked  '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+		}
+		return html;
 	}
 
 })

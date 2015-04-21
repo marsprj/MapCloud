@@ -1,6 +1,7 @@
 MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	rule : null,
+	source : null,
 	type : null,
 	fonts : null,
 
@@ -59,6 +60,9 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 				textTextCheck.prop("checked",false);
 				var item = textTextCheck.parents(".form-group");
 				dialog.setSytleItemEnable(item,false);
+				dialog.setFontEnable(true);
+			}else{
+				dialog.setFontEnable(false);
 			}
 		});
 		
@@ -68,13 +72,25 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 				textPropCheck.prop("checked",false);
 				var item = textPropCheck.parents(".form-group");
 				dialog.setSytleItemEnable(item,false);
+				dialog.setFontEnable(true);
+			}else{
+				dialog.setFontEnable(false);
 			}
 		});
 
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var rule = dialog.getRule();
-				MapCloud.wmsStyleMgr_dialog.setRule(rule);
+				if(dialog.source == "styleMgr"){
+					MapCloud.wmsStyleMgr_dialog.setRule(rule);
+				}else if(dialog.source == "refresh"){
+					if(MapCloud.refresh_panel == null){
+						MapCloud.refresh_panel = 
+								new MapCloud.refresh("left_panel");
+					}
+					MapCloud.refresh_panel.setRule(rule);
+				}
+				
 				dialog.closeDialog();
 			});
 		});
@@ -85,10 +101,29 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.fonts = fontManager.getFonts(this.getFontsCallback);
 			this.displayFonts(this.fonts);
 		}
-
-
 	},
 
+	cleanup : function(){
+		var first = this.panel.find("ul.nav-tabs li a").first();
+		first.tab("show");
+	},
+
+	setFontEnable : function(checked){
+		var textPanel = this.panel.find("#style-text");
+		var fontItem = textPanel.find(".text-font");
+		var fillItem = textPanel.find(".text-fill");
+		if(checked){
+			this.setSytleItemEnable(fontItem,true);
+			fontItem.find(".style_enable").prop("checked",true);
+			this.setSytleItemEnable(fillItem,true);
+			fillItem.find(".style_enable").prop("checked",true);
+		}else {
+			this.setSytleItemEnable(fontItem,false);
+			fontItem.find(".style_enable").prop("checked",false);
+			this.setSytleItemEnable(fillItem,false);
+			fillItem.find(".style_enable").prop("checked",false);
+		}
+	},
 
 	displayFonts : function(fonts){
 		if(fonts == null){
@@ -104,9 +139,10 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		this.panel.find(".font-family").html(html);
 	},
-	
-	setRule : function(rule,fields){
+
+	setRule : function(rule,fields,source){
 		this.rule = rule;
+		this.source = source;
 		this.displayFields(fields);
 		this.displayRule(this.rule);
 	},

@@ -11,6 +11,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		this.ribbonContainer = $("#ribbon_container").first();
 
 		this.hideAllRibbons();
+		this.displayFirstRibbon();
 		this.registerRibbonEvents();
 		
 		this.enableMneuEffect();
@@ -24,6 +25,10 @@ MapCloud.Ribbon = MapCloud.Class({
 		$(".ribbon_panel").each(function() {
 			$(this).css("display","none");					
 		});
+	},
+
+	displayFirstRibbon : function(){
+		$("#map_ribbon").css("display","block");
 	},
 	
 	showRibbon : function(type){

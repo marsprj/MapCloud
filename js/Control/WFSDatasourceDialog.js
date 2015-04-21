@@ -122,15 +122,15 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 										server,
 										typename,
 										"GML2");
-				var symbolizer, rule, style;
-				symbolizer = dialog.getDefaultStyle();
+				// var symbolizer, rule, style;
+				// symbolizer = dialog.getDefaultStyle();
 				
-				rule = new GeoBeans.Style.Rule(symbolizer, null);
-				style = new GeoBeans.Style();
-				style.addRule(rule);
+				// rule = new GeoBeans.Style.Rule(symbolizer, null);
+				// style = new GeoBeans.Style();
+				// style.addRule(rule);
 
 
-				dialog.layer.setStyle(style);	
+				// dialog.layer.setStyle(style);	
 				mapObj.addLayer(dialog.layer);
 
 				// dialog.layer.resigterHitEvent(dialog.onFeatureHit);
@@ -148,9 +148,13 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				dialog.closeDialog();
 				dialog.showFeaturesTable();
 
-				var refresh = new MapCloud.refresh("left_panel");
-				refresh.refreshPanel();
-
+				// var refresh = new MapCloud.refresh("left_panel");
+				// refresh.refreshPanel();
+				if(MapCloud.refresh_panel == null){
+					MapCloud.refresh_panel = 
+							new MapCloud.refresh("left_panel");
+				}
+				MapCloud.refresh_panel.refreshPanel();	
 				MapCloud.resizeCharts();
 
 /*				//设置属性
