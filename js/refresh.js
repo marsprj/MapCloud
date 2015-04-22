@@ -10,7 +10,7 @@ MapCloud.refresh = MapCloud.Class({
 		var that = this;
 		
 		this.panel = $("#"+id);
-		this.wmsStyleMgr = new GeoBeans.WMSStyleManager(this.mgrUrl); 
+		this.wmsStyleMgr = new GeoBeans.StyleManager(this.mgrUrl); 
 	},
 
 	hide : function(){
@@ -179,15 +179,15 @@ MapCloud.refresh = MapCloud.Class({
 					return;
 				}				
 				
-				if(MapCloud.wms_style_dialog == null){
-					MapCloud.wms_style_dialog = new MapCloud.WMSStyleDialog("wms-style-dialog");
+				if(MapCloud.style_dialog == null){
+					MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
 				}
 
 				that.layerID = layerID;
 				that.mapLayerID = mapLayerID;
 				that.styleID = sID;
-				MapCloud.wms_style_dialog.showDialog();	
-				MapCloud.wms_style_dialog.setRule(rule,
+				MapCloud.style_dialog.showDialog();	
+				MapCloud.style_dialog.setRule(rule,
 					fields,"refresh");				
 			});
 		});
@@ -441,11 +441,11 @@ MapCloud.refresh = MapCloud.Class({
 					return;
 				}
 
-				if(MapCloud.wmsStyleMgr_dialog == null){
-					MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+				if(MapCloud.styleMgr_dialog == null){
+					MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
 				}
-				MapCloud.wmsStyleMgr_dialog.showDialog();				
-				MapCloud.wmsStyleMgr_dialog.setWMSLayer(wmsLayer,wmsMapLayer);
+				MapCloud.styleMgr_dialog.showDialog();				
+				MapCloud.styleMgr_dialog.setWMSLayer(wmsLayer,wmsMapLayer);
 			});
 		});
 
@@ -461,11 +461,11 @@ MapCloud.refresh = MapCloud.Class({
 				if(style == null){
 					return;
 				}
-				if(MapCloud.wmsStyleMgr_dialog == null){
-					MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+				if(MapCloud.styleMgr_dialog == null){
+					MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
 				}
-				MapCloud.wmsStyleMgr_dialog.showDialog();
-				MapCloud.wmsStyleMgr_dialog.setWFSLayer(wfsLayer);
+				MapCloud.styleMgr_dialog.showDialog();
+				MapCloud.styleMgr_dialog.setWFSLayer(wfsLayer);
 			});
 		});
 	},
@@ -788,7 +788,7 @@ MapCloud.refresh = MapCloud.Class({
 				}
 			}
 		}else{
-			var field = MapCloud.wmsStyleMgr_dialog
+			var field = MapCloud.styleMgr_dialog
 						.getProperyNameByRule(rules[0]); 
 			html += '<div class="row wms_layer_style_row" lID="' + index + '">'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
@@ -841,10 +841,10 @@ MapCloud.refresh = MapCloud.Class({
 	},
 
 	getSymbolizerHtml : function(symbolizer){
-		if(MapCloud.wmsStyleMgr_dialog == null){
-			MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+		if(MapCloud.styleMgr_dialog == null){
+			MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
 		}
-		var html = MapCloud.wmsStyleMgr_dialog
+		var html = MapCloud.styleMgr_dialog
 						.getSymbolHtml(symbolizer);
 		return html;						
 	},

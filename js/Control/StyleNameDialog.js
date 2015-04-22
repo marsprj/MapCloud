@@ -1,4 +1,4 @@
-MapCloud.WMSStyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
+MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 	flag : null,
 
 	initialize : function(id){
@@ -12,7 +12,7 @@ MapCloud.WMSStyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请输入名称！");
 					return;
 				}
-				MapCloud.wmsStyleMgr_dialog.setAddStyleName(name,dialog.flag);
+				MapCloud.styleMgr_dialog.setAddStyleName(name,dialog.flag);
 				dialog.closeDialog();
 			});
 		});

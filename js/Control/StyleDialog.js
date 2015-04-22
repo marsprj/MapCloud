@@ -1,4 +1,4 @@
-MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
+MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	rule : null,
 	source : null,
@@ -82,7 +82,7 @@ MapCloud.WMSStyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				var rule = dialog.getRule();
 				if(dialog.source == "styleMgr"){
-					MapCloud.wmsStyleMgr_dialog.setRule(rule);
+					MapCloud.styleMgr_dialog.setRule(rule);
 				}else if(dialog.source == "refresh"){
 					if(MapCloud.refresh_panel == null){
 						MapCloud.refresh_panel = 

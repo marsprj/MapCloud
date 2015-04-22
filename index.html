@@ -56,9 +56,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
@@ -101,20 +99,20 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSStyleManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSStyle.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Rule.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/FeatureStyle.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Symbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/PointSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/LineSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/PolygonSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/TextSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Font.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Stroke.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/Fill.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/StyleReader.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/StyleWriter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Font.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Stroke.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Fill.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/FontManager.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/label.js"></script>
@@ -144,9 +142,9 @@ var Msg = {}; //declare this or modify line 1 of core.js
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSDialog.js"></script>
-<script type="text/javascript" src="js/Control/WMSStyleMgrDialog.js"></script>
-<script type="text/javascript" src="js/Control/WMSStyleDialog.js"></script>
-<script type="text/javascript" src="js/Control/WMSStyleNameDialog.js"></script>
+<script type="text/javascript" src="js/Control/StyleMgrDialog.js"></script>
+<script type="text/javascript" src="js/Control/StyleDialog.js"></script>
+<script type="text/javascript" src="js/Control/StyleNameDialog.js"></script>
 <script type="text/javascript" src="js/Control/TrackOverlay.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
@@ -1625,7 +1623,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 		</div>
 	</div>
 
-	<div class="modal fade" id="wms-style-mgr-dialog" tabindex="-1" role="dialog" aria-labelledby="wmsStyleDialogLabel" aria-hidden="true"
+	<div class="modal fade" id="style-mgr-dialog" tabindex="-1" role="dialog" aria-labelledby="styleDialogLabel" aria-hidden="true"
 		data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -1767,7 +1765,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 		</div>
 	</div>
 	<!--具体的样式-->
-	<div class="modal fade" id="wms-style-dialog" tabindex="-1" role="dialog" aria-labelledby="wms-style-dialogLabel" aria-hidden="true"
+	<div class="modal fade" id="style-dialog" tabindex="-1" role="dialog" aria-labelledby="style-dialogLabel" aria-hidden="true"
 		data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -2061,7 +2059,7 @@ var Msg = {}; //declare this or modify line 1 of core.js
 		</div>
 	</div>
 
-	<div class="modal fade" id="wms-style-name-dialog" tabindex="-1" role="dialog" aria-labelledby="wms-style-name-dialogLabel" aria-hidden="true">
+	<div class="modal fade" id="style-name-dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">

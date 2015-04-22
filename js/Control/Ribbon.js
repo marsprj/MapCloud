@@ -358,10 +358,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	onWMSStyle : function(){
-		if(MapCloud.wmsStyleMgr_dialog == null){
-			MapCloud.wmsStyleMgr_dialog = new MapCloud.WMSStyleMgrDialog("wms-style-mgr-dialog");
+		if(MapCloud.styleMgr_dialog == null){
+			MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
 		}
-		MapCloud.wmsStyleMgr_dialog.showDialog();
+		MapCloud.styleMgr_dialog.showDialog();
 	}
 });
 	

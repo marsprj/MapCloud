@@ -1,6 +1,6 @@
-MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
+MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
-	wmsStyleMgr 		: null,
+	styleMgr 		: null,
 	selectedStyle 		: null,
 	selectedRuleIndex 	: null,
 	mgrUrl 				: "/ows/user1/mgr?",
@@ -20,14 +20,14 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
 
-		this.wmsStyleMgr = new GeoBeans.WMSStyleManager(this.mgrUrl); 
+		this.styleMgr = new GeoBeans.StyleManager(this.mgrUrl); 
 
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				
 				var name = dialog.panel.find("#wms_style_list option:selected").text(); 
 				if(name != "default"){
-					var style = dialog.wmsStyleMgr.getStyle(name);
+					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//save
 						var s = null;
@@ -59,7 +59,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				// }
 				var name = dialog.panel.find("#wms_style_list option:selected").text(); 
 				if(name != "default"){
-					var style = dialog.wmsStyleMgr.getStyle(name);
+					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//save
 						var s = null;
@@ -90,11 +90,11 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find("#wms_style_name").html(html);
 				value = value.toLowerCase();
 				if(value == "all"){
-					dialog.wmsStyleMgr.getStyles(dialog.getStyles_callback);
+					dialog.styleMgr.getStyles(dialog.getStyles_callback);
 				}else{
-					var type = dialog.getWMSStyleType(value);
+					var type = dialog.getStyleType(value);
 					if(type != null){
-						var styles = dialog.wmsStyleMgr.getStyleByType(type);
+						var styles = dialog.styleMgr.getStyleByType(type);
 						dialog.getStyles_callback(styles);
 					}
 				}
@@ -124,10 +124,10 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 				var selected = $(this).children(":selected");
 				var name = selected.text();
-				var style = dialog.wmsStyleMgr.getStyle(name);
+				var style = dialog.styleMgr.getStyle(name);
 				
 				if(style != null){
-					dialog.wmsStyleMgr.getStyleXML(name,
+					dialog.styleMgr.getStyleXML(name,
 					dialog.getStyleXML_callback);
 				}
 					
@@ -144,13 +144,13 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请选择一个类型");
 					return;
 				}
-				if(MapCloud.wmsStyleName_dialog == null){
-					MapCloud.wmsStyleName_dialog = new MapCloud.WMSStyleNameDialog("wms-style-name-dialog");
+				if(MapCloud.styleName_dialog == null){
+					MapCloud.styleName_dialog = new MapCloud.StyleNameDialog("style-name-dialog");
 				}
-				MapCloud.wmsStyleName_dialog.setFlag("add");
-				MapCloud.wmsStyleName_dialog.showDialog();
+				MapCloud.styleName_dialog.setFlag("add");
+				MapCloud.styleName_dialog.showDialog();
 				dialog.isStyleChanged = true;
-				// var styleType = dialog.getWMSStyleType(type.toLowerCase());
+				// var styleType = dialog.getStyleType(type.toLowerCase());
 				// // var style = dialog.getDefaultStyle(styleType);
 				// // dialog.getStyleXML_callback(style);
 				// dialog.setDefaultStyle(styleType);
@@ -163,15 +163,15 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = dialog.panel.find("#wms_style_list option:selected").text(); 
 				if(name == "default"){
 					//保存当前样式
-					if(MapCloud.wmsStyleName_dialog == null){
-						MapCloud.wmsStyleName_dialog = new MapCloud.WMSStyleNameDialog("wms-style-name-dialog");
+					if(MapCloud.styleName_dialog == null){
+						MapCloud.styleName_dialog = new MapCloud.StyleNameDialog("style-name-dialog");
 					}
-					MapCloud.wmsStyleName_dialog.setFlag("save");
-					MapCloud.wmsStyleName_dialog.showDialog();					
+					MapCloud.styleName_dialog.setFlag("save");
+					MapCloud.styleName_dialog.showDialog();					
 					return;
 					// dialog.addStyle(name);
 				}else{
-					var style = dialog.wmsStyleMgr.getStyle(name);
+					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//save
 						var s = null;
@@ -196,28 +196,11 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = dialog.panel.find("#wms_style_list option:selected").text();
 				var result = confirm("确认删除" + name + "样式？");
 				if(result){
-					dialog.wmsStyleMgr.removeStyle(name,dialog.removeStyle_callback)
+					dialog.styleMgr.removeStyle(name,dialog.removeStyle_callback)
 				}
 			});
 		});
 
-
-		// this.panel.find("#default_style_table .style-symbol").each(function(){
-		// 	$(this).click(function(){
-		// 		var rule = dialog.defaultStyle.rules[0];
-		// 		if(rule == null){
-		// 			return;
-		// 		}
-		// 		if(MapCloud.wms_style_dialog == null){
-		// 			MapCloud.wms_style_dialog = new MapCloud.WMSStyleDialog("wms-style-dialog");
-		// 		}
-		// 		MapCloud.wms_style_dialog.showDialog();
-		// 		MapCloud.wms_style_dialog.setRule(rule);
-		// 		dialog.isDefaultStyle = true; //证明是修改的默认样式
-		// 	});
-		// });
-
-		
 		//颜色选择
 		this.panel.find(".color-ramp-div ul li").each(function(){
 			$(this).click(function(){
@@ -351,29 +334,29 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		styleOption.attr("selected",true);
 
 		// 通过名字获取到style
-		var style = this.wmsStyleMgr.getStyle(styleName);
+		var style = this.styleMgr.getStyle(styleName);
 		if(style != null){
-			this.wmsStyleMgr.getStyleXML(styleName,
+			this.styleMgr.getStyleXML(styleName,
 			this.getStyleXML_callback);
 		}
 	},
 
-	getWMSStyleType : function(name){
+	getStyleType : function(name){
 		if(name == null){
 			return null;
 		}
 		var type = null;
 		switch(name){
 			case "point":{
-				type = GeoBeans.WMSStyle.FeatureStyle.GeomType.Point;
+				type = GeoBeans.Style.FeatureStyle.GeomType.Point;
 				break;
 			}
 			case "linestring":{
-				type = GeoBeans.WMSStyle.FeatureStyle.GeomType.LineString;
+				type = GeoBeans.Style.FeatureStyle.GeomType.LineString;
 				break; 
 			}
 			case "polygon":{
-				type = GeoBeans.WMSStyle.FeatureStyle.GeomType.Polygon;
+				type = GeoBeans.Style.FeatureStyle.GeomType.Polygon;
 				break;
 			}
 			default:
@@ -420,7 +403,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var html = "All<span class='caret'></span>";
 		this.panel.find("#wms_style_name").html(html);
-		this.wmsStyleMgr.getStyles(this.getStyles_callback);
+		this.styleMgr.getStyles(this.getStyles_callback);
 		this.cleanup();
 		this.panel.modal();
 	},
@@ -432,15 +415,15 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = this;
 		var path = null;
 		switch(type){
-			case GeoBeans.WMSStyle.FeatureStyle.Type.Point:{
+			case GeoBeans.Style.FeatureStyle.Type.Point:{
 				path = "js/point.xml";
 				break;
 			}
-			case GeoBeans.WMSStyle.FeatureStyle.Type.LineString:{
+			case GeoBeans.Style.FeatureStyle.Type.LineString:{
 				path = "js/line.xml";
 				break;
 			}
-			case GeoBeans.WMSStyle.FeatureStyle.Type.Polygon:{
+			case GeoBeans.Style.FeatureStyle.Type.Polygon:{
 				path = "js/polygon.xml";
 				break;
 			}
@@ -465,22 +448,22 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			html += "<option value='" + name 
 				 + "' type='" + geomType + "'>" + name + "</option>";
 		}
-		MapCloud.wmsStyleMgr_dialog.panel.find("#wms_style_list").html(html);
+		MapCloud.styleMgr_dialog.panel.find("#wms_style_list").html(html);
 		
 
 		//展示第一个样式
-		MapCloud.wmsStyleMgr_dialog.panel.find("#styles_list_table").html("");
-		MapCloud.wmsStyleMgr_dialog.defaultStyle = null;
-		MapCloud.wmsStyleMgr_dialog.style =  null;
-		MapCloud.wmsStyleMgr_dialog.isDefaultStyle = false;	
-		var styleName = MapCloud.wmsStyleMgr_dialog.panel
+		MapCloud.styleMgr_dialog.panel.find("#styles_list_table").html("");
+		MapCloud.styleMgr_dialog.defaultStyle = null;
+		MapCloud.styleMgr_dialog.style =  null;
+		MapCloud.styleMgr_dialog.isDefaultStyle = false;	
+		var styleName = MapCloud.styleMgr_dialog.panel
 					.find("#wms_style_list option:selected").val();
-		MapCloud.wmsStyleMgr_dialog.wmsStyleMgr.getStyleXML(styleName,
-			MapCloud.wmsStyleMgr_dialog.getStyleXML_callback);
+		MapCloud.styleMgr_dialog.styleMgr.getStyleXML(styleName,
+			MapCloud.styleMgr_dialog.getStyleXML_callback);
 	},
 
 	showStyleInfo : function(name){
-		this.wmsStyleMgr.getStyleXML(name,
+		this.styleMgr.getStyleXML(name,
 			this.getStyleXML_callback);
 	},
 
@@ -489,7 +472,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(style == null){
 			return;
 		}
-		// MapCloud.wmsStyleMgr_dialog.selectedStyle = style;
+		// MapCloud.styleMgr_dialog.selectedStyle = style;
 
 		// 重新设计展示页面
 		var rules = style.rules;
@@ -498,30 +481,30 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			if(rule != null){
 				var filter = rule.filter;
 				if(filter == null){
-					MapCloud.wmsStyleMgr_dialog.defaultStyle = style; //此时为默认样式
+					MapCloud.styleMgr_dialog.defaultStyle = style; //此时为默认样式
 				}
 			}
 		}//这种情况下就是默认样式
 
-		if(MapCloud.wmsStyleMgr_dialog.defaultStyle == null){//证实可能是多重的样式
+		if(MapCloud.styleMgr_dialog.defaultStyle == null){//证实可能是多重的样式
 			//获取到字段
-			var field = MapCloud.wmsStyleMgr_dialog.getProperyNameByRule(rules[0]);
-			var fieldOption = MapCloud.wmsStyleMgr_dialog.panel.find("#wms_map_layer_fields option[value='" +
+			var field = MapCloud.styleMgr_dialog.getProperyNameByRule(rules[0]);
+			var fieldOption = MapCloud.styleMgr_dialog.panel.find("#wms_map_layer_fields option[value='" +
 							field + "']");
 			fieldOption.attr("selected",true);
-			var html = MapCloud.wmsStyleMgr_dialog.getRulesListHtml(field,style.rules);
-			MapCloud.wmsStyleMgr_dialog.panel.find("#styles_list_table").html(html);
+			var html = MapCloud.styleMgr_dialog.getRulesListHtml(field,style.rules);
+			MapCloud.styleMgr_dialog.panel.find("#styles_list_table").html(html);
 			// 取第一个样式为默认样式
-			MapCloud.wmsStyleMgr_dialog.defaultStyle = MapCloud.wmsStyleMgr_dialog.
+			MapCloud.styleMgr_dialog.defaultStyle = MapCloud.styleMgr_dialog.
 						getDefaultStyle(style);
-			MapCloud.wmsStyleMgr_dialog.style = style;
+			MapCloud.styleMgr_dialog.style = style;
 		}
 
 		// 首先设置默认样式的页面
-		MapCloud.wmsStyleMgr_dialog.
-		setDefaultStyleHtml(MapCloud.wmsStyleMgr_dialog.defaultStyle);
-		MapCloud.wmsStyleMgr_dialog.registerSymbolDisplay();
-		MapCloud.wmsStyleMgr_dialog.registerStyleSelected();
+		MapCloud.styleMgr_dialog.
+		setDefaultStyleHtml(MapCloud.styleMgr_dialog.defaultStyle);
+		MapCloud.styleMgr_dialog.registerSymbolDisplay();
+		MapCloud.styleMgr_dialog.registerStyleSelected();
 	},
 
 	// 有待修改和调试
@@ -530,15 +513,15 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			alert("删除成功");
 
 			// MapCloud.wmsStyle_dialog.panel.find("#wmsStyleType").val("All");
-			var value = MapCloud.wmsStyleMgr_dialog .panel.find("#wms_style_name").text();
+			var value = MapCloud.styleMgr_dialog .panel.find("#wms_style_name").text();
 			value = value.toLowerCase();
 			if(value == "all"){
-				MapCloud.wmsStyleMgr_dialog .wmsStyleMgr.getStyles(MapCloud.wmsStyleMgr_dialog.getStyles_callback);
+				MapCloud.styleMgr_dialog .styleMgr.getStyles(MapCloud.styleMgr_dialog.getStyles_callback);
 			}else{
-				var type = MapCloud.wmsStyleMgr_dialog .getWMSStyleType(value);
+				var type = MapCloud.styleMgr_dialog .getStyleType(value);
 				if(type != null){
-					var styles = MapCloud.wmsStyleMgr_dialog .wmsStyleMgr.getStyleByType(type);
-					MapCloud.wmsStyleMgr_dialog.getStyles_callback(styles);
+					var styles = MapCloud.styleMgr_dialog .styleMgr.getStyleByType(type);
+					MapCloud.styleMgr_dialog.getStyles_callback(styles);
 				}
 			}
 		}else{
@@ -570,9 +553,9 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	// 获取到所有的values
 	getValuesCallback : function(values){
-		MapCloud.wmsStyleMgr_dialog.isStyleChanged = true;
-		var beginColorDiv = MapCloud.wmsStyleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div:first");
-		var endColorDiv = MapCloud.wmsStyleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div:last");
+		MapCloud.styleMgr_dialog.isStyleChanged = true;
+		var beginColorDiv = MapCloud.styleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div:first");
+		var endColorDiv = MapCloud.styleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div:last");
 		var beginColor = beginColorDiv.css("background-color");
 		var endColor = endColorDiv.css("background-color");
 		var color = new GeoBeans.Color();
@@ -580,12 +563,12 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		beginColor = color.getHex();
 		color.setByRgb(endColor,1);
 		endColor = color.getHex();
-		// var number = MapCloud.wmsStyleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div").length;
+		// var number = MapCloud.styleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div").length;
 		var number = values.length;
 		var colorRamp = new GeoBeans.ColorRamp(beginColor,endColor,number);
-		var field = MapCloud.wmsStyleMgr_dialog.panel.find("#wms_map_layer_fields option:selected").val();
-		// MapCloud.wmsStyleMgr_dialog.setStyleByValues(field,values,colorRamp);
-		MapCloud.wmsStyleMgr_dialog.displayStyleHtmlByValues(field,
+		var field = MapCloud.styleMgr_dialog.panel.find("#wms_map_layer_fields option:selected").val();
+		// MapCloud.styleMgr_dialog.setStyleByValues(field,values,colorRamp);
+		MapCloud.styleMgr_dialog.displayStyleHtmlByValues(field,
 									values,colorRamp);
 	},
 
@@ -617,7 +600,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var geomType = this.defaultStyle.geomType;
 		var styleName = this.panel.find("#wms_style_list option:selected")
 					.text();
-		var style = new GeoBeans.WMSStyle.FeatureStyle(styleName,geomType);
+		var style = new GeoBeans.Style.FeatureStyle(styleName,geomType);
 		var rules = [];
 		for(var i = 0; i < values.length; ++i){
 			var value = values[i];
@@ -877,11 +860,11 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 					that.isDefaultStyle = true;
 					var rule = that.defaultStyle.rules[0];
 					if(rule != null){
-						if(MapCloud.wms_style_dialog == null){
-							MapCloud.wms_style_dialog = new MapCloud.WMSStyleDialog("wms-style-dialog");
+						if(MapCloud.style_dialog == null){
+							MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
 						}
-						MapCloud.wms_style_dialog.showDialog();	
-						MapCloud.wms_style_dialog.setRule(rule,
+						MapCloud.style_dialog.showDialog();	
+						MapCloud.style_dialog.setRule(rule,
 							that.fields,"styleMgr");
 					}
 				// }
@@ -898,11 +881,11 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				// 	that.isDefaultStyle = true;
 				// 	var rule = that.defaultStyle.rules[0];
 				// 	if(rule != null){
-				// 		if(MapCloud.wms_style_dialog == null){
-				// 			MapCloud.wms_style_dialog = new MapCloud.WMSStyleDialog("wms-style-dialog");
+				// 		if(MapCloud.style_dialog == null){
+				// 			MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
 				// 		}
-				// 		MapCloud.wms_style_dialog.showDialog();	
-				// 		MapCloud.wms_style_dialog.setRule(rule,
+				// 		MapCloud.style_dialog.showDialog();	
+				// 		MapCloud.style_dialog.setRule(rule,
 				// 			that.fields);
 				// 	}
 				// }else
@@ -914,12 +897,12 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 						var rule = that.style.rules[index];
 						
 						if(rule != null){
-							if(MapCloud.wms_style_dialog == null){
-								MapCloud.wms_style_dialog = new MapCloud.WMSStyleDialog("wms-style-dialog");
+							if(MapCloud.style_dialog == null){
+								MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
 							}
-							MapCloud.wms_style_dialog.showDialog();	
-							MapCloud.wms_style_dialog.setRule(rule,that.fields,"styleMgr");
-							MapCloud.wmsStyleMgr_dialog.selectedRuleIndex = index;	
+							MapCloud.style_dialog.showDialog();	
+							MapCloud.style_dialog.setRule(rule,that.fields,"styleMgr");
+							MapCloud.styleMgr_dialog.selectedRuleIndex = index;	
 						}
 					}
 				// }
@@ -953,8 +936,8 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		if(updateStyle != null){
 			// var name = this.panel.find("#wms_style_list option:selected").text(); 
-			var xml = this.wmsStyleMgr.writer.write(updateStyle);
-			this.wmsStyleMgr.updateStyle(xml,name,this.updateCallback);
+			var xml = this.styleMgr.writer.write(updateStyle);
+			this.styleMgr.updateStyle(xml,name,this.updateCallback);
 		}
 	},
 
@@ -962,18 +945,18 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(result != "success"){
 			alert(result);
 		}
-		// var styleName = MapCloud.wmsStyleMgr_dialog.panel.
+		// var styleName = MapCloud.styleMgr_dialog.panel.
 		// 			find("#wms_style_list option:selected").val();
-		// if(MapCloud.wmsStyleMgr_dialog.wmsMapLayer == null){
+		// if(MapCloud.styleMgr_dialog.wmsMapLayer == null){
 		// 	return;
 		// }
-		// var oldName = MapCloud.wmsStyleMgr_dialog.wmsMapLayer.style_name;
+		// var oldName = MapCloud.styleMgr_dialog.wmsMapLayer.style_name;
 		// if(oldName != styleName){
-		// 	MapCloud.wmsStyleMgr_dialog.wmsLayer
-		// 		.setMapLayerStyle(MapCloud.wmsStyleMgr_dialog.wmsMapLayer,
-		// 			styleName,MapCloud.wmsStyleMgr_dialog.setStyleCallback);
+		// 	MapCloud.styleMgr_dialog.wmsLayer
+		// 		.setMapLayerStyle(MapCloud.styleMgr_dialog.wmsMapLayer,
+		// 			styleName,MapCloud.styleMgr_dialog.setStyleCallback);
 		// }else{
-		// 	MapCloud.wmsStyleMgr_dialog.wmsLayer.update();
+		// 	MapCloud.styleMgr_dialog.wmsLayer.update();
 		// }
 		// mapObj.draw();
 	},
@@ -1055,7 +1038,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		var textSymbolizer = rule.textSymbolizer;
 		var geomType = style.geomType;
-		var defaultStyle = new GeoBeans.WMSStyle.FeatureStyle("default",geomType);
+		var defaultStyle = new GeoBeans.Style.FeatureStyle("default",geomType);
 		var rule = new GeoBeans.Rule();
 		var defaultSymbolizer = symbolizer.clone();
 		rule.symbolizer = defaultSymbolizer;
@@ -1117,17 +1100,17 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		switch(geomType){
 			case "POINT":
 			case "MULTIPOINT":{
-				styleGeomType = GeoBeans.WMSStyle.FeatureStyle.GeomType.Point;
+				styleGeomType = GeoBeans.Style.FeatureStyle.GeomType.Point;
 				break;
 			}
 			case "LINESTRING":
 			case "MULTILINESTRING":{
-				styleGeomType = GeoBeans.WMSStyle.FeatureStyle.GeomType.LineString;
+				styleGeomType = GeoBeans.Style.FeatureStyle.GeomType.LineString;
 				break;
 			}
 			case "POLYGON":
 			case "MULTIPOLYGON":{
-				styleGeomType = GeoBeans.WMSStyle.FeatureStyle.GeomType.Polygon;
+				styleGeomType = GeoBeans.Style.FeatureStyle.GeomType.Polygon;
 				break;
 			}
 			default:
@@ -1141,19 +1124,19 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		this.addStyleName = styleName;
-		var style = this.wmsStyleMgr.getStyle(styleName);
+		var style = this.styleMgr.getStyle(styleName);
 		if(style != null){
 			alert("已经有" + styleName + "样式，请重新输入");
-			if(MapCloud.wmsStyleName_dialog == null){
-				MapCloud.wmsStyleName_dialog = new MapCloud.WMSStyleNameDialog("wms-style-name-dialog");
+			if(MapCloud.styleName_dialog == null){
+				MapCloud.styleName_dialog = new MapCloud.StyleNameDialog("style-name-dialog");
 			}
-			MapCloud.wmsStyleName_dialog.showDialog();
+			MapCloud.styleName_dialog.showDialog();
 			return;
 		}
 		var styleOptions = this.panel.find("#wms_style_list");
 		if(flag == "add"){
 			var type = this.panel.find("#wms_style_name").text();
-			var styleType = this.getWMSStyleType(type.toLowerCase())
+			var styleType = this.getStyleType(type.toLowerCase())
 			var option = '<option value="' + styleName + '" type="' 
 						+ styleType + '">' + styleName + '</option>';
 			styleOptions.append(option);
@@ -1179,7 +1162,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 	this.addStyle(styleName);
 		// }else{
 		// 	var type = this.panel.find("#wms_style_name").text();
-		// 	var styleType = this.getWMSStyleType(type.toLowerCase())
+		// 	var styleType = this.getStyleType(type.toLowerCase())
 		// 	var option = '<option value="' + styleName + '" type="' 
 		// 				+ styleType + '">' + styleName + '</option>';
 		// 	styleOptions.append(option);
@@ -1187,7 +1170,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		// }
 		// this.addStyleName = styleName;
 		// var type = this.panel.find("#wms_style_name").text();
-		// var styleType = this.getWMSStyleType(type.toLowerCase());
+		// var styleType = this.getStyleType(type.toLowerCase());
 		// this.addStyleByType(styleType,styleName);
 	},
 
@@ -1199,15 +1182,15 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var that = this;
 		var path = null;
 		switch(styleType){
-			case GeoBeans.WMSStyle.FeatureStyle.GeomType.Point:{
+			case GeoBeans.Style.FeatureStyle.GeomType.Point:{
 				path = "js/point.xml";
 				break;
 			}
-			case GeoBeans.WMSStyle.FeatureStyle.GeomType.LineString:{
+			case GeoBeans.Style.FeatureStyle.GeomType.LineString:{
 				path = "js/line.xml";
 				break;
 			}
-			case GeoBeans.WMSStyle.FeatureStyle.GeomType.Polygon:{
+			case GeoBeans.Style.FeatureStyle.GeomType.Polygon:{
 				path = "js/polygon.xml";
 				break;
 			}
@@ -1216,9 +1199,9 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		}	
 		$.get(path,function(xml){
 			// var xmlString = (new XMLSerializer()).serializeToString(xml);
-			// that.wmsStyleMgr.addStyle(xmlString,styleName
+			// that.styleMgr.addStyle(xmlString,styleName
 			// 	,styleType,that.addStyleCallback);
-			var style = that.wmsStyleMgr.reader.read(xml);
+			var style = that.styleMgr.reader.read(xml);
 			style.name = that.addStyleName;
 			var geomType = that.panel.find("#wms_style_name").text();
 			style.geomType = geomType;
@@ -1239,15 +1222,15 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var that = this;
 		var path = null;
 		switch(styleType){
-			case GeoBeans.WMSStyle.FeatureStyle.GeomType.Point:{
+			case GeoBeans.Style.FeatureStyle.GeomType.Point:{
 				path = "js/point.xml";
 				break;
 			}
-			case GeoBeans.WMSStyle.FeatureStyle.GeomType.LineString:{
+			case GeoBeans.Style.FeatureStyle.GeomType.LineString:{
 				path = "js/line.xml";
 				break;
 			}
-			case GeoBeans.WMSStyle.FeatureStyle.GeomType.Polygon:{
+			case GeoBeans.Style.FeatureStyle.GeomType.Polygon:{
 				path = "js/polygon.xml";
 				break;
 			}
@@ -1256,13 +1239,13 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		}	
 		$.get(path,function(xml){
 			var xmlString = (new XMLSerializer()).serializeToString(xml);
-			that.wmsStyleMgr.addStyle(xmlString,styleName
+			that.styleMgr.addStyle(xmlString,styleName
 				,styleType,that.addStyleCallback);
 		});
 	},
 
 	addStyleCallback : function(result){
-		var dialog = MapCloud.wmsStyleMgr_dialog;
+		var dialog = MapCloud.styleMgr_dialog;
 		if(result != "success"){
 			alert(result);
 			return;
@@ -1270,8 +1253,8 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		
 
 		var type = dialog.panel.find("#wms_style_name").text();
-		var styleType = dialog.getWMSStyleType(type.toLowerCase());
-		var styles = dialog.wmsStyleMgr.getStyleByType(styleType);
+		var styleType = dialog.getStyleType(type.toLowerCase());
+		var styles = dialog.styleMgr.getStyleByType(styleType);
 		dialog.getStyles_callback(styles);
 		var styleName = dialog.addStyleName;
 		var styleOption = dialog.panel.find("#wms_style_list option[value='" +
@@ -1282,9 +1265,9 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		dialog.style =  null;
 		dialog.isDefaultStyle = false;	
 		// 通过名字获取到style
-		var style = dialog.wmsStyleMgr.getStyle(styleName);
+		var style = dialog.styleMgr.getStyle(styleName);
 		if(style != null){
-			dialog.wmsStyleMgr.getStyleXML(styleName,
+			dialog.styleMgr.getStyleXML(styleName,
 			dialog.getStyleXML_callback);
 		}
 		dialog.addStyleName = null;
@@ -1328,7 +1311,7 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var styleOptions = this.panel.find("#wms_style_list");
 		styleOptions.html(styleGeomTypeOptions);
 
-		var styleS = this.wmsStyleMgr.getStyle(styleName);
+		var styleS = this.styleMgr.getStyle(styleName);
 		if(styleName == "default" ||styleS == null){
 			styleOptions.append("<option value='default'>default</option>");
 			styleOptions.find("option[value='default']")
@@ -1353,13 +1336,13 @@ MapCloud.WMSStyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(style == null){
 			return;
 		}
-		var xml =this.wmsStyleMgr.writer.write(style);
+		var xml =this.styleMgr.writer.write(style);
 		if(xml == null){
 			return;
 		}
 		var name = style.name;
 		var geomType = style.geomType;
-		this.wmsStyleMgr.addStyle(xml,name
+		this.styleMgr.addStyle(xml,name
 				,geomType,this.addStyleCallback);
 	}
 });

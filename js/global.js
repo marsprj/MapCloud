@@ -33,13 +33,13 @@ MapCloud.wms_dialog = null;
 MapCloud.new_chart_dialog = null;
 
 //wms样式管理器
-MapCloud.wmsStyleMgr_dialog = null;
+MapCloud.styleMgr_dialog = null;
 
 //wms样式
-MapCloud.wms_style_dialog = null;
+MapCloud.style_dialog = null;
 
 //wms样式管理
-MapCloud.wmsStyleName_dialog = null;
+MapCloud.styleName_dialog = null;
 //左侧刷新
 MapCloud.refresh_panel = null;
 
@@ -60,34 +60,6 @@ MapCloud.charts_array = new Array();
 
 //wfs对应的图表
 MapCloud.wfs_layer_chart = new Array();
-
-//点样式
-MapCloud.point_symbolizer = new GeoBeans.Style.PointSymbolizer();
-MapCloud.point_symbolizer.size = 5;
-MapCloud.point_symbolizer.fillColor = "rgba(126, 255, 212,1)";
-MapCloud.point_symbolizer.outLineWidth = 0.3;
-MapCloud.point_symbolizer.outLineColor = "rgba(255,0,0,1)";
-MapCloud.point_symbolizer.outLineCap = GeoBeans.Style.LineCap.ROUND;;
-MapCloud.point_symbolizer.outLineJoin =  GeoBeans.Style.LineJoin.ROUND;
-MapCloud.point_symbolizer.showOutline = true;
-
-
-//线样式
-MapCloud.line_symbolizer = new GeoBeans.Style.LineSymbolizer();
-MapCloud.line_symbolizer.width = 2;
-MapCloud.line_symbolizer.color = "rgba(0,0,255,1)";
-MapCloud.line_symbolizer.outLineCap = GeoBeans.Style.LineCap.ROUND;;
-MapCloud.line_symbolizer.outLineJoin =  GeoBeans.Style.LineJoin.ROUND;
-MapCloud.line_symbolizer.showOutline = true;
-
-//面样式
-MapCloud.polygon_symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-MapCloud.polygon_symbolizer.fillColor = "rgba(0,255,255,1)";
-MapCloud.polygon_symbolizer.outLineWidth = 1;
-MapCloud.polygon_symbolizer.outLineColor = "rgba(255,0,0,1)";
-MapCloud.polygon_symbolizer.outLineCap = GeoBeans.Style.LineCap.ROUND;;
-MapCloud.polygon_symbolizer.outLineJoin =  GeoBeans.Style.LineJoin.ROUND;
-MapCloud.polygon_symbolizer.showOutline = true;
 
 
 MapCloud.getLayerGeomType = function(layer){
@@ -126,36 +98,9 @@ MapCloud.getLayerGeomType = function(layer){
 	return geomType;
 };
 
-MapCloud.getDeafaultSymbolizer = function(geomType){
-	var symbolizer = null;
-	var geomTypeLower = geomType.toLowerCase();
-	switch(geomTypeLower){
-		case "point":{
-			symbolizer = MapCloud.point_symbolizer;
-			break;
-		}
-
-		case "multipolygon":
-		case "polygon":{
-			symbolizer = MapCloud.polygon_symbolizer;
-			break;
-		}
-		case "multilinestring":
-		case "linestring":{
-			symbolizer = MapCloud.line_symbolizer;
-			break;
-		}
-		default:
-			break;
-	}
-
-	return symbolizer;
-};
-
-
-MapCloud.hited_symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-MapCloud.hited_symbolizer.fillColor = "Red";
-MapCloud.hited_symbolizer.showOutline = false;
+// MapCloud.hited_symbolizer = new GeoBeans.Style.PolygonSymbolizer();
+// MapCloud.hited_symbolizer.fillColor = "Red";
+// MapCloud.hited_symbolizer.showOutline = false;
 
 
 //rgb转换

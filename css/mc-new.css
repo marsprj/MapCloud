@@ -984,64 +984,64 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* WMSStyleMgr Dialog Begin   														*/
 /***************************************************************************/
-#wms-style-mgr-dialog .modal-dialog{
+#style-mgr-dialog .modal-dialog{
 	width:740px; 
 }
 
-#wms-style-mgr-dialog .modal-body{
+#style-mgr-dialog .modal-body{
 	height: 600px;
 	/*overflow-y: auto;*/
 }
 
-#wms-style-mgr-dialog .modal-body .row{
+#style-mgr-dialog .modal-body .row{
 	margin-bottom: 20px;
 }
 
-#wms-style-mgr-dialog .modal-body .tab-content{
+#style-mgr-dialog .modal-body .tab-content{
 	height: 440px;
 	border: 1px solid #ccc;
 	margin-top: 6px;	
 }
-#wms-style-mgr-dialog .display-style div{
+#style-mgr-dialog .display-style div{
 	height:60px;
 }
 
-#wms-style-mgr-dialog #display_styles_div{
+#style-mgr-dialog #display_styles_div{
 	/*height: 460px;*/
 }
 
-#wms-style-mgr-dialog #display_styles_div .parm-form{
+#style-mgr-dialog #display_styles_div .parm-form{
 	padding: 4px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	background-color: #F1F1F1;
 }
-#wms-style-mgr-dialog #display_styles_div .parm-form .form-group{
+#style-mgr-dialog #display_styles_div .parm-form .form-group{
 	margin-bottom: 0px;
 }
 
-#wms-style-mgr-dialog #display_styles_div .color{
+#style-mgr-dialog #display_styles_div .color{
 	display: inline-block;
 	height: 19px;
 	width: 14px;
 }
 
-#wms-style-mgr-dialog #display_styles_div .color-ramp-div{
+#style-mgr-dialog #display_styles_div .color-ramp-div{
 	padding-left: 0px;
 	padding-right:0px;
 }
-#wms-style-mgr-dialog #display_styles_div .color-ramp-div ul{
+#style-mgr-dialog #display_styles_div .color-ramp-div ul{
 	width: 100%;
 }
-#wms-style-mgr-dialog #display_styles_div .color-ramp-div ul li{
+#style-mgr-dialog #display_styles_div .color-ramp-div ul li{
 	margin-top:4px;
 }
-#wms-style-mgr-dialog #display_styles_div .color-ramp-item{
+#style-mgr-dialog #display_styles_div .color-ramp-item{
 	text-align: center;
 	cursor: pointer;
 }
 
-#wms-style-mgr-dialog #display_styles_div #styles_info_div{
+#style-mgr-dialog #display_styles_div #styles_info_div{
 	padding: 4px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -1049,7 +1049,7 @@ ul.layers_row li:before {
 	margin-bottom: 10px;
 	height: 100%;
 }
-#wms-style-mgr-dialog #display_styles_div #styles_info_div table{
+#style-mgr-dialog #display_styles_div #styles_info_div table{
 	width: 100%;
 	margin-bottom: 10px;
 }
@@ -1087,7 +1087,7 @@ ul.layers_row li:before {
 .borderless tbody tr td, .borderless tbody tr th {
     border: none;
 }
-#wms-style-mgr-dialog #display_styles_div .style-symbol{
+#style-mgr-dialog #display_styles_div .style-symbol{
 	height: 17px;
 	width: 17px;
 	background-color: #fba;
@@ -1124,11 +1124,11 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* WMSStyle Dialog Begin   														*/
 /***************************************************************************/
-#wms-style-dialog{
+#style-dialog{
 
 }
 
-#wms-style-dialog .tab-content{
+#style-dialog .tab-content{
 	height:300px;
 }
 #wms-style-info{
@@ -1203,16 +1203,16 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* WMSStyleName Dialog Begin   														*/
 /***************************************************************************/
-#wms-style-name-dialog{
+#style-name-dialog{
 
 }
 
-#wms-style-name-dialog .modal-dialog{
+#style-name-dialog .modal-dialog{
 	width: 300px;
 	margin: 100px auto;
 }
 
-#wms-style-name-dialog .modal-footer{
+#style-name-dialog .modal-footer{
 	text-align: center;
 }
 /***************************************************************************/
