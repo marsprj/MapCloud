@@ -921,6 +921,9 @@ ul.layers_row li:before {
 	display: none;
 	border-right: 1px solid #ccc;
 }
+#left_panel_overlay .row{
+	margin:10px 0px;
+}
 
 .span-overlay-marker{
 	top: 0px;

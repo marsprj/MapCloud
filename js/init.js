@@ -43,7 +43,7 @@ $().ready(function(){
 	// mapObj.setLevel(2);	
 	// mapObj.draw();	
 
-	window.onresize = function(){
+	// window.onresize = function(){
 		// var left_panel = $("#left_panel");
 		// var center_panel = $("#center_panel");
 		
@@ -56,7 +56,7 @@ $().ready(function(){
 		
 		// //mapCanvas.resize();
 		
-	};
+	// };
 	var datagrid_collapsed = true;
 	$("#datagrid_wrapper .panel-header-collapse").click(function(){
 		if(datagrid_collapsed){
