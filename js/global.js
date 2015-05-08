@@ -1,3 +1,8 @@
+// 打开地图
+MapCloud.get_maps_dlg = null;
+
+//创建地图
+MapCloud.create_map_dlg = null;
 
 //新建地图
 MapCloud.new_map_dlg = null;
@@ -16,6 +21,9 @@ MapCloud.create_layer_dialog = null;
 
 //文件管理
 MapCloud.file_dialog = null;
+
+//数据源
+MapCloud.data_source_dialog = null;
 
 //数据库管理
 MapCloud.database_dlg = null;
@@ -40,6 +48,7 @@ MapCloud.style_dialog = null;
 
 //wms样式管理
 MapCloud.styleName_dialog = null;
+
 //左侧刷新
 MapCloud.refresh_panel = null;
 

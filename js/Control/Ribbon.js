@@ -94,76 +94,81 @@ MapCloud.Ribbon = MapCloud.Class({
 				switch(index){
 				// Map Events
 				case 0:
-					that.onMapNew();
+					that.onGetMaps();
 					break;
 				case 1:
+					// that.onMapNew();
+					that.onCreateMap();
+					break;
+				case 2:
 					that.onMapPropertis();
 					break;
 				// Layer Events
-				case 2:
-					that.onLayerNew();
-					break;
 				case 3:
-					that.onLayerAddVector();
+					that.onLayerNew();
 					break;
 				case 4:
-					that.onLayerAddWMS();
+					that.onLayerAddVector();
 					break;
 				case 5:
-					that.onLayerAddWFS();
+					that.onLayerAddWMS();
 					break;
 				case 6:
-					that.onLayerNew();
+					that.onLayerAddWFS();
 					break;
 				case 7:
-					that.onEditLayer();
+					that.onLayerNew();
 					break;
 				case 8:
-					that.onShareLayer();
+					that.onEditLayer();
 					break;
 				case 9:
-					that.onCreateLayer();
+					that.onShareLayer();
 					break;
 				case 10:
+					that.onCreateLayer();
+					break;
+				case 11:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 11:
+				case 12:
 					//删除图层
 					that.onDeleteLayer();
 					break;
-				case 12:
+				case 13:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 13:
+				case 14:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 14:
+				case 15:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 15:
+				case 16:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 16:
+				case 17:
 					that.addChart();
 					break;
 				// Tools Events
-				case 17:
+				case 18:
 					that.onFile();
 					break;
-				case 18:
-					that.onDatabase();
-					break;
 				case 19:
+					// that.onDatabase();
+					that.onDataSource();
 					break;
 				case 20:
 					break;
 				case 21:
+					break;
+				case 22:
 					that.onWMSStyle();
 					break;
 
@@ -185,6 +190,13 @@ MapCloud.Ribbon = MapCloud.Class({
 	/**************************************************************/
 	/* Map Event                                                  */
 	/**************************************************************/
+	onGetMaps : function(){
+		MapCloud.get_maps_dlg.showDialog();
+	},
+
+	onCreateMap : function(){
+		MapCloud.create_map_dlg.showDialog();
+	},
 	onMapNew : function(){
 		if(MapCloud.new_map_dlg == null){
 			MapCloud.new_map_dlg = new MapCloud.NewMapDialog("newMapDialog");
@@ -346,6 +358,10 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	},
 	
+	onDataSource : function(){
+		MapCloud.data_source_dialog.showDialog();
+	},
+
 	onDatabase : function(){
 		if(MapCloud.database_dlg == null){
 			MapCloud.database_dlg = new MapCloud.DatabaseDialog("database_dialog");

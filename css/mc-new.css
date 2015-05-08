@@ -191,6 +191,9 @@ ul {
 	background-image:url(../images/vector.png);
 }
 
+.mc-icon-dblayer{
+	background-image:url(../images/database.png);
+}
 .mc-icon-wmslayer{
 	background-image:url(../images/wms-layer.png);
 }
@@ -415,7 +418,7 @@ ul#ribbon_tabs li{
 	padding:6px;
 	margin-left:0px;
 	margin-right:0px;
-	cursor: pointer;	
+	/*cursor: pointer;	*/
 }
 #layers_row{
 	padding : 0px !important;
@@ -1222,3 +1225,83 @@ ul.layers_row li:before {
 /* WMSStyleName Dialog End   														*/
 /***************************************************************************/
 
+/***************************************************************************/
+/* GetMaps Dialog Begin   														*/
+/***************************************************************************/
+#getMapsDialog .modal-body{
+	height: 600px;
+	overflow-y: auto;
+}
+#getMapsDialog .modal-dialog{
+	width: 740px;
+}
+#getMapsDialog .maps-thumb{
+	position: relative;
+	float: left;
+	display: block;
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+
+}
+/***************************************************************************/
+/* GetMaps Dialog End   														*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Create Map Dialog Begin   														*/
+/***************************************************************************/
+
+#createMapDialog .modal-dialog{
+	width: 500px;
+}
+/***************************************************************************/
+/* Create Map Dialog End   														*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* DataSource Dialog Begin   														*/
+/***************************************************************************/
+
+#dataSourceDialog{
+
+}
+
+#datasets_div{
+	border: 1px solid #ccc;
+	border-radius :3px;
+	margin:15px;
+	padding: 4px;
+  	height: 100%;
+}
+
+#datasets_div table{
+	height: 190px;
+}
+#dataSourceDialog tbody tr:hover{
+	cursor: pointer;
+}
+#dataSourceDialog tbody tr.selected{
+	background-color: #E4E4E4;
+}
+/***************************************************************************/
+/* DataSource Dialog End   														*/
+/***************************************************************************/
+/***************************************************************************/
+/* DataSource Connect Dialog Begin   														*/
+/***************************************************************************/
+#pgisConnDialog .modal-dialog{
+	width: 400px;
+}
+/***************************************************************************/
+/* DataSource Connect Dialog End   														*/
+/***************************************************************************/
+/***************************************************************************/
+/* New Layer Dialog Begin   	  														*/
+/***************************************************************************/
+#newLayerDialog .modal-dialog{
+	width:500px;
+}
+/***************************************************************************/
+/* New Layer Dialog End   														*/
+/***************************************************************************/

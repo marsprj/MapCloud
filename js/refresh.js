@@ -74,8 +74,8 @@ MapCloud.refresh = MapCloud.Class({
 			$("#baseLayer_row").html(baseLayerhtml);
 		}
 		
-		var layers = mapObj.layers;
-
+		// var layers = mapObj.layers;
+		var layers = mapObj.getLayers();
 		var that = this;
 		for(var i = layers.length -1; i >= 0; --i){
 			var layer = layers[i];
@@ -88,9 +88,11 @@ MapCloud.refresh = MapCloud.Class({
 			}else if(layer instanceof GeoBeans.Layer.WMSLayer){
 				html += this.getWMSLayerHtml(i,layer);
 			}
-			// }
+			if(layer instanceof GeoBeans.Layer.DBLayer){
+				html += this.getDBLayerHtml(i,layer);
+			}
+		}
 
-		}	
 		$("#layers_row").html(html);
 
 		//展示具体的style
@@ -466,6 +468,21 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				MapCloud.styleMgr_dialog.showDialog();
 				MapCloud.styleMgr_dialog.setWFSLayer(wfsLayer);
+			});
+		});
+
+		//DBLayer
+		this.panel.find(".mc-icon-dblayer").each(function(){
+			$(this).click(function(){
+				var li = $(this).parents("li");
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
+				if(layer == null){
+					return;
+				}
+				MapCloud.styleMgr_dialog.showDialog();
+				MapCloud.styleMgr_dialog.setDBLayer(layer);
+
 			});
 		});
 	},
@@ -1063,5 +1080,58 @@ MapCloud.refresh = MapCloud.Class({
 		
 		mapObj.draw();
 		MapCloud.refresh_panel.refreshPanel();
-	}
+	},
+
+	getDBLayerHtml : function(index,layer){
+		if(layer == null){
+			return "";
+		}
+		var name = layer.name;
+		var style = layer.style;
+		// html	= 	"<li class=\"row layer_row\" value=\"" + index + "\">"
+		html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
+				+	"	</div>"
+				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"		<strong>" + name + "</strong>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				// +	"					<li><a href='#'><input id='wms_transparency' data-slider-id='wms_transparency_slider' "
+				// +	"						type='text' class='form-control' data-slider-min='0' data-slider-max='100' "
+				// +	"						data-slider-step='1' data-slider-value='100'  data-slider-enabled='true'/></a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
+
+		var styleHtml = this.getStyleHtml(-1,style);
+		html += styleHtml;
+		html += "</li>";
+		return html;
+	},
 });

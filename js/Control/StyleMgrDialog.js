@@ -13,7 +13,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 	style 				: null,	 //生成的样式
 	isStyleChanged 		: false, //是否已经更改
 	addStyleName 		: null, //新增样式的名称
-
+	dbLayer 			: null,
 
 
 	initialize : function(id){
@@ -368,6 +368,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.wmsMapLayer = null;
 		this.wfsLayer = null;
 		this.wmsLayer = null;
+		this.dbLayer = null;
 		this.fields = [];
 		this.style = null;
 		this.defaultStyle = null;
@@ -1344,5 +1345,48 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var geomType = style.geomType;
 		this.styleMgr.addStyle(xml,name
 				,geomType,this.addStyleCallback);
+	},
+
+	setDBLayer : function(dbLayer){
+		this.dbLayer = dbLayer;
+		this.wfsWorkspace = new GeoBeans.WFSWorkspace("tmp",
+				mapObj.server,"1.0.0");
+		var featureType = new GeoBeans.FeatureType(this.wfsWorkspace,
+				this.dbLayer.name);
+		var fields = featureType.getFields(mapObj.name);
+		var that = this;
+		// this.wfsLayer = new GeoBeans.Layer.WFSLayer(dbLayer.name,
+		// 								mapObj.server,
+		// 								dbLayer.name,
+		// 								"GML2");
+		// var fields = null;
+		// if(this.wfsLayer != null){
+		// 	var featureType = this.wfsLayer.featureType;
+		// 	if(featureType == null){
+		// 		featureType = this.wfsLayer.getFeatureType();
+		// 	}
+		// 	if(featureType != null){
+		// 		fields = featureType.getFields();
+		// 	}
+		// }
+		if(fields != null){
+			this.fields = fields;
+			var html = "";
+			var field,name;
+			for(var i = 0; i < fields.length;++i){
+				field = fields[i];
+				if(field != null){
+					name = field.name;
+					html += "<option value='" + name + "'>" + name + "</option>";
+				}
+			}
+			this.panel.find("#wms_map_layer_fields").html(html);
+		}
+		this.panel.find("#wms_map_layer_fields").each(function(){
+			$(this).change(function(){
+				that.panel.find("#styles_list_table").html("");
+				that.style = null;
+			});
+		});
 	}
 });

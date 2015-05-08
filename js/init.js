@@ -1,62 +1,38 @@
 var mapObj = null;
 var ribbonObj = null;
+var mapManager = null;
+var dbsManager = null;
+var url = "/ows/user1/mgr";
 
 $().ready(function(){
+	MapCloud.get_maps_dlg 
+		= new MapCloud.GetMapsDialog("getMapsDialog")
+	MapCloud.create_map_dlg 
+		= new MapCloud.CreateMapDialog("createMapDialog");
+	MapCloud.data_source_dialog 
+		= new MapCloud.DataSourceDialog("dataSourceDialog");
+	MapCloud.pgis_connection_dialog 
+		= new MapCloud.PGISConnectDialog("pgisConnDialog");
+	MapCloud.new_layer_dialog
+		= new MapCloud.NewLayerDialog("newLayerDialog");
 
+	MapCloud.styleMgr_dialog 
+		= new MapCloud.StyleMgrDialog("style-mgr-dialog");
 
+	MapCloud.refresh_panel 
+		= new MapCloud.refresh("left_panel");
 	// $(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");
 
 	var logo = new MapCloud.Logo();	
 	var layersTree = new MapCloud.LayerTree();	
 	ribbonObj = new MapCloud.Ribbon();
 	
-//	$("#center_panel").css("width", $(window).width()-$("#left_panel").width()-1); 
-	
-//	var center = new GeoBeans.Geometry.Point(0,0);	
-//	var layer  = new GeoBeans.Layer.AMapLayer("gaode");
-//	var mapCanvas = new MapCloud.MapCanvas("mapCanvas");	
-//	mapObj = mapCanvas.map;
-//	mapObj.setBaseLayer(layer);
-//	mapObj.setCenter(center);
-//	mapObj.setLevel(1);	
-//
-//	mapCanvas.resize();
+	mapManager = new GeoBeans.MapManager(url);
+	dbsManager = new GeoBeans.DBSManager(url);
 
+	// mapObj = new GeoBeans.Map("mapCanvas_wrappper");
 	
-	
-	// var ww = document.getElementById("mapCanvas_wrappper").clientWidth;
-	// var wh = document.getElementById("mapCanvas_wrappper").clientHeight;
-	// var canvas = document.getElementById('mapCanvas');
-	// canvas.setAttribute("width", ww);
-	// canvas.setAttribute("height", wh);
-	// var context = canvas.getContext('2d');
-	// context.fillStyle = 'rgba(0,255,0,0.25)';
-	// context.fillRect(0,0,ww,wh);
-	
-	// mapObj = new GeoBeans.Map("mapCanvas");
-	mapObj = new GeoBeans.Map("mapCanvas_wrappper");
-	
-	// var center = new GeoBeans.Geometry.Point(0,0);	
-	// var layer = new GeoBeans.Layer.QSLayer("gaode","/QuadServer/maprequest?services=world_vector");
-	// mapObj.setBaseLayer(layer);
-	// mapObj.setCenter(center);
-	// mapObj.setLevel(2);	
-	// mapObj.draw();	
 
-	// window.onresize = function(){
-		// var left_panel = $("#left_panel");
-		// var center_panel = $("#center_panel");
-		
-		// var left_w = left_panel.width();
-		// var left_h = left_panel.height();
-		
-		// center_panel.css("width", $(window).width()-left_w); 
-		// center_panel.css("height", $(window).height()-$("#head_panel").height()-$("#ribbon_wrapper").height());
-		// //$(center_panel).width(window.document.width-left_w);
-		
-		// //mapCanvas.resize();
-		
-	// };
 	var datagrid_collapsed = true;
 	$("#datagrid_wrapper .panel-header-collapse").click(function(){
 		if(datagrid_collapsed){
@@ -89,11 +65,12 @@ $().ready(function(){
 	});
 
 /*-------------------原有方式进行监听---------------------*/
-	mapObj.addEventListener("mousewheel", MapCloud.resizeCharts);
+	//新版调整不显示
+	// mapObj.addEventListener("mousewheel", MapCloud.resizeCharts);
 
 
 
-	var canvas = mapObj.canvas;
+	// var canvas = mapObj.canvas;
 	var onMouseDown = function(e){
 		e.preventDefault();
 		var mouseX = e.layerX;
@@ -172,5 +149,6 @@ $().ready(function(){
 		canvas.addEventListener("mousemove", onMouseMove);
 		canvas.addEventListener("mouseup", onMouseUp);
 	}
-	canvas.addEventListener("mousedown", onMouseDown);
+	// canvas.addEventListener("mousedown", onMouseDown);
+
 });
