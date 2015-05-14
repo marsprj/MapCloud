@@ -36,6 +36,7 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请输入有效的范围！");
 					return;
 				}
+				MapCloud.alert_info.loading();
 				mapManager.createMap("mapCanvas_wrappper",
 					mapName,extent,srid,dialog.createMap_callback);
 
@@ -44,14 +45,20 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	createMap_callback : function(map,result){
+		var dialog = MapCloud.create_map_dlg;
+		var name = dialog.panel.find("#create_map_name").val();
 		if(map != null){
 			mapObj = map;
 			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 			mapObj.draw();
+			MapCloud.refresh_panel.refreshPanel();
 		}else{
-			alert("创建失败：" + result);
+			// alert("创建失败：" + result);
 		}
-		var dialog = MapCloud.create_map_dlg;
+
+		var info = "创建地图 [ " + name + " ]";
+		MapCloud.alert_info.showInfo(result,info);
+		
 		dialog.closeDialog();
 	},
 	

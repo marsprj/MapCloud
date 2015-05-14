@@ -23,7 +23,8 @@
 
 
 
-<script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script> -->
+<script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.js"></script>
 <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
 
 <script type="text/javascript" src="js/echarts-plain.js"></script>
@@ -104,6 +105,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/MapWorkspace.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
@@ -140,6 +142,7 @@
 <script type="text/javascript" src="js/Control/Table.js"></script>
 <script type="text/javascript" src="js/Control/Dialog.js"></script>
 <script type="text/javascript" src="js/Control/GetMapsDialog.js"></script>
+<script type="text/javascript" src="js/Control/MapMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/CreateMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewLayerDialog.js"></script>
@@ -154,8 +157,10 @@
 <script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleMgrDialog.js"></script>
+<script type="text/javascript" src="js/Control/StyleManagerDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleNameDialog.js"></script>
+<script type="text/javascript" src="js/Control/AlertInfo.js"></script>
 <script type="text/javascript" src="js/Control/TrackOverlay.js"></script>
 
 <script type="text/javascript" src="js/refresh.js"></script>
@@ -206,6 +211,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
 								<div class="ribbon_label">打开地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">管理地图</div>
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
@@ -475,44 +484,18 @@
 			
 		</div>
 	</div>
-
-	<!-- <div class="col-md-9 col-xs-9 col-lg-9 mc-panel-full" id="center_panel">
-		<div id="mapCanvas_wrappper">
-		</div>
-
-		<div id="datagrid_wrapper">
-			<div class="panel-header">
-				<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
-				<div class="panel-header-content float_left">Feature Info</div>
-			</div>
-			<div id="datagrid_content">
-			</div>
-		</div>
-		<div id="map_bar_wrapper" class="mc-border" >
-			<div class="mc-icon mc-icon-plus"></div>
-			<div class="mc-icon mc-icon-minus"></div>
-			<div class="mc-icon mc-icon-info"></div>
-			<div class="mc-icon mc-icon-hand-up"></div>
-			<div class="mc-icon mc-icon-full-screen"></div>
-			<div class="mc-icon mc-icon-zoom-in"></div>
-			<div class="mc-icon mc-icon-pin"></div>
-		</div>
-	</div>
-	<div class="col-md-2 col-xs-2 col-lg-2 mc-panel-full" id="right_panel" style="display:none">
-		<div class="panel-header">
-			<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
-			<div class="panel-header-content float_left">Feature Info</div>
-		</div>
-		<div id="feature_info">
-			<table width="100%" class="table-info" cellpadding="0" cellspacing="0" border="0">
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-	</div> -->
+<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
+    <button type="button" class="close" aria-label="Close">
+    	<span aria-hidden="true">×</span>
+    </button>
+    <p>Warning!</p>
+</div>
+<div class="screen-alert" id="alert_loading">
+	<span>Please wait ...</span>
+</div>	
 <!-- Get Maps panel -->
 <div class="modal fade" id="getMapsDialog" tabindex="-1" role="dialog" aria-labelledby="getMapsDialogLabel" aria-hidden="true"
-data-backdrop="true">
+data-backdropk="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -521,6 +504,44 @@ data-backdrop="true">
 			</div>
 			<div class="modal-body">
 				<ul id="maps_list">
+					
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary btn-confirm">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Map Manage panel -->
+<div class="modal fade" id="mapMgrDialog" tabindex="-1" role="dialog" aria-labelledby="getMapsDialogLabel" aria-hidden="true"
+data-backdrop="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="newMapDialogLabel">打开地图</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row" style="margin-left:0px">
+					<div class="col-md-2">
+						<a class="btn btn-default" id="remove_select_maps">全不选</a>
+					</div>
+					<div class="col-md-2">
+						<a class="btn btn-default btn-success" id="remove_maps">删除地图</a>
+					</div>
+				</div>
+				<ul id="maps_list">
+					<li class="maps-thumb" name="city_label">	<a href="#" class="thumbnail">
+							<img src="images/map.png" alt="city_label">
+							<div class="map-check">
+								<img src="images/check.png">
+							</div>		
+						</a>
+						<div class="caption text-center">		<h6>city_label</h6>	
+						</div>
+					</li>
 				</ul>
 			</div>
 			<div class="modal-footer">
@@ -679,9 +700,10 @@ data-backdrop="true">
 									数据源：
 								</label>
 								<div class="col-md-3">
-									<button class="btn btn-sm btn-success" id="new_layer_select_dbs">
+									<!-- <button class="btn btn-sm btn-success" id="new_layer_select_dbs">
 										选择数据源
-									</button>
+									</button> -->
+									<a href="#" class="btn btn-sm btn-success" id="new_layer_select_dbs">选择数据源</a>
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
@@ -1504,8 +1526,8 @@ data-backdrop="true">
 						<div class="col-md-6">
 							<div class="input-group">
 								<div class="input-group-btn">
-									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="wms_style_name">All&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>
-									<ul class="dropdown-menu" role="menu" id="wms_style_type_list">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="style_type_name">All&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>
+									<ul class="dropdown-menu" role="menu" id="style_type_list">
 										<li><a href="javascript:void(0)">All</a></li>
 										<li class="divider"></li>
 										<li><a href="javascript:void(0)">Point</a></li>
@@ -1513,7 +1535,7 @@ data-backdrop="true">
 										<li><a href="javascript:void(0)">Polygon</a></li>
 									</ul>
 								</div>	
-								<select id="wms_style_list" class="form-control" title="Please select a style ...">
+								<select id="style_list" class="form-control" title="Please select a style ...">
 									<option>style1</option>
 									<option>style2</option>
 								</select>
@@ -1542,25 +1564,25 @@ data-backdrop="true">
 										字段
 									</label>
 									<div class="col-md-3">
-										<select class="form-control" id="wms_map_layer_fields">
+										<select class="form-control" id="layer_fields">
 
 										</select>
 									</div>
 									<div class="col-md-6 color-ramp-div">
 										<button type="button" class="btn btn-default dropdown-toggle btn-group-justified" data-toggle="dropdown" aria-expanded="false" id="select_color_ramp">
 											<div class="color-ramp-item">
-												<div class="color" style="background-color:#632593"></div><div class="color" style="background-color:#6c2a90"></div><div class="color" style="background-color:#762f8d"></div><div class="color" style="background-color:#80348a"></div><div class="color" style="background-color:#8a3987"></div><div class="color" style="background-color:#933e84"></div><div class="color" style="background-color:#9d4382"></div><div class="color" style="background-color:#a7487f"></div><div class="color" style="background-color:#b14e7c"></div><div class="color" style="background-color:#ba5379"></div><div class="color" style="background-color:#c45876"></div><div class="color" style="background-color:#ce5d74"></div><div class="color" style="background-color:#d86271"></div><div class="color" style="background-color:#e1676e"></div><div class="color" style="background-color:#eb6c6b"></div><div class="color" style="background-color:#f57168"></div><div class="color" style="background-color:#ff7766"></div>
+												
 											</div>
 										</button>
 										<ul class="dropdown-menu" role="menu" id="">
 											<li>
-												<div class="color-ramp-item"><div class="color" style="background-color:#632593"></div><div class="color" style="background-color:#6c2a90"></div><div class="color" style="background-color:#762f8d"></div><div class="color" style="background-color:#80348a"></div><div class="color" style="background-color:#8a3987"></div><div class="color" style="background-color:#933e84"></div><div class="color" style="background-color:#9d4382"></div><div class="color" style="background-color:#a7487f"></div><div class="color" style="background-color:#b14e7c"></div><div class="color" style="background-color:#ba5379"></div><div class="color" style="background-color:#c45876"></div><div class="color" style="background-color:#ce5d74"></div><div class="color" style="background-color:#d86271"></div><div class="color" style="background-color:#e1676e"></div><div class="color" style="background-color:#eb6c6b"></div><div class="color" style="background-color:#f57168"></div><div class="color" style="background-color:#ff7766"></div></div>
+												<div class="color-ramp-item"></div>
 											</li>
 											<li>
-												<div class="color-ramp-item"><div class="color" style="background-color:#e80909"></div><div class="color" style="background-color:#da180a"></div><div class="color" style="background-color:#cd270c"></div><div class="color" style="background-color:#bf370e"></div><div class="color" style="background-color:#b2460f"></div><div class="color" style="background-color:#a55511"></div><div class="color" style="background-color:#976513"></div><div class="color" style="background-color:#8a7414"></div><div class="color" style="background-color:#7d8416"></div><div class="color" style="background-color:#6f9318"></div><div class="color" style="background-color:#62a219"></div><div class="color" style="background-color:#54b21b"></div><div class="color" style="background-color:#47c11d"></div><div class="color" style="background-color:#3ad01e"></div><div class="color" style="background-color:#2ce020"></div><div class="color" style="background-color:#1fef22"></div><div class="color" style="background-color:#12ff24"></div></div>
+												<div class="color-ramp-item"></div>
 											</li>
 											<li>
-												<div class="color-ramp-item"><div class="color" style="background-color:#015359"></div><div class="color" style="background-color:#005d53"></div><div class="color" style="background-color:#00684d"></div><div class="color" style="background-color:#007348"></div><div class="color" style="background-color:#007e42"></div><div class="color" style="background-color:#00883d"></div><div class="color" style="background-color:#009337"></div><div class="color" style="background-color:#009e32"></div><div class="color" style="background-color:#00a92c"></div><div class="color" style="background-color:#00b326"></div><div class="color" style="background-color:#00be21"></div><div class="color" style="background-color:#00c91b"></div><div class="color" style="background-color:#00d416"></div><div class="color" style="background-color:#00de10"></div><div class="color" style="background-color:#00e90b"></div><div class="color" style="background-color:#00f405"></div><div class="color" style="background-color:#00ff00"></div></div>
+												<div class="color-ramp-item"></div>
 											</li>
 											<!-- <li class="divider"></li> -->
 										</ul>
@@ -1944,7 +1966,8 @@ data-backdrop="true">
 			</div>
 		</div> 
 	</div>
-	<div class="modal fade" id="dataSourceDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+	<!-- DataSource panel -->
+	<div class="modal fade" id="dataSourceDialog" tabindex="-1" role="dialog" aria-labelledby="dataSourceDialogLabel" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1990,53 +2013,8 @@ data-backdrop="true">
 			</div>
 		</div> 
 	</div>
-	<!-- DataSource panel -->
-	<div class="modal fade" id="dataSourceDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">数据源管理</h4>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-5">
-							<select id="data_source_list" class="form-control" title="Please select a dataSource ...">
-							</select>
-						</div>
-						<div class="col-md-7">
-							<div class="btn-group btn-group-justified" role="group" aria-label="">
-								<a class="btn btn-default" id="register_data_source">增加</a>
-								<a class="btn btn-default" id="edit_data_source">编辑</a>
-								<a class="btn btn-default" id="unregis_data_source">删除</a>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="table-div" id="datasets_div">
-							<table class="table table-hover borderless table-block">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>GeometryType</th>
-									<th>Srid</th>
-								</tr>
-							</thead>
-							<tbody>
-								
-							</tbody>
-						</table>
-						</div>
-						
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary btn-confirm">确定</button>
-				</div>
-			</div>
-		</div> 
-	</div>
+	
+
 	<!-- DataSource Connect panel -->
 	<div class="modal fade" id="pgisConnDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
 		<div class="modal-dialog">

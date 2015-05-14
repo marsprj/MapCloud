@@ -5,8 +5,12 @@ var dbsManager = null;
 var url = "/ows/user1/mgr";
 
 $().ready(function(){
+	MapCloud.alert_info 
+		= new MapCloud.AlertInfo("alert_info","alert_loading"); 
 	MapCloud.get_maps_dlg 
-		= new MapCloud.GetMapsDialog("getMapsDialog")
+		= new MapCloud.GetMapsDialog("getMapsDialog");
+	MapCloud.map_mgr_dialog 
+		= new MapCloud.MapMgrDialog("mapMgrDialog");
 	MapCloud.create_map_dlg 
 		= new MapCloud.CreateMapDialog("createMapDialog");
 	MapCloud.data_source_dialog 
@@ -16,9 +20,15 @@ $().ready(function(){
 	MapCloud.new_layer_dialog
 		= new MapCloud.NewLayerDialog("newLayerDialog");
 
-	MapCloud.styleMgr_dialog 
-		= new MapCloud.StyleMgrDialog("style-mgr-dialog");
+	MapCloud.style_dialog 
+		= new MapCloud.StyleDialog("style-dialog");
+	MapCloud.styleName_dialog 
+	= new MapCloud.StyleNameDialog("style-name-dialog");
+	// MapCloud.styleMgr_dialog 
+		// = new MapCloud.StyleMgrDialog("style-mgr-dialog");
 
+	MapCloud.styleManager_dialog
+		= new MapCloud.StyleManagerDialog("style-mgr-dialog");
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
 	// $(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");

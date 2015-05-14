@@ -122,18 +122,11 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 										server,
 										typename,
 										"GML2");
-				// var symbolizer, rule, style;
-				// symbolizer = dialog.getDefaultStyle();
 				
-				// rule = new GeoBeans.Style.Rule(symbolizer, null);
-				// style = new GeoBeans.Style();
-				// style.addRule(rule);
 
 
-				// dialog.layer.setStyle(style);	
 				mapObj.addLayer(dialog.layer);
 
-				// dialog.layer.resigterHitEvent(dialog.onFeatureHit);
 
 
 				MapCloud.wfs_layer = dialog.layer;
@@ -142,51 +135,13 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				if(mapObj.getViewer() == null){
 					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
 				}
-				// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 				mapObj.draw();	
 
 				dialog.closeDialog();
 				dialog.showFeaturesTable();
 
-				// var refresh = new MapCloud.refresh("left_panel");
-				// refresh.refreshPanel();
-				if(MapCloud.refresh_panel == null){
-					MapCloud.refresh_panel = 
-							new MapCloud.refresh("left_panel");
-				}
 				MapCloud.refresh_panel.refreshPanel();	
 				MapCloud.resizeCharts();
-
-/*				//设置属性
-				if(MapCloud.edit_layer_dialog == null){
-					MapCloud.edit_layer_dialog = new MapCloud.EditLayerDialog("edit_layer_dialog");
-				}
-				MapCloud.edit_layer_dialog.showDialog(); 
-				MapCloud.edit_layer_dialog.setLayer(MapCloud.wfs_layer);
-
-
-				
-/*				var symbolizer, rule, style;
-				symbolizer = new GeoBeans.Style.PolygonSymbolizer();
-				//symbolizer.size = 2;
-				symbolizer.fillColor = "Aquamarine";
-				symbolizer.outLineWidth = 1.0;
-				symbolizer.outLineColor = "Red";
-				symbolizer.outLineCap	= GeoBeans.Style.LineCap.ROUND;
-				symbolizer.outLineJoin  = GeoBeans.Style.LineJoin.ROUND;
-				symbolizer.showOutline = true;
-				
-				rule = new GeoBeans.Style.Rule(symbolizer, null);
-				style = new GeoBeans.Style();
-				style.addRule(rule);
-
-				MapCloud.wfs_layer.setStyle(style);	
-				mapObj.addLayer(MapCloud.wfs_layer);
-				
-				mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-				mapObj.draw();	
-*/			
-				
 
 			});
 		});

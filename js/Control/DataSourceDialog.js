@@ -62,12 +62,14 @@ MapCloud.DataSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.isSelected = false;
 			this.panel.find(".btn-confirm").html("确定");
 		}
-		this.cleanup();
-		this.panel.modal();
+		MapCloud.alert_info.loading();
 		dbsManager.getDataSources(this.getDataSources_callback);
+		this.cleanup();
+		this.panel.modal("toggle");
 	},
 
 	getDataSources_callback : function(dataSources){
+		MapCloud.alert_info.hideLoading();
 		var dataSource = null;
 		var name = null;
 		var html = "";
@@ -104,7 +106,6 @@ MapCloud.DataSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 		var panel = dialog.panel;
 		dialog.dataSourceCur = dataSource;
 		dialog.getDataSets(dialog.dataSourceCur);
-
 	},
 
 	getDataSets : function(dataSource){
@@ -140,26 +141,44 @@ MapCloud.DataSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 	//选择一个数据源
 	registerDataSourceSelected : function(){
+		var dialog = this;
 		this.panel
 			.find("#datasets_div tbody tr").each(function(){
 				$(this).click(function(){
 					$(this).parent().children().removeClass("selected");
 					$(this).addClass("selected");
+				}).dblclick(function(){
+					var index = $(this).attr("index");
+					if(dialog.dataSourceCur != null){
+						var dataSets = dialog.dataSourceCur.dataSets;
+						if(dataSets != null){
+							var dataSet = dataSets[index];
+							MapCloud.new_layer_dialog
+								.setDataSet(dialog.dataSourceCur,
+									dataSet);
+							dialog.closeDialog();
+						}
+					}
 				});
-		})
+		});
 	},
 
 	unRegisterDataSource : function(dataSourceName){
 		if(dataSourceName == null){
 			return;
 		}
+		MapCloud.alert_info.loading();
 		dbsManager.unRegisterDataSource(dataSourceName,
 			this.unRegisterDataSource_callback);
-
 	},
 
 	unRegisterDataSource_callback : function(result){
-		alert(result);
+		// alert(result);
+		var dialog = MapCloud.data_source_dialog;
+		var name = dialog.panel
+					.find("#data_source_list option:selected").val();
+		var info = "注销数据源 [ " + name + " ]";
+		MapCloud.alert_info.showInfo(result,info);
 		var dialog = MapCloud.data_source_dialog;
 		dbsManager.getDataSources(dialog.getDataSources_callback);
 	}

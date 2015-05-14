@@ -20,6 +20,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 					return;
 				}
 				dialog.closeDialog();
+				MapCloud.alert_info.loading();
 				mapObj = mapManager.getMap("mapCanvas_wrappper",name);
 				if(mapObj == null){
 					//
@@ -27,6 +28,8 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 					mapObj.draw();
 					MapCloud.refresh_panel.refreshPanel();
+					var info = "打开地图 [ " + name + " ]";
+					MapCloud.alert_info.showInfo("success",info);
 				}
 			});
 		});
@@ -43,8 +46,8 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	getMaps_callback : function(maps){
-		// alert(maps.length);
-		var panel = MapCloud.get_maps_dlg.panel;
+		var dialog = MapCloud.get_maps_dlg;
+		var panel = dialog.panel;
 		var html = "";
 		for(var i = 0; i < maps.length;++i){
 			var map = maps[i];
@@ -65,7 +68,24 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 					$(this).removeClass("selected");
 				});
 				$(this).addClass("selected");
+
+			}).dblclick(function(){
+				var name = $(this).parent().attr("name");
+				MapCloud.alert_info.loading();
+				dialog.closeDialog();
+				mapObj = mapManager.getMap("mapCanvas_wrappper",name);
+				if(mapObj == null){
+					var info = "打开地图 [ " + name + " ]";
+					MapCloud.alert_info.showInfo("failed",info);
+				}else{
+					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+					mapObj.draw();
+					MapCloud.refresh_panel.refreshPanel();
+					var info = "打开地图 [ " + name + " ]";
+					MapCloud.alert_info.showInfo("success",info);
+				}
 			});
+
 		});
 	},
 

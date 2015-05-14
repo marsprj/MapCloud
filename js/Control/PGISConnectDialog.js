@@ -42,6 +42,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 				var str = dialog.getConnetStr(server,
 						instance,db,user,password);
 
+				MapCloud.alert_info.loading();
 				dbsManager.tryConnection(str,
 					dialog.connection_callback);
 			});			
@@ -88,6 +89,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 				}
 				var str = dialog.getConnetStr(server,
 						instance,db,user,password);
+				MapCloud.alert_info.loading();
 				dbsManager.registerDataSource(name,"Postgres",
 					str,dialog.registerDBS_callback);
 			});
@@ -165,11 +167,14 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 
 	connection_callback : function(result){
-		alert(result);
+		var info = "连接测试";
+		MapCloud.alert_info.showInfo(result,info);
 	},
 
 	registerDBS_callback : function(result){
-		alert(result);
+		var info = "注册数据源";
+		MapCloud.alert_info.showInfo(result,info);
+		
 		var parentDialog = MapCloud.data_source_dialog;
 		dbsManager.getDataSources(parentDialog
 			.getDataSources_callback);

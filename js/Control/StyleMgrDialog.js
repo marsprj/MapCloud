@@ -25,7 +25,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				
-				var name = dialog.panel.find("#wms_style_list option:selected").text(); 
+				var name = dialog.panel.find("#style_list option:selected").text(); 
 				if(name != "default"){
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
@@ -43,7 +43,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 					}
 				}
 				// if(dialog.isStyleChanged){
-				// 	var name = dialog.panel.find("#wms_style_list option:selected").text(); 
+				// 	var name = dialog.panel.find("#style_list option:selected").text(); 
 				// 	dialog.updateStyle(name);
 				// }
 				dialog.setStyle();
@@ -54,10 +54,10 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-success").each(function(){
 			$(this).click(function(){
 				// if(dialog.isStyleChanged){
-				// 	var name = dialog.panel.find("#wms_style_list option:selected").text(); 
+				// 	var name = dialog.panel.find("#style_list option:selected").text(); 
 				// 	dialog.updateStyle(name);
 				// }
-				var name = dialog.panel.find("#wms_style_list option:selected").text(); 
+				var name = dialog.panel.find("#style_list option:selected").text(); 
 				if(name != "default"){
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
@@ -83,11 +83,11 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		// this.registerSymbolDisplay();
 		// this.registerStyleSelected();
 
-		this.panel.find("#wms_style_type_list li a").each(function(){
+		this.panel.find("#style_type_list li a").each(function(){
 			$(this).click(function(){
 				var value = $(this).text();
 				var html = value + "<span class='caret'></span>";
-				dialog.panel.find("#wms_style_name").html(html);
+				dialog.panel.find("#style_type_name").html(html);
 				value = value.toLowerCase();
 				if(value == "all"){
 					dialog.styleMgr.getStyles(dialog.getStyles_callback);
@@ -103,7 +103,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var preStyleName = null;
 		// 切换样式
-		this.panel.find("#wms_style_list").each(function(){
+		this.panel.find("#style_list").each(function(){
 			$(this).focus(function(){
 				preStyleName = this.value;
 			}).change(function(){
@@ -139,7 +139,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				// alert("add style");
 
-				var type = dialog.panel.find("#wms_style_name").text();
+				var type = dialog.panel.find("#style_type_name").text();
 				if(type == "All"){
 					alert("请选择一个类型");
 					return;
@@ -160,7 +160,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		//更新样式
 		this.panel.find("#save_style").each(function(){
 			$(this).click(function(){
-				var name = dialog.panel.find("#wms_style_list option:selected").text(); 
+				var name = dialog.panel.find("#style_list option:selected").text(); 
 				if(name == "default"){
 					//保存当前样式
 					if(MapCloud.styleName_dialog == null){
@@ -193,7 +193,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find("#remove_style").each(function(){
 			$(this).click(function(){
-				var name = dialog.panel.find("#wms_style_list option:selected").text();
+				var name = dialog.panel.find("#style_list option:selected").text();
 				var result = confirm("确认删除" + name + "样式？");
 				if(result){
 					dialog.styleMgr.removeStyle(name,dialog.removeStyle_callback)
@@ -221,7 +221,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				var number = dialog.style.rules.length;
 				var colorRamp = new GeoBeans.ColorRamp(beginColor,endColor,number);
 				dialog.changeStyleByColorRamp(dialog.style,colorRamp); 
-				var field = dialog.panel.find("#wms_map_layer_fields option:selected").val();
+				var field = dialog.panel.find("#layer_fields option:selected").val();
 				var html = dialog.getRulesListHtml(field,dialog.style.rules);
 				dialog.panel.find("#styles_list_table").html(html);
 				dialog.registerSymbolDisplay();	
@@ -232,7 +232,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 添加所有值
 		this.panel.find("#add_all_value").each(function(){
 			$(this).click(function(){
-				var field = dialog.panel.find("#wms_map_layer_fields option:selected").val();
+				var field = dialog.panel.find("#layer_fields option:selected").val();
 				if(field == null){
 					return;
 				}
@@ -251,7 +251,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				var index = stylesTr.index(styleSelected);
 				if(index != -1){
 					dialog.style.removeRule(index);
-					var field = dialog.panel.find("#wms_map_layer_fields option:selected").val();
+					var field = dialog.panel.find("#layer_fields option:selected").val();
 					var html = dialog.getRulesListHtml(field,dialog.style.rules);	
 					dialog.panel.find("#styles_list_table").html(html);
 					dialog.registerSymbolDisplay();
@@ -300,9 +300,9 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 					html += "<option value='" + name + "'>" + name + "</option>";
 				}
 			}
-			this.panel.find("#wms_map_layer_fields").html(html);
+			this.panel.find("#layer_fields").html(html);
 		}
-		this.panel.find("#wms_map_layer_fields").each(function(){
+		this.panel.find("#layer_fields").each(function(){
 			$(this).change(function(){
 				that.panel.find("#styles_list_table").html("");
 				that.style = null;
@@ -322,14 +322,14 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var styleGeomType = this.getStyleTypeByGeomType(geomType);
 		var styleGeomTypeOptions = this.panel
-						.find("#wms_style_list option[type='" + styleGeomType + "']");
+						.find("#style_list option[type='" + styleGeomType + "']");
 
 		var html = styleGeomType + "<span class='caret'></span>";
-		this.panel.find("#wms_style_name").html(html);
-		this.panel.find("#wms_style_name").addClass("disabled");
-		var styleOptions = this.panel.find("#wms_style_list");
+		this.panel.find("#style_type_name").html(html);
+		this.panel.find("#style_type_name").addClass("disabled");
+		var styleOptions = this.panel.find("#style_list");
 		styleOptions.html(styleGeomTypeOptions);
-		var styleOption = this.panel.find("#wms_style_list option[value='" +
+		var styleOption = this.panel.find("#style_list option[value='" +
 							styleName + "']");
 		styleOption.attr("selected",true);
 
@@ -376,8 +376,8 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.isStyleChanged = false;
 		this.addStyleName = null;
 		this.panel.find("#styles_list_table").html("");
-		this.panel.find("#wms_map_layer_fields").html("");
-		this.panel.find("#wms_style_name").removeClass("disabled");
+		this.panel.find("#layer_fields").html("");
+		this.panel.find("#style_type_name").removeClass("disabled");
 	},
 
 	closeDialog : function(){
@@ -403,7 +403,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 	showDialog : function(){
 
 		var html = "All<span class='caret'></span>";
-		this.panel.find("#wms_style_name").html(html);
+		this.panel.find("#style_type_name").html(html);
 		this.styleMgr.getStyles(this.getStyles_callback);
 		this.cleanup();
 		this.panel.modal();
@@ -449,7 +449,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			html += "<option value='" + name 
 				 + "' type='" + geomType + "'>" + name + "</option>";
 		}
-		MapCloud.styleMgr_dialog.panel.find("#wms_style_list").html(html);
+		MapCloud.styleMgr_dialog.panel.find("#style_list").html(html);
 		
 
 		//展示第一个样式
@@ -458,7 +458,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.styleMgr_dialog.style =  null;
 		MapCloud.styleMgr_dialog.isDefaultStyle = false;	
 		var styleName = MapCloud.styleMgr_dialog.panel
-					.find("#wms_style_list option:selected").val();
+					.find("#style_list option:selected").val();
 		MapCloud.styleMgr_dialog.styleMgr.getStyleXML(styleName,
 			MapCloud.styleMgr_dialog.getStyleXML_callback);
 	},
@@ -490,7 +490,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(MapCloud.styleMgr_dialog.defaultStyle == null){//证实可能是多重的样式
 			//获取到字段
 			var field = MapCloud.styleMgr_dialog.getProperyNameByRule(rules[0]);
-			var fieldOption = MapCloud.styleMgr_dialog.panel.find("#wms_map_layer_fields option[value='" +
+			var fieldOption = MapCloud.styleMgr_dialog.panel.find("#layer_fields option[value='" +
 							field + "']");
 			fieldOption.attr("selected",true);
 			var html = MapCloud.styleMgr_dialog.getRulesListHtml(field,style.rules);
@@ -514,7 +514,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			alert("删除成功");
 
 			// MapCloud.wmsStyle_dialog.panel.find("#wmsStyleType").val("All");
-			var value = MapCloud.styleMgr_dialog .panel.find("#wms_style_name").text();
+			var value = MapCloud.styleMgr_dialog .panel.find("#style_type_name").text();
 			value = value.toLowerCase();
 			if(value == "all"){
 				MapCloud.styleMgr_dialog .styleMgr.getStyles(MapCloud.styleMgr_dialog.getStyles_callback);
@@ -544,7 +544,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		}else{
 			this.style.rules[this.selectedRuleIndex].symbolizer = rule.symbolizer;
 			this.style.rules[this.selectedRuleIndex].textSymbolizer = rule.textSymbolizer;
-			var field = this.panel.find("#wms_map_layer_fields option:selected").val();
+			var field = this.panel.find("#layer_fields option:selected").val();
 			var html = this.getRulesListHtml(field,this.style.rules);
 			this.panel.find("#styles_list_table").html(html);
 			this.registerSymbolDisplay();
@@ -567,7 +567,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		// var number = MapCloud.styleMgr_dialog.panel.find("#select_color_ramp .color-ramp-item div").length;
 		var number = values.length;
 		var colorRamp = new GeoBeans.ColorRamp(beginColor,endColor,number);
-		var field = MapCloud.styleMgr_dialog.panel.find("#wms_map_layer_fields option:selected").val();
+		var field = MapCloud.styleMgr_dialog.panel.find("#layer_fields option:selected").val();
 		// MapCloud.styleMgr_dialog.setStyleByValues(field,values,colorRamp);
 		MapCloud.styleMgr_dialog.displayStyleHtmlByValues(field,
 									values,colorRamp);
@@ -599,7 +599,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var colorValuesLength = colorValues.length;
 		var type = defaultSymbolizer.type;
 		var geomType = this.defaultStyle.geomType;
-		var styleName = this.panel.find("#wms_style_list option:selected")
+		var styleName = this.panel.find("#style_list option:selected")
 					.text();
 		var style = new GeoBeans.Style.FeatureStyle(styleName,geomType);
 		var rules = [];
@@ -936,7 +936,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 
 		if(updateStyle != null){
-			// var name = this.panel.find("#wms_style_list option:selected").text(); 
+			// var name = this.panel.find("#style_list option:selected").text(); 
 			var xml = this.styleMgr.writer.write(updateStyle);
 			this.styleMgr.updateStyle(xml,name,this.updateCallback);
 		}
@@ -947,7 +947,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			alert(result);
 		}
 		// var styleName = MapCloud.styleMgr_dialog.panel.
-		// 			find("#wms_style_list option:selected").val();
+		// 			find("#style_list option:selected").val();
 		// if(MapCloud.styleMgr_dialog.wmsMapLayer == null){
 		// 	return;
 		// }
@@ -964,7 +964,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	setStyle : function(){
 		var styleName = this.panel.
-					find("#wms_style_list option:selected").val();
+					find("#style_list option:selected").val();
 		if(this.wmsMapLayer != null){
 			var oldName = this.wmsMapLayer.style_name;
 			if(oldName != styleName){
@@ -1134,9 +1134,9 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.styleName_dialog.showDialog();
 			return;
 		}
-		var styleOptions = this.panel.find("#wms_style_list");
+		var styleOptions = this.panel.find("#style_list");
 		if(flag == "add"){
-			var type = this.panel.find("#wms_style_name").text();
+			var type = this.panel.find("#style_type_name").text();
 			var styleType = this.getStyleType(type.toLowerCase())
 			var option = '<option value="' + styleName + '" type="' 
 						+ styleType + '">' + styleName + '</option>';
@@ -1146,7 +1146,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.loadAddStyle(styleType);
 		}else if(flag == "save"){
 			//默认样式则修改名称
-			this.panel.find("#wms_style_list option[value='default']").text(styleName);
+			this.panel.find("#style_list option[value='default']").text(styleName);
 			var addstyle = null;
 			if(this.style != null){
 				addstyle = this.style;
@@ -1155,14 +1155,14 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 			this.addStyle(addstyle);
 		}
-		// var styleOptions = this.panel.find("#wms_style_list");
-		// styleNameCur = this.panel.find("#wms_style_list option:selected").text();
+		// var styleOptions = this.panel.find("#style_list");
+		// styleNameCur = this.panel.find("#style_list option:selected").text();
 		// if(styleNameCur == "default"){
 		// 	//默认样式则修改名称
-		// 	this.panel.find("#wms_style_list option[value='default']").text(styleName);
+		// 	this.panel.find("#style_list option[value='default']").text(styleName);
 		// 	this.addStyle(styleName);
 		// }else{
-		// 	var type = this.panel.find("#wms_style_name").text();
+		// 	var type = this.panel.find("#style_type_name").text();
 		// 	var styleType = this.getStyleType(type.toLowerCase())
 		// 	var option = '<option value="' + styleName + '" type="' 
 		// 				+ styleType + '">' + styleName + '</option>';
@@ -1170,7 +1170,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 	this.loadAddStyle(styleType);
 		// }
 		// this.addStyleName = styleName;
-		// var type = this.panel.find("#wms_style_name").text();
+		// var type = this.panel.find("#style_type_name").text();
 		// var styleType = this.getStyleType(type.toLowerCase());
 		// this.addStyleByType(styleType,styleName);
 	},
@@ -1204,7 +1204,7 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 			// 	,styleType,that.addStyleCallback);
 			var style = that.styleMgr.reader.read(xml);
 			style.name = that.addStyleName;
-			var geomType = that.panel.find("#wms_style_name").text();
+			var geomType = that.panel.find("#style_type_name").text();
 			style.geomType = geomType;
 			that.panel.find("#styles_list_table").html("");
 			that.panel.find("#styles_list_table").html("");
@@ -1253,12 +1253,12 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		
 
-		var type = dialog.panel.find("#wms_style_name").text();
+		var type = dialog.panel.find("#style_type_name").text();
 		var styleType = dialog.getStyleType(type.toLowerCase());
 		var styles = dialog.styleMgr.getStyleByType(styleType);
 		dialog.getStyles_callback(styles);
 		var styleName = dialog.addStyleName;
-		var styleOption = dialog.panel.find("#wms_style_list option[value='" +
+		var styleOption = dialog.panel.find("#style_list option[value='" +
 							styleName + "']");
 		styleOption.attr("selected",true);
 		dialog.panel.find("#styles_list_table").html("");
@@ -1298,18 +1298,18 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 				html += "<option value='" + name + "'>" + name + "</option>";
 			}
 		}
-		this.panel.find("#wms_map_layer_fields").html(html);
+		this.panel.find("#layer_fields").html(html);
 		
 		var styleName = style.name;
 		var styleGeomType = style.geomType;
 		// var styleGeomType = this.getStyleTypeByGeomType(geomType);
 		var styleGeomTypeOptions = this.panel
-						.find("#wms_style_list option[type='" + styleGeomType + "']");
-		// var styleList = this.panel.find("#wms_style_list");
+						.find("#style_list option[type='" + styleGeomType + "']");
+		// var styleList = this.panel.find("#style_list");
 		var html = styleGeomType + "<span class='caret'></span>";
-		this.panel.find("#wms_style_name").html(html);
-		this.panel.find("#wms_style_name").addClass("disabled");
-		var styleOptions = this.panel.find("#wms_style_list");
+		this.panel.find("#style_type_name").html(html);
+		this.panel.find("#style_type_name").addClass("disabled");
+		var styleOptions = this.panel.find("#style_list");
 		styleOptions.html(styleGeomTypeOptions);
 
 		var styleS = this.styleMgr.getStyle(styleName);
@@ -1380,9 +1380,9 @@ MapCloud.StyleMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 					html += "<option value='" + name + "'>" + name + "</option>";
 				}
 			}
-			this.panel.find("#wms_map_layer_fields").html(html);
+			this.panel.find("#layer_fields").html(html);
 		}
-		this.panel.find("#wms_map_layer_fields").each(function(){
+		this.panel.find("#layer_fields").each(function(){
 			$(this).change(function(){
 				that.panel.find("#styles_list_table").html("");
 				that.style = null;

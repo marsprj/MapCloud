@@ -97,79 +97,83 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onGetMaps();
 					break;
 				case 1:
+					that.onMapMgr();
+					break;
+				case 2:
 					// that.onMapNew();
 					that.onCreateMap();
 					break;
-				case 2:
+				case 3:
 					that.onMapPropertis();
 					break;
 				// Layer Events
-				case 3:
-					that.onLayerNew();
-					break;
 				case 4:
-					that.onLayerAddVector();
+					that.onLayerNew();
 					break;
 				case 5:
-					that.onLayerAddWMS();
+					that.onLayerAddVector();
 					break;
 				case 6:
-					that.onLayerAddWFS();
+					that.onLayerAddWMS();
 					break;
 				case 7:
-					that.onLayerNew();
+					that.onLayerAddWFS();
 					break;
 				case 8:
-					that.onEditLayer();
+					that.onLayerNew();
 					break;
 				case 9:
-					that.onShareLayer();
+					that.onEditLayer();
 					break;
 				case 10:
-					that.onCreateLayer();
+					that.onShareLayer();
 					break;
 				case 11:
+					that.onCreateLayer();
+					break;
+				case 12:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 12:
+				case 13:
 					//删除图层
 					that.onDeleteLayer();
 					break;
-				case 13:
+				case 14:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 14:
+				case 15:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 15:
+				case 16:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 16:
+				case 17:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 17:
+				case 18:
 					that.addChart();
 					break;
 				// Tools Events
-				case 18:
-					that.onFile();
-					break;
 				case 19:
-					// that.onDatabase();
-					that.onDataSource();
+					// that.onFile();
 					break;
 				case 20:
+					// that.onDatabase();
+					that.onDataSource();
 					break;
 				case 21:
 					break;
 				case 22:
-					that.onWMSStyle();
+					break;
+				case 23:
+					// that.onWMSStyle();
+					that.onStyleManager();
 					break;
 
 				// Data Events
@@ -192,6 +196,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	/**************************************************************/
 	onGetMaps : function(){
 		MapCloud.get_maps_dlg.showDialog();
+	},
+
+	onMapMgr : function(){
+		MapCloud.map_mgr_dialog.showDialog();
 	},
 
 	onCreateMap : function(){
@@ -373,11 +381,12 @@ MapCloud.Ribbon = MapCloud.Class({
 		alert("onDataImport");
 	},
 
-	onWMSStyle : function(){
-		if(MapCloud.styleMgr_dialog == null){
-			MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
-		}
-		MapCloud.styleMgr_dialog.showDialog();
+	onStyleManager : function(){
+		// if(MapCloud.styleMgr_dialog == null){
+		// 	MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
+		// }
+		// MapCloud.styleMgr_dialog.showDialog();
+		MapCloud.styleManager_dialog.showDialog();
 	}
 });
 	

@@ -12,7 +12,7 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请输入名称！");
 					return;
 				}
-				MapCloud.styleMgr_dialog.setAddStyleName(name,dialog.flag);
+				MapCloud.styleManager_dialog.setAddStyleName(name,dialog.flag);
 				dialog.closeDialog();
 			});
 		});

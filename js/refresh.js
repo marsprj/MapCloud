@@ -6,6 +6,8 @@ MapCloud.refresh = MapCloud.Class({
 	mapLayerID : null,
 	styleID : null,
 
+	layerName : null,
+
 	initialize : function(id){
 		var that = this;
 		
@@ -30,6 +32,8 @@ MapCloud.refresh = MapCloud.Class({
 		if(mapObj == null){
 			return;
 		}
+		var mapName = mapObj.name;
+		this.panel.find("#map_name").html(mapName);
 		// var that = this;
 
 		// 影响点击，暂时屏蔽
@@ -110,9 +114,9 @@ MapCloud.refresh = MapCloud.Class({
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","none");
 					// $("#layers_row .wms_layer_row[value='" + id + "']").css("display","none");
 					if(isWMSRow){
-						// li.find(".wms_layer_style_row[value='" + id + "']")
+						// li.find(".layer_style_row[value='" + id + "']")
 						// 	.css("display","none");
-						li.find(".wms_layer_style_row[lid='" + id + "']")
+						li.find(".layer_style_row[lid='" + id + "']")
 							.slideUp();
 					}else{
 						// li.find(".row").css("display","none");
@@ -125,9 +129,9 @@ MapCloud.refresh = MapCloud.Class({
 					var id = $(this).parent().parent().attr("value");
 					$("#layers_row .layer_style_row[value='" + id + "']").css("display","block");
 					if(isWMSRow){
-						// li.find(".wms_layer_style_row[value='" + id + "']")
+						// li.find(".layer_style_row[value='" + id + "']")
 						// 	.css("display","block");
-						li.find(".wms_layer_style_row[lid='" + id + "']")
+						li.find(".layer_style_row[lid='" + id + "']")
 							.slideDown();						
 					}else{
 						// li.find(".row").css("display","block");
@@ -145,30 +149,64 @@ MapCloud.refresh = MapCloud.Class({
 		});
 
 		//样式的编辑
+		// this.panel.find(".style-symbol").each(function(){
+		// 	$(this).click(function(){
+		// 		var row = $(this).parents(".layer_style_row");
+		// 		var sID = row.first().attr("sID");
+		// 		var mapLayerID = row.first().attr("lID");
+		// 		var layerID = $(this).parents(".layer_row").attr("value");
+		// 		var layer = mapObj.layers[layerID];
+		// 		if(layer == null){
+		// 			return;
+		// 		}
+		// 		var style = null;
+		// 		var mapLayer = null;
+		// 		var fields = null;
+		// 		if(mapLayerID == "-1"){
+		// 			//此时是WFSLayer
+		// 			style = layer.style;
+		// 			fields = layer.featureType.fields;
+		// 		}else{
+		// 			mapLayer  = layer.mapLayers[mapLayerID];
+		// 			if(mapLayer != null){
+		// 				style = mapLayer.style;
+		// 				fields = mapLayer.fields;
+		// 			}
+		// 		}
+		// 		if(style == null){
+		// 			return;
+		// 		}
+		// 		var rules = style.rules;
+		// 		if(rules == null){
+		// 			return;
+		// 		}
+		// 		var rule = rules[sID];
+		// 		if(rule == null){
+		// 			return;
+		// 		}				
+				
+		// 		if(MapCloud.style_dialog == null){
+		// 			MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
+		// 		}
+
+		// 		that.layerID = layerID;
+		// 		that.mapLayerID = mapLayerID;
+		// 		that.styleID = sID;
+		// 		MapCloud.style_dialog.showDialog();	
+		// 		MapCloud.style_dialog.setRule(rule,
+		// 			fields,"refresh");				
+		// 	});
+		// });
 		this.panel.find(".style-symbol").each(function(){
 			$(this).click(function(){
-				var row = $(this).parents(".wms_layer_style_row");
-				var sID = row.first().attr("sID");
-				var mapLayerID = row.first().attr("lID");
-				var layerID = $(this).parents(".layer_row").attr("value");
-				var layer = mapObj.layers[layerID];
+				var li = $(this).parents(".layer_row");
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
 				if(layer == null){
 					return;
 				}
-				var style = null;
-				var mapLayer = null;
-				var fields = null;
-				if(mapLayerID == "-1"){
-					//此时是WFSLayer
-					style = layer.style;
-					fields = layer.featureType.fields;
-				}else{
-					mapLayer  = layer.mapLayers[mapLayerID];
-					if(mapLayer != null){
-						style = mapLayer.style;
-						fields = mapLayer.fields;
-					}
-				}
+				
+				var style = layer.style;
 				if(style == null){
 					return;
 				}
@@ -176,47 +214,64 @@ MapCloud.refresh = MapCloud.Class({
 				if(rules == null){
 					return;
 				}
+
+				var styleRow = $(this).parents(".layer_style_row");
+				var sID = styleRow.first().attr("sID");
 				var rule = rules[sID];
 				if(rule == null){
 					return;
-				}				
-				
-				if(MapCloud.style_dialog == null){
-					MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
 				}
-
-				that.layerID = layerID;
-				that.mapLayerID = mapLayerID;
+				var fields = null;
+				if(layer instanceof GeoBeans.Layer.DBLayer){
+					var wfsWorkspace = new GeoBeans.WFSWorkspace("tmp",
+							mapObj.server,"1.0.0");
+					var featureType = new GeoBeans.FeatureType(wfsWorkspace,
+							layer.name);
+					fields = featureType.getFields(mapObj.name);					
+				}
+				if(fields == null){
+					return;
+				}
+				that.layerName = layerName;
 				that.styleID = sID;
 				MapCloud.style_dialog.showDialog();	
 				MapCloud.style_dialog.setRule(rule,
-					fields,"refresh");				
+					fields,"refresh");			
 			});
 		});
+
 
 		//图层的显示与隐藏
 		this.panel.find(".glyphicon-eye-open,.glyphicon-eye-close").each(function(){
 			$(this).click(function(){
+
 				var li = $(this).parents("li");
-				var id = li.attr("value");
-				var row = $(this).parents(".row");
-				var isWMSRow = false;
-				if(row.first().hasClass("wms_layer_row")){
-					isWMSRow = true;
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
+				if(layer == null){
+					return;
 				}
-				// var id = $(this).parent().parent().attr("value");
-				var layer = null;
-				var wmsLayer = null;
-				if(id == "baseLayer"){
-					layer = mapObj.baseLayer;
-				}else{
-					layer = mapObj.layers[id];
-					if(isWMSRow){
-						var mapLayerID = row.first().attr("value");
-						layer = layer.mapLayers[mapLayerID];
-					}
+
+				// var li = $(this).parents("li");
+				// var id = li.attr("value");
+				// var row = $(this).parents(".row");
+				// var isWMSRow = false;
+				// if(row.first().hasClass("wms_layer_row")){
+				// 	isWMSRow = true;
+				// }
+				// // var id = $(this).parent().parent().attr("value");
+				// var layer = null;
+				// var wmsLayer = null;
+				// if(id == "baseLayer"){
+				// 	layer = mapObj.baseLayer;
+				// }else{
+				// 	layer = mapObj.layers[id];
+				// 	if(isWMSRow){
+				// 		var mapLayerID = row.first().attr("value");
+				// 		layer = layer.mapLayers[mapLayerID];
+				// 	}
 					
-				}
+				// }
 				if(layer == null){
 					return;
 				}
@@ -274,29 +329,34 @@ MapCloud.refresh = MapCloud.Class({
 		
 		this.panel.find(".layer_row_quick_tool_remove").each(function(){
 			$(this).click(function(){
-				var layer_id = $(this).parent().parent().parent().parent().parent().parent().attr("value");
-				MapCloud.selected_layer = mapObj.layers[layer_id];
-				if(MapCloud.selected_layer != null){
-					var layer_name = MapCloud.selected_layer.name;
-					mapObj.removeLayer(layer_name);
-					that.refreshPanel();
-					// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-					mapObj.draw();	
+				var li = $(this).parents("li.layer_row");
+				var layerName = li.attr("lname");
+				
+				mapObj.removeLayer(layerName,that.removeLayer_callback);
+				that.refreshPanel();
+				// var layer_id = $(this).parent().parent().parent().parent().parent().parent().attr("value");
+				// MapCloud.selected_layer = mapObj.layers[layer_id];
+				// if(MapCloud.selected_layer != null){
+				// 	var layer_name = MapCloud.selected_layer.name;
+				// 	mapObj.removeLayer(layer_name);
+				// 	that.refreshPanel();
+				// 	// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+				// 	mapObj.draw();	
 
-					//同时删掉相应的图表
-					for(var i = 0; i < MapCloud.wfs_layer_chart.length;++i){
-						var wfsLayerChart = MapCloud.wfs_layer_chart[i];
-						if(wfsLayerChart == null){
-							continue;
-						}
-						var chartLayer = wfsLayerChart.layer;
-						if(chartLayer == MapCloud.selected_layer){
-							wfsLayerChart.removeCharts(i);
-							MapCloud.wfs_layer_chart[i] = null;
-						}
-					}
-				}
-			})
+				// 	//同时删掉相应的图表
+				// 	for(var i = 0; i < MapCloud.wfs_layer_chart.length;++i){
+				// 		var wfsLayerChart = MapCloud.wfs_layer_chart[i];
+				// 		if(wfsLayerChart == null){
+				// 			continue;
+				// 		}
+				// 		var chartLayer = wfsLayerChart.layer;
+				// 		if(chartLayer == MapCloud.selected_layer){
+				// 			wfsLayerChart.removeCharts(i);
+				// 			MapCloud.wfs_layer_chart[i] = null;
+				// 		}
+				// 	}
+				// }
+			});
 		});
 
 		this.panel.find(".layer_row_quick_tool_remove_base").each(function(){
@@ -443,19 +503,18 @@ MapCloud.refresh = MapCloud.Class({
 					return;
 				}
 
-				if(MapCloud.styleMgr_dialog == null){
-					MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
-				}
-				MapCloud.styleMgr_dialog.showDialog();				
-				MapCloud.styleMgr_dialog.setWMSLayer(wmsLayer,wmsMapLayer);
+				
+				MapCloud.styleManager_dialog.showDialog();				
+				// MapCloud.styleMgr_dialog.setWMSLayer(wmsLayer,wmsMapLayer);
 			});
 		});
 
 		this.panel.find(".mc-icon-wfslayer").each(function(){
 			$(this).click(function(){
 				var li = $(this).parents("li");
-				var layerID = li.attr("value");
-				var wfsLayer = mapObj.layers[layerID];
+				var layerName = li.attr("lname");
+				var wfsLayer = mapObj.getLayer(layerName);
+				
 				if(wfsLayer == null){
 					return;
 				}
@@ -463,11 +522,13 @@ MapCloud.refresh = MapCloud.Class({
 				if(style == null){
 					return;
 				}
-				if(MapCloud.styleMgr_dialog == null){
-					MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
-				}
-				MapCloud.styleMgr_dialog.showDialog();
-				MapCloud.styleMgr_dialog.setWFSLayer(wfsLayer);
+				MapCloud.styleManager_dialog.showDialog();
+				MapCloud.styleManager_dialog.setWFSLayer(wfsLayer);
+				// if(MapCloud.styleMgr_dialog == null){
+				// 	MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
+				// }
+				// MapCloud.styleMgr_dialog.showDialog();
+				MapCloud.styleManager_dialog.setWFSLayer(wfsLayer);
 			});
 		});
 
@@ -480,9 +541,10 @@ MapCloud.refresh = MapCloud.Class({
 				if(layer == null){
 					return;
 				}
-				MapCloud.styleMgr_dialog.showDialog();
-				MapCloud.styleMgr_dialog.setDBLayer(layer);
-
+				// MapCloud.styleMgr_dialog.showDialog();
+				// MapCloud.styleMgr_dialog.setDBLayer(layer);
+				MapCloud.styleManager_dialog.showDialog();
+				MapCloud.styleManager_dialog.setDBLayer(layer);
 			});
 		});
 	},
@@ -790,7 +852,7 @@ MapCloud.refresh = MapCloud.Class({
 					var symbolizer = rule.symbolizer;
 					if(symbolizer != null){
 						var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
-						html += '<div class="row wms_layer_style_row" lID="'
+						html += '<div class="row layer_style_row" lID="'
 							 +			index+ '" sID="0">'
 							 + 	'	<div class="col-md-1 col-xs-1"></div>'
 							 + 	'	<div class="col-md-1 col-xs-1"></div>'
@@ -805,9 +867,9 @@ MapCloud.refresh = MapCloud.Class({
 				}
 			}
 		}else{
-			var field = MapCloud.styleMgr_dialog
+			var field = MapCloud.styleManager_dialog
 						.getProperyNameByRule(rules[0]); 
-			html += '<div class="row wms_layer_style_row" lID="' + index + '">'
+			html += '<div class="row layer_style_row" lID="' + index + '">'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
 				 +  '	<div class="col-md-1 col-xs-1"></div>'
@@ -838,7 +900,7 @@ MapCloud.refresh = MapCloud.Class({
 
 				var symbolizer = rule.symbolizer;
 				var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
-				html += '<div class="row wms_layer_style_row" lID="' 
+				html += '<div class="row layer_style_row" lID="' 
 				 +			 index + '" sID="' + i + '">'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
@@ -858,10 +920,7 @@ MapCloud.refresh = MapCloud.Class({
 	},
 
 	getSymbolizerHtml : function(symbolizer){
-		if(MapCloud.styleMgr_dialog == null){
-			MapCloud.styleMgr_dialog = new MapCloud.StyleMgrDialog("style-mgr-dialog");
-		}
-		var html = MapCloud.styleMgr_dialog
+		var html = MapCloud.styleManager_dialog
 						.getSymbolHtml(symbolizer);
 		return html;						
 	},
@@ -870,7 +929,7 @@ MapCloud.refresh = MapCloud.Class({
 		var name = layer.name;
 		var style = layer.style;
 
-		html = 	"<li class=\"row layer_row\" value=\"" + index + "\">"
+		html = 	"<li class=\"row layer_row\" lname=\"" + name + "\">"
 			+	"	<div class=\"col-md-1 col-xs-1\">"
 			+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
 			+	"	</div>"
@@ -1004,20 +1063,22 @@ MapCloud.refresh = MapCloud.Class({
 
 	setRule : function(rule){
 
-		var layer = mapObj.layers[this.layerID];
+		// var layer = mapObj.layers[this.layerID];
+		var layer = mapObj.getLayer(this.layerName);
 		if(layer == null){
 			return;
 		}
-		var style = null;
-		var mapLayer = null;
-		if(this.mapLayerID == -1){
-			style = layer.style;
-		}else{
-			mapLayer = layer.mapLayers[this.mapLayerID];
-			if(mapLayer != null){
-				style = mapLayer.style;
-			}
-		}
+		// var style = null;
+		// var mapLayer = null;
+		// if(this.mapLayerID == -1){
+		// 	style = layer.style;
+		// }else{
+		// 	mapLayer = layer.mapLayers[this.mapLayerID];
+		// 	if(mapLayer != null){
+		// 		style = mapLayer.style;
+		// 	}
+		// }
+		var style = layer.style;
 		if(style == null){
 			return;
 		}
@@ -1039,7 +1100,8 @@ MapCloud.refresh = MapCloud.Class({
 			MapCloud.refresh_panel.refreshPanel();
 		}else{
 			var xml = this.wmsStyleMgr.writer.write(style);
-			 this.wmsStyleMgr.updateStyle(xml,styleName,this.updateCallback);
+			this.wmsStyleMgr.updateStyle(xml,styleName,this.updateCallback);
+			mapObj.setStyle(this.layerName,style,this.setStyle_callback);
 		}
 
 		// if(mapLayer == null){
@@ -1068,18 +1130,25 @@ MapCloud.refresh = MapCloud.Class({
 		}
 
 		
-		var layer = mapObj.layers[MapCloud.refresh_panel.layerID];
-		if(layer == null){
-			return;
-		}
-		if(layer instanceof GeoBeans.Layer.WFSLayer){
+		// var layer = mapObj.layers[MapCloud.refresh_panel.layerID];
+		// if(layer == null){
+		// 	return;
+		// }
+		// if(layer instanceof GeoBeans.Layer.WFSLayer){
 
-		}else if(layer instanceof GeoBeans.Layer.WMSLayer){
-			layer.update();
-		}
+		// }else if(layer instanceof GeoBeans.Layer.WMSLayer){
+		// 	layer.update();
+		// }
 		
+		// mapObj.draw();
+		// MapCloud.refresh_panel.refreshPanel();
+	},
+
+	setStyle_callback : function(result){
+		if(result != "success"){
+			alert(result);
+		}
 		mapObj.draw();
-		MapCloud.refresh_panel.refreshPanel();
 	},
 
 	getDBLayerHtml : function(index,layer){
@@ -1134,4 +1203,10 @@ MapCloud.refresh = MapCloud.Class({
 		html += "</li>";
 		return html;
 	},
+
+	removeLayer_callback : function(result){
+		if(result != "success"){
+			alert(result);
+		}
+	}
 });

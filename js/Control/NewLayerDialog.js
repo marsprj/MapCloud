@@ -10,6 +10,7 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		dialog.panel.find("#new_layer_select_dbs").each(function(){
 			$(this).click(function(){
 				MapCloud.data_source_dialog.showDialog("select");
+				// MapCloud.data_source_dialog.showDialog();
 			});
 		});
 		dialog.panel.find(".btn-confirm").each(function(){
@@ -29,6 +30,8 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 				if(mapObj != null){
 					var layer = new GeoBeans.Layer.DBLayer(name,
 						dbName,typeName); 
+					MapCloud.alert_info.loading();
+					layer.geomType = dialog.dataSet.geometryType;
 					mapObj.addLayer(layer,dialog.addLayer_callback);
 				}
 				dialog.closeDialog();
@@ -42,6 +45,8 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 	
 	cleanup : function(){
+		this.panel.find("#new_layer_name").val("");
+		this.panel.find("#new_layer_dbs").val("");
 	},
 
 	setDataSet : function(dataSource,dataSet){
@@ -56,8 +61,11 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 
 	addLayer_callback : function(result){
-		alert(result);
+		var dialog = MapCloud.new_layer_dialog;
+		var name = dialog.panel.find("#new_layer_name").val();
+		var info = "注册图层 [ " + name + " ]";
+		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.refresh_panel.refreshPanel();
 	}
-	
 });
 	

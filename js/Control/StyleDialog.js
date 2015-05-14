@@ -82,7 +82,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				var rule = dialog.getRule();
 				if(dialog.source == "styleMgr"){
-					MapCloud.styleMgr_dialog.setRule(rule);
+					MapCloud.styleManager_dialog.setRule(rule);
 				}else if(dialog.source == "refresh"){
 					if(MapCloud.refresh_panel == null){
 						MapCloud.refresh_panel = 
@@ -90,7 +90,6 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 					}
 					MapCloud.refresh_panel.setRule(rule);
 				}
-				
 				dialog.closeDialog();
 			});
 		});
