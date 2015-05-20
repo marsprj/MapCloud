@@ -21,7 +21,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 				dialog.closeDialog();
 				MapCloud.alert_info.loading();
-				mapObj = mapManager.getMap("mapCanvas_wrappper",name);
+				mapObj = mapManager.getMap("mapCanvas_wrapper",name);
 				if(mapObj == null){
 					//
 				}else{
@@ -73,7 +73,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = $(this).parent().attr("name");
 				MapCloud.alert_info.loading();
 				dialog.closeDialog();
-				mapObj = mapManager.getMap("mapCanvas_wrappper",name);
+				mapObj = mapManager.getMap("mapCanvas_wrapper",name);
 				if(mapObj == null){
 					var info = "打开地图 [ " + name + " ]";
 					MapCloud.alert_info.showInfo("failed",info);
@@ -81,6 +81,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 					mapObj.draw();
 					MapCloud.refresh_panel.refreshPanel();
+					MapCloud.dataGrid.cleanup();
 					var info = "打开地图 [ " + name + " ]";
 					MapCloud.alert_info.showInfo("success",info);
 				}

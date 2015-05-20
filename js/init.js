@@ -36,30 +36,35 @@ $().ready(function(){
 	var logo = new MapCloud.Logo();	
 	var layersTree = new MapCloud.LayerTree();	
 	ribbonObj = new MapCloud.Ribbon();
+	var mapBarObj = new MapCloud.MapBar();
+	MapCloud.dataGrid 
+	= new MapCloud.DataGrid("datagrid_wrapper");
 	
 	mapManager = new GeoBeans.MapManager(url);
 	dbsManager = new GeoBeans.DBSManager(url);
 
-	// mapObj = new GeoBeans.Map("mapCanvas_wrappper");
+	// mapObj = new GeoBeans.Map("mapCanvas_wrapper");
 	
 
-	var datagrid_collapsed = true;
-	$("#datagrid_wrapper .panel-header-collapse").click(function(){
-		if(datagrid_collapsed){
-			$("#datagrid_wrapper").css("height","300px");
-			$("#mapCanvas_wrappper").css("bottom","300px");
-			$(this).removeClass("mc-icon-close");
-			$(this).addClass("mc-icon-expand");
-			datagrid_collapsed = false;
-		}else{
-			$("#datagrid_wrapper").css("height","30px");
-			$("#mapCanvas_wrappper").css("bottom","30px");
-			$(this).addClass("mc-icon-close");
-			$(this).removeClass("mc-icon-expand");
-			datagrid_collapsed = true;
-		}
+	// var datagrid_collapsed = true;
+	// $("#datagrid_wrapper .panel-header-collapse").click(function(){
+	// 	if(datagrid_collapsed){
+	// 		$("#datagrid_wrapper").css("height","300px");
+	// 		$("#mapCanvas_wrapper").css("bottom","300px");
+	// 		$(this).removeClass("mc-icon-close");
+	// 		$(this).addClass("mc-icon-expand");
+	// 		datagrid_collapsed = false;
+	// 		mapObj.resize();
+	// 	}else{
+	// 		$("#datagrid_wrapper").css("height","30px");
+	// 		$("#mapCanvas_wrapper").css("bottom","30px");
+	// 		$(this).addClass("mc-icon-close");
+	// 		$(this).removeClass("mc-icon-expand");
+	// 		datagrid_collapsed = true;
+	// 		mapObj.resize();
+	// 	}
 
-	});
+	// });
 
 	$("#right_panel .panel-header-collapse").click(function(){
 //		$("#center_panel").css("right","0px");

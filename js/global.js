@@ -61,6 +61,9 @@ MapCloud.refresh_panel = null;
 //左侧overlaypanel
 MapCloud.overlay_panel = null;
 
+//下面的数据列表
+MapCloud.dataGrid = null;
+
 //WFS图层
 MapCloud.wfs_layer = null;
 
@@ -224,7 +227,37 @@ MapCloud.resizeCharts = function(){
 		}
 	}
 
-}
+};
 
+
+MapCloud.getLayerGeomTypeHtml = function(geomType){
+		var html = "";
+		switch(geomType){
+			case GeoBeans.Geometry.Type.POINT:
+			case GeoBeans.Geometry.Type.MULTIPOINT:{
+				html = '<span class="glyphicon glyphicon-map-marker '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+			case GeoBeans.Geometry.Type.LINESTRING:
+			case GeoBeans.Geometry.Type.MULTILINESTRING:{
+				html = '<span class="glyphicon glyphicon-align-justify '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+			case GeoBeans.Geometry.Type.POLYGON:
+			case GeoBeans.Geometry.Type.MULTIPOLYGON:{
+				html = '<span class="glyphicon glyphicon-unchecked  '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+			default :{
+				html = '<span class="glyphicon glyphicon-unchecked  '
+						+ 'glyphicon-geom-type"></span>';
+				break;
+			}
+		}
+		return html;
+	}
 
 

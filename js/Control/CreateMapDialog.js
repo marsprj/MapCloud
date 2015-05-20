@@ -37,7 +37,7 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 					return;
 				}
 				MapCloud.alert_info.loading();
-				mapManager.createMap("mapCanvas_wrappper",
+				mapManager.createMap("mapCanvas_wrapper",
 					mapName,extent,srid,dialog.createMap_callback);
 
 			});
@@ -52,6 +52,7 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
+			MapCloud.dataGrid.cleanup();
 		}else{
 			// alert("创建失败：" + result);
 		}

@@ -83,6 +83,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
 
@@ -135,6 +136,8 @@
 <script type="text/javascript" src="js/charts/WFSLayerChart.js"></script>
 
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
+<script type="text/javascript" src="js/Control/MapBar.js"></script>
+<script type="text/javascript" src="js/Control/DataGrid.js"></script>
 <script type="text/javascript" src="js/Control/LayerTree.js"></script>
 <script type="text/javascript" src="js/Control/MapCanvas.js"></script>
 <script type="text/javascript" src="js/Control/Logo.js"></script>
@@ -435,7 +438,7 @@
 				</div>
 				<div class="row row-right mc-panel-full">
 					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
-					<div id="mapCanvas_wrappper">
+					<div id="mapCanvas_wrapper">
 						<!-- <div id="mapCanvas_chart_div"></div> -->
 						<!-- <figure style="width: 100px; height: 80px;border:1px solid #ccc;" id="mapCanvas_chart_div"></figure> -->
 						<!-- <canvas id="mapCanvas" width="800" height="528"></canvas> -->
@@ -447,9 +450,47 @@
 							<div class="panel-header-content float_left">Feature Info</div>
 						</div>
 						<div id="datagrid_content">
+							<table class="table table-hover borderless">
+								<thead><tr></tr></thead>
+								<tbody></tbody>
+							</table>
+						</div>
+						<div id="datagrid_pages">
+							<form class="form-horizontal pages-form" role="form" style="width:600px">
+								<div class="form-group">
+									<label class="col-md-2 control-label" style="text-algin:left">
+										查询结果：
+									</label>
+									<label class="col-md-1 control-label query_count">
+										0
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-chevron-left btn"></a>
+									</div>
+									<div class="col-md-2 col-md-offset-1">
+										<input class="form-control pages-form-page" type="text" value="0">
+									</div>
+									<label class="col-md-1 control-label">
+										/
+									</label>
+									<label class="col-md-1 control-label pages-form-pages">
+										0
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 					<div id="map_bar_wrapper" class="mc-border" >
+						<div class="mc-icon mc-icon-area"></div>
 						<div class="mc-icon mc-icon-plus"></div>
 						<div class="mc-icon mc-icon-minus"></div>
 						<div class="mc-icon mc-icon-info"></div>
@@ -521,7 +562,7 @@ data-backdrop="true">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="newMapDialogLabel">打开地图</h4>
+				<h4 class="modal-title" id="newMapDialogLabel">管理地图</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row" style="margin-left:0px">
@@ -533,15 +574,7 @@ data-backdrop="true">
 					</div>
 				</div>
 				<ul id="maps_list">
-					<li class="maps-thumb" name="city_label">	<a href="#" class="thumbnail">
-							<img src="images/map.png" alt="city_label">
-							<div class="map-check">
-								<img src="images/check.png">
-							</div>		
-						</a>
-						<div class="caption text-center">		<h6>city_label</h6>	
-						</div>
-					</li>
+					
 				</ul>
 			</div>
 			<div class="modal-footer">
@@ -561,7 +594,7 @@ data-backdrop="true">
 				<h4 class="modal-title" id="newMapDialogLabel">创建地图</h4>
 			</div>
 			<div class="modal-body">
-				<ul class="nav nav-tabs" id="wfsDatasourceDialogTab">
+				<ul class="nav nav-tabs" id="">
 					<li class="active">
 						<a href="#create_map_info">信息</a>
 					</li>
@@ -1988,22 +2021,158 @@ data-backdrop="true">
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="table-div" id="datasets_div">
-							<table class="table table-hover borderless table-block">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>GeometryType</th>
-									<th>Srid</th>
-								</tr>
-							</thead>
-							<tbody>
-								
-							</tbody>
-						</table>
+					<div class="row" style="margin-top:10px">
+						<div class="col-md-3">
+							<div class="table-div" id="datasets_div">
+								<!-- <table class="table table-hover borderless table-block">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>GeometryType</th>
+											<th>Srid</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table> -->
+								<div>
+									<list-group>
+										<a href="#" class="list-group-item">
+											<span class="glyphicon glyphicon-map-marker glyphicon-geom-type"></span>
+											cities
+										</a>
+										<a href="#" class="list-group-item">
+											<span class="glyphicon glyphicon-align-justify glyphicon-geom-type"></span>
+											rivers
+										</a>
+										<a href="#" class="list-group-item">
+											<span class="glyphicon glyphicon-unchecked  glyphicon-geom-type"></span>
+											country
+										</a>
+
+									</list-group>	
+								</div>
+							</div>
 						</div>
-						
+						<div class="col-md-9">
+							<ul class="nav nav-tabs" id="datasets_tab">
+								<li class="active">
+									<a href="#dataset_fields">字段</a>
+								</li>
+								<li>
+									<a href="#dataset_features">列表</a>
+								</li>
+								<li>
+									<a href="#dataset_preview">预览</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="dataset_fields">
+									<div>
+										<table class="table table-hover borderless table-block">
+											<thead>
+												<tr>
+													<th>
+														Name
+													</th>
+													<th>
+														Type
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane" id="dataset_features">
+									<!-- <form class="form-horizontal" role="form">
+										<div class="form-group">
+											<div class="col-md-2">
+												<a class="btn btn-default">
+													首页
+												</a>
+											</div>
+											<div class="col-md-2">
+												<a class="btn btn-default">
+													上一页
+												</a>
+											</div>
+											<label class="control-label col-md-1">
+												第
+											</label>
+											<div class="col-md-1">
+												<input type="text" class="form-control" value="1">
+											</div>
+											
+											<label class="control-label col-md-1">
+												/30
+											</label>
+											<label class="control-label col-md-1">
+												页
+											</label>
+											<div class="col-md-2">
+												<a class="btn btn-default">
+													下一页
+												</a>
+											</div>
+											<div class="col-md-2">
+												<a class="btn btn-default">
+													末页
+												</a>
+											</div>
+										</div>
+										
+									</form> -->
+									<form class="form-horizontal pages-form" role="form">
+										<div class="form-group">
+											<label class="col-md-3 control-label query_count">
+												总条数 : 
+												<span>0</span>
+											</label>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+											</div>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-chevron-left btn"></a>
+											</div>
+											<div class="col-md-2 col-md-offset-1">
+												<input class="form-control pages-form-page" type="text" value="1">
+											</div>
+											<label class="col-md-1 control-label">
+												/
+											</label>
+											<label class="col-md-1 control-label pages-form-pages">
+												60
+											</label>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
+											</div>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+											</div>
+										</div>
+									</form>
+									<div id="dataset_features_list">
+										<div>
+											<table class="table table-hover borderless ">
+												<thead>
+													<tr>
+														
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="dataset_preview">
+									<img src="" height="456" width="516" id="dataset_preview_img"> 
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

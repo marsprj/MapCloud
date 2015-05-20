@@ -111,7 +111,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 			// html += "<label class=\"checkbox-inline col-sm-3\">"
 			// 	 +  "<input name=\"wms_layer\" type=\"checkbox\" value=\"" + name + "\">"
 			// 	 +  name + "</label>";
-			layerTypeHtml = dialog.getLayerGeomTypeHtml(geomType);
+			layerTypeHtml = MapCloud.getLayerGeomTypeHtml(geomType);
 			html += '<a href="#" class="list-group-item">'
 					+ layerTypeHtml + name 
 					+ '<input type="checkbox" name="wms_layer" value="'
@@ -122,34 +122,34 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 		dialog.panel.find("#wms_layers").html(html);
 	},
 
-	getLayerGeomTypeHtml : function(geomType){
-		var html = "";
-		switch(geomType){
-			case GeoBeans.Geometry.Type.POINT:
-			case GeoBeans.Geometry.Type.MULTIPOINT:{
-				html = '<span class="glyphicon glyphicon-map-marker '
-						+ 'glyphicon-geom-type"></span>';
-				break;
-			}
-			case GeoBeans.Geometry.Type.LINESTRING:
-			case GeoBeans.Geometry.Type.MULTILINESTRING:{
-				html = '<span class="glyphicon glyphicon-align-justify '
-						+ 'glyphicon-geom-type"></span>';
-				break;
-			}
-			case GeoBeans.Geometry.Type.POLYGON:
-			case GeoBeans.Geometry.Type.MULTIPOLYGON:{
-				html = '<span class="glyphicon glyphicon-unchecked  '
-						+ 'glyphicon-geom-type"></span>';
-				break;
-			}
-			default :{
-				html = '<span class="glyphicon glyphicon-unchecked  '
-						+ 'glyphicon-geom-type"></span>';
-				break;
-			}
-		}
-		return html;
-	}
+	// getLayerGeomTypeHtml : function(geomType){
+	// 	var html = "";
+	// 	switch(geomType){
+	// 		case GeoBeans.Geometry.Type.POINT:
+	// 		case GeoBeans.Geometry.Type.MULTIPOINT:{
+	// 			html = '<span class="glyphicon glyphicon-map-marker '
+	// 					+ 'glyphicon-geom-type"></span>';
+	// 			break;
+	// 		}
+	// 		case GeoBeans.Geometry.Type.LINESTRING:
+	// 		case GeoBeans.Geometry.Type.MULTILINESTRING:{
+	// 			html = '<span class="glyphicon glyphicon-align-justify '
+	// 					+ 'glyphicon-geom-type"></span>';
+	// 			break;
+	// 		}
+	// 		case GeoBeans.Geometry.Type.POLYGON:
+	// 		case GeoBeans.Geometry.Type.MULTIPOLYGON:{
+	// 			html = '<span class="glyphicon glyphicon-unchecked  '
+	// 					+ 'glyphicon-geom-type"></span>';
+	// 			break;
+	// 		}
+	// 		default :{
+	// 			html = '<span class="glyphicon glyphicon-unchecked  '
+	// 					+ 'glyphicon-geom-type"></span>';
+	// 			break;
+	// 		}
+	// 	}
+	// 	return html;
+	// }
 
 })
