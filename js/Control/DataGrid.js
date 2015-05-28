@@ -17,8 +17,11 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.panel
 			.find("#datagrid_content table thead tr").html("");
 		this.panel.find(".query_count").html("0");
+		this.panel.find(".pages-form-page").val("0");
+		this.panel.find(".pages-form-pages").html("0");
 		this.features = null;
 		this.layer = null;
+		this.hidePanel();
 	},
 
 	showPanel : function(){
@@ -190,6 +193,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.layer = layer;
 		if(count == 0){
 			this.clearData();
+			this.showPanel();
 			return;
 		}
 		this.panel.find(".query_count").html(count);
@@ -254,7 +258,9 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.panel.find("#datagrid_content table thead tr").html("");
 		this.panel
 			.find("#datagrid_content table tbody").html("");
+		this.panel.find(".query_count").html("0");
 		this.panel.find(".pages-form-page").val(0);
+		this.panel.find(".pages-form-pages").html("0");
 	},
 
 	registerFeatureSelected : function(){

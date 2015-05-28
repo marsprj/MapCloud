@@ -4,6 +4,18 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
 
+		this.panel.find(".thumbnail").each(function(){
+			$(this).click(function(){
+				if($(this).hasClass("selected")){
+					$(this).removeClass("selected");
+				}else{
+					$(this).parents("#base_map_list")
+						.find(".thumbnail").removeClass("selected")
+					$(this).addClass("selected");
+				}
+			});
+		});
+
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var mapName = dialog.panel
@@ -49,7 +61,35 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		var name = dialog.panel.find("#create_map_name").val();
 		if(map != null){
 			mapObj = map;
-			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+			// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+			var url = null;
+			var type = dialog.panel.find(".thumbnail.selected").attr("bname");
+			switch(type){
+				case "vector":{
+					url = "/QuadServer/maprequest?services=world_vector";
+					break;
+				}
+				case "image":{
+					url = "/QuadServer/maprequest?services=world_image";
+					break;
+				}
+				case "none":{
+					url = null;
+					break;
+				}
+				default:
+					break;
+			}
+			if(url != null){
+				var center = new GeoBeans.Geometry.Point(0,0);	
+				var layer = new GeoBeans.Layer.QSLayer(name,url);
+				mapObj.setBaseLayer(layer);
+				mapObj.setCenter(center);
+				mapObj.setLevel(2);	
+			}else{
+				mapObj.setViewer(mapObj.extent);
+			}
+
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
 			MapCloud.dataGrid.cleanup();

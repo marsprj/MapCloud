@@ -159,19 +159,22 @@ MapCloud.Ribbon = MapCloud.Class({
 				case 18:
 					that.addChart();
 					break;
-				// Tools Events
 				case 19:
+					that.onHeatMap();
+					break;
+				// Tools Events
+				case 20:
 					// that.onFile();
 					break;
-				case 20:
+				case 21:
 					// that.onDatabase();
 					that.onDataSource();
-					break;
-				case 21:
 					break;
 				case 22:
 					break;
 				case 23:
+					break;
+				case 24:
 					// that.onWMSStyle();
 					that.onStyleManager();
 					break;
@@ -356,6 +359,20 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	},
 
+	onHeatMap : function(){
+		var layerName = $("#layers_row .layer_row_selected")
+			.attr("lname");
+		if(layerName == null || layerName == ""){
+			MapCloud.alert_info.showInfo("请选择图层","Warning");
+			return;
+		}
+		var layer = mapObj.getLayer(layerName);
+		if(layer == null){
+			return;
+		}
+		MapCloud.heatMap_dialog.showDialog();
+		MapCloud.heatMap_dialog.setLayer(layer);
+	},
 
 	onFile : function(){
 		if(MapCloud.file_dialog == null){

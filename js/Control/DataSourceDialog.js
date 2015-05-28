@@ -48,8 +48,7 @@ MapCloud.DataSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				//返回选择的数据
 				if(dialog.isSelected){
-					var dataSetSel = dialog.panel
-						.find("#datasets_div table tbody tr.selected");
+					var dataSetSel = dialog.panel.find("#datasets_div .list-group-item.selected");
 					var index = dataSetSel.attr("index");
 					if(dialog.dataSourceCur != null){
 						var dataSets = dialog.dataSourceCur.dataSets;

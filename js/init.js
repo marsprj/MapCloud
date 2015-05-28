@@ -29,12 +29,14 @@ $().ready(function(){
 
 	MapCloud.styleManager_dialog
 		= new MapCloud.StyleManagerDialog("style-mgr-dialog");
+	MapCloud.heatMap_dialog 
+		= new MapCloud.HeatMapDialog("heatMapDialog");
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
 	// $(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");
 
 	var logo = new MapCloud.Logo();	
-	var layersTree = new MapCloud.LayerTree();	
+	// var layersTree = new MapCloud.LayerTree();	
 	ribbonObj = new MapCloud.Ribbon();
 	var mapBarObj = new MapCloud.MapBar();
 	MapCloud.dataGrid 

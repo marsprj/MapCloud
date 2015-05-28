@@ -32,6 +32,10 @@ MapCloud.AlertInfo = MapCloud.Class({
 			window.setTimeout(function(){
 				that.hide();
 			}, 3000);
+		}else{
+			window.setTimeout(function(){
+				that.hide();
+			}, 5000);
 		}
 		
 	},

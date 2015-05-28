@@ -55,6 +55,9 @@ MapCloud.style_dialog = null;
 //wms样式管理
 MapCloud.styleName_dialog = null;
 
+//热力图
+MapCloud.heatMap_dialog = null;
+
 //左侧刷新
 MapCloud.refresh_panel = null;
 

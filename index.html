@@ -31,6 +31,7 @@
 <script type="text/javascript" src="js/jquery-sortable.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="../Map5/lib/heatmap.min.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
@@ -82,6 +83,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
@@ -102,6 +104,7 @@
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/InfoWindow.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/MapManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/MapWorkspace.js"></script>
@@ -163,6 +166,7 @@
 <script type="text/javascript" src="js/Control/StyleManagerDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleNameDialog.js"></script>
+<script type="text/javascript" src="js/Control/HeatMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/AlertInfo.js"></script>
 <script type="text/javascript" src="js/Control/TrackOverlay.js"></script>
 
@@ -302,6 +306,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
 								<div class="ribbon_label">新建图表</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">热力图</div>
 							</div>
 						</div>
 					</div>
@@ -494,6 +502,8 @@
 						<div class="mc-icon mc-icon-plus"></div>
 						<div class="mc-icon mc-icon-minus"></div>
 						<div class="mc-icon mc-icon-info"></div>
+						<div class="mc-icon mc-icon-mouse"></div>
+						<div class="mc-icon mc-icon-world"></div>
 						<div class="mc-icon mc-icon-hand-up"></div>
 						<div class="mc-icon mc-icon-full-screen"></div>
 						<div class="mc-icon mc-icon-zoom-in"></div>
@@ -639,9 +649,43 @@ data-backdrop="true">
 								</div>
 							</div>
 						</form>
+						<ul id="base_map_list">
+							<li class="base-map-thumb">
+								<a href="#" class="thumbnail selected" bname="none">
+									<img src="images/map-none.png" alt="none">
+									<div class="map-check">
+										<img src="images/check.png">
+									</div>
+								</a>
+								<div class="caption text-center">
+									<h6>空白地图</h6>
+								</div>
+							</li>
+							<li class="base-map-thumb">
+								<a href="#" class="thumbnail" bname="vector">
+									<img src="images/map-vector-thumb.png" alt="vector">
+									<div class="map-check">
+										<img src="images/check.png">
+									</div>
+								</a>
+								<div class="caption text-center">
+									<h6>矢量地图</h6>
+								</div>
+							</li>
+							<li class="base-map-thumb">
+								<a href="#" class="thumbnail" bname="image">
+									<img src="images/map-image-thumb.png" alt="image">
+									<div class="map-check">
+										<img src="images/check.png">
+									</div>
+								</a>
+								<div class="caption text-center">
+									<h6>影像地图</h6>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
-			
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -2249,5 +2293,42 @@ data-backdrop="true">
 				</div>
 			</div>
 		</div> 
+	</div>
+
+	<!-- HeatMap panel -->
+	<div class="modal fade" id="heatMapDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">热力图</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<!-- <div class="form-group form-group-sm">
+							<label for="" class="col-sm-3 control-label">图层：</label>
+							<div class="col-md-6">
+								<select class="form-control" id="heat_map_layer"></select>
+							</div>
+						</div> -->
+						<div class="form-group form-group-sm">
+							<label for="" class="col-sm-3 control-label">字段：</label>
+							<div class="col-md-6">
+								<select class="form-control" id="heat_map_field"></select>
+							</div>
+						</div>
+						<!-- <div class="form-group form-group-sm" style="margin-top:20px">
+							<div class="col-md-4 col-md-offset-4">
+								<button type="button" id="remove_heat_map" class="btn btn-success btn-sm">删除热力图</button>
+							</div>
+						</div> -->
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>

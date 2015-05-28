@@ -302,9 +302,12 @@ MapCloud.refresh = MapCloud.Class({
 
 		this.panel.find(".layer_row_quick_tool_zoom").each(function(){
 			$(this).click(function(){
-				alert("zoom");
-			})
+				var li = $(this).parents("li.layer_row");
+				var layerName = li.attr("lname");
+				mapObj.zoomToLayer(layerName);
+			});
 		});
+
 		this.panel.find(".layer_row_quick_tool_edit").each(function(){
 			$(this).click(function(){
 				var layer_id = $(this).parent().parent().parent().parent().parent().parent().attr("value");
@@ -356,6 +359,38 @@ MapCloud.refresh = MapCloud.Class({
 				// 		}
 				// 	}
 				// }
+			});
+		});
+
+		this.panel.find(".layer_row_quick_tool_heatMap span").each(function(){
+			$(this).click(function(){
+				var checked = $(this).prop("checked");
+				var li = $(this).parents("li.layer_row");
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
+				if(layer == null){
+					return;
+				}
+				MapCloud.heatMap_dialog.showDialog();
+				MapCloud.heatMap_dialog.setLayer(layer);
+			});
+		});
+
+		this.panel.find(".layer_row_quick_tool_heatMap input").each(function(){
+			$(this).change(function(){
+				var checked = $(this).prop("checked");
+				var li = $(this).parents("li.layer_row");
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
+				if(layer == null){
+					return;
+				}
+				var heatMapLayer = layer.getHeatMapLayer();
+				if(heatMapLayer == null){
+					return;
+				}
+				mapObj.setHeatMapVisible(layerName,checked);
+				mapObj.draw();
 			});
 		});
 
@@ -1128,6 +1163,7 @@ MapCloud.refresh = MapCloud.Class({
 		if(result != "success"){
 			alert(result);
 		}
+		MapCloud.refresh_panel.refreshPanel();
 
 		
 		// var layer = mapObj.layers[MapCloud.refresh_panel.layerID];
@@ -1157,6 +1193,7 @@ MapCloud.refresh = MapCloud.Class({
 		}
 		var name = layer.name;
 		var style = layer.style;
+
 		// html	= 	"<li class=\"row layer_row\" value=\"" + index + "\">"
 		html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
 				+	"	<div class=\"col-md-1 col-xs-1\">"
@@ -1171,6 +1208,14 @@ MapCloud.refresh = MapCloud.Class({
 		}else{
 			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
 		}
+		var heatMapLayer = layer.getHeatMapLayer();
+		var heatMapHtml = "<li><a href=\"#\" class=\"layer_row_quick_tool_heatMap\">";
+		if(heatMapLayer == null){
+			heatMapHtml += "<input type='checkbox'>";
+		}else{
+			heatMapHtml += "<input type='checkbox' checked>";
+		}
+		heatMapHtml += "<span>热力图</span></a></li>";
 		html	+=	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
@@ -1192,6 +1237,7 @@ MapCloud.refresh = MapCloud.Class({
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+				+						heatMapHtml
 				+	"				</ul>"
 				+	"			</li>"
 				+	"		</ul>"

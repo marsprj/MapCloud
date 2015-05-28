@@ -42,10 +42,12 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 	showDialog : function(){
 		this.cleanup();
 		this.panel.modal();
+		MapCloud.alert_info.loading();
 		mapManager.getMaps(this.getMaps_callback);
 	},
 
 	getMaps_callback : function(maps){
+		MapCloud.alert_info.hideLoading();
 		var dialog = MapCloud.get_maps_dlg;
 		var panel = dialog.panel;
 		var html = "";
@@ -78,7 +80,8 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 					var info = "打开地图 [ " + name + " ]";
 					MapCloud.alert_info.showInfo("failed",info);
 				}else{
-					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+					// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+					mapObj.setViewer(mapObj.extent);
 					mapObj.draw();
 					MapCloud.refresh_panel.refreshPanel();
 					MapCloud.dataGrid.cleanup();
