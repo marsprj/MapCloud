@@ -31,6 +31,8 @@ $().ready(function(){
 		= new MapCloud.StyleManagerDialog("style-mgr-dialog");
 	MapCloud.heatMap_dialog 
 		= new MapCloud.HeatMapDialog("heatMapDialog");
+	MapCloud.importVector_dialog
+		= new MapCloud.ImportVectorDialog("importVectorDialog");
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
 	// $(".layer_row_quick_tool ul.layer_row_quick_tool_ul").sortable("disable");

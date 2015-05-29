@@ -97,11 +97,11 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onGetMaps();
 					break;
 				case 1:
-					that.onMapMgr();
+					that.onCreateMap();
 					break;
 				case 2:
 					// that.onMapNew();
-					that.onCreateMap();
+					that.onMapMgr();
 					break;
 				case 3:
 					that.onMapPropertis();
@@ -111,85 +111,81 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onLayerNew();
 					break;
 				case 5:
-					that.onLayerAddVector();
-					break;
-				case 6:
 					that.onLayerAddWMS();
 					break;
-				case 7:
+				case 6:
 					that.onLayerAddWFS();
 					break;
-				case 8:
+				case 7:
 					that.onLayerNew();
 					break;
-				case 9:
-					that.onEditLayer();
+				case 8:
+					// 编辑图层
+					// that.onEditLayer();
 					break;
-				case 10:
+				case 9:
 					that.onShareLayer();
 					break;
-				case 11:
-					that.onCreateLayer();
+				case 10:
+					// that.onCreateLayer();
 					break;
-				case 12:
+				case 11:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 13:
+				case 12:
 					//删除图层
 					that.onDeleteLayer();
 					break;
-				case 14:
+				case 13:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 15:
+				case 14:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 16:
+				case 15:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 17:
+				case 16:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 18:
+				case 17:
 					that.addChart();
 					break;
+				case 18:
+					// 文件管理
+					// that.onFile();
+					break;
 				case 19:
+					//数据库管理
+					that.onDataSource();
+					break;
+				case 20:
+				// 导入矢量
+					that.onImportVector();
+					break;
+				case 21:
+				// 	导入影像
+					break;
+				case 22:
+				// 热力图
 					that.onHeatMap();
 					break;
 				// Tools Events
-				case 20:
-					// that.onFile();
-					break;
-				case 21:
-					// that.onDatabase();
-					that.onDataSource();
-					break;
-				case 22:
-					break;
 				case 23:
+					// 标注
+					that.onLayerAddVector();
 					break;
 				case 24:
-					// that.onWMSStyle();
+					// 图层样式
 					that.onStyleManager();
 					break;
-
-				// Data Events
-/*				case 6:
-					that.onFile();
-					break;
-				case 7:
-					that.onDatabase();
-					break;
-				case 8:
-					that.onDataImport();
-					break;
-*/				};
+				};
 			});
         });
 	},
@@ -282,13 +278,14 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 	
 	onShareLayer:function(){
-		$("#layerAppearanceDialog").modal();
-		$("#layerAppearanceDialog").find("#layerAppearanceDialogTab a").each(function(){
-			$(this).click(function(e){
-				e.preventDefault()
-				$(this).tab("show");
-			});
-		});
+		alert("分享");
+		// $("#layerAppearanceDialog").modal();
+		// $("#layerAppearanceDialog").find("#layerAppearanceDialogTab a").each(function(){
+		// 	$(this).click(function(e){
+		// 		e.preventDefault()
+		// 		$(this).tab("show");
+		// 	});
+		// });
 	},
 
 	onCreateLayer:function(){
@@ -394,6 +391,16 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.database_dlg.showDialog();
 	},
 	
+	//导入矢量
+	onImportVector : function(){
+		MapCloud.importVector_dialog.showDialog();
+	},
+
+	//导入影像
+	onImportImage : function(){
+
+	},
+
 	onDataImport : function(){
 		alert("onDataImport");
 	},

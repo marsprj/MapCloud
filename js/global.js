@@ -58,6 +58,10 @@ MapCloud.styleName_dialog = null;
 //热力图
 MapCloud.heatMap_dialog = null;
 
+//矢量导入
+MapCloud.importVector_dialog = null;
+
+
 //左侧刷新
 MapCloud.refresh_panel = null;
 

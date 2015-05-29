@@ -39,7 +39,9 @@ MapCloud.TrackOverlay = MapCloud.Class({
 	},
 
 	show : function(){
-
+		if(mapObj == null){
+			return;
+		}
 		if(this.panel.css("display") == "block" 
 			&& this.controlPanel.css("display") == "block"){
 			return;

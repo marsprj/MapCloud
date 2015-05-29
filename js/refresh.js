@@ -1211,9 +1211,9 @@ MapCloud.refresh = MapCloud.Class({
 		var heatMapLayer = layer.getHeatMapLayer();
 		var heatMapHtml = "<li><a href=\"#\" class=\"layer_row_quick_tool_heatMap\">";
 		if(heatMapLayer == null){
-			heatMapHtml += "<input type='checkbox'>";
+			heatMapHtml += "<i class='dropdown-menu-icon'><input type='checkbox'></i>";
 		}else{
-			heatMapHtml += "<input type='checkbox' checked>";
+			heatMapHtml += "<i class='dropdown-menu-icon'><input type='checkbox' checked></i>";
 		}
 		heatMapHtml += "<span>热力图</span></a></li>";
 		html	+=	"	</div>"
@@ -1233,10 +1233,10 @@ MapCloud.refresh = MapCloud.Class({
 				// +	"					<li><a href='#'><input id='wms_transparency' data-slider-id='wms_transparency_slider' "
 				// +	"						type='text' class='form-control' data-slider-min='0' data-slider-max='100' "
 				// +	"						data-slider-step='1' data-slider-value='100'  data-slider-enabled='true'/></a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\">放大图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\">编辑图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\">分享图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\">删除图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
 				+						heatMapHtml
 				+	"				</ul>"
 				+	"			</li>"

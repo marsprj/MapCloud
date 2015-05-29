@@ -16,6 +16,19 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 
+		this.panel.find("#create_map_infos").click(function(){
+			if($(this).hasClass(".info-invis")){
+				dialog.panel.find(".create-map-info-item").slideDown();	
+				$(this).removeClass(".info-invis");
+				$(this).addClass(".info-vis");
+			}else{
+				dialog.panel.find(".create-map-info-item").slideUp();	
+				$(this).addClass(".info-invis");
+				$(this).removeClass(".info-vis");
+			}
+			
+		});
+
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var mapName = dialog.panel
