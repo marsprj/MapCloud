@@ -147,7 +147,6 @@
 <script type="text/javascript" src="js/Control/MapBar.js"></script>
 <script type="text/javascript" src="js/Control/DataGrid.js"></script>
 <script type="text/javascript" src="js/Control/LayerTree.js"></script>
-<script type="text/javascript" src="js/Control/MapCanvas.js"></script>
 <script type="text/javascript" src="js/Control/Logo.js"></script>
 
 <script type="text/javascript" src="js/Control/Table.js"></script>
@@ -155,19 +154,16 @@
 <script type="text/javascript" src="js/Control/GetMapsDialog.js"></script>
 <script type="text/javascript" src="js/Control/MapMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/CreateMapDialog.js"></script>
-<script type="text/javascript" src="js/Control/NewMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/EditLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/LayerAppearanceDialog.js"></script>
 <script type="text/javascript" src="js/Control/CreateLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/PGISConnectDialog.js"></script>
 <script type="text/javascript" src="js/Control/DataSourceDialog.js"></script>
-<script type="text/javascript" src="js/Control/DatabaseDialog.js"></script>
 <script type="text/javascript" src="js/Control/FileDialog.js"></script>
 <script type="text/javascript" src="js/Control/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewChartDialog.js"></script>
 <script type="text/javascript" src="js/Control/WMSDialog.js"></script>
-<script type="text/javascript" src="js/Control/StyleMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleManagerDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleDialog.js"></script>
 <script type="text/javascript" src="js/Control/StyleNameDialog.js"></script>
@@ -558,7 +554,7 @@ data-backdropk="true">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title" id="newMapDialogLabel">打开地图</h5>
+				<h5 class="modal-title">打开地图</h5>
 			</div>
 			<div class="modal-body">
 				<ul id="maps_list">
@@ -579,7 +575,7 @@ data-backdrop="true">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title" id="newMapDialogLabel">管理地图</h5>
+				<h5 class="modal-title">管理地图</h5>
 			</div>
 			<div class="modal-body">
 				<div class="row" style="margin-left:0px">
@@ -602,13 +598,13 @@ data-backdrop="true">
 	</div>
 </div>
 <!-- Create Map panel -->
-<div class="modal fade" id="createMapDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true"
+<div class="modal fade" id="createMapDialog" tabindex="-1" role="dialog" aria-hidden="true"
 data-backdrop="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title" id="newMapDialogLabel">新建地图</h5>
+				<h5 class="modal-title">新建地图</h5>
 			</div>
 			<div class="modal-body">
 				<!-- <ul class="nav nav-tabs" id="">
@@ -704,58 +700,7 @@ data-backdrop="true">
 		</div>
 	</div>
 </div>
-<!-- New Map panel -->
-<div class="modal fade" id="newMapDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true"
-data-backdrop="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title" id="newMapDialogLabel">新建地图</h5>
-			</div>
-			<div class="modal-body">
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label for="" class="col-sm-4 control-label">名称</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" placeholder="请输入地图名称" style="width:200px" id="new_map_dialog_name">
-						</div>
-					</div>
-				</form>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="caption text-center">
-							<h6>空白地图</h6>
-						</div>
-						<a href="#" class="thumbnail selected" id="map_none">
-							<img src="images/map-none.png" alt="空白地图">
-						</a>
-					</div>
-					<div class="col-md-4">
-						<div class="caption text-center">
-							<h6>矢量地图</h6>
-						</div>
-						<a href="#" class="thumbnail" id="map_vector">
-							<img src="images/map-vector-thumb.png" alt="矢量地图">
-						</a>
-					</div>
-					<div class="col-md-4">
-						<div class="caption text-center">
-							<h6>影像地图</h6>
-						</div>
-						<a href="#" class="thumbnail" id="map_image">
-							<img src="images/map-image-thumb.png" alt="影像地图">
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary btn-confirm">确定</button>
-			</div>
-		</div>
-	</div>
-</div>
+
 <!-- New Layer panel -->
 <div class="modal fade" id="newLayerDialog" tabindex="-1" role="dialog" aria-labelledby="newLayerDialogLabel" aria-hidden="true"
 data-backdrop="true">
@@ -763,43 +708,33 @@ data-backdrop="true">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title" id="newMapDialogLabel">新建地图</h5>
+				<h5 class="modal-title">新建图层</h5>
 			</div>
 			<div class="modal-body">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="new_layer_info">信息</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="new_layer_info">
-						<form class="form-horizontal" role="form">
-							<div class="form-group form-group-sm">
-								<label class="col-md-3 control-label">
-									名称：
-								</label>
-								<div class="col-md-4">
-									<input class="form-control" type="text" id="new_layer_name">
-								</div>
+				<div class="tab-pane active" id="new_layer_info">
+					<form class="form-horizontal" role="form">
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">
+								名称：
+							</label>
+							<div class="col-md-4">
+								<input class="form-control" type="text" id="new_layer_name">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-md-3 control-label">
-									数据源：
-								</label>
-								<div class="col-md-3">
-									<!-- <button class="btn btn-sm btn-success" id="new_layer_select_dbs">
-										选择数据源
-									</button> -->
-									<a href="#" class="btn btn-sm btn-success" id="new_layer_select_dbs">选择数据源</a>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">
+								数据源：
+							</label>
+							<div class="col-md-3">
+								<a href="#" class="btn btn-sm btn-success" id="new_layer_select_dbs">选择数据源</a>
 							</div>
-							<div class="form-group form-group-sm">
-								<div class="col-md-offset-3 col-md-6">
-									<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<div class="col-md-offset-3 col-md-6">
+								<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -871,12 +806,12 @@ data-backdrop="true">
 		</div>
 
 		<!-- WFS datasource panel -->
-		<div class="modal fade" id="wfsDatasourceDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true" data-backdrop="true">
+		<div class="modal fade" id="wfsDatasourceDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h5 class="modal-title" id="newMapDialogLabel">WFS数据源</h5>
+						<h5 class="modal-title">WFS数据源</h5>
 					</div>
 					<div class="modal-body">
 						<ul class="nav nav-tabs" id="wfsDatasourceDialogTab">
@@ -960,12 +895,12 @@ data-backdrop="true">
 				</div>
 			</div>
 			<!-- Edit layer panel -->
-			<div class="modal fade" id="editLayerDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true" data-backdrop="true">
+			<div class="modal fade" id="editLayerDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close btn-cancel" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							<h5 class="modal-title" id="newMapDialogLabel">编辑图层</h5>
+							<h5 class="modal-title">编辑图层</h5>
 						</div>
 						<div class="modal-body">
 							<ul class="nav nav-tabs" id="editLayerDialogTab">
@@ -1384,13 +1319,13 @@ data-backdrop="true">
 				</div>
 			</div>
 			<!-- New Chart panel -->
-			<div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-labelledby="newMapDialogLabel" aria-hidden="true"
+			<div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-hidden="true"
 			data-backdrop="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h5 class="modal-title" id="newMapDialogLabel">新建图表</h5>
+						<h5 class="modal-title">新建图表</h5>
 					</div>
 					<div class="modal-body">
 						<ul class="nav nav-tabs" id="newChartDialogTab">
@@ -1606,7 +1541,7 @@ data-backdrop="true">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title" id="newMapDialogLabel">样式管理器</h5>
+					<h5 class="modal-title">样式管理器</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -1623,8 +1558,7 @@ data-backdrop="true">
 									</ul>
 								</div>	
 								<select id="style_list" class="form-control" title="Please select a style ...">
-									<option>style1</option>
-									<option>style2</option>
+									
 								</select>
 							</div>							
 						</div>
@@ -1748,15 +1682,15 @@ data-backdrop="true">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title" id="newMapDialogLabel">WMS样式</h5>
+					<h5 class="modal-title">WMS样式</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-6 style-type">
 							<div class="btn-group btn-group-justified" role="group">
-								<a class="btn btn-default" id="point_style">点</a>
-								<a class="btn btn-default" id="line_style">线</a>
-								<a class="btn btn-default" id="polygon_style">面</a>
+								<a class="btn btn-default" id="point_style" disabled>点</a>
+								<a class="btn btn-default" id="line_style" disabled>线</a>
+								<a class="btn btn-default" id="polygon_style" disabled>面</a>
 							</div>
 						</div>
 					</div>
@@ -2059,23 +1993,36 @@ data-backdrop="true">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">数据源管理</h5>
+					<h5 class="modal-title">数据库管理</h5>
 				</div>
 				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-5">
-							<select id="data_source_list" class="form-control" title="Please select a dataSource ...">
-							</select>
-						</div>
-						<div class="col-md-7">
-							<div class="btn-group btn-group-justified" role="group" aria-label="">
-								<a class="btn btn-default" id="register_data_source">增加</a>
-								<a class="btn btn-default" id="save_style">保存</a>
-								<a class="btn btn-default" id="unregis_data_source">删除</a>
+					<!-- <fieldset>
+						<legend>数据库</legend> -->
+						<div class="row">
+							<div class="col-md-5">
+								<select id="data_source_list" class="form-control" title="Please select a dataSource ...">
+								</select>
+							</div>
+							<div class="col-md-7">
+								<div class="btn-group btn-group-justified" role="group" aria-label="">
+									<a class="btn btn-default" id="register_data_source">增加</a>
+									<a class="btn btn-default" id="save_style">保存</a>
+									<a class="btn btn-default" id="unregis_data_source">删除</a>
+								</div>
 							</div>
 						</div>
+				<!-- 	</fieldset> -->
+					
+					<div class="row" style="margin-top:20px">
+						<div class="col-md-2">
+							<a class="btn btn-default btn-sm btn-success btn-group-justified" id="import-vector-btn">导入</a>
+						</div>
+						<div class="col-md-2">
+							<a class="btn btn-default btn-sm btn-group-justified" id="remove-dataset">删除</a>
+						</div>
+						
 					</div>
-					<div class="row" style="margin-top:10px">
+					<div class="row" style="margin-top:20px">
 						<div class="col-md-3">
 							<div class="table-div" id="datasets_div">
 								<!-- <table class="table table-hover borderless table-block">
@@ -2191,7 +2138,7 @@ data-backdrop="true">
 											<div class="col-md-1">
 												<a class="glyphicon glyphicon-chevron-left btn"></a>
 											</div>
-											<div class="col-md-2 col-md-offset-1">
+											<div class="col-md-2">
 												<input class="form-control pages-form-page" type="text" value="1">
 											</div>
 											<label class="col-md-1 control-label">
@@ -2230,7 +2177,7 @@ data-backdrop="true">
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary btn-confirm">确定</button>
 				</div>
 			</div>
@@ -2252,14 +2199,14 @@ data-backdrop="true">
 							<label for="" class="col-md-3 control-label">名称
 							</label>
 							<div class="col-md-8">
-								<input class="form-control" placeholder="" id="data_source_conn_name" name="db-a">
+								<input class="form-control" id="data_source_conn_name">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label for="" class="col-md-3 control-label">地址
 							</label>
 							<div class="col-md-8">
-								<input class="form-control" placeholder="name" id="data_source_conn_server" value="192.168.111.160">
+								<input class="form-control" id="data_source_conn_server" value="192.168.111.160">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -2273,21 +2220,21 @@ data-backdrop="true">
 							<label for="" class="col-md-3 control-label">数据库
 							</label>
 							<div class="col-md-8">
-								<input class="form-control" placeholder="" id="data_source_conn_db" value="gisdb">
+								<input class="form-control" id="data_source_conn_db" value="gisdb">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label for="" class="col-md-3 control-label">用户
 							</label>
 							<div class="col-md-8">
-								<input class="form-control" placeholder="" id="data_source_conn_user" value="postgres">
+								<input class="form-control" id="data_source_conn_user" value="postgres">
 							</div>
 						</div>	
 						<div class="form-group form-group-sm">
 							<label for="" class="col-md-3 control-label">密码
 							</label>
 							<div class="col-md-8">
-								<input class="form-control" placeholder="" id="data_source_conn_password" value="qwer1234">
+								<input class="form-control" type="password" id="data_source_conn_password" value="qwer1234">
 							</div>
 						</div>
 						<!-- <div class="form-group form-group-sm" style="margin-top:20px">

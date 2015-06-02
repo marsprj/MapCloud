@@ -1,5 +1,9 @@
+// 信息提示
 MapCloud.AlertInfo = MapCloud.Class({
+	// 提示框
 	panel : null,
+
+	// loading框
 	loadingPanel : null,
 
 	initialize : function(id,loadingID){
@@ -14,14 +18,17 @@ MapCloud.AlertInfo = MapCloud.Class({
 		this.panel.hide();
 	},
 
+	// 显示加载框
 	loading : function(){
 		this.loadingPanel.show();
 	},
 
+	// 隐藏加载框
 	hideLoading : function(){
 		this.loadingPanel.hide();
 	},
-
+	
+	// 显示信息
 	showInfo : function(result,action){
 		this.hideLoading();
 		var html = action + " : " + result;

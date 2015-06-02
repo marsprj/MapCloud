@@ -8,19 +8,19 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 			//dialog.closeDialog();
 		});
 		
-		var zTree;
-		var zNodes = [
-			{name: "文件源", open:true,children: [
-				{name: "文件列表1"},
-				{name: "文件列表2"}
-			]}
-		];
-		var setting = {};
-		var t = $("#file_tree");
-		t = $.fn.zTree.init(t, setting, zNodes);
+		// var zTree;
+		// var zNodes = [
+		// 	{name: "文件源", open:true,children: [
+		// 		{name: "文件列表1"},
+		// 		{name: "文件列表2"}
+		// 	]}
+		// ];
+		// var setting = {};
+		// var t = $("#file_tree");
+		// t = $.fn.zTree.init(t, setting, zNodes);
 
 
-		$('.file-dialog-content-flex').flexigrid({height:260});
+		// $('.file-dialog-content-flex').flexigrid({height:260});
 
 		
 

@@ -1,3 +1,4 @@
+// 未用,创建图层
 MapCloud.CreateLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	
 	initialize : function(id){

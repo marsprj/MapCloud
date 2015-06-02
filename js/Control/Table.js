@@ -1,3 +1,4 @@
+// 未用
 MapCloud.Table = MapCloud.Class({
 
 	panel: null,

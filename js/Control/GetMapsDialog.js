@@ -1,12 +1,11 @@
+//打开地图
 MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
-	// url 		: "/ows/user1/mgr",
-	// mapManager 	: null,	
-
 	
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
-		// this.mapManager = new GeoBeans.MapManager(this.url);
+
+		// 确定
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var a = dialog.panel
@@ -15,22 +14,13 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请选择一个地图！");
 					return;
 				}
+				// 获得地图名称
 				var name = a.parents(".maps-thumb").attr("name");
 				if(name == null){
 					return;
 				}
 				dialog.closeDialog();
-				MapCloud.alert_info.loading();
-				mapObj = mapManager.getMap("mapCanvas_wrapper",name);
-				if(mapObj == null){
-					//
-				}else{
-					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-					mapObj.draw();
-					MapCloud.refresh_panel.refreshPanel();
-					var info = "打开地图 [ " + name + " ]";
-					MapCloud.alert_info.showInfo("success",info);
-				}
+				dialog.openMap(name);
 			});
 		});
 		
@@ -43,9 +33,11 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.cleanup();
 		this.panel.modal();
 		MapCloud.alert_info.loading();
+		// 获得地图列表
 		mapManager.getMaps(this.getMaps_callback);
 	},
 
+	// 返回地图列表
 	getMaps_callback : function(maps){
 		MapCloud.alert_info.hideLoading();
 		var dialog = MapCloud.get_maps_dlg;
@@ -64,33 +56,35 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 				 + 	"</li>";
 		}
 		panel.find("#maps_list").html(html);
+		//注册点击和双击事件
 		panel.find(".thumbnail").each(function(){
 			$(this).click(function(){
 				panel.find(".thumbnail").each(function(){
 					$(this).removeClass("selected");
 				});
 				$(this).addClass("selected");
-
 			}).dblclick(function(){
 				var name = $(this).parent().attr("name");
-				MapCloud.alert_info.loading();
-				dialog.closeDialog();
-				mapObj = mapManager.getMap("mapCanvas_wrapper",name);
-				if(mapObj == null){
-					var info = "打开地图 [ " + name + " ]";
-					MapCloud.alert_info.showInfo("failed",info);
-				}else{
-					// mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-					mapObj.setViewer(mapObj.extent);
-					mapObj.draw();
-					MapCloud.refresh_panel.refreshPanel();
-					MapCloud.dataGrid.cleanup();
-					var info = "打开地图 [ " + name + " ]";
-					MapCloud.alert_info.showInfo("success",info);
-				}
+				dialog.openMap(name);
 			});
-
 		});
 	},
+
+	///打开地图
+	openMap : function(name){
+		this.closeDialog();
+		MapCloud.alert_info.loading();
+		var info = "打开地图 [ " + name + " ]";
+		mapObj = mapManager.getMap("mapCanvas_wrapper",name);
+		if(mapObj == null){
+			MapCloud.alert_info.showInfo("failed",info);
+		}else{
+			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+			mapObj.draw();
+			MapCloud.refresh_panel.refreshPanel();
+			//显示信息
+			MapCloud.alert_info.showInfo("success",info);
+		}
+	}
 
 });

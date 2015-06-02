@@ -64,8 +64,10 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 
 				var styles = [];
-				var layer = new GeoBeans.Layer.WMSLayer(dialog.wmsWorkspace,wms_name,
-								wms_url,wms_layers,styles);
+				var layer = new GeoBeans.Layer.WMSLayer(wms_name,wms_url,wms_layers,
+								null,null);
+				// var layer = new GeoBeans.Layer.WMSLayer(dialog.wmsWorkspace,wms_name,
+				// 				wms_url,wms_layers,styles);
 				dialog.layer = layer;
 				MapCloud.wms_layer = dialog.layer;
 				
@@ -78,10 +80,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 
 				dialog.closeDialog();		
 				// var refresh = new MapCloud.refresh("left_panel");
-				if(MapCloud.refresh_panel == null){
-					MapCloud.refresh_panel = 
-							new MapCloud.refresh("left_panel");
-				}
+				
 				MapCloud.refresh_panel.refreshPanel();						
 			});
 		});

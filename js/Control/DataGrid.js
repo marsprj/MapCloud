@@ -1,9 +1,17 @@
+// feature的展示列表
 MapCloud.DataGrid = MapCloud.Class({
+	
+	// 面板
 	panel 		: null,
-	maxFeatures : 20,
-	layer 		: null,
-	features 	: null,
 
+	// 每页的展示条数
+	maxFeatures : 20,
+
+	// 展示图层
+	layer 		: null,
+
+	// 展示要素
+	features 	: null,
 
 	initialize : function(id){
 		this.panel = $("#" + id);
@@ -24,6 +32,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.hidePanel();
 	},
 
+	// 展示
 	showPanel : function(){
 		this.panel.css("height","300px");
 		$("#mapCanvas_wrapper").css("bottom","300px");
@@ -37,6 +46,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		}
 	},
 
+	//隐藏 
 	hidePanel : function(){
 		this.panel.css("height","30px");
 		$("#mapCanvas_wrapper").css("bottom","30px");
@@ -47,6 +57,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		}
 	},
 
+	// 注册展示和隐藏事件
 	registerExpand : function(){
 		var collapsed = true;
 		var that = this;
@@ -63,6 +74,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		});
 	},
 
+	// 翻页事件
 	registerPageEvent : function(){
 		var that = this;
 		this.panel.find(".glyphicon-step-backward").each(function(){
@@ -104,6 +116,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		});
 	},
 
+	// 展示要素
 	showFeatures : function(features){
 		if(features == null){
 			return;
@@ -123,7 +136,12 @@ MapCloud.DataGrid = MapCloud.Class({
 			return;
 		}
 
+		this.setFieldsHtml(fields);
+		this.setValuesHtml(features);
+	},
 
+	// 设置字段
+	setFieldsHtml : function(fields){
 		var html = "";
 		var field = null;
 		var name = null;
@@ -139,21 +157,22 @@ MapCloud.DataGrid = MapCloud.Class({
 				widthAll += 1;
 			}
 		}
-
 		this.panel.find("#datagrid_content table thead tr").html(html);
 
 		var widthAllWidth = 80*widthAll;
 		var divWidth = parseFloat(this.panel
 			.find("#datagrid_content").width());
 		if(widthAllWidth < divWidth){
-			// this.panel.find("#datagrid_content table thead tr th")
-			// 	.attr("width",Math.ceil(divWidth/widthAll));
+			
 		}else{
 			this.panel.find("#datagrid_content table")
 			.css("width",widthAllWidth + "px");
 		}
+	},
 
-		//features display
+	// 设置feature的values
+	setValuesHtml : function(features){
+				//features display
 		html = "";
 		var feature = null;
 		var values = null;
@@ -186,6 +205,8 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.registerFeatureSelected();
 	},
 
+
+	// 展示页码
 	showPages : function(layer,count){
 		if(layer == null || count == null){
 			return;
@@ -203,6 +224,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.showPanel();
 	},
 
+	// 设置页码
 	setPage : function(page){
 
 		var pageCount = parseInt(this.panel
@@ -247,13 +269,8 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.showFeatures(features);
 	},
 
-	// getFeatures_callback : function(features){
-	// 	var that = MapCloud.dataGrid;
-		
-	// 	var style = that.getStyle(that.layer.geomType);
-	// 	that.drawFeatures(features,style);
-	// },
 
+	// 清空数据
 	clearData : function(){
 		this.panel.find("#datagrid_content table thead tr").html("");
 		this.panel
@@ -263,6 +280,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.panel.find(".pages-form-pages").html("0");
 	},
 
+	// 选中要素事件
 	registerFeatureSelected : function(){
 		var that = this;
 		this.panel.find("#datagrid_content table tbody tr").each(function(){

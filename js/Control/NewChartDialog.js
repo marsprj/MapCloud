@@ -1,3 +1,4 @@
+// 图表,赞不使用
 MapCloud.NewChartDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	option : null,

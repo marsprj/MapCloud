@@ -1,3 +1,4 @@
+// 样式名称对话框
 MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 	flag : null,
 
@@ -12,6 +13,8 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请输入名称！");
 					return;
 				}
+
+
 				MapCloud.styleManager_dialog.setAddStyleName(name,dialog.flag);
 				dialog.closeDialog();
 			});
@@ -24,6 +27,8 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	setFlag : function(flag){
 		this.flag = flag;
+		
+		// 是保存还是新建
 		if(this.flag == "save"){
 			this.panel.find(".modal-title").text("保存样式");
 		}else if(this.flag == "add"){

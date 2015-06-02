@@ -1,8 +1,15 @@
+// 样式对话框
 MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
-	
+	// 当前样式
 	rule : null,
+
+	// 是从哪里点击的该对话框
 	source : null,
+
+	// 类型
 	type : null,
+
+	// 字体
 	fonts : null,
 
 	initialize : function(id){
@@ -19,7 +26,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find('[data-toggle="tooltip"]').tooltip();
 
-		//样式初始化
+		//样式初始化，拖动条
 		this.panel.find(".slider").each(function(){
 			$(this).slider();
 			$(this).on("slide",function(slideEvt){
@@ -31,6 +38,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 
+		// 颜色选择器
 		this.panel.find(".colorSelector").each(function(){
 			$(this).colpick({
 				color:'EEEEEE',
@@ -45,6 +53,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 
+		// 样式可编辑
 		this.panel.find(".style_enable").each(function(){
 			$(this).change(function(){
 				var parent = $(this).parents(".form-group");
@@ -55,7 +64,6 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		var textPropCheck = this.panel.find("#style-text .text-prop .style_enable");
 		var textTextCheck = this.panel.find("#style-text .text-text .style_enable");
 		textPropCheck.change(function(){
-			// var checked = $(this).prop("checked");
 			if(this.checked){
 				textTextCheck.prop("checked",false);
 				var item = textTextCheck.parents(".form-group");
@@ -67,7 +75,6 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 		
 		textTextCheck.change(function(){
-			// var checked = $(this).prop("checked");
 			if(this.checked){
 				textPropCheck.prop("checked",false);
 				var item = textPropCheck.parents(".form-group");
@@ -78,28 +85,36 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 		});
 
+		// 确定
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var rule = dialog.getRule();
 				if(dialog.source == "styleMgr"){
+					// 返回样式管理对话框
 					MapCloud.styleManager_dialog.setRule(rule);
 				}else if(dialog.source == "refresh"){
-					if(MapCloud.refresh_panel == null){
-						MapCloud.refresh_panel = 
-								new MapCloud.refresh("left_panel");
-					}
+					// 返回refresh
 					MapCloud.refresh_panel.setRule(rule);
 				}
 				dialog.closeDialog();
 			});
 		});
 
-		//拿到字体
-		if(this.fonts == null){
-			var fontManager = new GeoBeans.FontManager("/ows/user1/mgr","1.0.0");
-			this.fonts = fontManager.getFonts(this.getFontsCallback);
-			this.displayFonts(this.fonts);
-		}
+		// //拿到字体
+		// if(this.fonts == null){
+		// 	var fontManager = new GeoBeans.FontManager("/ows/user1/mgr","1.0.0");
+		// 	this.fonts = fontManager.getFonts(this.getFontsCallback);
+		// 	this.displayFonts(this.fonts);
+		// }
+	},
+
+	showDialog : function(){
+		this.cleanup();
+		this.panel.modal();
+		// 获得字体
+		var fontManager = new GeoBeans.FontManager("/ows/user1/mgr","1.0.0");
+		this.fonts = fontManager.getFonts(this.getFontsCallback);
+		this.displayFonts(this.fonts);
 	},
 
 	cleanup : function(){
@@ -139,6 +154,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".font-family").html(html);
 	},
 
+	// 设置样式，来源，字段
 	setRule : function(rule,fields,source){
 		this.rule = rule;
 		this.source = source;
@@ -180,6 +196,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		this.panel.find("#style-text .text-prop select").html(html);
 	},
+
 	//按照样式初始化页面
 	displayRule : function(rule){
 		var symbolizer = rule.symbolizer;
@@ -214,26 +231,32 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.displayTextSymbolizer(textSymbolizer);
 	},
 
+	// 显示当前编辑的样式
 	setType : function(type){
 		this.type = type; 
 		this.panel.find(".style-type .btn-group a").each(function(){
 			$(this).removeClass('btn-primary');
+			$(this).attr("disabled",true);
 		});
 		switch(type){
 			case GeoBeans.Symbolizer.Type.Point:
 				this.panel.find("#point_style").addClass("btn-primary");
+				this.panel.find("#point_style").attr("disabled",false);
 				break;
 			case GeoBeans.Symbolizer.Type.Line:
 				this.panel.find("#line_style").addClass("btn-primary");
+				this.panel.find("#line_style").attr("disabled",false);
 				break;
 			case GeoBeans.Symbolizer.Type.Polygon:
 				this.panel.find("#polygon_style").addClass("btn-primary");
+				this.panel.find("#polygon_style").attr("disabled",false);
 				break;
 			default:
 				break;
 		}
 	},
 
+	// 展示点样式
 	displayPointSymbolizer : function(symbolizer){
 		var stroke = symbolizer.stroke;
 		var strokeItem = this.panel.find("#style-info .style-stroke");
@@ -249,6 +272,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.displaySize(markItem,size);
 	},
 
+	// 展示线样式
 	displayLineSymbolizer : function(symbolizer){
 		var stroke = symbolizer.stroke;
 		var strokeItem = this.panel.find("#style-info .style-stroke");
@@ -262,6 +286,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.undisplayStyleItem(markItem);
 	},
 
+	// 展示面样式
 	displayPolygonSymoblizer : function(symbolizer){
 		var stroke = symbolizer.stroke;
 		var strokeItem = this.panel.find("#style-info .style-stroke");
@@ -435,11 +460,6 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 				option = propItem.find("select option[value='"+ textProp + "']");
 				option.attr("selected",true);
 			}
-			
-			
-
-			
-
 		}
 	},
 
@@ -490,6 +510,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 	},
 
+	// 获得当前设置完的样式
 	getRule : function(){
 		var rule = new GeoBeans.Rule();
 		var symbolizer = this.getSymbolizer();

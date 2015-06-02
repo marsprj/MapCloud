@@ -1,8 +1,15 @@
+// 标注
 MapCloud.TrackOverlay = MapCloud.Class({
-
+	// 左侧panel
 	panel: null,
+
+	// 控制工具条
 	controlPanel : null,
+
+	// 绘制control
 	trackOverlayControl : null,
+	
+	// 编辑的标注
 	editOverlay : null,
 
 
@@ -12,6 +19,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 
 		var that = this;
 
+		// 绘制点
 		this.controlPanel.find("#track_marker").each(function(){
 			$(this).click(function(e){
 				e.preventDefault();
@@ -20,6 +28,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			});
 		});
 
+		// 绘制线
 		this.controlPanel.find("#track_polyline").each(function(){
 			$(this).click(function(e){
 				e.preventDefault();
@@ -27,6 +36,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			});
 		});
 
+		// 绘制面
 		this.controlPanel.find("#track_polygon").each(function(){
 			$(this).click(function(e){
 				e.preventDefault();
@@ -34,10 +44,9 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			});
 		});
 
-		// this.trackOverlayControl = new GeoBeans.Control.TrackOverlayControl();
-		// mapObj.controls.add(this.trackOverlayControl);
 	},
 
+	// 显示
 	show : function(){
 		if(mapObj == null){
 			return;
@@ -65,6 +74,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		this.showOverlaysList(overlays);		
 	},
 
+	// 隐藏
 	hide : function(){
 		MapCloud.refresh_panel.show();
 		this.panel.css("display","none");
@@ -72,15 +82,17 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		mapObj.unregisterOverlayEvent();		
 	},
 
+	// 点
 	trackMarker : function(){
 		this.trackOverlayControl.trackMarker(this.callbackTrackOverlay);
 	},
 
-
+	// 线
 	trackPolyline : function(){
 		this.trackOverlayControl.trackLine(this.callbackTrackOverlay);
 	},
 
+	// 面
 	trackPolygon : function(){
 		this.trackOverlayControl.trackPolygon(this.callbackTrackOverlay);
 	},
@@ -90,7 +102,6 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			var overlays = mapObj.getOverlays();
 			MapCloud.overlay_panel.showOverlaysList(overlays);
 			return;
-		// }
 		}else if(overlay == null && MapCloud.overlay_panel.editOverlay != null){
 			return;
 		}
@@ -102,6 +113,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		}
 	},
 
+	// 显示待编辑的标注
 	showEditOverlay : function(overlay){
 		if(overlay == null){
 			return;
@@ -197,6 +209,8 @@ MapCloud.TrackOverlay = MapCloud.Class({
 
 	},
 
+
+	// 显示鼠标获取到的标注
 	showHitOverlay : function(overlay){
 		if(this.editOverlay != null){
 			return;
@@ -226,8 +240,8 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		this.panel.html(html);
 	},
 
+	// 显示标注列表
 	showOverlaysList : function(overlays){
-
 		var that = this;
 		var html = 	"<div class=\"row left_row_wrapper\" style=\"margin-top: 10px\">"
 				+	"	<button type=\"button\" class=\"btn btn-default col-md-offset-3 btn-cancel\">清空</button>"
@@ -252,6 +266,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			$(this).find(".input-group-btn").css("display","none");
 		});
 
+		// 编辑
 		this.panel.find(".btn-edit").each(function(){
 			$(this).click(function(){
 				var index = $(this).parents(".overlay_row").attr("value");
@@ -262,6 +277,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			});
 		});
 
+		// 删除
 		this.panel.find(".btn-remove").each(function(){
 			$(this).click(function(){
 				var index = $(this).parents(".overlay_row").attr("value");

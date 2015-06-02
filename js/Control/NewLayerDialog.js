@@ -1,18 +1,24 @@
+// 新建图层
 MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
+	// 选中的数据源
 	dataSource 	: null,
-	dataSet 	: null,
 
+	// 选中的数据
+	dataSet 	: null,
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		
 		var dialog = this;
+
+		// 选择数据源,弹出数据源窗口
 		dialog.panel.find("#new_layer_select_dbs").each(function(){
 			$(this).click(function(){
 				MapCloud.data_source_dialog.showDialog("select");
-				// MapCloud.data_source_dialog.showDialog();
 			});
 		});
+
+		// 确定
 		dialog.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var name = dialog.panel.find("#new_layer_name").val();
@@ -32,6 +38,7 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 						dbName,typeName); 
 					MapCloud.alert_info.loading();
 					layer.geomType = dialog.dataSet.geometryType;
+					// 注册图层
 					mapObj.addLayer(layer,dialog.addLayer_callback);
 				}
 				dialog.closeDialog();
@@ -49,6 +56,7 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.find("#new_layer_dbs").val("");
 	},
 
+	// 选择数据源返回的数据源和数据
 	setDataSet : function(dataSource,dataSet){
 		if(dataSource == null || dataSet == null){
 			return;
@@ -57,15 +65,19 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.dataSet = dataSet;
 		var text = "数据源：" + dataSource.name 
 				+ "; 数据：" + dataSet.name;
-		this.panel.find("#new_layer_dbs").val(text);	
+		this.panel.find("#new_layer_dbs").val(text);
+
+		this.panel.find("#new_layer_name").val(dataSet.name);	
 	},
 
+	// 注册图层回调函数
 	addLayer_callback : function(result){
 		var dialog = MapCloud.new_layer_dialog;
 		var name = dialog.panel.find("#new_layer_name").val();
 		var info = "注册图层 [ " + name + " ]";
 		MapCloud.alert_info.showInfo(result,info);
 		MapCloud.refresh_panel.refreshPanel();
+		mapObj.draw();
 	}
 });
 	

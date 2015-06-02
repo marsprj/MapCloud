@@ -1,14 +1,35 @@
+// 图层样式对话框
 MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
+	
+	// 样式管理器
 	styleMgr 			: null,
-	styleNameCur 		: null, //当前样式名称
-	styleCur 			: null, //当前样式
+	
+	// 当前样式名称 
+	styleNameCur 		: null, 
+
+	//当前样式
+	styleCur 			: null, 
+
+	// 默认样式
 	defaultStyle 		: null,
+
+	// 选中的样式
 	selectedRuleIndex 	: null,
+
 	// isStyleChanged 		: false, //当前样式是否已经更改
+	
+	// 是否是默认样式
 	isDefaultStyle 		: false,
+	
+
 	wfsWorkspace 		: null,
+
+	// 图层的名称
 	typeName 			: null,
+
+	// 唯一值
 	uniqueValues 		: null,
+	
 	dbLayer 			: null,
 
 	initialize : function(id){
@@ -19,16 +40,20 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var name = dialog.panel.find("#style_list option:selected").text(); 
-				if(name != "default"){
+				
+				// 是否是WFS图层的默认样式
+				if(name != "default"){ 
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//添加
 						dialog.addStyle(dialog.styleCur);
 					}else{
+						// 更新
 						dialog.updateStyle(dialog.styleCur);
 					}
 				}
 				if(dialog.typeName != null){
+					// 给当前图层设定样式
 					dialog.setStyle(dialog.typeName,dialog.styleCur,
 					dialog.setStyle_callback);
 				}
@@ -56,6 +81,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 
+		// 注册默认样式的点击事件
 		this.registerDefaultSymbolDisplay();
 		
 		//切换样式类型
@@ -64,11 +90,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var value = $(this).text();
 				var html = value + "<span class='caret'></span>";
 				dialog.panel.find("#style_type_name").html(html);
+
+
 				value = value.toLowerCase();
 				if(value == "all"){
 					var styles = dialog.styleMgr.getStyles();
 					dialog.getStyles_callback(styles);
 				}else{
+					// 点线面类型
 					var type = dialog.getStyleType(value);
 					if(type != null){
 						var styles = dialog.styleMgr.getStyleByType(type);
@@ -78,8 +107,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});	
 
-		var preStyleName = null;
 		// 切换样式
+		var preStyleName = null;
 		this.panel.find("#style_list").each(function(){
 			$(this).focus(function(){
 				preStyleName = this.value;
@@ -100,7 +129,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				// }
 				preStyleName = this.value;
 
-				// dialog.isStyleChanged = false;
 
 				dialog.panel.find("#styles_list_table").html("");
 				dialog.defaultStyle = null;
@@ -117,7 +145,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 
-		// 新建样式，
+		// 新建样式
 		this.panel.find("#add_style").each(function(){
 			$(this).click(function(){
 				var type = dialog.panel.find("#style_type_name").text();
@@ -125,13 +153,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					alert("请选择一个类型");
 					return;
 				}
+				// 弹出新建样式对话框
 				MapCloud.styleName_dialog.setFlag("add");
 				MapCloud.styleName_dialog.showDialog();
 				// dialog.isStyleChanged = true;
 			});
 		});
 
-		//更新样式
+		//保存样式
 		this.panel.find("#save_style").each(function(){
 			$(this).click(function(){
 				var name = dialog.styleNameCur;
@@ -142,12 +171,13 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				}else{
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
+						// 添加样式
 						dialog.addStyle(dialog.styleCur);
 					}else{
+						// 更新样式
 						dialog.updateStyle(name);
 					}
 				}
-				// dialog.isStyleChanged = false;
 			});
 		});
 
@@ -170,8 +200,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				if(field == null){
 					return;
 				}
-				// var wfsWor
-				// var featureType = dialog.wfsLayer.featureType;
+				// 获取所有值
 				dialog.wfsWorkspace.getValue(dialog.typeName,field,
 					mapObj.name,
 					dialog.getValuesCallback);
@@ -192,7 +221,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					dialog.registerSymbolDisplay();
 					dialog.registerStyleSelected();
 				}
-				// dialog.isStyleChanged = true;
 			});
 		});
 
@@ -203,7 +231,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.styleCur = dialog.defaultStyle.clone();
 				dialog.styleCur.name = dialog.styleNameCur;
 				dialog.panel.find("#styles_list_table").html("");
-				// dialog.isStyleChanged = true;
 			});
 		});
 	},
@@ -285,12 +312,11 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var panel = dialog.panel;
 		panel.find("#style_list").html(html);
 		
+		//展示第一个样式
 		var styleName = panel.find("#style_list option:selected").val();
 		dialog.styleNameCur = styleName;
 		dialog.styleMgr.getStyleXML(dialog.styleNameCur,
 			dialog.getStyleXML_callback);
-		//展示第一个样式
-		// MapCloud.styleMgr_dialog.panel.find("#styles_list_table").html("");
 	},
 
 	//获取到的XML解析出style进行展示
@@ -327,7 +353,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	},
 
-	//获得默认样式值
+	//获得默认样式值，从style中拿第一个rule
 	getDefaultStyle : function(style){
 		if(style == null){
 			return null;
@@ -499,6 +525,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		return html;
 	},
+
 	//根据rule拿到是哪个字段
 	getProperyNameByRule : function(rule){
 		if(rule == null){
@@ -575,28 +602,26 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		return html;
 	},
 
+	// 注册默认样式的点击事件,弹出样式对话框
 	registerDefaultSymbolDisplay : function(){
 		var that = this;
 		this.panel.find("#default_style_table .style-symbol").each(function(){
 			$(this).click(function(){
-				// var table_id = $(this).parents("table").first().attr("id");
-				// if(table_id == "default_style_table"){
-					that.isDefaultStyle = true;
-					var rule = that.defaultStyle.rules[0];
-					if(rule != null){
-						if(MapCloud.style_dialog == null){
-							MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
-						}
-						MapCloud.style_dialog.showDialog();	
-						MapCloud.style_dialog.setRule(rule,
-							that.fields,"styleMgr");
+				that.isDefaultStyle = true;
+				var rule = that.defaultStyle.rules[0];
+				if(rule != null){
+					if(MapCloud.style_dialog == null){
+						MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
 					}
-				// }
+					MapCloud.style_dialog.showDialog();	
+					MapCloud.style_dialog.setRule(rule,
+						that.fields,"styleMgr");
+				}
 			});
 		});
 	},
 
-	// 有待修改和调试
+	// 删除样式的结果
 	removeStyle_callback : function(result){
 		var dialog = MapCloud.styleManager_dialog;
 		var panel = dialog.panel;
@@ -606,6 +631,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.alert_info.showInfo(result,info);
 
 		if(result.toUpperCase() == "SUCCESS"){
+			// 重新拿样式列表
 			var value = panel.find("#style_type_name").text();
 			value = value.toLowerCase();
 			if(value == "all"){
@@ -642,7 +668,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
-	//选择的一个样式
+	//选中一个样式
 	registerStyleSelected : function(){
 		var tr = this.panel.find("#styles_list_table tbody tr").each(function(){
 			$(this).click(function(){
@@ -651,6 +677,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			});
 		});
 	},
+
+
 	//返回回来的rule
 	setRule : function(rule){
 		if(rule == null){
@@ -699,11 +727,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			//默认样式则修改名称 待修改
 			this.panel.find("#style_list option[value='default']").text(styleName);
 			var addstyle = null;
-			// if(this.style != null){
-			// 	addstyle = this.style;
-			// }else{
-			// 	addstyle = this.defaultStyle;
-			// }
 			addStyle = this.styleCur;
 			this.addStyle(addstyle);
 		}
@@ -761,6 +784,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.styleMgr.updateStyle(xml,name,this.updateCallback);
 	},
 
+	// 更新样式结果
 	updateCallback : function(result){
 		var dialog = MapCloud.styleManager_dialog;
 		var panel = dialog.panel;
@@ -770,6 +794,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.alert_info.showInfo(result,info);
 	},
 
+	// 增加样式
 	addStyle : function(style){
 		if(style == null){
 			return;
@@ -785,6 +810,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				,geomType,this.addStyleCallback);
 	},
 
+	// 增加样式结果
 	addStyleCallback : function(result){
 		var dialog = MapCloud.styleManager_dialog;
 
@@ -901,6 +927,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		
 	},
 
+	// 设置字段
 	setFields : function(fields){
 		if(fields != null){
 			this.fields = fields;
@@ -920,13 +947,12 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).change(function(){
 				that.panel.find("#styles_list_table").html("");
 				that.styleCur = null;
-				// that.style = null;
-				// 修改
+				
 			});
 		});
 	},
 
-	//色阶
+	//色阶地图
 	getColorMaps_callback : function(colorMaps){
 		if(colorMaps == null){
 			return;
@@ -992,6 +1018,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
+	// 所有值的结果
 	getValuesCallback : function(values){
 		if(values == null){
 			return;
@@ -1006,6 +1033,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			dialog.getColorMap_callback);
 	},
 
+	// 获得一个色阶的色阶值
 	getColorMap_callback : function(colors){
 		if(colors == null){
 			return;
@@ -1055,7 +1083,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		return styleGeomType;
 	},
 
-	// 生成style,包含筛选的条件
+	// 生成style,包含筛选的条件,添加所有值后的样式
 	getStyleByValues : function(defaultRule,field,values,colorValues){
 		var color = null;
 		var index = null;
@@ -1063,7 +1091,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var defaultSymbolizer = defaultRule.symbolizer;
 		var defaultTextSymbolizer = defaultRule.textSymbolizer;
 
-		// var colorValues = colorRamp.getValues();
 		var colorValuesLength = colorValues.length;
 		var type = defaultSymbolizer.type;
 		var geomType = this.defaultStyle.geomType;
@@ -1071,6 +1098,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					.text();
 		var style = new GeoBeans.Style.FeatureStyle(styleName,geomType);
 		var rules = [];
+
+
+		// 根据所有值,生成每一个rule
 		for(var i = 0; i < values.length; ++i){
 			var value = values[i];
 			var rule = new GeoBeans.Rule();
@@ -1119,6 +1149,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		return style;
 	},
 
+	// 设置样式
 	setStyle : function(typeName,style){
 		if(typeName == null || style == null){
 			return;
@@ -1126,6 +1157,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		mapObj.setStyle(typeName,style,this.setStyle_callback);
 	},
 
+	// 设置样式结果
 	setStyle_callback : function(result){
 		var info = "设置样式";
 		MapCloud.alert_info.showInfo(result,info);

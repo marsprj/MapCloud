@@ -1,13 +1,13 @@
+// 地图上的工具栏
 MapCloud.MapBar = MapCloud.Class({
 	panel : null,
-	
 
 	initialize : function(){
 		this.panel = $("#map_bar_wrapper");
 		this.registerBarEvents();
 	},
 
-
+	// 注册点击事件
 	registerBarEvents : function(){
 		var that = this;
 		this.panel.find(".mc-icon").each(function(index,element){
@@ -57,15 +57,11 @@ MapCloud.MapBar = MapCloud.Class({
 			MapCloud.alert_info.showInfo("请选择图层","Warning");
 			return;
 		}
-
 		mapObj.queryByRect(layerName,this.query_callback);
-		// var count = mapObj.queryByRectCount(layerName);
 	},
 
 	query_callback : function(layer,count){
 		MapCloud.dataGrid.showPages(layer,count);
-
-		// MapCloud.dataGrid.showFeatures(features);
 	},
 
 	//信息查询
@@ -129,6 +125,7 @@ MapCloud.MapBar = MapCloud.Class({
 		MapCloud.dataGrid.cleanup();
 	},
 
+	// 全图显示
 	onMapGlobe : function(){
 		if(mapObj == null){
 			return;
@@ -139,7 +136,4 @@ MapCloud.MapBar = MapCloud.Class({
 		}
 		mapObj.setViewer(extent);
 	}
-
-
-
 });
