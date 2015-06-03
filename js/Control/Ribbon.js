@@ -367,6 +367,13 @@ MapCloud.Ribbon = MapCloud.Class({
 		if(layer == null){
 			return;
 		}
+		var geomType = layer.geomType;
+		if(geomType != GeoBeans.Geometry.Type.POINT &&
+			geomType != GeoBeans.Geometry.Type.MULTIPOINT){
+			MapCloud.alert_info.showInfo("请选择点图层","Warning");
+			return;
+		}
+		MapCloud.alert_info.hide();
 		MapCloud.heatMap_dialog.showDialog();
 		MapCloud.heatMap_dialog.setLayer(layer);
 	},

@@ -17,7 +17,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = this;
 		this.rule = null;
 
-		this.panel.find("#wms-style-info-tab a").each(function(){
+		this.panel.find("#style-info-div-tab a").each(function(){
 			$(this).click(function(e){
 				e.preventDefault()
 				$(this).tab("show");

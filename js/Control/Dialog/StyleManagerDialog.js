@@ -746,15 +746,15 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var path = null;
 		switch(styleType){
 			case GeoBeans.Style.FeatureStyle.GeomType.Point:{
-				path = "js/point.xml";
+				path = "js/Style-xml/point.xml";
 				break;
 			}
 			case GeoBeans.Style.FeatureStyle.GeomType.LineString:{
-				path = "js/line.xml";
+				path = "js/Style-xml/line.xml";
 				break;
 			}
 			case GeoBeans.Style.FeatureStyle.GeomType.Polygon:{
-				path = "js/polygon.xml";
+				path = "js/Style-xml/polygon.xml";
 				break;
 			}
 			default:
