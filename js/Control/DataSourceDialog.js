@@ -442,16 +442,16 @@ MapCloud.DataSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find("#dataset_features_list table thead tr")
 			.html(html);
 
-		var widthAllWidth = 80*widthAll;
-		var divWidth = parseFloat(this.panel
-			.find("#dataset_features_list").width());
-		if(widthAllWidth < divWidth){
-			this.panel.find("#dataset_features_list table thead tr th")
-				.attr("width",Math.ceil(divWidth/widthAll));
-		}else{
-			this.panel.find("#dataset_features_list table")
-			.css("width",widthAllWidth + "px");
-		}
+		// var widthAllWidth = 80*widthAll;
+		// var divWidth = parseFloat(this.panel
+		// 	.find("#dataset_features_list").width());
+		// if(widthAllWidth < divWidth){
+		// 	this.panel.find("#dataset_features_list table thead tr th")
+		// 		.attr("width",Math.ceil(divWidth/widthAll));
+		// }else{
+		// 	this.panel.find("#dataset_features_list table")
+		// 	.css("width",widthAllWidth + "px");
+		// }
 	},
 
 	// 展示元素

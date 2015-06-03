@@ -439,7 +439,6 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				MapCloud.styleManager_dialog.showDialog();
 				MapCloud.styleManager_dialog.setWFSLayer(wfsLayer);
-				MapCloud.styleManager_dialog.setWFSLayer(wfsLayer);
 			});
 		});
 
@@ -454,7 +453,7 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				// MapCloud.styleMgr_dialog.showDialog();
 				// MapCloud.styleMgr_dialog.setDBLayer(layer);
-				MapCloud.styleManager_dialog.showDialog();
+				MapCloud.styleManager_dialog.showDialog(false);
 				MapCloud.styleManager_dialog.setDBLayer(layer);
 			});
 		});

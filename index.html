@@ -155,8 +155,7 @@
 <script type="text/javascript" src="js/Control/MapMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/CreateMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/NewLayerDialog.js"></script>
-<script type="text/javascript" src="js/Control/EditLayerDialog.js"></script>
-<script type="text/javascript" src="js/Control/LayerAppearanceDialog.js"></script>
+
 <script type="text/javascript" src="js/Control/CreateLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/PGISConnectDialog.js"></script>
 <script type="text/javascript" src="js/Control/DataSourceDialog.js"></script>
@@ -450,17 +449,13 @@
 				<div class="row row-right mc-panel-full">
 					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
 					<div id="mapCanvas_wrapper">
-						<!-- <div id="mapCanvas_chart_div"></div> -->
-						<!-- <figure style="width: 100px; height: 80px;border:1px solid #ccc;" id="mapCanvas_chart_div"></figure> -->
-						<!-- <canvas id="mapCanvas" width="800" height="528"></canvas> -->
 					</div>
-
 					<div id="datagrid_wrapper">
 						<div class="panel-header">
 							<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
 							<div class="panel-header-content float_left">Feature Info</div>
 						</div>
-						<div id="datagrid_content">
+						<div id="datagrid_content" class="table-responsive">
 							<table class="table table-hover borderless">
 								<thead><tr></tr></thead>
 								<tbody></tbody>
@@ -538,1005 +533,990 @@
 			
 		</div>
 	</div>
-<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
-    <button type="button" class="close" aria-label="Close">
-    	<span aria-hidden="true">×</span>
-    </button>
-    <p>Warning!</p>
-</div>
-<div class="screen-alert" id="alert_loading">
-	<span>Please wait ...</span>
-</div>	
-<!-- Get Maps panel -->
-<div class="modal fade" id="getMapsDialog" tabindex="-1" role="dialog" aria-labelledby="getMapsDialogLabel" aria-hidden="true"
-data-backdropk="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title">打开地图</h5>
-			</div>
-			<div class="modal-body">
-				<ul id="maps_list">
-					
-				</ul>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary btn-confirm">确定</button>
-			</div>
-		</div>
+	<!-- alert info  panel -->
+	<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
+	    <button type="button" class="close" aria-label="Close">
+	    	<span aria-hidden="true">×</span>
+	    </button>
+	    <p>Warning!</p>
 	</div>
-</div>
-<!-- Map Manage panel -->
-<div class="modal fade" id="mapMgrDialog" tabindex="-1" role="dialog" aria-labelledby="getMapsDialogLabel" aria-hidden="true"
-data-backdrop="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title">管理地图</h5>
-			</div>
-			<div class="modal-body">
-				<div class="row" style="margin-left:0px">
-					<div class="col-md-2">
-						<a class="btn btn-default" id="remove_select_maps">全不选</a>
-					</div>
-					<div class="col-md-2">
-						<a class="btn btn-default btn-success" id="remove_maps">删除地图</a>
-					</div>
-				</div>
-				<ul id="maps_list">
-					
-				</ul>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary btn-confirm">确定</button>
-			</div>
-		</div>
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
 	</div>
-</div>
-<!-- Create Map panel -->
-<div class="modal fade" id="createMapDialog" tabindex="-1" role="dialog" aria-hidden="true"
-data-backdrop="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title">新建地图</h5>
-			</div>
-			<div class="modal-body">
-				<!-- <ul class="nav nav-tabs" id="">
-					<li class="active">
-						<a href="#create_map_info">信息</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="create_map_info"> -->
-				<form class="form-horizontal" role="form">
-					<div class="form-group form-group-sm">
-						<label for="create_map_name" class="col-sm-3 control-label">Name：</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="create_map_name">
-						</div>
-						<div class="col-sm-2 info-invis" id="create_map_infos">
-							<a class="btn btn-default btn-drop"><b class="caret"></b></a>
-						</div>
-					</div>
-					<div class="form-group form-group-sm create-map-info-item">
-						<label for="create_map_srid" class="col-sm-3 control-label">Srid：</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" value="4326" id="create_map_srid">
-						</div>
-					</div>
-					<div class="form-group form-group-sm create-map-info-item">
-						<label for="wfs_datasource_layer_xmin" class="col-sm-3 control-label">xMin：</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" value="-180.0" id="create_map_xmin">
-						</div>
-					</div>
-					<div class="form-group form-group-sm create-map-info-item">
-						<label for="wfs_datasource_layer_ymin" class="col-sm-3 control-label">yMin：</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" value="-90.0" id="create_map_ymin">
-						</div>
-					</div>
-					<div class="form-group form-group-sm create-map-info-item">
-						<label for="wfs_datasource_layer_xmax" class="col-sm-3 control-label">xMax：</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" value="180.0" id="create_map_xmax">
-						</div>
-					</div>
-					<div class="form-group form-group-sm create-map-info-item">
-						<label for="wfs_datasource_layer_ymax" class="col-sm-3 control-label">yMax：</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" value="90.0" id="create_map_ymax">
-						</div>
-					</div>
-				</form>
-				<ul id="base_map_list">
-					<li class="base-map-thumb">
-						<a href="#" class="thumbnail selected" bname="none">
-							<img src="images/map-none.png" alt="none">
-							<div class="map-check">
-								<img src="images/check.png">
-							</div>
-						</a>
-						<div class="caption text-center">
-							<h6>空白地图</h6>
-						</div>
-					</li>
-					<li class="base-map-thumb">
-						<a href="#" class="thumbnail" bname="vector">
-							<img src="images/map-vector-thumb.png" alt="vector">
-							<div class="map-check">
-								<img src="images/check.png">
-							</div>
-						</a>
-						<div class="caption text-center">
-							<h6>矢量地图</h6>
-						</div>
-					</li>
-					<li class="base-map-thumb">
-						<a href="#" class="thumbnail" bname="image">
-							<img src="images/map-image-thumb.png" alt="image">
-							<div class="map-check">
-								<img src="images/check.png">
-							</div>
-						</a>
-						<div class="caption text-center">
-							<h6>影像地图</h6>
-						</div>
-					</li>
-				</ul>
-<!-- 					</div>
-				</div> -->
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary btn-confirm">确定</button>
-			</div>
-		</div>
-	</div>
-</div>
 
-<!-- New Layer panel -->
-<div class="modal fade" id="newLayerDialog" tabindex="-1" role="dialog" aria-labelledby="newLayerDialogLabel" aria-hidden="true"
-data-backdrop="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title">新建图层</h5>
+	<!-- Get Maps panel -->
+	<div class="modal fade" id="getMapsDialog" tabindex="-1" role="dialog" aria-labelledby="getMapsDialogLabel" aria-hidden="true"
+	data-backdropk="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">打开地图</h5>
+				</div>
+				<div class="modal-body">
+					<ul id="maps_list">
+						
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
 			</div>
-			<div class="modal-body">
-				<div class="tab-pane active" id="new_layer_info">
+		</div>
+	</div>
+
+	<!-- Map Manager panel -->
+	<div class="modal fade" id="mapMgrDialog" tabindex="-1" role="dialog" aria-labelledby="getMapsDialogLabel" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">管理地图</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-left:0px">
+						<div class="col-md-2">
+							<a class="btn btn-default" id="remove_select_maps">全不选</a>
+						</div>
+						<div class="col-md-2">
+							<a class="btn btn-default btn-success" id="remove_maps">删除地图</a>
+						</div>
+					</div>
+					<ul id="maps_list">
+						
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Create Map panel -->
+	<div class="modal fade" id="createMapDialog" tabindex="-1" role="dialog" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建地图</h5>
+				</div>
+				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group form-group-sm">
-							<label class="col-md-3 control-label">
-								名称：
-							</label>
-							<div class="col-md-4">
-								<input class="form-control" type="text" id="new_layer_name">
+							<label for="create_map_name" class="col-sm-3 control-label">Name：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="create_map_name">
+							</div>
+							<div class="col-sm-2 info-invis" id="create_map_infos">
+								<a class="btn btn-default btn-drop"><b class="caret"></b></a>
+							</div>
+						</div>
+						<div class="form-group form-group-sm create-map-info-item">
+							<label for="create_map_srid" class="col-sm-3 control-label">Srid：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" value="4326" id="create_map_srid">
+							</div>
+						</div>
+						<div class="form-group form-group-sm create-map-info-item">
+							<label for="wfs_datasource_layer_xmin" class="col-sm-3 control-label">xMin：</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="-180.0" id="create_map_xmin">
+							</div>
+						</div>
+						<div class="form-group form-group-sm create-map-info-item">
+							<label for="wfs_datasource_layer_ymin" class="col-sm-3 control-label">yMin：</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="-90.0" id="create_map_ymin">
+							</div>
+						</div>
+						<div class="form-group form-group-sm create-map-info-item">
+							<label for="wfs_datasource_layer_xmax" class="col-sm-3 control-label">xMax：</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="180.0" id="create_map_xmax">
+							</div>
+						</div>
+						<div class="form-group form-group-sm create-map-info-item">
+							<label for="wfs_datasource_layer_ymax" class="col-sm-3 control-label">yMax：</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="90.0" id="create_map_ymax">
+							</div>
+						</div>
+					</form>
+					<ul id="base_map_list">
+						<li class="base-map-thumb">
+							<a href="#" class="thumbnail selected" bname="none">
+								<img src="images/map-none.png" alt="none">
+								<div class="map-check">
+									<img src="images/check.png">
+								</div>
+							</a>
+							<div class="caption text-center">
+								<h6>空白地图</h6>
+							</div>
+						</li>
+						<li class="base-map-thumb">
+							<a href="#" class="thumbnail" bname="vector">
+								<img src="images/map-vector-thumb.png" alt="vector">
+								<div class="map-check">
+									<img src="images/check.png">
+								</div>
+							</a>
+							<div class="caption text-center">
+								<h6>矢量地图</h6>
+							</div>
+						</li>
+						<li class="base-map-thumb">
+							<a href="#" class="thumbnail" bname="image">
+								<img src="images/map-image-thumb.png" alt="image">
+								<div class="map-check">
+									<img src="images/check.png">
+								</div>
+							</a>
+							<div class="caption text-center">
+								<h6>影像地图</h6>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- New Layer panel -->
+	<div class="modal fade" id="newLayerDialog" tabindex="-1" role="dialog" aria-labelledby="newLayerDialogLabel" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建图层</h5>
+				</div>
+				<div class="modal-body">
+					<div class="tab-pane active" id="new_layer_info">
+						<form class="form-horizontal" role="form">
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									名称：
+								</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" id="new_layer_name">
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									数据源：
+								</label>
+								<div class="col-md-3">
+									<a href="#" class="btn btn-sm btn-success" id="new_layer_select_dbs">选择数据源</a>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="col-md-offset-3 col-md-6">
+									<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- WMS panel -->
+	<div class="modal fade" id="wmsDialog" tabindex="-1" role="dialog" aria-labelledby="wmsDialogLabel" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title" id="wmsDialogLabel">新建WMS图层</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group form-group-sm">
+							<label for="wms_name" class="col-sm-2 control-label">名称：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wms_name" value="wms">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
-							<label class="col-md-3 control-label">
-								数据源：
-							</label>
-							<div class="col-md-3">
-								<a href="#" class="btn btn-sm btn-success" id="new_layer_select_dbs">选择数据源</a>
+							<label for="wms_url" class="col-sm-2 control-label">地址：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/ows/user1/world/ims?">
+								<!-- value='/geoserver/radi/ows?' -->
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><a href="#" class="navbar-link" id="wms_get_info">获取信息</a></label>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
-							<div class="col-md-offset-3 col-md-6">
-								<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
+							<label for="" class="col-sm-2 control-label">图层：</label>
+							<div class="col-sm-8" id="wms_layers">
+							    <div class="list-group">
+							      	
+							    </div>
 							</div>
 						</div>
 					</form>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- WMS panel -->
-<div class="modal fade" id="wmsDialog" tabindex="-1" role="dialog" aria-labelledby="wmsDialogLabel" aria-hidden="true" data-backdrop="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h5 class="modal-title" id="wmsDialogLabel">新建WMS图层</h5>
-			</div>
-			<div class="modal-body">
-				<form class="form-horizontal" role="form">
-					<div class="form-group form-group-sm">
-						<label for="wms_name" class="col-sm-2 control-label">名称：</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wms_name" value="wms">
-						</div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label for="wms_url" class="col-sm-2 control-label">地址：</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/ows/user1/world/ims?">
-							<!-- value='/geoserver/radi/ows?' -->
-						</div>
-						<div class="col-sm-2">
-							<label class="control-label"><a href="#" class="navbar-link" id="wms_get_info">获取信息</a></label>
-						</div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label for="" class="col-sm-2 control-label">图层：</label>
-						<div class="col-sm-8" id="wms_layers">
-								<!-- <div class="input-group">
-							      	<span class="input-group-addon">
-							        	<input type="checkbox" aria-label="...">
-							     	 </span>
-							     	 <span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker"></span>
-							      	<input type="text" class="form-control" aria-label="...">
-							      	
-							      </div> -->
 
-							      <div class="list-group">
-							      	<a href="#" class="list-group-item">
-							      		<span class="glyphicon glyphicon-map-marker glyphicon-geom-type"></span>cities<input type="checkbox" name="wms_layer">
-							      	</a>
-							      	<a href="#" class="list-group-item">
-							      		<span class="glyphicon glyphicon-align-justify glyphicon-geom-type"></span>rivers<input type="checkbox" name="wms_layer">
-							      	</a>
-							      	<a href="#" class="list-group-item">
-							      		<span class="glyphicon glyphicon-unchecked glyphicon-geom-type"></span>rivers<input type="checkbox" name="wms_layer">
-							      	</a>
-							      </div>							 								
-							  </div>
-							</div>
-						</form>
+	<!-- WFS datasource panel -->
+	<div class="modal fade" id="wfsDatasourceDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">WFS数据源</h5>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="wfsDatasourceDialogTab">
+						<li class="active"><a href="#wfsInfo">信息</a></li>
+						<li><a href="#wfsAdvan">高级</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="wfsInfo">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_name" class="col-sm-2 control-label">名称：</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wfs_datasource_layer_name" value="wfs">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_url" class="col-sm-2 control-label">地址：</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wfs_datasource_layer_url" value="/ows/user1/world/ims?">
+									</div>
+									<div class="col-sm-2">
+										<label class="control-label"><a href="#" class="navbar-link" id="wfs_datasource_get_info">获取信息</a></label>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="" class="col-sm-2 control-label">图层：</label>
+									<div class="col-sm-4">
+										<select class="form-control" id="wfs_datasource_layers">
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="wfsAdvan">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_epsg" class="col-sm-2 control-label">EPSG：</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="wfs_datasource_layer_epsg">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_proj4" class="col-sm-2 control-label">投影：</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="wfs_datasource_layer_proj4">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_xmin" class="col-sm-2 control-label">xMin：</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_xmin">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_ymin" class="col-sm-2 control-label">yMin：</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_ymin">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_xmax" class="col-sm-2 control-label">xMax：</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_xmax">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="wfs_datasource_layer_ymax" class="col-sm-2 control-label">yMax：</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="wfs_datasource_layer_ymax">
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary btn-confirm">确定</button>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- WFS datasource panel -->
-		<div class="modal fade" id="wfsDatasourceDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h5 class="modal-title">WFS数据源</h5>
-					</div>
-					<div class="modal-body">
-						<ul class="nav nav-tabs" id="wfsDatasourceDialogTab">
-							<li class="active"><a href="#wfsInfo">信息</a></li>
-							<li><a href="#wfsAdvan">高级</a><li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane active" id="wfsInfo">
-									<form class="form-horizontal" role="form">
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_name" class="col-sm-2 control-label">名称：</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wfs_datasource_layer_name" value="wfs">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_url" class="col-sm-2 control-label">地址：</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wfs_datasource_layer_url" value="/ows/user1/world/ims?">
-											</div>
-											<div class="col-sm-2">
-												<label class="control-label"><a href="#" class="navbar-link" id="wfs_datasource_get_info">获取信息</a></label>
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="" class="col-sm-2 control-label">图层：</label>
-											<div class="col-sm-4">
-												<select class="form-control" id="wfs_datasource_layers">
-												</select>
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="tab-pane" id="wfsAdvan">
-									<form class="form-horizontal" role="form">
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_epsg" class="col-sm-2 control-label">EPSG：</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="wfs_datasource_layer_epsg">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_proj4" class="col-sm-2 control-label">投影：</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control" id="wfs_datasource_layer_proj4">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_xmin" class="col-sm-2 control-label">xMin：</label>
-											<div class="col-sm-4">
-												<input type="text" class="form-control" id="wfs_datasource_layer_xmin">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_ymin" class="col-sm-2 control-label">yMin：</label>
-											<div class="col-sm-4">
-												<input type="text" class="form-control" id="wfs_datasource_layer_ymin">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_xmax" class="col-sm-2 control-label">xMax：</label>
-											<div class="col-sm-4">
-												<input type="text" class="form-control" id="wfs_datasource_layer_xmax">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="wfs_datasource_layer_ymax" class="col-sm-2 control-label">yMax：</label>
-											<div class="col-sm-4">
-												<input type="text" class="form-control" id="wfs_datasource_layer_ymax">
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary btn-confirm">确定</button>
-						</div>
-					</div>
+		
+	<!-- Edit layer panel -->
+	<div class="modal fade" id="editLayerDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close btn-cancel" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">编辑图层</h5>
 				</div>
-			</div>
-			<!-- Edit layer panel -->
-			<div class="modal fade" id="editLayerDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close btn-cancel" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							<h5 class="modal-title">编辑图层</h5>
-						</div>
-						<div class="modal-body">
-							<ul class="nav nav-tabs" id="editLayerDialogTab">
-								<li class="active"><a href="#general">通用</a></li>
-								<li><a href="#editLayerLabel">标签</a></li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane active" id="general">
-									<h5>图层基本信息</h5>
-									<form class="form-horizontal" role="form">
-										<div class="form-group form-group-sm">
-											<label for="edit_layer_id" class="col-sm-2 control-label">图层ID：</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="edit_layer_id" readonly>
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="edit_layer_name" class="col-sm-2 control-label">名称：</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="edit_layer_name">
-											</div>
-										</div>
-										<div class="form-group form-group-sm">
-											<label for="edit_layer_type" class="col-sm-2 control-label">类型：</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="edit_layer_type" readonly>
-											</div>
-										</div>
-									</form>
-									<h5>图层展示</h5>
-									<div id="layer_style">
-										<ul>
-											<li class="row">
-												<span class="glyphicon glyphicon-eye-open control-label col-sm-1"></span>
-												<div class="col-sm-3">
-													<input type="text" class="form-control" style="height:28px"></input>
-												</div>
-												<span class="col-sm-1">=</span>
-												<div class="col-sm-3">
-													<input type="text" class="form-control" style="height:28px"></input>
-												</div>
-												<div class="col-sm-1">
-													<span class="style_icon" style="background-color:#ff0000;border-color:#3e3ede"></span>
-												</div>
-												<span class="glyphicon glyphicon-remove control-label col-sm-1"></span>
-												<span class="glyphicon glyphicon glyphicon-plus-sign control-label col-sm-1"></span>
-											</li>
-										</ul>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="editLayerDialogTab">
+						<li class="active"><a href="#general">通用</a></li>
+						<li><a href="#editLayerLabel">标签</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="general">
+							<h5>图层基本信息</h5>
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="edit_layer_id" class="col-sm-2 control-label">图层ID：</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="edit_layer_id" readonly>
 									</div>
 								</div>
-								<div class="tab-pane" id="editLayerLabel">
-									标签页
+								<div class="form-group form-group-sm">
+									<label for="edit_layer_name" class="col-sm-2 control-label">名称：</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="edit_layer_name">
+									</div>
 								</div>
-
-
+								<div class="form-group form-group-sm">
+									<label for="edit_layer_type" class="col-sm-2 control-label">类型：</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="edit_layer_type" readonly>
+									</div>
+								</div>
+							</form>
+							<h5>图层展示</h5>
+							<div id="layer_style">
+								<ul>
+									<li class="row">
+										<span class="glyphicon glyphicon-eye-open control-label col-sm-1"></span>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" style="height:28px"></input>
+										</div>
+										<span class="col-sm-1">=</span>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" style="height:28px"></input>
+										</div>
+										<div class="col-sm-1">
+											<span class="style_icon" style="background-color:#ff0000;border-color:#3e3ede"></span>
+										</div>
+										<span class="glyphicon glyphicon-remove control-label col-sm-1"></span>
+										<span class="glyphicon glyphicon glyphicon-plus-sign control-label col-sm-1"></span>
+									</li>
+								</ul>
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary btn-confirm">确定</button>
+						<div class="tab-pane" id="editLayerLabel">
+							标签页
 						</div>
+
+
 					</div>
 				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
 			</div>
-			<!-- Layer appearance panel -->
-			<div class="modal fade" id="layerAppearanceDialog" tabindex="-1" role="dialog" aria-labelledby="layerAppearanceDialog" aria-hidden="true" data-backdrop="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							<h5 class="modal-title" id="layerAppearanceDialog">图层显示</h5>
+		</div>
+	</div>
+		
+		
+	<!-- Layer appearance panel -->
+	<div class="modal fade" id="layerAppearanceDialog" tabindex="-1" role="dialog" aria-labelledby="layerAppearanceDialog" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title" id="layerAppearanceDialog">图层显示</h5>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="layerAppearanceDialogTab">
+						<li class="active"><a href="#visable">可视化</a></li>
+						<li><a href="#icon">图标</a></li>
+						<li><a href="#textlabel">文字标记</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="visable">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="layer_color" class="col-sm-2 control-label layer_point_type layer_polygon_type">填充颜色</label>
+									<div class="col-sm-2  layer_point_type layer_polygon_type">
+										<div id="layer_color" class="colorSelector">
+											<div style="background-color: #0000ff"></div>
+										</div>
+									</div>
+									<label for="layer_color_transparency" class="col-sm-2 control-label layer_point_type layer_polygon_type">透明度</label>
+									<div class="col-sm-4 layer_point_type layer_polygon_type">
+										<input id="layer_color_transparency" data-slider-id='layer_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+									</div>
+									<div class="col-sm-1  layer_point_type layer_polygon_type" style="padding-left:0px;padding-right:0px;">
+										<input type="text" class="form-control" id="layer_color_transparency_value"  style="width:40px" value="100" readonly>
+									</div>
+									<label class="col-sm-1 control-label   layer_point_type layer_polygon_type" style="padding-left:0px;text-align:left">
+										%
+									</label>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="layer_size" class="col-sm-2 control-label layer_point_type">符号大小</label>
+									<div class="col-sm-2 layer_point_type">
+										<input type="text" class="form-control" id="layer_size">
+									</div>
+								</div>
+
+								<fieldset id="layer_show_outline_fieldset">
+									<legend>显示边框线<input type="checkbox" id="layer_show_outline" checked="true"/></legend>
+									<div class="form-group form-group-sm">
+										<label for="layer_border_color" class="col-sm-2 control-label">边框颜色</label>
+										<div class="col-sm-2" >
+											<div id="layer_border_color"  class="colorSelector">
+												<div style="background-color: #0000ff"></div>
+											</div>
+										</div>
+										<label for="layer_border_color_transparency" class="col-sm-2 control-label">透明度</label>
+										<div class="col-sm-4">
+											<input id="layer_border_color_transparency" data-slider-id='layer_border_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+										</div>
+										<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+											<input type="text" class="form-control" id="layer_border_color_transparency_value"  style="width:40px" value="100" readonly>
+										</div>
+										<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+											%
+										</label>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_color" class="col-sm-2 control-label">Line Cap</label>
+										<div class="col-sm-2">
+											<select id="layer_line_cap" class="form-control">
+												<option value="BUTT">平直边缘</option>
+												<option value="ROUND">圆形线帽</option>
+												<option value="SQUARE">正方形线帽</option>
+											</select>
+										</div>
+										<label for="layer_color" class="col-sm-2 control-label">Line Join</label>
+										<div class="col-sm-2">
+											<select id="layer_line_join" class="form-control">
+												<option value="MITER">尖角</option>
+												<option value="BEVEL">斜角</option>
+												<option value="ROUND">圆角</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_size" class="col-sm-2 control-label">线段宽度</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_border_width" value="2">
+										</div>
+										<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+											px
+										</label>
+									</div>
+								</fieldset>
+								<fieldset class="layer_show_shadow" id="layer_show_shadow_fieldset">
+									<legend>显示阴影<input type="checkbox" id="layer_show_shadow" checked="true"/></legend>
+									<div class="form-group form-group-sm">
+										<label for="layer_shadow_color" class="col-sm-2 control-label">阴影颜色</label>
+										<div class="col-sm-2" >
+											<div id="layer_shadow_color"  class="colorSelector">
+												<div style="background-color: #0000ff"></div>
+											</div>
+										</div>
+										<label for="layer_shadow_color_transparency" class="col-sm-2 control-label">透明度</label>
+										<div class="col-sm-4">
+											<input id="layer_shadow_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+										</div>
+										<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+											<input type="text" class="form-control" id="layer_shadow_color_transparency_value"  style="width:40px" value="100" readonly>
+										</div>
+										<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+											%
+										</label>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_shadow_offset_x" class="col-sm-2 control-label">X&nbsp;向偏移</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_shadow_offset_x" value="3">
+										</div>
+										<label for="layer_shadow_offset_y" class="col-sm-2 control-label">Y&nbsp;向偏移</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_shadow_offset_y" value="3">
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="layer_shadow_offset_x" class="col-sm-2 control-label">显示模糊</label>
+										<div class="col-sm-2">
+											<input type="text" class="form-control" id="layer_shadow_blur" value="3">
+										</div>
+
+									</div>
+								</fieldset>
+							</form>
 						</div>
-						<div class="modal-body">
-							<ul class="nav nav-tabs" id="layerAppearanceDialogTab">
-								<li class="active"><a href="#visable">可视化</a></li>
-								<li><a href="#icon">图标</a></li>
-								<li><a href="#textlabel">文字标记</a></li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane active" id="visable">
-									<form class="form-horizontal" role="form">
-										<div class="form-group form-group-sm">
-											<label for="layer_color" class="col-sm-2 control-label layer_point_type layer_polygon_type">填充颜色</label>
-											<div class="col-sm-2  layer_point_type layer_polygon_type">
-												<div id="layer_color" class="colorSelector">
-													<div style="background-color: #0000ff"></div>
+						<div class="tab-pane" id="icon">
+							<div class="row">
+								<div class="col-sm-8 icon-gallery">
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+									<div class="col-sm-2">
+										<a href="#" class="thumbnail">
+											<img src="images/bench.32.png" alt="...">
+										</a>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="col-sm-12 row">
+										<div id="icon-preview">
+										</div>
+									</div>
+									<div class="col-sm-12 row">
+										<form class="form-horizontal" role="form">
+											<div class="form-group form-group-sm">
+												<label for="icon_size" class="col-sm-5 control-label">Size:</label>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="icon_size">
 												</div>
 											</div>
-											<label for="layer_color_transparency" class="col-sm-2 control-label layer_point_type layer_polygon_type">透明度</label>
-											<div class="col-sm-4 layer_point_type layer_polygon_type">
-												<input id="layer_color_transparency" data-slider-id='layer_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="textlabel">
+							<form class="form-horizontal" role="form">
+								<fieldset id="label_show_fieldset">
+									<legend>文字标记<input type="checkbox" id="label_show"/></legend>
+									<div class="form-group form-group-sm">
+										<label for="label_field" class="col-sm-2 control-label">字段</label>
+										<div class="col-sm-2">
+											<select id="label_field" class="form-control">
+
+											</select>
+										</div>
+										<label for="label_font_family" class="col-sm-2 control-label">字体</label>
+										<div class="col-sm-2">
+											<select id="label_font_family" class="form-control">
+												<option value="Times New Roman">Times New Roman</option>
+												<option value="Arial">Arial</option>
+												<option value="verdana">verdana</option>
+											</select>
+										</div>
+										<label for="label_font_size" class="col-sm-2 control-label">字体大小</label>
+										<div class="col-sm-1" style="padding-right:0px">
+											<input type="text" class="form-control" id="label_font_size" value="30">
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label for="label_font_weight" class="col-sm-2 control-label">字体加粗</label>
+										<div class="col-sm-2">
+											<select id="label_font_weight" class="form-control">
+												<option value="NORMAL">NORMAL</option>
+												<option value="ITALIC" selected="selected">ITALIC</option>
+												<option value="OBLIQURE">OBLIQURE</option>
+											</select>
+										</div>
+										<label for="label_font_style" class="col-sm-2 control-label">字体类型</label>
+										<div class="col-sm-2">
+											<select id="label_font_style" class="form-control">
+												<option value="NORMAL">NORMAL</option>
+												<option value="BOLD">BOLD</option>
+												<option value="BOLDER">BOLDER</option>
+												<option value="LIGHTER">LIGHTER</option>
+											</select>
+										</div>
+									</div>
+									<fieldset class="label_show_fill" id="label_show_fill_fieldset">
+										<legend>字体填充<input type="checkbox" id="label_show_fill" checked="true"/></legend>
+										<div class="form-group form-group-sm">
+											<label for="label_fill_color" class="col-sm-2 control-label">填充颜色</label>
+											<div class="col-sm-2" >
+												<div id="label_fill_color"  class="colorSelector">
+													<div style="background-color: red"></div>
+												</div>
 											</div>
-											<div class="col-sm-1  layer_point_type layer_polygon_type" style="padding-left:0px;padding-right:0px;">
-												<input type="text" class="form-control" id="layer_color_transparency_value"  style="width:40px" value="100" readonly>
+											<label for="label_fill_color_transparency" class="col-sm-2 control-label">透明度</label>
+											<div class="col-sm-4">
+												<input id="label_fill_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
 											</div>
-											<label class="col-sm-1 control-label   layer_point_type layer_polygon_type" style="padding-left:0px;text-align:left">
+											<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+												<input type="text" class="form-control" id="label_fill_color_transparency_value"  style="width:40px" value="100" readonly>
+											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												%
+											</label>
+										</div>
+									</fieldset>
+									<fieldset id="label_show_outline_fieldset">
+										<legend>显示边框线<input type="checkbox" id="label_show_outline" checked="true"/></legend>
+										<div class="form-group form-group-sm">
+											<label for="label_border_color" class="col-sm-2 control-label">边框颜色</label>
+											<div class="col-sm-2" >
+												<div id="label_border_color"  class="colorSelector">
+													<div style="background-color: black"></div>
+												</div>
+											</div>
+											<label for="label_border_color_transparency" class="col-sm-2 control-label">透明度</label>
+											<div class="col-sm-4">
+												<input id="label_border_color_transparency" data-slider-id='layer_border_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
+											</div>
+											<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+												<input type="text" class="form-control" id="label_border_color_transparency_value"  style="width:40px" value="100" readonly>
+											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
 												%
 											</label>
 										</div>
 										<div class="form-group form-group-sm">
-											<label for="layer_size" class="col-sm-2 control-label layer_point_type">符号大小</label>
-											<div class="col-sm-2 layer_point_type">
-												<input type="text" class="form-control" id="layer_size">
+											<label for="label_line_cap" class="col-sm-2 control-label">Line Cap</label>
+											<div class="col-sm-2">
+												<select id="label_line_cap" class="form-control">
+													<option value="BUTT">平直边缘</option>
+													<option value="ROUND">圆形线帽</option>
+													<option value="SQUARE">正方形线帽</option>
+												</select>
+											</div>
+											<label for="label_line_join" class="col-sm-2 control-label">Line Join</label>
+											<div class="col-sm-2">
+												<select id="label_line_join" class="form-control">
+													<option value="MITER">尖角</option>
+													<option value="BEVEL">斜角</option>
+													<option value="ROUND">圆角</option>
+												</select>
 											</div>
 										</div>
-
-										<fieldset id="layer_show_outline_fieldset">
-											<legend>显示边框线<input type="checkbox" id="layer_show_outline" checked="true"/></legend>
-											<div class="form-group form-group-sm">
-												<label for="layer_border_color" class="col-sm-2 control-label">边框颜色</label>
-												<div class="col-sm-2" >
-													<div id="layer_border_color"  class="colorSelector">
-														<div style="background-color: #0000ff"></div>
-													</div>
-												</div>
-												<label for="layer_border_color_transparency" class="col-sm-2 control-label">透明度</label>
-												<div class="col-sm-4">
-													<input id="layer_border_color_transparency" data-slider-id='layer_border_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
-												</div>
-												<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
-													<input type="text" class="form-control" id="layer_border_color_transparency_value"  style="width:40px" value="100" readonly>
-												</div>
-												<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-													%
-												</label>
-											</div>
-											<div class="form-group form-group-sm">
-												<label for="layer_color" class="col-sm-2 control-label">Line Cap</label>
-												<div class="col-sm-2">
-													<select id="layer_line_cap" class="form-control">
-														<option value="BUTT">平直边缘</option>
-														<option value="ROUND">圆形线帽</option>
-														<option value="SQUARE">正方形线帽</option>
-													</select>
-												</div>
-												<label for="layer_color" class="col-sm-2 control-label">Line Join</label>
-												<div class="col-sm-2">
-													<select id="layer_line_join" class="form-control">
-														<option value="MITER">尖角</option>
-														<option value="BEVEL">斜角</option>
-														<option value="ROUND">圆角</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group form-group-sm">
-												<label for="layer_size" class="col-sm-2 control-label">线段宽度</label>
-												<div class="col-sm-2">
-													<input type="text" class="form-control" id="layer_border_width" value="2">
-												</div>
-												<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-													px
-												</label>
-											</div>
-										</fieldset>
-										<fieldset class="layer_show_shadow" id="layer_show_shadow_fieldset">
-											<legend>显示阴影<input type="checkbox" id="layer_show_shadow" checked="true"/></legend>
-											<div class="form-group form-group-sm">
-												<label for="layer_shadow_color" class="col-sm-2 control-label">阴影颜色</label>
-												<div class="col-sm-2" >
-													<div id="layer_shadow_color"  class="colorSelector">
-														<div style="background-color: #0000ff"></div>
-													</div>
-												</div>
-												<label for="layer_shadow_color_transparency" class="col-sm-2 control-label">透明度</label>
-												<div class="col-sm-4">
-													<input id="layer_shadow_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
-												</div>
-												<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
-													<input type="text" class="form-control" id="layer_shadow_color_transparency_value"  style="width:40px" value="100" readonly>
-												</div>
-												<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-													%
-												</label>
-											</div>
-											<div class="form-group form-group-sm">
-												<label for="layer_shadow_offset_x" class="col-sm-2 control-label">X&nbsp;向偏移</label>
-												<div class="col-sm-2">
-													<input type="text" class="form-control" id="layer_shadow_offset_x" value="3">
-												</div>
-												<label for="layer_shadow_offset_y" class="col-sm-2 control-label">Y&nbsp;向偏移</label>
-												<div class="col-sm-2">
-													<input type="text" class="form-control" id="layer_shadow_offset_y" value="3">
-												</div>
-											</div>
-											<div class="form-group form-group-sm">
-												<label for="layer_shadow_offset_x" class="col-sm-2 control-label">显示模糊</label>
-												<div class="col-sm-2">
-													<input type="text" class="form-control" id="layer_shadow_blur" value="3">
-												</div>
-
-											</div>
-										</fieldset>
-									</form>
-								</div>
-								<div class="tab-pane" id="icon">
-									<div class="row">
-										<div class="col-sm-8 icon-gallery">
+										<div class="form-group form-group-sm">
+											<label for="label_border_width" class="col-sm-2 control-label">线段宽度</label>
 											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
+												<input type="text" class="form-control" id="label_border_width" value="1">
 											</div>
-											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												px
+											</label>
+										</div>
+									</fieldset>
+									<fieldset class="label_show_shadow" id="label_show_shadow_fieldset">
+										<legend>显示阴影<input type="checkbox" id="label_show_shadow" checked="true"/></legend>
+										<div class="form-group form-group-sm">
+											<label for="label_shadow_color" class="col-sm-2 control-label">阴影颜色</label>
+											<div class="col-sm-2" >
+												<div id="label_shadow_color"  class="colorSelector">
+													<div style="background-color: Gray"></div>
+												</div>
 											</div>
-											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
+											<label for="label_shadow_color_transparency" class="col-sm-2 control-label">透明度</label>
+											<div class="col-sm-4">
+												<input id="label_shadow_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
 											</div>
-											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
+											<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
+												<input type="text" class="form-control" id="label_shadow_color_transparency_value"  style="width:40px" value="100" readonly>
 											</div>
+											<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
+												%
+											</label>
+										</div>
+										<div class="form-group form-group-sm">
+											<label for="label_shadow_offset_x" class="col-sm-2 control-label">X&nbsp;向偏移</label>
 											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
+												<input type="text" class="form-control" id="label_shadow_offset_x" value="10">
 											</div>
+											<label for="label_shadow_offset_y" class="col-sm-2 control-label">Y&nbsp;向偏移</label>
 											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
-											</div>
-											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
-											</div>
-											<div class="col-sm-2">
-												<a href="#" class="thumbnail">
-													<img src="images/bench.32.png" alt="...">
-												</a>
+												<input type="text" class="form-control" id="label_shadow_offset_y" value="10">
 											</div>
 										</div>
-										<div class="col-sm-4">
-											<div class="col-sm-12 row">
-												<div id="icon-preview">
-												</div>
-											</div>
-											<div class="col-sm-12 row">
-												<form class="form-horizontal" role="form">
-													<div class="form-group form-group-sm">
-														<label for="icon_size" class="col-sm-5 control-label">Size:</label>
-														<div class="col-sm-6">
-															<input type="text" class="form-control" id="icon_size">
-														</div>
-													</div>
-												</form>
+										<div class="form-group form-group-sm">
+											<label for="label_shadow_offset_x" class="col-sm-2 control-label">显示模糊</label>
+											<div class="col-sm-2">
+												<input type="text" class="form-control" id="label_shadow_blur" value="10">
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="tab-pane" id="textlabel">
-									<form class="form-horizontal" role="form">
-										<fieldset id="label_show_fieldset">
-											<legend>文字标记<input type="checkbox" id="label_show"/></legend>
-											<div class="form-group form-group-sm">
-												<label for="label_field" class="col-sm-2 control-label">字段</label>
-												<div class="col-sm-2">
-													<select id="label_field" class="form-control">
-
-													</select>
-												</div>
-												<label for="label_font_family" class="col-sm-2 control-label">字体</label>
-												<div class="col-sm-2">
-													<select id="label_font_family" class="form-control">
-														<option value="Times New Roman">Times New Roman</option>
-														<option value="Arial">Arial</option>
-														<option value="verdana">verdana</option>
-													</select>
-												</div>
-												<label for="label_font_size" class="col-sm-2 control-label">字体大小</label>
-												<div class="col-sm-1" style="padding-right:0px">
-													<input type="text" class="form-control" id="label_font_size" value="30">
-												</div>
-											</div>
-											<div class="form-group form-group-sm">
-												<label for="label_font_weight" class="col-sm-2 control-label">字体加粗</label>
-												<div class="col-sm-2">
-													<select id="label_font_weight" class="form-control">
-														<option value="NORMAL">NORMAL</option>
-														<option value="ITALIC" selected="selected">ITALIC</option>
-														<option value="OBLIQURE">OBLIQURE</option>
-													</select>
-												</div>
-												<label for="label_font_style" class="col-sm-2 control-label">字体类型</label>
-												<div class="col-sm-2">
-													<select id="label_font_style" class="form-control">
-														<option value="NORMAL">NORMAL</option>
-														<option value="BOLD">BOLD</option>
-														<option value="BOLDER">BOLDER</option>
-														<option value="LIGHTER">LIGHTER</option>
-													</select>
-												</div>
-											</div>
-											<fieldset class="label_show_fill" id="label_show_fill_fieldset">
-												<legend>字体填充<input type="checkbox" id="label_show_fill" checked="true"/></legend>
-												<div class="form-group form-group-sm">
-													<label for="label_fill_color" class="col-sm-2 control-label">填充颜色</label>
-													<div class="col-sm-2" >
-														<div id="label_fill_color"  class="colorSelector">
-															<div style="background-color: red"></div>
-														</div>
-													</div>
-													<label for="label_fill_color_transparency" class="col-sm-2 control-label">透明度</label>
-													<div class="col-sm-4">
-														<input id="label_fill_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
-													</div>
-													<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
-														<input type="text" class="form-control" id="label_fill_color_transparency_value"  style="width:40px" value="100" readonly>
-													</div>
-													<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-														%
-													</label>
-												</div>
-											</fieldset>
-											<fieldset id="label_show_outline_fieldset">
-												<legend>显示边框线<input type="checkbox" id="label_show_outline" checked="true"/></legend>
-												<div class="form-group form-group-sm">
-													<label for="label_border_color" class="col-sm-2 control-label">边框颜色</label>
-													<div class="col-sm-2" >
-														<div id="label_border_color"  class="colorSelector">
-															<div style="background-color: black"></div>
-														</div>
-													</div>
-													<label for="label_border_color_transparency" class="col-sm-2 control-label">透明度</label>
-													<div class="col-sm-4">
-														<input id="label_border_color_transparency" data-slider-id='layer_border_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
-													</div>
-													<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
-														<input type="text" class="form-control" id="label_border_color_transparency_value"  style="width:40px" value="100" readonly>
-													</div>
-													<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-														%
-													</label>
-												</div>
-												<div class="form-group form-group-sm">
-													<label for="label_line_cap" class="col-sm-2 control-label">Line Cap</label>
-													<div class="col-sm-2">
-														<select id="label_line_cap" class="form-control">
-															<option value="BUTT">平直边缘</option>
-															<option value="ROUND">圆形线帽</option>
-															<option value="SQUARE">正方形线帽</option>
-														</select>
-													</div>
-													<label for="label_line_join" class="col-sm-2 control-label">Line Join</label>
-													<div class="col-sm-2">
-														<select id="label_line_join" class="form-control">
-															<option value="MITER">尖角</option>
-															<option value="BEVEL">斜角</option>
-															<option value="ROUND">圆角</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group form-group-sm">
-													<label for="label_border_width" class="col-sm-2 control-label">线段宽度</label>
-													<div class="col-sm-2">
-														<input type="text" class="form-control" id="label_border_width" value="1">
-													</div>
-													<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-														px
-													</label>
-												</div>
-											</fieldset>
-											<fieldset class="label_show_shadow" id="label_show_shadow_fieldset">
-												<legend>显示阴影<input type="checkbox" id="label_show_shadow" checked="true"/></legend>
-												<div class="form-group form-group-sm">
-													<label for="label_shadow_color" class="col-sm-2 control-label">阴影颜色</label>
-													<div class="col-sm-2" >
-														<div id="label_shadow_color"  class="colorSelector">
-															<div style="background-color: Gray"></div>
-														</div>
-													</div>
-													<label for="label_shadow_color_transparency" class="col-sm-2 control-label">透明度</label>
-													<div class="col-sm-4">
-														<input id="label_shadow_color_transparency" data-slider-id='layer_shadow_color_transparency_slider' type="text" class="form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"  data-slider-enabled="true"/>
-													</div>
-													<div class="col-sm-1" style="padding-left:0px;padding-right:0px;">
-														<input type="text" class="form-control" id="label_shadow_color_transparency_value"  style="width:40px" value="100" readonly>
-													</div>
-													<label class="col-sm-1 control-label" style="padding-left:0px;text-align:left">
-														%
-													</label>
-												</div>
-												<div class="form-group form-group-sm">
-													<label for="label_shadow_offset_x" class="col-sm-2 control-label">X&nbsp;向偏移</label>
-													<div class="col-sm-2">
-														<input type="text" class="form-control" id="label_shadow_offset_x" value="10">
-													</div>
-													<label for="label_shadow_offset_y" class="col-sm-2 control-label">Y&nbsp;向偏移</label>
-													<div class="col-sm-2">
-														<input type="text" class="form-control" id="label_shadow_offset_y" value="10">
-													</div>
-												</div>
-												<div class="form-group form-group-sm">
-													<label for="label_shadow_offset_x" class="col-sm-2 control-label">显示模糊</label>
-													<div class="col-sm-2">
-														<input type="text" class="form-control" id="label_shadow_blur" value="10">
-													</div>
-												</div>
-											</fieldset>
-										</fieldset>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary btn-confirm">确定</button>
+									</fieldset>
+								</fieldset>
+							</form>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- New Chart panel -->
-			<div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-hidden="true"
-			data-backdrop="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h5 class="modal-title">新建图表</h5>
-					</div>
-					<div class="modal-body">
-						<ul class="nav nav-tabs" id="newChartDialogTab">
-							<li class="active"><a href="#barChart">柱状图</a></li>
-							<li><a href="#pieChart">饼状图</a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane active" id="barChart">
-								<form class="form-horizontal" role="form">
-									<div class="form-group form-group-sm">
-										<label for="chart_wfs_layer" class="col-sm-2 control-label">WFS图层</label>
-										<div class="col-sm-4">
-											<select class="chart_wfs_layer form-control">
-											</select>
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_wfs_layer_all_fields" class="col-sm-2 control-label">字段</label>
-										<div class="col-sm-4">
-											<select class="chart_wfs_layer_all_fields form-control">
-											</select>
-										</div>
-										<div class="col-sm-1" style="padding-top:6px;padding-bottom:6px;">
-											<div class="glyphicon glyphicon-plus-sign mc-icon" style="font-size:18px;"></div>
-										</div>
-									</div>
-									<div class="form-group form-group-sm chart-text-div">
-										<label for="chart_text" class="col-sm-2 control-label">标题</label>
-										<div class="col-sm-4" >
-											<input class="chart_text form-control">
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_height" class="col-sm-2 control-label">高</label>
-										<div class="col-sm-2">
-											<input class="chart_height form-control" value="80" />
-										</div>
-										<label for="chart_width" class="col-sm-2 control-label">宽</label>
-										<div class="col-sm-2">
-											<input class="chart_width form-control" value="10" />
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_offset_x" class="col-sm-2 control-label">X向偏移</label>
-										<div class="col-sm-2">
-											<input class="chart_offset_x form-control" value="0" />
-										</div>
-										<label for="chart_offset_y" class="col-sm-2 control-label">Y向偏移</label>
-										<div class="col-sm-2">
-											<input class="chart_offset_y form-control" value="0" />
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_legend" class="col-sm-2 control-label">图例</label>
-										<div class="col-sm-2" style="padding-top:3px;">
-											<input id="chart_legend" type="checkbox">
-										</div>
-										<label for="chart_tooltip" class="col-sm-2 control-label">提示框</label>
-										<div class="col-sm-2" style="padding-top:3px;">
-											<label>
-												<input id="chart_tooltip" type="checkbox" checked>
-											</label>
-										</div>
-									</div>
-									<fieldset class="chart-fieldset">
-										<legend>内边距（百分比）</legend>
-										<div class="form-group form-group-sm" style="padding-right:15px;">
-											<label for="chart_padding_left" class="col-sm-1 control-label">left</label>
-											<div class="col-sm-2">
-												<input id="chart_padding_left" class="form-control" value="10%" />
-											</div>
-											<label for="chart_padding_right" class="col-sm-1 control-label">right</label>
-											<div class="col-sm-2">
-												<input id="chart_padding_right" class="form-control" value="10%" />
-											</div>
-											<label for="chart_padding_top" class="col-sm-1 control-label">top</label>
-											<div class="col-sm-2">
-												<input id="chart_padding_top" class="form-control" value="10%" />
-											</div>
-											<label for="chart_padding_bottom" class="col-sm-1 control-label">bottom</label>
-											<div class="col-sm-2">
-												<input id="chart_padding_bottom" class="form-control" value="0%" />
-											</div>
-										</div>
-									</fieldset>
-									<fieldset class="chart-fieldset">
-										<legend>X轴</legend>
-										<div class="form-group form-group-sm" style="padding-right:15px;">
-											<label for="chart_axis_label_x" class="col-sm-2 control-label">axisLabel</label>
-											<div class="col-sm-1">
-												<input id="chart_axis_label_x" type="checkbox">
-											</div>
-											<label for="chart_split_line_x" class="col-sm-2 control-label">splitLine</label>
-											<div class="col-sm-1">
-												<input id="chart_split_line_x" type="checkbox">
-											</div>
-											<label for="chart_axis_line_x" class="col-sm-2 control-label">axisLine</label>
-											<div class="col-sm-1">
-												<input id="chart_axis_line_x" type="checkbox">
-											</div>
-											<label for="chart_axis_tick_x" class="col-sm-2 control-label">axisTick</label>
-											<div class="col-sm-1">
-												<input id="chart_axis_tick_x" type="checkbox">
-											</div>
-										</div>
-									</fieldset>
-									<fieldset class="chart-fieldset">
-										<legend>Y轴</legend>
-										<div class="form-group form-group-sm" style="padding-right:15px;">
-											<label for="chart_axis_label_y" class="col-sm-2 control-label">axisLabel</label>
-											<div class="col-sm-1">
-												<input id="chart_axis_label_y" type="checkbox">
-											</div>
-											<label for="chart_split_line_y" class="col-sm-2 control-label">splitLine</label>
-											<div class="col-sm-1">
-												<input id="chart_split_line_y" type="checkbox">
-											</div>
-											<label for="chart_axis_line_y" class="col-sm-2 control-label">axisLine</label>
-											<div class="col-sm-1">
-												<input id="chart_axis_line_y" type="checkbox">
-											</div>
-											<label for="chart_axis_tick_y" class="col-sm-2 control-label">axisTick</label>
-											<div class="col-sm-1">
-												<input id="chart_axis_tick_y" type="checkbox">
-											</div>
-										</div>
-									</fieldset>
-								</form>
-							</div>
-							<div class="tab-pane" id="pieChart">
-								<form class="form-horizontal" role="form">
-									<div class="form-group form-group-sm">
-										<label for="chart_wfs_layer" class="col-sm-2 control-label">WFS图层</label>
-										<div class="col-sm-4">
-											<select class="chart_wfs_layer form-control">
-											</select>
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_wfs_layer_all_fields" class="col-sm-2 control-label">字段</label>
-										<div class="col-sm-4">
-											<select class="chart_wfs_layer_all_fields form-control">
-											</select>
-										</div>
-										<div class="col-sm-1" style="padding-top:6px;padding-bottom:6px;">
-											<div class="glyphicon glyphicon-plus-sign mc-icon" style="font-size:18px;"></div>
-										</div>
-									</div>
-									<div class="form-group form-group-sm chart-text-div">
-										<label for="chart_text" class="col-sm-2 control-label">标题</label>
-										<div class="col-sm-4" >
-											<input class="chart_text form-control">
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_height" class="col-sm-2 control-label">高</label>
-										<div class="col-sm-2">
-											<input class="chart_height form-control" value="10" />
-										</div>
-										<label for="chart_width" class="col-sm-2 control-label">宽</label>
-										<div class="col-sm-2">
-											<input class="chart_width form-control" value="10" />
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_offset_x" class="col-sm-2 control-label">X向偏移</label>
-										<div class="col-sm-2">
-											<input class="chart_offset_x form-control" value="0" />
-										</div>
-										<label for="chart_offset_y" class="col-sm-2 control-label">Y向偏移</label>
-										<div class="col-sm-2">
-											<input class="chart_offset_y form-control" value="0" />
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_legend" class="col-sm-2 control-label">图例</label>
-										<div class="col-sm-2" style="padding-top:3px;">
-											<input id="chart_legend" type="checkbox">
-										</div>
-										<label for="chart_tooltip" class="col-sm-2 control-label">提示框</label>
-										<div class="col-sm-2" style="padding-top:3px;">
-											<label>
-												<input id="chart_tooltip" type="checkbox" checked>
-											</label>
-										</div>
-									</div>
-									<div class="form-group form-group-sm">
-										<label for="chart_radius_min" class="col-sm-2 control-label">内半径</label>
-										<div class="col-sm-2">
-											<input class="chart_radius_min form-control" value="0%" />
-										</div>
-										<label for="chart_radius_max" class="col-sm-2 control-label">外半径</label>
-										<div class="col-sm-2">
-											<input class="chart_radius_max form-control" value="100%" />
-										</div>
-									</div>
-
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary btn-confirm">确定</button>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- New Chart panel -->
+	<div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建图表</h5>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="newChartDialogTab">
+						<li class="active"><a href="#barChart">柱状图</a></li>
+						<li><a href="#pieChart">饼状图</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="barChart">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer" class="col-sm-2 control-label">WFS图层</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer form-control">
+										</select>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer_all_fields" class="col-sm-2 control-label">字段</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer_all_fields form-control">
+										</select>
+									</div>
+									<div class="col-sm-1" style="padding-top:6px;padding-bottom:6px;">
+										<div class="glyphicon glyphicon-plus-sign mc-icon" style="font-size:18px;"></div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm chart-text-div">
+									<label for="chart_text" class="col-sm-2 control-label">标题</label>
+									<div class="col-sm-4" >
+										<input class="chart_text form-control">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_height" class="col-sm-2 control-label">高</label>
+									<div class="col-sm-2">
+										<input class="chart_height form-control" value="80" />
+									</div>
+									<label for="chart_width" class="col-sm-2 control-label">宽</label>
+									<div class="col-sm-2">
+										<input class="chart_width form-control" value="10" />
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_offset_x" class="col-sm-2 control-label">X向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_x form-control" value="0" />
+									</div>
+									<label for="chart_offset_y" class="col-sm-2 control-label">Y向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_y form-control" value="0" />
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_legend" class="col-sm-2 control-label">图例</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<input id="chart_legend" type="checkbox">
+									</div>
+									<label for="chart_tooltip" class="col-sm-2 control-label">提示框</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<label>
+											<input id="chart_tooltip" type="checkbox" checked>
+										</label>
+									</div>
+								</div>
+								<fieldset class="chart-fieldset">
+									<legend>内边距（百分比）</legend>
+									<div class="form-group form-group-sm" style="padding-right:15px;">
+										<label for="chart_padding_left" class="col-sm-1 control-label">left</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_left" class="form-control" value="10%" />
+										</div>
+										<label for="chart_padding_right" class="col-sm-1 control-label">right</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_right" class="form-control" value="10%" />
+										</div>
+										<label for="chart_padding_top" class="col-sm-1 control-label">top</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_top" class="form-control" value="10%" />
+										</div>
+										<label for="chart_padding_bottom" class="col-sm-1 control-label">bottom</label>
+										<div class="col-sm-2">
+											<input id="chart_padding_bottom" class="form-control" value="0%" />
+										</div>
+									</div>
+								</fieldset>
+								<fieldset class="chart-fieldset">
+									<legend>X轴</legend>
+									<div class="form-group form-group-sm" style="padding-right:15px;">
+										<label for="chart_axis_label_x" class="col-sm-2 control-label">axisLabel</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_label_x" type="checkbox">
+										</div>
+										<label for="chart_split_line_x" class="col-sm-2 control-label">splitLine</label>
+										<div class="col-sm-1">
+											<input id="chart_split_line_x" type="checkbox">
+										</div>
+										<label for="chart_axis_line_x" class="col-sm-2 control-label">axisLine</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_line_x" type="checkbox">
+										</div>
+										<label for="chart_axis_tick_x" class="col-sm-2 control-label">axisTick</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_tick_x" type="checkbox">
+										</div>
+									</div>
+								</fieldset>
+								<fieldset class="chart-fieldset">
+									<legend>Y轴</legend>
+									<div class="form-group form-group-sm" style="padding-right:15px;">
+										<label for="chart_axis_label_y" class="col-sm-2 control-label">axisLabel</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_label_y" type="checkbox">
+										</div>
+										<label for="chart_split_line_y" class="col-sm-2 control-label">splitLine</label>
+										<div class="col-sm-1">
+											<input id="chart_split_line_y" type="checkbox">
+										</div>
+										<label for="chart_axis_line_y" class="col-sm-2 control-label">axisLine</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_line_y" type="checkbox">
+										</div>
+										<label for="chart_axis_tick_y" class="col-sm-2 control-label">axisTick</label>
+										<div class="col-sm-1">
+											<input id="chart_axis_tick_y" type="checkbox">
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+						<div class="tab-pane" id="pieChart">
+							<form class="form-horizontal" role="form">
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer" class="col-sm-2 control-label">WFS图层</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer form-control">
+										</select>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_wfs_layer_all_fields" class="col-sm-2 control-label">字段</label>
+									<div class="col-sm-4">
+										<select class="chart_wfs_layer_all_fields form-control">
+										</select>
+									</div>
+									<div class="col-sm-1" style="padding-top:6px;padding-bottom:6px;">
+										<div class="glyphicon glyphicon-plus-sign mc-icon" style="font-size:18px;"></div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm chart-text-div">
+									<label for="chart_text" class="col-sm-2 control-label">标题</label>
+									<div class="col-sm-4" >
+										<input class="chart_text form-control">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_height" class="col-sm-2 control-label">高</label>
+									<div class="col-sm-2">
+										<input class="chart_height form-control" value="10" />
+									</div>
+									<label for="chart_width" class="col-sm-2 control-label">宽</label>
+									<div class="col-sm-2">
+										<input class="chart_width form-control" value="10" />
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_offset_x" class="col-sm-2 control-label">X向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_x form-control" value="0" />
+									</div>
+									<label for="chart_offset_y" class="col-sm-2 control-label">Y向偏移</label>
+									<div class="col-sm-2">
+										<input class="chart_offset_y form-control" value="0" />
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_legend" class="col-sm-2 control-label">图例</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<input id="chart_legend" type="checkbox">
+									</div>
+									<label for="chart_tooltip" class="col-sm-2 control-label">提示框</label>
+									<div class="col-sm-2" style="padding-top:3px;">
+										<label>
+											<input id="chart_tooltip" type="checkbox" checked>
+										</label>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label for="chart_radius_min" class="col-sm-2 control-label">内半径</label>
+									<div class="col-sm-2">
+										<input class="chart_radius_min form-control" value="0%" />
+									</div>
+									<label for="chart_radius_max" class="col-sm-2 control-label">外半径</label>
+									<div class="col-sm-2">
+										<input class="chart_radius_max form-control" value="100%" />
+									</div>
+								</div>
 
-		<div class="modal fade" id="style-mgr-dialog" tabindex="-1" role="dialog" aria-labelledby="styleDialogLabel" aria-hidden="true"
-		data-backdrop="true">
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Style Manager panel -->
+	<div class="modal fade" id="style-mgr-dialog" tabindex="-1" role="dialog" aria-labelledby="styleDialogLabel" aria-hidden="true"
+	data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1610,9 +1590,6 @@ data-backdrop="true">
 									</div>
 								</div>
 							</form>
-							<!-- <form class="fomr-horizontal" id="styles_info_form">
-								<form
-							</form> -->
 							<div id="styles_info_div">
 								<table class="table table-hover borderless table-block" id="default_style_table">
 									<thead>
@@ -1631,52 +1608,29 @@ data-backdrop="true">
 									</tbody>
 								</table>
 								<table class="table table-hover borderless table-block" id="styles_list_table">
-										<!-- <thead>
-											<th><span>&nbsp;</span></th>
-											<th>值列表</th>
-											<th>Country</th>
-										</thead>
-										<tbody>
-											<tr>
-												<td>
-													<div class="style-symbol"></div>
-												</td>
-												<td>China</td>
-												<td class="edit">China</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="style-symbol"></div>
-												</td>
-												<td>China</td>
-												<td class="edit">China</td>
-											</tr>
-										</tbody> -->
-									</table>
-								</div>
-								<div class="">
-									<div class="btn-group btn-group-justified" role="group" aria-label="">
-										<a class="btn btn-default" id="add_all_value">添加所有值</a>
-										<a class="btn btn-default" id="remove_value">删除</a>
-										<a class="btn btn-default" id="remove_all_value">删除所有值</a>
-									</div>
+								</table>
+							</div>
+							<div class="">
+								<div class="btn-group btn-group-justified" role="group" aria-label="">
+									<a class="btn btn-default" id="add_all_value">添加所有值</a>
+									<a class="btn btn-default" id="remove_value">删除</a>
+									<a class="btn btn-default" id="remove_all_value">删除所有值</a>
 								</div>
 							</div>
-
 						</div>
-
-
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary btn-confirm">确定</button>
-						<button type="button" class="btn btn-success">应用</button>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+					<button type="button" class="btn btn-success">应用</button>
 				</div>
 			</div>
 		</div>
-		<!--具体的样式-->
-		<div class="modal fade" id="style-dialog" tabindex="-1" role="dialog" aria-labelledby="style-dialogLabel" aria-hidden="true"
+	</div>
+
+	<!-- Style panel -->
+	<div class="modal fade" id="style-dialog" tabindex="-1" role="dialog" aria-labelledby="style-dialogLabel" aria-hidden="true"
 		data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -1970,6 +1924,7 @@ data-backdrop="true">
 		</div>
 	</div>
 
+	<!-- Style Name panel -->
 	<div class="modal fade" id="style-name-dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -1987,6 +1942,7 @@ data-backdrop="true">
 			</div>
 		</div> 
 	</div>
+
 	<!-- DataSource panel -->
 	<div class="modal fade" id="dataSourceDialog" tabindex="-1" role="dialog" aria-labelledby="dataSourceDialogLabel" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">
@@ -2088,44 +2044,6 @@ data-backdrop="true">
 									</div>
 								</div>
 								<div class="tab-pane" id="dataset_features">
-									<!-- <form class="form-horizontal" role="form">
-										<div class="form-group">
-											<div class="col-md-2">
-												<a class="btn btn-default">
-													首页
-												</a>
-											</div>
-											<div class="col-md-2">
-												<a class="btn btn-default">
-													上一页
-												</a>
-											</div>
-											<label class="control-label col-md-1">
-												第
-											</label>
-											<div class="col-md-1">
-												<input type="text" class="form-control" value="1">
-											</div>
-											
-											<label class="control-label col-md-1">
-												/30
-											</label>
-											<label class="control-label col-md-1">
-												页
-											</label>
-											<div class="col-md-2">
-												<a class="btn btn-default">
-													下一页
-												</a>
-											</div>
-											<div class="col-md-2">
-												<a class="btn btn-default">
-													末页
-												</a>
-											</div>
-										</div>
-										
-									</form> -->
 									<form class="form-horizontal pages-form" role="form">
 										<div class="form-group">
 											<label class="col-md-3 control-label query_count">
@@ -2156,7 +2074,7 @@ data-backdrop="true">
 										</div>
 									</form>
 									<div id="dataset_features_list">
-										<div>
+										<div class="table-responsive">
 											<table class="table table-hover borderless ">
 												<thead>
 													<tr>
@@ -2183,8 +2101,7 @@ data-backdrop="true">
 			</div>
 		</div> 
 	</div>
-	
-
+		
 	<!-- DataSource Connect panel -->
 	<div class="modal fade" id="pgisConnDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -2292,29 +2209,30 @@ data-backdrop="true">
 
 	<!-- Import Vector panel -->
 	<div class="modal" id="importVectorDialog" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h5 class="modal-title">导入矢量图层</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="row" style="margin-left:0px;margin-right:0px">
-                    	<div id="picker" class="btn">选择文件</div>
-                    	<a class="btn btn-success" id="vector_upload">导入文件</a>
-                    </div>
-                    <div id="vector_list_div">
-                        <div class="inner_div">
-                            <list-group id="vector_list">
-                            </list-group>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary btn-confirm">确定</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h5 class="modal-title">导入矢量图层</h5>
+	            </div>
+	            <div class="modal-body">
+	                <div class="row" style="margin-left:0px;margin-right:0px">
+	                	<div id="picker" class="btn">选择文件</div>
+	                	<a class="btn btn-success" id="vector_upload">导入文件</a>
+	                </div>
+	                <div id="vector_list_div">
+	                    <div class="inner_div">
+	                        <list-group id="vector_list">
+	                        </list-group>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
 </body>

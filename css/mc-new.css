@@ -446,6 +446,7 @@ ul#ribbon_tabs li{
 
 .layer_name, .chart_style_row .chart_name{
 	cursor:pointer;
+	word-break: break-all;
 }
 
 .layer_row:hover,#baseLayer_row:hover{

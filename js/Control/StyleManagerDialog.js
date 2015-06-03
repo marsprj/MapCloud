@@ -175,7 +175,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 						dialog.addStyle(dialog.styleCur);
 					}else{
 						// 更新样式
-						dialog.updateStyle(name);
+						dialog.updateStyle(dialog.styleCur);
 					}
 				}
 			});
@@ -235,20 +235,20 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
-	showDialog : function(){
+	showDialog : function(flag){
 		this.cleanup();
 		this.panel.modal();
 		var html = "All<span class='caret'></span>";
 		this.panel.find("#style_type_name").html(html);
 
-		if(mapObj == null){
-			return;
-		}
-		var url = mapObj.server;
 		this.styleMgr = new GeoBeans.StyleManager(url);
 		
+
 		var styles = this.styleMgr.getStyles();
-		this.getStyles_callback(styles);
+		if(flag == null || flag == undefined){
+			flag = true;
+		}
+		this.getStyles_callback(styles,flag);
 		this.styleMgr.getColorMaps(this.getColorMaps_callback);
 	},
 
@@ -297,7 +297,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	//展示获取的styles名字
-	getStyles_callback : function(styles){
+	getStyles_callback : function(styles,flag){
 		var html = "";
 		var html = "";
 		for(var i = 0; i < styles.length;++i){
@@ -312,11 +312,16 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var panel = dialog.panel;
 		panel.find("#style_list").html(html);
 		
-		//展示第一个样式
-		var styleName = panel.find("#style_list option:selected").val();
-		dialog.styleNameCur = styleName;
-		dialog.styleMgr.getStyleXML(dialog.styleNameCur,
-			dialog.getStyleXML_callback);
+		if(flag == null || flag == undefined){
+			flag = true;
+		}
+		//判断是否展示第一个样式
+		if(flag){
+			var styleName = panel.find("#style_list option:selected").val();
+			dialog.styleNameCur = styleName;
+			dialog.styleMgr.getStyleXML(dialog.styleNameCur,
+				dialog.getStyleXML_callback);
+		}
 	},
 
 	//获取到的XML解析出style进行展示

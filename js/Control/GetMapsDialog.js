@@ -82,6 +82,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
+			MapCloud.dataGrid.cleanup();
 			//显示信息
 			MapCloud.alert_info.showInfo("success",info);
 		}

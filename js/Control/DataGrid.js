@@ -159,15 +159,15 @@ MapCloud.DataGrid = MapCloud.Class({
 		}
 		this.panel.find("#datagrid_content table thead tr").html(html);
 
-		var widthAllWidth = 80*widthAll;
-		var divWidth = parseFloat(this.panel
-			.find("#datagrid_content").width());
-		if(widthAllWidth < divWidth){
+		// var widthAllWidth = 80*widthAll;
+		// var divWidth = parseFloat(this.panel
+		// 	.find("#datagrid_content").width());
+		// if(widthAllWidth < divWidth){
 			
-		}else{
-			this.panel.find("#datagrid_content table")
-			.css("width",widthAllWidth + "px");
-		}
+		// }else{
+		// 	this.panel.find("#datagrid_content table")
+		// 	.css("width",widthAllWidth + "px");
+		// }
 	},
 
 	// 设置feature的values
