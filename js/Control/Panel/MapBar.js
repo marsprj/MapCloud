@@ -61,7 +61,20 @@ MapCloud.MapBar = MapCloud.Class({
 	},
 
 	query_callback : function(layer,count){
-		MapCloud.dataGrid.showPages(layer,count);
+		// MapCloud.dataGrid.showPages(layer,count);
+		var bar = MapCloud.mapBar;
+		MapCloud.dataGrid.setQuery(layer,count,bar.query_function);
+		MapCloud.dataGrid.setOutput(bar.output_function);
+	},
+
+	query_function : function(maxFeatures,offset){
+		var features = mapObj.queryByRectPage(maxFeatures,offset);
+		return features;
+	},
+
+	output_function : function(){
+		var url = mapObj.queryByRectOutput(null,null);
+		return url;
 	},
 
 	//信息查询

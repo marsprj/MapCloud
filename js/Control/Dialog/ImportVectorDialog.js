@@ -69,7 +69,9 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	closeDialog : function() {
 		if(this.dataSourceName != null){
-				MapCloud.data_source_dialog.refreshDatasource();
+			// MapCloud.data_source_dialog.refreshDatasource();
+			var parentDialog = MapCloud.db_admin_dialog;
+			parentDialog.getDataSource(this.dataSourceName);
 		}
 		this.panel.modal("hide");
 	},

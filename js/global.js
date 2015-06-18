@@ -22,6 +22,9 @@ MapCloud.wms_dialog = null;
 //WFS图层连接
 MapCloud.wfs_datasource_dialog = null;
 
+//WMTS图层
+MapCloud.wmts_dialog = null;
+
 //编辑图层
 MapCloud.edit_layer_dialog = null;
 
@@ -36,6 +39,9 @@ MapCloud.file_dialog = null;
 
 //数据源
 MapCloud.data_source_dialog = null;
+
+// new 数据源
+MapCloud.db_admin_dialog = null;
 
 //数据库管理
 MapCloud.database_dlg = null;
@@ -70,6 +76,9 @@ MapCloud.overlay_panel = null;
 
 //下面的数据列表
 MapCloud.dataGrid = null;
+
+// 工具栏
+MapCloud.mapBar = null;
 
 // //WFS图层
 // MapCloud.wfs_layer = null;

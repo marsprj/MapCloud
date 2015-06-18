@@ -5,10 +5,12 @@
 
 	<link rel="stylesheet" type="text/css" href="css/webuploader/webuploader.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
 
 	<link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/colpick/colpick.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui.min.css" type="text/css">
 	
 
 	<!-- <link rel="stylesheet" type="text/css" href="css/mc.css"/> -->
@@ -31,6 +33,7 @@
 <script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
 <script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
 <script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
 
 <script type="text/javascript" src="js/3rd/echarts-plain.js"></script>
 <script type="text/javascript" src="js/3rd/jquery-sortable.js"></script>
@@ -60,17 +63,20 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Workspace.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMTS/WMTSWorkspace.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
 
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
@@ -93,6 +99,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
@@ -152,6 +159,8 @@
 
 <script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
 <script type="text/javascript" src="js/Control/Panel/DataGrid.js"></script>
+<script type="text/javascript" src="js/Control/Panel/Panel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/SearchPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AlertInfo.js"></script>
 <script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
@@ -166,8 +175,10 @@
 <script type="text/javascript" src="js/Control/Dialog/CreateLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/PGISConnectDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/DataSourceDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/DBAdminDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/FileDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/NewChartDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMSDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/StyleManagerDialog.js"></script>
@@ -175,6 +186,7 @@
 <script type="text/javascript" src="js/Control/Dialog/StyleNameDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/HeatMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ImportVectorDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/FeaturesDialog.js"></script>
 
 <title>MapCloud</title>
 </head>
@@ -248,6 +260,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
 								<div class="ribbon_label">WFS图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">WMTS图层</div>
 							</div>
 						</div>
 					</div>
@@ -351,187 +367,280 @@
 		</div>
 		<div class="container" id="main_panel">
 			<div class="row" id="main_panel_row">
-				<div class="col-fixed mc-panel-full" id="left_panel">
-					<div class="row" id="map_row">
-						<div class="col-md-10 col-xs-10 col-lg-10">
-							<a href="javascript:void(0)" id="map_name">Sample</a>
+				<div class="col-fixed mc-panel-full left-panel">
+					<div id="left_panel" class="left-panel-tab">
+						<div class="row" id="map_row">
+							<div class="col-md-10 col-xs-10 col-lg-10">
+								<a href="javascript:void(0)" id="map_name">Sample</a>
+							</div>
+							<div class="col-md-2 col-xs-2 col-lg-2">
+								<div class="mc-icon glyphicon glyphicon-globe"></div>
+							</div>
 						</div>
-						<div class="col-md-2 col-xs-2 col-lg-2">
-							<div class="mc-icon glyphicon glyphicon-globe"></div>
+						<div class="row" id="layer_tool_row">
+							<div class="col-md-1">
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-ok mc-icon"></div>
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-eye-open mc-icon"></div>	
+							</div>
+							<div class="col-md-1 col-xs-1 col-md-offset-2">
+								<div class="glyphicon glyphicon-plus mc-icon"></div>										
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-minus mc-icon"></div>										
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-folder-close mc-icon"></div>			
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-user mc-icon"></div>										
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
+							</div>
 						</div>
+						<div class="row" id="baseLayer_row">
+						</div>
+						<ul class="row" id="layers_row">
+						</ul>
 					</div>
-					<div class="row" id="layer_tool_row">
-						<div class="col-md-1">
+					<div id="left_panel_overlay" class="left-panel-tab">
+						<div class="row left_row">
+							<button type="button" class="btn btn-primary btn-confirm pull-right">返回</button>
 						</div>
-						<div class="col-md-1 col-xs-1">
-							<div class="glyphicon glyphicon-ok mc-icon"></div>
-						</div>
-						<div class="col-md-1 col-xs-1">
-							<div class="glyphicon glyphicon-eye-open mc-icon"></div>	
-						</div>
-						<div class="col-md-1 col-xs-1 col-md-offset-2">
-							<div class="glyphicon glyphicon-plus mc-icon"></div>										
-						</div>
-						<div class="col-md-1 col-xs-1">
-							<div class="glyphicon glyphicon-minus mc-icon"></div>										
-						</div>
-						<div class="col-md-1 col-xs-1">
-							<div class="glyphicon glyphicon-folder-close mc-icon"></div>			
-						</div>
-						<div class="col-md-1 col-xs-1">
-							<div class="glyphicon glyphicon-user mc-icon"></div>										
-						</div>
-						<div class="col-md-1 col-xs-1">
-							<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
-						</div>
+						<ul class="row" id="overlays_row">
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="点">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-align-justify span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="线">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>						
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="Username" readonly value="面">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>	
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>							
+						</ul>
 					</div>
-					<div class="row" id="baseLayer_row">
-					</div>
-					<ul class="row" id="layers_row">
-					</ul>
 				</div>
-				<div class="col-fixed mc-panel-full" id="left_panel_overlay">
-					<div class="row left_row">
-						<button type="button" class="btn btn-primary btn-confirm pull-right">返回</button>
-					</div>
-					<ul class="row" id="overlays_row">
-						<li class="row left_row overlay_row">
-							<div class="input-group">
-								<span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker" ></span>
-								<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="点">
-								<span class="input-group-btn" >
-									<button class="btn btn-default" type="button">编辑</button>
-									<button class="btn btn-default" type="button">删除</button>
-								</span>
-							</div>						
-						</li>
-						<li class="row left_row overlay_row">
-							<div class="input-group">
-								<span class="input-group-addon glyphicon glyphicon-align-justify span-overlay-marker" ></span>
-								<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="线">
-								<span class="input-group-btn" >
-									<button class="btn btn-default" type="button">编辑</button>
-									<button class="btn btn-default" type="button">删除</button>
-								</span>
-							</div>						
-						</li>
-						<li class="row left_row overlay_row">
-							<div class="input-group">
-								<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
-								<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
-								<span class="input-group-btn" >
-									<button class="btn btn-default" type="button">编辑</button>
-									<button class="btn btn-default" type="button">删除</button>
-								</span>
-							</div>						
-						</li>						
-						<li class="row left_row overlay_row">
-							<div class="input-group">
-								<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
-								<input type="text" class="form-control input-overlay-read" placeholder="Username" readonly value="面">
-								<span class="input-group-btn" >
-									<button class="btn btn-default" type="button">编辑</button>
-									<button class="btn btn-default" type="button">删除</button>
-								</span>
-							</div>						
-						</li>	
-						<li class="row left_row overlay_row">
-							<div class="input-group">
-								<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
-								<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
-								<span class="input-group-btn" >
-									<button class="btn btn-default" type="button">编辑</button>
-									<button class="btn btn-default" type="button">删除</button>
-								</span>
-							</div>						
-						</li>							
-					</ul>
+				<div class="" id="map_btn">
+					<img id="map_btn_img" src="images/arrow-left-8.png">
 				</div>
-				<div class="row row-right mc-panel-full">
+				<div class="row right-panel mc-panel-full">
 					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
-					<div id="mapCanvas_wrapper">
-					</div>
-					<div id="datagrid_wrapper">
-						<div class="panel-header">
-							<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
-							<div class="panel-header-content float_left">Feature Info</div>
+						<div id="mapCanvas_wrapper">
 						</div>
-						<div id="datagrid_content" class="table-responsive">
-							<table class="table table-hover borderless">
-								<thead><tr></tr></thead>
-								<tbody></tbody>
-							</table>
+						<div id="datagrid_wrapper">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-table fa-2"></i>&nbsp;查询结果
+									</h5>
+								</div>
+							</div>
+							<div id="datagrid_content" class="table-responsive">
+								<table class="table table-hover table-striped borderless">
+									<thead><tr></tr></thead>
+									<tbody></tbody>
+								</table>
+							</div>
+							<div id="datagrid_pages">
+								<form class="form-horizontal pages-form" role="form">
+									<div class="form-group" style="width:600px;float:left;">
+										<label class="col-md-2 control-label" style="tfont-weight:normal">
+											查询条数：
+										</label>
+										<label class="col-md-1 control-label query_count">
+											0
+										</label>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+										</div>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon-chevron-left btn"></a>
+										</div>
+										<div class="col-md-2">
+											<input class="form-control pages-form-page" type="text" value="0">
+										</div>
+										<label class="col-md-1 control-label">
+											/
+										</label>
+										<label class="col-md-1 control-label pages-form-pages">
+											0
+										</label>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
+										</div>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-2">
+											<a class="btn btn-default  btn-group-justified download-features" style="margin-top:2px;">
+	 											<i class="fa fa-download"></i>
+												导出
+											</a>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
-						<div id="datagrid_pages">
-							<form class="form-horizontal pages-form" role="form" style="width:600px">
-								<div class="form-group">
-									<label class="col-md-2 control-label" style="text-algin:left">
-										查询结果：
-									</label>
-									<label class="col-md-1 control-label query_count">
-										0
-									</label>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+						<div id="datagrid_control_wrapper">
+							<div id="datagrid_control">
+								<a class="btn btn-default btn-group-justified btn-link">
+									<i class="fa fa-table"></i>
+									结果
+									<i class="fa fa-arrow-up"></i>
+								</a>
+							</div>
+						</div>
+						<div id="search_wrapper">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-search fa-2"></i>&nbsp;简单查询
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<div class="search-fields-div list-group">
+									<a href="#" class="list-group-item">gid</a>
+									<a href="#" class="list-group-item">id</a>
+									<a href="#" class="list-group-item">name</a>
+									<a href="#" class="list-group-item">gid</a>
+									<a href="#" class="list-group-item">id</a>
+									<a href="#" class="list-group-item">name</a>
+									<a href="#" class="list-group-item">gid</a>
+									<a href="#" class="list-group-item">id</a>
+									<a href="#" class="list-group-item">name</a>
+								</div>
+								<div class="row search-oper-values">
+									<div class="col-md-5 search-oper">
+										<div class="row oper-row">
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified">=</a>
+											</div>
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified"><></a>
+											</div>
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified">Like</a>
+											</div>
+										</div>
+										<div class="row oper-row">
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified">></a>
+											</div>
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified">>=</a>
+											</div>
+											<!-- <div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified">And</a>
+											</div> -->
+										</div>
+										<div class="row oper-row">
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified"><</a>
+											</div>
+											<div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified"><=</a>
+											</div>
+											<!-- <div class="col-md-4">
+												<a href="#" class="btn btn-default btn-xs btn-group-justified">Or</a>
+											</div> -->
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<a class="btn btn-default btn-group-justified btn-primary" id="get_unique_btn">获取唯一值</a>
+											</div>
+										</div>
 									</div>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-chevron-left btn"></a>
-									</div>
-									<div class="col-md-2 col-md-offset-1">
-										<input class="form-control pages-form-page" type="text" value="0">
-									</div>
-									<label class="col-md-1 control-label">
-										/
-									</label>
-									<label class="col-md-1 control-label pages-form-pages">
-										0
-									</label>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
-									</div>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+									<div class="col-md-7 list-group search-unique-values">
+										
 									</div>
 								</div>
-							</form>
+								<div class="search-sql">
+									 <textarea class="form-control" rows="5" id="search-sql-content"></textarea>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default sql-clear-btn">清空</button>
+								<button type="button" class="btn btn-primary btn-search">应用</button>
+							</div>
 						</div>
-					</div>
-					<div id="map_bar_wrapper" class="mc-border" >
-						<div class="mc-icon mc-icon-area"></div>
-						<div class="mc-icon mc-icon-plus"></div>
-						<div class="mc-icon mc-icon-minus"></div>
-						<div class="mc-icon mc-icon-info"></div>
-						<div class="mc-icon mc-icon-mouse"></div>
-						<div class="mc-icon mc-icon-world"></div>
-						<div class="mc-icon mc-icon-hand-up"></div>
-						<div class="mc-icon mc-icon-full-screen"></div>
-						<div class="mc-icon mc-icon-zoom-in"></div>
-						<div class="mc-icon mc-icon-pin"></div>
-					</div>
-					<div id="map_overlay_wrapper" class="">
-						<div class="btn-group"><!-- btn-group-lg -->
-							<button type="button" class="btn btn-default" id="track_marker">点</button>
-							<button type="button" class="btn btn-default" id="track_polyline">线</button>
-							<button type="button" class="btn btn-default" id="track_polygon">面</button>
+						<div id="map_bar_wrapper" class="mc-border" >
+							<div class="mc-icon mc-icon-area"></div>
+							<div class="mc-icon mc-icon-plus"></div>
+							<div class="mc-icon mc-icon-minus"></div>
+							<div class="mc-icon mc-icon-info"></div>
+							<div class="mc-icon mc-icon-mouse"></div>
+							<div class="mc-icon mc-icon-world"></div>
+							<div class="mc-icon mc-icon-hand-up"></div>
+							<div class="mc-icon mc-icon-full-screen"></div>
+							<div class="mc-icon mc-icon-zoom-in"></div>
+							<div class="mc-icon mc-icon-pin"></div>
+						</div>
+						<div id="map_overlay_wrapper" class="">
+							<div class="btn-group"><!-- btn-group-lg -->
+								<button type="button" class="btn btn-default" id="track_marker">点</button>
+								<button type="button" class="btn btn-default" id="track_polyline">线</button>
+								<button type="button" class="btn btn-default" id="track_polygon">面</button>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2 col-xs-2 col-lg-2 mc-panel-full" id="right_panel" style="display:none">
-					<div class="panel-header">
-						<div class="panel-header-collapse mc-icon mc-icon-close float_left"></div>
-						<div class="panel-header-content float_left">Feature Info</div>
-					</div>
-					<div id="feature_info">
-						<table width="100%" class="table-info" cellpadding="0" cellspacing="0" border="0">
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-				</div>
-
 			</div>
-			</div>
-			
 		</div>
 	</div>
 	<!-- alert info  panel -->
@@ -871,6 +980,47 @@
 		</div>
 	</div>
 
+	<!-- WMTS panel -->
+	<div class="modal fade" id="wmtsDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">WMTS图层</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label for="wmts_layer_name" class="col-sm-2 control-label">名称：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wmts_layer_name" value="wmts">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="wmts_url" class="col-sm-2 control-label">地址：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wmts_url" value="/ows/user1/tfs/wmts">
+							</div>
+							<div class="col-sm-2">
+								<a href="#" class="navbar-link" id="wmts_get_layers">获取信息</a>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="wmts_url" class="col-sm-2 control-label">图层：</label>
+							<div class="col-sm-4">
+								<select class="form-control" id="wmts_layers"></select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- New Chart panel -->
 	<div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-hidden="true"
 	data-backdrop="true">
@@ -1124,71 +1274,119 @@
 							</div>
 						</div>
 					</div>
-					<div class="row" style="margin-right: 8px;">
+					<div class="row" style="margin-right: 8px; margin-top:20px;">
 						<div class="col-md-3">
 							<div class="list-group">
-								<a href="javascript:void(0)" class="list-group-item">单一样式</a>
-								<a href="javascript:void(0)" class="list-group-item">分级样式</a>
-								<a href="javascript:void(0)" class="list-group-item">自定义</a>
+								<a href="javascript:void(0)" class="list-group-item single-style">单一样式</a>
+								<a href="javascript:void(0)" class="list-group-item unique-style">唯一值样式</a>
+								<a href="javascript:void(0)" class="list-group-item quantities-style">分级样式</a>
+								<a href="javascript:void(0)" class="list-group-item custom-style">自定义</a>
 							</div>
 						</div>
 						<div class="col-md-9" id="display_styles_div">
-							<form class="form-horizontal parm-form" role="form">
-								<div class="form-group">
-									<label class="col-md-2 control-label">
-										字段
-									</label>
-									<div class="col-md-3">
-										<select class="form-control" id="layer_fields">
-
-										</select>
+							<div class="style-pane single-pane">
+								<form class="form-horizontal single-form" role="form">
+									<div class="form-group">
+										<label class="col-md-2 control-label">
+										样式
+										</label>
+										<div class="col-md-2" style="padding-top:6px">
+											<div class="style-symbol"></div>
+										</div>
 									</div>
-									<div class="col-md-6 color-ramp-div">
-										<button type="button" class="btn btn-default dropdown-toggle btn-group-justified" data-toggle="dropdown" aria-expanded="false" id="select_color_ramp">
-											<div class="color-ramp-item">
-												
-											</div>
-										</button>
-										<ul class="dropdown-menu" role="menu" id="">
-											<li>
-												<div class="color-ramp-item"></div>
-											</li>
-											<li>
-												<div class="color-ramp-item"></div>
-											</li>
-											<li>
-												<div class="color-ramp-item"></div>
-											</li>
-											<!-- <li class="divider"></li> -->
-										</ul>
+								</form>
+							</div>
+							<div class="style-pane unique-pane">
+								<form class="form-horizontal parm-form" role="form">
+									<div class="form-group">
+										<label class="col-md-2 control-label">
+											字段
+										</label>
+										<div class="col-md-3">
+											<select class="form-control layer-fields">
+
+											</select>
+										</div>
+										<div class="col-md-6 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+												<li>
+													<div class="color-ramp-item"></div>
+												</li>
+												<li>
+													<div class="color-ramp-item"></div>
+												</li>
+												<li>
+													<div class="color-ramp-item"></div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</form>
+								<div class="style-info-div">
+									<table class="table table-hover borderless table-block style-list-table">
+									</table>
+								</div>
+								<div>
+									<div class="btn-group btn-group-justified" role="group" aria-label="">
+										<a class="btn btn-default" id="add_all_value">添加所有值</a>
+										<a class="btn btn-default" id="remove_value">删除</a>
+										<a class="btn btn-default" id="remove_all_value">删除所有值</a>
 									</div>
 								</div>
-							</form>
-							<div id="styles_info_div">
-								<table class="table table-hover borderless table-block" id="default_style_table">
-									<thead>
-										<tr>
-											<th>样式</th>
-											<th>值</th>
-											<th>标签</th>
-										</tr>
-									</thead>
-									<tbody>
-										<td>
-											<div class="style-symbol"></div>
-										</td>
-										<td>所有值</td>
-										<td class="edit">所有值</td>
-									</tbody>
-								</table>
-								<table class="table table-hover borderless table-block" id="styles_list_table">
-								</table>
 							</div>
-							<div class="">
-								<div class="btn-group btn-group-justified" role="group" aria-label="">
-									<a class="btn btn-default" id="add_all_value">添加所有值</a>
-									<a class="btn btn-default" id="remove_value">删除</a>
-									<a class="btn btn-default" id="remove_all_value">删除所有值</a>
+							<div class="style-pane quantities-pane">
+								<form class="form-horizontal parm-form" role="form">
+									<div class="form-group">
+										<label class="col-md-2 control-label">
+											字段
+										</label>
+										<div class="col-md-3">
+											<select class="form-control layer-fields">
+
+											</select>
+										</div>
+										<div class="col-md-6 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+													
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+												<li>
+													<div class="color-ramp-item"></div>
+												</li>
+												<li>
+													<div class="color-ramp-item"></div>
+												</li>
+												<li>
+													<div class="color-ramp-item"></div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">分级</label>
+										<div class="col-md-3">
+											<select class="form-control classes">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+											</select>
+										</div>
+									</div>
+								</form>
+								<div id="styles_info_div" class="style-info-div">
+									<table class="table table-hover borderless table-block  style-list-table" id="styles_list_table">
+									</table>
 								</div>
 							</div>
 						</div>
@@ -1213,7 +1411,7 @@
 					<h5 class="modal-title">WMS样式</h5>
 				</div>
 				<div class="modal-body">
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-6 style-type">
 							<div class="btn-group btn-group-justified" role="group">
 								<a class="btn btn-default" id="point_style" disabled>点</a>
@@ -1221,7 +1419,7 @@
 								<a class="btn btn-default" id="polygon_style" disabled>面</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="row" id="style-info-div">
 						<ul class="nav nav-tabs" id="style-info-div-tab">
 							<li class="active">
@@ -1517,6 +1715,7 @@
 		</div> 
 	</div>
 
+	
 	<!-- DataSource panel -->
 	<div class="modal fade" id="dataSourceDialog" tabindex="-1" role="dialog" aria-labelledby="dataSourceDialogLabel" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">
@@ -1675,6 +1874,159 @@
 			</div>
 		</div> 
 	</div>
+
+	<!--  new DataSource panel -->
+	<div class="modal fade" id="dbAdminDialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">数据库管理</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-3 well" id="db-tree">
+							<ul class="nav" >
+								<li>
+									<a href="#" class="tree-servers">
+										<i class="mc-db-icon mc-db-icon-servers"></i>
+										<span>Server</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-9">
+							<div class="row servers-pane db-pane">
+								<div class="row db-tool">
+									<div class="btn-group btn-group-justified" role="group">
+										<a class="btn btn-default" id="add_server"><i class="glyphicon glyphicon-plus"></i>新增</a>
+										<a class="btn btn-default" id="remove_server">
+											<i class="glyphicon glyphicon-trash"></i>删除</a>
+									</div>
+								</div>
+								<div class="row db-content">
+									<table class="table table-hover borderless table-striped">
+										<thead>
+											<tr>
+												<th width="80"></th>
+												<th width="100">名称</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row server-pane db-pane">
+								<div class="row db-tool">
+									<div class="btn-group btn-group-justified" role="group">
+										<a class="btn btn-default" id="import-vector">
+											<i class="glyphicon glyphicon-plus"></i> 导入
+										</a>
+										<a class="btn btn-default" id="remove-dataset">
+											<i class="glyphicon glyphicon-trash"></i>删除
+										</a>
+									</div>
+								</div>
+								<div class="row db-content table-responsive">
+									<table class="table table-hover borderless table-striped">
+										<thead>
+											<tr>
+												<th width="20%"></th>
+												<th width="30">名称</th>
+												<th width="30">类型</th>
+												<th width="30">SRID</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row table-pane db-pane">
+								<div class="row db-tool">
+									<div class="btn-group btn-group-justified" role="group">
+										<a class="btn btn-default" id="show-dataset-fields">
+											<i class="glyphicon glyphicon-align-justify"></i> 字段
+										</a>
+										<a class="btn btn-default" id="show-dataset-features">
+											<i class="glyphicon glyphicon-list-alt"></i>列表
+										</a>
+										<a class="btn btn-default" id="show-dataset-preview">
+											<i class="glyphicon glyphicon-picture"></i>预览
+										</a>
+									</div>
+								</div>
+								<div class="row db-content table-responsive">
+									<div class="dataset-pane" id="dataset_fields">
+										<div class="inner-div">
+											<table class="table table-hover borderless table-striped">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Type</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+									<div class="dataset-pane" id="dataset_features">
+										<form class="form-horizontal pages-form" role="form">
+											<div class="form-group">
+												<label class="col-md-3 control-label query_count">
+													总条数 : 
+													<span>0</span>
+												</label>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+												</div>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon-chevron-left btn"></a>
+												</div>
+												<div class="col-md-2">
+													<input class="form-control pages-form-page" type="text" value="1">
+												</div>
+												<label class="col-md-1 control-label">
+													/
+												</label>
+												<label class="col-md-1 control-label pages-form-pages">
+													60
+												</label>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
+												</div>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+												</div>
+											</div>
+										</form>
+										<div id="dataset_features_list">
+											<table class="table table-hover borderless table-striped">
+												<thead>
+													<tr></tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="dataset-pane" id="dataset_preview">
+										<img src="" height="456" width="516" id="dataset_preview_img">
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 		
 	<!-- DataSource Connect panel -->
 	<div class="modal fade" id="pgisConnDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
@@ -1808,5 +2160,60 @@
 	        </div>
 	    </div>
 	</div>
+	<!-- Features panel -->
+	<div class="modal" id="featuresDialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h5 class="modal-title">显示属性</h5>
+	            </div>
+	            <div class="modal-body">
+					<form class="form-horizontal pages-form" role="form" onsubmit="return false">
+						<div class="form-group">
+							<label class="col-md-3 control-label query_count">
+								总条数 : 
+								<span>0</span>
+							</label>
+							<div class="col-md-1">
+								<a class="glyphicon glyphicon-step-backward btn disabled" href="#"></a>
+							</div>
+							<div class="col-md-1">
+								<a class="glyphicon glyphicon-chevron-left btn disabled"></a>
+							</div>
+							<div class="col-md-2">
+								<input class="form-control pages-form-page" type="text" value="0">
+							</div>
+							<label class="col-md-1 control-label">
+								/
+							</label>
+							<label class="col-md-1 control-label pages-form-pages">0</label>
+							<div class="col-md-1">
+								<a class="glyphicon glyphicon glyphicon-chevron-right btn disabled" href="#"></a>
+							</div>
+							<div class="col-md-1">
+								<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
+							</div>
+						</div>
+					</form>	
+					<div class="features-list">
+						<table class="table table-hover borderless table-striped">
+							<thead>
+								<tr></tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>          	
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
 
 </body>

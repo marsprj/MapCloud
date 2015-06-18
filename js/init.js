@@ -17,8 +17,11 @@ $().ready(function(){
 	MapCloud.wms_dialog = new MapCloud.WMSDialog("wmsDialog");
 	MapCloud.wfs_datasource_dialog 
 		= new MapCloud.WFSDatasourceDialog("wfsDatasourceDialog");
+	MapCloud.wmts_dialog = new MapCloud.WMTSDialog("wmtsDialog");
 	MapCloud.data_source_dialog 
 		= new MapCloud.DataSourceDialog("dataSourceDialog");
+	MapCloud.db_admin_dialog 
+		= new MapCloud.DBAdminDialog("dbAdminDialog");
 	MapCloud.pgis_connection_dialog 
 		= new MapCloud.PGISConnectDialog("pgisConnDialog");
 	MapCloud.new_layer_dialog
@@ -36,21 +39,52 @@ $().ready(function(){
 		= new MapCloud.HeatMapDialog("heatMapDialog");
 	MapCloud.importVector_dialog
 		= new MapCloud.ImportVectorDialog("importVectorDialog");
+	MapCloud.features_dialog
+		= new MapCloud.FeaturesDialog("featuresDialog");
+
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
 	MapCloud.overlay_panel 
 		= new MapCloud.TrackOverlay("left_panel_overlay",
 			"map_overlay_wrapper");
 
+	MapCloud.search_panel
+		= new MapCloud.SearchPanel("search_wrapper");
+
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
-	var mapBarObj = new MapCloud.MapBar();
+	// var mapBarObj = new MapCloud.MapBar();
+	MapCloud.mapBar = new MapCloud.MapBar();
 	MapCloud.dataGrid 
-	= new MapCloud.DataGrid("datagrid_wrapper");
+	= new MapCloud.DataGrid("datagrid_wrapper","datagrid_control_wrapper");
 	
 	mapManager = new GeoBeans.MapManager(url);
 	dbsManager = new GeoBeans.DBSManager(url);
 
+	$(".modal").draggable({
+	    handle: ".modal-header"
+	});	
+
+	$("#datagrid_wrapper,#search_wrapper").draggable({
+		handle : ".panel-header"
+	});
+
+	$("#map_btn").click(function(){
+		if($(".left-panel").css("display") == "block"){
+			$("#map_btn").css("left","0px");
+			$(".left-panel").css("width","0px");
+			$(".left-panel").css("display","none");
+			$(".right-panel").css("width","100%");
+			mapObj.resize("width");
+		}else{
+			$("#map_btn").css("left","320px");
+			$(".left-panel").css("width","320px");
+			$(".left-panel").css("display","block");
+			$(".right-panel").css("width","calc(100% - 320px)");
+			mapObj.resize("width");
+		}
+		
+	});
 
 // 	$("#right_panel .panel-header-collapse").click(function(){
 // //		$("#center_panel").css("right","0px");

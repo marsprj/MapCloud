@@ -124,74 +124,77 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onLayerAddWFS();
 					break;
 				case 7:
+					that.onLayerAddWMTS();
+					break;
+				case 8:
 					// 新建图层
 					that.onLayerNew();
 					break;
-				case 8:
+				case 9:
 					// 编辑图层
 					// that.onEditLayer();
 					break;
-				case 9:
+				case 10:
 					// 分享图层
 					that.onShareLayer();
 					break;
-				case 10:
+				case 11:
 					// that.onCreateLayer();
 					break;
-				case 11:
+				case 12:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 12:
+				case 13:
 					//删除图层
 					that.onRemoveLayer();
 					break;
-				case 13:
+				case 14:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 14:
+				case 15:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 15:
+				case 16:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 16:
+				case 17:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 17:
+				case 18:
 					that.addChart();
 					break;
-				case 18:
-					// 文件管理
-					that.onFile();
-					break;
 				case 19:
+					// 文件管理
+					// that.onFile();
+					break;
+				case 20:
 					//数据库管理
 					that.onDataSource();
 					break;
-				case 20:
+				case 21:
 					// 导入矢量
 					that.onImportVector();
 					break;
-				case 21:
+				case 22:
 					// 	导入影像
 					that.onImportImage();
 					break;
 				// Tools Events
-				case 22:
+				case 23:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 23:
+				case 24:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 24:
+				case 25:
 					// 图层样式
 					that.onStyleManager();
 					break;
@@ -240,6 +243,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	// WFS图层
 	onLayerAddWFS : function(){
 		MapCloud.wfs_datasource_dialog.showDialog();
+	},
+
+	onLayerAddWMTS : function(){
+		MapCloud.wmts_dialog.showDialog();
 	},
 
 	// 编辑图层
@@ -329,7 +336,10 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 文件管理
 	onFile : function(){
-		alert("文件管理");
+		// 暂且新的数据源管理
+		// MapCloud.db_admin_dialog.showDialog();
+		// alert("文件管理");
+
 		// if(MapCloud.file_dialog == null){
 		// 	MapCloud.file_dialog = new MapCloud.FileDialog("file_dialog");
 		// }
@@ -338,7 +348,8 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 数据源管理
 	onDataSource : function(){
-		MapCloud.data_source_dialog.showDialog();
+		// MapCloud.data_source_dialog.showDialog();
+		MapCloud.db_admin_dialog.showDialog();
 	},
 
 	//导入矢量

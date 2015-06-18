@@ -2,21 +2,33 @@
 MapCloud.DataGrid = MapCloud.Class({
 	
 	// 面板
-	panel 		: null,
+	panel 			: null,
+
+	// 控制面板
+	controlPanel 	: null,
 
 	// 每页的展示条数
-	maxFeatures : 20,
+	maxFeatures 	: 20,
 
 	// 展示图层
-	layer 		: null,
+	layer 			: null,
 
 	// 展示要素
-	features 	: null,
+	features 		: null,
 
-	initialize : function(id){
+	// 查询函数
+	query_function 	: null,
+
+	//输出函数
+	output_function : null,
+
+	initialize : function(id,controlId){
 		this.panel = $("#" + id);
+		this.controlPanel = $("#" + controlId);
 		this.registerExpand();
 		this.registerPageEvent();
+
+		// this.register
 	},
 
 	cleanup : function(){
@@ -34,27 +46,33 @@ MapCloud.DataGrid = MapCloud.Class({
 
 	// 展示
 	showPanel : function(){
-		this.panel.css("height","300px");
-		$("#mapCanvas_wrapper").css("bottom","300px");
-		this.panel.find(".panel-header-collapse")
-			.removeClass("mc-icon-close");
-		this.panel.find(".panel-header-collapse")
-			.addClass("mc-icon-expand");
+		// this.panel.css("height","300px");
+		// $("#mapCanvas_wrapper").css("bottom","300px");
+		// this.panel.find(".panel-header-collapse")
+		// 	.removeClass("mc-icon-close");
+		// this.panel.find(".panel-header-collapse")
+		// 	.addClass("mc-icon-expand");
 		
-		if(mapObj != null){
-			mapObj.resize();
-		}
+		// if(mapObj != null){
+		// 	mapObj.resize();
+		// }
+		this.panel.css("display","block");
+		this.controlPanel.css("display","none");
+		// this.panel.slideUp();
 	},
 
 	//隐藏 
 	hidePanel : function(){
-		this.panel.css("height","30px");
-		$("#mapCanvas_wrapper").css("bottom","30px");
-		this.panel.find(".panel-header-collapse").addClass("mc-icon-close");
-		this.panel.find(".panel-header-collapse").removeClass("mc-icon-expand");
-		if(mapObj != null){
-			mapObj.resize();
-		}
+		// this.panel.css("height","30px");
+		// $("#mapCanvas_wrapper").css("bottom","30px");
+		// this.panel.find(".panel-header-collapse").addClass("mc-icon-close");
+		// this.panel.find(".panel-header-collapse").removeClass("mc-icon-expand");
+		// if(mapObj != null){
+		// 	mapObj.resize();
+		// }
+		this.panel.css("display","none");
+		this.controlPanel.css("display","block");
+		// this.panel.slideDown();
 	},
 
 	// 注册展示和隐藏事件
@@ -71,6 +89,12 @@ MapCloud.DataGrid = MapCloud.Class({
 				collapsed = true;
 				
 			}
+		});
+		this.panel.find(".close").click(function(){
+			that.hidePanel();
+		});
+		this.controlPanel.click(function(){
+			that.showPanel();
 		});
 	},
 
@@ -113,6 +137,15 @@ MapCloud.DataGrid = MapCloud.Class({
 					.find(".pages-form-page").val());
 				that.setPage(page + 1);
 			});
+		});
+
+		// 导出
+		this.panel.find(".download-features").click(function(){
+			// var url = mapObj.queryByRectOutput(null,null);
+			if(that.output_function != null){
+				var url = that.output_function();
+				window.open(url,'_blank');
+			}
 		});
 	},
 
@@ -189,9 +222,9 @@ MapCloud.DataGrid = MapCloud.Class({
 			html += "<tr index='" + i + "'>";
 			for(var j = 0; j < values.length; ++j){
 				value = values[j];
-				if(value == null){
-					continue;
-				}
+				// if(value == null){
+				// 	continue;
+				// }
 				if(value instanceof GeoBeans.Geometry){
 					continue;
 				}
@@ -207,11 +240,12 @@ MapCloud.DataGrid = MapCloud.Class({
 
 
 	// 展示页码
-	showPages : function(layer,count){
+	setQuery : function(layer,count,query_function){
 		if(layer == null || count == null){
 			return;
 		}
 		this.layer = layer;
+		this.query_function = query_function;
 		if(count == 0){
 			this.clearData();
 			this.showPanel();
@@ -220,8 +254,14 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.panel.find(".query_count").html(count);
 		var pageCount = Math.ceil(count/this.maxFeatures);
 		this.panel.find(".pages-form-pages").html(pageCount);
+		this.panel.find("#datagrid_content table thead tr").html("");
+		this.panel.find("#datagrid_content table tbody").html("");
 		this.setPage(1);
 		this.showPanel();
+	},
+
+	setOutput : function(output_function){
+		this.output_function = output_function;
 	},
 
 	// 设置页码
@@ -265,7 +305,8 @@ MapCloud.DataGrid = MapCloud.Class({
 			return;
 		}
 		var offset = ( page -1 ) * this.maxFeatures;
-		var features = mapObj.queryByRectPage(this.maxFeatures,offset);
+		// var features = mapObj.queryByRectPage(this.maxFeatures,offset);
+		var features = this.query_function(this.maxFeatures,offset);
 		this.showFeatures(features);
 	},
 
@@ -273,8 +314,7 @@ MapCloud.DataGrid = MapCloud.Class({
 	// 清空数据
 	clearData : function(){
 		this.panel.find("#datagrid_content table thead tr").html("");
-		this.panel
-			.find("#datagrid_content table tbody").html("");
+		this.panel.find("#datagrid_content table tbody").html("");
 		this.panel.find(".query_count").html("0");
 		this.panel.find(".pages-form-page").val(0);
 		this.panel.find(".pages-form-pages").html("0");

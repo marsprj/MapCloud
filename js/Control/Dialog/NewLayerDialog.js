@@ -14,7 +14,8 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		// 选择数据源,弹出数据源窗口
 		dialog.panel.find("#new_layer_select_dbs").each(function(){
 			$(this).click(function(){
-				MapCloud.data_source_dialog.showDialog("select");
+				// MapCloud.data_source_dialog.showDialog("select");
+				MapCloud.db_admin_dialog.showDialog("select");
 			});
 		});
 
@@ -44,7 +45,6 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 				dialog.closeDialog();
 			});
 		});
-		
 	},
 	
 	destory : function(){

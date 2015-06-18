@@ -234,26 +234,46 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 显示当前编辑的样式
 	setType : function(type){
 		this.type = type; 
-		this.panel.find(".style-type .btn-group a").each(function(){
-			$(this).removeClass('btn-primary');
-			$(this).attr("disabled",true);
-		});
+		// this.panel.find(".style-type .btn-group a").each(function(){
+		// 	$(this).removeClass('btn-primary');
+		// 	$(this).attr("disabled",true);
+		// });
+		// switch(type){
+		// 	case GeoBeans.Symbolizer.Type.Point:
+		// 		this.panel.find("#point_style").addClass("btn-primary");
+		// 		this.panel.find("#point_style").attr("disabled",false);
+		// 		break;
+		// 	case GeoBeans.Symbolizer.Type.Line:
+		// 		this.panel.find("#line_style").addClass("btn-primary");
+		// 		this.panel.find("#line_style").attr("disabled",false);
+		// 		break;
+		// 	case GeoBeans.Symbolizer.Type.Polygon:
+		// 		this.panel.find("#polygon_style").addClass("btn-primary");
+		// 		this.panel.find("#polygon_style").attr("disabled",false);
+		// 		break;
+		// 	default:
+		// 		break;
+		// }
+		var html = null;
 		switch(type){
-			case GeoBeans.Symbolizer.Type.Point:
-				this.panel.find("#point_style").addClass("btn-primary");
-				this.panel.find("#point_style").attr("disabled",false);
+			case GeoBeans.Symbolizer.Type.Point:{
+				html = "点样式";
 				break;
-			case GeoBeans.Symbolizer.Type.Line:
-				this.panel.find("#line_style").addClass("btn-primary");
-				this.panel.find("#line_style").attr("disabled",false);
+			}
+			case GeoBeans.Symbolizer.Type.Line:{
+				html = "线样式";
 				break;
-			case GeoBeans.Symbolizer.Type.Polygon:
-				this.panel.find("#polygon_style").addClass("btn-primary");
-				this.panel.find("#polygon_style").attr("disabled",false);
+			}
+			case GeoBeans.Symbolizer.Type.Polygon:{
+				html = "面样式";
 				break;
-			default:
+			}
+			default:{
+				html = "样式";
 				break;
+			}
 		}
+		this.panel.find(".modal-header .modal-title").html(html);
 	},
 
 	// 展示点样式

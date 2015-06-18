@@ -250,6 +250,31 @@ MapCloud.refresh = MapCloud.Class({
 				mapObj.zoomToLayer(layerName);
 			});
 		});
+		// 显示属性
+		this.panel.find(".layer_row_quick_tool_features").click(function(){
+			var li = $(this).parents("li.layer_row");
+			var layerName = li.attr("lname");
+			if(layerName == null){
+				return;
+			}
+			MapCloud.features_dialog.setLayerName(layerName);
+			MapCloud.features_dialog.showDialog();
+		});
+
+		// 简单查询
+		this.panel.find(".layer_row_quick_tool_search").click(function(){
+			var li = $(this).parents("li.layer_row");
+			var layerName = li.attr("lname");
+			if(layerName == null){
+				return;
+			}
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			MapCloud.search_panel.showPanel();
+			MapCloud.search_panel.setLayer(layer);
+		});
 
 		// 图层编辑，内容未定
 		this.panel.find(".layer_row_quick_tool_edit").each(function(){
@@ -795,17 +820,48 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				var filter = rule.filter;
 				var value = null;
-				if(filter != null){
-					var expression1 = filter.expression1;
-					var expression2 = filter.expression2;
-					if(expression1 != null && 
-						expression1.type == GeoBeans.Expression.Type.Literal){
-						value = expression1.value;
-					}else if(expression2 != null && 
-						expression2.type == GeoBeans.Expression.Type.Literal){
-						value = expression2.value;
-					}					
+				if(filter == null){
+					continue;
 				}
+				var type = filter.type;
+				if(type == GeoBeans.Filter.Type.FilterComparsion){
+					var operator = filter.operator;
+					if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprEqual){
+						var expression1 = filter.expression1;
+						var expression2 = filter.expression2;
+						if(expression1 != null && 
+							expression1.type == GeoBeans.Expression.Type.Literal){
+							value = expression1.value;
+						}else if(expression2 != null && 
+							expression2.type == GeoBeans.Expression.Type.Literal){
+							value = expression2.value;
+						}
+					}else if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprIsBetween){
+						var lowerBound = filter.lowerBound;
+						var upperBound = filter.upperBound;
+						var lowerBoundValue = "";
+						var upperBoundValue = "";
+						if(lowerBound != null){
+							lowerBoundValue = parseFloat(lowerBound.value);
+						}
+						if(upperBound != null){
+							upperBoundValue = parseFloat(upperBound.value);
+						}
+						value = lowerBoundValue.toFixed(2) + "-" + upperBoundValue.toFixed(2);
+					}
+				}
+
+				// if(filter != null){
+				// 	var expression1 = filter.expression1;
+				// 	var expression2 = filter.expression2;
+				// 	if(expression1 != null && 
+				// 		expression1.type == GeoBeans.Expression.Type.Literal){
+				// 		value = expression1.value;
+				// 	}else if(expression2 != null && 
+				// 		expression2.type == GeoBeans.Expression.Type.Literal){
+				// 		value = expression2.value;
+				// 	}					
+				// }
 
 				var symbolizer = rule.symbolizer;
 				var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
@@ -995,6 +1051,8 @@ MapCloud.refresh = MapCloud.Class({
 				// +	"						type='text' class='form-control' data-slider-min='0' data-slider-max='100' "
 				// +	"						data-slider-step='1' data-slider-value='100'  data-slider-enabled='true'/></a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_features\"><i class='dropdown-menu-icon fa fa-list-ul'></i>显示属性</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_search\"><i class='dropdown-menu-icon fa fa-search'></i>简单查询</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"

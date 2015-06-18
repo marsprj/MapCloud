@@ -8,8 +8,15 @@ html,body{
 	height:100%;
 }
 .modal-dialog{
-	margin-top: 80px;
+	margin-top: 40px;
 }
+.modal-open .modal{
+	overflow-y: hidden !important;
+}
+.modal-header{
+	cursor: move;
+}
+
 ul {
 	display: block;
 	list-style-type: none;
@@ -28,6 +35,7 @@ ul {
 .mc-border{
 	border:1px solid #e6e6e6;
 }
+
 
 .mc-icon{
 	display:block;
@@ -362,11 +370,15 @@ ul#ribbon_tabs li{
 	width:320px;
 	float: left;
 }
-.row-right{
+.right-panel{
 	width:calc(100% - 320px);
 	margin-left: 0px;
 	margin-right: 0px;
 	float: left;
+	-webkit-transition: all .15s ease-in-out;
+	-moz-transition: all .15s ease-in-out;
+	-o-transition: all .15s ease-in-out;
+	transition: all .15s ease-in-out;	
 }
 #main_panel{
 /*	position:absolute;
@@ -384,9 +396,15 @@ ul#ribbon_tabs li{
 	height:100%;
 	padding:0px;
 }
-#left_panel{
+.left-panel{
 	border-right:1px solid #ccc;
-	min-width:300px;
+}
+.left-panel-tab{
+	height: 100%;
+}
+#left_panel{
+	/*border-right:1px solid #ccc;*/
+	/*min-width:300px;*/
 	display: block;
 }
 #map_row{
@@ -559,45 +577,148 @@ ul#ribbon_tabs li{
 	width:100%;
 	height:100%;
 }
+
 #datagrid_wrapper{
 /*	height:33%;*/
-	height:30px;
+	display: none;
+	height:300px;
 	position:absolute;
-	bottom:0px;
-	right:0px;
-	left:0px;
-	border-top:1px solid #ccc;
+	bottom:10px;
+	right:10px;
+	left:10px;
+	border:1px solid #ccc;
+	z-index: 1030;
+	box-shadow: 2px 2px rgba(204, 204, 204, 0.17);
+	opacity: 0.8;
 }
 
 #datagrid_wrapper #datagrid_content{
-	height: 234px;
+	height: 214px;
 	overflow: auto;
+	background-color: #fff;
 }
 
-#datagrid_content tr.selected{
-	background-color: rgba(169, 169, 169, 0.2);
+#datagrid_content tr.selected td{
+	background-color: rgba(169, 169, 169,0.8);
 }
 #datagrid_pages{
-	background: #f1f1f1;
+	background-color: #f1f1f1;
+	border-top: #f1f1f1;
 }
 
 .panel-header{
-	height:30px;
+	height:42px;
 	overflow: hidden;
 	border-bottom: 1px solid #d3d3d3;
-	background: #f1f1f1
+	background: #f8f8f8;
+	cursor: move;
+	padding: 4px;
 }
 
-.panel-header .panel-header-collapse{
+/*.panel-header .panel-header-collapse{
 	margin-top: 8px;
 	margin-left: 4px;
-}
+}*/
 
 .panel-header .panel-header-content {
-	margin-top: 6px;
-	margin-left: 6px;	
+	/*margin-top: 4px;*/
+	margin-left: 10px;	
 }
 
+.panel-header button.close{
+	margin-top: 4px;
+}
+#datagrid_control_wrapper{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	display: none;
+}
+#datagrid_control{
+	/*position: absolute;*/
+	position: relative;
+	height: 34px;
+	width: 90px;
+	bottom: 0px;
+	vertical-align: bottom;
+	margin-right: auto;
+  	margin-left: auto;
+  	border: 1px solid #888;
+  	border-bottom: 0;
+  	border-radius: 4px 4px 0 0;
+  	box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+  	cursor: pointer;
+}
+
+
+/*search_wrapper*/
+#search_wrapper{
+	height: 606px;
+	width: 300px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: 1px solid #ccc;
+	display: none;	
+}
+.panel-content{
+	padding: 10px;
+	background-color: #fff;
+}
+.search-fields-div{
+	height: 140px;
+	/*margin: 10px;*/
+	border: 1px solid #ccc;
+	overflow: auto;
+	border-radius: 4px;
+}
+#search_wrapper .list-group-item{
+	padding: 6px 15px;
+	border: none;
+}
+.search-oper-values{
+	margin: 0px;
+}
+.search-oper-values .row{
+	margin-bottom: 6px;
+	margin:0px 0px 6px 0px;
+}
+.search-oper-values  [class*="col-"]{
+	padding-left: 0px;
+	padding-right: 4px;
+}
+.search-unique-values{
+	height: 200px;
+	border: 1px solid #ccc;
+	overflow: auto;
+	border-radius: 4px;
+}
+
+.panel-bottom{
+	background-color: #fff;
+	border-top: 1px solid #e5e5e5;
+	text-align: right;
+	padding: 6px;
+}
+
+/*伸缩按钮*/
+#map_btn{
+	position: absolute;
+	width: 12px;
+  	height: 70px;
+  	background-color: #fff;
+  	z-index: 1000;
+  	top: 50%;
+  	margin-top: -35px;
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	cursor: pointer;
+  	left: 320px;
+}
+
+#map_btn_img{
+	margin-top: 30px;
+}
 /***************************************************************************/
 /* Body End                                                    */
 /***************************************************************************/
@@ -810,6 +931,7 @@ legend {
 }
 #wms_layers{
 	max-height: 160px;
+	min-height: 120px;
 	overflow-y: auto;
 	word-wrap: break-word;
 }
@@ -947,7 +1069,7 @@ ul.layers_row li:before {
 }
 
 #style-mgr-dialog .modal-body .row{
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 }
 
 #style-mgr-dialog .modal-body .tab-content{
@@ -961,6 +1083,7 @@ ul.layers_row li:before {
 
 #style-mgr-dialog #display_styles_div{
 	/*height: 460px;*/
+	padding: 0px;
 }
 
 #style-mgr-dialog #display_styles_div .parm-form{
@@ -970,7 +1093,11 @@ ul.layers_row li:before {
 	background-color: #F1F1F1;
 }
 #style-mgr-dialog #display_styles_div .parm-form .form-group{
-	margin-bottom: 0px;
+	/*margin-bottom: 0px;*/
+	margin: 2px;
+}
+#style-mgr-dialog #display_styles_div .parm-form .control-label{
+	padding: 6px;
 }
 
 #style-mgr-dialog #display_styles_div .color{
@@ -1005,7 +1132,7 @@ ul.layers_row li:before {
   	background-size: 237px;
 }
 
-#style-mgr-dialog #display_styles_div #styles_info_div{
+#style-mgr-dialog #display_styles_div .style-info-div{
 	padding: 4px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -1013,9 +1140,9 @@ ul.layers_row li:before {
 	margin-bottom: 10px;
 	height: 100%;
 }
-#style-mgr-dialog #display_styles_div #styles_info_div table{
+#style-mgr-dialog #display_styles_div .style-info-div table{
 	width: 100%;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 }
 #styles_info_table tr:hover{
 	cursor: point;
@@ -1053,6 +1180,7 @@ ul.layers_row li:before {
 }
 .borderless tbody tr td, .borderless tbody tr th {
     border: none;
+    min-width: 60px;
 }
 #style-mgr-dialog #display_styles_div .style-symbol{
 	height: 17px;
@@ -1069,21 +1197,33 @@ ul.layers_row li:before {
 	border: 1px solid #fff;
 }
 
-#styles_list_table thead tr th{
-	border : none;
+.style-list-table thead tr th{
+	/*border : none;*/
 }
-#styles_list_table{
-	height : 330px;
+.style-list-table{
+	height : 400px;
 }
-#styles_list_table tbody{
-	height: 300px;
+.style-list-table tbody{
+	height: 370px;
     overflow-y: auto;
 }
-#styles_list_table tbody tr.selected{
+.style-list-table tbody tr.selected{
 	background-color: #E4E4E4;
 }
-#styles_list_table tbody tr:hover{
+.style-list-table tbody tr:hover{
 	background-color: #E4E4E4;	
+}
+
+
+.style-pane{
+	display: none;
+}
+.single-form{
+	padding: 4px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #F1F1F1;
+	height: 44px;
 }
 /***************************************************************************/
 /* WMSStyleMgr Dialog End   														*/
@@ -1096,10 +1236,11 @@ ul.layers_row li:before {
 }
 
 #style-dialog .tab-content{
-	height:300px;
+	height:260px;
 }
+
 #style-info-div{
-	margin: 12px 6px;
+	margin: 4px;
 }
 
 #style-info-div [class*="col-"]{
@@ -1107,7 +1248,9 @@ ul.layers_row li:before {
 	padding-right: 0px;
 	margin-right: 6px;
 }
-
+#style-info-div .form-control{
+	font-size: 12px;
+}
 #style-info-div .col0-md-right-0{
 	margin-right: 0px;
 }
@@ -1136,6 +1279,7 @@ ul.layers_row li:before {
 #style-info-div .control-label-field{
 	text-align: right;
 	padding-right: 8px;
+	font-weight: normal;
 }
 #style-info-div .style_enable_label{
 	margin-right: 0px;
@@ -1146,12 +1290,12 @@ ul.layers_row li:before {
 }
 #style-info-div input[type="text"]{
 	text-align: center;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-#style-info-div select{
 	padding-left: 2px;
 	padding-right: 2px;
+}
+#style-info-div select{
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .colorSelector {
@@ -1305,7 +1449,7 @@ ul.layers_row li:before {
 	width: 740px;
 }
 
-#datasets_div{
+#dataSourceDialog #datasets_div{
 	border: 1px solid #ccc;
 	border-radius :4px;
 	padding: 2px;
@@ -1339,24 +1483,24 @@ ul.layers_row li:before {
 .dataset-name{
 	word-break: break-all;
 }
-#dataset_fields{
+#dataSourceDialog #dataset_fields{
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 2px;
 	height: 462px;
 }
 
-#dataset_fields div{
+#dataSourceDialog #dataset_fields div{
 	height: 100%;
 	padding: 4px;
 	overflow-y: auto;
 }
 
-#dataset_fields table thead th{
+#dataSourceDialog #dataset_fields table thead th{
 	width: 50% !important;
 }
 
-#dataset_fields table tbody td{
+#dataSourceDialog #dataset_fields table tbody td{
 	width: 50% !important;
 }
 
@@ -1385,19 +1529,19 @@ ul.layers_row li:before {
 .pages-form .form-group div a{
 	color: #333;
 }
-#dataset_features_list{
+#dataSourceDialog #dataset_features_list{
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 2px;
 	height: 398px;
 	margin-top: 20px;
 }
-#dataset_features_list div{
+#dataSourceDialog #dataset_features_list div{
 	overflow: auto;
 	height: 100%
 }
 
-#dataset_preview{
+#dataSourceDialog #dataset_preview{
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 2px;
@@ -1537,4 +1681,170 @@ ul.layers_row li:before {
 
 /***************************************************************************/
 /* importVectorDialog Dialog End   														*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* dbAdmin Dialog Begin  														*/
+/***************************************************************************/
+#dbAdminDialog .modal-dialog{
+	width: 1000px;
+}
+
+#dbAdminDialog .modal-body{
+	height: 660px;
+}
+
+#dbAdminDialog .modal-body .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+#db-tree{
+	height: 630px;
+	border: 1px solid #ccc;
+	padding: 10px 20px 10px 0px;
+	overflow: auto;
+}
+
+#db-tree ul{
+	padding-left: 20px;
+	margin: 0px;
+}
+/*.tree-servers-ul{
+	margin-left: 10px !important;
+	border-left: 1px dashed #2a2a2a;
+}*/
+#db-tree ul li a{
+	padding: 2px;
+	display: block;
+	/*padding-left: 0px;*/
+}
+#db-tree ul li a.selected{
+	/*background-color: #dfeef5;*/
+	color: #FD0534;
+}
+
+#db-tree ul li a i{
+	margin-right: 6px;
+}
+.mc-db-icon{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.mc-db-icon-servers{
+	background-image: url(../images/setting-16.png);
+}
+.mc-db-icon-server{
+	background-image: url(../images/server-16.png);
+}
+.mc-db-icon-dataset{
+	background-image: url(../images/table-16.png);	
+}
+
+#db-tree ul li a span{
+	word-break: break-all;
+}
+#db-tree ul li a:hover{
+	/*background-color: #dfeef5;*/
+	color: #FD0534;
+}
+#db-tree .line{
+	display: inline-block;
+	width: 20px;
+	height: 0px;
+	border: 1px #2a2a2a dashed;
+}
+.tree-servers{
+	font-size: 14px;
+	font-weight: bold;
+}
+.tree-server{
+	font-size: 12px
+}
+.tree-table{
+	font-size: 12px;
+}
+
+#dbAdminDialog .table{
+	margin-bottom: 0px;
+}
+
+.db-tool .btn-group{
+	height: 50px
+}
+.db-tool .btn-group a i{
+	margin-right: 6px;
+}
+
+.db-content{
+	height: 570px;
+	overflow:auto;
+	margin-top: 10px;
+ 	border: 1px #ccc solid;
+}
+
+.db-pane{
+	display: none;
+}
+.table-pane .btn-group-justified .btn.selected{
+	background-color: #efefef;
+}
+.dataset-pane{
+	display: none;
+	padding: 10px;
+	/*overflow: auto;*/
+	/*height: 100%;*/
+	height: 568px;
+}
+
+.dataset-pane .inner-div{
+	height: 100%;
+}
+#dataset_features_list{
+	height: 500px;
+	overflow-y: auto;
+	margin-top: 10px;
+	border: 1px dashed #ccc;
+	padding: 10px;
+	border-radius: 4px;
+}
+#dataset_preview{
+	height: 568px;
+	width: 694px;
+	overflow: hidden;
+	padding: 0px;
+}
+#dataset_preview_img{
+	height: 100%;
+	width: 100%;
+}
+/***************************************************************************/
+/* dbAdmin Dialog End  														*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Features Dialog Begin  														*/
+/***************************************************************************/
+#featuresDialog .modal-dialog{
+	width: 800px;
+}
+
+#featuresDialog .modal-body{
+	height: 660px;
+}
+
+#featuresDialog .features-list{
+	height: calc(100% - 60px);
+	border: 1px dashed #ccc;
+	margin-top: 15px;
+	overflow: auto;
+	border-radius: 4px;
+}
+
+/***************************************************************************/
+/* Features Dialog End  														*/
 /***************************************************************************/

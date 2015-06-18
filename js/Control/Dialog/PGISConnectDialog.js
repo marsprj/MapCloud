@@ -155,20 +155,25 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		var info = "注册数据源";
 		MapCloud.alert_info.showInfo(result,info);
 		
-		// 重新获取数据源列表
-		var parentDialog = MapCloud.data_source_dialog;
-		dbsManager.getDataSources(parentDialog
-			.getDataSources_callback);
-		var dialog = MapCloud.pgis_connection_dialog;
-		dialog.closeDialog();
+		// // 重新获取数据源列表
+		// var parentDialog = MapCloud.data_source_dialog;
+		// dbsManager.getDataSources(parentDialog
+		// 	.getDataSources_callback);
+		// var dialog = MapCloud.pgis_connection_dialog;
+		// dialog.closeDialog();
 
 		
-		// 显示新添加的数据源
-		var dbsList = parentDialog.panel.find("#data_source_list");
-		var name = dialog.panel.find("#data_source_conn_name").val();
-		dbsList.find("option[value='" + name + "']" )
-			.attr("selected",true);
-		parentDialog.getDataSource(name);
+		// // 显示新添加的数据源
+		// var dbsList = parentDialog.panel.find("#data_source_list");
+		// var name = dialog.panel.find("#data_source_conn_name").val();
+		// dbsList.find("option[value='" + name + "']" )
+		// 	.attr("selected",true);
+		// parentDialog.getDataSource(name);
+
+		var parentDialog = MapCloud.db_admin_dialog;
+		dbsManager.getDataSources(parentDialog.getDataSources_callback);
+		var dialog = MapCloud.pgis_connection_dialog;
+		dialog.closeDialog();
 	}
 });
 	

@@ -13,13 +13,13 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 默认样式
 	defaultStyle 		: null,
 
-	// 选中的样式
-	selectedRuleIndex 	: null,
+	// // 选中的样式
+	// selectedRuleIndex 	: null,
 
 	// isStyleChanged 		: false, //当前样式是否已经更改
 	
-	// 是否是默认样式
-	isDefaultStyle 		: false,
+	// // 是否是默认样式
+	// isDefaultStyle 		: false,
 	
 
 	wfsWorkspace 		: null,
@@ -32,6 +32,18 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	dbLayer 			: null,
 
+	// 每个panel有一个style
+	singleStyle 		: null,
+	uniqueStyle 		: null,
+	quantitiesStyle 	: null,
+
+	// 弹出style对话框的style
+	styleChangedClass 	: null,
+	styleChangedIndex	: null,
+
+	// 最大最小值
+	minMaxValue 		: null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
@@ -40,21 +52,26 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var name = dialog.panel.find("#style_list option:selected").text(); 
-				
+				var currentStyle = dialog.getCurrentStyle();
+				if(currentStyle == null){
+					MapCloud.alert_info.showInfo("Warning","请设置一个有效样式");
+					return;
+				}
+				currentStyle.name = name;
 				// 是否是WFS图层的默认样式
 				if(name != "default"){ 
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//添加
-						dialog.addStyle(dialog.styleCur);
+						dialog.addStyle(currentStyle);
 					}else{
 						// 更新
-						dialog.updateStyle(dialog.styleCur);
+						dialog.updateStyle(currentStyle);
 					}
 				}
 				if(dialog.typeName != null){
 					// 给当前图层设定样式
-					dialog.setStyle(dialog.typeName,dialog.styleCur,
+					dialog.setStyle(dialog.typeName,currentStyle,
 					dialog.setStyle_callback);
 				}
 				dialog.closeDialog();
@@ -65,24 +82,33 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-success").each(function(){
 			$(this).click(function(){
 				var name = dialog.panel.find("#style_list option:selected").text(); 
-				if(name != "default"){
+				var currentStyle = dialog.getCurrentStyle();
+				if(currentStyle == null){
+					MapCloud.alert_info.showInfo("Warning","请设置一个有效样式");
+					return;
+				}
+				currentStyle.name = name;
+				// 是否是WFS图层的默认样式
+				if(name != "default"){ 
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//添加
-						dialog.addStyle(dialog.styleCur);
+						dialog.addStyle(currentStyle);
 					}else{
-						dialog.updateStyle(dialog.styleCur);
+						// 更新
+						dialog.updateStyle(currentStyle);
 					}
 				}
 				if(dialog.typeName != null){
-					dialog.setStyle(dialog.typeName,dialog.styleCur,
+					// 给当前图层设定样式
+					dialog.setStyle(dialog.typeName,currentStyle,
 					dialog.setStyle_callback);
 				}
 			});
 		});
 
-		// 注册默认样式的点击事件
-		this.registerDefaultSymbolDisplay();
+		// 注册单一样式的点击事件
+		this.registerSingleSymbolEvent();
 		
 		//切换样式类型
 		this.panel.find("#style_type_list li a").each(function(){
@@ -108,7 +134,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});	
 
 		// 切换样式
-		var preStyleName = null;
 		this.panel.find("#style_list").each(function(){
 			$(this).focus(function(){
 				preStyleName = this.value;
@@ -120,20 +145,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					dialog.getStyleXML_callback(style);
 					return;
 				}
-				// if(dialog.isStyleChanged){
-				// 	var text = "是否保存" + preStyleName + "的样式？"
-				// 	var result = confirm(text);
-				// 	if(result){
-				// 		dialog.updateStyle(preStyleName);
-				// 	}
-				// }
-				preStyleName = this.value;
-
-
-				dialog.panel.find("#styles_list_table").html("");
-				dialog.defaultStyle = null;
-				dialog.styleNameCur = this.value;
-				dialog.styleCur = null;
 
 				var selected = $(this).children(":selected");
 				var name = selected.text();
@@ -156,26 +167,32 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				// 弹出新建样式对话框
 				MapCloud.styleName_dialog.setFlag("add");
 				MapCloud.styleName_dialog.showDialog();
-				// dialog.isStyleChanged = true;
 			});
 		});
 
 		//保存样式
 		this.panel.find("#save_style").each(function(){
 			$(this).click(function(){
-				var name = dialog.styleNameCur;
-				if(name == "default"){
+				// var name = dialog.styleNameCur;
+				var styleName = dialog.panel.find("#style_list option:selected").val();
+				var currentStyle = dialog.getCurrentStyle();
+				if(currentStyle == null){
+					MapCloud.alert_info.showInfo("Warning","请设置一个有效样式");
+					return;
+				}
+				currentStyle.name = styleName;
+				if(styleName == "default"){
 					MapCloud.styleName_dialog.setFlag("save");
 					MapCloud.styleName_dialog.showDialog();					
 					return;
 				}else{
-					var style = dialog.styleMgr.getStyle(name);
+					var style = dialog.styleMgr.getStyle(styleName);
 					if(style == null){
 						// 添加样式
-						dialog.addStyle(dialog.styleCur);
+						dialog.addStyle(currentStyle);
 					}else{
 						// 更新样式
-						dialog.updateStyle(dialog.styleCur);
+						dialog.updateStyle(currentStyle);
 					}
 				}
 			});
@@ -196,7 +213,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 添加所有值
 		this.panel.find("#add_all_value").each(function(){
 			$(this).click(function(){
-				var field = dialog.panel.find("#layer_fields option:selected").val();
+				var field = dialog.panel.find(".unique-pane .layer-fields option:selected").val();
 				if(field == null){
 					return;
 				}
@@ -210,16 +227,13 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		//删除一个rule 
 		this.panel.find("#remove_value").each(function(){
 			$(this).click(function(){
-				var styleSelected = dialog.panel.find("#styles_list_table tbody tr.selected");
-				var stylesTr = dialog.panel.find("#styles_list_table tbody tr");
-				var index = stylesTr.index(styleSelected);
+				var table = dialog.panel.find(".unique-pane .style-list-table");
+				var ruleSelected = table.find("tbody tr.selected");
+				var rulesTr = table.find(".tbody tr");
+				var index = rulesTr.index(ruleSelected);
 				if(index != -1){
-					dialog.styleCur.removeRule(index);
-					var field = dialog.panel.find("#layer_fields option:selected").val();
-					var html = dialog.getRulesListHtml(field,dialog.styleCur.rules);	
-					dialog.panel.find("#styles_list_table").html(html);
-					dialog.registerSymbolDisplay();
-					dialog.registerStyleSelected();
+					dialog.uniqueStyle.removeRule(index);
+					dialog.displayUniqueStyle(dialog.uniqueStyle);
 				}
 			});
 		});
@@ -227,11 +241,58 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 删除所有值
 		this.panel.find("#remove_all_value").each(function(){
 			$(this).click(function(){
-				dialog.styleCur = null;
-				dialog.styleCur = dialog.defaultStyle.clone();
-				dialog.styleCur.name = dialog.styleNameCur;
-				dialog.panel.find("#styles_list_table").html("");
+				dialog.uniqueStyle = null;
+				dialog.cleanupUniquePanel();
 			});
+		});
+
+		// 分级样式的字段
+		this.panel.find(".quantities-pane .layer-fields").change(function(){
+			var field = $(this).find("option:selected").val();
+			if(field == "none"){
+				dialog.quantitiesStyle = null;
+				dialog.cleanupQuantitiesPanel();
+			}else{
+				dialog.wfsWorkspace.getMinMaxValue(dialog.typeName,
+					field, mapObj.name,dialog.getMinMaxValue_callback)
+			}
+		});
+
+		// 分级样式的分级数
+		this.panel.find(".quantities-pane .classes").each(function(){
+			$(this).change(function(){
+				var count = $(this).val();
+				var field = dialog.panel.find(".quantities-pane .layer-fields option:selected").val();
+				if(field == null || field == "none"){	
+					return;
+				}
+				var id = dialog.panel.find(".quantities-pane .select-color-ramp li").attr("cid");
+				if(dialog.minMaxValue == null){
+					dialog.wfsWorkspace.getMinMaxValue(dialog.typeName,
+						field, mapObj.name,dialog.getMinMaxValue_callback);
+				}else{
+					// var count = dialog.panel.find(".quantities-pane .classes option:selected").val();
+					dialog.styleMgr.getColorMap(id,count,
+						dialog.getColorMapMinMax_callback);
+				}
+
+			});
+		});
+
+		// 左侧样式类型选择
+		this.panel.find(".list-group-item").click(function(){
+			dialog.panel.find(".list-group-item").removeClass("active");
+			$(this).addClass("active");
+			if($(this).hasClass("single-style")){
+				dialog.panel.find(".style-pane").css("display","none");
+				dialog.panel.find(".single-pane").css("display","block");
+			}else if($(this).hasClass("unique-style")){
+				dialog.panel.find(".style-pane").css("display","none");
+				dialog.panel.find(".unique-pane").css("display","block");
+			}else if($(this).hasClass("quantities-style")){
+				dialog.panel.find(".style-pane").css("display","none");
+				dialog.panel.find(".quantities-pane").css("display","block");
+			}
 		});
 	},
 
@@ -255,15 +316,31 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	cleanup : function(){
 		this.panel.find("#styles_list_table").html("");
 		this.typeName = null;
-		this.styleCur = null;
+		// this.styleCur = null;
 		this.styleNameCur = null;
 		this.defaultStyle = null;
 		this.uniqueValues = null;
+		this.minMaxValue = null;
 		this.wfsWorkspace = null;
-		this.selectedRuleIndex = null;
 		this.panel.find("#style_type_name").removeClass("disabled");
 		this.panel.find("#layer_fields").html("");
 		this.dbLayer = null;
+
+		this.singleStyle = null;
+		this.uniqueStyle = null;
+		this.quantitiesStyle = null;
+
+		this.cleanupUniquePanel();
+		this.cleanupQuantitiesPanel();
+	},
+	// 清空唯一值样式panel
+	cleanupUniquePanel : function(){
+		this.panel.find(".unique-pane .style-list-table").html("");
+	},
+
+	// 清空分级样式panel
+	cleanupQuantitiesPanel : function(){
+		this.panel.find(".quantities-pane .style-list-table").html("");
 	},
 
 	//获得style的类型
@@ -331,35 +408,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		var dialog = MapCloud.styleManager_dialog;
 		var panel = dialog.panel;
-		dialog.styleCur = style;
-		var defaultStyle = 
-			dialog.getDefaultStyle(style);
-		if(defaultStyle == null){
-			return;
-		}
-		dialog.defaultStyle = defaultStyle;
+		// dialog.styleCur = style;
 
-		//多重样式
-		if(dialog.defaultStyle != dialog.styleCur){
-			//获取到字段
-			var field = dialog.getProperyNameByRule(
-				dialog.styleCur.rules[0]);
-			var fieldOption = dialog.panel.find("#layer_fields option[value='" +
-							field + "']");
-			fieldOption.attr("selected",true);
-			var html = dialog.getRulesListHtml(field,style.rules);
-			dialog.panel.find("#styles_list_table").html(html);
-			dialog.registerSymbolDisplay();
-			dialog.registerStyleSelected();
-		}else{
-			dialog.panel.find("#styles_list_table").html("");
-		}
-		dialog.displayDefaultStyle(dialog.defaultStyle);
-
+		var styleClass = dialog.getStyleClass(style);
+		dialog.setPanelStyle(style,styleClass);
 	},
 
-	//获得默认样式值，从style中拿第一个rule
-	getDefaultStyle : function(style){
+	// 获得样式的分类样式
+	getStyleClass : function(style){
 		if(style == null){
 			return null;
 		}
@@ -372,44 +428,51 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			if(rule != null){
 				var filter = rule.filter;
 				if(filter == null){
-					return style;//此时就是默认样式
+					return "single";
 				}
 			}
+		}else{
+			var uniqueCount = 0;
+			var quantitiesCount = 0;
+			for(var i = 0; i < rules.length;++i){
+				var rule = rules[i];
+				if(rule != null){
+					var filter = rule.filter;
+					if(filter != null){
+						if(filter instanceof GeoBeans.BinaryComparisionFilter){
+							var operator = filter.operator;
+							if(operator == GeoBeans.ComparisionFilter
+								.OperatorType.ComOprEqual){
+								uniqueCount++;
+							}
+						}else if(filter instanceof GeoBeans.IsBetweenFilter){
+							quantitiesCount++;
+						}
+					}
+				}
+			}
+			if(uniqueCount == rules.length){
+				return "unique";
+			}
+			if(quantitiesCount == rules.length){
+				return "quantities";
+			}
 		}
-		var rule = rules[0];
-		if(rule == null){
-			return null;
-		}
-		var symbolizer = rule.symbolizer;
-		if(symbolizer == null){
-			return null;
-		}
-		var textSymbolizer = rule.textSymbolizer;
-		var geomType = style.geomType;
-		var defaultStyle = new GeoBeans.Style.FeatureStyle("default",geomType);
-		var rule = new GeoBeans.Rule();
-		var defaultSymbolizer = symbolizer.clone();
-		rule.symbolizer = defaultSymbolizer;
-
-		
-		if(textSymbolizer != null){
-			var defaultTextSymbolizer = textSymbolizer.clone();
-			
-			rule.textSymbolizer = defaultTextSymbolizer;
-		}
-		
-		defaultStyle.addRule(rule);
-		return defaultStyle;
+		return null;
 	},
 
-	// 展示默认样式
-	displayDefaultStyle : function(style){
+
+	// 单一样式
+	displaySingleStyle : function(style){
 		if(style == null){
 			return;
 		}
 		var rules = style.rules;
-		if(rules.length == 1){
-			var symbolDiv = this.panel.find("#default_style_table .style-symbol").first();
+		if(rules == null){
+			return;
+		}
+		var length = rules.length;
+		if(length == 1){
 			var rule = rules[0];
 			if(rule == null){
 				return;
@@ -419,9 +482,165 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			var cssObj = this.getStyleSymbolCss(symbolizer);
-			symbolDiv.css(cssObj);
+			this.panel.find(".single-pane .style-symbol")
+				.css(cssObj);
 		}
 	},
+
+	// 唯一值样式
+	displayUniqueStyle : function(style){
+		if(style == null){
+			return;
+		}
+		var field = this.getProperyNameByRule(
+				style.rules[0]);
+		var fieldOption = this.panel.find(".unique-pane .layer-fields option[value='" +
+							field + "']");
+		fieldOption.attr("selected",true);
+		var html = this.getRulesListHtml(field,style.rules);
+		this.panel.find(".unique-pane .style-list-table").html(html);
+		this.registerUniqueSymbolEvent();
+	},
+
+	// 分级样式
+	displayQuantitiesStyle : function(style){
+		var field = this.getProperyNameByRule(
+				style.rules[0]);
+		var fieldOption = this.panel.find(".quantities-pane .layer-fields option[value='" +
+							field + "']");
+		fieldOption.attr("selected",true);
+		// set classes count
+		var count = style.rules.length;
+		var classesOption = this.panel.find(".quantities-pane .classes option[value='" + count + "']");
+		classesOption.attr("selected",true);
+
+		var html = this.getRulesListHtml(field,style.rules);
+		this.panel.find(".quantities-pane .style-list-table").html(html);
+		this.registerQuantitiesSymbolEvent();
+	},
+	 
+	// 设置各个panel的style,并设置各个页面的展示
+	setPanelStyle : function(style,styleClass){
+		var singleStyle = this.getSingleStyle(style);
+		this.singleStyle = singleStyle;
+		// 都需要展示单一值页面
+		this.displaySingleStyle(this.singleStyle);
+		if(styleClass == "single"){
+			this.uniqueStyle = null;
+			this.quantitiesStyle = null;
+			this.cleanupUniquePanel();
+			this.cleanupQuantitiesPanel();
+			this.panel.find(".style-pane").css("display","none");
+			this.panel.find(".single-pane").css("display","block");
+			this.panel.find(".list-group-item").removeClass("active");
+			this.panel.find(".single-style").addClass("active");
+		}else if(styleClass == "unique"){
+			this.uniqueStyle = style.clone();
+			this.quantitiesStyle = null;
+			this.cleanupQuantitiesPanel();
+			this.displayUniqueStyle(this.uniqueStyle);
+			this.panel.find(".style-pane").css("display","none");
+			this.panel.find(".unique-pane").css("display","block");
+			this.panel.find(".list-group-item").removeClass("active");
+			this.panel.find(".unique-style").addClass("active");
+		}else if(styleClass == "quantities"){
+			this.uniqueStyle = null;
+			this.cleanupUniquePanel();
+			this.quantitiesStyle = style.clone();
+			this.displayQuantitiesStyle(style);
+			this.panel.find(".style-pane").css("display","none");
+			this.panel.find(".quantities-pane").css("display","block");
+			this.panel.find(".list-group-item").removeClass("active");
+			this.panel.find(".quantities-style").addClass("active");
+		}
+	},
+
+	// 单一值修改样式
+	registerSingleSymbolEvent : function(){
+		var dialog = this;
+		this.panel.find(".single-pane .style-symbol").click(function(){
+			if(dialog.singleStyle != null){
+				var rules = dialog.singleStyle.rules;
+				if(rules != null){
+					var rule = rules[0];
+					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
+					MapCloud.style_dialog.showDialog();	
+					dialog.styleChangedClass = "single";
+					dialog.styleChangedIndex = 0;
+				}
+			}
+		});	
+	},
+	// 单一值修改样式
+	registerUniqueSymbolEvent : function(){
+		var dialog = this;
+		this.panel.find(".unique-pane .style-symbol").click(function(){
+			var symbols = $(this).parents("tbody").find(".style-symbol");
+			var index = symbols.index($(this));
+			if(index != -1 && dialog.uniqueStyle != null){
+				var rules = dialog.uniqueStyle.rules;
+				if(rules != null){
+					var rule = rules[index];
+					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
+					MapCloud.style_dialog.showDialog();	
+					dialog.styleChangedClass = "unique";
+					dialog.styleChangedIndex = index;
+				}
+			}
+		});
+	},
+
+	// 分级样式修改样式
+	registerQuantitiesSymbolEvent : function(){
+		var dialog = this;
+		this.panel.find(".quantities-pane .style-symbol").click(function(){
+			var symbols = $(this).parents("tbody").find(".style-symbol");
+			var index = symbols.index($(this));
+			if(index != -1 && dialog.quantitiesStyle != null){
+				var rules = dialog.quantitiesStyle.rules;
+				if(rules != null){
+					var rule = rules[index];
+					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
+					MapCloud.style_dialog.showDialog();	
+					dialog.styleChangedClass = "quantities";
+					dialog.styleChangedIndex = index;
+				}
+			}
+		});	
+	},
+
+	// 获得单一样式值，取第一个样式
+	getSingleStyle : function(style){
+		if(style == null){
+			return null;
+		}
+		var rules = style.rules;
+		if(rules == null){
+			return;
+		}
+		var geomType = style.geomType;
+
+		var singleStyle = null;
+		if(rules.length >= 1){
+			var rule = rules[0];
+			if(rule != null){
+				var filter = rule.filter;
+				var textSymbolizer = rule.textSymbolizer;
+				var symbolizer = rule.symbolizer;
+				var singleStyle = new GeoBeans.Style.FeatureStyle("single",geomType);
+				var rule = new GeoBeans.Rule();
+				if(symbolizer != null){
+					rule.symbolizer = symbolizer.clone();
+				}
+				if(textSymbolizer != null){
+					rule.textSymbolizer = textSymbolizer.clone();
+				}
+				singleStyle.addRule(rule);
+			}
+		}
+		return singleStyle;
+	},
+
 
 	// 样式CSS
 	getStyleSymbolCss : function(symbolizer){
@@ -556,6 +775,12 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					var name = expression1.name;
 					return name; 
 				}
+			}else if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprIsBetween){
+				var expression = filter.expression;
+				if(expression != null){
+					var name = expression.name;
+					return name;
+				}
 			}
 		}
 		return null;
@@ -577,18 +802,36 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			var rule = rules[i];
 			var filter = rule.filter;
 			var value = "";
-			if(filter != null){
-				var expression1 = filter.expression1;
-				var expression2 = filter.expression2;
-				if(expression1 != null && 
-					expression1.type == GeoBeans.Expression.Type.Literal){
-					value = expression1.value;
-				}else if(expression2 != null && 
-					expression2.type == GeoBeans.Expression.Type.Literal){
-					value = expression2.value;
+			if(filter == null){
+				continue;
+			}
+			var type = filter.type;
+			if(type == GeoBeans.Filter.Type.FilterComparsion){
+				var operator = filter.operator;
+				if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprEqual){
+					var expression1 = filter.expression1;
+					var expression2 = filter.expression2;
+					if(expression1 != null && 
+						expression1.type == GeoBeans.Expression.Type.Literal){
+						value = expression1.value;
+					}else if(expression2 != null && 
+						expression2.type == GeoBeans.Expression.Type.Literal){
+						value = expression2.value;
+					}
+				}else if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprIsBetween){
+					var lowerBound = filter.lowerBound;
+					var upperBound = filter.upperBound;
+					var lowerBoundValue = "";
+					var upperBoundValue = "";
+					if(lowerBound != null){
+						lowerBoundValue = parseFloat(lowerBound.value);
+					}
+					if(upperBound != null){
+						upperBoundValue = parseFloat(upperBound.value);
+					}
+					value = lowerBoundValue.toFixed(2) + "-" + upperBoundValue.toFixed(2);
 				}
 			}
-			
 			var symbolizer = rule.symbolizer;
 			var symbolHtml = this.getSymbolHtml(symbolizer);
 			html += "<tr>"
@@ -605,25 +848,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		html += "</tbody>";
 		return html;
-	},
-
-	// 注册默认样式的点击事件,弹出样式对话框
-	registerDefaultSymbolDisplay : function(){
-		var that = this;
-		this.panel.find("#default_style_table .style-symbol").each(function(){
-			$(this).click(function(){
-				that.isDefaultStyle = true;
-				var rule = that.defaultStyle.rules[0];
-				if(rule != null){
-					if(MapCloud.style_dialog == null){
-						MapCloud.style_dialog = new MapCloud.StyleDialog("style-dialog");
-					}
-					MapCloud.style_dialog.showDialog();	
-					MapCloud.style_dialog.setRule(rule,
-						that.fields,"styleMgr");
-				}
-			});
-		});
 	},
 
 	// 删除样式的结果
@@ -652,30 +876,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 	},
 
-	// 注册样式修改
-	registerSymbolDisplay : function(){
-		var that = this;
-		this.panel.find("#styles_list_table .style-symbol").each(function(){
-			$(this).click(function(){
-				
-				that.isDefaultStyle = false;
-				var symbols = $(this).parents("tbody").find(".style-symbol");
-				var index = symbols.index($(this));
-				if(index != -1){
-					var rule = that.styleCur.rules[index];
-					if(rule != null){
-						MapCloud.style_dialog.showDialog();	
-						MapCloud.style_dialog.setRule(rule,that.fields,"styleMgr");
-						MapCloud.styleManager_dialog.selectedRuleIndex = index;	
-					}
-				}
-			});
-		});
-	},
-
 	//选中一个样式
 	registerStyleSelected : function(){
-		var tr = this.panel.find("#styles_list_table tbody tr").each(function(){
+		var tr = this.panel.find(".unique-pane .style-list-table tbody tr").each(function(){
 			$(this).click(function(){
 				$(this).parent().children().removeClass("selected");
 				$(this).addClass("selected");
@@ -683,25 +886,18 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
-
-	//返回回来的rule
+	// 设置styleDialog返回回来的rule
 	setRule : function(rule){
 		if(rule == null){
 			return;
 		}
-		// this.isStyleChanged = true;
-		if(this.isDefaultStyle == true){
-			this.isDefaultStyle = false;
-			this.defaultStyle.rules[0] = rule;
-			this.displayDefaultStyle(this.defaultStyle);
-		}else{
-			this.styleCur.rules[this.selectedRuleIndex].symbolizer = rule.symbolizer;
-			this.styleCur.rules[this.selectedRuleIndex].textSymbolizer = rule.textSymbolizer;
-			var field = this.panel.find("#layer_fields option:selected").val();
-			var html = this.getRulesListHtml(field,this.styleCur.rules);
-			this.panel.find("#styles_list_table").html(html);
-			this.registerSymbolDisplay();
-			this.registerStyleSelected();
+		if(this.styleChangedClass == "single" && this.styleChangedIndex == 0){
+			this.singleStyle.rules[0] = rule;
+			this.displaySingleStyle(this.singleStyle);
+		}else if(this.styleChangedClass == "unique"){
+			this.uniqueStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
+			this.uniqueStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
+			this.displayUniqueStyle(this.uniqueStyle);
 		}
 	},
 
@@ -731,9 +927,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}else if(flag == "save"){
 			//默认样式则修改名称 待修改
 			this.panel.find("#style_list option[value='default']").text(styleName);
-			var addstyle = null;
-			addStyle = this.styleCur;
-			this.addStyle(addstyle);
+			var style = this.getCurrentStyle();
+			this.addStyle(style);
 		}
 	},
 
@@ -765,13 +960,20 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			style.name = that.addStyleName;
 			var geomType = that.panel.find("#style_type_name").text();
 			style.geomType = geomType;
-			that.panel.find("#styles_list_table").html("");
-			that.defaultStyle = null;
-			that.styleCur =  null;
-			that.isDefaultStyle = false;
-			that.styleNameCur = style.name;
 			that.getStyleXML_callback(style);
 		});
+	},
+
+	// 获得当前设置完的样式值
+	getCurrentStyle : function(){
+		var activeItem = this.panel.find(".list-group-item.active");
+		if(activeItem.hasClass("single-style")){
+			return this.singleStyle;
+		}else if(activeItem.hasClass("unique-style")){
+			return this.uniqueStyle;
+		}else if(activeItem.hasClass("quantities-style")){
+			return this.quantitiesStyle;
+		}
 	},
 
 	// 更新style
@@ -934,27 +1136,53 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	// 设置字段
 	setFields : function(fields){
-		if(fields != null){
-			this.fields = fields;
-			var html = "";
-			var field,name;
-			for(var i = 0; i < fields.length;++i){
-				field = fields[i];
-				if(field != null){
-					name = field.name;
-					html += "<option value='" + name + "'>" + name + "</option>";
-				}
-			}
-			this.panel.find("#layer_fields").html(html);
+		if(fields == null){
+			return;
 		}
-		var that = this;
-		this.panel.find("#layer_fields").each(function(){
+		// 唯一值panel字段设置
+		this.fields = fields;
+		var html = "";
+		var field,name;
+		for(var i = 0; i < fields.length;++i){
+			field = fields[i];
+			if(field != null){
+				name = field.name;
+				html += "<option value='" + name + "'>" + name + "</option>";
+			}
+		}
+		this.panel.find(".unique-pane .layer-fields").html(html);
+		var dialog = this;
+		this.panel.find(".unique-pane .layer-fields").each(function(){
 			$(this).change(function(){
-				that.panel.find("#styles_list_table").html("");
-				that.styleCur = null;
-				
+				dialog.panel.find(".unique-pane .style-list-table").html("");
+				dialog.uniqueStyle = null;
 			});
 		});
+
+		// 分级样式字段设置
+		var quantitiesFieldsHtml = "<option value='none'>none</option>";
+		html = null;
+		var type = null;
+		for(var i = 0; i < fields.length; ++i){
+			field = fields[i];
+			type = field.type;
+			if(type == "int" || type == "double" || type == "float"){
+				name = field.name;
+				html += "<option value='" + name + "'>" + name + "</option>";
+			}
+		}
+		quantitiesFieldsHtml += html;
+		this.panel.find(".quantities-pane .layer-fields").html(quantitiesFieldsHtml);
+		// this.panel.find(".quantities-pane .layer-fields").change(function(){
+		// 	var field = $(this).find("option:selected").val();
+		// 	if(field == "none"){
+		// 		dialog.quantitiesStyle = null;
+		// 		dialog.cleanupQuantitiesPanel();
+		// 	}else{
+		// 		dialog.wfsWorkspace.getMinMaxValue(dialog.typeName,
+		// 			field, mapObj.name,dialog.getMinMaxValue_callback)
+		// 	}
+		// });
 	},
 
 	//色阶地图
@@ -987,39 +1215,55 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				+ 	"	url(" + url + ")'>"
 				+ 	"	</div>"
 				+	"</li>";
-			panel.find("#select_color_ramp").html(htmlSel);
+			panel.find(".select-color-ramp").html(htmlSel);
+			if(dialog.uniqueValues == null){
+
+			}
 		}
 		
-		
-		//颜色选择
-		dialog.panel.find(".color-ramp-div ul li").each(function(){
-			$(this).click(function(){
-				var id = $(this).attr("cid");
-				panel.find("#select_color_ramp li").attr("cid",id);
-				var backgroundUrl 
-				= $(this).find(".color-ramp-item").css("background-image");
-				panel.find("#select_color_ramp li .color-ramp-item")
-				.css("background-image",backgroundUrl);
-
-				var dialog = MapCloud.styleManager_dialog;
-				if(dialog.defaultStyle == dialog.styleCur){
+		// 唯一值页面
+		// dialog.panel.find(".select-color-ramp")
+		dialog.panel.find(".unique-pane .color-ramp-div ul li").click(function(){
+			var id = $(this).attr("cid");
+			var uniquePanel = panel.find(".unique-pane");
+			uniquePanel.find(".select-color-ramp li").attr("cid",id);
+			var backgroundUrl = $(this).find(".color-ramp-item").css("background-image");
+			uniquePanel.find(".select-color-ramp li .color-ramp-item").css("background-image",backgroundUrl);
+			if(dialog.uniqueValues == null){
+				var field = uniquePanel.find(".layer-fields option:selected").val();
+				if(field == null){
 					return;
 				}
+				dialog.wfsWorkspace.getValue(dialog.typeName,field,
+							mapObj.name,
+							dialog.getValuesCallback);
+			}else{
+				var count = dialog.uniqueValues.length;
+				dialog.styleMgr.getColorMap(id,count,
+						dialog.getColorMap_callback)
+			}
+		});
+		
+		// 分级样式
+		dialog.panel.find(".quantities-pane .color-ramp-div ul li").click(function(){
+			var id = $(this).attr("cid");
+			var quantitiesPanel = panel.find(".quantities-pane");
+			quantitiesPanel.find(".select-color-ramp li").attr("cid",id);
+			var backgroundUrl = $(this).find(".color-ramp-item").css("background-image");
+			quantitiesPanel.find(".select-color-ramp li .color-ramp-item").css("background-image",backgroundUrl);
+			var field = quantitiesPanel.find(".layer-fields option:selected").val();
+			if(field == null || field == "none"){
+				return;
+			}
+			if(dialog.minMaxValue == null){
+				dialog.wfsWorkspace.getMinMaxValue(dialog.typeName,
+					field, mapObj.name,dialog.getMinMaxValue_callback);
+			}else{
+				var count = dialog.panel.find(".quantities-pane .classes option:selected").val();
+				dialog.styleMgr.getColorMap(id,count,
+					dialog.getColorMapMinMax_callback);
+			}
 
-				if(dialog.uniqueValues == null){
-					var field = dialog.panel.find("#layer_fields option:selected").val();
-					if(field == null){
-						return;
-					}
-					dialog.wfsWorkspace.getValue(dialog.typeName,field,
-						mapObj.name,
-						dialog.getValuesCallback);
-				}else{
-					var count = dialog.uniqueValues.length;
-					dialog.styleMgr.getColorMap(id,count,
-						dialog.getColorMap_callback);					
-				}
-			});
 		});
 	},
 
@@ -1033,7 +1277,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = MapCloud.styleManager_dialog;
 		var panel = dialog.panel;
 		dialog.uniqueValues = values;
-		var id = panel.find("#select_color_ramp li").attr("cid");
+		var id = panel.find(".unique-pane .select-color-ramp li").attr("cid");
 		dialog.styleMgr.getColorMap(id,count,
 			dialog.getColorMap_callback);
 	},
@@ -1046,17 +1290,124 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = MapCloud.styleManager_dialog;
 		var panel = dialog.panel;
 
-		var defaultRule = dialog.defaultStyle.rules[0];
-		var field = dialog.panel.find("#layer_fields option:selected").val();
+		// var defaultRule = dialog.defaultStyle.rules[0];
+		var defaultRule = dialog.singleStyle.rules[0];
+		var field = dialog.panel.find(".unique-pane .layer-fields option:selected").val();
 		var values = dialog.uniqueValues;
 		var style = dialog.getStyleByValues(defaultRule,field,values,colors);
-		dialog.styleCur = style;
+		dialog.uniqueStyle = style;
 		if(style != null){
-			var html = dialog.getRulesListHtml(field,style.rules);
-			panel.find("#styles_list_table").html(html);
-			dialog.registerSymbolDisplay();
-			dialog.registerStyleSelected();
+			dialog.displayUniqueStyle(dialog.uniqueStyle);
 		}
+	},
+
+	// 最大最小值
+	getMinMaxValue_callback : function(obj){
+		if(obj == null){
+			return;
+		}
+		var min = obj.min;
+		var max = obj.max;
+		var dialog = MapCloud.styleManager_dialog;
+		dialog.minMaxValue = obj;
+
+		// 设置分级数
+		var classesOption = dialog.panel.find(".quantities-pane .classes option[value='5']");
+		classesOption.attr("selected",true);
+		var classes = 5;
+		
+		// 获得色阶值
+		var id = dialog.panel.find(".quantities-pane .select-color-ramp li").attr("cid");
+		dialog.styleMgr.getColorMap(id,classes,
+			dialog.getColorMapMinMax_callback);
+		// var classes = dialog.panel.find(".quantities-pane .classes option:selected").val();
+
+	},
+	// 分级样式的颜色色阶值
+	getColorMapMinMax_callback : function(colors){
+		if(colors == null){
+			return;
+		}
+		var dialog = MapCloud.styleManager_dialog;
+		var defaultRule = dialog.singleStyle.rules[0];
+		var classes = dialog.panel.find(".quantities-pane .classes option:selected").val();
+		
+		var min = dialog.minMaxValue.min;
+		var max = dialog.minMaxValue.max;
+
+		var field = dialog.panel.find(".quantities-pane .layer-fields option:selected").val();
+		var style = dialog.getStyleByMinMaxValues(defaultRule,field,min,max,classes,colors);
+		dialog.quantitiesStyle = style;
+		dialog.displayQuantitiesStyle(dialog.quantitiesStyle);
+	},
+
+	// 根据最大最小值获得样式
+	getStyleByMinMaxValues : function(defaultRule,field,min,max,classes,colorValues){
+		if(defaultRule == null || min == null || max == null || classes == null){
+			return null;
+		}
+
+		var geomType = this.singleStyle.geomType;
+		var style = new GeoBeans.Style.FeatureStyle("quantities",geomType);
+		var rules = [];
+
+		var defaultSymbolizer = defaultRule.symbolizer;
+		var type = defaultSymbolizer.type;
+		var defaultTextSymbolizer = defaultRule.textSymbolizer;
+		var colorValue = null;
+
+		// var interval = (max - min)/(classes-1);
+		var interval = (max - min)/classes;
+		for(var i = 0; i < classes; ++i){
+			var lower = min + interval * i;
+			var upper = min + interval * (i+1);
+			var rule = new GeoBeans.Rule();
+
+			colorValue = colorValues[i];
+
+			var symbolizer = defaultSymbolizer.clone();
+			if(type == GeoBeans.Symbolizer.Type.Point){
+				var opacity = symbolizer.fill.getOpacity();
+				color = new GeoBeans.Color();
+				color.setByHex(colorValue,opacity);
+				symbolizer.fill.color = color;
+			}else if(type == GeoBeans.Symbolizer.Type.Line){
+				var opacity = symbolizer.stroke.getOpacity();
+				color = new GeoBeans.Color();
+				color.setByHex(colorValue,opacity);
+				symbolizer.stroke.color = color;
+			}else if(type == GeoBeans.Symbolizer.Type.Polygon){
+				var opacity = symbolizer.fill.getOpacity();
+				color = new GeoBeans.Color();
+				color.setByHex(colorValue,opacity);
+				symbolizer.fill.color = color;
+			}
+
+			rule.symbolizer = symbolizer;
+
+			if(defaultTextSymbolizer != null){
+				rule.textSymbolizer = defaultTextSymbolizer;
+			}
+
+			var filter = new GeoBeans.IsBetweenFilter();
+			var propertyName = new GeoBeans.PropertyName();
+			propertyName.name = field;
+			var lowerLiteral = new GeoBeans.Literal();
+			lowerLiteral.value = lower;
+			var upperLiteral = new GeoBeans.Literal();
+			upperLiteral.value = upper;
+
+			filter.expression = propertyName;
+			filter.lowerBound = lowerLiteral;
+			filter.upperBound = upperLiteral;
+			rule.filter = filter;
+
+			rule.name = i;
+			rules.push(rule);
+		}
+
+		style.rules = rules;
+		return style;
 	},
 
 	//根据图层的样式，来获取style的样式
@@ -1098,10 +1449,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var colorValuesLength = colorValues.length;
 		var type = defaultSymbolizer.type;
-		var geomType = this.defaultStyle.geomType;
+		var geomType = this.singleStyle.geomType;
 		var styleName = this.panel.find("#style_list option:selected")
 					.text();
-		var style = new GeoBeans.Style.FeatureStyle(styleName,geomType);
+		var style = new GeoBeans.Style.FeatureStyle("unique",geomType);
 		var rules = [];
 
 
