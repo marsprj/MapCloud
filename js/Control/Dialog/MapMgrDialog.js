@@ -61,25 +61,41 @@ MapCloud.MapMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = MapCloud.map_mgr_dialog;
 		var panel = dialog.panel;
 		var html = "";
+
+
+
+
 		for(var i = 0; i < maps.length;++i){
 			var map = maps[i];
 			var name = map.name;
+			var thumbnail = map.thumbnail;
+			var aHtml = "";
+			if(thumbnail != null){
+				aHtml =    "<a href='#' class='map-thumb' style=\"background-image:url("
+						+			thumbnail + ")\">"
+						+  "	<div class='map-check'>"
+						+  "		<img src='images/check.png'>"
+						+  "	</div>"						
+						+	"</a>";
+			}else{
+				aHtml = "<a href='#' class='map-thumb'>"
+				 	 +  "	<div class='map-check'>"
+					 +  "		<img src='images/check.png'>"
+					 +  "	</div>"		
+					 + "</a>";
+			}
 			html += "<li class='maps-thumb' name='" + name + "'>"
-				 + 	"	<a href='#' class='thumbnail'>"
-				 + 	"		<img src='images/map.png' alt='" + name + "'>"
-				 +  "			<div class='map-check'>"
-				 + 	"				<img src='images/check.png'>"
-				 +  "			</div>"
-				 +  "	</a>"
-				 + 	"	<div class='caption text-center'>"
-				 + 	"		<h6>" + name + "</h6>"
-				 + 	"	</div>"
-				 + 	"</li>";
+				+	aHtml
+
+				+ 	"	<div class='caption text-center'>"
+				+ 	"		<h6>" + name + "</h6>"
+				+ 	"	</div>"
+				+ 	"</li>";	
 		}
 		panel.find("#maps_list").html(html);
 
 		// 注册选中事件
-		panel.find(".thumbnail").each(function(){
+		panel.find(".map-thumb").each(function(){
 			$(this).click(function(){
 				//点击选中或者撤销选中
 				if($(this).hasClass("selected")){

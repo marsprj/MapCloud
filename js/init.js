@@ -83,7 +83,14 @@ $().ready(function(){
 			$(".right-panel").css("width","calc(100% - 320px)");
 			mapObj.resize("width");
 		}
-		
+	});
+
+	$("#layers_content_btn").click(function(){
+		if($("#layers_content").css("display") == "none"){
+			$("#layers_content").slideDown();
+		}else{
+			$("#layers_content").slideUp();
+		}
 	});
 
 // 	$("#right_panel .panel-header-collapse").click(function(){

@@ -40,7 +40,17 @@ MapCloud.MapBar = MapCloud.Class({
 						break;
 					}
 					case 7:{
-
+						break;
+					}
+					case 8:{
+						break;
+					}
+					case 9 :{
+						break;
+					}
+					case 10:{
+						that.onStretch(this);
+						break;
 					}
 					default:
 						break;
@@ -148,5 +158,22 @@ MapCloud.MapBar = MapCloud.Class({
 			return;
 		}
 		mapObj.setViewer(extent);
+		mapObj.draw();
+	},
+
+	onStretch : function(bar){
+		var i = $(bar).find("a.btn i");
+		if(i.hasClass("fa-angle-double-left")){
+			// 缩进去
+			i.removeClass("fa-angle-double-left");
+			i.addClass("fa-angle-double-right");
+			this.panel.children().not(".control-icon").css("display","none");
+			this.panel.css("width","30px");
+		}else if(i.hasClass("fa-angle-double-right")){
+			i.removeClass("fa-angle-double-right");
+			i.addClass("fa-angle-double-left");
+			this.panel.children().not(".control-icon").css("display","block");
+			this.panel.css("width","332px");
+		}
 	}
 });

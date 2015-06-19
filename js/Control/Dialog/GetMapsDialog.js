@@ -9,7 +9,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var a = dialog.panel
-				.find(".maps-thumb .thumbnail.selected");
+				.find(".maps-thumb .map-thumb.selected");
 				if(a.length == 0){
 					alert("请选择一个地图！");
 					return;
@@ -46,28 +46,40 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 		for(var i = 0; i < maps.length;++i){
 			var map = maps[i];
 			var name = map.name;
+			var thumbnail = map.thumbnail;
+			var aHtml = "";
+			if(thumbnail != null){
+				aHtml = 	"	<a href='#' class='map-thumb' style=\"background-image:url("
+						+			thumbnail + ")\"></a>";
+			}else{
+				aHtml = 	"	<a href='#' class='map-thumb'></a>";
+			}
 			html += "<li class='maps-thumb' name='" + name + "'>"
-				 + 	"	<a href='#' class='thumbnail'>"
-				 + 	"		<img src='images/map.png' alt='" + name + "'>"
-				 +  "	</a>"
-				 + 	"	<div class='caption text-center'>"
-				 + 	"		<h6>" + name + "</h6>"
-				 + 	"	</div>"
-				 + 	"</li>";
+				+	aHtml
+				+ 	"	<div class='caption text-center'>"
+				+ 	"		<h6>" + name + "</h6>"
+				+ 	"	</div>"
+				+ 	"</li>";	
 		}
 		panel.find("#maps_list").html(html);
 		//注册点击和双击事件
-		panel.find(".thumbnail").each(function(){
+		panel.find(".map-thumb").each(function(){
 			$(this).click(function(){
-				panel.find(".thumbnail").each(function(){
+				panel.find(".map-thumb").each(function(){
 					$(this).removeClass("selected");
 				});
 				$(this).addClass("selected");
 			}).dblclick(function(){
 				var name = $(this).parent().attr("name");
 				dialog.openMap(name);
+			}).mouseover(function(event) {
+				panel.find(".map-thumb").each(function(){
+					$(this).removeClass("enter");
+				});
+				$(this).addClass("enter");
 			});
 		});
+
 	},
 
 	///打开地图
@@ -79,6 +91,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(mapObj == null){
 			MapCloud.alert_info.showInfo("failed",info);
 		}else{
+			$("#layers_content").slideDown();
 			mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();

@@ -253,6 +253,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.quantitiesStyle = null;
 				dialog.cleanupQuantitiesPanel();
 			}else{
+				if(dialog.wfsWorkspace == null){
+					return;
+				}
 				dialog.wfsWorkspace.getMinMaxValue(dialog.typeName,
 					field, mapObj.name,dialog.getMinMaxValue_callback)
 			}
@@ -1312,9 +1315,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		dialog.minMaxValue = obj;
 
 		// 设置分级数
-		var classesOption = dialog.panel.find(".quantities-pane .classes option[value='5']");
-		classesOption.attr("selected",true);
-		var classes = 5;
+		var classesOption = dialog.panel.find(".quantities-pane .classes option:selected");
+		// classesOption.attr("selected",true);
+		// var classes = 5;
+		var classes = classesOption.val();
 		
 		// 获得色阶值
 		var id = dialog.panel.find(".quantities-pane .select-color-ramp li").attr("cid");

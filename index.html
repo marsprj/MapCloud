@@ -367,45 +367,55 @@
 		</div>
 		<div class="container" id="main_panel">
 			<div class="row" id="main_panel_row">
-				<div class="col-fixed mc-panel-full left-panel">
+				<div class="left-panel">
 					<div id="left_panel" class="left-panel-tab">
 						<div class="row" id="map_row">
-							<div class="col-md-10 col-xs-10 col-lg-10">
+							<div class="col-md-9 col-xs-9 col-lg-9">
 								<a href="javascript:void(0)" id="map_name">Sample</a>
 							</div>
-							<div class="col-md-2 col-xs-2 col-lg-2">
-								<div class="mc-icon glyphicon glyphicon-globe"></div>
+							<div class="col-md-1 col-xs-1 col-lg-1">
+								<a href="javascript:void(0)">
+									<i class="fa fa-globe"></i>
+								</a>
+							</div>
+							<div class="col-md-1 col-xs-1 col-lg-1">
+								<a href="javascript:void(0)" id="layers_content_btn">
+									<i class="fa fa-chevron-down"></i>
+								</a>
 							</div>
 						</div>
-						<div class="row" id="layer_tool_row">
-							<div class="col-md-1">
+						<div id="layers_content">
+							<div class="row" id="layer_tool_row">
+								<div class="col-md-1">
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-ok mc-icon"></div>
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-eye-open mc-icon"></div>	
+								</div>
+								<div class="col-md-1 col-xs-1 col-md-offset-2">
+									<div class="glyphicon glyphicon-plus mc-icon"></div>										
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-minus mc-icon"></div>										
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-folder-close mc-icon"></div>			
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-user mc-icon"></div>										
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
+								</div>
 							</div>
-							<div class="col-md-1 col-xs-1">
-								<div class="glyphicon glyphicon-ok mc-icon"></div>
+							<div class="row" id="baseLayer_row">
 							</div>
-							<div class="col-md-1 col-xs-1">
-								<div class="glyphicon glyphicon-eye-open mc-icon"></div>	
-							</div>
-							<div class="col-md-1 col-xs-1 col-md-offset-2">
-								<div class="glyphicon glyphicon-plus mc-icon"></div>										
-							</div>
-							<div class="col-md-1 col-xs-1">
-								<div class="glyphicon glyphicon-minus mc-icon"></div>										
-							</div>
-							<div class="col-md-1 col-xs-1">
-								<div class="glyphicon glyphicon-folder-close mc-icon"></div>			
-							</div>
-							<div class="col-md-1 col-xs-1">
-								<div class="glyphicon glyphicon-user mc-icon"></div>										
-							</div>
-							<div class="col-md-1 col-xs-1">
-								<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
-							</div>
+							<ul class="row" id="layers_row">
+							</ul>
 						</div>
-						<div class="row" id="baseLayer_row">
-						</div>
-						<ul class="row" id="layers_row">
-						</ul>
+							
 					</div>
 					<div id="left_panel_overlay" class="left-panel-tab">
 						<div class="row left_row">
@@ -473,15 +483,64 @@
 						<div id="mapCanvas_wrapper">
 						</div>
 						<div id="datagrid_wrapper">
-							<div class="panel-header">
+							<div class="panel-header" style="height:55px">
 								<button type="button" class="close">
 									<span aria-hidden="true">×</span>
 									<span class="sr-only">Close</span>
 								</button>
-								<div class="panel-header-content float_left">
-									<h5>
-										<i class="fa fa-table fa-2"></i>&nbsp;查询结果
-									</h5>
+								<div class="panel-header-content">
+									<form class="form-horizontal pages-form" role="form">
+									<div class="form-group row">
+										<div class="col-md-6">
+											<label class="col-md-2 control-label panel-header-content-name" >
+												<i class="fa fa-table fa-2"></i>&nbsp;查询结果 ：
+											</label>
+											<label class="col-md-1 control-label query_count">12</label>
+											<label class="col-md-1 control-label">条</label>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-step-backward btn disabled" href="#"></a>
+											</div>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-chevron-left btn disabled"></a>
+											</div>
+											<div class="col-md-2">
+												<input class="form-control pages-form-page" type="text" value="0">
+											</div>
+											<label class="col-md-1 control-label">
+												/
+											</label>
+											<label class="col-md-1 control-label pages-form-pages">1</label>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon glyphicon-chevron-right btn disabled" href="#"></a>
+											</div>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
+											</div>
+										</div>
+										<div class="col-md-3 col-md-offset-3 row">
+											<div class="col-md-6">
+												<a class="btn btn-default  btn-group-justified download-features btn-primary" style="margin-top:2px;">
+		 											<i class="fa fa-download"></i>
+													导出
+												</a>
+											</div>
+											<div class="col-md-6">
+												<a class="btn btn-default btn-primary btn-group-justified clear-features" style="margin-top:2px;">
+		 											<i class="fa fa-trash-o"></i>
+													清空
+												</a>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<div class="col-md-2">
+											<a class="btn btn-default  btn-group-justified download-features" style="margin-top:2px;">
+	 											<i class="fa fa-download"></i>
+												导出
+											</a>
+										</div>
+									</div> -->
+								</form>
 								</div>
 							</div>
 							<div id="datagrid_content" class="table-responsive">
@@ -490,7 +549,7 @@
 									<tbody></tbody>
 								</table>
 							</div>
-							<div id="datagrid_pages">
+							<!-- <div id="datagrid_pages">
 								<form class="form-horizontal pages-form" role="form">
 									<div class="form-group" style="width:600px;float:left;">
 										<label class="col-md-2 control-label" style="tfont-weight:normal">
@@ -530,7 +589,7 @@
 										</div>
 									</div>
 								</form>
-							</div>
+							</div> -->
 						</div>
 						<div id="datagrid_control_wrapper">
 							<div id="datagrid_control">
@@ -630,6 +689,11 @@
 							<div class="mc-icon mc-icon-full-screen"></div>
 							<div class="mc-icon mc-icon-zoom-in"></div>
 							<div class="mc-icon mc-icon-pin"></div>
+							<div class="mc-icon control-icon">
+								<a class="btn btn-default btn-link btn-sm ">
+							  		<i class="fa fa-angle-double-left"></i>
+								</a>
+							</div>							
 						</div>
 						<div id="map_overlay_wrapper" class="">
 							<div class="btn-group"><!-- btn-group-lg -->
@@ -666,6 +730,12 @@
 				</div>
 				<div class="modal-body">
 					<ul id="maps_list">
+						<li class="maps-thumb" name="poi">	
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.151:8088/thumbnail/ce3731f7-3a44-4fce-82eb-d4f8c9f9029b.png)">
+							</a>
+							<div class="caption text-center">	<h6>poi</h6>	
+							</div>
+						</li>
 						
 					</ul>
 				</div>
@@ -1376,7 +1446,7 @@
 												<option value="2">2</option>
 												<option value="3">3</option>
 												<option value="4">4</option>
-												<option value="5">5</option>
+												<option value="5" selected>5</option>
 												<option value="6">6</option>
 												<option value="7">7</option>
 												<option value="8">8</option>

@@ -147,6 +147,12 @@ MapCloud.DataGrid = MapCloud.Class({
 				window.open(url,'_blank');
 			}
 		});
+
+		// 清空
+		this.panel.find(".clear-features").click(function(){
+			mapObj.endQuery();
+			that.cleanup();
+		});
 	},
 
 	// 展示要素
