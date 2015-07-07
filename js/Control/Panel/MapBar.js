@@ -13,30 +13,31 @@ MapCloud.MapBar = MapCloud.Class({
 		this.panel.find(".mc-icon").each(function(index,element){
 			$(this).click(function(){
 				switch(index){
-					//area
 					case 0:{
-						that.onArea();
+						that.onStretch(this);
 						break;
 					}
+					//area
 					case 1:{
+						that.onArea();
 						break;
 					}
 					case 2:{
 						break;
 					}
 					case 3:{
-						that.onFeatureInfo();
 						break;
 					}
 					case 4:{
-						that.endQuery();
+						that.onFeatureInfo();
 						break;
 					}
 					case 5:{
-						that.onMapGlobe();
+						that.endQuery();
 						break;
 					}
 					case 6:{
+						that.onMapGlobe();
 						break;
 					}
 					case 7:{
@@ -45,13 +46,13 @@ MapCloud.MapBar = MapCloud.Class({
 					case 8:{
 						break;
 					}
-					case 9 :{
+					case 9:{
 						break;
 					}
-					case 10:{
-						that.onStretch(this);
+					case 10 :{
 						break;
 					}
+					
 					default:
 						break;
 				}

@@ -124,8 +124,10 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onLayerAddWFS();
 					break;
 				case 7:
+					// WMTS图层
 					that.onLayerAddWMTS();
 					break;
+
 				case 8:
 					// 新建图层
 					that.onLayerNew();
@@ -167,34 +169,44 @@ MapCloud.Ribbon = MapCloud.Class({
 					break;
 				//Data Events
 				case 18:
-					that.addChart();
-					break;
-				case 19:
 					// 文件管理
 					// that.onFile();
 					break;
-				case 20:
+				case 19:
 					//数据库管理
 					that.onDataSource();
 					break;
-				case 21:
+				case 20:
 					// 导入矢量
 					that.onImportVector();
 					break;
-				case 22:
+				case 21:
 					// 	导入影像
 					that.onImportImage();
 					break;
-				// Tools Events
-				case 23:
+				// Chart Events
+				case 22:
+					// 分级图
+					that.onAddRangeChart();
+					break;
+				case 23 :
+					// 柱状图
+					that.onAddBarChart();
+					break;
+				case 24:
+					// 饼状图
+					that.onAddPieChart();
+					break;
+				case 25:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 24:
+				// Tools Events
+				case 26:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 25:
+				case 27:
 					// 图层样式
 					that.onStyleManager();
 					break;
@@ -245,8 +257,26 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.wfs_datasource_dialog.showDialog();
 	},
 
+	// WMTS图层
 	onLayerAddWMTS : function(){
 		MapCloud.wmts_dialog.showDialog();
+	},
+
+	// 分级图
+	onAddRangeChart : function(){
+		MapCloud.chart_panel.showPanel();
+	},
+
+	// 柱状图
+	onAddBarChart : function(){
+		MapCloud.bar_chart_panel.showPanel();
+	},
+
+	// 饼状图
+	onAddPieChart : function(){
+		MapCloud.pie_chart_panel.showPanel();
+		// MapCloud.chart_dialog.showDialog();
+		// MapCloud.chart_dialog.setChartType("pie");
 	},
 
 	// 编辑图层
@@ -326,7 +356,18 @@ MapCloud.Ribbon = MapCloud.Class({
 	/**************************************************************/
 	// 新增图表
 	addChart:function(){
-		alert('新增图表')
+		// if($("#layers_row .layer_row.layer_row_selected").length == 0){
+		// 	MapCloud.alert_info.showInfo("请选择图层","Warning");
+		// 	return;			
+		// }
+		// var layerName = $("#layers_row .layer_row.layer_row_selected").attr("lname");
+		// var layer = mapObj.getLayer(layerName);
+		// if(layer == null){
+		// 	return;
+		// }
+		MapCloud.chart_panel.showPanel();
+		// MapCloud.chart_panel.setLayer(layer);
+		// alert('新增图表');
 		// if(MapCloud.new_chart_dialog == null){
 		// 	MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
 		// }

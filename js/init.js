@@ -26,6 +26,9 @@ $().ready(function(){
 		= new MapCloud.PGISConnectDialog("pgisConnDialog");
 	MapCloud.new_layer_dialog
 		= new MapCloud.NewLayerDialog("newLayerDialog");
+	MapCloud.chart_dialog
+		= new MapCloud.ChartDialog("chart_Dialog");
+
 
 	MapCloud.style_dialog 
 		= new MapCloud.StyleDialog("style-dialog");
@@ -51,6 +54,13 @@ $().ready(function(){
 	MapCloud.search_panel
 		= new MapCloud.SearchPanel("search_wrapper");
 
+	MapCloud.chart_panel
+		= new MapCloud.ChartPanel("chart_wrapper");
+	MapCloud.bar_chart_panel
+		= new MapCloud.BarChartPanel("bar_chart_wrapper");
+	MapCloud.pie_chart_panel
+		= new MapCloud.PieChartPanel("pie_chart_wrapper");
+
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
 	// var mapBarObj = new MapCloud.MapBar();
@@ -65,7 +75,7 @@ $().ready(function(){
 	    handle: ".modal-header"
 	});	
 
-	$("#datagrid_wrapper,#search_wrapper").draggable({
+	$("#datagrid_wrapper,.mc-panel").draggable({
 		handle : ".panel-header"
 	});
 

@@ -1,6 +1,5 @@
 MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
-	// 面板
-	panel 		: null,
+
 
 	// 图层
 	layer 		: null,

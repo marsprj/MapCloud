@@ -35,15 +35,17 @@
 <script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
 
-<script type="text/javascript" src="js/3rd/echarts-plain.js"></script>
+<!-- <script type="text/javascript" src="js/3rd/echarts-plain.js"></script> -->
 <script type="text/javascript" src="js/3rd/jquery-sortable.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="../Map5/lib/echarts-all.js"></script>
 <script type="text/javascript" src="../Map5/lib/heatmap.min.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
@@ -99,6 +101,10 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/chart/ChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/chart/RangeChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/chart/BarChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/chart/PieChartLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
@@ -161,6 +167,9 @@
 <script type="text/javascript" src="js/Control/Panel/DataGrid.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Panel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/SearchPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/ChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/BarChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/PieChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AlertInfo.js"></script>
 <script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
@@ -171,6 +180,7 @@
 <script type="text/javascript" src="js/Control/Dialog/MapMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/CreateMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/NewLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ChartDialog.js"></script>
 
 <script type="text/javascript" src="js/Control/Dialog/CreateLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/PGISConnectDialog.js"></script>
@@ -222,6 +232,7 @@
 						<li id="map_tab" class="mc-active-tab"><a href="javascript:void(0)">地图</a></li>
 						<li id="layer_tab"><a href="javascript:void(0)">图层</a></li>
 						<li id="data_tab"><a href="javascript:void(0)">数据</a></li>
+						<li id="chart_tab"><a href="javascript:void(0)">专题图</a></li>
 						<!--<li id="analysis_tab"><a href="javascript:void(0)">分析</a></li>-->
 						<li id="tool_tab"><a href="javascript:void(0)">工具</a></li>
 					</ul>
@@ -250,7 +261,7 @@
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
-								<div class="ribbon_label">新建图层</div>
+								<div class="ribbon_label">添加图层</div>
 							</div>
 							
 							<div class="ribbon-item">
@@ -266,12 +277,13 @@
 								<div class="ribbon_label">WMTS图层</div>
 							</div>
 						</div>
+						
 					</div>
 					<div id="layer_ribbon" class="ribbon_panel">
 						<div class="ribbon_group">
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
-								<div class="ribbon_label">新建图层</div>
+								<div class="ribbon_label">添加图层</div>
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-edit"></div>
@@ -318,12 +330,12 @@
 						</div>
 					</div>
 					<div id="data_ribbon" class="ribbon_panel">
-						<div class="ribbon_group mc-border-right-light">
+						<!-- <div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-								<div class="ribbon_label">新建图表</div>
+								<div class="ribbon_label">专题图</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="ribbon_group mc-border-right-light">
 
 							<div class="ribbon-item">
@@ -344,14 +356,30 @@
 							</div>
 						</div>
 					</div>
-					<div id="analysis_ribbon" class="ribbon_panel">
-					</div>
-					<div id="tool_ribbon" class="ribbon_panel">
+					<div id="chart_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">分级图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">柱状图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">饼状图</div>
+							</div>
+						</div>
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
 								<div class="ribbon_label">热力图</div>
 							</div>
+						</div>
+					</div>
+					<div id="tool_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_vector"></div>
 								<div class="ribbon_label">标注</div>
@@ -600,7 +628,7 @@
 								</a>
 							</div>
 						</div>
-						<div id="search_wrapper">
+						<div id="search_wrapper" class="mc-panel">
 							<div class="panel-header">
 								<button type="button" class="close">
 									<span aria-hidden="true">×</span>
@@ -678,7 +706,473 @@
 								<button type="button" class="btn btn-primary btn-search">应用</button>
 							</div>
 						</div>
+						<div id="chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-bar-chart fa-2"></i>&nbsp;分级图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-8">
+								      		<input class="form-control chart-table-name" type="text" value="分级图">
+								    	</div>
+								  	</div>
+								</form>
+								<div class="panel-group" id="chart_accordion" role="tablist">
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#chart_accordion" href="#chart_base_layer_coll" aria-expanded="true" aria-controls="chart_base_layer_coll">
+									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+													<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">表:
+									      				</label>
+														<div class="col-md-8">
+														 	<div class="input-group ">
+														    	<input type="text" class="form-control chart-table" disabled="">
+														    	<span class="input-group-btn">
+														   			<button class="btn btn-sm btn-success btn-chose-chart" type="button">选择</button>
+														   		</span>
+														  	</div>
+														</div>
+													</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">关联字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-table-fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">底图:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_style_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#chart_accordion" href="#chart_style_coll" aria-expanded="true" aria-controls="chart_style_coll">
+									          		<i class="fa fa-bars"></i>&nbsp;分级设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="chart_style_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control" id="chart_style_fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm form-group-border">
+									      				<label class="control-label col-md-3">边界:
+									      				</label>
+									      				<div class="col-md-1" style="padding-top:6px">
+									      					<div class="btn btn-default colorSelector">			
+									      						<div style="opacity: 0.6; background-color: rgb(99, 37, 147);"></div>		
+									      					</div>
+									      				</div>
+									      				<div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label id="chart_style_border_opacity" class="control-label col-md-1">1</label>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">色阶:
+									      				</label>
+													    <div class="col-md-8 color-ramp-div">
+															<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+																<div class="color-ramp-item">
+																</div>
+															</button>
+															<ul class="dropdown-menu" role="menu" id="">
+																<li>
+																	<div class="color-ramp-item"></div>
+																</li>
+																<li>
+																	<div class="color-ramp-item"></div>
+																</li>
+															</ul>
+														</div>
+									      			</div>
+									      			<div class="form-group form-group-sm form-group-fill-opacity">
+									      				<label class="control-label col-md-3">透明度:
+									      				</label>
+													    <div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label id="chart_style_opacity" class="control-label col-md-1">1</label>
+									      			</div>
+									      		</form>
+									      		<div id="chart_style_div">
+									      		</div>
+									      	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="bar_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-bar-chart fa-2"></i>&nbsp;柱状图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-8">
+								      		<input class="form-control chart-table-name" type="text" value="分级图">
+								    	</div>
+								  	</div>
+								</form>
+								<div class="panel-group" id="bar_chart_accordion" role="tablist">
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_base_layer_coll" aria-expanded="true" aria-controls="bar_chart_base_layer_coll">
+									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="bar_chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">表:
+									      				</label>
+														<div class="col-md-8">
+														 	<div class="input-group ">
+														    	<input type="text" class="form-control chart-table" disabled="">
+														    	<span class="input-group-btn">
+														   			<button class="btn btn-sm btn-success btn-chose-chart" type="button">选择</button>
+														   		</span>
+														  	</div>
+														</div>
+													</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">关联字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-table-fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">底图:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="bar_chart_table_set_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_table_set_coll" aria-expanded="false">
+									          		<i class="fa fa-info"></i>&nbsp;基本设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="bar_chart_table_set_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">大小:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-height" type="text" value="200" data-toggle="tooltip" data-placement="top" data-original-title="高度">
+									      				</div>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-width" type="text" value="80" data-toggle="tooltip" data-placement="top" data-original-title="宽度">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">偏移:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-x" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="X向,向右为正">
+									      				</div>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-y" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="Y向,向上为正">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">X轴:
+									      				</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-x-axisLine">axisLine</label>
+									      				</div>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-x-splitLine">splitLine</label>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">Y轴:
+									      				</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-y-axisLine">axisLine</label>
+									      				</div>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-y-splitLine">splitLine</label>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">标签</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-show-label"></label>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="bar_chart_table_style_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_table_style_coll" aria-expanded="false">
+									          		<i class="fa fa-cog"></i>&nbsp;样式设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="bar_chart_table_style_coll" class="panel-collapse collapse" role="tabpanel">
+									    	<div class="panel-body">
+									    		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">字段:</label>
+									      				<div class="col-md-9 chart-fields">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">透明度:
+									      				</label>
+													    <div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label class="control-label col-md-1 chart-opacity">1</label>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">属性:
+									      				</label>
+									      			</div>
+									      		</form>
+									    	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="pie_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-pie-chart fa-2"></i>&nbsp;饼状图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-8">
+								      		<input class="form-control chart-table-name" type="text" value="饼状图">
+								    	</div>
+								  	</div>
+								</form>
+								<div class="panel-group" id="pie_chart_accordion" role="tablist">
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_base_layer_coll" aria-expanded="true" aria-controls="pie_chart_base_layer_coll">
+									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="pie_chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">表:
+									      				</label>
+														<div class="col-md-8">
+														 	<div class="input-group ">
+														    	<input type="text" class="form-control chart-table" disabled="">
+														    	<span class="input-group-btn">
+														   			<button class="btn btn-sm btn-success btn-chose-chart" type="button">选择</button>
+														   		</span>
+														  	</div>
+														</div>
+													</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">关联字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-table-fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">底图:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="pie_chart_table_set_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_table_set_coll" aria-expanded="false">
+									          		<i class="fa fa-info"></i>&nbsp;基本设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="pie_chart_table_set_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">半径:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-radius" type="text" value="40" data-toggle="tooltip" data-placement="top" data-original-title="半径">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">偏移:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-x" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="X向,向右为正">
+									      				</div>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-y" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="Y向,向上为正">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">标签</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-show-label"></label>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="pie_chart_table_style_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_table_style_coll" aria-expanded="false">
+									          		<i class="fa fa-cog"></i>&nbsp;样式设置
+									        	</a>
+									      	</h4>
+									    </div>
+									     <div id="pie_chart_table_style_coll" class="panel-collapse collapse" role="tabpanel">
+									    	<div class="panel-body">
+									    		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">字段:</label>
+									      				<div class="col-md-9 chart-fields">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">透明度:
+									      				</label>
+													    <div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label class="control-label col-md-1 chart-opacity">1</label>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">属性:
+									      				</label>
+									      			</div>
+									      		</form>
+									    	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
 						<div id="map_bar_wrapper" class="mc-border" >
+							<div class="mc-icon control-icon">
+								<a class="btn btn-default btn-link btn-sm ">
+							  		<i class="fa fa-angle-double-left"></i>
+								</a>
+							</div>	
 							<div class="mc-icon mc-icon-area"></div>
 							<div class="mc-icon mc-icon-plus"></div>
 							<div class="mc-icon mc-icon-minus"></div>
@@ -689,11 +1183,7 @@
 							<div class="mc-icon mc-icon-full-screen"></div>
 							<div class="mc-icon mc-icon-zoom-in"></div>
 							<div class="mc-icon mc-icon-pin"></div>
-							<div class="mc-icon control-icon">
-								<a class="btn btn-default btn-link btn-sm ">
-							  		<i class="fa fa-angle-double-left"></i>
-								</a>
-							</div>							
+													
 						</div>
 						<div id="map_overlay_wrapper" class="">
 							<div class="btn-group"><!-- btn-group-lg -->
@@ -1090,6 +1580,51 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Chart panel -->
+	<div class="modal fade" id="chart_Dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">专题图</h5>
+				</div>
+				<div class="modal-body">
+					<div class="tab-pane active" id="">
+						<form class="form-horizontal" role="form">
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									名称：
+								</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" id="chart_name">
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									数据源：
+								</label>
+								<div class="col-md-3">
+									<a href="#" class="btn btn-sm btn-success" id="chart_select_dbs">选择数据源</a>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="col-md-offset-3 col-md-6">
+									<input class="form-control" type="text" id="chart_dbs" disabled="true">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- New Chart panel -->
 	<div class="modal fade" id="newChartDialog" tabindex="-1" role="dialog" aria-hidden="true"

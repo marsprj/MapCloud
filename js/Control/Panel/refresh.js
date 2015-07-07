@@ -95,9 +95,10 @@ MapCloud.refresh = MapCloud.Class({
 				html += this.getWFSLayerHtml(i,layer);
 			}else if(layer instanceof GeoBeans.Layer.WMSLayer){
 				html += this.getWMSLayerHtml(i,layer);
-			}
-			if(layer instanceof GeoBeans.Layer.DBLayer){
+			}else if(layer instanceof GeoBeans.Layer.DBLayer){
 				html += this.getDBLayerHtml(i,layer);
+			}else if(layer instanceof GeoBeans.Layer.ChartLayer){
+				html += this.getChartLayerHtml(i,layer);
 			}
 		}
 
@@ -482,6 +483,36 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.styleManager_dialog.showDialog(false);
 				MapCloud.styleManager_dialog.setDBLayer(layer);
 			});
+		});
+
+		// chartLayer的编辑
+		this.panel.find(".mc-icon-chartlayer").click(function(){
+			var li = $(this).parents("li");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			var type = layer.type
+			switch(type){
+				case GeoBeans.Layer.ChartLayer.Type.RANGE:{
+					MapCloud.chart_panel.showPanel();
+					MapCloud.chart_panel.setChartLayer(layer);
+					break;
+				}
+				case GeoBeans.Layer.ChartLayer.Type.BAR:{
+					MapCloud.bar_chart_panel.showPanel();
+					MapCloud.bar_chart_panel.setChartLayer(layer);
+					break;
+				}
+				case GeoBeans.Layer.ChartLayer.Type.PIE:{
+					MapCloud.pie_chart_panel.showPanel();
+					MapCloud.pie_chart_panel.setChartLayer(layer);
+					break;
+				}
+				default:
+					break;
+			}
 		});
 	},
 	
@@ -1002,7 +1033,7 @@ MapCloud.refresh = MapCloud.Class({
 		var style = layer.style;
 
 		// html	= 	"<li class=\"row layer_row\" value=\"" + index + "\">"
-		html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+		var html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
 				+	"	</div>"
@@ -1076,5 +1107,53 @@ MapCloud.refresh = MapCloud.Class({
 		var panel = MapCloud.refresh_panel;
 		panel.refreshPanel();
 		mapObj.draw();
+	},
+
+	// 专题图
+	getChartLayerHtml : function(index,layer){
+		if(layer == null){
+			return "";
+		}
+		var name = layer.name;
+		var html = 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<a href='javascript:void(0)' class='mc-icon-chartlayer'>"
+				+	"			<i class='fa fa-bar-chart'></i>"
+				+	"		</a>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"		<strong>" + name + "</strong>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
+		html += "</li>";
+		return html;
 	}
 });

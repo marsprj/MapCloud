@@ -6,6 +6,8 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 每页显示的个数
 	maxFeatures 	: 20,
 
+	flag 			: null,
+
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
@@ -27,14 +29,21 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 		dialog.registerPanelEvent();
 	},
 
-	showDialog : function(){
+	showDialog : function(flag){
 		MapCloud.alert_info.loading();
 		this.cleanup();
 		this.panel.modal();
 		dbsManager.getDataSources(this.getDataSources_callback);
+		this.flag = flag;
+		if(this.flag == "select" || this.flag == "chart"){
+			this.panel.find(".btn-confirm").html("选择");
+		}else{
+			this.panel.find(".btn-confirm").html("确定");
+		}
 	},
 
 	cleanup : function(){
+		this.flag = null;
 		this.dataSourceCur = null;
 		this.dataSetCur = null;
 		this.panel.find(".servers-pane table tbody").html("");
@@ -50,6 +59,62 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 	//  注册panel中的按钮点击事件
 	registerPanelEvent : function(){
 		var dialog = this;
+		// 选择
+		this.panel.find(".btn-confirm").click(function(){
+			if(dialog.flag == "select"){
+				var table = dialog.panel.find(".tree-table.selected");
+				var index = table.attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.new_layer_dialog
+							.setDataSet(dialog.dataSourceCur,
+								dataSet);
+						dialog.closeDialog();
+					}
+				}
+			}else if(dialog.flag == "range"){
+				var table = dialog.panel.find(".tree-table.selected");
+				var index = table.attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.chart_panel.setTable(dialog.dataSourceCur.name,
+								dataSet.name);
+						dialog.closeDialog();
+					}
+				}
+			}else if(dialog.flag == "bar"){
+				var table = dialog.panel.find(".tree-table.selected");
+				var index = table.attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.bar_chart_panel.setTable(dialog.dataSourceCur.name,
+								dataSet.name);
+						dialog.closeDialog();
+					}
+				}
+			}else if(dialog.flag == "pie"){
+				var table = dialog.panel.find(".tree-table.selected");
+				var index = table.attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.pie_chart_panel.setTable(dialog.dataSourceCur.name,
+								dataSet.name);
+						dialog.closeDialog();
+					}
+				}
+			}else{
+				dialog.closeDialog();
+			}
+		});
+
 		// servers pane
 		// 增加dataSource
 		dialog.panel.find("#add_server").click(function(){
@@ -276,11 +341,17 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 		var html = "<ul class='nav' style='display:none'>";
 		for(var i = 0; i < dataSets.length; ++i){
 			dataSet = dataSets[i];
+			if(dataSet == null){
+				continue;
+			}
+			var geomType = dataSet.geometryType;
+			var geomTypeHtml = this.getDataSetGeomTypeHtml(geomType);
 			name = dataSet.name;
 			html += "<li>"
 				+ 	"	<a href='#' class='tree-table' dindex='"
 				+		i + "'>"
-				+	"		<i class='mc-db-icon mc-db-icon-dataset'></i>"
+				// +	"		<i class='mc-db-icon mc-db-icon-dataset'></i>"
+				+ 		geomTypeHtml
 				+	"		<span>"	 + name + "</span>"
 				+	"	</a>"
 				+	"</li>";
@@ -305,17 +376,53 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 			}
 		}).dblclick(function(){	//注册双击事件，返回到新建图层对话框
-			var index = $(this).attr("dindex");
-			if(dialog.dataSourceCur != null){
-				var dataSets = dialog.dataSourceCur.dataSets;
-				if(dataSets != null){
-					var dataSet = dataSets[index];
-					MapCloud.new_layer_dialog
-						.setDataSet(dialog.dataSourceCur,
-							dataSet);
-					dialog.closeDialog();
+			if(dialog.flag == "select"){
+				var index = $(this).attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.new_layer_dialog
+							.setDataSet(dialog.dataSourceCur,
+								dataSet);
+						dialog.closeDialog();
+					}
+				}
+			}else if(dialog.flag == "range"){
+				var index = $(this).attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.chart_panel.setTable(dialog.dataSourceCur.name,
+								dataSet.name);
+						dialog.closeDialog();
+					}
+				}
+			}else if(dialog.flag == "bar"){
+				var index = $(this).attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.bar_chart_panel.setTable(dialog.dataSourceCur.name,
+								dataSet.name);
+						dialog.closeDialog();
+					}
+				}
+			}else if(dialog.flag == "pie"){
+				var index = $(this).attr("dindex");
+				if(dialog.dataSourceCur != null){
+					var dataSets = dialog.dataSourceCur.dataSets;
+					if(dataSets != null){
+						var dataSet = dataSets[index];
+						MapCloud.pie_chart_panel.setTable(dialog.dataSourceCur.name,
+								dataSet.name);
+						dialog.closeDialog();
+					}
 				}
 			}
+			
 		});
 	},
 
@@ -592,6 +699,33 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 		var url = dataSet.getPreview(width,height);
 		this.panel.find("#dataset_preview_img").attr("src",url);
 	},
+
+	getDataSetGeomTypeHtml : function(geomType){
+		var html = "";
+		switch(geomType){
+			case GeoBeans.Geometry.Type.POINT:
+			case GeoBeans.Geometry.Type.MULTIPOINT:{
+				html = '<i class="mc-db-icon mc-db-icon-dataset-point"></i>';
+				break;
+			}
+			case GeoBeans.Geometry.Type.LINESTRING:
+			case GeoBeans.Geometry.Type.MULTILINESTRING:{
+				html = '<i class="mc-db-icon mc-db-icon-dataset-line"></i>';
+				break;
+			}
+			case GeoBeans.Geometry.Type.POLYGON:
+			case GeoBeans.Geometry.Type.MULTIPOLYGON:{
+				html = '<i class="mc-db-icon mc-db-icon-dataset-polygon"></i>';
+				break;
+			}
+			default :{
+				html = '<i class="mc-db-icon mc-db-icon-dataset"></i>';
+				break;
+			}
+		};
+		return html;
+	}
+	
 
 
 

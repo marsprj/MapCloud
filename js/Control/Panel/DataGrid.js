@@ -93,7 +93,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.panel.find(".close").click(function(){
 			that.hidePanel();
 		});
-		this.controlPanel.click(function(){
+		this.controlPanel.find(".btn").click(function(){
 			that.showPanel();
 		});
 	},
