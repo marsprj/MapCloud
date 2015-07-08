@@ -90,7 +90,7 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 		// 切换底图
 		this.panel.find(".chart-base-layer").change(function(){
 			var value = $(this).val();
-			that.showFields(value);
+			that.showBaseLayerFields(value);
 			if(that.chartLayer != null){
 				that.chartLayer.setBaseLayer(value);
 			}
@@ -181,6 +181,12 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 	// 展示底图
 	showLayersTab : function(){
+		this.showBaseLayer();
+		this.showLabelLayer();
+	},
+
+	// 底图
+	showBaseLayer : function(){
 		if(mapObj == null){
 			return;
 		}
@@ -200,14 +206,13 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 		}
 		this.panel.find(".chart-base-layer").html(html);
 
-		var that = this;
 
 		var value = this.panel.find(".chart-base-layer").val();
-		this.showFields(value);
+		this.showBaseLayerFields(value);
 	},
 
 	// 展示底图字段
-	showFields : function(layerName){
+	showBaseLayerFields : function(layerName){
 		var layer = mapObj.getLayer(layerName);
 		if(layer == null){
 			return;
@@ -229,6 +234,57 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 			+ name + "</option>";
 		}
 		this.panel.find(".chart-base-layer-fields").html(html);
+	},
+
+	// 标注层
+	showLabelLayer : function(){
+		if(mapObj == null){
+			return;
+		}
+		var layers = mapObj.getLayers();
+		var layer = null;
+		var name = null;
+		var html = "";
+		for(var i = 0; i < layers.length; ++i){
+			layer = layers[i];
+			if(layer instanceof GeoBeans.Layer.DBLayer && 
+				(layer.geomType == GeoBeans.Geometry.Type.POINT
+				|| layer.geomType == GeoBeans.Geometry.Type.MULTIPOINT)){
+				name = layer.name;
+				html += "<option value='" + name + "'>" 
+				+ name + "</option>";
+			}
+		}
+		this.panel.find(".chart-label-layer").html(html);
+
+
+		var value = this.panel.find(".chart-label-layer").val();
+		this.showLabelLayerFields(value);
+	},
+
+	// 标注层字段
+	showLabelLayerFields : function(layerName){
+		var layer = mapObj.getLayer(layerName);
+		if(layer == null){
+			return;
+		}
+		var fields = layer.getFields();
+		if(fields == null){
+			return;
+		}
+		var field = null;
+		var name = null;
+		var html = "";
+		for(var i = 0; i < fields.length; ++i){
+			field = fields[i];
+			if(field == null){
+				continue;
+			}
+			name = field.name;
+			html += "<option value ='" + name + "'>"
+			+ name + "</option>";
+		}
+		this.panel.find(".chart-label-layer-fields").html(html);
 	},
 
 	// 选择的图表的字段
@@ -346,11 +402,14 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 		var tableName = this.tableName;
 		var tableField = this.panel.find(".chart-table-fields").val();
 		var chartField = this.panel.find("#chart_style_fields").val();
+		var labelLayer = this.panel.find(".chart-label-layer").val();
+		var labelLayerField = this.panel.find(".chart-label-layer-fields").val();
 
 		var chartOption = this.getChartOption();
 
 		var layer = new GeoBeans.Layer.RangeChartLayer(chartName,layerName,
-			baseLayerField,dbName,tableName,tableField,[chartField],chartOption);
+			baseLayerField,dbName,tableName,tableField,[chartField],chartOption,
+			labelLayer,labelLayerField);
 		mapObj.addLayer(layer,this.addChartLayer_callback);
 	},
 
