@@ -80,6 +80,7 @@ MapCloud.refresh = MapCloud.Class({
 			var baseLayerhtml = this.getBaseLayerHtml(baseLayer);
 			$("#baseLayer_row").html(baseLayerhtml);
 			$("#baseLayer_row").css("padding","6px");
+			$("#baseLayer_row").removeClass("sm");
 		}
 		
 		// 各个图层

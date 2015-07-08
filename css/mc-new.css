@@ -486,8 +486,11 @@ ul#ribbon_tabs li{
 	cursor:pointer;
 	word-break: break-all;
 }
-#baseLayer_row{
+#baseLayer_row .sm{
 	padding: 0px !important;
+}
+#baseLayer_row{
+	border-bottom: 1px solid #CACACA;
 }
 .layer_row:hover,#baseLayer_row:hover{
 	background-color: #DFF1F8;
