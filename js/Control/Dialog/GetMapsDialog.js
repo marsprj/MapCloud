@@ -92,11 +92,11 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.alert_info.showInfo("failed",info);
 		}else{
 			$("#layers_content").slideDown();
-			if(mapObj.extent != null){
-				mapObj.setViewer(mapObj.extent);
-			}else{
-				mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
-			}
+			// if(mapObj.extent != null){
+			// 	mapObj.setViewer(mapObj.extent);
+			// }else{
+			// 	mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));
+			// }
 			mapObj.setNavControl(false);
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();

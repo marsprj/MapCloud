@@ -776,16 +776,17 @@ ul#ribbon_tabs li{
 .chart-panel label{
 	font-weight: normal;
 	padding-left: 6px;
+	padding-right: 6px;
 }
 .chart-panel .panel-title{
 	font-size: 14px !important;
 }
 
-#chart_wrapper .color-ramp-item{
+.chart-panel .color-ramp-item{
 	background-size: 150px;
 }
 
-#chart_wrapper .dropdown-menu{
+.chart-panel .dropdown-menu{
 	margin-left: 15px;
 }
 .chart-panel .colorSelector{
@@ -825,6 +826,13 @@ ul#ribbon_tabs li{
 	float: right;
 }
 
+#aqi_chart_wrapper .dropdown-menu,#aqi_timeline_chart_wrapper .dropdown-menu{
+	width: 200px;
+}
+#aqi_chart_wrapper .color-ramp-item,#aqi_timeline_chart_wrapper .color-ramp-item{
+	background-size: 170px;
+	height: 22px;
+}
 
 /*伸缩按钮*/
 #map_btn{
@@ -2016,3 +2024,139 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* Features Dialog End  														*/
 /***************************************************************************/
+/***************************************************************************/
+
+/***************************************************************************/
+/* AQI 24 Dialog Begin  														*/
+/***************************************************************************/
+
+#aqi24hDialog .modal-dialog{
+	width: 800px;
+}
+
+#aqi24hDialog .modal-body{
+	height: 600px;
+}
+
+#aqi24hDialog .modal-title{
+	text-align: center;
+}
+#aqi_24_div{
+	/*height:calc(100% - 60px);*/
+	/*height: 100%;*/
+	height: 570px;
+	width: 768px;
+	left: 15px;
+	top:15px;
+	position: absolute;
+}
+.aqi-index-div{
+/*	position: absolute;
+	left: 10px;
+	top: -30px;*/
+	height: 0px;
+	margin-left: 154px;
+}
+#aqi24hDialog .multiselect-container{
+	width: 360px;
+}
+#aqi24hDialog .multiselect-selected-text{
+	display: none;
+}
+#aqi24hDialog .multiselect.dropdown-toggle{
+	width: 20px !important;
+	height: 20px;
+	padding: 2px;
+	border-radius: 1px;
+/*  	border-color: #74D574;*/
+  	/*border-width: 2px;*/
+}
+#aqi24hDialog .btn-group{
+	top: 0px;
+	z-index: 1000;
+	width: 20px !important;
+	margin-top: 3px;
+}
+/*#aqi24hDialog .caret{
+	color: #2EBF2E;
+}*/
+
+/***************************************************************************/
+/* AQI 24 Dialog End  														*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* aqi 对比 panel Begin  														*/
+/***************************************************************************/
+
+#aqi_station_comp_panel{
+	position: absolute;
+	min-height: 30px;
+	height: initial;
+	width: 120px;
+	right: 10px;
+	top: 10px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #fff;
+	display: none;
+}
+.aqi-station-div{
+	text-align: center;
+	border-top: 1px solid #ccc;
+	padding:4px;
+	position: relative;
+}
+
+.aqi-station-div span{
+	display: inline-block;
+	width: 80%;
+	margin: 4px 0px;
+	cursor: pointer;
+}
+
+.aqi-station-div .close{
+	color : #fff;
+	position: absolute;
+	right: 6px;
+	top: 2px;
+}
+.aqi-station-div:hover .close{
+	color : #4B4B4B;
+}
+
+.aqi-station-div:first-child{
+	border: none;
+}
+.aqi-station-btn{
+	border-top: 1px solid #ccc;
+	text-align: center;
+}
+
+/*.aqi-station-div:last-child{
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}*/
+/***************************************************************************/
+/* aqi 对比 panel End  														*/
+/***************************************************************************/
+
+
+/***************************************************************************/
+/* aqi 对比 dialog Begin  														*/
+/***************************************************************************/
+#aqiStatCompDialog .modal-dialog{
+	width: 800px;
+}
+
+#aqiStatCompDialog .modal-body{
+	height: 600px;
+}
+#aqi_stat_com_div{
+	height: 600px;
+	width: 768px;
+}
+/***************************************************************************/
+/* aqi 对比 dialog End  														*/
+/***************************************************************************/
+

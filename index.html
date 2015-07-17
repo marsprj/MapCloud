@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-multiselect.css"/>
 
 	<link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/colpick/colpick.css" type="text/css">
@@ -16,6 +18,8 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/mc.css"/> -->
 	<link rel="stylesheet" type="text/css" href="css/mc-new.css"/>
 	<link rel="stylesheet" type="text/css" href="../Map5/css/Map5.css"/>
+	<link rel="stylesheet" type="text/css" href="../Map5/css/custom_slider.css"/>
+
 	<script type="text/javascript" src="js/3rd/jquery-1.11.1.js"></script>
 
 	<script type="text/javascript" src="js/3rd/colpick/colpick.js"></script>
@@ -32,6 +36,10 @@
 <!-- <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
 <script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-multiselect.js"></script>
+
 <script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
 
@@ -41,6 +49,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
 <script type="text/javascript" src="../Map5/lib/echarts-all.js"></script>
 <script type="text/javascript" src="../Map5/lib/heatmap.min.js"></script>
+<script type="text/javascript" src="../Map5/lib/jquery.nouislider.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
@@ -106,6 +115,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQIChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQITimelineLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
 
 
@@ -127,6 +137,11 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/InfoWindow.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/MapManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIIndexChart.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIStatCompChart.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQITimePointList.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/MapWorkspace.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
@@ -172,6 +187,8 @@
 <script type="text/javascript" src="js/Control/Panel/ChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/BarChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/PieChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/AQIChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/AQITimelineChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AlertInfo.js"></script>
 <script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
@@ -199,7 +216,8 @@
 <script type="text/javascript" src="js/Control/Dialog/HeatMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ImportVectorDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/FeaturesDialog.js"></script>
-
+<script type="text/javascript" src="js/Control/Dialog/AQI24hDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/AQIStatCompDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -379,6 +397,16 @@
 								<div class="ribbon_label">热力图</div>
 							</div>
 						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">AQI</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">AQI序列图</div>
+							</div>
+						</div>
 					</div>
 					<div id="tool_ribbon" class="ribbon_panel">
 						<div class="ribbon_group mc-border-right-light">
@@ -400,12 +428,17 @@
 				<div class="left-panel">
 					<div id="left_panel" class="left-panel-tab">
 						<div class="row" id="map_row">
-							<div class="col-md-9 col-xs-9 col-lg-9">
+							<div class="col-md-8 col-xs-8 col-lg-8">
 								<a href="javascript:void(0)" id="map_name">Sample</a>
 							</div>
 							<div class="col-md-1 col-xs-1 col-lg-1">
 								<a href="javascript:void(0)">
 									<i class="fa fa-globe"></i>
+								</a>
+							</div>
+							<div class="col-md-1 col-xs-1 col-lg-1">
+								<a href="javascript:void(0)" id="save_map_btn">
+									<i class="fa fa-floppy-o"></i>
 								</a>
 							</div>
 							<div class="col-md-1 col-xs-1 col-lg-1">
@@ -1183,6 +1216,208 @@
 								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
 							</div>
 						</div>
+						<div id="aqi_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cloud fa-2"></i>&nbsp;空气质量指数时刻图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-9">
+								      		<input class="form-control chart-table-name" type="text" value="空气质量指数专题图">
+								    	</div>
+								  	</div>
+								  	<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										日期:
+										</label>
+										<div class="col-md-9">
+											<div class="input-group date form_datetime" data-date="2014-06-12">
+												<input class="form-control" size="16" type="text" value="" readonly="">
+												<span class="input-group-addon" style='background-color:#5CB85C'>
+													<span class="fa fa-calendar" style='color:#fff'></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										时刻:
+										</label>
+										<div class="col-md-9 aqi-time-points-div">
+											<select class="form-control aqi-time-points">
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										质量指数:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-index">
+												<option value="aqi">空气质量指数</option>
+												<option value="pm10">颗粒物（粒径小于等于10μm）1小时平均</option>
+												<option value="pm10_24h">颗粒物（粒径小于等于10μm）24小时滑动平均</option>
+												<option value="pm2_5">颗粒物（粒径小于等于2.5μm）1小时平均</option>
+												<option value="pm2_5_24h">颗粒物（粒径小于等于2.5μm）24小时滑动平均</option>
+												<option value="no2">二氧化氮1小时平均</option>
+												<option value="no2_24h">二氧化氮24小时滑动平均</option>
+												<option value="o3">臭氧1小时平均</option>
+												<option value="o3_24h">臭氧日最大1小时平均</option>
+												<option value="o3_8h">臭氧8小时滑动平均</option>
+												<option value="o3_8h_24h">臭氧日最大8小时滑动平均</option>
+												<option value="so2">二氧化硫1小时平均</option>
+												<option value="so2_24h">二氧化硫24小时滑动平均</option>
+												<option value="co">一氧化碳1小时平均</option>
+												<option value="co_24h">一氧化碳24小时滑动平均</option>
+											</select>							
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">色阶:
+					      				</label>
+									    <div class="col-md-9 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+											</ul>
+										</div>
+					      			</div>
+								</form>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="aqi_timeline_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cloud fa-2"></i>&nbsp;空气质量指数时间序列图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-9">
+								      		<input class="form-control chart-table-name" type="text" value="空气质量指数时间序列图">
+								    	</div>
+								  	</div>
+								  	<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										起始日期:
+										</label>
+										<div class="col-md-9">
+											<div class="input-group date start_form_datetime" data-date="2014-06-12">
+												<input class="form-control" size="16" type="text" value="" readonly="">
+												<span class="input-group-addon" style='background-color:#5CB85C'>
+													<span class="fa fa-calendar" style='color:#fff'></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										起始时刻:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-start-time-points">
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										终止日期:
+										</label>
+										<div class="col-md-9">
+											<div class="input-group date end_form_datetime" data-date="2014-06-12">
+												<input class="form-control" size="16" type="text" value="" readonly="">
+												<span class="input-group-addon" style='background-color:#5CB85C'>
+													<span class="fa fa-calendar" style='color:#fff'></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										终止时刻:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-end-time-points">
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										质量指数:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-index">
+												<option value="aqi">空气质量指数</option>
+												<option value="pm10">颗粒物（粒径小于等于10μm）1小时平均</option>
+												<option value="pm10_24h">颗粒物（粒径小于等于10μm）24小时滑动平均</option>
+												<option value="pm2_5">颗粒物（粒径小于等于2.5μm）1小时平均</option>
+												<option value="pm2_5_24h">颗粒物（粒径小于等于2.5μm）24小时滑动平均</option>
+												<option value="no2">二氧化氮1小时平均</option>
+												<option value="no2_24h">二氧化氮24小时滑动平均</option>
+												<option value="o3">臭氧1小时平均</option>
+												<option value="o3_24h">臭氧日最大1小时平均</option>
+												<option value="o3_8h">臭氧8小时滑动平均</option>
+												<option value="o3_8h_24h">臭氧日最大8小时滑动平均</option>
+												<option value="so2">二氧化硫1小时平均</option>
+												<option value="so2_24h">二氧化硫24小时滑动平均</option>
+											</select>							
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">色阶:
+					      				</label>
+									    <div class="col-md-9 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+											</ul>
+										</div>
+					      			</div>
+					      			<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">时间间隔:
+					      				</label>
+					      				<div class="col-md-3" style="padding-right:0px">
+								      		<input class="form-control chart-interval" type="text" value="1500">
+								    	</div>
+								    	<label class="control-label col-md-2">
+								    	毫秒
+								    	</label>
+					      			</div>
+								</form>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
 						<div id="map_bar_wrapper" class="mc-border" >
 							<div class="mc-icon control-icon">
 								<a class="btn btn-default btn-link btn-sm ">
@@ -1206,6 +1441,36 @@
 								<button type="button" class="btn btn-default" id="track_marker">点</button>
 								<button type="button" class="btn btn-default" id="track_polyline">线</button>
 								<button type="button" class="btn btn-default" id="track_polygon">面</button>
+							</div>
+						</div>
+
+						<!-- 加入对比panel -->
+						<div id="aqi_station_comp_panel">
+							<div class="aqi-station-list">
+								<!-- <div class="aqi-station-div">
+									<button type="button" class="close">
+										<span aria-hidden="true">×</span>
+										<span class="sr-only">Close</span>
+									</button>
+									<span>市监测站</span>
+								</div>
+								<div class="aqi-station-div">
+									<button type="button" class="close">
+										<span aria-hidden="true">×</span>
+										<span class="sr-only">Close</span>
+									</button>
+									<span>环保局</span>
+								</div> -->
+							</div>
+							<div class="aqi-station-btn">
+								<a class="btn btn-link btn-sm btn-comp">
+								开始对比
+								</a>
+							</div>
+							<div class="aqi-station-btn">
+								<a class="btn btn-link btn-sm btn-close">
+								关闭
+								</a>
 							</div>
 						</div>
 					</div>
@@ -2835,4 +3100,88 @@
 	        </div>
 	    </div>
 	</div>
+
+
+	<!--  AQI 24H Dialog -->
+	<div class="modal" id="aqi24hDialog" tabindex="-1" role="dialog" aria-hidden="true">
+		 <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h3 class="modal-title">24小时空气质量变化情况</h3>
+	            </div>
+	            <div class="modal-body">
+<!-- 	            	<form class="form-horizontal" role="form" style="width: 90%;margin: 5px auto 15px;">
+						<div class="form-group form-group-sm">
+					    	<div class="col-md-10 aqi-index-div">
+								<select id="aqi_24_index_select" multiple="multiple" style="width:100%">
+			            			<option value="aqi">空气质量指数</option>
+									<option value="pm10">颗粒物（粒径小于等于10μm）1小时平均</option>
+									<option value="pm10_24h">颗粒物（粒径小于等于10μm）24小时滑动平均</option>
+									<option value="pm2_5">颗粒物（粒径小于等于2.5μm）1小时平均</option>
+									<option value="pm2_5_24h">颗粒物（粒径小于等于2.5μm）24小时滑动平均</option>
+									<option value="no2">二氧化氮1小时平均</option>
+									<option value="no2_24h">二氧化氮24小时滑动平均</option>
+									<option value="o3">臭氧1小时平均</option>
+									<option value="o3_24h">臭氧日最大1小时平均</option>
+									<option value="o3_8h">臭氧8小时滑动平均</option>
+									<option value="o3_8h_24h">臭氧日最大8小时滑动平均</option>
+									<option value="so2">二氧化硫1小时平均</option>
+									<option value="so2_24h">二氧化硫24小时滑动平均</option>
+									<option value="co">一氧化碳1小时平均</option>
+									<option value="co_24h">一氧化碳24小时滑动平均</option>
+		            			</select>					      		
+					    	</div>
+					    	<div class="col-md-2">
+					    		<button class="btn btn-success btn-default" style="width:100%">
+					    			生成
+					    		</button>
+					    	</div>
+					  	</div>
+					</form> -->
+					<div class="aqi-index-div">
+						<select id="aqi_24_index_select" multiple="multiple" style="width:100%">
+	            			<option value="aqi">空气质量指数</option>
+							<option value="pm10">颗粒物（粒径小于等于10μm）1小时平均</option>
+							<option value="pm10_24h">颗粒物（粒径小于等于10μm）24小时滑动平均</option>
+							<option value="pm2_5">颗粒物（粒径小于等于2.5μm）1小时平均</option>
+							<option value="pm2_5_24h">颗粒物（粒径小于等于2.5μm）24小时滑动平均</option>
+							<option value="no2">二氧化氮1小时平均</option>
+							<option value="no2_24h">二氧化氮24小时滑动平均</option>
+							<option value="o3">臭氧1小时平均</option>
+							<option value="o3_24h">臭氧日最大1小时平均</option>
+							<option value="o3_8h">臭氧8小时滑动平均</option>
+							<option value="o3_8h_24h">臭氧日最大8小时滑动平均</option>
+							<option value="so2">二氧化硫1小时平均</option>
+							<option value="so2_24h">二氧化硫24小时滑动平均</option>
+							<option value="co">一氧化碳1小时平均</option>
+							<option value="co_24h">一氧化碳24小时滑动平均</option>
+	        			</select>
+        			</div>		
+	            	<div id="aqi_24_div">
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<!--  AQI Station Compare Dialog -->
+	<div class="modal" id="aqiStatCompDialog" tabindex="-1" role="dialog" aria-hidden="true">
+		 <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h5 class="modal-title">站点对比图</h5>
+	            </div>
+	            <div class="modal-body">
+	            	<div id="aqi_stat_com_div">
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<!-- timeline -->
+
+
 </body>

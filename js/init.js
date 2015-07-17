@@ -45,6 +45,13 @@ $().ready(function(){
 	MapCloud.features_dialog
 		= new MapCloud.FeaturesDialog("featuresDialog");
 
+	MapCloud.aqi_24h_dialog
+		= new MapCloud.AQI24hDialog("aqi24hDialog");
+
+	MapCloud.aqi_stat_comp_dialog
+		= new MapCloud.AQIStatCompDialog("aqiStatCompDialog","aqi_station_comp_panel");
+
+
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
 	MapCloud.overlay_panel 
@@ -60,6 +67,10 @@ $().ready(function(){
 		= new MapCloud.BarChartPanel("bar_chart_wrapper");
 	MapCloud.pie_chart_panel
 		= new MapCloud.PieChartPanel("pie_chart_wrapper");
+	MapCloud.aqi_chart_panel
+		= new MapCloud.AQIChartPanel("aqi_chart_wrapper");
+	MapCloud.aqi_timeline_chart_panel 
+		= new MapCloud.AQITimelineChartPanel("aqi_timeline_chart_wrapper");
 
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
@@ -95,13 +106,7 @@ $().ready(function(){
 		}
 	});
 
-	$("#layers_content_btn").click(function(){
-		if($("#layers_content").css("display") == "none"){
-			$("#layers_content").slideDown();
-		}else{
-			$("#layers_content").slideUp();
-		}
-	});
+
 
 // 	$("#right_panel .panel-header-collapse").click(function(){
 // //		$("#center_panel").css("right","0px");

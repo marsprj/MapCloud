@@ -201,12 +201,18 @@ MapCloud.Ribbon = MapCloud.Class({
 					// 热力图
 					that.onHeatMap();
 					break;
-				// Tools Events
 				case 26:
+					that.onAQI();
+					break;
+				case 27:
+					that.onAQITimeline();
+					break;
+				// Tools Events
+				case 28:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 27:
+				case 29:
 					// 图层样式
 					that.onStyleManager();
 					break;
@@ -428,6 +434,15 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.alert_info.hide();
 		MapCloud.heatMap_dialog.showDialog();
 		MapCloud.heatMap_dialog.setLayer(layer);
+	},
+
+	onAQI : function(){
+		// MapCloud.aqi_dialog.showDialog();
+		MapCloud.aqi_chart_panel.showPanel();
+	},
+
+	onAQITimeline : function(){
+		MapCloud.aqi_timeline_chart_panel.showPanel();
 	},
 
 	// 标注

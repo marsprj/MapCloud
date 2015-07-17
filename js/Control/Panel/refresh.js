@@ -14,6 +14,46 @@ MapCloud.refresh = MapCloud.Class({
 		
 		this.panel = $("#"+id);
 		this.wmsStyleMgr = new GeoBeans.StyleManager(url); 
+		this.registerEvent();
+	},
+
+	registerEvent : function(){
+
+		var that = this;
+		// 添加图层
+		this.panel.find(".glyphicon-plus").click(function(){
+			MapCloud.new_layer_dialog.showDialog();
+		});
+		// 删除图层
+		this.panel.find(".glyphicon-minus").click(function(){
+			if($("#layers_row .layer_row.layer_row_selected").length == 0){
+				MapCloud.alert_info.showInfo("请选择图层","Warning");
+				return;			
+			}
+			var layerName = $("#layers_row .layer_row.layer_row_selected").attr("lname");
+			if(layerName == null){
+				return;
+			}
+			if(confirm("你确定要删除图层吗？")){
+				mapObj.removeLayer(layerName,MapCloud.refresh_panel.removeLayer_callback);
+			}			
+		});
+
+		// 展开和收缩
+		this.panel.find("#layers_content_btn").click(function(){
+			if($("#layers_content").css("display") == "none"){
+				$("#layers_content").slideDown();
+			}else{
+				$("#layers_content").slideUp();
+			}
+		});
+
+		// 保存地图
+		this.panel.find("#save_map_btn").click(function(){
+			if(mapObj != null){
+				mapManager.saveMap(mapObj,that.saveMap_callback);
+			}
+		});
 	},
 
 	// 隐藏
@@ -236,12 +276,13 @@ MapCloud.refresh = MapCloud.Class({
 		// 选中layer
 		this.panel.find(".layer_name").each(function(){
 			$(this).click(function(){
+				var preLayerName = $(".layer_row_selected").attr("lname");
 				$(".layer_row").removeClass("layer_row_selected");
 				$("#baseLayer_row").removeClass("layer_row_selected");
 				var layer_row = $(this).parent();
 				layer_row.addClass("layer_row_selected");
-//				var layer_id = layer_row.attr("value");
-//				MapCloud.selected_layer = mapObj.layers[layer_id];
+				var layerName = layer_row.attr("lname");
+				that.registerAQILayerHitEvent(preLayerName,layerName);
 			});
 		});
 
@@ -509,6 +550,16 @@ MapCloud.refresh = MapCloud.Class({
 				case GeoBeans.Layer.ChartLayer.Type.PIE:{
 					MapCloud.pie_chart_panel.showPanel();
 					MapCloud.pie_chart_panel.setChartLayer(layer);
+					break;
+				}
+				case GeoBeans.Layer.ChartLayer.Type.AQI:{
+					MapCloud.aqi_chart_panel.showPanel();
+					MapCloud.aqi_chart_panel.setChartLayer(layer);
+					break;
+				}
+				case GeoBeans.Layer.ChartLayer.Type.AQITIMELINE:{
+					MapCloud.aqi_timeline_chart_panel.showPanel();
+					MapCloud.aqi_timeline_chart_panel.setChartLayer(layer);
 					break;
 				}
 				default:
@@ -1156,5 +1207,76 @@ MapCloud.refresh = MapCloud.Class({
 				+	"	<br/>";
 		html += "</li>";
 		return html;
-	}
+	},
+
+	// 注册aqi图层的hit事件
+	registerAQILayerHitEvent : function(preLayerName,curLayerName){
+		var preLayer = mapObj.getLayer(preLayerName);
+		var curLayer = mapObj.getLayer(curLayerName);
+		if(curLayer == null || preLayer == curLayer){
+			return;
+		}
+		if(preLayer instanceof GeoBeans.Layer.AQIChartLayer){
+			preLayer.unRegisterHitEvent();
+			MapCloud.aqi_stat_comp_dialog.cleanupStations();
+		}
+
+		if(curLayer instanceof GeoBeans.Layer.AQIChartLayer){
+			var html = "<div>"
+			+ "		<div style='margin:5px;text-align:center'>"
+			+ "			<a href='javascript:void(0)' style='width:100%' "
+			+ "			class='aqi_24_h btn btn-sm btn-primary'>查看24小时变化图</a>"
+			+ "		</div>"
+			+ "		<div style='margin:5px;text-align:center'>"
+			+ "			<a href='javascript:void(0)' style='width:100%'"
+			+ "				class='aqi_add_stat btn btn-sm btn-success'>加入对比</a>"
+			+ "		</div>"
+			+ "</div>";
+			curLayer.registerHitEvent(html,this.aqiHitCallback);			
+		}
+	},
+
+	aqiHitCallback : function(station_code,position_name,layer){
+		var panel = MapCloud.refresh_panel;
+		panel.aqiChartLayer = layer;
+		panel.stationCode = station_code;
+		panel.positionName = position_name;
+		// 查看24小时变化
+		$(".aqi_24_h").click(function(){
+			mapObj.closeInfoWindow();
+			var aqi24hDialog = MapCloud.aqi_24h_dialog;
+			aqi24hDialog.showDialog();
+			aqi24hDialog.setStationCode(panel.stationCode);
+			var timeField = layer.getTimeField();
+			aqi24hDialog.setTimeField(timeField);
+			var timePoint = layer.timePoint;
+			aqi24hDialog.setTimePoint(timePoint);
+			var dbName = layer.getDbName();
+			aqi24hDialog.setDbName(dbName);
+			var tableName = layer.getTableName();
+			aqi24hDialog.setTableName(tableName);
+			var chartField = layer.getChartField();
+			aqi24hDialog.setChartField(chartField);
+			var flagField = layer.getFlagField();
+			aqi24hDialog.setStationCodeField(flagField);
+			aqi24hDialog.setPositionName(panel.positionName);
+
+			aqi24hDialog.showAQIIndexChart();			
+		});
+
+			// 加入对比
+		$(".aqi_add_stat").click(function(){
+			mapObj.closeInfoWindow();
+			var station = {
+				name : panel.positionName,
+				code : panel.stationCode
+			};
+			MapCloud.aqi_stat_comp_dialog.addStation(station);
+			MapCloud.aqi_stat_comp_dialog.setChartLayer(layer);
+		});
+	},
+
+	saveMap_callback : function(result){
+		MapCloud.alert_info.showInfo(result,"保存地图");
+	},
 });
