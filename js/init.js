@@ -72,9 +72,13 @@ $().ready(function(){
 	MapCloud.aqi_timeline_chart_panel 
 		= new MapCloud.AQITimelineChartPanel("aqi_timeline_chart_wrapper");
 
+	MapCloud.login_dialog
+		= new MapCloud.LoginDialog("loginDialog");
+
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
 	// var mapBarObj = new MapCloud.MapBar();
+	MapCloud.userToolBar = new MapCloud.UserToolBar("user_tool_bar");
 	MapCloud.mapBar = new MapCloud.MapBar();
 	MapCloud.dataGrid 
 	= new MapCloud.DataGrid("datagrid_wrapper","datagrid_control_wrapper");
