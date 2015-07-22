@@ -128,8 +128,15 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 		// server pane
 		dialog.panel.find("#import-vector").click(function(){
 			// 弹出导入对话框
-			MapCloud.importVector_dialog.showDialog();
-			MapCloud.importVector_dialog.setDataSource(dialog.dataSourceCur.name);
+			// MapCloud.importVector_dialog.showDialog();
+			// MapCloud.importVector_dialog.setDataSource(dialog.dataSourceCur.name);
+			// 弹出文件管理对话框
+			// MapCloud.file_dialog.showDialog("choose");
+			// MapCloud.file_dialog.setDataSourceName(dialog.dataSourceCur.name);
+			// 弹出导入对话框
+			MapCloud.import_dialog.showDialog();
+			MapCloud.import_dialog.setDataSourceName(dialog.dataSourceCur.name);
+
 		});
 
 		dialog.panel.find("#remove-dataset").click(function(){

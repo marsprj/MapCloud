@@ -170,7 +170,7 @@ MapCloud.Ribbon = MapCloud.Class({
 				//Data Events
 				case 18:
 					// 文件管理
-					// that.onFile();
+					that.onFile();
 					break;
 				case 19:
 					//数据库管理
@@ -383,14 +383,7 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 文件管理
 	onFile : function(){
-		// 暂且新的数据源管理
-		// MapCloud.db_admin_dialog.showDialog();
-		// alert("文件管理");
-
-		// if(MapCloud.file_dialog == null){
-		// 	MapCloud.file_dialog = new MapCloud.FileDialog("file_dialog");
-		// }
-		// MapCloud.file_dialog.showDialog();
+		MapCloud.file_dialog.showDialog();
 	},
 
 	// 数据源管理

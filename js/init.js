@@ -7,6 +7,8 @@ var url = "/ows/user1/mgr";
 $().ready(function(){
 	MapCloud.alert_info 
 		= new MapCloud.AlertInfo("alert_info","alert_loading"); 
+	MapCloud.notify
+		= new MapCloud.Notify("container","alert_loading");
 	MapCloud.get_maps_dlg 
 		= new MapCloud.GetMapsDialog("getMapsDialog");
 	MapCloud.map_mgr_dialog 
@@ -34,6 +36,11 @@ $().ready(function(){
 		= new MapCloud.StyleDialog("style-dialog");
 	MapCloud.styleName_dialog 
 	= new MapCloud.StyleNameDialog("style-name-dialog");
+
+	MapCloud.file_dialog 
+		= new MapCloud.FileDialog("fileDialog");
+	MapCloud.import_dialog 
+		= new MapCloud.ImportDialog("import_dialog");
 	
 
 	MapCloud.styleManager_dialog
@@ -50,7 +57,10 @@ $().ready(function(){
 
 	MapCloud.aqi_stat_comp_dialog
 		= new MapCloud.AQIStatCompDialog("aqiStatCompDialog","aqi_station_comp_panel");
-
+	// MapCloud.file_dialog 
+	// 	= new MapCloud.FileDialog("fileDialog");
+	MapCloud.create_folder_dialog 
+		= new MapCloud.CreateFolderDialog("create_folder_dialog");
 
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
@@ -85,6 +95,7 @@ $().ready(function(){
 	
 	mapManager = new GeoBeans.MapManager(url);
 	dbsManager = new GeoBeans.DBSManager(url);
+	fileManager = new GeoBeans.FileManager(url);
 
 	$(".modal").draggable({
 	    handle: ".modal-header"

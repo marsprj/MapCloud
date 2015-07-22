@@ -17,16 +17,6 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
 
-		// 关闭按钮
-		this.panel.find(".btn-cancel").click(function(){
-			dialog.closeDialog();
-		});
-
-		// 确定按钮
-		this.panel.find(".btn-confirm").click(function(){
-			dialog.closeDialog();
-		});
-
 		// 上传按钮
 		this.uploadBtn = this.panel.find("#vector_upload");
 		this.uploadBtn.click(function(){
@@ -52,8 +42,9 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.uploadList = this.panel.find("#vector_list");
 		this.uploadState = "pending";
 		var dialog = this;
-		// 获得数据库列表
-		dbsManager.getDataSources(this.getDataSources_callback);
+
+		// // 获得数据库列表
+		// dbsManager.getDataSources(this.getDataSources_callback);
 
 		// 初始化uploader
 		if(this.uploader == null){
@@ -68,11 +59,20 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	closeDialog : function() {
-		if(this.dataSourceName != null){
-			// MapCloud.data_source_dialog.refreshDatasource();
-			var parentDialog = MapCloud.db_admin_dialog;
-			parentDialog.getDataSource(this.dataSourceName);
-		}
+		// if(this.dataSourceName == "default"){
+		// 	var parentDialog = MapCloud.file_dialog;
+		// 	parentDialog.refreshCurrentPath();
+		// 	this.panel.modal("hide");
+		// 	return;
+		// }
+		// if(this.dataSourceName != null){
+		// 	// MapCloud.data_source_dialog.refreshDatasource();
+		// 	var parentDialog = MapCloud.db_admin_dialog;
+		// 	parentDialog.getDataSource(this.dataSourceName);
+		// }
+
+		var parentDialog = MapCloud.file_dialog;
+		parentDialog.refreshCurrentPath();
 		this.panel.modal("hide");
 	},
 
@@ -93,11 +93,11 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	        chunked: true,
 
-	        accept :{
-	        	title : "zip",
-	        	extensions : 'zip',
-	        	mimeTypes : 'application/zip'
-	        }
+	        // accept :{
+	        // 	title : "zip",
+	        // 	extensions : 'zip',
+	        // 	mimeTypes : 'application/zip'
+	        // }
 		});
 
 		// 加入到上传列表中
@@ -144,16 +144,17 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 
 			var stateHtml = dialog.panel.find("#" + file.id).find(".state");
-			stateHtml.html("上传完毕,开始导入");
+			// stateHtml.html("上传完毕,开始导入");
+			stateHtml.html("上传完毕");
 
 			var infosRow = dialog.panel
 	        		.find(".list-group-item[fid='" + file.id + "']"); 
 	        var typeName = infosRow.find(".vector-type-name").val();
 	        var srid = infosRow.find(".vector-srid").val();
 
-	        // 导入数据
-	        dialog.featureImport(dbName,typeName,file.name,srid,
-	        	file.id,dialog.featureImport_callback);
+	        // // 导入数据
+	        // dialog.featureImport(dbName,typeName,file.name,srid,
+	        // 	file.id,dialog.featureImport_callback);
 	    });
 
 		// 上传出错
@@ -202,41 +203,46 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 	        +      	"    <div class='col-md-3 info'>"
 	        +               file.name
 	        +      	"    </div>";
-	    if(this.dataSourceName != null){
-	    	html +=	"    <div class='col-md-6 progress-div'>"
-	        +      	"        <div class='progress progress-striped active'>"
-	        +      	"            <div class='progress-bar' role='progressbar' style='width: 0%;''></div>"
-	        +      	"        </div>"
-	        +      	"    </div>"
-	    }else{
-	    	var dataSourcesHtml = this.getDataSourcesHtml(this.dataSources);
-	    	html += "    <div class='col-md-4 progress-div'>"
-	        +      	"        <div class='progress progress-striped active'>"
-	        +      	"            <div class='progress-bar' role='progressbar' style='width: 0%;''></div>"
-	        +      	"        </div>"
-	        +      	"    </div>"
-	        +	   	"	<div class='col-md-2 import-vector-db'>"
-	        +		"		<select class='form-control'>"
-	        + 				dataSourcesHtml
-	        + 		"		</select>"
-	        +		"	</div>"
-	    }
+	    // if(this.dataSourceName != null){
+	    // 	html +=	"    <div class='col-md-6 progress-div'>"
+	    //     +      	"        <div class='progress progress-striped active'>"
+	    //     +      	"            <div class='progress-bar' role='progressbar' style='width: 0%;''></div>"
+	    //     +      	"        </div>"
+	    //     +      	"    </div>"
+	    // }else{
+	    // 	var dataSourcesHtml = this.getDataSourcesHtml(this.dataSources);
+	    // 	html += "    <div class='col-md-4 progress-div'>"
+	    //     +      	"        <div class='progress progress-striped active'>"
+	    //     +      	"            <div class='progress-bar' role='progressbar' style='width: 0%;''></div>"
+	    //     +      	"        </div>"
+	    //     +      	"    </div>"
+	    //     +	   	"	<div class='col-md-2 import-vector-db'>"
+	    //     +		"		<select class='form-control'>"
+	    //     + 				dataSourcesHtml
+	    //     + 		"		</select>"
+	    //     +		"	</div>"
+	    // }
 	        
-	    html +=  	"   <div class='col-md-2 state'>等待上传</div>"
-	        + 		"	<div class='col-md-1 import-vector-infos'>"
-	        +		"		<a class='btn btn-default btn-drop'><b class='caret'></b></a>"
-	        +		"	</div>"
-	        +		"</li>"
-	        + 		"<li class='list-group-item row infos-row info-invis' fid='" + file.id + "'>"
-	        +		"	<div class='col-md-2 info'>名称:</div>"
-	        +		"	<div class='col-md-3'>"
-	        +		"		<input type='text' class='form-control vector-type-name' value='" + typeName + "'>"
-	        +		"	</div>"
-	        +		"	<div class='col-md-2 info'>Srid:</div>"
-	        +		"	<div class='col-md-3'>"
-	        +		"		<input type='text' class='form-control vector-srid' value='4326'>"
-	        +		"	</div>"
+	    html +=	"    <div class='col-md-6 progress-div'>"
+	        +      	"        <div class='progress progress-striped active'>"
+	        +      	"            <div class='progress-bar' role='progressbar' style='width: 0%;''></div>"
+	        +      	"        </div>"
+	        +      	"    </div>";
+	    html +=  	"   <div class='col-md-3 state'>等待上传</div>"
+	        // + 		"	<div class='col-md-1 import-vector-infos'>"
+	        // +		"		<a class='btn btn-default btn-drop'><b class='caret'></b></a>"
+	        // +		"	</div>"
 	        +		"</li>";
+	        // + 		"<li class='list-group-item row infos-row info-invis' fid='" + file.id + "'>"
+	        // +		"	<div class='col-md-2 info'>名称:</div>"
+	        // +		"	<div class='col-md-3'>"
+	        // +		"		<input type='text' class='form-control vector-type-name' value='" + typeName + "'>"
+	        // +		"	</div>"
+	        // +		"	<div class='col-md-2 info'>Srid:</div>"
+	        // +		"	<div class='col-md-3'>"
+	        // +		"		<input type='text' class='form-control vector-srid' value='4326'>"
+	        // +		"	</div>"
+	        // +		"</li>";
 	    return html;	          
 	},
 
@@ -325,24 +331,24 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 		        	}
 
 		        	// 重新导入
-					infosRow.find(".btn-re-import").click(function(){
-						var fid = $(this).parents(".list-group-item").attr("fid");
-						var row = dialog.panel.find(".list-group-item[id='" + fid + "']");
-						var dbName = null;
-						if(dialog.dataSourceName != null){
-							dbName = dialog.dataSourceName;
-						}else{
-							dbName = row.find(".import-vector-db option:selected").val();
-						}
-						var infosRow = dialog.panel.find(".list-group-item[fid='" + fid+ "']"); 
-						var typeName = infosRow.find(".vector-type-name").val();
-						var srid = infosRow.find(".vector-srid").val();
-						var shpName = row.find(".info").html().trim();
-						row.find(".progress-div .progress").addClass("active");
-						// 导入数据
-						dialog.featureImport(dbName,typeName,shpName,srid,
-	        				fid,dialog.featureImport_callback);
-					});
+					// infosRow.find(".btn-re-import").click(function(){
+					// 	var fid = $(this).parents(".list-group-item").attr("fid");
+					// 	var row = dialog.panel.find(".list-group-item[id='" + fid + "']");
+					// 	var dbName = null;
+					// 	if(dialog.dataSourceName != null){
+					// 		dbName = dialog.dataSourceName;
+					// 	}else{
+					// 		dbName = row.find(".import-vector-db option:selected").val();
+					// 	}
+					// 	var infosRow = dialog.panel.find(".list-group-item[fid='" + fid+ "']"); 
+					// 	var typeName = infosRow.find(".vector-type-name").val();
+					// 	var srid = infosRow.find(".vector-srid").val();
+					// 	var shpName = row.find(".info").html().trim();
+					// 	row.find(".progress-div .progress").addClass("active");
+					// 	// 导入数据
+					// 	dialog.featureImport(dbName,typeName,shpName,srid,
+	    //     				fid,dialog.featureImport_callback);
+					// });
 				}
 			}
 		}

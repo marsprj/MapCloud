@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/colpick/colpick.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui/ui.notify.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui.min.css" type="text/css">
 	
 
@@ -42,6 +43,7 @@
 
 <script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/3rd/jquery-ui/jquery.notify.min.js"></script>
 
 <!-- <script type="text/javascript" src="js/3rd/echarts-plain.js"></script> -->
 <script type="text/javascript" src="js/3rd/jquery-sortable.js"></script>
@@ -167,6 +169,10 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
 
+<script type="text/javascript" src="../Map5/lib/GeoBeans/File/File.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/File/FileManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/File/Folder.js"></script>
+
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -192,6 +198,7 @@
 <script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AlertInfo.js"></script>
+<script type="text/javascript" src="js/Control/Panel/Notify.js"></script>
 <script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
 <script type="text/javascript" src="js/Control/Panel/refresh.js"></script>
 
@@ -207,6 +214,8 @@
 <script type="text/javascript" src="js/Control/Dialog/DataSourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/DBAdminDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/FileDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateFolderDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/NewChartDialog.js"></script>
@@ -229,8 +238,8 @@
 			<div class="navbar-header">
 				<div id="logo_panel"></div>
 			</div>
-			<div class="collapse navbar-collapse">
-				<ul id="user_tool_bar">
+			<div class="collapse navbar-collapse ">
+				<ul id="user_tool_bar" >
 					<li class="dropdown pull-right" style="display:none">
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color:white">您好
 							<b class="caret"></b>
@@ -245,6 +254,9 @@
 					</li>
 					<li class="pull-right">
 						<a href="javascript:void(0)" id="login_btn">登录</a>
+					</li>
+					<li class="pull-right">
+						<a href="register.html" id="login_btn">注册</a>
 					</li>
 				</ul>
 			</div>
@@ -3030,7 +3042,7 @@
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-	                <h5 class="modal-title">导入矢量图层</h5>
+	                <h5 class="modal-title">上传文件</h5>
 	            </div>
 	            <div class="modal-body">
 	                <div class="row" style="margin-left:0px;margin-right:0px">
@@ -3043,10 +3055,6 @@
 	                        </list-group>
 	                    </div>
 	                </div>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
 	            </div>
 	        </div>
 	    </div>
@@ -3108,7 +3116,7 @@
 
 
 	<!--  AQI 24H Dialog -->
-	<div class="modal" id="aqi24hDialog" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" id="aqi24hDialog" tabindex="-1" role="dialog" aria-hidden="true">
 		 <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -3222,33 +3230,223 @@
 	    </div>
 	</div>
 
-	<!-- Login Dialog -->
-	<div class="modal" id="login2Dialog" tabindex="-1" role="dialog" aria-hidden="true">
+	<!-- File Dialog -->
+	<div class="modal fade" id="fileDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
 		 <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-	                <h5 class="modal-title">登录</h5>
+	                <h5 class="modal-title">文件管理</h5>
 	            </div>
-	            <div class="modal-body">
-	            	<form class="form-horizontal" role="form">
-	            		<div class="form-group has-feedback has-feedback-left has-success">
-            				<input type="text" class="form-control" name="username">
-            				<i class="form-control-feedback fa fa-user"></i>
-	            		</div>
-	            		<div class="form-group has-feedback has-feedback-left has-success">
-            				<input type="password" class="form-control" name="password">
-            				<i class="form-control-feedback fa fa-key"></i>
-	            		</div>
-	            		<div class="form-group form-group-login">
-            				<button class="btn btn-default btn-primary">
-            					登录
-            				</button>
-	            		</div>
-	            	</form>
+	            <div class="modal-body row">
+					<div class="col-md-3 file-tree-div">
+						<ul class="nav" style="padding-left:8px">
+							<li>
+								<a href="javascript:void(0)" class="file-tree tree-folder" fpath="/">
+									<i class="fa fa-folder-o"></i>
+									<span>/</span>
+								</a>
+								<!-- <ul class="nav">
+									<li>
+										<a href="javascript:void(0)" fpath='/'>
+										<i class="fa fa-folder-o"></i>
+										<span>bb</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" fpath='/'>
+										<i class="fa fa-folder-o"></i>
+										<span>ccc</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" fpath='/'>
+										<i class="fa fa-folder-o"></i>
+										<span>dd</span>
+										</a>
+									</li>
+								</ul> -->
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-9 file-list-div">
+						<div class="inner-div">
+							<div class="row tool-row">
+								<div class="col-md-8">
+									<input type="text" class="form-control" disabled="" id="current_path" value="/">
+								</div>
+								<div class="col-md-4">
+									<div class=" btn-group btn-group-justified"  role="group">
+										<a class="btn btn-default btn-add-folder" data-toggle="tooltip" data-placement="top" data-original-title="新建文件夹">
+											<i class='fa fa-folder-o'></i>
+										</a>
+										<a class="btn btn-default btn-remove-file" data-toggle="tooltip" data-placement="top" data-original-title="删除">
+											<i class="fa fa-trash-o"></i>
+										</a>
+										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="上传">
+											<i class="fa fa-upload"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="file-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-1"></div>
+									<div class="col-md-3">名称</div>
+									<div class="col-md-1">类型</div>
+									<div class="col-md-3">创建时间</div>
+									<div class="col-md-3">最后访问时间</div>
+									<div class="col-md-1">大小</div>
+								</div>
+								<div class="file-list-content-div">
+								</div>
+							</div>
+							<div class="row file-filter-row">
+								<div class="col-md-3 col-md-offset-9">
+									<select class="form-control" id="file_filter_select">
+										<option value="all">All Files(*.*)</option>
+										<option value="shp">Shape Files(*.shp)</option>
+										<!-- <option value="dbf">DBF Files(*.dbf)</option> -->
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
 	            </div>
 	        </div>
 	    </div>
 	</div>
 
+	<!-- Create Folder panel -->
+	<div class="modal fade" id="create_folder_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建文件夹</h5>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control" placeHolder="请输入名称" id="create_folder_name">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div> 
+	</div>
+
+	<!-- Import  panel -->
+	<div class="modal fade" id="import_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">导入数据库</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row import-db">
+						<!-- <div class="input-group col-md-6">
+							<span class="input-group-addon">
+								<i class="fa fa-database" style="margin-right: 6px;"></i>
+								数据库
+							</span>
+							<input type="text" class="form-control" disabled="">
+						</div> -->
+						<h3 style=" margin-top: 0px;">
+							<span class="label label-info">
+								<i class="mc-db-icon mc-db-icon-server"></i>
+								<span>数据库:  </span>
+								<span class="import-db-name">Name</span>
+							</span>
+						</h3>
+					</div>
+					<legend>输入图层</legend>
+					<div class="row import-content-div">
+						<div class="col-md-11" style="height:100%">
+							<!-- <fieldset class='import-list-fieldset'> -->
+								
+								<div class="import-list-wrapper">
+									<div class="row header-row">
+										<div class="col-md-4">Shapefile</div>
+										<div class="col-md-2">Schema</div>
+										<div class="col-md-3">Table</div>
+										<div class="col-md-2">Geo Column</div>
+										<div class="col-md-1">SRID</div>
+									</div>
+									<div class="import-list-div">
+										<!-- <div class="row">
+											<div class="col-md-4">/country.shp</div>
+											<div class="col-md-2">public</div>
+											<div class="col-md-3">country</div>
+											<div class="col-md-2">shape</div>
+											<div class="col-md-1">4326</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4">/country.shp</div>
+											<div class="col-md-2">public</div>
+											<div class="col-md-3">country</div>
+											<div class="col-md-2">shape</div>
+											<div class="col-md-1">4326</div>
+										</div> -->
+									</div>
+								</div>
+							<!-- </fieldset> -->
+						</div>
+						<div class="col-md-1 import-tool-div">
+							<ul>
+  							  	<li>
+  							  		<button class="btn btn-lg btn-default import-btn-add btn-red" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-remove btn-green" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-upload btn-red" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-upload"></i>
+  									</button>
+  								 </li>
+  								 <li style="margin-top:98px">
+  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+  							  			<i class="fa fa-chevron-down"></i>
+  									</button>
+  								 </li>
+  							</ul>
+						</div>
+					</div>
+						
+					<!-- <div class="import-tools row">
+						<button class="btn btn-primary col-md-offset-4 col-md-4 btn-import">导入</button>
+					</div> -->
+					<!-- <fieldset class="import-log-fieldset"> -->
+					<div class="import-log-wrapper">
+						<legend>结果</legend>
+						<div class="import-log-div">
+						</div>
+					<!-- </fieldset> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="#">x</a>
+<!-- 			<h1>#{title}</h1>
+			<p>#{text}</p> -->
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
 </body>
