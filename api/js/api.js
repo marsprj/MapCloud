@@ -1,11 +1,13 @@
 $().ready(function(){
-	
+
+	loadCatalog();
+
 	$(".service_title").click(function(){
 		var item_container = $(this).next();
 		if(item_container.css("height")=="0px")
 		{
 			var count = item_container.children().length;
-			item_container.css("height", (count*30).toString() + "px");
+			item_container.css("height", (count*25).toString() + "px");
 		}
 		else
 		{
@@ -13,3 +15,25 @@ $().ready(function(){
 		}
 	})
 })
+
+function loadCatalog(){
+	var html  = "";
+	var count = g_catalog.length;
+	for(var i=0; i<count; i++){
+		html += "<div class='service_container'>";
+
+		var catalog = g_catalog[i];
+		html += "<div class='service_title'>" + catalog.name + "</div>";
+		html += "<div class='item_container' id='item_" + i.toString() + "'>";
+		var items = catalog.items.length;
+		for(var j=0; j<items; j++){
+
+			var item = catalog.items[j];
+			html += "<div class='item_block' onclick='onItemClick(\"" + item.name + "\",\"" + item.link + "\");'>" + item.name + "</div>";
+		}
+
+		html += "</div>";
+	}
+
+	document.getElementById("catalog_container").innerHTML = html;
+}

@@ -7,7 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="css/api.css"/>
 
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/catalog.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>	
 
 	<title>MapCloud服务接口</title>
 </head>
@@ -21,25 +22,33 @@
 		<div class="container" id="main_panel">
 			<div id="catalog_panel">
 				<div id="catalog_container">
-					<div class="service_container">
-						<div class="service_title">要素服务</div>
-						<div class="item_container" id="item_1">
-							<div class="item_block">GetCapabilities</div>
-							<div class="item_block">DescribeFeatureType</div>
-							<div class="item_block">GetFeature</div>
-						</div>
-					</div>
-					<div class="service_container">
-						<div class="service_title">地图服务</div>
-						<div class="item_container">
-							<div class="item_block">GetCapabilities</div>
-							<div class="item_block">GetMap</div>
-							<div class="item_block">GetFeatureInfo</div>
-						</div>
-					</div>
+<!-- 					<div class="service_container">
+	<div class="service_title">要素服务</div>
+	<div class="item_container" id="item_1">
+		<div class="item_block" onclick="onItemClick('GetCapabilities','wfs_getcapabilities.html');">GetCapabilities</div>
+		<div class="item_block">DescribeFeatureType</div>
+		<div class="item_block">GetFeature</div>
+	</div>
+</div>
+<div class="service_container">
+	<div class="service_title">地图服务</div>
+	<div class="item_container">
+		<div class="item_block">GetCapabilities</div>
+		<div class="item_block">GetMap</div>
+		<div class="item_block">GetFeatureInfo</div>
+	</div>
+</div> -->
 				</div>
 			</div>
-			<div id="content_panel"></div>
+			<div id="content_panel">
+				<iframe src="wfs_getcapabilities.html" style="width:100%;height:100%"></iframe>
+			</div>
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+	function onItemClick(item_name, item_link){
+		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%'></iframe>";
+	}
+</script>
