@@ -13,7 +13,7 @@
 	<title>MapCloud服务接口</title>
 </head>
 
-<body>
+<body scroll="no">
 	<div style="padding:0px;height:100%;background: #fff;">
 		<div id="header_panel" class="container mc-theme-color">
 			<div id="logo_panel"></div>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div id="content_panel">
-				<iframe src="wfs_getcapabilities.html" style="width:100%;height:100%"></iframe>
+				<iframe src="wfs_getcapabilities.html" style="width:100%;height:100%" frameborder="no"></iframe>
 			</div>
 		</div>
 	</div>
@@ -49,6 +49,6 @@
 
 <script type="text/javascript">
 	function onItemClick(item_name, item_link){
-		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%'></iframe>";
+		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%' frameborder='no'></iframe>";
 	}
 </script>

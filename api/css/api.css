@@ -34,11 +34,15 @@ div{
 	background-color:#0097c3;
 }
 
+.btn-margin-top{
+	margin-top:5px;
+}
+
 #header_panel
 {
 	position: absolute;
 	height: 80px;
-	box-shadow: 1px 2px 3px 0px #828e9a;
+	box-shadow: 1px 2px 10px 0px #828e9a;
 	z-index: 10
 }
 
@@ -81,22 +85,27 @@ div{
 	float: left;
 	width: 300px;
 	height: 100%;
-	/* border-right: 2px solid #cad2dd; */
+	border-right: 3px solid #cad2dd;
 	/* box-shadow: 1px 2px 3px 0 #828e9a; */
-	box-shadow: 1px 0px 4px 0px #828e9a;
+	box-shadow: 0px 0px 16px 3px #828e9a;
+	z-index: 5;
 }
 
 #content_panel{
 	position: relative;
 	height: 100%;
+	z-index: 2;
 }
 
 #catalog_container{
 	margin-top:0px;
 /* 	margin: 5px;
 width: 100%-10px; */
+	width: 320px;
 	height: 100%;
-	overflow: scroll;
+	overflow-y: scroll; 
+	border-right: 1px solid #000000;
+	box-shadow: 1px 0px 4px 0px #828e9a;
 }
 
 .service_container{
@@ -115,8 +124,14 @@ width: 100%-10px; */
 	box-shadow: #666 0px 0px 10px;  
 }
 
-.item_block{
-
+.service_title_icon{
+	float: left;
+	margin-right: 5px; 	
+	width: 24px;
+	height: 40px;
+	background-image: url(../images/gear_24_24.png);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .item_container{
@@ -129,12 +144,22 @@ width: 100%-10px; */
 	font-size:12px;
 	height: 25px;
 	line-height: 25px;
-	border-bottom: 1px solid #cad2dd;
+	border-bottom: 1px dashed #cad2dd;
 }
 
 .item_block:hover{
 	background-color: #DFF1F8;
 	cursor:pointer;
+}
+
+.item_block_icon{
+	float: left;
+	margin-right: 5px; 	
+	width: 12px;
+	height: 24px;
+	background-image: url(../images/operation_12.png);
+	background-repeat: no-repeat;
+	background-position: center;	
 }
 
 .service_style{
