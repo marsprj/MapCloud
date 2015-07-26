@@ -172,6 +172,7 @@ width: 100%-10px; */
 	padding-left: 10px;
 	height: 40px;
 	line-height: 40px;
+	border-top: 1px solid #828e9a;
 	border-bottom: 1px solid #828e9a;
 	background-color: #EFF1F3;
 	cursor:pointer
