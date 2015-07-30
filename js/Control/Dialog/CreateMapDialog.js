@@ -78,8 +78,9 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = MapCloud.create_map_dlg;
 		var name = dialog.panel.find("#create_map_name").val();
 		var info = "创建地图 [ " + name + " ]";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 		dialog.closeDialog();
+		ribbonObj.showMapTab();
 		
 		// 获取底图名称
 		var url = null;

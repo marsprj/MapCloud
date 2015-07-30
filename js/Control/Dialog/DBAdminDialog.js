@@ -690,7 +690,8 @@ MapCloud.DBAdminDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	// 预览
 	showDataSetPreviewPanel : function(dataSet){
-		if(dataSet == null){
+		this.panel.find("#dataset_preview_img").attr("src",null);
+		if(dataSet == null || dataSet.geometryType == null){
 			return;
 		}
 

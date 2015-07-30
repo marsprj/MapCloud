@@ -20,6 +20,7 @@ MapCloud.Notify  = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	showInfo : function(result,info){
+		this.hideLoading();
 		var params = {
 			title : info,
 			text : result

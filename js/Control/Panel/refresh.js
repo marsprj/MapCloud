@@ -27,7 +27,7 @@ MapCloud.refresh = MapCloud.Class({
 		// 删除图层
 		this.panel.find(".glyphicon-minus").click(function(){
 			if($("#layers_row .layer_row.layer_row_selected").length == 0){
-				MapCloud.alert_info.showInfo("请选择图层","Warning");
+				MapCloud.notify.showInfo("请选择图层","Warning");
 				return;			
 			}
 			var layerName = $("#layers_row .layer_row.layer_row_selected").attr("lname");
@@ -56,6 +56,11 @@ MapCloud.refresh = MapCloud.Class({
 		});
 	},
 
+	cleanup : function(){
+		this.panel.find("#map_name").html("Map Name");
+		this.panel.find("#layers_row").empty();
+		this.panel.find("#baseLayer_row").empty();
+	},
 	// 隐藏
 	hide : function(){
 		this.panel.css("display","none");
@@ -78,38 +83,38 @@ MapCloud.refresh = MapCloud.Class({
 		this.panel.find("#map_name").html(mapName);
 		// var that = this;
 
-		// 影响点击，暂时屏蔽
-		// $("ul#layers_row").sortable({
-		//  	vertical: true,
-		//  	nested : false,
-		//  	handle : "li.layer_row",
-		//  	onDrop: function($item, container, _super) {
-		//  		_super($item, container);
-		//  		var index = $item.attr("value");
-		//  		var layer = mapObj.layers[parseInt(index)];
-		//  		var layer_rows = $item.parent().children();
-		//  		var newIndex = layer_rows.length - 1 - layer_rows.index($item);
-		//  		if(newIndex != -1){
-		//  			var step = newIndex - parseInt(index);
-		//  			if(step > 0){
-		//  				layer.up(step);
-		//  			}else if(step < 0){
-		//  				step = step * (-1);
-		//  				layer.down(step);
-		//  			}
-		//  			mapObj.draw();
-		//  			that.refreshPanel();
-		//  		}
-		//  	}
-		// 	// onDrag: function ($item, position) {
-		// 	//     // $item.css({
-		// 	//     // 	border:"1px solid #ccc"
+		// 影响点击，暂时屏蔽,拖拽的
+		$("ul#layers_row").sortable({
+		 	vertical: true,
+		 	nested : false,
+		 	handle : "li.layer_row",
+		 	onDrop: function($item, container, _super) {
+		 		_super($item, container);
+		 		var index = $item.attr("value");
+		 		var layer = mapObj.layers[parseInt(index)];
+		 		var layer_rows = $item.parent().children();
+		 		var newIndex = layer_rows.length - 1 - layer_rows.index($item);
+		 		if(newIndex != -1){
+		 			var step = newIndex - parseInt(index);
+		 			if(step > 0){
+		 				layer.up(step);
+		 			}else if(step < 0){
+		 				step = step * (-1);
+		 				layer.down(step);
+		 			}
+		 			mapObj.draw();
+		 			that.refreshPanel();
+		 		}
+		 	}
+			// onDrag: function ($item, position) {
+			//     // $item.css({
+			//     // 	border:"1px solid #ccc"
 
-		// 	//     // }); 	
-		// 	// 	$item.addClass("dragged");
-	 // 	// 		$("body").addClass("dragging");	
-		// 	// }
-		// });	
+			//     // }); 	
+			// 	$item.addClass("dragged");
+	 	// 		$("body").addClass("dragging");	
+			// }
+		});	
 
 
 		var html = "";
@@ -596,75 +601,6 @@ MapCloud.refresh = MapCloud.Class({
 		return iconHtml;
 	},
 
-	// getChartsHtml:function(layer){
-	// 	var html = "";
-	// 	for(var i = 0; i < MapCloud.wfs_layer_chart.length; ++i){
-	// 		var wfsLayerChart = MapCloud.wfs_layer_chart[i];
-	// 		if(wfsLayerChart == null){
-	// 			continue;
-	// 		}
-	// 		var wfsLayer = wfsLayerChart.layer;
-	// 		if(wfsLayer == layer){
-	// 			html += "<div class=\"row chart_style_row\" value=\"" + i + "\">"
-	// 					+	"	<div class=\"col-md-1 col-xs-1\"></div>"
-	// 					+	"	<div class=\"col-md-1 col-xs-1\"></div>"
-	// 					+	"	<div class=\"col-md-1 col-xs-1\">";
-
-	// 			if(wfsLayerChart.showFlag){
-	// 				html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>";
-	// 			}else{
-	// 				html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";
-	// 			}
-	// 			html	+=	"	</div>"
-	// 					+	"	<div class=\"col-md-1 col-xs-1\">";
-	// 			var option = wfsLayerChart.option;
-	// 			var type = option.type;
-	// 			var typeHtml = this.getChartTypeHtml(type);
-	// 			html += typeHtml;
-	// 			html += "</div>";
-				
-	// 			var text = option.text;
-	// 			html += "<div class=\"col-md-6 col-xs-6 chart_name\">"
-	// 					+		"<span>" + text + "</span>"
-	// 					+	"</div>";
-	// 			html += "<div class=\"col-md-1 col-xs-1 chart_row_quick_tool\">"
-	// 					+	"		<ul>"
-	// 					+	"			<li class=\"dropdown pull-right\">"
-	// 					+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
-	// 					+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
-	// 					+	"				</a>"
-	// 					+	"				<ul class=\"dropdown-menu\">"
-	// 					+	"					<li><a href=\"#\" class=\"chart_row_quick_tool_edit\">编辑图表</a></li>"
-	// 					+	"					<li><a href=\"#\" class=\"chart_row_quick_tool_delete\">删除图表</a></li>"
-	// 					+	"				</ul>"
-	// 					+	"			</li>"
-	// 					+	"		</ul>"
-	// 					+	"	</div>";
-	// 			html += "</div>";
-
-
-	// 		}
-	// 	}
-	// 	return html;
-	// },
-
-	// getChartTypeHtml:function(chartType){
-	// 	var html = "";
-	// 	switch(chartType){
-	// 		case "bar":{
-	// 			html = "<div class='glyphicon glyphicon-signal mc-icon'></div>";
-	// 			break;
-	// 		}
-	// 		case "pie":{
-	// 			html = "<div class='glyphicon glyphicon-adjust mc-icon'></div>";
-	// 			break;
-
-	// 		}
-	// 		default:
-	// 			break;
-	// 	}
-	// 	return html;
-	// },
 
 	//得到filter对应的TextSymbolizer的index
 	getTextSymbolizerIndexByFilter:function(filter,rules){
@@ -840,7 +776,7 @@ MapCloud.refresh = MapCloud.Class({
 					 +"	<div class=\"col-md-1 col-xs-1\">"
 					 +" 	<div class=\"mc-icon mc-icon-wmslayer mc-icon-layer\"></div>"
 					 +"	</div>"
-					 +"	<div class=\"col-md-55 col-xs-5\">"
+					 +"	<div class=\"col-md-5 col-xs-5\">"
 					 +"		<strong class='wms-map-layer'>" + name + "</strong>"
 					 +"	</div>"
 					 +"</div>";
@@ -871,11 +807,11 @@ MapCloud.refresh = MapCloud.Class({
 						var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
 						html += '<div class="row layer_style_row" lID="'
 							 +			index+ '" sID="0">'
-							 + 	'	<div class="col-md-1 col-xs-1"></div>'
-							 + 	'	<div class="col-md-1 col-xs-1"></div>'
-							 +  '	<div class="col-md-1 col-xs-1"></div>'
-							 +  '	<div class="col-md-1 col-xs-1"></div>'
-							 +  '	<div class="col-md-1 col-xs-1">'
+							 // + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 // + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 // +  '	<div class="col-md-1 col-xs-1"></div>'
+							 // +  '	<div class="col-md-1 col-xs-1"></div>'
+							 +  '	<div class="col-md-1 col-xs-1 col-md-offset-5">'
 							 +       symbolizerHtml
 							 +  '	</div>'
 							 +  '</div>';
@@ -888,11 +824,11 @@ MapCloud.refresh = MapCloud.Class({
 			var field = MapCloud.styleManager_dialog
 						.getProperyNameByRule(rules[0]); 
 			html += '<div class="row layer_style_row" lID="' + index + '">'
-				 + 	'	<div class="col-md-1 col-xs-1"></div>'
-				 + 	'	<div class="col-md-1 col-xs-1"></div>'
-				 +  '	<div class="col-md-1 col-xs-1"></div>'
-				 +  '	<div class="col-md-1 col-xs-1"></div>'
-				 +  '	<div class="col-md-5 col-xs-5"><strong>'
+				 // + 	'	<div class="col-md-1 col-xs-1"></div>'
+				 // + 	'	<div class="col-md-1 col-xs-1"></div>'
+				 // +  '	<div class="col-md-1 col-xs-1"></div>'
+				 // +  '	<div class="col-md-1 col-xs-1"></div>'
+				 +  '	<div class="col-md-5 col-xs-5 col-md-offset-5"><strong>'
 				 +      field 
 				 +  '	</strong></div>'
 				 +  '</div>';
@@ -1065,13 +1001,13 @@ MapCloud.refresh = MapCloud.Class({
 
 	// 更新样式
 	updateCallback : function(result){
-		MapCloud.alert_info.showInfo(result,"更新样式");
+		MapCloud.notify.showInfo(result,"更新样式");
 		MapCloud.refresh_panel.refreshPanel();
 	},
 
 	// 设置样式
 	setStyle_callback : function(result){
-		MapCloud.alert_info.showInfo(result,"设置样式");
+		MapCloud.notify.showInfo(result,"设置样式");
 		mapObj.draw();
 		MapCloud.refresh_panel.refreshPanel();
 	},
@@ -1155,7 +1091,7 @@ MapCloud.refresh = MapCloud.Class({
 
 	// 删除图层结果
 	removeLayer_callback : function(result){
-		MapCloud.alert_info.showInfo(result,"删除图层");
+		MapCloud.notify.showInfo(result,"删除图层");
 		var panel = MapCloud.refresh_panel;
 		panel.refreshPanel();
 		mapObj.draw();
@@ -1277,6 +1213,6 @@ MapCloud.refresh = MapCloud.Class({
 	},
 
 	saveMap_callback : function(result){
-		MapCloud.alert_info.showInfo(result,"保存地图");
+		MapCloud.notify.showInfo(result,"保存地图");
 	},
 });

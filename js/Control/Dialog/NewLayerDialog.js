@@ -15,7 +15,8 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		dialog.panel.find("#new_layer_select_dbs").each(function(){
 			$(this).click(function(){
 				// MapCloud.data_source_dialog.showDialog("select");
-				MapCloud.db_admin_dialog.showDialog("select");
+				// MapCloud.db_admin_dialog.showDialog("select");
+				MapCloud.vector_db_dialog.showDialog("select");
 			});
 		});
 

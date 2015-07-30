@@ -43,7 +43,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 				return;
 			}
 			checkboxs.each(function(){
-				var parent = $(this).parents(".row").first();
+				var parent = $(this).parent().parent().parent();
 				var path = parent.attr("fpath");
 				if(parent.hasClass("row-file")){
 					dialog.removeFile(path);

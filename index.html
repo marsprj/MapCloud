@@ -213,8 +213,10 @@
 <script type="text/javascript" src="js/Control/Dialog/PGISConnectDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/DataSourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/DBAdminDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/VectorDBDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/FileDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/CreateFolderDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/RasterDBDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
@@ -229,6 +231,7 @@
 <script type="text/javascript" src="js/Control/Dialog/AQI24hDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/AQIStatCompDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/LoginDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/StyleListDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -265,8 +268,8 @@
 			<div id="ribbon_wrapper">
 				<div id="ribbon" class="mc-theme-color">
 					<ul id="ribbon_tabs" class="mc-theme-color">
-						<!-- <li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">首页</a></li> -->
-						<li id="map_tab" class="mc-active-tab"><a href="javascript:void(0)">地图</a></li>
+						<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">首页</a></li>
+						<li id="map_tab"><a href="javascript:void(0)">地图</a></li>
 						<li id="layer_tab"><a href="javascript:void(0)">图层</a></li>
 						<li id="data_tab"><a href="javascript:void(0)">数据</a></li>
 						<li id="chart_tab"><a href="javascript:void(0)">专题图</a></li>
@@ -275,20 +278,55 @@
 					</ul>
 				</div>
 				<div id="ribbon_container">
-					<div id="home_ribbon" class="ribbon_panel"></div>
+					<div id="home_ribbon" class="ribbon_panel">
+						<div class="home_ribbon_tool">
+							<button type="button" class="btn btn-default btn-success btn-new-map">新建地图</button>
+							<form class="form-horizontal pages-form" role="form">
+								<div class="form-group">
+									<label class="col-md-3 control-label query_count">
+										地图个数 : 
+										<span>0</span>
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-chevron-left btn"></a>
+									</div>
+									<div class="col-md-2">
+										<input class="form-control pages-form-page" type="text" value="1">
+									</div>
+									<label class="col-md-1 control-label">
+										/
+									</label>
+									<label class="col-md-1 control-label pages-form-pages">0</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon glyphicon-chevron-right btn disabled" href="#"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 					<div id="map_ribbon" class="ribbon_panel">
 						<div class="ribbon_group mc-border-right-light">
-							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-								<div class="ribbon_label">打开地图</div>
-							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
 								<div class="ribbon_label">新建地图</div>
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-								<div class="ribbon_label">管理地图</div>
+								<div class="ribbon_label">关闭地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">删除地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">保存地图</div>
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
@@ -1494,6 +1532,110 @@
 				</div>
 			</div>
 		</div>
+		<!-- open map panel -->
+		<div class="container" id="map_list_panel">
+			<div class="row" id="map_list_row">
+				<div class="col-md-8 map-list-col">
+					<ul id="maps_list_ul">
+						<!-- <li class="maps-thumb" name="t">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/a235510c-c9dc-4665-8fcf-3cb8c873154b.png)"></a>
+							<div class="caption text-center">
+								<h6>t</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="A">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/dba38a2a-8220-47bc-962a-84ca33439475.png)"></a>
+							<div class="caption text-center">
+								<h6>A</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="t">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/a235510c-c9dc-4665-8fcf-3cb8c873154b.png)"></a>
+							<div class="caption text-center">
+								<h6>t</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="A">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/2f43f556-95fa-4ce6-9b61-203d3f0cf9da.png)"></a>
+							<div class="caption text-center">
+								<h6>A</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="t">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/a235510c-c9dc-4665-8fcf-3cb8c873154b.png)"></a>
+							<div class="caption text-center">
+								<h6>t</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="A">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/dba38a2a-8220-47bc-962a-84ca33439475.png)"></a>
+							<div class="caption text-center">
+								<h6>A</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="t">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/9196ee14-5658-4be8-8564-6a8aac079d26.png)"></a>
+							<div class="caption text-center">
+								<h6>t</h6>
+							</div>
+						</li>
+						<li class="maps-thumb" name="A">
+							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/2f43f556-95fa-4ce6-9b61-203d3f0cf9da.png)"></a>
+							<div class="caption text-center">
+								<h6>A</h6>
+							</div>
+						</li> -->
+					</ul>					
+				</div>
+				<div class="col-md-4 map-list-col">
+					<ul id="map-infos" class="well">
+						<li class="row">
+							<div class="col-md-3">名称:</div>
+							<div class="col-md-9 map-info-name"></div>
+						</li>
+						<li class="row">
+							<div class="col-md-3">空间参考:</div>
+							<div class="col-md-9 map-info-srid"></div>
+						</li>
+						<li class="row">
+							<div class="col-md-3">范围:</div>
+							<div class="col-md-2">xMin:</div>
+							<div class="col-md-2 map-info-xmin">-180</div>
+							<div class="col-md-2">yMin:</div>
+							<div class="col-md-2 map-info-ymin">-180</div>
+						</li>
+						<li class="row">
+							<div class="col-md-3"></div>
+							<div class="col-md-2">xMax:</div>
+							<div class="col-md-2 map-info-xmax">-180</div>
+							<div class="col-md-2">yMax:</div>
+							<div class="col-md-2 map-info-ymax">-180</div>
+						</li>
+						<li class="row">
+							<div class="col-md-3">图层:</div>
+						</li>
+						<li class="row layer-info-row">
+							<div class="col-md-1"></div>
+							<div class="col-md-2">country</div>
+							<div class="col-md-3"></div>
+						</li>
+						<li class="row layer-info-row">
+							<div class="col-md-3"></div>
+							<div class="col-md-2">类型:</div>
+							<div class="col-md-2">MULTIPOLYGON</div>
+						</li>
+						<li class="row layer-info-row">
+							<div class="col-md-3"></div>
+							<div class="col-md-2">范围:</div>
+							<div class="col-md-1 map-layer-info-extent">xMin:</div>
+							<div class="col-md-2 map-info-xmin">-180</div>
+							<div class="col-md-1">yMin:</div>
+							<div class="col-md-2 map-info-ymin">-180</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- alert info  panel -->
 	<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
@@ -1684,13 +1826,22 @@
 								<label class="col-md-3 control-label">
 									数据源：
 								</label>
+								<div class="col-md-5" style="padding-right:0px">
+									<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
+								</div>
 								<div class="col-md-3">
-									<a href="#" class="btn btn-sm btn-success" id="new_layer_select_dbs">选择数据源</a>
+									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_dbs">选择数据源</a>
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
-								<div class="col-md-offset-3 col-md-6">
-									<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
+								<label class="col-md-3 control-label">
+									样式：
+								</label>
+								<div class="col-md-5" style="padding-right:0px">
+									<input class="form-control" type="text" id="new_layer_style" disabled="true">
+								</div>
+								<div class="col-md-3">
+									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_style">选择样式</a>
 								</div>
 							</div>
 						</form>
@@ -2930,6 +3081,201 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="vector_db_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">数据库管理</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row db-body">
+						<div class="col-md-3 db-list-div">
+							<div class="input-group">
+								<select class="form-control db-list">
+									<option value="abc">abc</option>
+									<option value="aqi">aqi</option>
+									<option value="rsdb">rsdb</option>
+									<option value="db1">db1</option>
+								</select>
+								<span class="input-group-btn">
+									<button class="btn btn-default btn-add-server" type="button" data-toggle="tooltip" data-placement="top" data-original-title="增加数据源">
+										<i class="fa fa-plus"></i>
+									</button>
+									<button class="btn btn-default btn-remove-server" type="button" data-toggle="tooltip" data-placement="top" data-original-title="删除数据源">
+										<i class="fa fa-remove"></i>
+									</button>
+								</span>
+							</div>
+							
+							<div class="table-tree">
+								<ul class="nav">
+									<li>
+										<a href="#" class="tree-table" dindex="1"><i class="mc-db-icon mc-db-icon-dataset-point"></i>	<span>gc_aqi_ranking</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="tree-table" dindex="1"><i class="mc-db-icon mc-db-icon-dataset-point"></i>	<span>gc_aqi_ranking</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="tree-table" dindex="1"><i class="mc-db-icon mc-db-icon-dataset-point"></i>	<span>gc_aqi_ranking</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="row db-pane server-pane">
+								<div class="row db-tool">
+									<button type="button" class="btn btn-default btn-tool btn-import" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+										<i class="fa fa-upload"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-import-csv" data-toggle="tooltip" data-placement="top" data-original-title="导入CSV">
+										<i class="fa fa-table"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
+										<i class="fa fa-remove"></i>
+									</button>
+									<div class="btn-group pull-right" role="group">
+										<button type="button" class="btn btn-default btn-infos" disabled>
+											详细信息
+										</button>
+										<button type="button" class="btn btn-default btn-thum">
+											缩略图
+										</button>
+									</div>
+								</div>
+								<div class="row db-content table-responsive db-infos-pane">
+									<table class="table table-hover borderless table-striped">
+										<thead>
+											<tr>
+												<th width="10%"></th>
+												<th width="30%">名称</th>
+												<th width="30%">类型</th>
+												<th width="30%">空间参考</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+								<div class="row db-content db-thum-pane">
+									<ul>
+										<!-- <li>
+											<a href="javascript:void(0)" class="dataset-thum"></a>
+											<div class="caption text-center">
+												<h6>t</h6>	
+											</div>
+										</li>
+										<li>
+											<a href="javascript:void(0)" class="dataset-thum"></a>
+											<div class="caption text-center">
+												<h6>t</h6>	
+											</div>
+										</li> -->
+									</ul>
+								</div>
+							</div>
+							<div class="row table-pane db-pane">
+								<div class="row db-tool">
+									<button type="button" class="btn btn-default btn-tool btn-import" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+										<i class="fa fa-upload"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-import-csv" data-toggle="tooltip" data-placement="top" data-original-title="导入CSV">
+										<i class="fa fa-table"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
+										<i class="fa fa-remove"></i>
+									</button>
+									<div class="btn-group pull-right" role="group">
+										<button type="button" class="btn btn-default" id="show-dataset-fields" disabled>字段</button>
+										<button type="button" class="btn btn-default" id="show-dataset-features">列表</button>
+										<button type="button" class="btn btn-default" id="show-dataset-preview">预览</button>
+									</div>
+									<!-- <div class="btn-group btn-group-justified" role="group">
+										<a class="btn btn-default" id="show-dataset-fields">
+											<i class="glyphicon glyphicon-align-justify"></i> 字段
+										</a>
+										<a class="btn btn-default" id="show-dataset-features">
+											<i class="glyphicon glyphicon-list-alt"></i>列表
+										</a>
+										<a class="btn btn-default" id="show-dataset-preview">
+											<i class="glyphicon glyphicon-picture"></i>预览
+										</a>
+									</div> -->
+								</div>
+								<div class="row db-content table-responsive">
+									<div class="dataset-pane" id="dataset_fields">
+										<div class="inner-div">
+											<table class="table table-hover borderless table-striped">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Type</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+									<div class="dataset-pane" id="dataset_features">
+										<form class="form-horizontal pages-form" role="form">
+											<div class="form-group">
+												<label class="col-md-3 control-label query_count">
+													总条数 : 
+													<span>0</span>
+												</label>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
+												</div>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon-chevron-left btn"></a>
+												</div>
+												<div class="col-md-2">
+													<input class="form-control pages-form-page" type="text" value="1">
+												</div>
+												<label class="col-md-1 control-label">
+													/
+												</label>
+												<label class="col-md-1 control-label pages-form-pages">
+													60
+												</label>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
+												</div>
+												<div class="col-md-1">
+													<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+												</div>
+											</div>
+										</form>
+										<div id="dataset_features_list">
+											<table class="table table-hover borderless table-striped">
+												<thead>
+													<tr></tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="dataset-pane" id="dataset_preview">
+										<!-- <img src="" height="384" width="512" id="dataset_preview_img"> -->
+										<img src="" height="384" width="512" id="dataset_preview_img">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 		
 	<!-- DataSource Connect panel -->
 	<div class="modal fade" id="pgisConnDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
@@ -3350,71 +3696,47 @@
 				</div>
 				<div class="modal-body">
 					<div class="row import-db">
-						<!-- <div class="input-group col-md-6">
-							<span class="input-group-addon">
-								<i class="fa fa-database" style="margin-right: 6px;"></i>
-								数据库
-							</span>
-							<input type="text" class="form-control" disabled="">
-						</div> -->
-						<h3 style=" margin-top: 0px;">
-							<span class="label label-info">
-								<i class="mc-db-icon mc-db-icon-server"></i>
+						<h5 style=" margin-top: 0px;">
+							<span>
+								<i class="mc-db-icon mc-db-icon-server "></i>
 								<span>数据库:  </span>
 								<span class="import-db-name">Name</span>
 							</span>
-						</h3>
+						</h5>
 					</div>
-					<legend>输入图层</legend>
+					<label>输入图层</label>
 					<div class="row import-content-div">
 						<div class="col-md-11" style="height:100%">
-							<!-- <fieldset class='import-list-fieldset'> -->
-								
-								<div class="import-list-wrapper">
-									<div class="row header-row">
-										<div class="col-md-4">Shapefile</div>
-										<div class="col-md-2">Schema</div>
-										<div class="col-md-3">Table</div>
-										<div class="col-md-2">Geo Column</div>
-										<div class="col-md-1">SRID</div>
-									</div>
-									<div class="import-list-div">
-										<!-- <div class="row">
-											<div class="col-md-4">/country.shp</div>
-											<div class="col-md-2">public</div>
-											<div class="col-md-3">country</div>
-											<div class="col-md-2">shape</div>
-											<div class="col-md-1">4326</div>
-										</div>
-										<div class="row">
-											<div class="col-md-4">/country.shp</div>
-											<div class="col-md-2">public</div>
-											<div class="col-md-3">country</div>
-											<div class="col-md-2">shape</div>
-											<div class="col-md-1">4326</div>
-										</div> -->
-									</div>
+							<div class="import-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-4">文件路径</div>
+									<div class="col-md-2">模式</div>
+									<div class="col-md-3">表格名称</div>
+									<div class="col-md-2">空间列</div>
+									<div class="col-md-1">空间参考</div>
 								</div>
-							<!-- </fieldset> -->
+								<div class="import-list-div">
+								</div>
+							</div>
 						</div>
 						<div class="col-md-1 import-tool-div">
 							<ul>
   							  	<li>
-  							  		<button class="btn btn-lg btn-default import-btn-add btn-red" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  		<button class="btn btn-lg btn-default import-btn-add btn-green" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
   							  			<i class="fa fa-plus"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-remove btn-green" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  		<button class="btn btn-lg btn-default import-btn-remove btn-red" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
   							  			<i class="fa fa-remove"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-upload btn-red" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  		<button class="btn btn-lg btn-default import-btn-upload btn-green" data-toggle="tooltip" data-placement="top" data-original-title="导入">
   							  			<i class="fa fa-upload"></i>
   									</button>
   								 </li>
-  								 <li style="margin-top:98px">
+  								 <li style="margin-top:108px">
   							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
   							  			<i class="fa fa-chevron-down"></i>
   									</button>
@@ -3423,30 +3745,126 @@
 						</div>
 					</div>
 						
-					<!-- <div class="import-tools row">
-						<button class="btn btn-primary col-md-offset-4 col-md-4 btn-import">导入</button>
-					</div> -->
-					<!-- <fieldset class="import-log-fieldset"> -->
 					<div class="import-log-wrapper">
-						<legend>结果</legend>
-						<div class="import-log-div">
+						<label>结果</label>
+						<div class="row import-log-row">
+							<div class="col-md-11 import-log-div">
+
+							</div>
 						</div>
-					<!-- </fieldset> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	<!-- Notify  -->
 	<div id="container" style="display:none">
 		<div id="default">
 			<a class="ui-notify-close ui-notify-cross" href="#">x</a>
-<!-- 			<h1>#{title}</h1>
-			<p>#{text}</p> -->
 			<span>#{title}</span>
 			<span>:</span>
 			<span>#{text}</span>
 		</div>
 	</div>
+
+	<!-- Raster panel -->
+	<div class="modal fade" id="raster_db_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像数据库</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row raster-db-body">
+						<div class="col-md-4 raster-list-col">
+							<select class="form-control db-list">
+								<option value="abc">abc</option>
+								<option value="aqi">aqi</option>
+								<option value="rsdb">rsdb</option>
+								<option value="db1">db1</option>
+							</select>
+							<div class="db-tree">
+								<ul class="nav" style="padding-left:8px">
+									<li>
+										<a href="javascript:void(0)" class="file-tree tree-folder" fpath="/">
+											<i class="fa fa-folder-o"></i>
+											<span>/</span>
+										</a>
+										<ul class="nav">
+											<li>
+												<a href="javascript:void(0)" fpath='/'>
+												<i class="fa fa-folder-o"></i>
+												<span>bb</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" fpath='/'>
+												<i class="fa fa-folder-o"></i>
+												<span>ccc</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" fpath='/'>
+												<i class="fa fa-folder-o"></i>
+												<span>dd</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-8 raster-list-col">
+							<div class="row tool-row">
+								<div class="col-md-8">
+									<input type="text" class="form-control" disabled value="/a/b">
+								</div>
+								<div class="col-md-4">
+									<div class="btn-group btn-group-justified" role="group">
+										<a class="btn btn-default btn-add-folder" data-toggle="tooltip" data-placement="top" data-original-title="新建文件夹">
+											<i class="fa fa-folder-o"></i>
+										</a>
+										<a class="btn btn-default btn-remove-file" data-toggle="tooltip" data-placement="top" data-original-title="删除">
+											<i class="fa fa-trash-o"></i>
+										</a>
+										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+											<i class="fa fa-upload"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="raster-list-content">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 样式列表 -->
+	<div class="modal fade" id="style_list_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">样式列表</h5>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
