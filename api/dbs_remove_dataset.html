@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="css/buttons.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/styles/default.css"/>	
+	<link rel="stylesheet" type="text/css" href="css/api.css"/>	
+
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+	<title>Raster RemoveDataset服务接口</title>
+</head>
+
+<body>
+	<div style="padding:0px;height:100%;background:#fff;">
+		<div class="servcie_request">
+			<div id="request_bar" class="service_bar">
+				<!-- <span>请求参数：</span> -->
+				<!-- <input type="button" value="发送" onclick="javascript:onGet();" style="float:right"> -->
+				<a href="javascript:void(0);" class="button button-primary button-rounded button-small btn-margin-top">请求参数</a>
+			</div>
+			<div id="request_parameters">
+				<div>
+					<table>
+						<tr>
+							<td class="request_column"><span>请求地址</span></td>
+							<td><input type="text" value='http://127.0.0.1/ows/user1/mgr' name='service_url'></td>
+						</tr>
+						<tr>
+							<td class="request_column"><span>服务</span></td>
+							<td><input type="text" value='dbs' name='service'></td>
+						</tr>
+						<tr>
+							<td class="request_column"><span>版本</span></td>
+							<td><input type="text" value='1.0.0' name='version'></td>
+						</tr>
+						<tr>
+							<td class="request_column"><span>请求</td>
+							<td><input type="text" value='RemoveDataset' name='request'></td>
+						</tr>
+ 						<tr>
+							<td class="request_column"><span>数据源名称</td>
+							<td><input type="text" value='db1' name='sourceName'></td>
+						</tr>
+						<tr>
+							<td class="request_column"><span>数据集名称</td>
+							<td><input type="text" value='table_2' name='dataSetName'></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="servcie_response" class="service_style">
+			<div id="response_bar" class="service_bar">
+				<!-- <span>返回结果：</span> -->
+				<a href="javascript:void(0);" class="button button-primary button-rounded button-small btn-margin-top" onclick="javascript:onGet();">发送请求</a>
+			</div>
+			<div id="response_container">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var request_panel_height = 0;
+	$().ready(function(){
+		request_panel_height = $("#request_parameters").height();
+
+		$("#request_bar").click(function(){
+			var request_panel = $("#request_parameters");
+			if($("#request_parameters").height()==0)
+			{
+				request_panel.css("height", request_panel_height.toString() + "px");
+			}
+			else
+			{
+				request_panel.css("height","0px");
+			}
+		})
+	})
+
+	function onGet(){
+		var url = $("#request_parameters input[name='service_url']").val();
+		var params = "";
+		$("#request_parameters input").each(function(){
+			var name = $(this).attr("name");
+			var value= $(this).attr("value");
+			if(name != 'service_url'){
+				if(params.length > 0){
+					params += "&";
+				}
+				params += name + "=" + value;
+			}
+		})
+		$.ajax({
+			type	:"get",
+			url		: url,
+			 data	: encodeURI(params),
+			// contentType: "application/xml",
+			contentType: "text/xml",
+			dataType: "text",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(xml, textStatus){
+				var text = "<textarea style='width:100%;height:100%'>"
+						 + xml
+						 + "</textarea>";
+				document.getElementById('response_container').innerHTML = text;
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
+		});	
+	}
+</script>

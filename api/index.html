@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/api.css"/>
+
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/catalog.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>	
+
+	<title>MapCloud服务接口</title>
+</head>
+
+<body scroll="no">
+	<div style="padding:0px;height:100%;background: #fff;">
+		<div id="header_panel" class="container mc-theme-color">
+			<div id="logo_panel"></div>
+			<div id="title_panel" class="title_font">MapCloud服务接口</div>
+		</div>
+		<div class="container" id="main_panel">
+			<div id="catalog_panel">
+				<div id="catalog_container">
+<!-- 					<div class="service_container">
+	<div class="service_title">要素服务</div>
+	<div class="item_container" id="item_1">
+		<div class="item_block" onclick="onItemClick('GetCapabilities','wfs_getcapabilities.html');">GetCapabilities</div>
+		<div class="item_block">DescribeFeatureType</div>
+		<div class="item_block">GetFeature</div>
+	</div>
+</div>
+<div class="service_container">
+	<div class="service_title">地图服务</div>
+	<div class="item_container">
+		<div class="item_block">GetCapabilities</div>
+		<div class="item_block">GetMap</div>
+		<div class="item_block">GetFeatureInfo</div>
+	</div>
+</div> -->
+				</div>
+			</div>
+			<div id="content_panel">
+				<iframe src="wfs_getcapabilities.html" style="width:100%;height:100%" frameborder="no"></iframe>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	function onItemClick(item_name, item_link){
+		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%' frameborder='no'></iframe>";
+	}
+</script>
