@@ -47,6 +47,22 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 				$(this).removeClass("log-exp").addClass("log-col");
 			}
 		});
+		// 关闭
+		this.panel.find("button.close").click(function(){
+			dialog.closeDialog();
+		});
+	},
+
+	cleanup : function(){
+		this.panel.find(".import-list-div").html("");
+		this.panel.find(".import-log-div").html("");
+		this.paths = [];
+	},
+
+	closeDialog : function(){
+		this.panel.modal("hide");
+		var parent = MapCloud.vector_db_dialog;
+		parent.getDataSets(parent.dataSourceCur);
 	},
 
 	// 设置数据库名称
@@ -200,8 +216,14 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		var srid = feature.srid;
 		var geom = feature.geom;
 
+		var index = shpPath.lastIndexOf("/");
+
+		var shpName = shpPath.slice(index+1,shpPath.length);
+		shpName = shpName.slice(0,shpName.lastIndexOf(".shp"));
+		shpPath = shpPath.slice(0,index+1);
+
 		dbsManager.featureImport(this.dataSourceName,typeName,shpPath,
-			srid,geom,this.importFeature_callback);
+			shpName,srid,geom,this.importFeature_callback);
 
 	},
 

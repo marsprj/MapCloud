@@ -24,6 +24,8 @@ $().ready(function(){
 		= new MapCloud.DataSourceDialog("dataSourceDialog");
 	MapCloud.db_admin_dialog 
 		= new MapCloud.DBAdminDialog("dbAdminDialog");
+	MapCloud.vector_db_dialog 
+		= new MapCloud.VectorDBDialog("vector_db_dialog");
 	MapCloud.pgis_connection_dialog 
 		= new MapCloud.PGISConnectDialog("pgisConnDialog");
 	MapCloud.new_layer_dialog
@@ -61,6 +63,8 @@ $().ready(function(){
 	// 	= new MapCloud.FileDialog("fileDialog");
 	MapCloud.create_folder_dialog 
 		= new MapCloud.CreateFolderDialog("create_folder_dialog");
+	MapCloud.raster_db_dialog
+		= new MapCloud.RasterDBDialog("raster_db_dialog");
 
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
@@ -84,6 +88,7 @@ $().ready(function(){
 
 	MapCloud.login_dialog
 		= new MapCloud.LoginDialog("loginDialog");
+
 
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
@@ -121,6 +126,9 @@ $().ready(function(){
 		}
 	});
 
+	// 加载地图
+	MapCloud.notify.loading();
+	mapManager.getMaps(ribbonObj.getMaps_callback);
 
 
 // 	$("#right_panel .panel-header-collapse").click(function(){

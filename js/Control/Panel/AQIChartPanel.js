@@ -56,12 +56,26 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 	    		// 清空
 	    		return;
 	    	}
-	    	var year = date.getUTCFullYear();
-	    	var month = date.getUTCMonth();
-	    	var day = date.getUTCDate();
-	    	var startTime = new Date(year + "-" + (month+1) + "-" + day + " 00:00:00");
-	    	var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
+	    	// var year = date.getUTCFullYear();
+	    	// var month = date.getUTCMonth();
+	    	// var day = date.getUTCDate();
+	    	// var startTime = new Date(year + "-" + (month+1) + "-" + day + " 00:00:00");
+	    	// var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
+	    	// that.displayTimeList(startTime,endTime);
+
+	    	var startTime = new Date(date);
+	    	var endTime = new Date(date);
+	    	var day = date.getDate();
+	    	endTime.setDate(day + 1);
+	    	startTime.setHours(0);
+	    	startTime.setMinutes(0);
+	    	startTime.setSeconds(0);
+	    	endTime.setHours(0);
+	    	endTime.setMinutes(0);
+	    	endTime.setSeconds(0);
+
 	    	that.displayTimeList(startTime,endTime);
+
 	    });
 
 	    // 增加
@@ -151,10 +165,9 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		var html = "";
-		var startTimeStr = startTime.getUTCFullYear() + "-" + (startTime.getUTCMonth()+1)
-			+ "-" + startTime.getDate() + " 00:00:00";
-		var endTimeStr = endTime.getUTCFullYear() + "-" + (endTime.getUTCMonth()+1)
-			+ "-" + endTime.getDate() + " 00:00:00"
+
+		var startTimeStr = MapCloud.aqi_24h_dialog.toTimeFormat(startTime);
+		var endTimeStr = MapCloud.aqi_24h_dialog.toTimeFormat(endTime);
 		var timeList = new GeoBeans.AQITimePointList("tmp",this.dbName,
 			this.timeTableName,this.timeTableTimeField,startTimeStr,endTimeStr);
 		timeList.setMap(mapObj);
@@ -284,11 +297,21 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 			this.panel.find(".form_datetime input").val(dateStr);
 			this.panel.find(".form_datetime").datetimepicker("update");
 			var date = new Date(dateStr);
-			var year = date.getUTCFullYear();
-	    	var month = date.getUTCMonth();
-	    	var day = date.getUTCDate();
-	    	var startTime = new Date(year + "-" + (month+1) + "-" + day + " 00:00:00");
-	    	var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
+			var day = date.getDate();
+			var startTime = new Date(date);
+			var endTime = new Date(date);
+			startTime.setHours(0);
+	    	startTime.setMinutes(0);
+	    	startTime.setSeconds(0);
+	    	endTime.setHours(0);
+	    	endTime.setMinutes(0);
+	    	endTime.setSeconds(0);
+	    	endTime.setDate(day + 1);
+			// var year = date.getUTCFullYear();
+	  //   	var month = date.getUTCMonth();
+	  //   	var day = date.getUTCDate();
+	  //   	var startTime = new Date(year + "-" + (month+1) + "-" + day + " 00:00:00");
+	  //   	var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
 	    	this.displayTimeList(startTime,endTime);
 	    	this.panel.find(".aqi-time-points option[value='" + timePoint + "']")
 	    		.attr("selected",true);
