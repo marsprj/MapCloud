@@ -2,6 +2,8 @@ var mapObj = null;
 var ribbonObj = null;
 var mapManager = null;
 var dbsManager = null;
+var styleManager = null;
+var gpsManager = null;
 var url = "/ows/user1/mgr";
 
 $().ready(function(){
@@ -66,6 +68,46 @@ $().ready(function(){
 	MapCloud.raster_db_dialog
 		= new MapCloud.RasterDBDialog("raster_db_dialog");
 
+	MapCloud.gps_output_source_dialog
+		= new MapCloud.GPSOutputSourceDialog("gps_output_source_dialog");
+	MapCloud.gps_kmean_dialog
+		= new MapCloud.GPSKMeanDialog("gps_kmean_dialog");
+	MapCloud.gps_feature_project_dialog
+		= new MapCloud.GPSFeatureProjectDialog("gps_feature_project_dialog");
+	MapCloud.gps_convex_hull_dialog
+		= new MapCloud.GPSConvexHullDialog("gps_convex_hull_dialog");
+	MapCloud.gps_raster_stretch_dialog
+		= new MapCloud.GPSRasterStretchDialog("gps_raster_stretch_dialog");
+	MapCloud.gps_feature_import_dialog
+		= new MapCloud.GPSFeatureImportDialog("gps_feature_import_dialog");
+	MapCloud.gps_raster_extract_dialog
+		= new MapCloud.GPSRasterExtractDialog("gps_raster_extract_dialog");
+	MapCloud.gps_raster_reverse_dialog
+		= new MapCloud.GPSRasterReverseDialog("gps_raster_reverse_dialog");
+	MapCloud.gps_raster_graylize_dialog
+		= new MapCloud.GPSRasterGraylizeDialog("gps_raster_graylize_dialog");
+	MapCloud.gps_raster_smooth_dialog
+		= new MapCloud.GPSRasterSmoothDialog("gps_raster_smooth_dialog");
+	MapCloud.gps_raster_subtract_dialog
+		= new MapCloud.GPSRasterSubtractDialog("gps_raster_subtract_dialog");
+	MapCloud.gps_dem_slope_dialog
+		= new MapCloud.GPSDemSlopeDialog("gps_dem_slope_dialog");
+	MapCloud.gps_dem_aspect_dialog
+		= new MapCloud.GPSDemAspectDialog("gps_dem_aspect_dialog");
+	MapCloud.gps_get_area_dialog
+		= new MapCloud.GPSGetAreaDialog("gps_get_area_dialog");
+	MapCloud.gps_get_length_dialog
+		= new MapCloud.GPSGetLengthDialog("gps_get_length_dialog");
+	MapCloud.gps_centroid_dialog
+		= new MapCloud.GPSCentroidDialog("gps_centroid_dialog");
+	MapCloud.gps_buffer_dialog
+		= new MapCloud.GPSBufferDialog("gps_buffer_dialog");
+	MapCloud.gps_build_pyramid_dialog
+		= new MapCloud.GPSBuildPyramidDialog("gps_build_pyramid_dialog");
+	MapCloud.gps_update_tile_dialog
+		= new MapCloud.GPSUpdateTileDialog("gps_update_tile_dialog");
+
+
 	MapCloud.refresh_panel 
 		= new MapCloud.refresh("left_panel");
 	MapCloud.overlay_panel 
@@ -86,8 +128,17 @@ $().ready(function(){
 	MapCloud.aqi_timeline_chart_panel 
 		= new MapCloud.AQITimelineChartPanel("aqi_timeline_chart_wrapper");
 
+	MapCloud.gps_oper_panel 
+		= new MapCloud.GPSOperPanel("gps_oper_wrapper");
+
 	MapCloud.login_dialog
 		= new MapCloud.LoginDialog("loginDialog");
+	MapCloud.style_list_dialog
+		= new MapCloud.StyleListDialog("style_list_dialog");
+	MapCloud.map_info_dialog 
+		= new MapCloud.MapInfoDialog("map_info_dialog");
+	MapCloud.base_layer_dialog 
+		= new MapCloud.BaseLayerDialog("base_layer_dialog");
 
 
 	var logo = new MapCloud.Logo();	
@@ -101,6 +152,8 @@ $().ready(function(){
 	mapManager = new GeoBeans.MapManager(url);
 	dbsManager = new GeoBeans.DBSManager(url);
 	fileManager = new GeoBeans.FileManager(url);
+	styleManager = new GeoBeans.StyleManager(url);
+	gpsManager = new GeoBeans.GPSManager(url);
 
 	$(".modal").draggable({
 	    handle: ".modal-header"

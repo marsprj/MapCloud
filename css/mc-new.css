@@ -7,6 +7,26 @@ html,body{
 	overflow: hidden;
 	height:100%;
 }
+
+.modal {
+  text-align: center;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
 .modal-dialog{
 	margin-top: 40px;
 }
@@ -15,6 +35,28 @@ html,body{
 }
 .modal-header{
 	cursor: move;
+}
+/*dialog modal style*/
+.modal.fade .modal-dialog {
+    -webkit-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    transform: scale(0.1);
+    top: 200px;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.modal.fade.in .modal-dialog {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform: translate3d(0, -200px, 0);
+    transform: translate3d(0, -200px, 0);
+    opacity: 1;
 }
 
 ul {
@@ -386,12 +428,27 @@ ul#ribbon_tabs li{
 .home_ribbon_tool{
 	margin-top: 20px;
 }
-.home_ribbon_tool .pages-form{
+.home_ribbon_tool .map-page-div{
+	position: relative;
+	right: 400px;
+}
+.home_ribbon_tool .maps-count{
+	min-width: 120px;
+	display: inline-block;
+}
+.home_ribbon_tool .maps-count p{
+	font-size: 14px;
+	margin-top: 8px;
+}
+.home_ribbon_tool .maps-page{
+	display: inline-block;
+}
+/*.home_ribbon_tool .pages-form{
 	width: 500px;
 	display: inline-block;
 	vertical-align: middle;
 	margin-left: 30px;
-}
+}*/
 
 #main_panel_row{
 	height:100%;
@@ -519,6 +576,7 @@ ul#ribbon_tabs li{
 .layer_name, .chart_style_row .chart_name{
 	cursor:pointer;
 	word-break: break-all;
+	padding-right: 0px;
 }
 #baseLayer_row .sm{
 	padding: 0px !important;
@@ -546,6 +604,9 @@ ul#ribbon_tabs li{
 	padding-right:0px;
 }
 
+.layer_row .layer_oper{
+	color: #fff;
+}
 /*.layer_row .layer_row_quick_tool ul, .chart_style_row .chart_row_quick_tool ul{*/
 .layer_row_quick_tool ul{
 	margin:0px;
@@ -559,7 +620,8 @@ ul#ribbon_tabs li{
 
 .layer_row:hover .layer_row_quick_tool ul a.dropdown-toggle,
 #baseLayer_row:hover .layer_row_quick_tool ul a.dropdown-toggle,
-.chart_style_row:hover .chart_row_quick_tool ul a.dropdown-toggle{
+.chart_style_row:hover .chart_row_quick_tool ul a.dropdown-toggle,
+.layer_row:hover .layer_oper{
 	color:#000;
 }
 
@@ -864,6 +926,40 @@ ul#ribbon_tabs li{
 	height: 22px;
 }
 
+
+/*gps_oper_wrapper*/
+#gps_oper_wrapper{
+	display: none;
+	right: 10px;
+	top: 10px;
+	/*width: 326px;*/
+}
+#gps_oper_wrapper .panel-content{
+	height: calc( 100% - 45px);
+}
+#gps_oper_wrapper .gps-oper-nav{
+	padding-left: 4px;
+}
+#gps_oper_wrapper ul{
+	margin: 0px;
+	padding-left: 20px;
+}
+#gps_oper_wrapper .nav>li>a{
+	padding: 4px 6px;
+	font-size: 14px;
+}
+#gps_oper_wrapper .nav>li>a:hover{
+	color :#fff;
+	background-color: #A8CAE7;
+}
+#gps_oper_wrapper .nav>li>a.selected{
+	color :#fff;
+	background-color: #428bca;
+}
+#gps_oper_wrapper .nav>li>a>i{
+	margin-right: 6px;
+}
+
 /*伸缩按钮*/
 #map_btn{
 	position: absolute;
@@ -896,13 +992,54 @@ ul#ribbon_tabs li{
 }
 #map_list_row{
 	height: 100%;
+	margin: 0px;
 }
 .map-list-col{
 	height: 100%;
 	padding: 30px;
 }
+.map-list-thum{
+	float: left;
+	width: calc( 100% - 400px);
+	padding: 20px;
+}
 #maps_list_ul{
-	margin:30px;
+	margin:0px;
+}
+
+.map-list-info{
+	font-family: microsoft yahei;
+	/*padding-right: 60px;*/
+	overflow-y: auto;
+	display: none;
+	float: right;
+	width: 400px;
+	border-left: 1px solid #ccc;
+}
+.page-heading{
+	margin-bottom: 20px;
+	border-bottom: 1px solid #428bca;
+	padding-bottom: 6px;
+	color: #428bca;
+}
+.page-heading .fa-lg{
+	margin-right: 10px;
+}
+.map-info-row{
+	padding: 0px 10px;
+	color: #767676;
+	margin: 12px;
+}
+.map-info-row span{
+	display: inline-block;
+}
+.map-info-layer-heading{
+	color: #767676;
+}
+.map-info-item{
+	width: 60px;
+	text-align: right;
+	margin-right: 10px;	
 }
 
 #map-infos{
@@ -2122,7 +2259,7 @@ ul.layers_row li:before {
 	overflow-y: auto;
 }
 #vector_db_dialog .table-tree li a{
-	padding: 6px 10px;
+	padding: 4px 10px;
 }
 #vector_db_dialog .table-tree li a i{
 	margin-right: 4px;
@@ -2154,6 +2291,9 @@ ul.layers_row li:before {
 }
 #vector_db_dialog .db-infos-pane{
 	display: block;
+}
+#vector_db_dialog table td{
+	padding: 6px;
 }
 #vector_db_dialog .db-thum-pane{
 	display: none;
@@ -2393,11 +2533,11 @@ ul.layers_row li:before {
 }
 
 #fileDialog .modal-dialog{
-	width: 920px;
+	width: 1000px;
 }
 
 #fileDialog .modal-body{
-	height: 600px;
+	height: 660px;
 	margin: 0px;
 }
 
@@ -2648,4 +2788,242 @@ ul.layers_row li:before {
 }
 /***************************************************************************/
 /* Raster DB dialog End  												   */
+/***************************************************************************/
+/***************************************************************************/
+/* Style List Dialog Begin  												   */
+/***************************************************************************/
+#style_list_dialog .modal-dialog{
+	width: 420px;
+}
+/***************************************************************************/
+/* Style List Dialog End  												   */
+/***************************************************************************/
+
+/***************************************************************************/
+/* Map Info Dialog Begin  												   */
+/***************************************************************************/
+#map_info_dialog .modal-dialog{
+	width: 600px;
+}
+
+#map_info_dialog .modal-body{
+	height: 400px;
+}
+#map_info_dialog .modal-body .row{
+	margin: 10px 6px;
+}
+#map_info_dialog #map_layers{
+	margin-top: 10px;
+	padding: 10px;
+	overflow-y: auto;
+}
+#map_info_dialog label{
+	font-weight: normal;
+}
+/***************************************************************************/
+/* Map Info Dialog End  												   */
+/***************************************************************************/
+
+/***************************************************************************/
+/* Base Layer Dialog Begin  												   */
+/***************************************************************************/
+#base_layer_dialog .modal-dialog{
+	width: 900px;
+}
+
+#base_layer_dialog .modal-body{
+	height: 370px;
+}
+
+#base_layer_canvas_wrapper{
+	height: 340px;
+	width: 660px;
+}
+#base_layer_dialog canvas{
+	border: 1px solid #f9f9f9;
+}
+
+/***************************************************************************/
+/* Base Layer Dialog End  												   */
+/***************************************************************************/
+
+/***************************************************************************/
+/* GPS Oper Dialog Begin  												   */
+/***************************************************************************/
+#gps_kmean_dialog .log-li{
+	margin-bottom: 0px;
+	margin-top: 44px;
+}
+
+#gps_feature_project_dialog .log-li{
+	margin-top: 153px;
+	margin-bottom: 0px;
+}
+
+.gps-oper-dialog{
+	z-index: 1045;
+}
+.gps-oper-dialog .modal-dialog{
+	width: 700px;
+}
+.gps-oper-dialog .modal-body, .gps-oper-dialog .modal-dialog{
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+.gps-oper-dialog .row{
+	margin: 0px;
+}
+.gps-oper-dialog .row .control-label{
+	font-weight: normal;
+}
+.gps-oper-dialog .gps-oper-form{
+	padding: 12px 0px 0px;
+	border: 1px solid #ddd;
+	margin-bottom: 16px;
+	/*margin: 12px 0px;*/
+}
+.gps-oper-dialog .gps-oper-form .form-group{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.gps-oper-dialog .gps-oper-form .form-group .btn{
+	text-indent: 1.2em;
+	letter-spacing: 1.2em;
+}
+.gps-oper-dialog .gps-oper-tool-div{
+	padding-top: 21px;
+	padding-left: 0px;
+}
+.gps-oper-dialog .gps-oper-tool-div ul{
+	margin: 0px;
+}
+.gps-oper-dialog .gps-oper-tool-div ul li{
+	/*margin-left: 10px;*/
+	margin-bottom: 10px;
+}
+.gps-oper-dialog .gps-oper-log-wrapper{
+	height: 200px;
+	margin-bottom: 0px;
+	display: none;
+}
+.gps-oper-dialog .gps-oper-log-col{
+	height: 100%;
+}
+.gps-oper-dialog .gps-oper-log-div{
+	height: calc( 100% - 30px);
+	border: 1px solid #ddd;
+	padding: 6px;
+}
+.gps-oper-dialog .row [class*="col-"] {
+  /*padding: 6px 2px 6px 2px;*/
+}
+
+/***************************************************************************/
+/* GPS Oper Dialog End  	 												*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* GPS Feature Import Dialog Begin  	 										*/
+/***************************************************************************/
+#gps_feature_import_dialog .log-li{
+	margin-bottom: 0px;
+	margin-top: 159px;
+}
+
+#gps_feature_import_dialog .import-list-wrapper{
+	height: 300px;
+	border: 1px solid #ddd;
+	margin-bottom: 16px;
+}
+#gps_feature_import_dialog .import-list-wrapper .row{
+	padding: 0px 8px;
+}
+
+#gps_feature_import_dialog .import-list-wrapper .row [class*="col-"]{
+	padding: 6px 2px 6px 2px;
+}
+#gps_feature_import_dialog .import-list-wrapper .header-row{
+	border-bottom: 1px solid #ddd;
+}
+
+#gps_feature_import_dialog .import-list-div .row:hover{
+	background-color: #DFF1F8;
+}
+#gps_feature_import_dialog .import-list-div .row.selected{
+	background-color: #DFF1F8;
+}
+
+/***************************************************************************/
+/* GPS Feature Import Dialog End  	 										*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* GPS Output Source Dialog Begin  										   */
+/***************************************************************************/
+#gps_output_source_dialog .modal-dialog{
+	width: 300px;
+}
+/***************************************************************************/
+/* GPS Output Source Dialog End  										   */
+/***************************************************************************/
+/***************************************************************************/
+/* GPS Raster Extract Dialog Begin	 										*/
+/***************************************************************************/
+#gps_raster_extract_dialog .log-li{
+	margin-top: 224px;
+	margin-bottom: 0px;
+}
+/***************************************************************************/
+/* GPS Raster Extract Dialog End  	 										*/
+/***************************************************************************/
+/***************************************************************************/
+/* GPS Raster  Dialog Begin	 										*/
+/***************************************************************************/
+#gps_raster_reverse_dialog .log-li,#gps_raster_graylize_dialog .log-li,
+#gps_raster_stretch_dialog .log-li,
+#gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li{
+	margin-top: 153px;
+	margin-bottom: 0px;
+}
+#gps_raster_subtract_dialog .log-li{
+	margin-top: 313px;
+	margin-bottom: 0px;
+}
+/***************************************************************************/
+/* GPS Raster  Dialog End  	 										*/
+/***************************************************************************/
+/***************************************************************************/
+/* GPS Geometry  Dialog Begin	 											*/
+/***************************************************************************/
+
+#gps_get_area_dialog .log-li,#gps_get_length_dialog .log-li,
+#gps_centroid_dialog .log-li,#gps_convex_hull_dialog .log-li{
+	margin-top: 81px;
+	margin-bottom: 0px;
+}
+
+#gps_buffer_dialog .log-li{
+	margin-top: 153px;
+	margin-bottom: 0px;
+}
+/***************************************************************************/
+/* GPS Geometry  Dialog End	 												*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* GPS Tile  Dialog Begin	 											*/
+/***************************************************************************/
+#gps_build_pyramid_dialog .log-li{
+	margin-top: 117px;
+	margin-bottom: 0px;
+}
+
+#gps_update_tile_dialog .log-li{
+	margin-top: 153px;
+	margin-bottom: 0px;
+}
+/***************************************************************************/
+/* GPS Tile  Dialog End	 											*/
 /***************************************************************************/

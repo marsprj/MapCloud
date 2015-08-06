@@ -24,8 +24,14 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
 					return;
 				}
-				// MapCloud.import_dialog.showDialog();
 				MapCloud.import_dialog.addImportPaths(importPaths);
+			}else if(dialog.flag == "gps-choose-shp"){
+				var importPaths = dialog.getImportPaths();
+				if(importPaths.length == 0){
+					MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
+					return;
+				}
+				MapCloud.gps_feature_import_dialog.addImportPaths(importPaths);
 			}
 			dialog.closeDialog();
 		});
@@ -42,6 +48,9 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 				MapCloud.notify.showInfo("请选择要删除的文件","Warning");
 				return;
 			}
+			if(!confirm("确定要删除吗？")){
+				return;
+			}
 			checkboxs.each(function(){
 				var parent = $(this).parent().parent().parent();
 				var path = parent.attr("fpath");
@@ -56,7 +65,9 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		// 上传
 		this.panel.find(".btn-upload-file").click(function(){
 			MapCloud.importVector_dialog.showDialog();
-			MapCloud.importVector_dialog.setDataSource("default");
+			var currentPath = dialog.panel.find("#current_path").val();
+			MapCloud.importVector_dialog.setUploadPath(currentPath);
+			// MapCloud.importVector_dialog.setDataSource("default");
 		});
 
 		// 过滤文件
@@ -77,7 +88,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.cleanup();
 
 		this.flag = flag;
-		if(this.flag == "choose-shp"){
+		if(this.flag != null){
 			this.panel.find(".btn-confirm").html("选择");
 			this.panel.find(".tool-row").css("display","none");
 			this.panel.find(".file-list-wrapper").css("height","calc(100% - 54px)");

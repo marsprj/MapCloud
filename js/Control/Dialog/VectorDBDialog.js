@@ -21,58 +21,170 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 选择
 		this.panel.find(".btn-confirm").click(function(){
-			if(dialog.flag == "select"){
-				var table = dialog.panel.find(".tree-table.selected");
-				var index = table.attr("dindex");
-				if(dialog.dataSourceCur != null){
-					var dataSets = dialog.dataSourceCur.dataSets;
-					if(dataSets != null){
-						var dataSet = dataSets[index];
-						MapCloud.new_layer_dialog
-							.setDataSet(dialog.dataSourceCur,
-								dataSet);
-						dialog.closeDialog();
-					}
-				}
-						}else if(dialog.flag == "range"){
-				var table = dialog.panel.find(".tree-table.selected");
-				var index = table.attr("dindex");
-				if(dialog.dataSourceCur != null){
-					var dataSets = dialog.dataSourceCur.dataSets;
-					if(dataSets != null){
-						var dataSet = dataSets[index];
-						MapCloud.chart_panel.setTable(dialog.dataSourceCur.name,
-								dataSet.name);
-						dialog.closeDialog();
-					}
-				}
-			}else if(dialog.flag == "bar"){
-				var table = dialog.panel.find(".tree-table.selected");
-				var index = table.attr("dindex");
-				if(dialog.dataSourceCur != null){
-					var dataSets = dialog.dataSourceCur.dataSets;
-					if(dataSets != null){
-						var dataSet = dataSets[index];
-						MapCloud.bar_chart_panel.setTable(dialog.dataSourceCur.name,
-								dataSet.name);
-						dialog.closeDialog();
-					}
-				}
-			}else if(dialog.flag == "pie"){
-				var table = dialog.panel.find(".tree-table.selected");
-				var index = table.attr("dindex");
-				if(dialog.dataSourceCur != null){
-					var dataSets = dialog.dataSourceCur.dataSets;
-					if(dataSets != null){
-						var dataSet = dataSets[index];
-						MapCloud.pie_chart_panel.setTable(dialog.dataSourceCur.name,
-								dataSet.name);
-						dialog.closeDialog();
-					}
-				}
-			}else{
+			if(dialog.flag == null){
 				dialog.closeDialog();
+				return;
 			}
+
+			var table = dialog.panel.find(".tree-table.selected");
+			var index = table.attr("dindex");
+			if(index == null){
+				MapCloud.notify.showInfo("请选择一个数据","Warning");
+				return;
+			}
+			if(dialog.dataSourceCur == null){
+				MapCloud.notify.showInfo("当前数据库为空","Warning");
+				return;
+			}
+			var dataSets = dialog.dataSourceCur.dataSets;
+			if(dataSets == null){
+				MapCloud.notify.showInfo("当前数据库为空","Warning");
+				return;
+			}
+			var dataSet = dataSets[index];
+			var parentDialog = null;
+			switch(dialog.flag){
+				case "select":{
+					parentDialog = MapCloud.new_layer_dialog;
+					MapCloud.new_layer_dialog.setDataSet(dialog.dataSourceCur,dataSet);
+					break;
+				}
+				case "range":{
+					parentDialog = MapCloud.chart_panel;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "bar":{
+					parentDialog = MapCloud.bar_chart_panel;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "pie":{
+					parentDialog = MapCloud.pie_chart_panel;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "kmean":{
+					parentDialog = MapCloud.gps_kmean_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "featureProject":{
+					parentDialog = MapCloud.gps_feature_project_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet);
+					break;
+				}
+				case "getArea":{
+					parentDialog = MapCloud.gps_get_area_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "getLength":{
+					parentDialog = MapCloud.gps_get_length_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "buffer":{
+					parentDialog = MapCloud.gps_buffer_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+				}
+				case "centroid":{
+					parentDialog = MapCloud.gps_centroid_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "convexHull":{
+					parentDialog = MapCloud.gps_convex_hull_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				default:{
+					break;
+				}
+			}
+
+			dialog.closeDialog();
+
+			// if(dialog.flag == "select"){
+			// 	var table = dialog.panel.find(".tree-table.selected");
+			// 	var index = table.attr("dindex");
+			// 	if(dialog.dataSourceCur != null){
+			// 		var dataSets = dialog.dataSourceCur.dataSets;
+			// 		if(dataSets != null){
+			// 			var dataSet = dataSets[index];
+			// 			MapCloud.new_layer_dialog
+			// 				.setDataSet(dialog.dataSourceCur,
+			// 					dataSet);
+			// 			dialog.closeDialog();
+			// 		}
+			// 	}
+			// }else if(dialog.flag == "range"){
+			// 	var table = dialog.panel.find(".tree-table.selected");
+			// 	var index = table.attr("dindex");
+			// 	if(dialog.dataSourceCur != null){
+			// 		var dataSets = dialog.dataSourceCur.dataSets;
+			// 		if(dataSets != null){
+			// 			var dataSet = dataSets[index];
+			// 			MapCloud.chart_panel.setTable(dialog.dataSourceCur.name,
+			// 					dataSet.name);
+			// 			dialog.closeDialog();
+			// 		}
+			// 	}
+			// }else if(dialog.flag == "bar"){
+			// 	var table = dialog.panel.find(".tree-table.selected");
+			// 	var index = table.attr("dindex");
+			// 	if(dialog.dataSourceCur != null){
+			// 		var dataSets = dialog.dataSourceCur.dataSets;
+			// 		if(dataSets != null){
+			// 			var dataSet = dataSets[index];
+			// 			MapCloud.bar_chart_panel.setTable(dialog.dataSourceCur.name,
+			// 					dataSet.name);
+			// 			dialog.closeDialog();
+			// 		}
+			// 	}
+			// }else if(dialog.flag == "pie"){
+			// 	var table = dialog.panel.find(".tree-table.selected");
+			// 	var index = table.attr("dindex");
+			// 	if(dialog.dataSourceCur != null){
+			// 		var dataSets = dialog.dataSourceCur.dataSets;
+			// 		if(dataSets != null){
+			// 			var dataSet = dataSets[index];
+			// 			MapCloud.pie_chart_panel.setTable(dialog.dataSourceCur.name,
+			// 					dataSet.name);
+			// 			dialog.closeDialog();
+			// 		}
+			// 	}
+			// }else if(dialog.flag == "kmean"){
+			// 	var table = dialog.panel.find(".tree-table.selected");
+			// 	var index = table.attr("dindex");
+			// 	if(index == null){
+			// 		MapCloud.notify.showInfo("请选择一个数据","Warning");
+			// 		return;
+			// 	}
+			// 	if(dialog.dataSourceCur != null){
+			// 		var dataSets = dialog.dataSourceCur.dataSets;
+			// 		if(dataSets != null){
+			// 			var dataSet = dataSets[index];
+			// 			MapCloud.gps_kmean_dialog.setDataSet(dialog.dataSourceCur.name,
+			// 					dataSet.name);
+			// 			dialog.closeDialog();
+			// 		}
+			// 	}
+			// }else if(dialog.flag == "featureProject"){
+			// 	var table = dialog.panel.find(".tree-table.selected");
+			// 	var index = table.attr("dindex");
+			// 	if(dialog.dataSourceCur != null){
+			// 		var dataSets = dialog.dataSourceCur.dataSets;
+			// 		if(dataSets != null){
+			// 			var dataSet = dataSets[index];
+			// 			MapCloud.gps_feature_project_dialog.setDataSet(dialog.dataSourceCur.name,
+			// 					dataSet.name);
+			// 			dialog.closeDialog();
+			// 		}
+			// 	}
+			// }else{
+			// 	dialog.closeDialog();
+			// }
 		});
 
 		// 新建数据库
@@ -212,10 +324,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		dbsManager.getDataSources(this.getDataSources_callback);
 		this.flag = flag;
-		if(this.flag == "select" || this.flag == "chart"){
-			this.panel.find(".btn-confirm").html("选择");
-		}else{
+		if(this.flag == null){
 			this.panel.find(".btn-confirm").html("确定");
+		}else{
+			this.panel.find(".btn-confirm").html("选择");
 		}
 	},
 
