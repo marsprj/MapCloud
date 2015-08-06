@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/console.css"/>	
+
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/catalog.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>	
+
+	<title>MapCloud控制台</title>
+</head>
+
+<body scroll="no">
+	<div style="padding:0px;height:100%;background: #fff;">
+		<div id="header_panel" class="container mc-theme-color">
+			<div id="logo_panel"></div>
+			<div id="title_panel" class="title_font">MapCloud控制台</div>
+		</div>
+		<div class="container" id="main_panel">
+			<div id="catalog_panel">
+				<div id="catalog_container">
+				</div>
+			</div>
+			<div id="content_panel">
+				<iframe src="mc_user.html" style="width:100%;height:100%" frameborder="no"></iframe>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	function onItemClick(item_name, item_link){
+		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%' frameborder='no'></iframe>";
+	}
+</script>
