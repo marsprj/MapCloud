@@ -9,7 +9,12 @@ MapCloud.Ribbon = MapCloud.Class({
 	maps : null,
 	// 每页显示的个数
 	maxCount : null,
+	// 页数
+	pageCount : null,
 	
+	// 显示的页数
+	pageNumber : 5,
+
 	initialize : function(){
 	
 		this.ribbon = $("#ribbon_wrapper").first();
@@ -21,7 +26,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		
 		this.enableMneuEffect();
 		this.registerMenuEvents();
-		this.registerPageEvent();
+		// this.registerPageEvent();
 	},
 	
 	destory : function(){
@@ -161,94 +166,105 @@ MapCloud.Ribbon = MapCloud.Class({
 					// WMTS图层
 					that.onLayerAddWMTS();
 					break;
-
 				case 9:
+					// 影像底图
+					that.onAddBaseLayer("image");
+					break;
+				case 10:
+					// 矢量底图
+					that.onAddBaseLayer("vector");
+					break;
+				case 11:
 					// 新建图层
 					that.onLayerNew();
 					break;
-				case 10:
+				case 12:
 					// 编辑图层
 					// that.onEditLayer();
 					break;
-				case 11:
+				case 13:
 					// 分享图层
 					that.onShareLayer();
 					break;
-				case 12:
+				case 14:
 					// that.onCreateLayer();
 					break;
-				case 13:
+				case 15:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 14:
+				case 16:
 					//删除图层
 					that.onRemoveLayer();
 					break;
-				case 15:
+				case 17:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 16:
+				case 18:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 17:
+				case 19:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 18:
+				case 20:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 19:
+				case 21:
 					// 文件管理
 					that.onFile();
 					break;
-				case 20:
+				case 22:
 					//数据库管理
 					that.onDataSource();
 					break;
-				case 21:
+				case 23:
 					// 导入矢量
 					that.onImportVector();
 					break;
-				case 22:
-					// 	导入影像
+				case 24:
+					// 	影像管理
 					that.onImportImage();
 					break;
 				// Chart Events
-				case 23:
+				case 25:
 					// 分级图
 					that.onAddRangeChart();
 					break;
-				case 24 :
+				case 26 :
 					// 柱状图
 					that.onAddBarChart();
 					break;
-				case 25:
+				case 27:
 					// 饼状图
 					that.onAddPieChart();
 					break;
-				case 26:
+				case 28:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 27:
+				case 29:
 					that.onAQI();
 					break;
-				case 28:
+				case 30:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 29:
+				case 31:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 30:
+				case 32:
 					// 图层样式
 					that.onStyleManager();
+					break;
+				case 33:
+					// 工具箱
+					that.onTools();
 					break;
 				};
 			});
@@ -314,7 +330,12 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 地图属性
 	onMapPropertis : function(){
-		alert("onMapPropertis");
+		// alert("onMapPropertis");
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		MapCloud.map_info_dialog.showDialog(mapObj);		
 	},
 
 	
@@ -339,6 +360,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	// WMTS图层
 	onLayerAddWMTS : function(){
 		MapCloud.wmts_dialog.showDialog();
+	},
+
+	onAddBaseLayer : function(type){
+		MapCloud.base_layer_dialog.showDialog(type);
 	},
 
 	// 分级图
@@ -522,104 +547,268 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.styleManager_dialog.showDialog();
 	},
 
+	// 工具箱
+	onTools : function(){
+		MapCloud.gps_oper_panel.showPanel();
+	},
+
 	setMaps : function(maps){
 		this.maps = maps;
 		var mapSize = 220;
-		var rowCount = Math.floor($(".map-list-col").height()/220);
-		var colCount = Math.floor($("#maps_list_ul").width()/220);
-		var count = rowCount * colCount;
+		var rowCount = Math.floor($(".map-list-col").height()/mapSize);
+		var colCount = Math.floor($("#maps_list_ul").width()/mapSize);
+
+		// 调整左右列之间的关系
+		// 取整
+		// 中间的范围
+		var leftWidthB = $("#maps_list_ul").width();
+		var rightWidthB = $(".map-list-info").css("width");
+		rightWidthB = parseInt(rightWidthB.slice(0,rightWidthB.lastIndexOf("px")));
+		var colCountFloor = Math.floor(leftWidthB/mapSize);
+		// 四舍五入的
+		var colCountRound = Math.round(leftWidthB/mapSize);
+		if(colCountFloor == colCountRound){
+			// 右边往左边
+			var leftWidth = mapSize * colCountRound; 
+			var addWidth =  leftWidthB - leftWidth;
+			var rightWidth = rightWidthB + addWidth;
+			$(".map-list-info").css("width",rightWidth + "px");
+			var leftWidth = "calc( 100% - " + rightWidth + "px)";
+			$(".map-list-thum").css("width",leftWidth);
+
+
+		}else if(colCountFloor < colCountRound){
+			//左边往右边挪
+			var leftWidth = mapSize * colCountRound;
+			var addWidth =  leftWidth - leftWidthB;
+			// var rightWidthB
+			var rightWidth = rightWidthB - addWidth;
+			$(".map-list-info").css("width",rightWidth + "px");
+			var leftWidth = "calc( 100% - " + rightWidth + "px)";
+			$(".map-list-thum").css("width",leftWidth);
+		}
+
+		var count = rowCount * colCountRound;
 		this.maxCount = count;
 		var pageCount = Math.ceil(maps.length / this.maxCount);
-		this.ribbonContainer.find(".query_count span").html(maps.length);
-		this.ribbonContainer.find(".pages-form-pages").html(pageCount);
+		// 页数
+		this.pageCount = pageCount;
+		// this.ribbonContainer.find(".query_count span").html(maps.length);
+		// this.ribbonContainer.find(".pages-form-pages").html(pageCount);
+		this.ribbonContainer.find(".maps-count span").html(maps.length);
+		this.initPageControl(1,this.pageCount);
 
+		// 设置页码的右边距
+		var pageControlWidth = $("#home_ribbon .pagination").width();
+		var rightWidth = $(".map-list-info").css("width");
+		rightWidth = parseInt(rightWidth.slice(0,rightWidth.lastIndexOf("px")));
+		var pageDivRight = rightWidth + pageControlWidth/2;
+		pageDivRight = Math.ceil(pageDivRight);
+		$("#home_ribbon .map-page-div").css("right",pageDivRight + "px");
+
+	},
+
+	// 初始化页码
+	initPageControl : function(currentPage,pageCount){
+		if(currentPage <=0 || currentPage > pageCount){
+			return;
+		}
+		var html = "";
+		// 前一页
+		if(currentPage == 1){
+			html += '<li class="disabled">'
+				+ '		<a href="#" aria-label="Previous">'
+				+ '			<span aria-hidden="true">«</span>'
+				+ '		</a>'
+				+ '	</li>';
+		}else{
+			html += '<li>'
+				+ '		<a href="#" aria-label="Previous">'
+				+ '			<span aria-hidden="true">«</span>'
+				+ '		</a>'
+				+ '	</li>';
+		}
+		// 如果页码总数小于要展示的页码，则每个都显示
+		if(pageCount <= this.pageNumber){
+			for(var i = 1; i <= pageCount; ++i){
+				if(i == currentPage){
+					html += '<li class="active">'
+					+ 	'	<a href="#">' + currentPage.toString() 
+					+ 	'		<span class="sr-only">(current)</span>'
+					// + 	'		<span class="sr-only">(' + currentPage + ')</span>'
+					+	'</a>'
+					+ 	'</li>';
+				}else{
+					html += "<li>"
+						+ "<a href='#'>" + i + "</a>"
+						+ "</li>";	
+				}
+			}	
+		}else{
+			// 开始不变化的页码
+			var beginEndPage = pageCount - this.pageNumber + 1;
+			if(currentPage <= beginEndPage){
+				for(var i = currentPage; i < currentPage + this.pageNumber;++i){
+					if(i == currentPage){
+						html += '<li class="active">'
+						+ 	'	<a href="#">' + currentPage
+						// + 	'		<span class="sr-only">(current)</span>'
+						+	'</a>'
+						+ 	'</li>';
+					}else{
+						html += "<li>"
+							+ "<a href='#'>" + i + "</a>"
+							+ "</li>";	
+					}					
+				}
+			}else{
+				for(var i = beginEndPage; i <= pageCount; ++i){
+					if(i == currentPage){
+						html += '<li class="active">'
+						+ 	'	<a href="#">' + currentPage
+						// + 	'		<span class="sr-only">(current)</span>'
+						+	'</a>'
+						+ 	'</li>';
+					}else{
+						html += "<li>"
+							+ "<a href='#'>" + i + "</a>"
+							+ "</li>";	
+					}
+				}
+			}
+		}
+		
+		// 最后一页
+		if(currentPage == pageCount){
+			html += '<li class="disabled">'
+				+ '		<a href="#" aria-label="Next">'
+				+ '			<span aria-hidden="true">»</span>'
+				+ '		</a>'
+				+ '	</li>';
+		}else{
+			html += '<li>'
+				+ '		<a href="#" aria-label="Next">'
+				+ '			<span aria-hidden="true">»</span>'
+				+ '		</a>'
+				+ '	</li>';
+		}
+
+		$("#home_ribbon .pagination").html(html);
+
+		this.registerPageEvent();
+
+		// show currentPage Map
+		var startIndex = (currentPage-1) * this.maxCount;
+		var endIndex = currentPage*this.maxCount - 1;
+		this.showMaps(startIndex,endIndex);
 	},
 	
 	// 翻页事件
+	// registerPageEvent : function(){
+	// 	var that = this;
+	// 	this.ribbonContainer.find(".glyphicon-step-backward").each(function(){
+	// 		$(this).click(function(){
+	// 			var count = parseInt(that.ribbonContainer
+	// 				.find(".pages-form-pages").html());
+	// 			if(count >=1){
+	// 				that.setPage(1);
+	// 			}
+	// 		});
+	// 	});
+	// 	//末页
+	// 	this.ribbonContainer.find(".glyphicon-step-forward").each(function(){
+	// 		$(this).click(function(){
+	// 			var count = parseInt(that.ribbonContainer
+	// 				.find(".pages-form-pages").html());
+	// 			if(count >= 1){
+	// 				that.setPage(count);
+	// 			}
+	// 		});
+	// 	});
+
+	// 	//上一页
+	// 	this.ribbonContainer.find(".glyphicon-chevron-left").each(function(){
+	// 		$(this).click(function(){
+	// 			var page = parseInt(that.ribbonContainer
+	// 				.find(".pages-form-page").val());
+	// 			that.setPage(page - 1);
+	// 		});	
+	// 	});
+
+	// 	//下一页
+	// 	this.ribbonContainer.find(".glyphicon-chevron-right").each(function(){
+	// 		$(this).click(function(){
+	// 			var page = parseInt(that.ribbonContainer
+	// 				.find(".pages-form-page").val());
+	// 			that.setPage(page + 1);
+	// 		});
+	// 	});
+
+	// },
+
+	// NEW 翻页事件
 	registerPageEvent : function(){
 		var that = this;
-		this.ribbonContainer.find(".glyphicon-step-backward").each(function(){
-			$(this).click(function(){
-				var count = parseInt(that.ribbonContainer
-					.find(".pages-form-pages").html());
-				if(count >=1){
-					that.setPage(1);
-				}
-			});
-		});
-		//末页
-		this.ribbonContainer.find(".glyphicon-step-forward").each(function(){
-			$(this).click(function(){
-				var count = parseInt(that.ribbonContainer
-					.find(".pages-form-pages").html());
-				if(count >= 1){
-					that.setPage(count);
-				}
-			});
-		});
+		$("#home_ribbon .pagination li a").click(function(){
+			var active = $("#home_ribbon .pagination li.active a").html();
+			var currentPage = parseInt(active);
 
-		//上一页
-		this.ribbonContainer.find(".glyphicon-chevron-left").each(function(){
-			$(this).click(function(){
-				var page = parseInt(that.ribbonContainer
-					.find(".pages-form-page").val());
-				that.setPage(page - 1);
-			});	
+			var label = $(this).attr("aria-label");
+			if(label == "Previous"){
+				currentPage = currentPage - 1;
+			}else if(label == "Next"){
+				currentPage = currentPage + 1;
+			}else{
+				currentPage = parseInt($(this).html());
+			}
+			
+			that.initPageControl(currentPage,that.pageCount);
 		});
-
-		//下一页
-		this.ribbonContainer.find(".glyphicon-chevron-right").each(function(){
-			$(this).click(function(){
-				var page = parseInt(that.ribbonContainer
-					.find(".pages-form-page").val());
-				that.setPage(page + 1);
-			});
-		});
-
 	},
-	setPage : function(page){
-		var pageCount = parseInt(this.ribbonContainer
-				.find(".pages-form-pages").html());
 
-		this.ribbonContainer.find(".pages-form-page").val(page);
-		if(page　== 1 ){
-			this.ribbonContainer.find(".glyphicon-step-backward")
-				.addClass("disabled");
-		}else{
-			this.ribbonContainer.find(".glyphicon-step-backward")
-				.removeClass("disabled");
-		}
-		if(page == pageCount){
-			this.ribbonContainer.find(".glyphicon-step-forward")
-				.addClass("disabled");
-		}else{
-			this.ribbonContainer.find(".glyphicon-step-forward")
-				.removeClass("disabled");
-		}
+	// setPage : function(page){
+	// 	var pageCount = parseInt(this.ribbonContainer
+	// 			.find(".pages-form-pages").html());
 
-		if(page - 1 <= 0){
-			this.ribbonContainer.find(".glyphicon-chevron-left")
-				.addClass("disabled");
-		}else{
-			this.ribbonContainer.find(".glyphicon-chevron-left")
-				.removeClass("disabled");
-		}
+	// 	this.ribbonContainer.find(".pages-form-page").val(page);
+	// 	if(page　== 1 ){
+	// 		this.ribbonContainer.find(".glyphicon-step-backward")
+	// 			.addClass("disabled");
+	// 	}else{
+	// 		this.ribbonContainer.find(".glyphicon-step-backward")
+	// 			.removeClass("disabled");
+	// 	}
+	// 	if(page == pageCount){
+	// 		this.ribbonContainer.find(".glyphicon-step-forward")
+	// 			.addClass("disabled");
+	// 	}else{
+	// 		this.ribbonContainer.find(".glyphicon-step-forward")
+	// 			.removeClass("disabled");
+	// 	}
 
-		if(page + 1 > pageCount){
-			this.ribbonContainer.find(".glyphicon-chevron-right")
-				.addClass("disabled");
-		}else{
-			this.ribbonContainer.find(".glyphicon-chevron-right")
-				.removeClass("disabled");
-		}
-		if(page < 0 || page > pageCount){
-			return;
-		}
-		var startIndex = (page-1) * this.maxCount;
-		var endIndex = page*this.maxCount - 1;
-		this.showMaps(startIndex,endIndex);
+	// 	if(page - 1 <= 0){
+	// 		this.ribbonContainer.find(".glyphicon-chevron-left")
+	// 			.addClass("disabled");
+	// 	}else{
+	// 		this.ribbonContainer.find(".glyphicon-chevron-left")
+	// 			.removeClass("disabled");
+	// 	}
 
-	},
+	// 	if(page + 1 > pageCount){
+	// 		this.ribbonContainer.find(".glyphicon-chevron-right")
+	// 			.addClass("disabled");
+	// 	}else{
+	// 		this.ribbonContainer.find(".glyphicon-chevron-right")
+	// 			.removeClass("disabled");
+	// 	}
+	// 	if(page < 0 || page > pageCount){
+	// 		return;
+	// 	}
+	// 	var startIndex = (page-1) * this.maxCount;
+	// 	var endIndex = page*this.maxCount - 1;
+	// 	this.showMaps(startIndex,endIndex);
+
+	// },
 
 	showMaps : function(startIndex,endIndex){
 		$("#map-infos").css("display","none");
@@ -648,29 +837,13 @@ MapCloud.Ribbon = MapCloud.Class({
 				+ 	"</li>";	
 		}
 		$("#maps_list_ul").html(html);
-		// $("#maps_list_ul").find(".map-thumb").click(function(){
-		// 	$("#maps_list_ul").find(".map-thumb").removeClass("selected");
-		// 	$(this).addClass("selected");
-		// 	var name = $(this).parent().attr("name");
-		// 	var map = mapManager.getMap("mapCanvas_wrapper",name);
-		// 	that.showMapInfo(map);
-		// }).dblclick(function(){
-		// 	var name = $(this).parent().attr("name");
-		// 	MapCloud.notify.loading();
-		// 	// that.showMapPanel();
-		// 	that.showMapTab();
-		// 	var info = "打开地图[" + name + "]";
-		// 	mapObj = mapManager.getMap("mapCanvas_wrapper",name);
-		// 	if(mapObj == null){
-		// 		MapCloud.notify.showInfo("Warning",info + "失败");
-		// 	}else{
-		// 		mapObj.setNavControl(false);
-		// 		mapObj.draw();
-		// 		MapCloud.refresh_panel.refreshPanel();
-		// 		MapCloud.dataGrid.cleanup();
-		// 		MapCloud.notify.showInfo("success",info);
-		// 	}
-		// });
+
+		//  展示第一个
+		var firstMap = $("#maps_list_ul").find("li").first();
+		firstMap.find("a").addClass("selected");
+		var name = firstMap.attr("name");
+		var map = mapManager.getMap("mapCanvas_wrapper",name);
+		that.showMapInfo(map);
 
 		var DELAY = 300, clicks = 0, timer = null;
 		$("#maps_list_ul").find(".map-thumb").click(function(){
@@ -710,6 +883,7 @@ MapCloud.Ribbon = MapCloud.Class({
 			e.preventDefault();
 		});
 	},
+
 	// 显示地图的页面
 	showMapTab : function(){
 		$("#ribbon_tabs li").removeClass("mc-active-tab");
@@ -719,79 +893,132 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	getMaps_callback : function(maps){
-		$("#map-infos").css("display","none");
+		$(".map-list-info").css("display","none");
 		ribbonObj.setMaps(maps);
-		ribbonObj.setPage(1);
+		// ribbonObj.setPage(1);
 	},
 
+	// showMapInfo : function(map){
+	// 	if(map == null){
+	// 		return;
+	// 	}
+	// 	$("#map-infos").css("display","block");
+	// 	var name = map.name;
+	// 	var srid = map.srid;
+	// 	$("#map-infos .map-info-name").html(name);
+	// 	$("#map-infos .map-info-srid").html(srid);
+
+	// 	var extent = map.extent;
+	// 	if(extent != null){
+	// 		$("#map-infos .map-info-xmin").html(extent.xmin.toFixed(2));
+	// 		$("#map-infos .map-info-ymin").html(extent.ymin.toFixed(2));
+	// 		$("#map-infos .map-info-xmax").html(extent.xmax.toFixed(2));
+	// 		$("#map-infos .map-info-ymax").html(extent.ymax.toFixed(2));
+	// 	}
+	// 	$("#map-infos .map-info-extent").html(extent.toString());
+
+	// 	// 图层
+	// 	$("#map-infos .layer-info-row").remove();
+	// 	var layers = map.getLayers();
+	// 	var layer = null;
+	// 	var name = null;
+	// 	var extent = null;
+	// 	var html = "";
+	// 	var geomType = null;
+	// 	for(var i = 0; i < layers.length;++i){
+	// 		layer = layers[i];
+	// 		if(layer == null){
+	// 			continue;
+	// 		}
+	// 		name = layer.name;
+	// 		html += '<li class="row layer-info-row">'
+	// 			+	'		<div class="col-md-3"></div>'
+	// 			+	'		<div class="col-md-2">' + name + '</div>'
+	// 			+	'		<div class="col-md-3"></div>'
+	// 			+	'	</li>';
+	// 		geomType = layer.geomType;
+	// 		if(geomType != null){
+	// 			html += '<li class="row layer-info-row">'
+	// 			+	'		<div class="col-md-3"></div>'
+	// 			+	'		<div class="col-md-2">类型:</div>'
+	// 			+	'		<div class="col-md-3">'+  geomType + '</div>'
+	// 			+	'	</li>';
+	// 		}
+	// 		extent = layer.extent;
+	// 		if(extent != null){
+	// 			html += '<li class="row layer-info-row">'
+	// 			+	'		<div class="col-md-3"></div>'
+	// 			+	'		<div class="col-md-2">范围:</div>'
+	// 			+   '		<div class="col-md-1 map-layer-info-extent">xMin:</div>'
+	// 			+   '		<div class="col-md-2">'+ extent.xmin.toFixed(2) + '</div>'
+	// 			+   '		<div class="col-md-1 map-layer-info-extent">yMin:</div>'
+	// 			+   '		<div class="col-md-2">'+ extent.ymin.toFixed(2) + '</div>'
+	// 			+ 	'	</li>'
+	// 			+ 	'	<li class="row layer-info-row">'
+	// 			+	'		<div class="col-md-3"></div>'
+	// 			+	'		<div class="col-md-2"></div>'
+	// 			+   '		<div class="col-md-1 map-layer-info-extent">xMax:</div>'
+	// 			+   '		<div class="col-md-2">'+ extent.xmax.toFixed(2) + '</div>'
+	// 			+   '		<div class="col-md-1 map-layer-info-extent">yMax:</div>'
+	// 			+   '		<div class="col-md-2">'+ extent.ymax.toFixed(2) + '</div>'
+	// 			+ 	'	</li>';
+	// 		}
+	// 		$("#map-infos").append(html);
+	// 	}
+		
+	// },
+
 	showMapInfo : function(map){
-		if(map == null){
-			return;
-		}
-		$("#map-infos").css("display","block");
+		$(".map-list-info").css("display","block");
 		var name = map.name;
 		var srid = map.srid;
-		$("#map-infos .map-info-name").html(name);
-		$("#map-infos .map-info-srid").html(srid);
+		$(".map-list-info .map-info-name").html(name);
+		$(".map-list-info .map-info-srid").html(srid);
 
 		var extent = map.extent;
 		if(extent != null){
-			$("#map-infos .map-info-xmin").html(extent.xmin.toFixed(2));
-			$("#map-infos .map-info-ymin").html(extent.ymin.toFixed(2));
-			$("#map-infos .map-info-xmax").html(extent.xmax.toFixed(2));
-			$("#map-infos .map-info-ymax").html(extent.ymax.toFixed(2));
+			var extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
+					+ " , " + extent.xmax.toFixed(2) + " , " + extent.ymax.toFixed(2);
+			$(".map-list-info .map-info-extent").html(extentStr);
 		}
-		$("#map-infos .map-info-extent").html(extent.toString());
 
-		// 图层
-		$("#map-infos .layer-info-row").remove();
+		// layer
+		$(".map-list-info .map-info-layers").empty();
 		var layers = map.getLayers();
 		var layer = null;
 		var name = null;
 		var extent = null;
-		var html = "";
 		var geomType = null;
-		for(var i = 0; i < layers.length;++i){
+		var html = "";
+		for(var i = 0; i < layers.length; ++i){
 			layer = layers[i];
 			if(layer == null){
 				continue;
 			}
 			name = layer.name;
-			html += '<li class="row layer-info-row">'
-				+	'		<div class="col-md-3"></div>'
-				+	'		<div class="col-md-2">' + name + '</div>'
-				+	'		<div class="col-md-3"></div>'
-				+	'	</li>';
 			geomType = layer.geomType;
+			
+
+			html += '<div class="map-info-layer-heading">'
+				+	'	<span>' + name +  '</span>'
+				+	'</div>';
 			if(geomType != null){
-				html += '<li class="row layer-info-row">'
-				+	'		<div class="col-md-3"></div>'
-				+	'		<div class="col-md-2">类型:</div>'
-				+	'		<div class="col-md-3">'+  geomType + '</div>'
-				+	'	</li>';
+				html +=	'<div class="map-info-row">'
+					+ 	'	<span class="map-info-item">类型：</span>'
+					+	'	<span class="map-info-name">' + geomType + '</span>'
+					+	'</div>';
 			}
 			extent = layer.extent;
 			if(extent != null){
-				html += '<li class="row layer-info-row">'
-				+	'		<div class="col-md-3"></div>'
-				+	'		<div class="col-md-2">范围:</div>'
-				+   '		<div class="col-md-1 map-layer-info-extent">xMin:</div>'
-				+   '		<div class="col-md-2">'+ extent.xmin.toFixed(2) + '</div>'
-				+   '		<div class="col-md-1 map-layer-info-extent">yMin:</div>'
-				+   '		<div class="col-md-2">'+ extent.ymin.toFixed(2) + '</div>'
-				+ 	'	</li>'
-				+ 	'	<li class="row layer-info-row">'
-				+	'		<div class="col-md-3"></div>'
-				+	'		<div class="col-md-2"></div>'
-				+   '		<div class="col-md-1 map-layer-info-extent">xMax:</div>'
-				+   '		<div class="col-md-2">'+ extent.xmax.toFixed(2) + '</div>'
-				+   '		<div class="col-md-1 map-layer-info-extent">yMax:</div>'
-				+   '		<div class="col-md-2">'+ extent.ymax.toFixed(2) + '</div>'
-				+ 	'	</li>';
-			}
-			$("#map-infos").append(html);
+				var extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
+					+ " , " + extent.xmax.toFixed(2) + " , " + extent.ymax.toFixed(2);
+				html +=	'<div class="map-info-row">'
+					+ 	'	<span class="map-info-item">范围：</span>'
+					+	'	<span class="map-info-name">' + extentStr + '</span>'
+					+	'</div>';
+			}	
 		}
-		
-	},
+		$(".map-list-info .map-info-layers").append(html);
+	}
 });
 	

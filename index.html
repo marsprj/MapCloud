@@ -173,6 +173,8 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/File/FileManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/File/Folder.js"></script>
 
+<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -195,6 +197,7 @@
 <script type="text/javascript" src="js/Control/Panel/PieChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AQIChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AQITimelineChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/GPSOperPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AlertInfo.js"></script>
@@ -232,6 +235,28 @@
 <script type="text/javascript" src="js/Control/Dialog/AQIStatCompDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/LoginDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/StyleListDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/MapInfoDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/BaseLayerDialog.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSKMeanDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSOutputSourceDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureProjectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSConvexHullDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterStretchDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureImportDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterExtractDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterReverseDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterGraylizeDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSmoothDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSubtractDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemSlopeDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemAspectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetAreaDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetLengthDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSCentroidDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSBufferDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSBuildPyramidDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSUpdateTileDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -283,35 +308,47 @@
 				<div id="ribbon_container">
 					<div id="home_ribbon" class="ribbon_panel">
 						<div class="home_ribbon_tool">
-							<button type="button" class="btn btn-default btn-success btn-new-map">新建地图</button>
-							<form class="form-horizontal pages-form" role="form">
-								<div class="form-group">
-									<label class="col-md-3 control-label query_count">
-										地图个数 : 
-										<span>0</span>
-									</label>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-step-backward btn" href="#"></a>
-									</div>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-chevron-left btn"></a>
-									</div>
-									<div class="col-md-2">
-										<input class="form-control pages-form-page" type="text" value="1">
-									</div>
-									<label class="col-md-1 control-label">
-										/
-									</label>
-									<label class="col-md-1 control-label pages-form-pages">0</label>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon glyphicon-chevron-right btn disabled" href="#"></a>
-									</div>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
-									</div>
+							<!-- <div class="row"> -->
+							<!-- 	<div class="col-md-1">
+									<button type="button" class="btn btn-default btn-success btn-new-map">新建地图</button>
+								</div> -->
+								<!-- <div class="col-md-">
+								<div class="col-md-1 maps-count">
+									<p class="text-primary">地图总数：<span>0</span></p>
 								</div>
-							</form>
-						</div>
+								<div class="col-md-5">
+
+									<ul class="pagination" style="margin:1px 0px">
+									</ul>
+								</div> -->
+								<!-- <div class="col-md-6 pull-right">
+									<div class="maps-count">
+										<p class="text-primary">地图总数：<span>0</span></p>
+									</div>
+									<div class="maps-page">
+										<ul class="pagination" style="margin:1px 0px">
+										</ul>
+									</div>
+									
+								</div>
+							</div> -->
+							<!-- <div class=""> -->
+								<button type="button" class="btn btn-default btn-success btn-new-map">新建地图</button>
+							<!-- </div> -->
+							<div class="pull-right map-page-div">
+								<div class="maps-count">
+									<p class="text-primary">地图总数：<span>0</span></p>
+								</div>
+								<div class="maps-page">
+									<ul class="pagination" style="margin:1px 0px">
+									</ul>
+								</div>
+								
+							</div>
+							
+							
+						</div>	
+						<!-- </div> -->
 					</div>
 					<div id="map_ribbon" class="ribbon_panel">
 						<div class="ribbon_group mc-border-right-light">
@@ -353,6 +390,14 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
 								<div class="ribbon_label">WMTS图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">影像底图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_label">矢量底图</div>
 							</div>
 						</div>
 						
@@ -430,7 +475,7 @@
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
-								<div class="ribbon_label">导入影像</div>
+								<div class="ribbon_label">影像管理</div>
 							</div>
 						</div>
 					</div>
@@ -475,6 +520,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
 								<div class="ribbon_label">图层样式</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
+								<div class="ribbon_label">工具箱</div>
 							</div>
 						</div>
 					</div>
@@ -1476,6 +1525,68 @@
 								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
 							</div>
 						</div>
+						<div id="gps_oper_wrapper" class="mc-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cog fa-2"></i>&nbsp;
+										工具箱
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<ul class="nav">
+									<li>
+										<a href="javascript:void(0)" class="oper-set">
+											<i class="fa fa-inbox"></i>
+											<span>矢量</span>
+										</a>
+										<ul class="nav oper-nav">
+											<li>
+												<a href="javascript:void(0)" class="">
+													<i class="fa fa-wrench"></i>
+													<span>FeatureImport</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" class="">
+													<i class="fa fa-wrench"></i>
+													<span>FeatureProject</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0)" class="">
+											<i class="fa fa-inbox"></i>
+											<span>矢量</span>
+										</a>
+										<ul class="nav">
+											<li>
+												<a href="javascript:void(0)" class="">
+													<i class="fa fa-wrench"></i>
+													<span>FeatureImport</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" class="">
+													<i class="fa fa-wrench"></i>
+													<span>FeatureProject</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<!-- <div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-oper">选择</button>
+							</div> -->
+						</div>
 						<div id="map_bar_wrapper" class="mc-border" >
 							<div class="mc-icon control-icon">
 								<a class="btn btn-default btn-link btn-sm ">
@@ -1505,20 +1616,6 @@
 						<!-- 加入对比panel -->
 						<div id="aqi_station_comp_panel">
 							<div class="aqi-station-list">
-								<!-- <div class="aqi-station-div">
-									<button type="button" class="close">
-										<span aria-hidden="true">×</span>
-										<span class="sr-only">Close</span>
-									</button>
-									<span>市监测站</span>
-								</div>
-								<div class="aqi-station-div">
-									<button type="button" class="close">
-										<span aria-hidden="true">×</span>
-										<span class="sr-only">Close</span>
-									</button>
-									<span>环保局</span>
-								</div> -->
 							</div>
 							<div class="aqi-station-btn">
 								<a class="btn btn-link btn-sm btn-comp">
@@ -1537,106 +1634,85 @@
 		</div>
 		<!-- open map panel -->
 		<div class="container" id="map_list_panel">
-			<div class="row" id="map_list_row">
-				<div class="col-md-8 map-list-col">
-					<ul id="maps_list_ul">
-						<!-- <li class="maps-thumb" name="t">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/a235510c-c9dc-4665-8fcf-3cb8c873154b.png)"></a>
-							<div class="caption text-center">
-								<h6>t</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="A">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/dba38a2a-8220-47bc-962a-84ca33439475.png)"></a>
-							<div class="caption text-center">
-								<h6>A</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="t">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/a235510c-c9dc-4665-8fcf-3cb8c873154b.png)"></a>
-							<div class="caption text-center">
-								<h6>t</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="A">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/2f43f556-95fa-4ce6-9b61-203d3f0cf9da.png)"></a>
-							<div class="caption text-center">
-								<h6>A</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="t">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/a235510c-c9dc-4665-8fcf-3cb8c873154b.png)"></a>
-							<div class="caption text-center">
-								<h6>t</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="A">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/dba38a2a-8220-47bc-962a-84ca33439475.png)"></a>
-							<div class="caption text-center">
-								<h6>A</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="t">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/9196ee14-5658-4be8-8564-6a8aac079d26.png)"></a>
-							<div class="caption text-center">
-								<h6>t</h6>
-							</div>
-						</li>
-						<li class="maps-thumb" name="A">
-							<a href="#" class="map-thumb" style="background-image:url(http://192.168.111.160:8088/ows/thumbnail/2f43f556-95fa-4ce6-9b61-203d3f0cf9da.png)"></a>
-							<div class="caption text-center">
-								<h6>A</h6>
-							</div>
-						</li> -->
-					</ul>					
+			<div class="map-list-col map-list-thum">
+				<ul id="maps_list_ul">
+				</ul>					
+			</div>
+			<div class="map-list-col map-list-info" style="padding-top:60px;">
+				<div class="page-heading">
+					<span class="fa-stack fa-lg">
+					  <i class="fa fa-circle-thin fa-stack-2x"></i>
+					  <i class="fa fa-info fa-stack-1x"></i>
+					</span>
+					<span style="font-size:14px">基本信息</span>
 				</div>
-				<div class="col-md-4 map-list-col">
-					<ul id="map-infos" class="well">
-						<li class="row">
-							<div class="col-md-3">名称:</div>
-							<div class="col-md-9 map-info-name"></div>
-						</li>
-						<li class="row">
-							<div class="col-md-3">空间参考:</div>
-							<div class="col-md-9 map-info-srid"></div>
-						</li>
-						<li class="row">
-							<div class="col-md-3">范围:</div>
-							<div class="col-md-2">xMin:</div>
-							<div class="col-md-2 map-info-xmin">-180</div>
-							<div class="col-md-2">yMin:</div>
-							<div class="col-md-2 map-info-ymin">-180</div>
-						</li>
-						<li class="row">
-							<div class="col-md-3"></div>
-							<div class="col-md-2">xMax:</div>
-							<div class="col-md-2 map-info-xmax">-180</div>
-							<div class="col-md-2">yMax:</div>
-							<div class="col-md-2 map-info-ymax">-180</div>
-						</li>
-						<li class="row">
-							<div class="col-md-3">图层:</div>
-						</li>
-						<li class="row layer-info-row">
-							<div class="col-md-1"></div>
-							<div class="col-md-2">country</div>
-							<div class="col-md-3"></div>
-						</li>
-						<li class="row layer-info-row">
-							<div class="col-md-3"></div>
-							<div class="col-md-2">类型:</div>
-							<div class="col-md-2">MULTIPOLYGON</div>
-						</li>
-						<li class="row layer-info-row">
-							<div class="col-md-3"></div>
-							<div class="col-md-2">范围:</div>
-							<div class="col-md-1 map-layer-info-extent">xMin:</div>
-							<div class="col-md-2 map-info-xmin">-180</div>
-							<div class="col-md-1">yMin:</div>
-							<div class="col-md-2 map-info-ymin">-180</div>
-						</li>
-					</ul>
+				<div class="map-info-row">
+					<span class="map-info-item">名称：</span>
+					<span class="map-info-name"></span>
 				</div>
+				<div class="map-info-row">
+					<span class="map-info-item">空间参考：</span>
+					<span class="map-info-srid">4326</span>
+				</div>
+				<div class="map-info-row">
+					<span class="map-info-item">范围：</span>
+					<span class="map-info-extent">-180,-90,180,90</span>
+				</div>
+				<div class="page-heading">
+					<span class="fa-stack fa-lg">
+					  <i class="fa fa-circle-thin fa-stack-2x"></i>
+					  <i class="fa fa-info fa-stack-1x"></i>
+					</span>
+					<span style="font-size:14px">图层</span>
+				</div>
+				<div class="map-info-layers">
+
+				</div>
+				<ul id="map-infos" class="well">
+					<li class="row">
+						<div class="col-md-3">名称:</div>
+						<div class="col-md-9 map-info-name"></div>
+					</li>
+					<li class="row">
+						<div class="col-md-3">空间参考:</div>
+						<div class="col-md-9 map-info-srid"></div>
+					</li>
+					<li class="row">
+						<div class="col-md-3">范围:</div>
+						<div class="col-md-2">xMin:</div>
+						<div class="col-md-2 map-info-xmin">-180</div>
+						<div class="col-md-2">yMin:</div>
+						<div class="col-md-2 map-info-ymin">-180</div>
+					</li>
+					<li class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-2">xMax:</div>
+						<div class="col-md-2 map-info-xmax">-180</div>
+						<div class="col-md-2">yMax:</div>
+						<div class="col-md-2 map-info-ymax">-180</div>
+					</li>
+					<li class="row">
+						<div class="col-md-3">图层:</div>
+					</li>
+					<li class="row layer-info-row">
+						<div class="col-md-1"></div>
+						<div class="col-md-2">country</div>
+						<div class="col-md-3"></div>
+					</li>
+					<li class="row layer-info-row">
+						<div class="col-md-3"></div>
+						<div class="col-md-2">类型:</div>
+						<div class="col-md-2">MULTIPOLYGON</div>
+					</li>
+					<li class="row layer-info-row">
+						<div class="col-md-3"></div>
+						<div class="col-md-2">范围:</div>
+						<div class="col-md-1 map-layer-info-extent">xMin:</div>
+						<div class="col-md-2 map-info-xmin">-180</div>
+						<div class="col-md-1">yMin:</div>
+						<div class="col-md-2 map-info-ymin">-180</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -1833,7 +1909,7 @@
 									<input class="form-control" type="text" id="new_layer_dbs" disabled="true">
 								</div>
 								<div class="col-md-3">
-									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_dbs">选择数据源</a>
+									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_dbs">数据源</a>
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
@@ -1844,7 +1920,7 @@
 									<input class="form-control" type="text" id="new_layer_style" disabled="true">
 								</div>
 								<div class="col-md-3">
-									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_style">选择样式</a>
+									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_style">样式</a>
 								</div>
 							</div>
 						</form>
@@ -3528,7 +3604,7 @@
 	</div>
 
 	<!--  AQI Station Compare Dialog -->
-	<div class="modal" id="aqiStatCompDialog" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" id="aqiStatCompDialog" tabindex="-1" role="dialog" aria-hidden="true">
 		 <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -3635,6 +3711,9 @@
 										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="上传">
 											<i class="fa fa-upload"></i>
 										</a>
+										<a class="btn btn-default btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+											<i class="fa fa-refresh"></i>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -3714,7 +3793,7 @@
 								<div class="row header-row">
 									<div class="col-md-4">文件路径</div>
 									<div class="col-md-2">模式</div>
-									<div class="col-md-3">表格名称</div>
+									<div class="col-md-3">表名称</div>
 									<div class="col-md-2">空间列</div>
 									<div class="col-md-1">空间参考</div>
 								</div>
@@ -3835,6 +3914,9 @@
 										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="导入">
 											<i class="fa fa-upload"></i>
 										</a>
+										<a class="btn btn-default btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+											<i class="fa fa-refresh"></i>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -3851,7 +3933,7 @@
 		</div>
 	</div>
 
-	<!-- 样式列表 -->
+	<!-- style list panel -->
 	<div class="modal fade" id="style_list_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -3860,6 +3942,94 @@
 					<h5 class="modal-title">样式列表</h5>
 				</div>
 				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group form-group-sm">
+							<label for="" class="col-sm-3 control-label">样式：</label>
+							<div class="col-md-6">
+								<select class="form-control style-list">
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Map info panel -->
+	<div class="modal fade" id="map_info_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">地图属性</h5>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs" id="map_info_dialog_tab">
+						<li class="active">
+							<a href="#map_infos">信息</a>
+						</li>
+						<li>
+							<a href="#map_layers">图层</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="map_infos">
+							<form class="form-horizontal">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">名称</label>
+									<div class="col-md-8">
+										<input class="form-control map-info-name" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">空间参考</label>
+									<div class="col-md-8">
+										<input class="form-control map-info-srid" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">范围</label>
+									<div class="col-md-8">
+										<input class="form-control map-info-extent" disabled>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="map_layers">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Base layer panel -->
+	<div class="modal fade" id="base_layer_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">添加底图</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="list-group">
+								<a href="#" class="list-group-item active" btype="image">影像底图</a>
+								<a href="#" class="list-group-item" btype="vector">
+									矢量底图
+								</a>
+							</div>
+						</div>
+						<div class="col-md-9" id="base_layer_canvas_wrapper">
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -3870,4 +4040,1861 @@
 	</div>
 
 
+
+	<!-- GPS  output source name panel-->
+	<div class="modal fade" id="gps_output_source_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">请选择输出数据库</h5>
+				</div>
+				<div class="modal-body">
+					<select class="gps-output-source-list form-control">
+						<option value="db1">db1</option>
+						<option value="abc">abc</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS  KMean panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_kmean_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">KMean聚类分析</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										聚类:
+									</label>
+									<div class="col-md-2">
+										<input type="text" class="form-control gps-kmean-clusters" value="10">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Feature import panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_feature_import_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">数据导入</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11">
+							<label>导入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+							</form>
+							<label>输入图层</label>
+							<div class="import-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-4">文件路径</div>
+									<div class="col-md-2">模式</div>
+									<div class="col-md-3">表名称</div>
+									<div class="col-md-2">空间列</div>
+									<div class="col-md-1">SRID</div>
+								</div>
+								<div class="import-list-div"></div>
+							</div>
+								
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+  							  		<button class="btn btn-lg btn-default gps-oper-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								</li>
+  								<li>
+  							  		<button class="btn btn-lg btn-default gps-oper-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="上传">
+										<i class="fa fa-upload"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Feature project panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_feature_project_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">投影变换</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										投影:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-srid" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										投影:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-srid" value="900913">
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-srid btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- GPS Raster Stretch panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_stretch_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像拉伸</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Raster Extract panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_extract_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像裁剪</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										范围:
+									</label>
+									<div class="col-md-3">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon">西</span>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon">东</span>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="col-md-3 col-md-offset-2">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon">北</span>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon">南</span>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- GPS Raster Reverse panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_reverse_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像Reverse</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- GPS Raster Graylize panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_graylize_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像Graylize</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Raster Smooth panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_smooth_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像Smooth</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- GPS Raster Subtract panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_subtract_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像Smooth</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入影像-1</label>
+							<form class="form-horizontal gps-oper-form gps-oper-form-1" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输入影像-2</label>
+							<form class="form-horizontal gps-oper-form gps-oper-form-2" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Dem Slope panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_dem_slope_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">坡度</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Dem Aspect panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_dem_aspect_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">坡向</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- GPS Convex hull panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_convex_hull_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">凸包</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Get Area panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_get_area_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">面积</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- GPS Get Length panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_get_length_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">周长</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- GPS Buffer panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_buffer_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">缓冲区</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+                                      	   <input type="radio" name="buffer-diastance">
+                                      	   <span>距离:</span>
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+                                      	   <input type="radio" name="buffer-diastance">
+                                      	   <span>字段:</span>
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- GPS Centroid panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_centroid_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">质心</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- GPS Build Pyramid panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_build_pyramid_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">金字塔</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										当前地图:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control " disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										瓦片库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-tile-store">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										开始级别:
+									</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control gps-start-level">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										终止级别:
+									</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control gps-end-level">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- GPS Update Tile panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_update_tile_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">更新瓦片</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										当前地图:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control " disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-3">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										瓦片库:
+									</label>
+									<div class="col-md-7">
+										<input type="text" class="form-control gps-tile-store" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										级别:
+									</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control gps-level">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										行:
+									</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control gps-tile-row">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										列:
+									</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control gps-tile-col">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>

@@ -84,28 +84,28 @@ MapCloud.refresh = MapCloud.Class({
 		// var that = this;
 
 		// 影响点击，暂时屏蔽,拖拽的
-		$("ul#layers_row").sortable({
-		 	vertical: true,
-		 	nested : false,
-		 	handle : "li.layer_row",
-		 	onDrop: function($item, container, _super) {
-		 		_super($item, container);
-		 		var index = $item.attr("value");
-		 		var layer = mapObj.layers[parseInt(index)];
-		 		var layer_rows = $item.parent().children();
-		 		var newIndex = layer_rows.length - 1 - layer_rows.index($item);
-		 		if(newIndex != -1){
-		 			var step = newIndex - parseInt(index);
-		 			if(step > 0){
-		 				layer.up(step);
-		 			}else if(step < 0){
-		 				step = step * (-1);
-		 				layer.down(step);
-		 			}
-		 			mapObj.draw();
-		 			that.refreshPanel();
-		 		}
-		 	}
+		// $("ul#layers_row").sortable({
+		//  	vertical: true,
+		//  	nested : false,
+		//  	handle : "li.layer_row",
+		//  	onDrop: function($item, container, _super) {
+		//  		_super($item, container);
+		//  		var index = $item.attr("value");
+		//  		var layer = mapObj.layers[parseInt(index)];
+		//  		var layer_rows = $item.parent().children();
+		//  		var newIndex = layer_rows.length - 1 - layer_rows.index($item);
+		//  		if(newIndex != -1){
+		//  			var step = newIndex - parseInt(index);
+		//  			if(step > 0){
+		//  				layer.up(step);
+		//  			}else if(step < 0){
+		//  				step = step * (-1);
+		//  				layer.down(step);
+		//  			}
+		//  			mapObj.draw();
+		//  			that.refreshPanel();
+		//  		}
+		//  	}
 			// onDrag: function ($item, position) {
 			//     // $item.css({
 			//     // 	border:"1px solid #ccc"
@@ -114,7 +114,7 @@ MapCloud.refresh = MapCloud.Class({
 			// 	$item.addClass("dragged");
 	 	// 		$("body").addClass("dragging");	
 			// }
-		});	
+		// });	
 
 
 		var html = "";
@@ -126,6 +126,8 @@ MapCloud.refresh = MapCloud.Class({
 			$("#baseLayer_row").html(baseLayerhtml);
 			$("#baseLayer_row").css("padding","6px");
 			$("#baseLayer_row").removeClass("sm");
+		}else{
+			$("#baseLayer_row").empty();
 		}
 		
 		// 各个图层
@@ -393,6 +395,7 @@ MapCloud.refresh = MapCloud.Class({
 			});
 		});
 
+		// 删除底图
 		this.panel.find(".layer_row_quick_tool_remove_base").each(function(){
 			$(this).click(function(){
 				mapObj.removeBaseLayer();
@@ -401,71 +404,22 @@ MapCloud.refresh = MapCloud.Class({
 			});
 		});
 
+		// 图层顺序的调整
+		this.panel.find(".layer_row .layer_oper").click(function(){
+			var li = $(this).parents("li");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			// 向上
+			if($(this).hasClass('fa-arrow-up')){
+				layer.up(that.layerOper_callback);
+			}else if($(this).hasClass("fa-arrow-down")){
+				layer.down(that.layerOper_callback);
+			}
 
-		// 图表编辑
-		// this.panel.find(".chart_row_quick_tool_edit").each(function(){
-		// 	$(this).click(function(){
-		// 		var text = $(this).parent().parent().parent().parent().parent().prev().children().html();
-		// 		var layer_id = $(this).parent().parent().parent().parent().parent().parent().parent().children(".layer_row").attr('value');
-		// 		var layer = mapObj.layers[layer_id];
-			
-		// 		var option = null;
-		// 		var wfsChartID = $(this).parents(".chart_style_row").attr("value");
-		// 		var wfsLayerChart = MapCloud.wfs_layer_chart[wfsChartID];
-		// 		if (wfsLayerChart != null) {
-		// 			option = wfsLayerChart.option;
-		// 		}
-
-		// 		if(MapCloud.new_chart_dialog == null){
-		// 			MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
-		// 		}
-		// 		MapCloud.new_chart_dialog.showDialog();		
-		// 		MapCloud.new_chart_dialog.setLayerOption(layer,option,wfsChartID);
-		// 	})；
-		// });	
-
-		// 删除图表
-		// this.panel.find(".chart_row_quick_tool_delete").each(function(){
-		// 	$(this).click(function(){
-		// 		var wfsChartID = $(this).parents(".chart_style_row").attr("value");
-		// 		var wfsLayerChart = MapCloud.wfs_layer_chart[wfsChartID];
-		// 		if(wfsLayerChart == null){
-		// 			return;
-		// 		}
-		// 		wfsLayerChart.removeCharts(wfsChartID);
-		// 		// MapCloud.wfs_layer_chart.splice(wfsChartID,1);
-		// 		MapCloud.wfs_layer_chart[wfsChartID] = null;
-		// 		var refresh = new MapCloud.refresh("left_panel");
-		// 		refresh.refreshPanel();
-		// 	})
-		// });		
-
-		//图表显示与隐藏
-		// this.panel.find(".chart_style_row .glyphicon-eye-open,.chart_style_row .glyphicon-eye-close").each(function(){
-		// 	$(this).click(function(){
-		// 		var wfsChartID = $(this).parents(".chart_style_row").attr("value");
-		// 		if($(this).hasClass("glyphicon-eye-open")){
-		// 			$(this).removeClass("glyphicon-eye-open");
-		// 			$(this).addClass('glyphicon-eye-close');
-		// 			var wfsLayerChart = MapCloud.wfs_layer_chart[wfsChartID];
-		// 			if(wfsLayerChart == null){
-		// 				return;
-		// 			}
-		// 			wfsLayerChart.removeCharts(wfsChartID);					
-		// 		}else if($(this).hasClass("glyphicon-eye-close")){
-		// 			$(this).removeClass("glyphicon-eye-close");
-		// 			$(this).addClass('glyphicon-eye-open');
-		// 			var wfsLayerChart = MapCloud.wfs_layer_chart[wfsChartID];
-		// 			if(wfsLayerChart == null){
-		// 				return;
-		// 			}
-		// 			wfsLayerChart.showFront();
-		// 			// wfsLayerChart.show();					
-		// 		}
-		// 	})
-			
-		// });
-
+		});
 
 		// WMS的MapLayer的样式编辑
 		this.panel.find(".mc-icon-wmslayer").each(function(){
@@ -703,7 +657,7 @@ MapCloud.refresh = MapCloud.Class({
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
-				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"				+	"				</ul>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove_base\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"				+	"				</ul>"
 				+	"			</li>"
 				+	"		</ul>"
 				+	"	</div>";
@@ -797,6 +751,9 @@ MapCloud.refresh = MapCloud.Class({
 		}
 		var html = "";
 		var rules = style.rules;
+		if(rules.length == 0){
+			return "";
+		}
 		if(rules.length == 1){
 			var rule = rules[0];
 			if(rule != null){
@@ -805,6 +762,9 @@ MapCloud.refresh = MapCloud.Class({
 					var symbolizer = rule.symbolizer;
 					if(symbolizer != null){
 						var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
+						if(symbolizerHtml == null){
+							return "";
+						}
 						html += '<div class="row layer_style_row" lID="'
 							 +			index+ '" sID="0">'
 							 // + 	'	<div class="col-md-1 col-xs-1"></div>'
@@ -1057,9 +1017,15 @@ MapCloud.refresh = MapCloud.Class({
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
 				+	"	</div>"
-				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"	<div class=\"col-md-4 col-xs-1 layer_name\">"
 				+	"		<strong>" + name + "</strong>"
 				+	"	</div>"
+				+ 	"	<div class='col-md-1'>"
+				+ 	"		<div class='fa fa-arrow-up mc-icon layer_oper'></div>"
+				+	"	</div>"
+				+ 	"	<div class='col-md-1'>"
+				+ 	"		<div class='fa fa-arrow-down mc-icon layer_oper'></div>"
+				+	"	</div>"				
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul class=\"layer_row_quick_tool_ul\">"
 				+	"			<li class=\"dropdown pull-right\">"
@@ -1215,4 +1181,20 @@ MapCloud.refresh = MapCloud.Class({
 	saveMap_callback : function(result){
 		MapCloud.notify.showInfo(result,"保存地图");
 	},
+
+	// 本地调整顺序
+	layerOper_callback : function(result){
+		var panel = MapCloud.refresh_panel;
+		if(result == "success"){
+			mapManager.saveMap(mapObj,panel.saveMapLayers_callback);
+		}else{
+			MapCloud.notify.showInfo(result,"调整底图顺序");
+		}
+	},
+
+	saveMapLayers_callback : function(result){
+		MapCloud.notify.showInfo(result,"调整底图顺序");
+		MapCloud.refresh_panel.refreshPanel();
+		mapObj.draw();
+	}
 });

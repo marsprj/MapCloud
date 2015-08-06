@@ -6,6 +6,9 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	// 选中的数据
 	dataSet 	: null,
 
+	// 选择的样式
+	style : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		
@@ -20,17 +23,34 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 			});
 		});
 
+		dialog.panel.find("#new_layer_select_style").click(function(){
+			if(dialog.dataSet == null){
+				MapCloud.notify.showInfo("请先选择数据源","Warning");
+				return;
+			}
+			var geomType = dialog.dataSet.geometryType;
+			if(geomType == null){
+				MapCloud.notify.showInfo("请选择有效的数据源","Warning");
+				return;
+			}
+			MapCloud.style_list_dialog.showDialog(geomType);
+		});
+
 		// 确定
 		dialog.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var name = dialog.panel.find("#new_layer_name").val();
 				if(name == null || name == ""){
-					alert("请输入名称！");
+					MapCloud.notify.showInfo("请输入名称","Warning");
 					return;
 				}
 				if(dialog.dataSource == null || 
 					dialog.dataSet == null){
-					alert("请选择数据");
+					MapCloud.notify.showInfo("请选择数据","Warning");
+					return;
+				}
+				if(dialog.style == null){
+					MapCloud.notify.showInfo("请选择样式","Warning");
 					return;
 				}
 				var dbName = dialog.dataSource.name;
@@ -55,6 +75,10 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 	cleanup : function(){
 		this.panel.find("#new_layer_name").val("");
 		this.panel.find("#new_layer_dbs").val("");
+		this.panel.find("#new_layer_style").val("");
+		this.style = null;
+		this.dataSource = null;
+		this.dataSet = null;
 	},
 
 	// 选择数据源返回的数据源和数据
@@ -77,7 +101,26 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		var name = dialog.panel.find("#new_layer_name").val();
 		var info = "注册图层 [ " + name + " ]";
 		MapCloud.alert_info.showInfo(result,info);
-		MapCloud.refresh_panel.refreshPanel();
+		if(result.toLowerCase() == "success"){
+			MapCloud.refresh_panel.refreshPanel();
+			// mapObj.draw();
+			mapObj.setStyle(name,dialog.style,dialog.setStyle_callback);			
+		}
+	},
+
+	setStyle : function(style){
+		if(style == null){
+			return;
+		}
+		this.style = style;
+
+		this.panel.find("#new_layer_style").val(this.style.name);
+	},
+
+	setStyle_callback : function(result){
+		if(result.toLowerCase() != "success"){
+			MapCloud.notify.showInfo(result,"设置样式");
+		}
 		mapObj.draw();
 	}
 });

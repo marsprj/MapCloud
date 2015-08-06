@@ -61,7 +61,7 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	// 返回选择要展示的图表
-	setTable : function(dbName,tableName){
+	setDataSet : function(dbName,tableName){
 
 		this.dbName = dbName;
 		this.tableName = tableName;
@@ -76,7 +76,7 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 选择图表
 		this.panel.find(".btn-chose-chart").click(function(){
-			MapCloud.db_admin_dialog.showDialog("range");
+			MapCloud.vector_db_dialog.showDialog("range");
 		});
 
 		// 表格匹配字段

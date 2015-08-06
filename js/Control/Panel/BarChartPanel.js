@@ -67,7 +67,7 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 选择图表
 		this.panel.find(".btn-chose-chart").click(function(){
-			MapCloud.db_admin_dialog.showDialog("bar");
+			MapCloud.vector_db_dialog.showDialog("bar");
 		});
 
 		// 切换底图
@@ -125,7 +125,7 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 		});
 	},
 
-	setTable : function(dbName,tableName){
+	setDataSet : function(dbName,tableName){
 		this.dbName = dbName;
 		this.tableName = tableName;
 
