@@ -62,7 +62,7 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose ouput srid
 		dialog.panel.find(".btn-choose-output-srid").click(function(){
-			alert("choose output srid");
+			MapCloud.gps_srid_dialog.showDialog("featureProject");
 		});
 
 		// 操作
@@ -83,9 +83,13 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			var outputSrid = dialog.panel.find(".gps-output-srid").val();
-			outputSrid = parseInt(outputSrid);
-			if(outputSrid == null){
+			// var outputSrid = dialog.panel.find(".gps-output-srid").val();
+			// outputSrid = parseInt(outputSrid);
+			// if(outputSrid == null){
+			// 	MapCloud.notify.showInfo("请输入转换后的投影","Warning");
+			// 	return;
+			// }
+			if(dialog.outputSrid == null){
 				MapCloud.notify.showInfo("请输入转换后的投影","Warning");
 				return;
 			}
@@ -133,4 +137,9 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
 	},
 
+	// 设置输出的srid
+	setSrid : function(srid){
+		this.outputSrid = srid;
+		this.panel.find(".gps-output-srid").val(this.outputSrid);
+	}
 });

@@ -67,6 +67,8 @@ $().ready(function(){
 		= new MapCloud.CreateFolderDialog("create_folder_dialog");
 	MapCloud.raster_db_dialog
 		= new MapCloud.RasterDBDialog("raster_db_dialog");
+	MapCloud.import_raster_dialog
+		= new MapCloud.ImportRasterDialog("import_raster_dialog");
 
 	MapCloud.gps_output_source_dialog
 		= new MapCloud.GPSOutputSourceDialog("gps_output_source_dialog");
@@ -106,6 +108,8 @@ $().ready(function(){
 		= new MapCloud.GPSBuildPyramidDialog("gps_build_pyramid_dialog");
 	MapCloud.gps_update_tile_dialog
 		= new MapCloud.GPSUpdateTileDialog("gps_update_tile_dialog");
+	MapCloud.gps_srid_dialog 
+		= new MapCloud.GPSSridDialog("gps_srid_dialog");
 
 
 	MapCloud.refresh_panel 
@@ -154,6 +158,7 @@ $().ready(function(){
 	fileManager = new GeoBeans.FileManager(url);
 	styleManager = new GeoBeans.StyleManager(url);
 	gpsManager = new GeoBeans.GPSManager(url);
+	rasterDBManager = new GeoBeans.RasterDBManager(url);
 
 	$(".modal").draggable({
 	    handle: ".modal-header"

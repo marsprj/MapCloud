@@ -105,86 +105,6 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 			dialog.closeDialog();
 
-			// if(dialog.flag == "select"){
-			// 	var table = dialog.panel.find(".tree-table.selected");
-			// 	var index = table.attr("dindex");
-			// 	if(dialog.dataSourceCur != null){
-			// 		var dataSets = dialog.dataSourceCur.dataSets;
-			// 		if(dataSets != null){
-			// 			var dataSet = dataSets[index];
-			// 			MapCloud.new_layer_dialog
-			// 				.setDataSet(dialog.dataSourceCur,
-			// 					dataSet);
-			// 			dialog.closeDialog();
-			// 		}
-			// 	}
-			// }else if(dialog.flag == "range"){
-			// 	var table = dialog.panel.find(".tree-table.selected");
-			// 	var index = table.attr("dindex");
-			// 	if(dialog.dataSourceCur != null){
-			// 		var dataSets = dialog.dataSourceCur.dataSets;
-			// 		if(dataSets != null){
-			// 			var dataSet = dataSets[index];
-			// 			MapCloud.chart_panel.setTable(dialog.dataSourceCur.name,
-			// 					dataSet.name);
-			// 			dialog.closeDialog();
-			// 		}
-			// 	}
-			// }else if(dialog.flag == "bar"){
-			// 	var table = dialog.panel.find(".tree-table.selected");
-			// 	var index = table.attr("dindex");
-			// 	if(dialog.dataSourceCur != null){
-			// 		var dataSets = dialog.dataSourceCur.dataSets;
-			// 		if(dataSets != null){
-			// 			var dataSet = dataSets[index];
-			// 			MapCloud.bar_chart_panel.setTable(dialog.dataSourceCur.name,
-			// 					dataSet.name);
-			// 			dialog.closeDialog();
-			// 		}
-			// 	}
-			// }else if(dialog.flag == "pie"){
-			// 	var table = dialog.panel.find(".tree-table.selected");
-			// 	var index = table.attr("dindex");
-			// 	if(dialog.dataSourceCur != null){
-			// 		var dataSets = dialog.dataSourceCur.dataSets;
-			// 		if(dataSets != null){
-			// 			var dataSet = dataSets[index];
-			// 			MapCloud.pie_chart_panel.setTable(dialog.dataSourceCur.name,
-			// 					dataSet.name);
-			// 			dialog.closeDialog();
-			// 		}
-			// 	}
-			// }else if(dialog.flag == "kmean"){
-			// 	var table = dialog.panel.find(".tree-table.selected");
-			// 	var index = table.attr("dindex");
-			// 	if(index == null){
-			// 		MapCloud.notify.showInfo("请选择一个数据","Warning");
-			// 		return;
-			// 	}
-			// 	if(dialog.dataSourceCur != null){
-			// 		var dataSets = dialog.dataSourceCur.dataSets;
-			// 		if(dataSets != null){
-			// 			var dataSet = dataSets[index];
-			// 			MapCloud.gps_kmean_dialog.setDataSet(dialog.dataSourceCur.name,
-			// 					dataSet.name);
-			// 			dialog.closeDialog();
-			// 		}
-			// 	}
-			// }else if(dialog.flag == "featureProject"){
-			// 	var table = dialog.panel.find(".tree-table.selected");
-			// 	var index = table.attr("dindex");
-			// 	if(dialog.dataSourceCur != null){
-			// 		var dataSets = dialog.dataSourceCur.dataSets;
-			// 		if(dataSets != null){
-			// 			var dataSet = dataSets[index];
-			// 			MapCloud.gps_feature_project_dialog.setDataSet(dialog.dataSourceCur.name,
-			// 					dataSet.name);
-			// 			dialog.closeDialog();
-			// 		}
-			// 	}
-			// }else{
-			// 	dialog.closeDialog();
-			// }
 		});
 
 		// 新建数据库
@@ -210,8 +130,14 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.import_dialog.setDataSourceName(dialog.dataSourceCur.name);
 		});
 
+		// 删除
 		this.panel.find(".btn-remove-dataset").click(function(){
 			dialog.removeDataset();
+		});
+
+		// 刷新
+		this.panel.find(".btn-refresh").click(function(){
+			dialog.refresh();
 		});
 
 		// 展示方式
@@ -846,6 +772,24 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.notify.showInfo(result,info);
 		var dialog = MapCloud.vector_db_dialog;
 		dbsManager.getDataSources(dialog.getDataSources_callback);
+	},
+
+	// 刷新
+	refresh : function(){
+		var selectDataSet = this.panel.find(".tree-table.selected");
+		if(selectDataSet.length == 0){
+			var dbName = this.panel.find(".db-list").val();
+			this.getDataSource(dbName);
+		}else{
+			var index = selectDataSet.attr("dindex");
+			if(this.dataSourceCur != null){
+				var dataSets = this.dataSourceCur.dataSets;
+				if(dataSets != null){
+					var dataSet = dataSets[index];
+					this.showDataSetPanel(dataSet);
+				}
+			}
+		}
 	}
 	
 

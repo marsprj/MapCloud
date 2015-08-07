@@ -666,9 +666,17 @@ ul#ribbon_tabs li{
 	background-color:#FFF;
 	opacity:0.7;
 	width:332px;
-	height:30px;
+	/*height:30px;*/
 	z-index:2;
+	background-color: #f9f9f9;
 }
+#map_bar_wrapper .mc-icon.active{
+	background-color: #fff;
+}
+#map_bar_wrapper .mc-icon:hover{
+	background-color: #fff;
+}
+
 #map_bar_wrapper div{
 	float:left;
 	margin:0px;
@@ -2131,6 +2139,9 @@ ul.layers_row li:before {
 .mc-db-icon-server{
 	background-image: url(../images/server-16.png);
 }
+.mc-db-icon-folder{
+	background-image: url(../images/folder.png);
+}
 
 .mc-db-icon-dataset{
 	background-image: url(../images/table_16.png);
@@ -2775,19 +2786,130 @@ ul.layers_row li:before {
 	margin: 20px 0px;
 	height: calc( 100% - 56px);
 }
+#raster_db_dialog ul{
+	margin: 0px;
+	padding-left: 20px;
+}
+#raster_db_dialog .nav>li>a {
+  padding: 4px 6px;
+  font-size: 14px;
+}
+#raster_db_dialog .nav>li>a:hover{
+	color :#fff;
+	background-color: #A8CAE7;
+}
+#raster_db_dialog .nav>li>a.selected{
+	color :#fff;
+	background-color: #428bca;
+}
+#raster_db_dialog .nav>li>a>i{
+	margin-right: 6px;
+}
 
 #raster_db_dialog .tool-row .btn{
 	height: 34px;
 	font-size: 16px;
 }
 
-#raster_db_dialog .raster-list-content{
-	border: 1px groove #ccc;
+#raster_db_dialog .raster-list-wrapper{
+	border: 1px solid #ccc;
 	margin: 20px 0px;
 	height: calc( 100% - 56px);
+	border-radius: 4px;
+}
+
+#raster_db_dialog .raster-list-wrapper .row{
+	margin: 0px 0px;
+	padding: 6px 8px;
+}
+#raster_db_dialog .raster-list-wrapper .row:hover{
+	background-color: #DFF1F8;
+}
+#raster_db_dialog .raster-list-wrapper .header-row{
+	border-bottom: 2px solid #ababab;
+}
+
+#raster_db_dialog .raster-list-wrapper .row [class*="col-"] {
+    padding: 0px 0px 0px 2px;
+}
+#raster_db_dialog .row-file i, #raster_db_dialog .row-folder i {
+    margin-top: 4px;
+}
+#raster_db_dialog .raster-list-wrapper .row-fname {
+    cursor: pointer;
 }
 /***************************************************************************/
 /* Raster DB dialog End  												   */
+/***************************************************************************/
+
+/***************************************************************************/
+/* Import Raster dialog Begin											   */
+/***************************************************************************/
+#import_raster_dialog .modal-dialog{
+	width: 800px;
+}
+#import_raster_dialog .modal-body{
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;	
+}
+#import_raster_dialog .row{
+	margin: 0px;
+	padding: 0px 8px;
+}
+
+#import_raster_dialog .import-db .mc-db-icon {
+    position: relative;
+    top: 2px;
+}
+#import_raster_dialog .mc-db-icon-folder{
+	margin-left: 10px;
+}
+
+#import_raster_dialog .import-list-wrapper {
+    height: 100%;
+    border: 1px solid #ddd;
+}
+#import_raster_dialog .import-content-div {
+    height: 300px;
+    padding: 0px;
+}
+#import_raster_dialog .header-row {
+    border-bottom: 2px solid #ddd;
+}
+#import_raster_dialog .import-tool-div ul {
+    margin: 0px;
+}
+#import_raster_dialog .import-tool-div ul li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#import_raster_dialog .row [class*="col-"] {
+    padding: 6px 2px 6px 2px;
+}
+#import_raster_dialog .import-list-div .row:hover{
+	background-color: #DFF1F8;
+}
+#import_raster_dialog .import-list-div .row.selected{
+	background-color: #DFF1F8;
+}
+#import_raster_dialog .import-log-wrapper {
+    height: 200px;
+    display: none;
+    margin-top: 10px !important;
+}
+#import_raster_dialog .import-log-row {
+    height: calc( 100% - 38px);
+}
+#import_raster_dialog .import-log-div {
+    height: 100%;
+    overflow-y: auto;
+    padding: 4px;
+    border: 1px solid #ddd;
+}
+/***************************************************************************/
+/* Import Raster dialog End											   */
 /***************************************************************************/
 /***************************************************************************/
 /* Style List Dialog Begin  												   */
@@ -2888,10 +3010,7 @@ ul.layers_row li:before {
 	margin-left: 0px;
 	margin-right: 0px;
 }
-.gps-oper-dialog .gps-oper-form .form-group .btn{
-	text-indent: 1.2em;
-	letter-spacing: 1.2em;
-}
+
 .gps-oper-dialog .gps-oper-tool-div{
 	padding-top: 21px;
 	padding-left: 0px;
@@ -3026,4 +3145,48 @@ ul.layers_row li:before {
 }
 /***************************************************************************/
 /* GPS Tile  Dialog End	 											*/
+/***************************************************************************/
+/***************************************************************************/
+/* GPS Srid  Dialog Begin	 											*/
+/***************************************************************************/
+#gps_srid_dialog .modal-dialog{
+	width: 900px;
+}
+#gps_srid_dialog .modal-body{
+	/*height: 452px;*/
+}
+
+#gps_srid_dialog  .srid-list-wrapper{
+	margin: 10px 0px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+#gps_srid_dialog .header-row{
+	border-bottom: 2px solid #ddd;
+	font-weight: bold;
+}
+#gps_srid_dialog .row{
+	margin: 0px;
+    padding: 6px 2px;
+}
+#gps_srid_dialog .row .text-ellip{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#gps_srid_dialog .srid-list-div {
+	height: 290px;
+}
+#gps_srid_dialog .srid-list-div .row:hover{
+	background-color: #DFF1F8;
+	cursor: pointer;
+}
+#gps_srid_dialog .srid-list-wrapper .row [class*='col-']{
+	padding: 0px 4px;
+} 
+#gps_srid_dialog .srid-list-div .row.selected{
+	background-color: #B2E9FF;
+}
+/***************************************************************************/
+/* GPS Srid  Dialog End	 											*/
 /***************************************************************************/

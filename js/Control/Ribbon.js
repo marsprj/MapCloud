@@ -143,88 +143,88 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onRemoveMap();
 					break;
 				case 3:
+					// 保存地图
 					that.onSaveMap();
 					break;
 				case 4:
+					that.onRefreshMap();
+					break;
+				case 5:
 					// 地图属性
 					that.onMapPropertis();
 					break;
 				// Layer Events
-				case 5:
+				case 6:
 					// 新建图层
 					that.onLayerNew();
 					break;
-				case 6:
+				case 7:
 					// WMS图层
 					that.onLayerAddWMS();
 					break;
-				case 7:
+				case 8:
 					// WFS图层
 					that.onLayerAddWFS();
 					break;
-				case 8:
+				case 9:
 					// WMTS图层
 					that.onLayerAddWMTS();
 					break;
-				case 9:
+				case 10:
 					// 影像底图
 					that.onAddBaseLayer("image");
 					break;
-				case 10:
+				case 11:
 					// 矢量底图
 					that.onAddBaseLayer("vector");
 					break;
-				case 11:
+				case 12:
 					// 新建图层
 					that.onLayerNew();
 					break;
-				case 12:
+				case 13:
 					// 编辑图层
 					// that.onEditLayer();
 					break;
-				case 13:
+				case 14:
 					// 分享图层
 					that.onShareLayer();
 					break;
-				case 14:
+				case 15:
 					// that.onCreateLayer();
 					break;
-				case 15:
+				case 16:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 16:
+				case 17:
 					//删除图层
 					that.onRemoveLayer();
 					break;
-				case 17:
+				case 18:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 18:
+				case 19:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 19:
+				case 20:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 20:
+				case 21:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 21:
+				case 22:
 					// 文件管理
 					that.onFile();
 					break;
-				case 22:
+				case 23:
 					//数据库管理
 					that.onDataSource();
-					break;
-				case 23:
-					// 导入矢量
-					that.onImportVector();
 					break;
 				case 24:
 					// 	影像管理
@@ -317,6 +317,26 @@ MapCloud.Ribbon = MapCloud.Class({
 			return;
 		}
 		mapManager.saveMap(mapObj,this.saveMap_callback);
+	},
+
+	// 刷新地图
+	onRefreshMap : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		var extent = mapObj.viewer;
+		var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
+		if(map == null){
+			MapCloud.notify.showInfo("failed","刷新地图");
+		}else{
+			MapCloud.notify.showInfo("success","刷新地图");
+			mapObj = map;
+			MapCloud.refresh_panel.refreshPanel();
+			MapCloud.dataGrid.cleanup();
+			mapObj.setViewer(extent);
+			mapObj.draw();
+		}
 	},
 
 	saveMap_callback : function(result){

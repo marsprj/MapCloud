@@ -174,6 +174,9 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/File/Folder.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/SpatialReference.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
 
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
@@ -220,6 +223,7 @@
 <script type="text/javascript" src="js/Control/Dialog/FileDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/CreateFolderDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/RasterDBDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportRasterDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
@@ -257,6 +261,7 @@
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSBufferDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSBuildPyramidDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSUpdateTileDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSSridDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -370,6 +375,10 @@
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">刷新地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
 								<div class="ribbon_label">地图属性</div>
 							</div>
 						</div>
@@ -468,10 +477,6 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-database"></div>
 								<div class="ribbon_label">数据库管理</div>
-							</div>
-							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
-								<div class="ribbon_label">导入矢量</div>
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
@@ -661,7 +666,7 @@
 								<div class="panel-header-content">
 									<form class="form-horizontal pages-form" role="form">
 									<div class="form-group row">
-										<div class="col-md-6">
+										<div class="col-md-7">
 											<label class="col-md-2 control-label panel-header-content-name" >
 												<i class="fa fa-table fa-2"></i>&nbsp;查询结果 ：
 											</label>
@@ -687,7 +692,7 @@
 												<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
 											</div>
 										</div>
-										<div class="col-md-3 col-md-offset-3 row">
+										<div class="col-md-3 col-md-offset-2 row">
 											<div class="col-md-6">
 												<a class="btn btn-default  btn-group-justified download-features btn-primary" style="margin-top:2px;">
 		 											<i class="fa fa-download"></i>
@@ -1597,7 +1602,7 @@
 							<div class="mc-icon mc-icon-plus"></div>
 							<div class="mc-icon mc-icon-minus"></div>
 							<div class="mc-icon mc-icon-info"></div>
-							<div class="mc-icon mc-icon-mouse"></div>
+							<div class="mc-icon mc-icon-mouse active"></div>
 							<div class="mc-icon mc-icon-world"></div>
 							<div class="mc-icon mc-icon-hand-up"></div>
 							<div class="mc-icon mc-icon-full-screen"></div>
@@ -3161,6 +3166,7 @@
 		</div>
 	</div>
 
+	<!-- Vector DB panel  -->
 	<div class="modal fade" id="vector_db_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -3217,6 +3223,9 @@
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
 									</button>
+									<button type="button" class="btn btn-default btn-tool btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+										<i class="fa fa-refresh"></i>
+									</button>
 									<div class="btn-group pull-right" role="group">
 										<button type="button" class="btn btn-default btn-infos" disabled>
 											详细信息
@@ -3267,6 +3276,9 @@
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+										<i class="fa fa-refresh"></i>
 									</button>
 									<div class="btn-group pull-right" role="group">
 										<button type="button" class="btn btn-default" id="show-dataset-fields" disabled>字段</button>
@@ -3734,7 +3746,7 @@
 									<select class="form-control" id="file_filter_select">
 										<option value="all">All Files(*.*)</option>
 										<option value="shp">Shape Files(*.shp)</option>
-										<!-- <option value="dbf">DBF Files(*.dbf)</option> -->
+										<option value="jpeg,jpg,png,tif">Image Files(*.jpeg,*.jpg,*.png,*.tif)</option>
 									</select>
 								</div>
 							</div>
@@ -3862,38 +3874,14 @@
 					<div class="row raster-db-body">
 						<div class="col-md-4 raster-list-col">
 							<select class="form-control db-list">
-								<option value="abc">abc</option>
-								<option value="aqi">aqi</option>
-								<option value="rsdb">rsdb</option>
-								<option value="db1">db1</option>
 							</select>
 							<div class="db-tree">
-								<ul class="nav" style="padding-left:8px">
+								<ul class="nav folder-tree" style="padding-left:8px">
 									<li>
 										<a href="javascript:void(0)" class="file-tree tree-folder" fpath="/">
 											<i class="fa fa-folder-o"></i>
 											<span>/</span>
 										</a>
-										<ul class="nav">
-											<li>
-												<a href="javascript:void(0)" fpath='/'>
-												<i class="fa fa-folder-o"></i>
-												<span>bb</span>
-												</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)" fpath='/'>
-												<i class="fa fa-folder-o"></i>
-												<span>ccc</span>
-												</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)" fpath='/'>
-												<i class="fa fa-folder-o"></i>
-												<span>dd</span>
-												</a>
-											</li>
-										</ul>
 									</li>
 								</ul>
 							</div>
@@ -3901,7 +3889,7 @@
 						<div class="col-md-8 raster-list-col">
 							<div class="row tool-row">
 								<div class="col-md-8">
-									<input type="text" class="form-control" disabled value="/a/b">
+									<input type="text" class="form-control current-path" disabled value="/">
 								</div>
 								<div class="col-md-4">
 									<div class="btn-group btn-group-justified" role="group">
@@ -3911,7 +3899,7 @@
 										<a class="btn btn-default btn-remove-file" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 											<i class="fa fa-trash-o"></i>
 										</a>
-										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+										<a class="btn btn-default btn-upload-raster" data-toggle="tooltip" data-placement="top" data-original-title="导入">
 											<i class="fa fa-upload"></i>
 										</a>
 										<a class="btn btn-default btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
@@ -3920,15 +3908,88 @@
 									</div>
 								</div>
 							</div>
-							<div class="raster-list-content">
+							<div class="raster-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-1"></div>
+									<div class="col-md-3">名称</div>
+									<div class="col-md-1">类型</div>
+									<div class="col-md-3">创建时间</div>
+									<div class="col-md-3">最后访问时间</div>
+									<div class="col-md-1">大小</div>
+								</div>
+								<div class="raster-list-content-div">
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary btn-confirm">确定</button>
-				</div> -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Import Raster Panel -->
+	<div class="modal fade" id="import_raster_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像数据库</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row import-db">
+						<h5 style=" margin-top: 0px;">
+							<span>
+								<i class="mc-db-icon mc-db-icon-server "></i>
+								<span>数据库:  </span>
+								<span class="import-db-name">rsdb</span>
+								<i class="mc-db-icon mc-db-icon-folder "></i>
+								<span>路径:  </span>
+								<span class="import-raster-path">/a</span>
+							</span>
+						</h5>
+					</div>
+					<div class="row import-content-div">
+						<div class="col-md-11" style="height:100%">
+							<div class="import-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-6">文件路径</div>
+									<div class="col-md-6">影像名称</div>
+								</div>
+								<div class="import-list-div"></div>
+							</div>
+						</div>
+						<div class="col-md-1 import-tool-div">
+							<ul>
+  							  	<li>
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-upload"></i>
+  									</button>
+  								 </li>
+  								 <li style="margin-top:108px">
+  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+  							  			<i class="fa fa-chevron-down"></i>
+  									</button>
+  								 </li>
+  							</ul>
+						</div>
+					</div>
+					<div class="import-log-wrapper" style="display: none;">
+						<label>结果</label>
+						<div class="row import-log-row">
+							<div class="col-md-11 import-log-div"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -4063,101 +4124,7 @@
 		</div>
 	</div>
 
-	<!-- GPS  KMean panel -->
-	<div class="modal fade gps-oper-dialog" id="gps_kmean_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">KMean聚类分析</h5>
-				</div>
-				<div class="modal-body">
-					<div class="row" style="margin-bottom:15px">
-						<div class="col-md-11">
-							<label>输入</label>
-							<form class="form-horizontal gps-oper-form" role="form">
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										数据库:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-source-name" disabled>
-									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										图层:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-type-name" disabled>
-									</div>
-								</div>
-							</form>
-							<label>输出</label>
-							<form class="form-horizontal gps-oper-form" role="form">
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										数据库:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-source-name" disabled>
-									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										图层:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-typename">
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										聚类:
-									</label>
-									<div class="col-md-2">
-										<input type="text" class="form-control gps-kmean-clusters" value="10">
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-md-1 gps-oper-tool-div">
-							<ul>
-								<li>
-									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
-									</button>
-								</li>
-								<li>
-									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
-										<i class="fa fa-trash-o"></i>
-									</button>
-								</li>
-								<li class="log-li">
-									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
-										<i class="fa fa-chevron-down"></i>
-									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="gps-oper-log-wrapper row">
-						<div class="col-md-11 gps-oper-log-col">
-							<label>结果</label>
-							<div class="gps-oper-log-div">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- GPS Feature import panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_feature_import_dialog" tabindex="-1" role="dialog" aria-hidden="true">
@@ -4176,11 +4143,11 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 							</form>
@@ -4256,18 +4223,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-type-name" disabled>
 									</div>
 								</div>
@@ -4275,7 +4242,7 @@
 									<label class="col-md-2 control-label">
 										投影:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-srid" disabled>
 									</div>
 								</div>
@@ -4286,18 +4253,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -4305,117 +4272,11 @@
 									<label class="col-md-2 control-label">
 										投影:
 									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-srid" value="900913">
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-srid" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-srid btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-md-1 gps-oper-tool-div">
-							<ul>
-								<li>
-									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
-									</button>
-								</li>
-								<li>
-									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
-										<i class="fa fa-trash-o"></i>
-									</button>
-								</li>
-								<li class="log-li">
-									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
-										<i class="fa fa-chevron-down"></i>
-									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="gps-oper-log-wrapper row">
-						<div class="col-md-11 gps-oper-log-col">
-							<label>结果</label>
-							<div class="gps-oper-log-div">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<!-- GPS Raster Stretch panel -->
-	<div class="modal fade gps-oper-dialog" id="gps_raster_stretch_dialog" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像拉伸</h5>
-				</div>
-				<div class="modal-body">
-					<div class="row" style="margin-bottom:15px">
-						<div class="col-md-11">
-							<label>输入</label>
-							<form class="form-horizontal gps-oper-form" role="form">
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										数据库:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-source-name" disabled>
-									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										路径:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-raster-path" disabled>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										图层:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-raster-name" disabled>
-									</div>
-								</div>
-							</form>
-							<label>输出</label>
-							<form class="form-horizontal gps-oper-form" role="form">
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										数据库:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-source-name" disabled>
-									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										路径:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-raster-path" disabled>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										图层:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-raster-name" >
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-srid " type="button">选择</button>
 									</div>
 								</div>
 							</form>
@@ -4451,6 +4312,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 	<!-- GPS Raster Extract panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_raster_extract_dialog" tabindex="-1" role="dialog" aria-hidden="true">
@@ -4469,18 +4332,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -4488,7 +4351,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -4499,18 +4362,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -4518,7 +4381,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -4587,7 +4450,6 @@
 		</div>
 	</div>
 
-
 	<!-- GPS Raster Reverse panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_raster_reverse_dialog" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
@@ -4605,18 +4467,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -4624,7 +4486,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -4635,18 +4497,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -4654,7 +4516,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -4710,18 +4572,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -4729,7 +4591,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -4740,18 +4602,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -4759,7 +4621,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -4814,10 +4676,10 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
 									</div>
 								</div>
@@ -4825,7 +4687,7 @@
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -4833,7 +4695,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -4844,18 +4706,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -4863,7 +4725,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -4901,6 +4763,109 @@
 		</div>
 	</div>
 
+	<!-- GPS Raster Stretch panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_stretch_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像拉伸</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- GPS Raster Subtract panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_raster_subtract_dialog" tabindex="-1" role="dialog" aria-hidden="true">
@@ -4919,18 +4884,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -4938,7 +4903,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -4949,10 +4914,10 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
 									</div>
 								</div>
@@ -4960,7 +4925,7 @@
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -4968,7 +4933,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -4979,18 +4944,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -4998,7 +4963,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -5053,10 +5018,10 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
 									</div>
 								</div>
@@ -5064,7 +5029,7 @@
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -5072,7 +5037,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -5083,10 +5048,10 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
 									</div>
 								</div>
@@ -5094,7 +5059,7 @@
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -5102,7 +5067,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -5157,18 +5122,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input-raster btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-path" disabled>
 									</div>
 								</div>
@@ -5176,7 +5141,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-raster-name" disabled>
 									</div>
 								</div>
@@ -5187,18 +5152,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										路径:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-path" disabled>
 									</div>
 								</div>
@@ -5206,7 +5171,7 @@
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 								</div>
@@ -5245,94 +5210,6 @@
 	</div>
 
 
-	<!-- GPS Convex hull panel -->
-	<div class="modal fade gps-oper-dialog" id="gps_convex_hull_dialog" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">凸包</h5>
-				</div>
-				<div class="modal-body">
-					<div class="row" style="margin-bottom:15px">
-						<div class="col-md-11">
-							<label>输入</label>
-							<form class="form-horizontal gps-oper-form" role="form">
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										数据库:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-source-name" disabled>
-									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										图层:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-input-type-name" disabled>
-									</div>
-								</div>
-							</form>
-							<label>输出</label>
-							<form class="form-horizontal gps-oper-form" role="form">
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										数据库:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-source-name" disabled>
-									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
-									</div>
-								</div>
-								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
-										图层:
-									</label>
-									<div class="col-md-7">
-										<input type="text" class="form-control gps-output-typename">
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-md-1 gps-oper-tool-div">
-							<ul>
-								<li>
-									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
-									</button>
-								</li>
-								<li>
-									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
-										<i class="fa fa-trash-o"></i>
-									</button>
-								</li>
-								<li class="log-li">
-									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
-										<i class="fa fa-chevron-down"></i>
-									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="gps-oper-log-wrapper row">
-						<div class="col-md-11 gps-oper-log-col">
-							<label>结果</label>
-							<div class="gps-oper-log-div">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- GPS Get Area panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_get_area_dialog" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
@@ -5350,18 +5227,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-type-name" disabled>
 									</div>
 								</div>
@@ -5372,18 +5249,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -5438,18 +5315,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-type-name" disabled>
 									</div>
 								</div>
@@ -5460,18 +5337,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -5526,18 +5403,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-type-name" disabled>
 									</div>
 								</div>
@@ -5548,18 +5425,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -5568,7 +5445,7 @@
                                       	   <input type="radio" name="buffer-diastance">
                                       	   <span>距离:</span>
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -5577,7 +5454,7 @@
                                       	   <input type="radio" name="buffer-diastance">
                                       	   <span>字段:</span>
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -5632,18 +5509,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-input btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-input-type-name" disabled>
 									</div>
 								</div>
@@ -5654,18 +5531,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										图层:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-typename">
 									</div>
 								</div>
@@ -5703,6 +5580,94 @@
 		</div>
 	</div>	
 
+	<!-- GPS Convex hull panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_convex_hull_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">凸包</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- GPS Build Pyramid panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_build_pyramid_dialog" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
@@ -5720,7 +5685,7 @@
 									<label class="col-md-2 control-label">
 										当前地图:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control " disabled>
 									</div>
 								</div>
@@ -5731,18 +5696,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										瓦片库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-tile-store">
 									</div>
 								</div>
@@ -5814,7 +5779,7 @@
 									<label class="col-md-2 control-label">
 										当前地图:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control " disabled>
 									</div>
 								</div>
@@ -5825,18 +5790,18 @@
 									<label class="col-md-2 control-label">
 										数据库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-output-source-name" disabled>
 									</div>
-									<div class="col-md-3">
-										<button class="btn btn-sm btn-success btn-choose-output-source-name btn-group-justified" type="button">选择</button>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
 										瓦片库:
 									</label>
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<input type="text" class="form-control gps-tile-store" disabled>
 									</div>
 								</div>
@@ -5897,4 +5862,167 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- GPS  KMean panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_kmean_dialog" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">KMean聚类分析</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										聚类:
+									</label>
+									<div class="col-md-2">
+										<input type="text" class="form-control gps-kmean-clusters" value="10">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Srid Dialog -->
+	<div class="modal fade" id="gps_srid_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">空间参考</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-5" style="padding-left:0px">
+							<input type="text" class="form-control search-srid-name">
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-default btn-success btn-search-srid">查询</button>
+						</div>
+					</div>
+					<div class="srid-list-wrapper">
+						<div class="row header-row">
+							<div class="col-md-1">
+								srid
+							</div>
+							<div class="col-md-11">
+								srtext
+							</div>
+						</div>
+						<div class="srid-list-div">
+							<div class="row">
+								<div class="col-md-1">
+									4326
+								</div>
+								<div class="col-md-11 text-ellip">
+									GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="pagination" style="margin:1px 0px">
+					  	<!-- <li class="disabled">	
+						    <a href="#" aria-label="Previous">
+						      	<span aria-hidden="true">«</span>
+						    </a>
+					 	 </li>
+					  	<li class="active">
+					    	<a href="#">1		
+					      		<span class="sr-only">(current)</span>
+					   		</a>
+					   	</li>
+					   	<li>
+					   		<a href="#">2</a>
+					  	</li>
+					 	<li>
+						    <a href="#" aria-label="Next">
+						      <span aria-hidden="true">»</span>
+						    </a>
+					  	</li> -->
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>

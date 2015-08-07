@@ -65,9 +65,11 @@ MapCloud.MapBar = MapCloud.Class({
 		var layerName = $("#layers_row .layer_row_selected")
 			.attr("lname");
 		if(layerName == null || layerName == ""){
-			MapCloud.alert_info.showInfo("请选择图层","Warning");
+			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;
 		}
+		this.panel.find(".mc-icon").removeClass("active");
+		this.panel.find(".mc-icon-area").addClass("active");
 		mapObj.queryByRect(layerName,this.query_callback);
 	},
 
@@ -93,9 +95,11 @@ MapCloud.MapBar = MapCloud.Class({
 		var layerName = $("#layers_row .layer_row_selected")
 			.attr("lname");
 		if(layerName == null || layerName == ""){
-			MapCloud.alert_info.showInfo("请选择图层","Warning");
+			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;
 		}
+		this.panel.find(".mc-icon").removeClass("active");
+		this.panel.find(".mc-icon-info").addClass("active");
 		mapObj.queryByClick(layerName,this.onFeatureInfo_callback);
 	},
 
@@ -145,6 +149,11 @@ MapCloud.MapBar = MapCloud.Class({
 	},
 
 	endQuery : function(){
+		if(mapObj == null){
+			return;
+		}
+		this.panel.find(".mc-icon").removeClass("active");
+		this.panel.find(".mc-icon-mouse").addClass("active");
 		mapObj.endQuery();
 		MapCloud.dataGrid.cleanup();
 	},

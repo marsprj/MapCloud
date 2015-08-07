@@ -18,27 +18,43 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 
 
 		this.panel.find(".btn-confirm").click(function(){
-			if(dialog.flag == "choose-shp"){
-				var importPaths = dialog.getImportPaths();
-				if(importPaths.length == 0){
-					MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
-					return;
+			switch(dialog.flag){
+				case "choose-shp":{
+					var importPaths = dialog.getImportPaths();
+					if(importPaths.length == 0){
+						MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
+						return;
+					}
+					MapCloud.import_dialog.addImportPaths(importPaths);
+					break;
 				}
-				MapCloud.import_dialog.addImportPaths(importPaths);
-			}else if(dialog.flag == "gps-choose-shp"){
-				var importPaths = dialog.getImportPaths();
-				if(importPaths.length == 0){
-					MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
-					return;
+				case "gps-choose-shp":{
+					var importPaths = dialog.getImportPaths();
+					if(importPaths.length == 0){
+						MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
+						return;
+					}
+					MapCloud.gps_feature_import_dialog.addImportPaths(importPaths);
+					break;
 				}
-				MapCloud.gps_feature_import_dialog.addImportPaths(importPaths);
+				case "image":{
+					var importPaths = dialog.getImportPaths();
+					if(importPaths.length == 0){
+						MapCloud.notify.showInfo("请选择要导入的shp文件","Warning");
+						return;
+					}
+					MapCloud.import_raster_dialog.addImportPaths(importPaths);
+					break;	
+				}
+				default:
+					break;
 			}
 			dialog.closeDialog();
 		});
 
 		// 新建文件夹
 		this.panel.find(".btn-add-folder").click(function(){
-			MapCloud.create_folder_dialog.showDialog();
+			MapCloud.create_folder_dialog.showDialog("file");
 		});
 
 		// 删除
@@ -70,10 +86,16 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 			// MapCloud.importVector_dialog.setDataSource("default");
 		});
 
+		// 刷新
+		this.panel.find(".btn-refresh").click(function(){
+			var path = dialog.panel.find("#current_path").val();
+			dialog.getListRefresh(path);			
+		});
+
 		// 过滤文件
 		this.panel.find("#file_filter_select").change(function(){
-			var value = $(this).val();
-			dialog.showListPanelByFilter(value);
+			var list = dialog.getFilterList();
+			dialog.showListPanel(list);
 		});
 	},
 
@@ -104,31 +126,46 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 	
 
 	getList : function(path){
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		fileManager.getList(path,this.getList_callback);
 	},
 
 	getList_callback : function(list){
-		MapCloud.alert_info.hideLoading();
+		MapCloud.notify.hideLoading();
 		var dialog = MapCloud.file_dialog;
 		dialog.list = list;
 		dialog.showListTree(list,true);
-		dialog.showListPanel(list);
+		var filterList = dialog.getFilterList();
+		dialog.showListPanel(filterList);
 	},
 
+	// 刷新的获取列表
+	getListRefresh : function(path){
+		MapCloud.notify.loading();
+		fileManager.getList(path,this.getListRefresh_callback);		
+	},
+
+	getListRefresh_callback : function(list){
+		MapCloud.notify.showInfo("刷新","Info");
+		var dialog = MapCloud.file_dialog;
+		dialog.list = list;
+		dialog.showListTree(list,true);
+		var filterList = dialog.getFilterList();
+		dialog.showListPanel(filterList);	
+	},
 
 	// 左侧的tree单击
 	getListTreeClick : function(path){
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		fileManager.getList(path,this.getListTreeClick_callback);
 	},
 
 	getListTreeClick_callback : function(list){
-		MapCloud.alert_info.hideLoading();
+		MapCloud.notify.hideLoading();
 		var dialog = MapCloud.file_dialog;
 		dialog.list = list;
-		// dialog.showListTree(list,false);
-		dialog.showListPanel(list);
+		var filterList = dialog.getFilterList();
+		dialog.showListPanel(filterList);	
 	},
 
 
@@ -184,7 +221,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 			        that.panel.find("#current_path").val(path);
 					that.getListTreeClick(path);
 					that.panel.find(".tree-folder").removeClass("selected");
-					$(this).addClass("selected");
+					$(node).addClass("selected");
 			        clicks = 0;             //after action performed, reset counter
 			    }, DELAY);
 			} else {
@@ -243,6 +280,15 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					}else{
 						html += "		<input type='checkbox' name='" + name + "' disabled>";
 					}
+				}else if(this.flag == "image"){
+					var fileFix = name.slice(name.lastIndexOf(".")+1,name.length);
+					fileFix = fileFix.toLowerCase();
+					var filterArray = ["jpeg","jpg","tif","png"];
+					if(filterArray.indexOf(fileFix) != -1){
+						html += "		<input type='checkbox' name='" + name + "'>";
+					}else{
+						html += "		<input type='checkbox' name='" + name + "' disabled>";
+					}
 				}else{
 					html += "		<input type='checkbox' name='" + name + "'>";
 				}
@@ -270,10 +316,10 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 				+ "<div class='col-md-1 row'>"
 				+ "<div class='col-md-6'>";
 
-				if(this.flag == "choose-shp"){
-					html += "	<input type='checkbox' name='" + name + "' disabled>"
-				}else{
+				if(this.flag == null ){
 					html += "	<input type='checkbox' name='" + name + "'>"
+				}else{
+					html += "	<input type='checkbox' name='" + name + "' disabled>"
 				}
 				html += "</div>"
 				+ 	"<div class='col-md-6'>"
@@ -339,7 +385,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 
 	createFolder_callback : function(result){
 		var info = "新建文件夹";
-		// MapCloud.alert_info.showInfo(result,info);
+		// MapCloud.notify.showInfo(result,info);
 		MapCloud.notify.showInfo(result,info);
 		var dialog = MapCloud.file_dialog;
 		var currentPath = dialog.panel.find("#current_path").val();
@@ -378,41 +424,40 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.getList(currentPath);
 	},
 
-	showListPanelByFilter : function(value){
-		if(value == "all"){
-			this.showListPanel(this.list);
-		}else if(value == "shp"){
-			var filterList = [];
-			var l = null;
-			var name = null;
-			for(var i = 0; i < this.list.length; ++i){
-				l = this.list[i];
-				if(l instanceof GeoBeans.File){
-					name = l.name;
-					if(name.lastIndexOf(".shp") == (name.length - 4)){
+	getFilterList : function(){
+		var value = this.panel.find("#file_filter_select").val();
+		var filterValues = value.split(",");
+		if(filterValues.length == 0){
+			return this.list;
+		}
+		if(filterValues.length == 1 && filterValues[0] == "all"){
+			return this.list;
+		}
+		var l = null;
+		var filter = null;
+		var name = null;
+		var filterList = [];
+		for(var i = 0; i < this.list.length; ++i){
+			l = this.list[i];
+			if(l instanceof GeoBeans.Folder){
+				filterList.push(l);
+			}else if(l instanceof GeoBeans.File){
+				name = l.name;
+				name = name.toLowerCase();
+				for(var j = 0; j < filterValues.length; ++j){
+					filter = filterValues[j];
+					filter = "." + filter;
+					if(name.length <= filter.length){
+						continue;
+					}
+					if(name.lastIndexOf(filter) == (name.length - filter.length)){
 						filterList.push(l);
 					}
 				}
 			}
-			this.showListPanel(filterList);
 		}
-		// else if(value == "dbf"){
-		// 	var filterList = [];
-		// 	var l = null;
-		// 	var name = null;
-		// 	for(var i = 0; i < this.list.length; ++i){
-		// 		l = this.list[i];
-		// 		if(l instanceof GeoBeans.File){
-		// 			name = l.name;
-		// 			if(name.lastIndexOf(".dbf") == (name.length - 4)){
-		// 				filterList.push(l);
-		// 			}
-		// 		}
-		// 	}
-		// 	this.showListPanel(filterList);			
-		// }
+		return filterList;
 	},
-
 
 
 	// 获得要上传的文件的路径
