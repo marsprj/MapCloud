@@ -1934,6 +1934,9 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* DataSource Connect Dialog Begin   														*/
 /***************************************************************************/
+#pgisConnDialog{
+	z-index: 1060;
+}
 #pgisConnDialog .modal-dialog{
 	width: 400px;
 }
@@ -2777,10 +2780,21 @@ ul.layers_row li:before {
 	height: 100%;
 }
 
-#raster_db_dialog .raster-list-col{
+#raster_db_dialog .raster-list-col,#raster_db_dialog .raster-tree-col,
+#raster_db_dialog .raster-col
+{
 	height: 100%;
 }
 
+#raster_db_dialog .raster-col{
+	display: none;
+}
+#raster_db_dialog .raster-tree-col .input-group-btn .btn{
+	height: 34px;
+}
+#raster_db_dialog .raster-tree-col .input-group-btn .btn i{
+	color : rgb(91, 154, 209);
+}
 #raster_db_dialog .db-tree{
 	border: 1px dashed #ccc;
 	margin: 20px 0px;
@@ -2810,19 +2824,64 @@ ul.layers_row li:before {
 	height: 34px;
 	font-size: 16px;
 }
+#raster_db_dialog .tool-row{
+	margin-right: 0px;
+}
 
-#raster_db_dialog .raster-list-wrapper{
+#raster_db_dialog .raster-list-wrapper,#raster_db_dialog .raster-wrapper{
 	border: 1px solid #ccc;
-	margin: 20px 0px;
+	margin: 20px 0px 0px;
 	height: calc( 100% - 56px);
 	border-radius: 4px;
 }
 
-#raster_db_dialog .raster-list-wrapper .row{
+
+.raster-info-div .row:nth-child(even){
+	background-color: #f9f9f9;
+}
+#raster_db_dialog .raster-wrapper .raster-tab{
+	display: none;
+	height: 100%;
+	width: 100%;
+}
+
+
+#raster_db_dialog .raster-wrapper .raster-tab.active{
+	display: block;
+}
+#raster_db_dialog .raster-wrapper .raster-preview-div{
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 633px;
+    height: 573px;
+}
+#raster_db_dialog .raster-wrapper .raster-preview-div * {
+    vertical-align: middle;
+}
+#raster_db_dialog .raster-wrapper .raster-preview-div img{
+/*	height: 100%;
+	width: 100%;*/
+
+	width: auto;
+	max-width: 633px;
+	height: auto;
+	max-height: 573px;
+}
+
+.raster-list-col{
+	/*display: none;*/
+}
+#raster_db_dialog .raster-list-wrapper .row,#raster_db_dialog .raster-info-div .row{
 	margin: 0px 0px;
 	padding: 6px 8px;
 }
-#raster_db_dialog .raster-list-wrapper .row:hover{
+
+#raster_db_dialog .raster-list-content-div .row .row-fname span{
+	word-break: break-all;
+}
+
+#raster_db_dialog .raster-list-content-div .row:hover,#raster_db_dialog .raster-info-div .row:hover{
 	background-color: #DFF1F8;
 }
 #raster_db_dialog .raster-list-wrapper .header-row{
@@ -2837,6 +2896,10 @@ ul.layers_row li:before {
 }
 #raster_db_dialog .raster-list-wrapper .row-fname {
     cursor: pointer;
+}
+#raster_db_dialog  .raster-list-content-div{
+    height: calc( 100% - 31px);
+    overflow-y: auto;	
 }
 /***************************************************************************/
 /* Raster DB dialog End  												   */
@@ -3034,6 +3097,7 @@ ul.layers_row li:before {
 	height: calc( 100% - 30px);
 	border: 1px solid #ddd;
 	padding: 6px;
+	overflow-y: auto;
 }
 .gps-oper-dialog .row [class*="col-"] {
   /*padding: 6px 2px 6px 2px;*/
@@ -3091,7 +3155,7 @@ ul.layers_row li:before {
 /* GPS Raster Extract Dialog Begin	 										*/
 /***************************************************************************/
 #gps_raster_extract_dialog .log-li{
-	margin-top: 224px;
+	margin-top: 296px;
 	margin-bottom: 0px;
 }
 /***************************************************************************/
@@ -3101,7 +3165,8 @@ ul.layers_row li:before {
 /* GPS Raster  Dialog Begin	 										*/
 /***************************************************************************/
 #gps_raster_reverse_dialog .log-li,#gps_raster_graylize_dialog .log-li,
-#gps_raster_stretch_dialog .log-li,
+#gps_raster_stretch_dialog .log-li,#gps_raster_his_equal_dialog .log-li,
+#gps_raster_smooth_dialog .log-li,
 #gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li{
 	margin-top: 153px;
 	margin-bottom: 0px;

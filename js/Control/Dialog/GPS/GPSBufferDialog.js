@@ -52,7 +52,7 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("buffer");
+			// MapCloud.gps_output_source_dialog.showDialog("buffer");
 		});
 
 
@@ -63,24 +63,51 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			if(dialog.outputSourceName == null){
-				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
-				return;
-			}
+			// if(dialog.outputSourceName == null){
+			// 	MapCloud.notify.showInfo("请选择输出的数据库","Warning");
+			// 	return;
+			// }
 
-			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
-			if(outputTypeName == ""){
-				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
-				return;
-			}
+			// var outputTypeName = dialog.panel.find(".gps-output-typename").val();
+			// if(outputTypeName == ""){
+			// 	MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+			// 	return;
+			// }
 
-			alert("操作");
+			var distanceInput = dialog.panel.find("input[name='buffer-diastance']:checked")
+				.parents(".form-group").find("input[type='text']");
+			if(distanceInput.hasClass("gps-buffer-distance")){
+				var distance = distanceInput.val();
+				if(distance == ""){
+					MapCloud.notify.showInfo("请输入缓冲区距离","Warning");
+					return;
+				}
+				MapCloud.notify.loading();
+				gpsManager.getBuffer(dialog.inputSourceName,dialog.inputTypeName,distance,null,
+					dialog.buffer_callback);
+			}else if(distanceInput.hasClass('gps-buffer-distance-field')){
+				var distanceField = distanceInput.val();
+				if(distanceField == ""){
+					MapCloud.notify.showInfo("请输入缓冲区字段","Warning");
+					return;
+				}
+				MapCloud.notify.loading();
+				gpsManager.getBuffer(dialog.inputSourceName,dialog.inputTypeName,null,distanceField,
+					dialog.buffer_callback);
+			}
 			
 		});
 
 		// 重置
 		this.panel.find(".gps-btn-reset").click(function(){
 			dialog.cleanup();
+		});
+
+		// 切换参数
+		this.panel.find("input[name='buffer-diastance']").change(function(){
+			dialog.panel.find("input[name='buffer-diastance']")
+				.parents(".form-group").find("input[type='text']").attr("disabled",true);
+			$(this).parents(".form-group").find("input[type='text']").attr("disabled",false);
 		});
 
 	},	
@@ -110,5 +137,14 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 	setOutputSource : function(outputSourceName){
 		this.outputSourceName = outputSourceName;
 		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	},
+
+	// 结果
+	buffer_callback : function(result){
+		MapCloud.notify.hideLoading();
+		var xmlString = (new XMLSerializer()).serializeToString(result);
+		var html = "<xmp>" + xmlString + "</xmp>";
+		var dialog = MapCloud.gps_buffer_dialog;
+		dialog.panel.find(".gps-oper-log-div").html(html);		
 	}		
 });

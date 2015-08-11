@@ -1,4 +1,4 @@
-MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
+MapCloud.GPSRasterPixelBlendDialog = MapCloud.Class(MapCloud.Dialog,{
 	
 	// 输入数据库1
 	inputSourceName_1 : null,
@@ -61,17 +61,17 @@ MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 影像1
 		dialog.panel.find(".btn-choose-input-raster-1").click(function(){
-			MapCloud.raster_db_dialog.showDialog("rasterSubtract-1",false);
+			MapCloud.raster_db_dialog.showDialog("rasterPixelBlend-1",false);
 		});
 
 		// 影像2
 		dialog.panel.find(".btn-choose-input-raster-2").click(function(){
-			MapCloud.raster_db_dialog.showDialog("rasterSubtract-2",false);
+			MapCloud.raster_db_dialog.showDialog("rasterPixelBlend-2",false);
 		});	
 
 		//输出
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.raster_db_dialog.showDialog("rasterSubtract",true);
+			MapCloud.raster_db_dialog.showDialog("rasterPixelBlend",true);
 		});
 
 		// 操作
@@ -100,10 +100,10 @@ MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
 			outputRasterName += ouputRasterFormat;
 
 			MapCloud.notify.loading();
-			gpsManager.rasterSubtract(dialog.inputSourceName_1,dialog.inputRasterName_1,
+			gpsManager.rasterPixelBlend(dialog.inputSourceName_1,dialog.inputRasterName_1,
 				dialog.inputRasterPath_1,dialog.inputSourceName_2,dialog.inputRasterName_2,
 				dialog.inputRasterPath_2,dialog.outputSourceName,outputRasterName,
-				dialog.outputRasterPath,dialog.rasterSubtract_callback);
+				dialog.outputRasterPath,dialog.rasterPixelBlend_callback);
 		});
 
 		// 重置
@@ -133,7 +133,7 @@ MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.inputRasterPath_2 = null;
 		this.outputSourceName = null;
 		this.outputRasterPath = null;
-	},
+	},	
 
 	// 输入影像1
 	setRaster_1 : function(sourceName,rasterName,rasterPath){
@@ -157,6 +157,7 @@ MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-raster-path-2").val(this.inputRasterPath_2);	
 	},
 
+
 	// 输出参数
 	setOutput : function(outputSourceName,outputRasterPath){
 		this.outputSourceName  = outputSourceName;
@@ -164,11 +165,10 @@ MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
 		this.panel.find(".gps-output-raster-path").val(this.outputRasterPath);
-	},	
-
-	rasterSubtract_callback : function(result){
+	},		
+	rasterPixelBlend_callback : function(result){
 		MapCloud.notify.hideLoading();
-		var dialog = MapCloud.gps_raster_subtract_dialog;
+		var dialog = MapCloud.gps_raster_pixel_blend_dialog;
 		var outputRasterName = dialog.panel.find(".gps-output-raster-name").val() 
 				+ dialog.panel.find(".gps-output-raster-format").val();
 		var html = "<div class='row'>"
@@ -180,6 +180,4 @@ MapCloud.GPSRasterSubtractDialog = MapCloud.Class(MapCloud.Dialog,{
 			+ "; 影像 : " + outputRasterName +  " ];  结果 : "+ result;
 		dialog.panel.find(".gps-oper-log-div").append(html);		
 	}
-
-
 });

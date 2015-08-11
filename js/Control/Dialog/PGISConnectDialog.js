@@ -1,6 +1,9 @@
 // 新建数据库连接
 MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	
+	// 上级对话框
+	source : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		
@@ -35,6 +38,11 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	
 	destory : function(){
 		MapCloud.Dialog.prototype.destory.apply(this, arguments);
+	},
+
+	showDialog : function(source){
+		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
+		this.source = source;
 	},
 	
 	cleanup : function(){
@@ -105,7 +113,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 
 	// 连接测试
 	tryConnection : function(str){
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		dbsManager.tryConnection(str,
 			this.connection_callback);
 	},
@@ -140,12 +148,12 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	// 连接测试结果
 	connection_callback : function(result){
 		var info = "连接测试";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 	},
 
 	// 注册数据源
 	registerDBS : function(name,str){
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		dbsManager.registerDataSource(name,"Postgres",
 			str,this.registerDBS_callback);
 	},
@@ -153,7 +161,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	// 注册数据源结果
 	registerDBS_callback : function(result){
 		var info = "注册数据源";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 		
 		// // 重新获取数据源列表
 		// var parentDialog = MapCloud.data_source_dialog;
@@ -170,9 +178,21 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		// 	.attr("selected",true);
 		// parentDialog.getDataSource(name);
 
-		var parentDialog = MapCloud.db_admin_dialog;
-		dbsManager.getDataSources(parentDialog.getDataSources_callback);
+		// var parentDialog = MapCloud.db_admin_dialog;
+		// dbsManager.getDataSources(parentDialog.getDataSources_callback);
+		// var dialog = MapCloud.pgis_connection_dialog;
+		// dialog.closeDialog();
+
 		var dialog = MapCloud.pgis_connection_dialog;
+		if(dialog.source == "raster"){
+			var parentDialog = MapCloud.raster_db_dialog;
+			dbsManager.getDataSources(parentDialog.getDataSources_callback);
+			
+		}else if(dialog.source == "vector"){
+			var parentDialog = MapCloud.vector_db_dialog;
+			dbsManager.getDataSources(parentDialog.getDataSources_callback)
+
+		}
 		dialog.closeDialog();
 	}
 });

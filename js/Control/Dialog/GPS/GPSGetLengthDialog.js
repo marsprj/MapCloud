@@ -47,14 +47,14 @@ MapCloud.GPSGetLengthDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose input source name & input type name
 		dialog.panel.find(".btn-choose-input").click(function(){
-			MapCloud.vector_db_dialog.showDialog("convexHull");
+			MapCloud.vector_db_dialog.showDialog("getLength");
 		});
 
 
-		// choose output sourcename
-		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("convexHull");
-		});
+		// // choose output sourcename
+		// dialog.panel.find(".btn-choose-output-source-name").click(function(){
+		// 	MapCloud.gps_output_source_dialog.showDialog("convexHull");
+		// });
 
 
 		// 操作
@@ -64,19 +64,19 @@ MapCloud.GPSGetLengthDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			if(dialog.outputSourceName == null){
-				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
-				return;
-			}
+			// if(dialog.outputSourceName == null){
+			// 	MapCloud.notify.showInfo("请选择输出的数据库","Warning");
+			// 	return;
+			// }
 
-			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
-			if(outputTypeName == ""){
-				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
-				return;
-			}
+			// var outputTypeName = dialog.panel.find(".gps-output-typename").val();
+			// if(outputTypeName == ""){
+			// 	MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+			// 	return;
+			// }
 
-			alert("操作");
-			
+			MapCloud.notify.loading();
+			gpsManager.getLength(dialog.inputSourceName,dialog.inputTypeName,dialog.getLength_callback);
 		});
 
 		// 重置
@@ -107,9 +107,17 @@ MapCloud.GPSGetLengthDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-type-name").val(this.inputTypeName);
 	},
 
-	// 输出
-	setOutputSource : function(outputSourceName){
-		this.outputSourceName = outputSourceName;
-		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
-	}	
+	// // 输出
+	// setOutputSource : function(outputSourceName){
+	// 	this.outputSourceName = outputSourceName;
+	// 	this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	// }	
+
+	getLength_callback : function(result){
+		MapCloud.notify.hideLoading();
+		var xmlString = (new XMLSerializer()).serializeToString(result);
+		var html = "<xmp>" + xmlString + "</xmp>";
+		var dialog = MapCloud.gps_get_length_dialog;
+		dialog.panel.find(".gps-oper-log-div").html(html);
+	}
 });

@@ -119,6 +119,10 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 				dialog = MapCloud.gps_feature_project_dialog;
 				break;
 			}
+			case "RasterEdgeDetect":{
+				dialog = MapCloud.gps_raster_edge_detect_dialog;
+				break;
+			}
 			case "RasterExtractByRectangle":{
 				dialog = MapCloud.gps_raster_extract_dialog;
 				break;
@@ -141,6 +145,18 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			case "RasterSubtract":{
 				dialog = MapCloud.gps_raster_subtract_dialog;
+				break;
+			}
+			case "RasterPixelBlend":{
+				dialog = MapCloud.gps_raster_pixel_blend_dialog;
+				break;
+			}
+			case "RasterHistogramEqualization":{
+				dialog = MapCloud.gps_raster_his_equal_dialog;
+				break;
+			}
+			case "RasterSepiaTone":{
+				dialog = MapCloud.gps_raster_sepia_tone_dialog;
 				break;
 			}
 			case "DemSlope":{

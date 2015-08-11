@@ -1,5 +1,21 @@
 MapCloud.GPSRasterSmoothDialog = MapCloud.Class(MapCloud.Dialog,{
+
 	
+	// 输入数据库
+	inputSourceName : null,
+
+	// 输入影像
+	inputRasterName : null,
+
+	// 输入影像路径
+	inputRasterPath : null,
+
+	// 输出数据库
+	outputSourceName : null,
+
+	// 输出影像路径
+	outputRasterPath : null,	
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
 		var dialog = this;
@@ -37,19 +53,41 @@ MapCloud.GPSRasterSmoothDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose input source name & input raster name
 		dialog.panel.find(".btn-choose-input-raster").click(function(){
-			// MapCloud.vector_db_dialog.showDialog("rasterStretch");
+			MapCloud.raster_db_dialog.showDialog("rasterSmooth",false);
 		});
 
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			// MapCloud.gps_output_source_dialog.showDialog("rasterStretch");
+			MapCloud.raster_db_dialog.showDialog("rasterSmooth",true);
 		});
 
 
 		// 操作
 		this.panel.find(".gps-btn-oper-btn").click(function(){
+			if(dialog.inputSourceName == null || dialog.inputRasterName == null 
+				|| dialog.inputRasterPath == null){
+				MapCloud.notify.showInfo("请选择输入的影像","Warning");
+				return;
+			}
 
+			if(dialog.outputSourceName == null || dialog.outputRasterPath == null){
+				MapCloud.notify.showInfo("请选择输出影像的位置","Warning");
+				return;
+			}
+			var outputRasterName = dialog.panel.find(".gps-output-raster-name").val();
+			if(outputRasterName == null || outputRasterName == ""){
+				MapCloud.notify.showInfo("请选择输出影像的名称","Warning");
+				return;
+			}
+
+			var ouputRasterFormat = dialog.panel.find(".gps-output-raster-format").val();
+			outputRasterName += ouputRasterFormat;
+			
+			MapCloud.notify.loading();
+			gpsManager.rasterSmooth(dialog.inputSourceName,dialog.inputRasterName,
+				dialog.inputRasterPath,dialog.outputSourceName, outputRasterName,
+				dialog.outputRasterPath,dialog.rasterSmooth_callback);
 		});
 
 		// 重置
@@ -69,7 +107,45 @@ MapCloud.GPSRasterSmoothDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.inputSourceName = null;
 		this.inputRasterName = null;
+		this.inputRasterPath = null;
 		this.outputSourceName = null;
+		this.outputRasterPath = null;
 	},
 
+	// 输入影像
+	setRaster : function(inputSourceName,inputRasterName,inputRasterPath){
+		this.inputSourceName = inputSourceName;
+		this.inputRasterName = inputRasterName;
+		this.inputRasterPath = inputRasterPath;
+
+		this.panel.find(".gps-input-source-name").val(this.inputSourceName);
+		this.panel.find(".gps-input-raster-name").val(this.inputRasterName);
+		this.panel.find(".gps-input-raster-path").val(this.inputRasterPath);
+	},
+
+	// 输出参数
+	setOutput : function(outputSourceName,outputRasterPath){
+		this.outputSourceName  = outputSourceName;
+		this.outputRasterPath = outputRasterPath;
+
+		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+		this.panel.find(".gps-output-raster-path").val(this.outputRasterPath);
+	},
+
+	// 结果
+	rasterSmooth_callback : function(result){
+		MapCloud.notify.hideLoading();
+		var dialog = MapCloud.gps_raster_smooth_dialog;
+		var outputRasterName = dialog.panel.find(".gps-output-raster-name").val() 
+				+ dialog.panel.find(".gps-output-raster-format").val();
+
+		var html = "<div class='row'>"
+			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 路径 : " + dialog.inputRasterPath
+			+ " ; 影像 : " + dialog.inputRasterName
+			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + " ; 路径 :  " + dialog.outputRasterPath
+			+ "; 影像 : " 
+			+ outputRasterName + " ];  结果 : "
+			+ result;
+		dialog.panel.find(".gps-oper-log-div").append(html);
+	}	
 });

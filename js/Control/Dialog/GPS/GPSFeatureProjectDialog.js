@@ -93,7 +93,11 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请输入转换后的投影","Warning");
 				return;
 			}
-			alert("操作");
+
+			MapCloud.notify.loading();
+			gpsManager.featureProject(dialog.inputSourceName,dialog.inputTypeName,
+				dialog.outputSourceName,outputTypeName,dialog.outputSrid,
+				dialog.featureProject_callback);
 		});
 
 
@@ -109,7 +113,7 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-srid").val("");
 		this.panel.find(".gps-output-source-name").val("");
 		this.panel.find(".gps-output-typename").val("");
-		this.panel.find(".gps-output-srid").val("900913");
+		this.panel.find(".gps-output-srid").val("");
 		this.panel.find(".gps-oper-log-div").empty();
 
 		this.inputSourceName = null;
@@ -141,5 +145,16 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 	setSrid : function(srid){
 		this.outputSrid = srid;
 		this.panel.find(".gps-output-srid").val(this.outputSrid);
+	},
+
+	featureProject_callback : function(result){
+		MapCloud.notify.hideLoading();
+		var dialog = MapCloud.gps_feature_project_dialog;
+		var html = "<div class='row'>"
+			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 图层 : " + dialog.inputTypeName
+			+ "] ; 输出 [ 数据库 : " + dialog.outputSourceName + " ; 图层 : "
+			+ dialog.panel.find(".gps-output-typename").val() + " ; 空间参考 : " 
+			+ dialog.outputSrid + " ]; 结果 : " + result ;
+		dialog.panel.find(".gps-oper-log-div").append(html);		
 	}
 });

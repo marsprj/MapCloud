@@ -54,7 +54,14 @@ MapCloud.GPSOutputSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 					parent = MapCloud.gps_convex_hull_dialog;
 					break;
 				}
-				
+				case "buildPyramid":{
+					parent = MapCloud.gps_build_pyramid_dialog;
+					break;
+				}
+				case "updateTile":{
+					parent = MapCloud.gps_update_tile_dialog;
+					break;
+				}
 				default:
 					break;
 			}

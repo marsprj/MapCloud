@@ -1,5 +1,6 @@
 MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 	
+	outputSourceName : null,
 
 
 	initialize : function(id){
@@ -36,12 +37,85 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 				$(this).removeClass("log-exp").addClass("log-col");
 			}
 		});		
+
+		// choose output sourcename
+		dialog.panel.find(".btn-choose-output-source-name").click(function(){
+			MapCloud.gps_output_source_dialog.showDialog("buildPyramid");
+		});	
+
+
+		// 操作
+		this.panel.find(".gps-btn-oper-btn").click(function(){
+			var mapName = dialog.panel.find(".gps-map-name").val();
+			if(mapName == ""){
+				MapCloud.notify.showInfo("当前地图为空","Warning");
+				return;
+			}
+
+			if(dialog.outputSourceName == null){
+				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
+				return;
+			}
+
+			var tileStore = dialog.panel.find(".gps-tile-store").val();
+			if(tileStore == null){
+				MapCloud.notify.showInfo("请输入瓦片库的名称","Warning");
+				return;
+			}
+
+			var start = dialog.panel.find(".gps-start-level").val();
+			if(start == ""){
+				MapCloud.notify.showInfo("请输入起始级别","Warning");
+				return;
+			}
+
+			var end = dialog.panel.find(".gps-end-level").val();
+			if(end == ""){
+				MapCloud.notify.showInfo("请输入终止级别","Warning");
+				return;
+			}
+			MapCloud.notify.loading();
+			gpsManager.buildPyramid(mapName,dialog.outputSourceName,tileStore,start,end,
+				dialog.buildPyramid_callback);
+		});
+
+		// 重置
+		this.panel.find(".gps-btn-reset").click(function(){
+			dialog.cleanup();
+		});
+	},
+
+	showDialog : function(){
+		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
+		if(mapObj != null){
+			this.panel.find(".gps-map-name").val(mapObj.name);
+		}
 	},
 
 	cleanup : function(){
-		
-	}
+		this.outputSourceName = null;
 
+		this.panel.find(".gps-map-name").val("");
+		this.panel.find(".gps-output-source-name").val("");
+		this.panel.find(".gps-tile-store").val("");
+		this.panel.find(".gps-start-level").val("");
+		this.panel.find(".gps-end-level").val("");
+		this.panel.find(".gps-oper-log-div").empty();
+	},
 
+	// 输出
+	setOutputSource : function(outputSourceName){
+		this.outputSourceName = outputSourceName;
+		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	},
+
+	// 结果
+	buildPyramid_callback : function(result){
+		MapCloud.notify.hideLoading();
+		var dialog = MapCloud.gps_build_pyramid_dialog;
+		var html = "<div class='row'>"
+		+ result + "</div>";
+		dialog.panel.find(".gps-oper-log-div").append(html);
+	},
 
 });

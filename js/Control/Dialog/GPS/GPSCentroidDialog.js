@@ -52,7 +52,7 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("centroid");
+			// MapCloud.gps_output_source_dialog.showDialog("centroid");
 		});
 
 
@@ -63,18 +63,19 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			if(dialog.outputSourceName == null){
-				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
-				return;
-			}
+			// if(dialog.outputSourceName == null){
+			// 	MapCloud.notify.showInfo("请选择输出的数据库","Warning");
+			// 	return;
+			// }
 
-			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
-			if(outputTypeName == ""){
-				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
-				return;
-			}
+			// var outputTypeName = dialog.panel.find(".gps-output-typename").val();
+			// if(outputTypeName == ""){
+			// 	MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+			// 	return;
+			// }
 
-			alert("操作");
+			gpsManager.getCentroid(dialog.inputSourceName,dialog.inputTypeName,
+				dialog.getCentroid_callback);
 			
 		});
 
@@ -106,9 +107,18 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-type-name").val(this.inputTypeName);
 	},
 
-	// 输出
-	setOutputSource : function(outputSourceName){
-		this.outputSourceName = outputSourceName;
-		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	// // 输出
+	// setOutputSource : function(outputSourceName){
+	// 	this.outputSourceName = outputSourceName;
+	// 	this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	// }
+
+	// 结果
+	getCentroid_callback : function(result){
+		MapCloud.notify.hideLoading();
+		var xmlString = (new XMLSerializer()).serializeToString(result);
+		var html = "<xmp>" + xmlString + "</xmp>";
+		var dialog = MapCloud.gps_centroid_dialog;
+		dialog.panel.find(".gps-oper-log-div").html(html);
 	}		
 });

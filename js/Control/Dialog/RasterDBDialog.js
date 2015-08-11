@@ -1,5 +1,21 @@
 MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	
+	// 当前的影像
+	raster : null,
+
+	// 当前的影像的路径
+	rasterPath : null,
+
+	// 当前的影像的名称
+	rasterName : null,
+
+	// 弹出窗口来源
+	source : null,
+
+	// 是否为输出路径的选项
+	outputFlag : false,
+
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
@@ -10,12 +26,24 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	registerPanelEvent : function(){
 		var dialog = this;
 
+		this.panel.find('[data-toggle="tooltip"]').tooltip({container: 'body'});
+
 		// 切换数据库
 		this.panel.find(".db-list").change(function(){
 			var value = $(this).val();
 			if(value != null){
 				dialog.getList(value,"/");
 			}
+		});
+
+		// 新建数据库
+		this.panel.find(".btn-add-server").click(function(){
+			MapCloud.pgis_connection_dialog.showDialog("raster");
+		});
+
+		// 删除数据库
+		this.panel.find(".btn-remove-server").click(function(){
+			dialog.removeDataSource();
 		});
 
 		// 新建文件夹
@@ -61,20 +89,187 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			var path = dialog.panel.find(".current-path").val();
 			dialog.getListRefresh(sourceName,path);
 		});
+
+		// 影像信息
+		this.panel.find(".btn-raster-info").click(function(){
+			if(dialog.raster == null){
+				return;
+			}
+			dialog.panel.find(".btn-raster-info").attr("disabled",true);
+			dialog.panel.find(".bbtn-raster-preview").attr("disabled",false);
+			dialog.showRasterInfo(dialog.raster);
+
+		});
+
+		// 影像预览
+		this.panel.find(".btn-raster-preview").click(function(){
+			dialog.panel.find(".btn-raster-info").attr("disabled",false);
+			dialog.panel.find(".bbtn-raster-preview").attr("disabled",true);
+
+			var sourceName = dialog.panel.find(".db-list").val();
+			dialog.showRasterPreview(sourceName,dialog.rasterName,dialog.rasterPath);
+		});
+
+		// 确定
+		this.panel.find(".btn-confirm").click(function(){
+			if(dialog.source == null){
+				dialog.closeDialog();
+				return;
+			}
+
+			// 获取选择的raster
+			var parentDialog = null;
+			var sourceName = dialog.panel.find(".db-list").val();
+			// 确定上级对话框
+			switch(dialog.source){
+				case "rasterEdgeDetect":{
+					parentDialog = MapCloud.gps_raster_edge_detect_dialog;
+					break;
+				}
+				case "rasterExtract":{
+					parentDialog = MapCloud.gps_raster_extract_dialog;
+					break;
+				}
+				case "rasterReverse":{
+					parentDialog = MapCloud.gps_raster_reverse_dialog;
+					break;
+				}
+				case "rasterGraylize":{
+					parentDialog = MapCloud.gps_raster_graylize_dialog;
+					break;
+				}
+				case "rasterSmooth":{
+					parentDialog = MapCloud.gps_raster_smooth_dialog;
+					break;
+				}
+				case "rasterStretch":{
+					parentDialog = MapCloud.gps_raster_stretch_dialog;
+					break;
+				}
+				case "rasterSubtract-1":
+				case "rasterSubtract-2":
+				case "rasterSubtract":{
+					parentDialog = MapCloud.gps_raster_subtract_dialog;
+					break;
+				}
+				case "rasterPixelBlend-1":
+				case "rasterPixelBlend-2":
+				case "rasterPixelBlend":{
+					parentDialog = MapCloud.gps_raster_pixel_blend_dialog;
+					break;
+				}
+				case "rasterHisEqual":{
+					parentDialog = MapCloud.gps_raster_his_equal_dialog;
+					break;
+				}
+				case "rasterSepiaTone":{
+					parentDialog = MapCloud.gps_raster_sepia_tone_dialog;
+					break;
+				}
+				case "demAspect":{
+					parentDialog = MapCloud.gps_dem_aspect_dialog;
+					break;
+				}
+				case "demSlope":{
+					parentDialog = MapCloud.gps_dem_slope_dialog;
+					break;
+				}
+				default:{
+					break;
+				}
+			}
+
+			if(!dialog.outputFlag){
+				// 选择输入影像
+				var rasterName = null;
+				var rasterPath = null;
+				if(dialog.raster == null){
+					var radioCheck = dialog.panel.find("input[type='radio']:checked");
+					if(radioCheck.length == 0){
+						MapCloud.notify.showInfo("请选择一张影像","Warning");
+						return;
+					}
+					rasterName = radioCheck.parents(".row-file").find(".row-fname span").html();
+					rasterPath = dialog.panel.find(".current-path").val();
+				}else{
+					rasterName = dialog.rasterName;
+					rasterPath = dialog.rasterPath;
+				}
+				if(dialog.source == "rasterExtract"){
+					dialog.returnExtractRaster(sourceName,rasterName,rasterPath);
+					parentDialog.setRaster(sourceName,rasterName,rasterPath,dialog.raster);
+					dialog.closeDialog();
+					return;
+				}
+				if(dialog.source == "rasterSubtract-1"){
+					parentDialog.setRaster_1(sourceName,rasterName,rasterPath);
+					dialog.closeDialog();
+					return;
+				}
+				if(dialog.source == "rasterSubtract-2"){
+					parentDialog.setRaster_2(sourceName,rasterName,rasterPath);
+					dialog.closeDialog();
+					return;
+				}
+				if(dialog.source == "rasterPixelBlend-1"){
+					parentDialog.setRaster_1(sourceName,rasterName,rasterPath);
+					dialog.closeDialog();
+					return;
+				}
+				if(dialog.source == "rasterPixelBlend-2"){
+					parentDialog.setRaster_2(sourceName,rasterName,rasterPath);
+					dialog.closeDialog();
+					return;
+				}
+				
+				if(parentDialog != null){
+					parentDialog.setRaster(sourceName,rasterName,rasterPath);
+				}				
+			}else{
+				// 是选择路径的
+				var outputPath = dialog.panel.find(".current-path").val();
+				if(parentDialog != null){
+					parentDialog.setOutput(sourceName,outputPath);
+				}
+			}
+
+
+			
+			dialog.closeDialog();
+		});
 	},
 
-	showDialog : function(){
+	showDialog : function(source,output){
 		MapCloud.notify.loading();
 		this.cleanup();
 		this.panel.modal();
+		// 来源
+		this.source = source;
+		if(output != null){
+			this.outputFlag = output;
+		}
+		
 		dbsManager.getDataSources(this.getDataSources_callback);
+		if(this.source == null){
+			this.panel.find(".btn-confirm").html("确定");
+		}else{
+			this.panel.find(".btn-confirm").html("选择");
+		}
 	},
 
 	cleanup : function(){
+		this.raster = null;
+		this.rasterName = null;
+		this.rasterPath = null;
+
+		this.source = null;
+		this.outputFlag = false;
+
 		this.panel.find(".db-list").html("");
 		this.panel.find(".nav.foler-ul").remove();
 		this.panel.find(".raster-list-content-div").empty();
 		this.panel.find(".current-path").val("/");
+		this.panel.find(".current-raster-path").val("");
 	},
 
 	getDataSources_callback : function(dataSources){
@@ -210,7 +405,6 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}).on("dblclick", function(e){
 			e.preventDefault();  
 		});
-
 	},
 
 
@@ -218,82 +412,145 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	showListPanel : function(list){
 		var l = null;
 		var html = "";
+		this.panel.find(".raster-col").css("display","none");
+		this.panel.find(".raster-list-col").css("display","block");
+
+		this.rasterName = null;
+		this.rasterPath = null;
+		this.raster = null;
+
 		for(var i = 0; i < list.length; ++i){
 			l = list[i];
 			if(l == null){
 				continue;
 			}
-			if(l instanceof GeoBeans.File){
-				var name = l.name;
-				var accessTime = l.accessTime;
-				var lastTime = l.lastTime;
-				var size = l.size;
-				var path = l.path;
-				
+			if(!this.outputFlag){
+				if(l instanceof GeoBeans.File){
+					var name = l.name;
+					var accessTime = l.accessTime;
+					var lastTime = l.lastTime;
+					var size = l.size;
+					var path = l.path;
+					
 
-				html += "<div class='row row-file' fpath='" + path + "'>"
-				// + "<div class='col-md-1'>";
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>"
+					html += "<div class='row row-file' fpath='" + path + "'>"
+					+ "<div class='col-md-1 row'>"
+					+ "<div class='col-md-6'>"
 
-				if(this.flag == "choose-shp"){
-					var fileFix = name.slice(name.lastIndexOf(".")+1,name.length);
-					if(fileFix.toLowerCase() == "shp"){
-						html += "		<input type='checkbox' name='" + name + "'>";
+					if(this.source != null){
+						html += "	<input type='radio' name='chooseRaster'>";
 					}else{
-						html += "		<input type='checkbox' name='" + name + "' disabled>";
+						html += "		<input type='checkbox' name='" + name + "'>";
 					}
-				}else{
-					html += "		<input type='checkbox' name='" + name + "'>";
-				}
-				html += "</div>"
-				+ 	"<div class='col-md-6'>"
-				+ 	"<i class='fa fa-file-o'></i>"
-				+ 	"</div>";
+					html += "</div>"
+					+ 	"<div class='col-md-6'>"
+					+ 	"<i class='fa fa-file-o'></i>"
+					+ 	"</div>";
 
-				html+= "</div>"
-				+ "<div class='col-md-3 row-fname'>"
-				// + "		<i class='fa fa-file-o'></i>"
-				+ "		<span>" + name + "</span>"
-				+ "</div>"
-				+ "<div class='col-md-1'>文件</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'>" + size + "</div>"
-				+ "</div>";
-			}else if(l instanceof GeoBeans.Folder){
-				var name = l.name;
-				var accessTime = l.accessTime;
-				var lastTime = l.lastTime;
-				var path = l.path;
-				html += "<div class='row row-folder' fpath='" + path + "'>"
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>";
+					html+= "</div>"
+					+ "<div class='col-md-3 row-fname'>"
+					+ "		<span>" + name + "</span>"
+					+ "</div>"
+					+ "<div class='col-md-1'>文件</div>"
+					+ "<div class='col-md-3'>" + accessTime + "</div>"
+					+ "<div class='col-md-3'>" + lastTime + "</div>"
+					+ "<div class='col-md-1'>" + size + "</div>"
+					+ "</div>";
+				}else if(l instanceof GeoBeans.Folder){
+					var name = l.name;
+					var accessTime = l.accessTime;
+					var lastTime = l.lastTime;
+					var path = l.path;
+					html += "<div class='row row-folder' fpath='" + path + "'>"
+					+ "<div class='col-md-1 row'>"
+					+ "<div class='col-md-6'>";
 
-				if(this.flag == "choose-shp"){
-					html += "	<input type='checkbox' name='" + name + "' disabled>"
-				}else{
-					html += "	<input type='checkbox' name='" + name + "'>"
+					if(this.source != null){
+						html += "	<input type='radio' name='chooseRaster' disabled>";
+						// html += "	<input type='checkbox' name='" + name + "' disabled>";
+					}else{
+						html += "	<input type='checkbox' name='" + name + "'>"
+					}
+					html += "</div>"
+					+ 	"<div class='col-md-6'>"
+					+ 	"<i class='fa fa-folder-o'></i>"
+					+ 	"</div>";
+					
+					html += "</div>"
+					+ "<div class='col-md-3 row-fname'>"
+					// + "		<i class='fa fa-folder-o'></i>"
+					+ "		<span>" + name + "</span>"
+					+ "</div>"
+					+ "<div class='col-md-1'>文件夹</div>"
+					+ "<div class='col-md-3'>" + accessTime + "</div>"
+					+ "<div class='col-md-3'>" + lastTime + "</div>"
+					+ "<div class='col-md-1'></div>"
+					+ "</div>";			
+				}				
+			}else{
+				if(l instanceof GeoBeans.Folder){
+					var name = l.name;
+					var accessTime = l.accessTime;
+					var lastTime = l.lastTime;
+					var path = l.path;
+					html += "<div class='row row-folder' fpath='" + path + "'>"
+					+ "<div class='col-md-1 row'>"
+					+ "<div class='col-md-6'>";
+
+					// if(this.source != null){
+					// 	html += "	<input type='radio' name='choosePath'>";
+					// 	// html += "	<input type='checkbox' name='" + name + "' disabled>";
+					// }else{
+					// 	html += "	<input type='checkbox' name='" + name + "'>"
+					// }
+					html += "</div>"
+					+ 	"<div class='col-md-6'>"
+					+ 	"<i class='fa fa-folder-o'></i>"
+					+ 	"</div>";
+					
+					html += "</div>"
+					+ "<div class='col-md-3 row-fname'>"
+					// + "		<i class='fa fa-folder-o'></i>"
+					+ "		<span>" + name + "</span>"
+					+ "</div>"
+					+ "<div class='col-md-1'>文件夹</div>"
+					+ "<div class='col-md-3'>" + accessTime + "</div>"
+					+ "<div class='col-md-3'>" + lastTime + "</div>"
+					+ "<div class='col-md-1'></div>"
+					+ "</div>";	
+				}else if(l instanceof GeoBeans.File){
+					var name = l.name;
+					var accessTime = l.accessTime;
+					var lastTime = l.lastTime;
+					var size = l.size;
+					var path = l.path;
+					
+
+					html += "<div class='row row-file' fpath='" + path + "'>"
+					+ "<div class='col-md-1 row'>"
+					+ "<div class='col-md-6'>"
+
+					html += "</div>"
+					+ 	"<div class='col-md-6'>"
+					+ 	"<i class='fa fa-file-o'></i>"
+					+ 	"</div>";
+
+					html+= "</div>"
+					+ "<div class='col-md-3 row-fname'>"
+					+ "		<span>" + name + "</span>"
+					+ "</div>"
+					+ "<div class='col-md-1'>文件</div>"
+					+ "<div class='col-md-3'>" + accessTime + "</div>"
+					+ "<div class='col-md-3'>" + lastTime + "</div>"
+					+ "<div class='col-md-1'>" + size + "</div>"
+					+ "</div>";
 				}
-				html += "</div>"
-				+ 	"<div class='col-md-6'>"
-				+ 	"<i class='fa fa-folder-o'></i>"
-				+ 	"</div>";
-				
-				html += "</div>"
-				+ "<div class='col-md-3 row-fname'>"
-				// + "		<i class='fa fa-folder-o'></i>"
-				+ "		<span>" + name + "</span>"
-				+ "</div>"
-				+ "<div class='col-md-1'>文件夹</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'></div>"
-				+ "</div>";			
 			}
+	
 		}
 		this.panel.find(".raster-list-content-div").html(html);
 
+		// 点击文件夹
 		var that = this;
 		this.panel.find(".row-folder .row-fname").click(function(){
 			var path = $(this).parent().attr("fpath");
@@ -305,6 +562,18 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			var sourceName = that.panel.find(".db-list").val();
 			that.getList(sourceName,path);
 		});
+
+		if(!this.outputFlag){
+			// 点击文件
+			this.panel.find(".row-file .row-fname").click(function(){
+				var sourceName = that.panel.find(".db-list").val();
+				var rasterName = $(this).find("span").html();
+				var rasterPath = that.panel.find(".current-path").val();
+				that.rasterName = rasterName;
+				that.rasterPath = rasterPath;
+				that.showRasterTab(sourceName,rasterName,rasterPath);
+			});
+		}
 
 	},
 	// 新建文件夹
@@ -338,8 +607,6 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		MapCloud.notify.loading();
 		rasterDBManager.createFolder(sourceName,path,this.createFolder_callback);
-
-		// fileManager.createFolder(path,this.createFolder_callback);
 	},	
 
 	createFolder_callback : function(result){
@@ -391,6 +658,126 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var sourceName = dialog.panel.find(".db-list").val();
 		var path = dialog.panel.find(".current-path").val();
 		dialog.getList(sourceName,path);
-	}
+	},
 
+
+	// 展示raster信息
+	showRasterTab : function(sourceName,rasterName,rasterPath){
+		this.panel.find(".raster-list-col").css("display","none");
+		this.panel.find(".raster-col").css("display","block");
+		this.panel.find(".btn-raster-info").attr("disabled",true);
+		this.panel.find(".bbtn-raster-preview").attr("disabled",false);
+		var currentRasterPath = "";
+		if(rasterPath == "/"){
+			currentRasterPath = "/" + rasterName;
+		}else{
+			currentRasterPath = rasterPath + "/" + rasterName;
+		}
+		this.panel.find(".current-raster-path").val(currentRasterPath);
+		this.panel.find(".raster-tab").css("display","none");
+		rasterDBManager.describeRaster(sourceName,rasterName,rasterPath,this.describeRaster_callback);
+	},
+
+	describeRaster_callback : function(raster){
+		var dialog = MapCloud.raster_db_dialog;
+		dialog.raster = raster;
+		dialog.showRasterInfo(raster);
+	},
+
+	// 展示影像信息
+	showRasterInfo : function(raster){
+		if(raster == null){
+			return;
+		}
+		var html = "";
+		html += "<div class='row'>"
+		+ "		<div class='col-md-4'>名称</div>"
+		+ "		<div class='col-md-8'>" + raster.name + "</div>"
+		+ "	</div>"
+		+ "	<div class='row'>"
+		+ "		<div class='col-md-4'>格式</div>"
+		+ "		<div class='col-md-8'>" + raster.format + "</div>"
+		+ "	</div>"
+		+ "	<div class='row'>"
+		+ "		<div class='col-md-4'>波段</div>"
+		+ "		<div class='col-md-8'>" + raster.bands + "</div>"
+		+ "	</div>"
+		+ "	<div class='row'>"
+		+ "		<div class='col-md-4'>空间参考</div>"
+		+ "		<div class='col-md-8'>" + raster.srid + "</div>"
+		+ "	</div>"
+		+ "	<div class='row'>"
+		+ "		<div class='col-md-4'>宽度</div>"
+		+ "		<div class='col-md-8'>" + raster.width + "</div>"
+		+ "	</div>"		
+		+ "	<div class='row'>"
+		+ "		<div class='col-md-4'>高度</div>"
+		+ "		<div class='col-md-8'>" + raster.height + "</div>"
+		+ "	</div>"	;
+
+		var extent = raster.extent;
+		if(extent != null){
+			html += "	<div class='row'>"
+			+ "		<div class='col-md-4'>范围</div>"
+			+ "		<div class='col-md-8'>" + extent.xmin + "," + extent.ymin + ","
+			+ 		extent.xmax + "," + extent.ymax +  "</div>"
+			+ "	</div>"	;
+		}	
+		
+		this.panel.find(".raster-info-div").html(html);	 	
+		this.panel.find(".raster-info-div").css("display","block");
+		this.panel.find(".raster-preview-div").css("display","none");
+	},
+
+	showRasterPreview : function(sourceName,rasterName,rasterPath){
+		var url = rasterDBManager.getRasterUrl(sourceName,rasterName,rasterPath);
+		if(url != null){
+			this.panel.find(".raster-preview-div img").attr("src",url);
+		}
+		this.panel.find(".raster-info-div").css("display","none");
+		this.panel.find(".raster-preview-div").css("display","table-cell");
+	},
+
+	// 获取raster
+	returnExtractRaster : function(sourceName,rasterName,rasterPath){
+		if(this.raster != null){
+			var parentDialog = MapCloud.gps_raster_extract_dialog;
+			parentDialog.setRaster(sourceName,rasterName,rasterPath,this.raster);
+			this.closeDialog();
+		}else{
+			rasterDBManager.describeRaster(sourceName,rasterName,rasterPath,this.rasterExtract_callback);
+		}
+	},
+
+	rasterExtract_callback : function(raster){
+		var dialog = MapCloud.raster_db_dialog;
+		if(raster != null){
+			var sourceName = dialog.panel.find(".db-list").val();
+			var rasterPath = dialog.panel.find(".current-path").val();
+			var rasterName = raster.name;
+			var parentDialog = MapCloud.gps_raster_extract_dialog;
+			parentDialog.setRaster(sourceName,rasterName,rasterPath,raster);
+		}
+		dialog.closeDialog();
+		
+	},
+
+	// 删除数据源
+	removeDataSource : function(){
+		var name = this.panel.find(".db-list").val();
+		if(name == null || name == ""){
+			return;
+		}
+		if(!confirm("确定要删除[" + name + "]数据库吗?")){
+			return;
+		}
+		dbsManager.unRegisterDataSource(name,this.unRegisterDataSource_callback);		
+	},
+
+	unRegisterDataSource_callback : function(result){
+		var info = "注销数据源";
+		MapCloud.notify.showInfo(result,info);
+		var dialog = MapCloud.raster_db_dialog;
+		dbsManager.getDataSources(dialog.getDataSources_callback);
+	},
 });

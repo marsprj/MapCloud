@@ -78,8 +78,12 @@ $().ready(function(){
 		= new MapCloud.GPSFeatureProjectDialog("gps_feature_project_dialog");
 	MapCloud.gps_convex_hull_dialog
 		= new MapCloud.GPSConvexHullDialog("gps_convex_hull_dialog");
+	MapCloud.gps_raster_edge_detect_dialog
+		= new MapCloud.GPSRasterEdgeDetectDialog("gps_raster_edge_detect_dialog");
 	MapCloud.gps_raster_stretch_dialog
 		= new MapCloud.GPSRasterStretchDialog("gps_raster_stretch_dialog");
+	MapCloud.gps_raster_sepia_tone_dialog
+		= new MapCloud.GPSRasterSepiaToneDialog("gps_raster_sepia_tone_dialog");
 	MapCloud.gps_feature_import_dialog
 		= new MapCloud.GPSFeatureImportDialog("gps_feature_import_dialog");
 	MapCloud.gps_raster_extract_dialog
@@ -92,6 +96,10 @@ $().ready(function(){
 		= new MapCloud.GPSRasterSmoothDialog("gps_raster_smooth_dialog");
 	MapCloud.gps_raster_subtract_dialog
 		= new MapCloud.GPSRasterSubtractDialog("gps_raster_subtract_dialog");
+	MapCloud.gps_raster_pixel_blend_dialog
+		= new MapCloud.GPSRasterPixelBlendDialog("gps_raster_pixel_blend_dialog");
+	MapCloud.gps_raster_his_equal_dialog
+		= new MapCloud.GPSRasterHisEquaDialog("gps_raster_his_equal_dialog");
 	MapCloud.gps_dem_slope_dialog
 		= new MapCloud.GPSDemSlopeDialog("gps_dem_slope_dialog");
 	MapCloud.gps_dem_aspect_dialog
