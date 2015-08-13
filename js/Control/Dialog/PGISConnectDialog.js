@@ -26,7 +26,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 				var name = dialog.panel
 					.find("#data_source_conn_name").val();
 				if(name == null || name == ""){
-					alert("请输入名称");
+					MapCloud.notify.showInfo("请输入名称","Warning");
 					return;
 				}
 
@@ -43,9 +43,17 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	showDialog : function(source){
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
 		this.source = source;
+		if(this.source == "tile"){
+			this.panel.find("#data_source_conn_instance").val("27017");
+			this.panel.find("#data_source_conn_test").css("display","none");
+		}else{
+			this.panel.find("#data_source_conn_instance").val("5432");
+			this.panel.find("#data_source_conn_test").css("display","inline-block");
+		}
 	},
 	
 	cleanup : function(){
+		this.panel.find("#data_source_conn_name").val("");
 		// this.panel.find("#data_source_conn_name").each(function(){
 		// 	$(this).val("");
 		// });
@@ -76,32 +84,32 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		var server = this.panel
 			.find("#data_source_conn_server").val();
 		if(server == null || server == ""){
-			alert("请输入地址");
+			
 			return null;
 		}
 		var instance = this.panel
 			.find("#data_source_conn_instance").val();
 		if(instance == null || instance == ""){
-			alert("请输入端口");
+			MapCloud.notify.showInfo("请输入端口","Warning");
 			return null;
 		}
 
 		var db = this.panel
 			.find("#data_source_conn_db").val();
 		if(db == null || db == ""){
-			alert("请输入数据库名称");
+			MapCloud.notify.showInfo("请输入数据库名称","Warning");
 			return null;
 		}
 		var user = this.panel
 			.find("#data_source_conn_user").val();
 		if(user == null || user == ""){
-			alert("请输入用户");
+			MapCloud.notify.showInfo("请输入用户","Warning");
 			return null;
 		}
 		var password = this.panel
 			.find("#data_source_conn_password").val();
 		if(password == null || password == ""){
-			alert("请输入密码");
+			MapCloud.notify.showInfo("请输入密码","Warning");
 			return null;
 		}
 
@@ -154,8 +162,14 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	// 注册数据源
 	registerDBS : function(name,str){
 		MapCloud.notify.loading();
-		dbsManager.registerDataSource(name,"Postgres",
-			str,this.registerDBS_callback);
+		var engine = null;
+		if(this.source == "tile"){
+			engine = "tilemgo";
+		}else{
+			engine = "Postgres";
+		}
+		dbsManager.registerDataSource(name,engine,
+			str,this.source,this.registerDBS_callback);
 	},
 
 	// 注册数据源结果
@@ -183,14 +197,23 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		// var dialog = MapCloud.pgis_connection_dialog;
 		// dialog.closeDialog();
 
+		
+
 		var dialog = MapCloud.pgis_connection_dialog;
+		var sourceName = dialog.panel.find("#data_source_conn_name").val();
+
 		if(dialog.source == "raster"){
 			var parentDialog = MapCloud.raster_db_dialog;
-			dbsManager.getDataSources(parentDialog.getDataSources_callback);
-			
-		}else if(dialog.source == "vector"){
+			parentDialog.getDataSources();
+			parentDialog.setRegisterDataSourceName(sourceName);
+		}else if(dialog.source == "feature"){
 			var parentDialog = MapCloud.vector_db_dialog;
-			dbsManager.getDataSources(parentDialog.getDataSources_callback)
+			parentDialog.getDataSources();
+			parentDialog.setRegisterDataSourceName(sourceName);
+		}else if(dialog.source == "tile"){
+			var parentDialog = MapCloud.tile_db_dialog;
+			parentDialog.getDataSources();
+			parentDialog.setRegisterDataSourceName(sourceName);
 
 		}
 		dialog.closeDialog();

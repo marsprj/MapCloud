@@ -9,6 +9,8 @@ MapCloud.MapBar = MapCloud.Class({
 
 	// 注册点击事件
 	registerBarEvents : function(){
+
+		this.panel.find("[data-toggle='tooltip']").tooltip({container:'body'});
 		var that = this;
 		this.panel.find(".mc-icon").each(function(index,element){
 			$(this).click(function(){

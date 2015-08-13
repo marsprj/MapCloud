@@ -305,7 +305,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var html = "All<span class='caret'></span>";
 		this.panel.find("#style_type_name").html(html);
 
-		this.styleMgr = new GeoBeans.StyleManager(url);
+		// this.styleMgr = new GeoBeans.StyleManager(url);
+		this.styleMgr = styleManager;
 		
 
 		var styles = this.styleMgr.getStyles();

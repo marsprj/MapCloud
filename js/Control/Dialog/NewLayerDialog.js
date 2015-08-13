@@ -56,9 +56,10 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 				var dbName = dialog.dataSource.name;
 				var typeName = dialog.dataSet.name;
 				if(mapObj != null){
-					var layer = new GeoBeans.Layer.DBLayer(name,
-						dbName,typeName); 
-					MapCloud.alert_info.loading();
+					var layer = new GeoBeans.Layer.FeatureDBLayer(name,null,dbName,typeName,null,null);
+					// var layer = new GeoBeans.Layer.DBLayer(name,
+					// 	dbName,typeName); 
+					MapCloud.notify.loading();
 					layer.geomType = dialog.dataSet.geometryType;
 					// 注册图层
 					mapObj.addLayer(layer,dialog.addLayer_callback);
@@ -100,7 +101,7 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		var dialog = MapCloud.new_layer_dialog;
 		var name = dialog.panel.find("#new_layer_name").val();
 		var info = "注册图层 [ " + name + " ]";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 		if(result.toLowerCase() == "success"){
 			MapCloud.refresh_panel.refreshPanel();
 			// mapObj.draw();

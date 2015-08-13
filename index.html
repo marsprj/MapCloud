@@ -58,6 +58,8 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
 
+<script type="text/javascript" src="../Map5/lib/GeoBeans/User.js"></script>
+
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Point.js"></script>
@@ -112,6 +114,8 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
@@ -178,6 +182,9 @@
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
+
 
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
@@ -214,6 +221,7 @@
 <script type="text/javascript" src="js/Control/Dialog/MapMgrDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/CreateMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/NewLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/NewRasterDBLayerDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ChartDialog.js"></script>
 
 <script type="text/javascript" src="js/Control/Dialog/CreateLayerDialog.js"></script>
@@ -267,6 +275,10 @@
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSBuildPyramidDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSUpdateTileDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSSridDialog.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/CutMapDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/TileDBDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateTileStoreDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -390,9 +402,12 @@
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
-								<div class="ribbon_label">添加图层</div>
+								<div class="ribbon_label">添加矢量图层</div>
 							</div>
-							
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+								<div class="ribbon_label">添加栅格图层</div>
+							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_wms"></div>
 								<div class="ribbon_label">WMS图层</div>
@@ -481,11 +496,15 @@
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-database"></div>
-								<div class="ribbon_label">数据库管理</div>
+								<div class="ribbon_label">地理库</div>
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
-								<div class="ribbon_label">影像管理</div>
+								<div class="ribbon_label">影像库</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_label">瓦片库</div>
 							</div>
 						</div>
 					</div>
@@ -545,20 +564,25 @@
 				<div class="left-panel">
 					<div id="left_panel" class="left-panel-tab">
 						<div class="row" id="map_row">
-							<div class="col-md-8 col-xs-8 col-lg-8">
+							<div class="col-md-7">
 								<a href="javascript:void(0)" id="map_name">Sample</a>
 							</div>
-							<div class="col-md-1 col-xs-1 col-lg-1">
-								<a href="javascript:void(0)">
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="cut_map_btn"data-toggle="tooltip" data-placement="top" data-original-title="切图">
+									<i class="fa fa-cut"></i>
+								</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="map_globe_btn" data-toggle="tooltip" data-placement="top" data-original-title="全图">
 									<i class="fa fa-globe"></i>
 								</a>
 							</div>
-							<div class="col-md-1 col-xs-1 col-lg-1">
-								<a href="javascript:void(0)" id="save_map_btn">
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="save_map_btn" data-toggle="tooltip" data-placement="top" data-original-title="保存">
 									<i class="fa fa-floppy-o"></i>
 								</a>
 							</div>
-							<div class="col-md-1 col-xs-1 col-lg-1">
+							<div class="col-md-1">
 								<a href="javascript:void(0)" id="layers_content_btn">
 									<i class="fa fa-chevron-down"></i>
 								</a>
@@ -1563,12 +1587,12 @@
 							  		<i class="fa fa-angle-double-left"></i>
 								</a>
 							</div>	
-							<div class="mc-icon mc-icon-area"></div>
+							<div class="mc-icon mc-icon-area" data-toggle="tooltip" data-placement="top" data-original-title="区域查询"></div>
 							<div class="mc-icon mc-icon-plus"></div>
 							<div class="mc-icon mc-icon-minus"></div>
-							<div class="mc-icon mc-icon-info"></div>
-							<div class="mc-icon mc-icon-mouse active"></div>
-							<div class="mc-icon mc-icon-world"></div>
+							<div class="mc-icon mc-icon-info"  data-toggle="tooltip" data-placement="top" data-original-title="点击查询"></div>
+							<div class="mc-icon mc-icon-mouse active" data-toggle="tooltip" data-placement="top" data-original-title="鼠标状态"></div>
+							<div class="mc-icon mc-icon-world" data-toggle="tooltip" data-placement="top" data-original-title="全图显示"></div>
 							<div class="mc-icon mc-icon-hand-up"></div>
 							<div class="mc-icon mc-icon-full-screen"></div>
 							<div class="mc-icon mc-icon-zoom-in"></div>
@@ -1858,7 +1882,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">新建图层</h5>
+					<h5 class="modal-title">添加矢量图层</h5>
 				</div>
 				<div class="modal-body">
 					<div class="tab-pane active" id="new_layer_info">
@@ -1891,6 +1915,64 @@
 								</div>
 								<div class="col-md-3">
 									<a href="#" class="btn btn-sm btn-success btn-group-justified" id="new_layer_select_style">样式</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 栅格图层 -->
+	<div class="modal fade" id="new_raster_dblayer_dialog" tabindex="-1" role="dialog" aria-hidden="true"
+	data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">添加影像图层</h5>
+				</div>
+				<div class="modal-body">
+					<div class="tab-pane active" id="new_layer_info">
+						<form class="form-horizontal" role="form">
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									名称：
+								</label>
+								<div class="col-md-4">
+									<input class="form-control new-layer-name" type="text">
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									数据源：
+								</label>
+								<div class="col-md-5" style="padding-right:0px">
+									<input class="form-control source-name" type="text" disabled="true">
+								</div>
+								<div class="col-md-3">
+									<a href="#" class="btn btn-sm btn-success btn-group-justified btn-choose-raster" >选择</a>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									路径：
+								</label>
+								<div class="col-md-5" style="padding-right:0px">
+									<input class="form-control raster-path" type="text" disabled="true">
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<label class="col-md-3 control-label">
+									影像：
+								</label>
+								<div class="col-md-5" style="padding-right:0px">
+									<input class="form-control raster-name" type="text" disabled="true">
 								</div>
 							</div>
 						</form>
@@ -2049,24 +2131,24 @@
 				<div class="modal-body">
 					<form class="form-horizontal">
 						<div class="form-group form-group-sm">
-							<label for="wmts_layer_name" class="col-sm-2 control-label">名称：</label>
-							<div class="col-sm-8">
+							<label class="col-sm-3 control-label">名称：</label>
+							<div class="col-sm-5">
 								<input type="text" class="form-control" placeholder="输入图层名称" style="" id="wmts_layer_name" value="wmts">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
-							<label for="wmts_url" class="col-sm-2 control-label">地址：</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wmts_url" value="/ows/user1/tfs/wmts">
+							<label class="col-sm-3 control-label">数据源：</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control wmts-source-name" disabled="">
 							</div>
-							<div class="col-sm-2">
-								<a href="#" class="navbar-link" id="wmts_get_layers">获取信息</a>
+							<div class="col-sm-3">
+								<a href="#" class="btn btn-sm btn-success btn-group-justified btn-choose-tile">选择</a>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
-							<label for="wmts_url" class="col-sm-2 control-label">图层：</label>
-							<div class="col-sm-4">
-								<select class="form-control" id="wmts_layers"></select>
+							<label class="col-sm-3 control-label">瓦片库：</label>
+							<div class="col-sm-5">
+								<input class="form-control wmts-tile-store" disabled>
 							</div>
 						</div>
 					</form>
@@ -3245,25 +3327,11 @@
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
 									</button>
-									<button type="button" class="btn btn-default btn-tool btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
-										<i class="fa fa-refresh"></i>
-									</button>
 									<div class="btn-group pull-right" role="group">
 										<button type="button" class="btn btn-default" id="show-dataset-fields" disabled>字段</button>
 										<button type="button" class="btn btn-default" id="show-dataset-features">列表</button>
 										<button type="button" class="btn btn-default" id="show-dataset-preview">预览</button>
 									</div>
-									<!-- <div class="btn-group btn-group-justified" role="group">
-										<a class="btn btn-default" id="show-dataset-fields">
-											<i class="glyphicon glyphicon-align-justify"></i> 字段
-										</a>
-										<a class="btn btn-default" id="show-dataset-features">
-											<i class="glyphicon glyphicon-list-alt"></i>列表
-										</a>
-										<a class="btn btn-default" id="show-dataset-preview">
-											<i class="glyphicon glyphicon-picture"></i>预览
-										</a>
-									</div> -->
 								</div>
 								<div class="row db-content table-responsive">
 									<div class="dataset-pane" id="dataset_fields">
@@ -6551,35 +6619,9 @@
 							</div>
 						</div>
 						<div class="srid-list-div">
-							<div class="row">
-								<div class="col-md-1">
-									4326
-								</div>
-								<div class="col-md-11 text-ellip">
-									GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]
-								</div>
-							</div>
 						</div>
 					</div>
 					<ul class="pagination" style="margin:1px 0px">
-					  	<!-- <li class="disabled">	
-						    <a href="#" aria-label="Previous">
-						      	<span aria-hidden="true">«</span>
-						    </a>
-					 	 </li>
-					  	<li class="active">
-					    	<a href="#">1		
-					      		<span class="sr-only">(current)</span>
-					   		</a>
-					   	</li>
-					   	<li>
-					   		<a href="#">2</a>
-					  	</li>
-					 	<li>
-						    <a href="#" aria-label="Next">
-						      <span aria-hidden="true">»</span>
-						    </a>
-					  	</li> -->
 					</ul>
 				</div>
 				<div class="modal-footer">
@@ -6590,4 +6632,199 @@
 		</div>
 	</div>
 
+	<!-- Cut Map Panel -->
+	<div class="modal fade" id="cut_map_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">切图</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">数据库:</label>
+							<div class="col-md-8">
+								<select class="form-control db-list">
+								</select>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">瓦片库:</label>
+							<div class="col-md-8">
+								<select class="form-control tile-list">
+								</select>
+							</div>
+							<button class="btn btn-default btn-create-tile-store" type="button" data-toggle="tooltip" data-placement="top" data-original-title="新建瓦片库">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">空间参考:</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control map-srid" disabled>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">起始级别:</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control map-start-level" value="1">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">终止级别:</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control map-end-level" value="5">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">范围:</label>
+							<div class="col-md-8 cut-map-extent">
+								<div class="row">
+									<label class="col-md-1 col-md-offset-4 control-label">北</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control map-extent-ymax">
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-md-1 control-label">西</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control map-extent-xmin">
+									</div>
+									<label class="col-md-1 control-label col-md-offset-4">东</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control map-extent-xmax">
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-md-1 col-md-offset-4 control-label">南</label>
+									<div class="col-md-3">
+										<input type="text" class="form-control map-extent-ymin">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<div class="result-div">
+					</div>
+					<div class="row cut-oper-div">
+					    <button class="btn btn-default btn-primary btn-build-pyramid" style="margin-right: 40px;">开始切图</button>
+					    <button class="btn btn-default">停止切图</button>
+					  </div>
+				  </div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Tile DB panel  -->
+	<div class="modal fade" id="tile_db_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">瓦片库</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row db-body">
+						<div class="col-md-4 db-list-div">
+							<div class="input-group">
+								<select class="form-control db-list">
+								</select>
+								<span class="input-group-btn">
+									<button class="btn btn-default btn-add-server" type="button" data-toggle="tooltip" data-placement="top" data-original-title="增加数据源">
+										<i class="fa fa-plus"></i>
+									</button>
+									<button class="btn btn-default btn-remove-server" type="button" data-toggle="tooltip" data-placement="top" data-original-title="删除数据源">
+										<i class="fa fa-remove"></i>
+									</button>
+									<button class="btn btn-default btn-refresh" type="button" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+										<i class="fa fa-refresh"></i>
+									</button>
+								</span>
+							</div>
+							<div class="layer-tree">
+								<ul class="nav">
+									
+									<!-- <li>
+										<a href="#" class="tree-table" dindex="1"><i class="mc-db-icon mc-db-icon-dataset-point"></i>	<span>gc_aqi_ranking</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="tree-table" dindex="1"><i class="mc-db-icon mc-db-icon-dataset-point"></i>	<span>gc_aqi_ranking</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="tree-table" dindex="1"><i class="mc-db-icon mc-db-icon-dataset-point"></i>	<span>gc_aqi_ranking</span>
+										</a>
+									</li> -->
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="row db-tool">
+								<button type="button" class="btn btn-default btn-tool btn-create-tile-store" data-toggle="tooltip" data-placement="top" data-original-title="新建瓦片库">
+									<i class="fa fa-database"></i>
+								</button>
+								<button type="button" class="btn btn-default btn-tool btn-remove-tile-store" data-toggle="tooltip" data-placement="top" data-original-title="删除瓦片库">
+									<i class="fa fa-remove"></i>
+								</button>
+								<div class="btn-group pull-right" role="group">
+									<button type="button" class="btn btn-default btn-infos" disabled>
+										信息
+									</button>
+									<button type="button" class="btn btn-default btn-preview">
+										预览
+									</button>
+								</div>
+							</div>
+							<div class="row layer-content table-responsive layer-infos-pane active">
+							</div>
+							<div class="row layer-content layer-preview-pane" id="tile_canvas_wrapper">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- create tile store -->
+	<div class="modal fade" id="create_tile_store_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新增瓦片库</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">名称</label>
+							<div class="col-md-7">
+								<input type="text" class="form-control tile-store-name">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">切图方式</label>
+							<div class="col-md-7">
+								<select class="form-control tile-store-type">
+									<option value="PGIS">PGIS</option>
+									<option value="GoogleCRS84Quad">GoogleCRS84Quad</option>
+									<option value="EPSG4326">EPSG4326</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>

@@ -15,6 +15,9 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 是否为输出路径的选项
 	outputFlag : false,
 
+	// 新注册的数据源的名称
+	registerDataSourceName : null,
+
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
@@ -32,6 +35,8 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".db-list").change(function(){
 			var value = $(this).val();
 			if(value != null){
+				// dialog.panel.find(".folder-tree").empty();
+				dialog.panel.find(".foler-ul").remove()
 				dialog.getList(value,"/");
 			}
 		});
@@ -122,6 +127,10 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			var sourceName = dialog.panel.find(".db-list").val();
 			// 确定上级对话框
 			switch(dialog.source){
+				case "newLayer":{
+					parentDialog = MapCloud.new_raster_dblayer_dialog;
+					break;
+				}
 				case "rasterEdgeDetect":{
 					parentDialog = MapCloud.gps_raster_edge_detect_dialog;
 					break;
@@ -249,12 +258,16 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.outputFlag = output;
 		}
 		
-		dbsManager.getDataSources(this.getDataSources_callback);
+		this.getDataSources();
 		if(this.source == null){
 			this.panel.find(".btn-confirm").html("确定");
 		}else{
 			this.panel.find(".btn-confirm").html("选择");
 		}
+	},
+
+	getDataSources : function(){
+		dbsManager.getDataSources(this.getDataSources_callback,"Raster");
 	},
 
 	cleanup : function(){
@@ -264,6 +277,8 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.source = null;
 		this.outputFlag = false;
+
+		this.registerDataSourceName = null;
 
 		this.panel.find(".db-list").html("");
 		this.panel.find(".nav.foler-ul").remove();
@@ -296,10 +311,18 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		this.panel.find(".db-list").html(html);
 
-		var currentDB = this.panel.find(".db-list").val();
-		if(currentDB != null && currentDB != ""){
-			this.getList(currentDB,"/");
+		if(this.registerDataSourceName != null){
+			this.panel.find(".db-list option[value='" + this.registerDataSourceName + "']")
+				.attr("selected",true);
+			this.getList(this.registerDataSourceName,"/");
+			this.registerDataSourceName = null;
+		}else{
+			var currentDB = this.panel.find(".db-list").val();
+			if(currentDB != null && currentDB != ""){
+				this.getList(currentDB,"/");
+			}
 		}
+		
 	},
 
 	getList : function(sourceName,path){
@@ -778,6 +801,11 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var info = "注销数据源";
 		MapCloud.notify.showInfo(result,info);
 		var dialog = MapCloud.raster_db_dialog;
-		dbsManager.getDataSources(dialog.getDataSources_callback);
+		dialog.getDataSources();
 	},
+
+	// 设置新注册的数据源的名称
+	setRegisterDataSourceName : function(registerDataSourceName){
+		this.registerDataSourceName = registerDataSourceName;
+	}
 });

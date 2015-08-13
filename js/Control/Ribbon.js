@@ -155,114 +155,122 @@ MapCloud.Ribbon = MapCloud.Class({
 					break;
 				// Layer Events
 				case 6:
-					// 新建图层
+					// 添加矢量图层
 					that.onLayerNew();
 					break;
 				case 7:
+					// 添加栅格图层
+					that.onAddRasterLayer();
+					break;
+				case 8:
 					// WMS图层
 					that.onLayerAddWMS();
 					break;
-				case 8:
+				case 9:
 					// WFS图层
 					that.onLayerAddWFS();
 					break;
-				case 9:
+				case 10:
 					// WMTS图层
 					that.onLayerAddWMTS();
 					break;
-				case 10:
+				case 11:
 					// 影像底图
 					that.onAddBaseLayer("image");
 					break;
-				case 11:
+				case 12:
 					// 矢量底图
 					that.onAddBaseLayer("vector");
 					break;
-				case 12:
+				case 13:
 					// 新建图层
 					that.onLayerNew();
 					break;
-				case 13:
+				case 14:
 					// 编辑图层
 					// that.onEditLayer();
 					break;
-				case 14:
+				case 15:
 					// 分享图层
 					that.onShareLayer();
 					break;
-				case 15:
+				case 16:
 					// that.onCreateLayer();
 					break;
-				case 16:
+				case 17:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 17:
+				case 18:
 					//删除图层
 					that.onRemoveLayer();
 					break;
-				case 18:
+				case 19:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 19:
+				case 20:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 20:
+				case 21:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 21:
+				case 22:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 22:
+				case 23:
 					// 文件管理
 					that.onFile();
 					break;
-				case 23:
-					//数据库管理
+				case 24:
+					// 地理库
 					that.onDataSource();
 					break;
-				case 24:
-					// 	影像管理
+				case 25:
+					// 	影像库
 					that.onImportImage();
 					break;
+				case 26:
+					// 瓦片库
+					that.onTileDataSource();
+					break;
 				// Chart Events
-				case 25:
+				case 27:
 					// 分级图
 					that.onAddRangeChart();
 					break;
-				case 26 :
+				case 28 :
 					// 柱状图
 					that.onAddBarChart();
 					break;
-				case 27:
+				case 29:
 					// 饼状图
 					that.onAddPieChart();
 					break;
-				case 28:
+				case 30:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 29:
+				case 31:
 					that.onAQI();
 					break;
-				case 30:
+				case 32:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 31:
+				case 33:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 32:
+				case 34:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 33:
+				case 35:
 					// 工具箱
 					that.onTools();
 					break;
@@ -365,6 +373,11 @@ MapCloud.Ribbon = MapCloud.Class({
 	// 新建图层
 	onLayerNew : function(){
 		MapCloud.new_layer_dialog.showDialog();
+	},
+
+	// 栅格图层
+	onAddRasterLayer : function(){
+		MapCloud.new_raster_dblayer_dialog.showDialog();
 	},
 
 	// WMS图层
@@ -521,6 +534,10 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.raster_db_dialog.showDialog();
 	},
 
+	// 瓦片库
+	onTileDataSource : function(){
+		MapCloud.tile_db_dialog.showDialog();
+	},
 
 	/**************************************************************/
 	/* Tool Event                                                */
@@ -581,7 +598,9 @@ MapCloud.Ribbon = MapCloud.Class({
 		// 调整左右列之间的关系
 		// 取整
 		// 中间的范围
-		var leftWidthB = $("#maps_list_ul").width();
+		var leftWidthB = $("#maps_list_ul").css("width");
+		// var leftWidthB = $(".map-list-col").css("width");
+		leftWidthB = parseInt(leftWidthB.slice(0,leftWidthB.lastIndexOf("px")));
 		var rightWidthB = $(".map-list-info").css("width");
 		rightWidthB = parseInt(rightWidthB.slice(0,rightWidthB.lastIndexOf("px")));
 		var colCountFloor = Math.floor(leftWidthB/mapSize);
@@ -619,12 +638,9 @@ MapCloud.Ribbon = MapCloud.Class({
 		this.initPageControl(1,this.pageCount);
 
 		// 设置页码的右边距
-		var pageControlWidth = $("#home_ribbon .pagination").width();
 		var rightWidth = $(".map-list-info").css("width");
 		rightWidth = parseInt(rightWidth.slice(0,rightWidth.lastIndexOf("px")));
-		var pageDivRight = rightWidth + pageControlWidth/2;
-		pageDivRight = Math.ceil(pageDivRight);
-		$("#home_ribbon .map-page-div").css("right",pageDivRight + "px");
+		$("#home_ribbon .map-page-div").css("right",rightWidth + "px");
 
 	},
 

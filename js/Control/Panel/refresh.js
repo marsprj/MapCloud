@@ -13,13 +13,16 @@ MapCloud.refresh = MapCloud.Class({
 		var that = this;
 		
 		this.panel = $("#"+id);
-		this.wmsStyleMgr = new GeoBeans.StyleManager(url); 
+		// this.wmsStyleMgr = new GeoBeans.StyleManager(url); 
 		this.registerEvent();
 	},
 
 	registerEvent : function(){
 
 		var that = this;
+
+		this.panel.find('[data-toggle="tooltip"]').tooltip({container: 'body'});
+
 		// 添加图层
 		this.panel.find(".glyphicon-plus").click(function(){
 			MapCloud.new_layer_dialog.showDialog();
@@ -48,11 +51,36 @@ MapCloud.refresh = MapCloud.Class({
 			}
 		});
 
+		// 切图
+		this.panel.find("#cut_map_btn").click(function(){
+			if(mapObj == null){
+				MapCloud.notify.showInfo("当前地图为空","Warning");
+				return;
+			}
+			MapCloud.cut_map_dialog.showDialog();
+		});
+
+		// 全图显示
+		this.panel.find("#map_globe_btn").click(function(){
+			if(mapObj == null){
+				MapCloud.notify.showInfo("当前地图为空","Warning");
+				return;
+			}
+			var extent = mapObj.extent;
+			if(extent == null){
+				return;
+			}
+			mapObj.setViewer(extent);
+			mapObj.draw();
+		});
+
 		// 保存地图
 		this.panel.find("#save_map_btn").click(function(){
-			if(mapObj != null){
-				mapManager.saveMap(mapObj,that.saveMap_callback);
+			if(mapObj == null){
+				MapCloud.notify.showInfo("当前地图为空","Warning");
+				return;
 			}
+			mapManager.saveMap(mapObj,that.saveMap_callback);
 		});
 	},
 
@@ -395,6 +423,20 @@ MapCloud.refresh = MapCloud.Class({
 			});
 		});
 
+		// 影像拉伸控制
+		this.panel.find(".layer_row_quick_tool_stretch input").each(function(){
+			$(this).change(function(){
+				var checked = $(this).prop("checked");
+				var li = $(this).parents("li.layer_row");
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
+				if(layer == null){
+					return;
+				}
+				MapCloud.notify.showInfo(checked.toString(),"影像拉伸");
+			});
+		});
+
 		// 删除底图
 		this.panel.find(".layer_row_quick_tool_remove_base").each(function(){
 			$(this).click(function(){
@@ -645,7 +687,7 @@ MapCloud.refresh = MapCloud.Class({
 				+	"		<div class=\"mc-icon " + icon + "\"></div>"	
 				+	"	</div>"
 				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
-				+	"		<strong>" + type + "</strong>"
+				+	"		<strong>" + name + "</strong>"
 				+	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul>"
@@ -951,9 +993,9 @@ MapCloud.refresh = MapCloud.Class({
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
 		}else{
-			var xml = this.wmsStyleMgr.writer.write(style);
+			var xml = styleManager.writer.write(style);
 			// 更新修改的样式
-			this.wmsStyleMgr.updateStyle(xml,styleName,this.updateCallback);
+			styleManager.updateStyle(xml,styleName,this.updateCallback);
 			// 设置样式
 			mapObj.setStyle(this.layerName,style,this.setStyle_callback);
 		}
@@ -977,6 +1019,14 @@ MapCloud.refresh = MapCloud.Class({
 		if(layer == null){
 			return "";
 		}
+		var type = layer.type;
+		var html = "";
+		if(type == GeoBeans.Layer.DBLayer.Type.Raster){
+			html = this.getRasterDBLayerHtml(layer);
+		}else if(type == GeoBeans.Layer.DBLayer.Type.Feature){
+			html = this.getFeatureDBLayerHtml(layer);
+		}
+		return html;
 		var name = layer.name;
 		var style = layer.style;
 
@@ -1013,6 +1063,16 @@ MapCloud.refresh = MapCloud.Class({
 			heatMapHtml = "";
 		}
 
+		var rasterStretchHtml = "";
+		if(layer.type == GeoBeans.Layer.DBLayer.Type.Raster){
+			rasterStretchHtml = "<li><a href=\"#\" class=\"layer_row_quick_tool_stretch\">"
+				+ '<i class="dropdown-menu-icon"><input type="checkbox"></i>'
+				+ "<span>影像拉伸</span>"
+				+ "</a></li>";
+		}else{
+			rasterStretchHtml = "";
+		}
+
 		html	+=	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
@@ -1033,9 +1093,80 @@ MapCloud.refresh = MapCloud.Class({
 				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
 				+	"				</a>"
 				+	"				<ul class=\"dropdown-menu\">"
-				// +	"					<li><a href='#'><input id='wms_transparency' data-slider-id='wms_transparency_slider' "
-				// +	"						type='text' class='form-control' data-slider-min='0' data-slider-max='100' "
-				// +	"						data-slider-step='1' data-slider-value='100'  data-slider-enabled='true'/></a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_features\"><i class='dropdown-menu-icon fa fa-list-ul'></i>显示属性</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_search\"><i class='dropdown-menu-icon fa fa-search'></i>简单查询</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
+				+						heatMapHtml
+				+ 						rasterStretchHtml
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
+
+		var styleHtml = this.getStyleHtml(-1,style);
+		html += styleHtml;
+		html += "</li>";
+		return html;
+	},
+
+	getFeatureDBLayerHtml : function(layer){
+		var name = layer.name;
+		
+		var html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		var heatMapHtml = "";
+		if(layer.geomType == GeoBeans.Geometry.Type.POINT 
+			|| layer.geomType == GeoBeans.Geometry.Type.MULTIPOINT){
+			var heatMapLayer = layer.getHeatMapLayer();
+			heatMapHtml = "<li><a href=\"#\" class=\"layer_row_quick_tool_heatMap\">";
+			if(heatMapLayer != null){
+				if(heatMapLayer.visible){
+					heatMapHtml += "<i class='dropdown-menu-icon'><input type='checkbox' checked></i>";
+				}else{
+					heatMapHtml += "<i class='dropdown-menu-icon'><input type='checkbox'></i>";	
+				}
+			}else{
+				heatMapHtml += "<i class='dropdown-menu-icon'><input type='checkbox'></i>";	
+			}
+			heatMapHtml += "<span>热力图</span></a></li>";
+		}else{
+			heatMapHtml = "";
+		}
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
+				+	"	</div>"
+				+	"	<div class=\"col-md-4 col-xs-1 layer_name\">"
+				+	"		<strong>" + name + "</strong>"
+				+	"	</div>"
+				+ 	"	<div class='col-md-1'>"
+				+ 	"		<div class='fa fa-arrow-up mc-icon layer_oper'></div>"
+				+	"	</div>"
+				+ 	"	<div class='col-md-1'>"
+				+ 	"		<div class='fa fa-arrow-down mc-icon layer_oper'></div>"
+				+	"	</div>"				
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_features\"><i class='dropdown-menu-icon fa fa-list-ul'></i>显示属性</a></li>"
 				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_search\"><i class='dropdown-menu-icon fa fa-search'></i>简单查询</a></li>"
@@ -1048,9 +1179,65 @@ MapCloud.refresh = MapCloud.Class({
 				+	"		</ul>"
 				+	"	</div>"
 				+	"	<br/>";
-
+		var style = layer.style;
 		var styleHtml = this.getStyleHtml(-1,style);
 		html += styleHtml;
+		html += "</li>";
+		return html;				
+	},
+
+
+	getRasterDBLayerHtml : function(layer){
+		var name = layer.name;
+		var html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+
+		var rasterStretchHtml = "<li><a href=\"#\" class=\"layer_row_quick_tool_stretch\">"
+				+ '<i class="dropdown-menu-icon"><input type="checkbox"></i>'
+				+ "<span>影像拉伸</span>"
+				+ "</a></li>";
+
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
+				+	"	</div>"
+				+	"	<div class=\"col-md-4 col-xs-1 layer_name\">"
+				+	"		<strong>" + name + "</strong>"
+				+	"	</div>"
+				+ 	"	<div class='col-md-1'>"
+				+ 	"		<div class='fa fa-arrow-up mc-icon layer_oper'></div>"
+				+	"	</div>"
+				+ 	"	<div class='col-md-1'>"
+				+ 	"		<div class='fa fa-arrow-down mc-icon layer_oper'></div>"
+				+	"	</div>"				
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"#\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
+				+ 						rasterStretchHtml
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
 		html += "</li>";
 		return html;
 	},

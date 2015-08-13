@@ -352,7 +352,7 @@ ul {
 
 .ribbon_panel{
 	float:left;
-	width:100%;
+	width: calc( 100% - 60px);
 	height:100%;
 	margin-left:60px;
 }
@@ -431,10 +431,14 @@ ul#ribbon_tabs li{
 .home_ribbon_tool .map-page-div{
 	position: relative;
 	right: 400px;
+	width: 350px;
+	height: 40px;
 }
 .home_ribbon_tool .maps-count{
-	min-width: 120px;
+	width: 120px;
 	display: inline-block;
+	position: absolute;
+    left: 0px;
 }
 .home_ribbon_tool .maps-count p{
 	font-size: 14px;
@@ -442,6 +446,12 @@ ul#ribbon_tabs li{
 }
 .home_ribbon_tool .maps-page{
 	display: inline-block;
+	width: 225px;
+    position: absolute;
+    right: 0px;
+}
+.home_ribbon_tool .maps-page .pagination{
+	float: right;
 }
 /*.home_ribbon_tool .pages-form{
 	width: 500px;
@@ -1719,7 +1729,7 @@ ul.layers_row li:before {
 	display: block;
 	width: 200px;
 	height: 160px;
-	background-size: 200px 160px;
+	background-size: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -2832,7 +2842,6 @@ ul.layers_row li:before {
 	border: 1px solid #ccc;
 	margin: 20px 0px 0px;
 	height: calc( 100% - 56px);
-	border-radius: 4px;
 }
 
 
@@ -3254,4 +3263,134 @@ ul.layers_row li:before {
 }
 /***************************************************************************/
 /* GPS Srid  Dialog End	 											*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Cut Map  Dialog Begin	 											*/
+/***************************************************************************/
+#cut_map_dialog .modal-dialog{
+}
+
+#cut_map_dialog .modal-body{
+	padding: 20px;
+}
+#cut_map_dialog form{
+	padding: 10px;
+}
+#cut_map_dialog .control-label{
+	font-weight: normal;
+}
+#cut_map_dialog .cut-map-extent{
+	margin-left: 15px;
+    border: 1px solid #ddd;
+    padding: 6px 15px;
+}
+
+#cut_map_dialog .cut-map-extent [class*="col-"]{
+	padding: 0px 6px;
+}
+
+#cut_map_dialog .result-div{
+	height: 30px;
+	padding: 0 20px;
+	color: #D20758;
+}
+#cut_map_dialog .cut-oper-div{
+	margin: 0px 0px 10px;
+	text-align: center;
+}
+
+
+/***************************************************************************/
+/* Cut Map  Dialog End	 											*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Tile DB  Dialog Begin	 											*/
+/***************************************************************************/
+#tile_db_dialog .modal-dialog{
+	width:1000px;
+}
+
+#tile_db_dialog .modal-body{
+	height: 660px;
+}
+
+#tile_db_dialog .db-body{
+	height: 100%;
+}
+#tile_db_dialog .db-list-div{
+	height: 100%;
+}
+#tile_db_dialog .db-list-div .input-group-btn .btn{
+	height: 34px;
+}
+#tile_db_dialog .db-list-div .input-group-btn .btn i{
+	color : rgb(91, 154, 209);
+}
+
+#tile_db_dialog .layer-tree{
+	height: calc( 100% - 60px);
+	border: 1px dashed #ccc;
+	margin-top: 10px;
+	overflow-y: auto;
+}
+#vector_db_dialog .layer-tree li a {
+    padding: 4px 10px;
+}
+
+#tile_db_dialog .layer-tree a.selected{
+	background-color: #dfeef5;
+	color: #FD0534;
+}
+
+#tile_db_dialog .row{
+	margin: 0px;
+}
+
+#tile_db_dialog .btn-tool{
+	color: #5bc0de;
+	height: 34px;
+}
+#tile_db_dialog .layer-content {
+    height: 570px;
+    overflow: auto;
+    margin-top: 10px;
+    border: 1px #ccc solid;
+    display: none;
+}
+
+#tile_db_dialog .layer-content.active{
+	display: block;
+}
+#tile_db_dialog .layer-infos-pane .row{
+	margin: 0px 0px;
+    padding: 6px 8px;	
+}
+#tile_db_dialog .layer-infos-pane .row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+/***************************************************************************/
+/* Tile DB  Dialog End	 											*/
+/***************************************************************************/
+/***************************************************************************/
+/* Create Tile Store  Dialog Begin	 										*/
+/***************************************************************************/
+#create_tile_store_dialog .modal-dialog{
+	width: 400px;
+}
+
+/***************************************************************************/
+/* Create Tile Store  Dialog End	 										*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* WMTS   Dialog Begin				 										*/
+/***************************************************************************/
+#wmtsDialog .modal-dialog{
+	width: 500px;
+}
+
+/***************************************************************************/
+/* WMTS   Dialog End				 										*/
 /***************************************************************************/

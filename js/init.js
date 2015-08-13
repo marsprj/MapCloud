@@ -4,7 +4,10 @@ var mapManager = null;
 var dbsManager = null;
 var styleManager = null;
 var gpsManager = null;
+var rasterDBManager = null;
+var tileDBManger = null;
 var url = "/ows/user1/mgr";
+var user = new GeoBeans.User("user1");
 
 $().ready(function(){
 	MapCloud.alert_info 
@@ -32,6 +35,8 @@ $().ready(function(){
 		= new MapCloud.PGISConnectDialog("pgisConnDialog");
 	MapCloud.new_layer_dialog
 		= new MapCloud.NewLayerDialog("newLayerDialog");
+	MapCloud.new_raster_dblayer_dialog
+		= new MapCloud.NewRasterDBLayerDialog("new_raster_dblayer_dialog");
 	MapCloud.chart_dialog
 		= new MapCloud.ChartDialog("chart_Dialog");
 
@@ -116,8 +121,11 @@ $().ready(function(){
 		= new MapCloud.GPSBuildPyramidDialog("gps_build_pyramid_dialog");
 	MapCloud.gps_update_tile_dialog
 		= new MapCloud.GPSUpdateTileDialog("gps_update_tile_dialog");
-	MapCloud.gps_srid_dialog 
-		= new MapCloud.GPSSridDialog("gps_srid_dialog");
+	MapCloud.gps_srid_dialog = new MapCloud.GPSSridDialog("gps_srid_dialog");
+	MapCloud.cut_map_dialog = new MapCloud.CutMapDialog("cut_map_dialog");
+	MapCloud.tile_db_dialog = new MapCloud.TileDBDialog("tile_db_dialog");
+	MapCloud.create_tile_store_dialog 
+		= new MapCloud.CreateTileStoreDialog("create_tile_store_dialog");
 
 
 	MapCloud.refresh_panel 
@@ -161,12 +169,15 @@ $().ready(function(){
 	MapCloud.dataGrid 
 	= new MapCloud.DataGrid("datagrid_wrapper","datagrid_control_wrapper");
 	
-	mapManager = new GeoBeans.MapManager(url);
+	// mapManager = new GeoBeans.MapManager(url);
 	dbsManager = new GeoBeans.DBSManager(url);
 	fileManager = new GeoBeans.FileManager(url);
-	styleManager = new GeoBeans.StyleManager(url);
+	// styleManager = new GeoBeans.StyleManager(url);
 	gpsManager = new GeoBeans.GPSManager(url);
 	rasterDBManager = new GeoBeans.RasterDBManager(url);
+
+	mapManager = user.getMapManager();
+	styleManager = user.getStyleManager();
 
 	$(".modal").draggable({
 	    handle: ".modal-header"
@@ -195,6 +206,13 @@ $().ready(function(){
 	// 加载地图
 	MapCloud.notify.loading();
 	mapManager.getMaps(ribbonObj.getMaps_callback);
+
+
+	$(window).resize(function(){
+		if($("#home_tab").hasClass("mc-active-tab")){
+			mapManager.getMaps(ribbonObj.getMaps_callback);
+		}
+	});
 
 
 // 	$("#right_panel .panel-header-collapse").click(function(){

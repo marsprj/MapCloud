@@ -5,6 +5,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	flag 			: null,
 
+	// 新增数据源的名称
+	registerDataSourceName : null,
+
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
@@ -109,7 +112,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 新建数据库
 		this.panel.find(".btn-add-server").click(function(){
-			MapCloud.pgis_connection_dialog.showDialog("vector");
+			MapCloud.pgis_connection_dialog.showDialog("feature");
 		});
 
 		// 删除数据库
@@ -248,7 +251,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.cleanup();
 		this.panel.modal();
 
-		dbsManager.getDataSources(this.getDataSources_callback);
+		this.getDataSources();
 		this.flag = flag;
 		if(this.flag == null){
 			this.panel.find(".btn-confirm").html("确定");
@@ -257,8 +260,14 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 	},
 
+
+	getDataSources  : function(){
+		dbsManager.getDataSources(this.getDataSources_callback,"Feature");
+	},
+
 	cleanup : function(){
 		this.flag = null;
+		this.registerDataSourceName = null;
 		this.panel.find(".db-pane").css("display","none");
 		this.panel.find(".server-pane").css("display","block");
 		this.panel.find(".db-list").empty();
@@ -297,10 +306,19 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		this.panel.find(".db-list").html(html);
 
-		var currentDB = this.panel.find(".db-list").val();
-		if(currentDB != null && currentDB != ""){
-			this.getDataSource(currentDB);
+		if(this.registerDataSourceName != null){
+			this.panel.find(".db-list option[value='" + this.registerDataSourceName + "']")
+				.attr("selected",true);
+			this.getDataSource(this.registerDataSourceName);
+			this.registerDataSourceName = null;
+		}else{
+			var currentDB = this.panel.find(".db-list").val();
+			if(currentDB != null && currentDB != ""){
+				this.getDataSource(currentDB);
+			}
 		}
+
+	
 	},
 
 	// 获取数据库
@@ -771,7 +789,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var info = "注销数据源";
 		MapCloud.notify.showInfo(result,info);
 		var dialog = MapCloud.vector_db_dialog;
-		dbsManager.getDataSources(dialog.getDataSources_callback);
+		dialog.getDataSources();
 	},
 
 	// 刷新
@@ -790,7 +808,11 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 			}
 		}
-	}
-	
+	},
+
+	// 设置新注册的数据源的名称
+	setRegisterDataSourceName : function(registerDataSourceName){
+		this.registerDataSourceName = registerDataSourceName;
+	}	
 
 });

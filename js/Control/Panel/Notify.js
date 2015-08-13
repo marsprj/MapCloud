@@ -25,6 +25,9 @@ MapCloud.Notify  = MapCloud.Class(MapCloud.Panel,{
 			title : info,
 			text : result
 		};
+		if(result == null){
+			result = "";
+		}
 		if(result.toLowerCase() == "success"){
 			this.container.notify("create","default",params,{expires:5000});
 		}else{
