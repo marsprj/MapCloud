@@ -82,6 +82,26 @@ MapCloud.refresh = MapCloud.Class({
 			}
 			mapManager.saveMap(mapObj,that.saveMap_callback);
 		});
+
+		// 刷新地图
+		this.panel.find("#refresh_map_btn").click(function(){
+			if(mapObj == null){
+				MapCloud.notify.showInfo("当前地图为空","Warning");
+				return;
+			}
+			var extent = mapObj.viewer;
+			var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
+			if(map == null){
+				MapCloud.notify.showInfo("failed","刷新地图");
+			}else{
+				MapCloud.notify.showInfo("success","刷新地图");
+				mapObj = map;
+				MapCloud.refresh_panel.refreshPanel();
+				MapCloud.dataGrid.cleanup();
+				mapObj.setViewer(extent);
+				mapObj.draw();
+			}
+		});
 	},
 
 	cleanup : function(){
@@ -228,7 +248,8 @@ MapCloud.refresh = MapCloud.Class({
 				}
 			});
 		});
-
+	
+		// 样式修改
 		this.panel.find(".style-symbol").each(function(){
 			$(this).click(function(){
 				var li = $(this).parents(".layer_row");
@@ -270,6 +291,46 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.style_dialog.setRule(rule,
 					fields,"refresh");			
 			});
+		});
+
+
+		// 符号修改
+		this.panel.find(".symbol-icon").click(function(){
+			var li = $(this).parents(".layer_row");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			
+			var style = layer.style;
+			if(style == null){
+				return;
+			}
+			var rules = style.rules;
+			if(rules == null){
+				return;
+			}
+			var styleRow = $(this).parents(".layer_style_row");
+			var sID = styleRow.first().attr("sID");
+			var rule = rules[sID];
+			if(rule == null){
+				return;
+			}
+			var symbolizer = rule.symbolizer;
+			if(symbolizer == null){
+				return;
+			}
+			var symbol = symbolizer.symbol;
+			that.layerName = layerName;
+			that.styleID = sID;
+			var type = MapCloud.styleManager_dialog.getSymbolIconType(symbolizer.type);
+			var symbolName = null;
+			if(symbol != null){
+				symbolName = symbol.name;
+			}
+			// 打开符号库
+			MapCloud.symbol_dialog.showDialog("refresh",type,symbolName);
 		});
 
 
@@ -807,6 +868,11 @@ MapCloud.refresh = MapCloud.Class({
 						if(symbolizerHtml == null){
 							return "";
 						}
+						var symbolIconHtml = this.getSymbolIconHtml(symbolizer.type,symbolizer.symbol);
+						if(symbolIconHtml == null){
+							return "";
+						}
+
 						html += '<div class="row layer_style_row" lID="'
 							 +			index+ '" sID="0">'
 							 // + 	'	<div class="col-md-1 col-xs-1"></div>'
@@ -815,6 +881,9 @@ MapCloud.refresh = MapCloud.Class({
 							 // +  '	<div class="col-md-1 col-xs-1"></div>'
 							 +  '	<div class="col-md-1 col-xs-1 col-md-offset-5">'
 							 +       symbolizerHtml
+							 +  '	</div>'
+							 +  '	<div class="col-md-1">'
+							 + 		symbolIconHtml
 							 +  '	</div>'
 							 +  '</div>';
 						return html;
@@ -887,6 +956,7 @@ MapCloud.refresh = MapCloud.Class({
 
 				var symbolizer = rule.symbolizer;
 				var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
+				var symbolIconHtml = this.getSymbolIconHtml(symbolizer.type,symbolizer.symbol);
 				html += '<div class="row layer_style_row" lID="' 
 				 +			 index + '" sID="' + i + '">'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
@@ -896,6 +966,9 @@ MapCloud.refresh = MapCloud.Class({
 				 +  '	<div class="col-md-1 col-xs-1">'
 				 + 			symbolizerHtml
 				 +  '	</div>'
+				 +  '	<div class="col-md-1 col-xs-1">'
+				 + 			symbolIconHtml
+				 +  '	</div>'				 
 				 +  '	<div class="col-md-5 col-xs-5">'
 				 +    		value
 				 + 	'	</div>'
@@ -911,6 +984,12 @@ MapCloud.refresh = MapCloud.Class({
 		var html = MapCloud.styleManager_dialog
 						.getSymbolHtml(symbolizer);
 		return html;						
+	},
+
+	// 获取符号的示意图
+	getSymbolIconHtml : function(symbolizerType,symbol){
+		var html = MapCloud.styleManager_dialog.getSymbolIconHtml(symbolizerType,symbol);
+		return html;
 	},
 
 	// 生成WFSLayer的html
@@ -984,6 +1063,8 @@ MapCloud.refresh = MapCloud.Class({
 		if(ruleO == null){
 			return;
 		}
+		var symbol = ruleO.symbolizer.symbol;
+		rule.symbolizer.symbol = symbol;
 		ruleO.symbolizer = rule.symbolizer;
 		ruleO.textSymbolizer = rule.textSymbolizer;
 		var styleName = style.name;
@@ -1383,5 +1464,47 @@ MapCloud.refresh = MapCloud.Class({
 		MapCloud.notify.showInfo(result,"调整底图顺序");
 		MapCloud.refresh_panel.refreshPanel();
 		mapObj.draw();
-	}
+	},
+
+	// 符号库返回选择的符号
+	setSymbol : function(symbol){
+		if(symbol == null){
+			return;
+		}
+		var url = "url(" + symbol.icon + ")";
+		var layer = mapObj.getLayer(this.layerName);
+		if(layer == null){
+			return;
+		}
+
+		var style = layer.style;
+		if(style == null){
+			return;
+		}
+		var rules = style.rules;
+		if(rules == null){
+			return;
+		}
+		var rule = rules[this.styleID];
+		if(rule == null){
+			return;
+		}
+		var symbolizer = rule.symbolizer;
+		if(symbolizer == null){
+			return;
+		}
+		symbolizer.symbol = symbol;
+		var styleName = style.name;
+		if(styleName == "default"){
+			mapObj.draw();
+			this.refreshPanel();
+		}else{
+			var xml = styleManager.writer.write(style);
+			// 更新修改的样式
+			styleManager.updateStyle(xml,styleName,this.updateCallback);
+			// 设置样式
+			mapObj.setStyle(this.layerName,style,this.setStyle_callback);
+		}
+
+	},
 });

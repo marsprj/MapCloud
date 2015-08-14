@@ -150,6 +150,8 @@ $().ready(function(){
 
 	MapCloud.gps_oper_panel 
 		= new MapCloud.GPSOperPanel("gps_oper_wrapper");
+	MapCloud.data_source_panel
+		= new MapCloud.DataSourcePanel("data_source_wrapper");
 
 	MapCloud.login_dialog
 		= new MapCloud.LoginDialog("loginDialog");
@@ -159,6 +161,8 @@ $().ready(function(){
 		= new MapCloud.MapInfoDialog("map_info_dialog");
 	MapCloud.base_layer_dialog 
 		= new MapCloud.BaseLayerDialog("base_layer_dialog");
+
+	MapCloud.symbol_dialog = new MapCloud.SymbolDialog("symbol_dialog");
 
 
 	var logo = new MapCloud.Logo();	

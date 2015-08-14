@@ -978,6 +978,41 @@ ul#ribbon_tabs li{
 	margin-right: 6px;
 }
 
+/*data source wrapper*/
+#data_source_wrapper{
+	display: none;
+	right: 10px;
+	top: 10px;	
+}
+#data_source_wrapper .panel-content{
+	height: calc( 100% - 45px);
+}
+#data_source_wrapper .panel-content .table-tree{
+	border: 1px solid #CACACA;
+    height: calc( 100% - 50px);
+    overflow-y: auto;
+    margin-top: 15px;
+}
+#data_source_wrapper .panel-content .row{
+	padding: 6px;
+    margin-left: 0px;
+    margin-right: 0px;
+    cursor: pointer;
+    border-bottom: 1px solid #CACACA;
+}
+#data_source_wrapper .panel-content .row:hover{
+	background-color: #DFF1F8;
+}
+
+#data_source_wrapper .panel-content .row .add_layer{
+	color: #fff;
+	margin-top: 2px;
+}
+#data_source_wrapper .panel-content .row:hover .add_layer{
+	color:#000;;
+}
+
+
 /*伸缩按钮*/
 #map_btn{
 	position: absolute;
@@ -1509,6 +1544,12 @@ ul.layers_row li:before {
 	cursor: point;
 }
 
+#style-mgr-dialog .style-info-div .style-col{
+	width: 6%;
+}
+#style-mgr-dialog .style-info-div .value-col{
+	width: 44%;
+}
 #style_list_title{
 	font-weight: bold;
 }
@@ -1541,7 +1582,7 @@ ul.layers_row li:before {
 }
 .borderless tbody tr td, .borderless tbody tr th {
     border: none;
-    min-width: 60px;
+    /*min-width: 60px;*/
 }
 #style-mgr-dialog #display_styles_div .style-symbol{
 	height: 17px;
@@ -1558,6 +1599,15 @@ ul.layers_row li:before {
 	border: 1px solid #fff;
 }
 
+
+.symbol-icon{
+	height: 20px;
+	width: 20px;
+	background-image: url(../images/circle.png);
+	background-size:100%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
 .style-list-table thead tr th{
 	/*border : none;*/
 }
@@ -2282,16 +2332,16 @@ ul.layers_row li:before {
 	margin-top: 10px;
 	overflow-y: auto;
 }
-#vector_db_dialog .table-tree li a{
+.table-tree li a{
 	padding: 4px 10px;
 }
-#vector_db_dialog .table-tree li a i{
+ .table-tree li a i{
 	margin-right: 4px;
 }
-#vector_db_dialog .table-tree li a span{
+.table-tree li a span{
 	word-break: break-all;
 }
-#vector_db_dialog .table-tree a.selected{
+.table-tree a.selected{
 	background-color: #dfeef5;
 	color: #FD0534;
 }
@@ -3393,4 +3443,50 @@ ul.layers_row li:before {
 
 /***************************************************************************/
 /* WMTS   Dialog End				 										*/
+/***************************************************************************/
+/***************************************************************************/
+/* Symbol   Dialog Begin				 									*/
+/***************************************************************************/
+#symbol_dialog .modal-dialog{
+	width: 300px;
+}
+
+#symbol_dialog .modal-body{
+	height: 250px;
+	overflow-y: auto;
+}
+.symbol-wrapper{
+	position: relative;
+	float: left;
+    width: 40px;
+    height: 60px;
+    margin: 10px;
+}
+.symbol-wrapper h6{
+	word-break: break-all;
+}
+
+.symbol-thumb{
+	display: block;
+    height: 40px;
+    width: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+
+    -webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+.symbol-thumb.selected{
+	border: 2px solid #428bca !important;
+}
+
+.symbol-thumb:hover{
+	border: 1px solid #428bca;
+}
+
+/***************************************************************************/
+/* Symbol   Dialog End				 										*/
 /***************************************************************************/

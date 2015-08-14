@@ -164,6 +164,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Fill.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbol.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/FontManager.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/Label.js"></script>
@@ -209,6 +210,7 @@
 <script type="text/javascript" src="js/Control/Panel/AQIChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AQITimelineChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/GPSOperPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/DataSourcePanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AlertInfo.js"></script>
@@ -279,6 +281,7 @@
 <script type="text/javascript" src="js/Control/Dialog/CutMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/TileDBDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/CreateTileStoreDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -388,15 +391,11 @@
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-								<div class="ribbon_label">保存地图</div>
-							</div>
-							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-								<div class="ribbon_label">刷新地图</div>
-							</div>
-							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
 								<div class="ribbon_label">地图属性</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">数据目录</div>
 							</div>
 						</div>
 						<div class="ribbon_group mc-border-right-light">
@@ -564,7 +563,7 @@
 				<div class="left-panel">
 					<div id="left_panel" class="left-panel-tab">
 						<div class="row" id="map_row">
-							<div class="col-md-7">
+							<div class="col-md-6">
 								<a href="javascript:void(0)" id="map_name">Sample</a>
 							</div>
 							<div class="col-md-1">
@@ -580,6 +579,11 @@
 							<div class="col-md-1">
 								<a href="javascript:void(0)" id="save_map_btn" data-toggle="tooltip" data-placement="top" data-original-title="保存">
 									<i class="fa fa-floppy-o"></i>
+								</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="refresh_map_btn" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+									<i class="fa fa-refresh"></i>
 								</a>
 							</div>
 							<div class="col-md-1">
@@ -1581,6 +1585,30 @@
 								<button type="button" class="btn btn-primary btn-oper">选择</button>
 							</div> -->
 						</div>
+						<!-- 数据目录 -->
+						<div id="data_source_wrapper" class="mc-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cog fa-2"></i>&nbsp;
+										数据目录
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<select class="form-control db-list">
+								</select>
+								
+								<div class="table-tree">
+									<!-- <ul class="nav">
+									</ul> -->
+								</div>
+							</div>
+						</div>
 						<div id="map_bar_wrapper" class="mc-border" >
 							<div class="mc-icon control-icon">
 								<a class="btn btn-default btn-link btn-sm ">
@@ -2424,7 +2452,7 @@
 	</div>
 
 	<!-- Style Manager panel -->
-	<div class="modal fade" id="style-mgr-dialog" tabindex="-1" role="dialog" aria-labelledby="styleDialogLabel" aria-hidden="true"
+	<div class="modal fade" id="style-mgr-dialog" tabindex="-1" role="dialog" aria-hidden="true"
 	data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -2478,6 +2506,15 @@
 										<div class="col-md-2" style="padding-top:6px">
 											<div class="style-symbol"></div>
 										</div>
+										<label class="col-md-2 control-label">
+										符号
+										</label>
+										<div class="col-md-2" style="padding-top:6px">
+											<div class="symbol-icon"></div>
+										</div>
+										<!-- <div class="col-md-3">
+											<button class="btn btn-sm btn-success btn-choose-symbol" type="btn">符号</button>
+										</div> -->
 									</div>
 								</form>
 							</div>
@@ -6819,6 +6856,47 @@
 							</div>
 						</div>
 					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Symbol panel -->
+	<div class="modal fade" id="symbol_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">符号库</h5>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<li class="symbol-wrapper">
+							<a href="#" class="symbol-thumb" style="background-image:url(http://192.168.111.151:8088/ows/symbol/Star.png")>
+							</a>
+							<div class="caption text-center">
+								<h6>star</h6>
+							</div>
+						</li>
+						<li class="symbol-wrapper">
+							<a href="#" class="symbol-thumb" style="background-image:url(http://192.168.111.151:8088/ows/symbol/Star.png")>
+							</a>
+							<div class="caption text-center">
+								<h6>star</h6>
+							</div>
+						</li>
+						<li class="symbol-wrapper">
+							<a href="#" class="symbol-thumb" style="background-image:url(http://192.168.111.151:8088/ows/symbol/Star.png")>
+							</a>
+							<div class="caption text-center">
+								<h6>star</h6>
+							</div>
+						</li>
+					</ul>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

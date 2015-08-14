@@ -41,6 +41,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	styleChangedClass 	: null,
 	styleChangedIndex	: null,
 
+	// 弹出的symbol对话框
+	symbolChangedClass : null,
+	symbolChangedIndex : null,
+
 	// 最大最小值
 	minMaxValue 		: null,
 
@@ -54,7 +58,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = dialog.panel.find("#style_list option:selected").text(); 
 				var currentStyle = dialog.getCurrentStyle();
 				if(currentStyle == null){
-					MapCloud.alert_info.showInfo("Warning","请设置一个有效样式");
+					MapCloud.notify.showInfo("Warning","请设置一个有效样式");
 					return;
 				}
 				currentStyle.name = name;
@@ -84,7 +88,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = dialog.panel.find("#style_list option:selected").text(); 
 				var currentStyle = dialog.getCurrentStyle();
 				if(currentStyle == null){
-					MapCloud.alert_info.showInfo("Warning","请设置一个有效样式");
+					MapCloud.notify.showInfo("Warning","请设置一个有效样式");
 					return;
 				}
 				currentStyle.name = name;
@@ -177,7 +181,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var styleName = dialog.panel.find("#style_list option:selected").val();
 				var currentStyle = dialog.getCurrentStyle();
 				if(currentStyle == null){
-					MapCloud.alert_info.showInfo("Warning","请设置一个有效样式");
+					MapCloud.notify.showInfo("Warning","请设置一个有效样式");
 					return;
 				}
 				currentStyle.name = styleName;
@@ -204,7 +208,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = dialog.panel.find("#style_list option:selected").text();
 				var result = confirm("确认删除" + name + "样式？");
 				if(result){
-					MapCloud.alert_info.loading();
+					MapCloud.notify.loading();
 					dialog.styleMgr.removeStyle(name,dialog.removeStyle_callback)
 				}
 			});
@@ -296,6 +300,30 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".style-pane").css("display","none");
 				dialog.panel.find(".quantities-pane").css("display","block");
 			}
+		});
+
+		// 符号选择
+		this.panel.find(".single-pane .symbol-icon").click(function(){
+			if(dialog.singleStyle == null){
+				return;
+			}
+			var type = null;
+			var geomType = dialog.singleStyle.geomType;
+			if(geomType == GeoBeans.Style.FeatureStyle.GeomType.Point){
+				type = "marker";
+			}else if(geomType == GeoBeans.Style.FeatureStyle.GeomType.LineString){
+				type = "line"
+			}else if(geomType == GeoBeans.Style.FeatureStyle.GeomType.Polygon){
+				type = "region";
+			}
+			dialog.symbolChangedClass = "single";
+			dialog.symbolChangedIndex = 0;
+			var symbol = dialog.singleStyle.rules[0].symbolizer.symbol;
+			var symbolName = null;
+			if(symbol != null){
+				symbolName = symbol.name;
+			}
+			MapCloud.symbol_dialog.showDialog("styleManager",type,symbolName);
 		});
 	},
 
@@ -488,6 +516,38 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			var cssObj = this.getStyleSymbolCss(symbolizer);
 			this.panel.find(".single-pane .style-symbol")
 				.css(cssObj);
+
+			var icon = null;
+			var symbol = symbolizer.symbol;
+			if(symbol != null){
+				var name = symbol.name;
+				icon = symbol.icon;
+				if(icon == null){
+					var type = this.getSymbolIconType(symbolizer.type); 
+					icon = this.styleMgr.getSymbolIcon(type,name);
+				}
+				
+			}else{
+				switch(symbolizer.type){
+					case GeoBeans.Symbolizer.Type.Point:{
+						icon = "images/circle.png";
+						break;
+					}
+					case GeoBeans.Symbolizer.Type.Line:{
+						icon = "images/SimpleLine.png";
+						break;
+					}
+					case GeoBeans.Symbolizer.Type.Polygon:{
+						icon = "images/SimpleRegion.png";
+						break;
+					}
+					default:
+						break;
+				}
+			}
+			var url = "url(" + icon + ")";
+			this.panel.find(".single-pane .symbol-icon")
+				.css("background-image",url);
 		}
 	},
 
@@ -504,6 +564,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var html = this.getRulesListHtml(field,style.rules);
 		this.panel.find(".unique-pane .style-list-table").html(html);
 		this.registerUniqueSymbolEvent();
+		this.registerUniqueSymbolIconEvent();
 	},
 
 	// 分级样式
@@ -521,6 +582,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var html = this.getRulesListHtml(field,style.rules);
 		this.panel.find(".quantities-pane .style-list-table").html(html);
 		this.registerQuantitiesSymbolEvent();
+		this.registerQuantitiesSymbolIconEvent();
 	},
 	 
 	// 设置各个panel的style,并设置各个页面的展示
@@ -594,6 +656,35 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
+	// 修改单一值符号
+	registerUniqueSymbolIconEvent : function(){
+		var dialog = this;
+		this.panel.find(".unique-pane .symbol-icon").click(function(){
+			var symbols = $(this).parents("tbody").find(".symbol-icon");
+			var index = symbols.index($(this));
+			if(index != -1 && dialog.uniqueStyle != null){
+				var rules = dialog.uniqueStyle.rules;
+				if(rules != null){
+					var rule = rules[index];
+					if(rule != null){
+						var symbolizer = rule.symbolizer;
+						if(symbolizer != null){
+							var symbol = symbolizer.symbol;
+							var symbolName = null;
+							if(symbol != null){
+								symbolName = symbol.name;
+							}
+							var type = dialog.getSymbolIconType(symbolizer.type);
+							MapCloud.symbol_dialog.showDialog("styleManager",type,symbolName);
+							dialog.symbolChangedClass = "unique";
+							dialog.symbolChangedIndex = index;
+						}
+					}
+				}
+			}	
+		});
+	},
+
 	// 分级样式修改样式
 	registerQuantitiesSymbolEvent : function(){
 		var dialog = this;
@@ -611,6 +702,35 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 			}
 		});	
+	},
+
+	// 分机样式符号修改
+	registerQuantitiesSymbolIconEvent : function(){
+		var dialog = this;
+		dialog.panel.find(".quantities-pane .symbol-icon").click(function(){
+			var symbols = $(this).parents("tbody").find(".symbol-icon");
+			var index = symbols.index($(this));
+			if(index != -1 && dialog.quantitiesStyle != null){
+				var rules = dialog.quantitiesStyle.rules;
+				if(rules != null){
+					var rule = rules[index];
+					if(rule != null){
+						var symbolizer = rule.symbolizer;
+						if(symbolizer != null){
+							var symbol = symbolizer.symbol;
+							var symbolName = null;
+							if(symbol != null){
+								symbolName = symbol.name;
+							}
+							var type = dialog.getSymbolIconType(symbolizer.type);
+							MapCloud.symbol_dialog.showDialog("styleManager",type,symbolName);
+							dialog.symbolChangedClass = "quantities";
+							dialog.symbolChangedIndex = index;
+						}
+					}
+				}
+			}	
+		});
 	},
 
 	// 获得单一样式值，取第一个样式
@@ -754,6 +874,43 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		return html;
 	},
 
+	// 获取符号的样式
+	getSymbolIconHtml : function(symbolizerType,symbol){
+		var html = "";
+		var icon = null;
+		if(symbol != null){
+			icon = symbol.icon;
+			if(icon == null){
+				var type = this.getSymbolIconType(symbolizerType);
+				icon = this.styleMgr.getSymbolIcon(type,symbol.name);
+			}
+		}
+		
+		if(icon == null){
+			switch(symbolizerType){
+				case GeoBeans.Symbolizer.Type.Point:{
+					icon = "images/circle.png";
+					break;
+				}
+				case GeoBeans.Symbolizer.Type.Line:{
+					icon = "images/SimpleLine.png";
+					break;
+				}
+				case GeoBeans.Symbolizer.Type.Polygon:{
+					icon = "images/SimpleRegion.png";
+					break;
+				}
+				default:
+					break;
+			}
+			console.log('symbol is null');
+		}
+		var html = "<div class='symbol-icon' style='background-image:url(" 
+				+ icon  + ")'></div>";
+		return html;
+
+	},
+
 	//根据rule拿到是哪个字段
 	getProperyNameByRule : function(rule){
 		if(rule == null){
@@ -796,9 +953,11 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		var html = "<thead>"
-				+  "	<tr><th><span>&nbsp;</span></th>"
-				+  "		<th>值列表</th>"
-				+  "		<th>" + field + "</th>"
+				+  "	<tr>"
+				+ "		<th class='style-col'><span>&nbsp;</span></th>"
+				+ "		<th class='style-col'><span>&nbsp;</span></th>"
+				+  "		<th class='value-col'>值列表</th>"
+				+  "		<th class='value-col'>" + field + "</th>"
 				+  "	</tr>"
 				+  "</thead>"
 				+  "<tbody>";
@@ -838,14 +997,18 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 			var symbolizer = rule.symbolizer;
 			var symbolHtml = this.getSymbolHtml(symbolizer);
+			var symbolIconHtml = this.getSymbolIconHtml(symbolizer.type,symbolizer.symbol);
 			html += "<tr>"
-				+ "		<td>"
+				+ "		<td class='style-col'>"
 				+ 			symbolHtml
 				+ "		</td>"
-				+ "		<td>"
+				+ "		<td class='style-col'>"
+				+ 			symbolIconHtml
+				+ "		</td>"
+				+ "		<td class='value-col'>"
 				+ 			value 
 				+ "		</td>"
-				+ "		<td>"
+				+ "		<td value='value-col'>"
 				+ 			value
 				+ "		</td>"
 				+ "	</tr>";
@@ -861,7 +1024,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		
 		var name = dialog.panel.find("#style_list option:selected").text();
 		var info = "删除样式 [ " + name + " ]";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 
 		if(result.toUpperCase() == "SUCCESS"){
 			// 重新拿样式列表
@@ -896,12 +1059,22 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		if(this.styleChangedClass == "single" && this.styleChangedIndex == 0){
+			var symbol = this.singleStyle.rules[0].symbolizer.symbol;
+			rule.symbolizer.symbol = symbol;
 			this.singleStyle.rules[0] = rule;
 			this.displaySingleStyle(this.singleStyle);
 		}else if(this.styleChangedClass == "unique"){
+			var symbol = this.uniqueStyle.rules[this.styleChangedIndex].symbolizer.symbol;
+			rule.symbolizer.symbol = symbol;
 			this.uniqueStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
 			this.uniqueStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
 			this.displayUniqueStyle(this.uniqueStyle);
+		}else if(this.styleChangedClass == "quantities"){
+			var symbol = this.quantitiesStyle.rules[this.styleChangedIndex].symbolizer.symbol;
+			rule.symbolizer.symbol = symbol;
+			this.quantitiesStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
+			this.quantitiesStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
+			this.displayQuantitiesStyle(this.quantitiesStyle);
 		}
 	},
 
@@ -914,7 +1087,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var style = this.styleMgr.getStyle(styleName);
 		if(style != null){
 			var info = "已经有" + styleName + "样式，请重新输入";
-			MapCloud.alert_info.showInfo("failed",info);
+			MapCloud.notify.showInfo("failed",info);
 			MapCloud.styleName_dialog.showDialog();
 			return;
 		}
@@ -991,7 +1164,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		var xml = this.styleMgr.writer.write(style);
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		this.styleMgr.updateStyle(xml,name,this.updateCallback);
 	},
 
@@ -1002,7 +1175,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var styleName = panel
 					.find("#style_list option:selected").text();
 		var info = "更新样式 [ " + styleName + " ]";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 	},
 
 	// 增加样式
@@ -1016,7 +1189,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		var name = style.name;
 		var geomType = style.geomType;
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		this.styleMgr.addStyle(xml,name
 				,geomType,this.addStyleCallback);
 	},
@@ -1033,7 +1206,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var styleName = dialog.addStyleName;
 
 		var info = "添加样式 [ " + styleName + " ]";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 
 		var styleOption = dialog.panel.find("#style_list option[value='" +
 							styleName + "']");
@@ -1521,7 +1694,56 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 设置样式结果
 	setStyle_callback : function(result){
 		var info = "设置样式";
-		MapCloud.alert_info.showInfo(result,info);
+		MapCloud.notify.showInfo(result,info);
 		mapObj.draw();
+	},
+
+	// 设置符号
+	setSymbol : function(symbol){
+		if(symbol == null){
+			return;
+		}
+		var url = "url(" + symbol.icon + ")";
+
+		if(this.symbolChangedClass == "single" && this.symbolChangedIndex == 0){
+			this.panel.find(".single-pane .symbol-icon").css("background-image",url);
+			if(this.singleStyle != null){
+				this.singleStyle.rules[0].symbolizer.symbol = symbol;
+			}
+		}else if(this.symbolChangedClass == "unique"){
+			var symbolIcon = this.panel.find(".unique-pane .symbol-icon")[this.symbolChangedIndex];
+			$(symbolIcon).css("background-image",url);
+			if(this.uniqueStyle != null){
+				this.uniqueStyle.rules[this.symbolChangedIndex].symbolizer.symbol = symbol;
+			}
+		}else if(this.symbolChangedClass == "quantities"){
+			var symbolIcon = this.panel.find(".quantities-pane .symbol-icon")[this.symbolChangedIndex];
+			$(symbolIcon).css("background-image",url);
+			if(this.quantitiesStyle != null){
+				this.quantitiesStyle.rules[this.symbolChangedIndex].symbolizer.symbol = symbol;
+			}
+		}
+	},
+
+	// 根据样式的类型返回符号的类型
+	getSymbolIconType : function(symbolizerType){
+		var type = null;
+		switch(symbolizerType){
+			case GeoBeans.Symbolizer.Type.Point:{
+				type = "marker";
+				break;
+			}
+			case GeoBeans.Symbolizer.Type.Line:{
+				type = "line";
+				break;
+			}
+			case GeoBeans.Symbolizer.Type.Polygon:{
+				type = "region";
+				break;
+			}
+			default:
+				break;
+		}
+		return type;
 	}
 });
