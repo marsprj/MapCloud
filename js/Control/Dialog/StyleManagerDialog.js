@@ -52,6 +52,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
 
+		this.styleMgr = styleManager;
+
 		//确定
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
@@ -334,7 +336,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find("#style_type_name").html(html);
 
 		// this.styleMgr = new GeoBeans.StyleManager(url);
-		this.styleMgr = styleManager;
+		// this.styleMgr = styleManager;
 		
 
 		var styles = this.styleMgr.getStyles();

@@ -14,7 +14,8 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		this.panel.find("#chart_accordion").collapse();
-		this.styleMgr = new GeoBeans.StyleManager(url);
+		// this.styleMgr = new GeoBeans.StyleManager(url);
+		this.styleMgr = styleManager;
 		
 		this.registerEvent();
 	},
@@ -175,6 +176,13 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 			});
 			$(this).colpickSetColor("#ccc");
 			$(this).find("div").css("background-color","#ccc");
+		});
+
+
+		// 双击变悬浮框
+		this.panel.find(".panel-header").dblclick(function(){
+			that.panel.css("display","none");
+			MapCloud.tools.showToolBox("chart");
 		});
 
 	},

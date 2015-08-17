@@ -160,6 +160,18 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 
 		// table pane
+		// 展示信息
+		dialog.panel.find("#show-dataset-infos").click(function(){
+			dialog.panel.find(".table-pane .btn-group .btn").attr("disabled",false);
+			$(this).attr("disabled",true);
+			if(dialog.dataSetCur != null){
+				if(dialog.dataSetCur.geometryType == null){
+					dialog.panel.find("#show-dataset-preview").attr("disabled",true);
+				}
+			}
+			dialog.showDataSetInfosPanel(dialog.dataSetCur);
+		});
+
 		// 展示字段
 		dialog.panel.find("#show-dataset-fields").click(function(){
 			// dialog.panel.find(".table-pane .btn-group-justified .btn")
@@ -173,10 +185,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					dialog.panel.find("#show-dataset-preview").attr("disabled",true);
 				}
 			}
-			// dialog.showDataSetFieldsPanel(dialog.dataSetCur);
-			// 第一次就已经绘制了
-			dialog.panel.find(".dataset-pane").css("display","none");
-			dialog.panel.find("#dataset_fields").css("display","block");
+			dialog.showDataSetFieldsPanel(dialog.dataSetCur);
+			// // 第一次就已经绘制了
+			// dialog.panel.find(".dataset-pane").css("display","none");
+			// dialog.panel.find("#dataset_fields").css("display","block");
 		});
 
 		// 展示列表
@@ -565,21 +577,62 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find(".table-pane #dataset_fields").css("display","block");
 
-		// this.panel.find(".table-pane .btn-group-justified .btn")
-		// 	.removeClass("selected");
-		// this.panel.find(".table-pane #show-dataset-fields").addClass("selected");
-		this.panel.find(".table-pane .btn-group .btn").attr("disabled",false);
-		this.panel.find("#show-dataset-fields").attr("disabled",true);
+		// this.panel.find(".table-pane .btn-group .btn").attr("disabled",false);
+		// this.panel.find("#show-dataset-fields").attr("disabled",true);
+		// 显示上一次的那个
+		var btnId = this.panel.find(".table-pane .btn-group .btn[disabled='disabled']").attr("id")
 		if(dataSet.geometryType == null){
 			this.panel.find("#show-dataset-preview").attr("disabled",true);
 		}
+		switch(btnId){
+			case "show-dataset-infos":{
+				this.showDataSetInfosPanel(dataSet);
+				break;
+			}
+			case "show-dataset-fields":{
+				this.showDataSetFieldsPanel(dataSet);
+				break;
+			}
+			case "show-dataset-features":{
+				this.showDataSetFeaturesPanel(dataSet);
+				break;
+			}
+			case "show-dataset-preview":{
+				this.showDataSetPreviewPanel(dataSet);
+				break;
+			}
+			default:
+			break;
+		}
 
-		// 只展示字段
-		this.showDataSetFieldsPanel(dataSet);
+		// // 只展示字段
+		// this.showDataSetFieldsPanel(dataSet);
 		// this.showDataSetFeaturesPanel(dataSet);
 		// this.showDataSetPreviewPanel(dataSet);
 	},
 
+	// 信息
+	showDataSetInfosPanel : function(dataSet){
+		this.panel.find(".dataset-pane").css("display","none");
+		this.panel.find("#dataset_infos").css("display","block");
+		this.panel.find(".table-pane #dataset_infos table tbody").html("");
+		if(dataSet == null){
+			return;
+		}
+		html = "<tr>"
+			+ "<td>名称</td>"
+			+ "<td>" + dataSet.name + "</td>"
+			+ "</tr>"
+			+ "<tr>"
+			+ "<td>空间参考</td>"
+			+ "<td>" + dataSet.srid + "</td>"
+			+ "</tr>"
+			+ "<tr>"
+			+ "<td>几何类型</td>"
+			+ "<td>" + dataSet.geometryType + "</td>"
+			+ "</tr>";
+		this.panel.find(".table-pane #dataset_infos table tbody").html(html);
+	},
 	// 字段
 	showDataSetFieldsPanel : function(dataSet){
 		this.panel.find(".dataset-pane").css("display","none");

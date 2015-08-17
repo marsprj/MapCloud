@@ -121,6 +121,12 @@ MapCloud.PieChartPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			MapCloud.refresh_panel.refreshPanel();
 		});
+
+		// 双击变悬浮框
+		this.panel.find(".panel-header").dblclick(function(){
+			that.panel.css("display","none");
+			MapCloud.tools.showToolBox("pieChart");
+		});
 	},
 
 

@@ -102,6 +102,17 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 			var operName = $(this).find("span").text();
 			dialog.showOperDialog(operName);
 		});
+
+		this.panel.find(".btn-hide").click(function(){
+			var body = dialog.panel.find(".panel-content");
+			if(body.css("display") == "block"){
+				body.slideUp();
+				dialog.panel.css("height","44px");
+			}else{
+				body.slideDown();
+				dialog.panel.css("height","600px");
+			}
+		});
 	},
 
 	// 展示操作对话框

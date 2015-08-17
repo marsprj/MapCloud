@@ -48,6 +48,7 @@ MapCloud.MapInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 		var geomType = null;
 		var layer = null;
 		var name = null;
+		var type = null;
 		var extentStr = "";
 		for(var i = 0; i < layers.length;i++){
 			layer = layers[i];
@@ -55,7 +56,10 @@ MapCloud.MapInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 				continue;
 			}
 			name = layer.name;
-			geomType = layer.geomType;
+			type = layer.geomType;
+			if(layer.type == GeoBeans.Layer.DBLayer.Type.Raster){
+				type = layer.type;
+			}
 			extent = layer.extent;
 			if(extent != null){
 				extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
@@ -64,7 +68,7 @@ MapCloud.MapInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			
 			html += "<tr>"
 			+ "<td>" + name + "</td>"
-			+ "<td>" + geomType + "</td>"
+			+ "<td>" + type + "</td>"
 			+ "<td>" + extentStr + "</td>"
 			+ "</tr>";
 		}

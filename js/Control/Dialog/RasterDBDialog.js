@@ -60,7 +60,24 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-remove-file").click(function(){
 			var checkboxs = dialog.panel.find("input[type='checkbox']:checked");
 			if(checkboxs.length == 0){
-				MapCloud.notify.showInfo("请选择要删除的文件","Warning");
+				var path = dialog.panel.find(".tree-folder.selected").attr("fpath");
+				if(path == "/"){
+					MapCloud.notify.showInfo("无法删除根目录","Warning");
+					return;
+				}
+				var folderName = dialog.panel.find(".tree-folder.selected span").html();
+				if(!confirm("确定要删除文件夹[" + folderName + "]?")){
+					return;
+				}
+				// 更改为上一级对话框
+				var parentNode = dialog.panel.find(".tree-folder.selected").parents(".nav").first().prev();
+				// dialog.panel.find(".tree-folder.selected").parents(".nav").first().remove();
+				dialog.panel.find(".tree-folder").removeClass("selected");
+				parentNode.addClass("selected");
+				var parentPath = parentNode.attr("fpath");
+				dialog.panel.find(".current-path").val(parentPath);
+				var sourceName = dialog.panel.find(".db-list").val();
+				dialog.removeFolder(sourceName,path);
 				return;
 			}
 			if(!confirm("确定要删除吗？")){
@@ -379,6 +396,8 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		html += "</ul>";
 		currentPath = this.panel.find(".current-path").val();
 		var node = this.panel.find(".db-tree a[fpath='" + currentPath +"']");
+		node.find("i").removeClass("fa-folder-o");
+		node.find("i").addClass("fa-folder-open-o");
 		node.parent().find("ul.nav").remove();
 		node.after(html);
 
@@ -409,11 +428,15 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				if(parent.find("ul.nav").length != 0 &&
 					parent.find("ul.nav").first().css("display") == "none"){
 					parent.find("ul.nav").first().css("display","block");
+					$(this).find("i").removeClass("fa-folder-o");
+					$(this).find("i").addClass("fa-folder-open-o");
 					var sourceName = that.panel.find(".db-list").val();
 					that.getListTreeClick(sourceName,path);
 				}else if(parent.find("ul.nav").length != 0 && 
 					parent.find("ul.nav").first().css("display") == "block"){
 					parent.find("ul.nav").first().css("display","none");
+					$(this).find("i").addClass("fa-folder-o");
+					$(this).find("i").removeClass("fa-folder-open-o");
 					var sourceName = that.panel.find(".db-list").val();
 					that.getListTreeClick(sourceName,path);
 				}else {
@@ -680,6 +703,7 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = MapCloud.raster_db_dialog;
 		var sourceName = dialog.panel.find(".db-list").val();
 		var path = dialog.panel.find(".current-path").val();
+		dialog.panel.find(".tree-folder[fpath='" + path +"']").next().remove();
 		dialog.getList(sourceName,path);
 	},
 

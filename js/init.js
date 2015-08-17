@@ -10,6 +10,12 @@ var url = "/ows/user1/mgr";
 var user = new GeoBeans.User("user1");
 
 $().ready(function(){
+
+
+	mapManager = user.getMapManager();
+	styleManager = user.getStyleManager();
+
+
 	MapCloud.alert_info 
 		= new MapCloud.AlertInfo("alert_info","alert_loading"); 
 	MapCloud.notify
@@ -165,6 +171,7 @@ $().ready(function(){
 	MapCloud.symbol_dialog = new MapCloud.SymbolDialog("symbol_dialog");
 
 
+
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
 	// var mapBarObj = new MapCloud.MapBar();
@@ -172,6 +179,8 @@ $().ready(function(){
 	MapCloud.mapBar = new MapCloud.MapBar();
 	MapCloud.dataGrid 
 	= new MapCloud.DataGrid("datagrid_wrapper","datagrid_control_wrapper");
+
+	MapCloud.tools = new MapCloud.Tools();
 	
 	// mapManager = new GeoBeans.MapManager(url);
 	dbsManager = new GeoBeans.DBSManager(url);
@@ -180,8 +189,7 @@ $().ready(function(){
 	gpsManager = new GeoBeans.GPSManager(url);
 	rasterDBManager = new GeoBeans.RasterDBManager(url);
 
-	mapManager = user.getMapManager();
-	styleManager = user.getStyleManager();
+
 
 	$(".modal").draggable({
 	    handle: ".modal-header"
@@ -217,6 +225,8 @@ $().ready(function(){
 			mapManager.getMaps(ribbonObj.getMaps_callback);
 		}
 	});
+
+
 
 
 // 	$("#right_panel .panel-header-collapse").click(function(){

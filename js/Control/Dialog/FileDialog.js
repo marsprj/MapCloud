@@ -61,7 +61,24 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.find(".btn-remove-file").click(function(){
 			var checkboxs = dialog.panel.find("input[type='checkbox']:checked");
 			if(checkboxs.length == 0){
-				MapCloud.notify.showInfo("请选择要删除的文件","Warning");
+				var path = dialog.panel.find(".tree-folder.selected").attr("fpath");
+				if(path == "/"){
+					MapCloud.notify.showInfo("无法删除根目录","Warning");
+					return;
+				}
+				var folderName = dialog.panel.find(".tree-folder.selected span").html();
+				if(!confirm("确定要删除文件夹[" + folderName + "]?")){
+					return;
+				}
+				// 更改为上一级对话框
+				var parentNode = dialog.panel.find(".tree-folder.selected").parents(".nav").first().prev();
+				dialog.panel.find(".tree-folder.selected").parents(".nav").first().remove();
+				dialog.panel.find(".tree-folder").removeClass("selected");
+				parentNode.addClass("selected");
+				var parentPath = parentNode.attr("fpath");
+				dialog.panel.find("#current_path").val(parentPath);
+
+				dialog.removeFolder(path);
 				return;
 			}
 			if(!confirm("确定要删除吗？")){
@@ -112,12 +129,10 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.flag = flag;
 		if(this.flag != null){
 			this.panel.find(".btn-confirm").html("选择");
-			this.panel.find(".tool-row").css("display","none");
-			this.panel.find(".file-list-wrapper").css("height","calc(100% - 54px)");
+			this.panel.find(".btn-group-tool").css("display","none");
 		}else{
 			this.panel.find(".btn-confirm").html("确定");
-			this.panel.find(".tool-row").css("display","block");
-			this.panel.find(".file-list-wrapper").css("height","calc(100% - 100px)");
+			this.panel.find(".btn-group-tool").css("display","block");
 		}
 
 		this.panel.modal();
@@ -186,9 +201,9 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 			if(l == null){
 				continue;
 			}
-			if(currentPath == null){
-				currentPath = l.parPath;
-			}
+			// if(currentPath == null){
+			// 	currentPath = l.parPath;
+			// }
 			if(l instanceof GeoBeans.Folder){
 				var name = l.name;
 				html += "<li>"
@@ -200,7 +215,10 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 			}
 		}	
 		html += "</ul>";
+		currentPath = this.panel.find("#current_path").val();
 		var node = this.panel.find(".file-tree-div a[fpath='" + currentPath +"']");
+		node.find("i").removeClass("fa-folder-o");
+		node.find("i").addClass("fa-folder-open-o");
 		node.parent().find("ul.nav").remove();
 		node.after(html);
 
@@ -232,10 +250,14 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 				if(parent.find("ul.nav").length != 0 && 
 					parent.find("ul.nav").first().css("display") == "none"){
 					parent.find("ul.nav").first().css("display","block");
+					$(this).find("i").removeClass("fa-folder-o");
+					$(this).find("i").addClass("fa-folder-open-o");
 					that.getListTreeClick(path);
 				}else if(parent.find("ul.nav").length != 0 && 
 					parent.find("ul.nav").first().css("display") == "block"){
 					parent.find("ul.nav").first().css("display","none");
+					$(this).find("i").addClass("fa-folder-o");
+					$(this).find("i").removeClass("fa-folder-open-o");
 					that.getListTreeClick(path);
 				}else {
 					that.panel.find("#current_path").val(path);
@@ -415,6 +437,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		MapCloud.notify.showInfo(result,info);
 		var dialog = MapCloud.file_dialog;
 		var currentPath = dialog.panel.find("#current_path").val();
+		dialog.panel.find(".tree-folder[fpath='" + currentPath +"']").next().remove();
 		dialog.getList(currentPath);
 	},
 

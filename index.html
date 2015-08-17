@@ -198,6 +198,7 @@
 
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
 <script type="text/javascript" src="js/Control/Logo.js"></script>
+<script type="text/javascript" src="js/Control/Tools.js"></script>
 
 
 <script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
@@ -568,7 +569,7 @@
 							</div>
 							<div class="col-md-1">
 								<a href="javascript:void(0)" id="cut_map_btn"data-toggle="tooltip" data-placement="top" data-original-title="切图">
-									<i class="fa fa-cut"></i>
+									<i class="mc-icon mc-icon-pyramid"></i>
 								</a>
 							</div>
 							<div class="col-md-1">
@@ -596,9 +597,9 @@
 							<div class="row" id="layer_tool_row">
 								<div class="col-md-1">
 								</div>
-								<div class="col-md-1 col-xs-1">
+								<!-- <div class="col-md-1 col-xs-1">
 									<div class="glyphicon glyphicon-ok mc-icon"></div>
-								</div>
+								</div> -->
 								<div class="col-md-1 col-xs-1">
 									<div class="glyphicon glyphicon-eye-open mc-icon"></div>	
 								</div>
@@ -699,7 +700,7 @@
 								<div class="panel-header-content">
 									<form class="form-horizontal pages-form" role="form">
 									<div class="form-group row">
-										<div class="col-md-7">
+										<div class="col-md-8">
 											<label class="col-md-2 control-label panel-header-content-name" >
 												<i class="fa fa-table fa-2"></i>&nbsp;查询结果 ：
 											</label>
@@ -725,7 +726,7 @@
 												<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
 											</div>
 										</div>
-										<div class="col-md-3 col-md-offset-2 row">
+										<div class="col-md-3 row" style="margin-left:60px">
 											<div class="col-md-6">
 												<a class="btn btn-default  btn-group-justified download-features btn-primary" style="margin-top:2px;">
 		 											<i class="fa fa-download"></i>
@@ -1041,6 +1042,7 @@
 								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
 							</div>
 						</div>
+
 						<div id="bar_chart_wrapper" class="mc-panel chart-panel">
 							<div class="panel-header">
 								<button type="button" class="close">
@@ -1569,6 +1571,9 @@
 									<span aria-hidden="true">×</span>
 									<span class="sr-only">Close</span>
 								</button>
+								<button type="button" class="btn-hide" style="font-size: 20px;margin-right: 10px;margin-top: 6px;">
+                             		<i class="fa fa-chevron-down"></i>
+  								</button>
 								<div class="panel-header-content float_left">
 									<h5>
 										<i class="fa fa-cog fa-2"></i>&nbsp;
@@ -1624,8 +1629,14 @@
 							<div class="mc-icon mc-icon-hand-up"></div>
 							<div class="mc-icon mc-icon-full-screen"></div>
 							<div class="mc-icon mc-icon-zoom-in"></div>
-							<div class="mc-icon mc-icon-pin"></div>
-													
+							<div class="mc-icon mc-icon-pin"></div>					
+						</div>
+						<!-- 悬浮窗 -->
+						<div class="float-tool-box">
+							<i class="fa fa-bar-chart"></i>
+						</div>
+						<div class="float-coordinates">
+							<span></span>
 						</div>
 						<div id="map_overlay_wrapper" class="">
 							<div class="btn-group"><!-- btn-group-lg -->
@@ -1980,18 +1991,18 @@
 								<label class="col-md-3 control-label">
 									数据源：
 								</label>
-								<div class="col-md-5" style="padding-right:0px">
+								<div class="col-md-6" style="padding-right:0px">
 									<input class="form-control source-name" type="text" disabled="true">
 								</div>
-								<div class="col-md-3">
-									<a href="#" class="btn btn-sm btn-success btn-group-justified btn-choose-raster" >选择</a>
+								<div class="col-md-2">
+									<a href="#" class="btn btn-sm btn-success btn-choose-raster" >选择</a>
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
 								<label class="col-md-3 control-label">
 									路径：
 								</label>
-								<div class="col-md-5" style="padding-right:0px">
+								<div class="col-md-6" style="padding-right:0px">
 									<input class="form-control raster-path" type="text" disabled="true">
 								</div>
 							</div>
@@ -1999,7 +2010,7 @@
 								<label class="col-md-3 control-label">
 									影像：
 								</label>
-								<div class="col-md-5" style="padding-right:0px">
+								<div class="col-md-6" style="padding-right:0px">
 									<input class="form-control raster-name" type="text" disabled="true">
 								</div>
 							</div>
@@ -3365,12 +3376,26 @@
 										<i class="fa fa-remove"></i>
 									</button>
 									<div class="btn-group pull-right" role="group">
-										<button type="button" class="btn btn-default" id="show-dataset-fields" disabled>字段</button>
+										<button type="button" class="btn btn-default" id="show-dataset-infos" disabled="disabled">元数据</button>
+										<button type="button" class="btn btn-default" id="show-dataset-fields">字段</button>
 										<button type="button" class="btn btn-default" id="show-dataset-features">列表</button>
 										<button type="button" class="btn btn-default" id="show-dataset-preview">预览</button>
 									</div>
 								</div>
 								<div class="row db-content table-responsive">
+									<div class="dataset-pane" id="dataset_infos">
+										<div class="inner-div">
+											<table class="table table-hover borderless table-striped">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Value</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
 									<div class="dataset-pane" id="dataset_fields">
 										<div class="inner-div">
 											<table class="table table-hover borderless table-striped">
@@ -3580,7 +3605,7 @@
 	            <div class="modal-body">
 					<form class="form-horizontal pages-form" role="form" onsubmit="return false">
 						<div class="form-group">
-							<label class="col-md-3 control-label query_count">
+							<!-- <label class="col-md-3 control-label query_count">
 								总条数 : 
 								<span>0</span>
 							</label>
@@ -3602,7 +3627,38 @@
 							</div>
 							<div class="col-md-1">
 								<a class="glyphicon glyphicon-step-forward btn disabled" href="#"></a>
+							</div> -->
+							<div class="form-group">
+  	
+							<label class="col-md-3 control-label query_count">
+							  	<div class="col-md-9 col-md-offset-0">
+							  	总条数 : 
+									<span>34</span></div>
+							</label>
+							<div class="col-md-9">
+								<div class="col-md-4"></div>
+								<div class="col-md-1">
+									<a class="glyphicon glyphicon-step-backward btn disabled" href="#"></a>
+								</div>
+								<div class="col-md-1">
+									<a class="glyphicon glyphicon-chevron-left btn disabled"></a>
+								</div>
+								<div class="col-md-2">
+									<input class="form-control pages-form-page" type="text" value="0">
+								</div>
+								<label class="col-md-1 control-label">
+									/
+								</label>
+								<label class="col-md-1 control-label pages-form-pages">2</label>
+								<div class="col-md-1">
+									<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="#"></a>
+								</div>
+								<div class="col-md-1">
+									<a class="glyphicon glyphicon-step-forward btn" href="#"></a>
+								</div>
 							</div>
+							
+						</div>
 						</div>
 					</form>	
 					<div class="features-list">
@@ -3752,30 +3808,10 @@
 					<div class="col-md-3 file-tree-div">
 						<ul class="nav" style="padding-left:8px">
 							<li>
-								<a href="javascript:void(0)" class="file-tree tree-folder" fpath="/">
+								<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">
 									<i class="fa fa-folder-o"></i>
 									<span>/</span>
 								</a>
-								<!-- <ul class="nav">
-									<li>
-										<a href="javascript:void(0)" fpath='/'>
-										<i class="fa fa-folder-o"></i>
-										<span>bb</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0)" fpath='/'>
-										<i class="fa fa-folder-o"></i>
-										<span>ccc</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0)" fpath='/'>
-										<i class="fa fa-folder-o"></i>
-										<span>dd</span>
-										</a>
-									</li>
-								</ul> -->
 							</li>
 						</ul>
 					</div>
@@ -3785,7 +3821,7 @@
 								<div class="col-md-8">
 									<input type="text" class="form-control" disabled="" id="current_path" value="/">
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-4 btn-group-tool">
 									<div class=" btn-group btn-group-justified"  role="group">
 										<a class="btn btn-default btn-add-folder" data-toggle="tooltip" data-placement="top" data-original-title="新建文件夹">
 											<i class='fa fa-folder-o'></i>

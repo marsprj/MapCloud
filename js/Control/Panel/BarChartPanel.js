@@ -123,6 +123,12 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 				// that.displayChartFields();
 			});
 		});
+
+		// 双击变悬浮框
+		this.panel.find(".panel-header").dblclick(function(){
+			that.panel.css("display","none");
+			MapCloud.tools.showToolBox("barChart");
+		});
 	},
 
 	setDataSet : function(dbName,tableName){

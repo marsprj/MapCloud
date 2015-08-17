@@ -25,7 +25,7 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
-		this.styleMgr = new GeoBeans.StyleManager(url);
+		this.styleMgr = styleManager;
 
 		this.registerEvent();
 	},
@@ -153,6 +153,13 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 	    //关闭
 		this.panel.find(".btn-cancel").click(function(){
 			that.hidePanel();
+		});
+
+
+		// 双击变悬浮框
+		this.panel.find(".panel-header").dblclick(function(){
+			that.panel.css("display","none");
+			MapCloud.tools.showToolBox("aqiTimeline");
 		});
 
 	},

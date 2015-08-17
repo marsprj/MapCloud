@@ -34,7 +34,7 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 					return;
 			}
 			var layer = new GeoBeans.Layer.RasterDBLayer(name,null,dialog.sourceName,
-				dialog.rasterName,null,dialog.rasterPath);
+				dialog.rasterName,null,true,dialog.rasterPath);
 			MapCloud.notify.loading();
 			mapObj.addLayer(layer,dialog.addLayer_callback);
 		});

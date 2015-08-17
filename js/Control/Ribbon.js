@@ -67,12 +67,16 @@ MapCloud.Ribbon = MapCloud.Class({
 		this.ribbon.css("height", this.height_max);
 		this.ribbonContainer.css("height","80px");
 		$("#main_panel").css("height","calc(100% - 122px)");
+		$("#map_list_panel").css("top","122px");
+		mapManager.getMaps(ribbonObj.getMaps_callback);
 	},
 	
 	collapse : function(){
 		this.ribbon.css("height", this.height_min);
 		this.ribbonContainer.css("height","0px");
 		$("#main_panel").css("height","calc(100% - 42px)");
+		$("#map_list_panel").css("top","42px");
+		mapManager.getMaps(ribbonObj.getMaps_callback);
 	},
 	
 	isCollapsed : function(){
@@ -917,6 +921,7 @@ MapCloud.Ribbon = MapCloud.Class({
 				}else{
 					mapObj.setNavControl(false);
 					mapObj.draw();
+					mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
 					MapCloud.refresh_panel.refreshPanel();
 					MapCloud.dataGrid.cleanup();
 					MapCloud.notify.showInfo("success",info);
