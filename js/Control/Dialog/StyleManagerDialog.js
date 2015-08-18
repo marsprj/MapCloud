@@ -316,7 +316,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}else if(geomType == GeoBeans.Style.FeatureStyle.GeomType.LineString){
 				type = "line"
 			}else if(geomType == GeoBeans.Style.FeatureStyle.GeomType.Polygon){
-				type = "region";
+				type = "fill";
 			}
 			dialog.symbolChangedClass = "single";
 			dialog.symbolChangedIndex = 0;

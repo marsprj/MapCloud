@@ -286,7 +286,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".db-list-div .nav").html("");
 		this.panel.find(".db-infos-pane table tbody").html("");
 		this.panel.find(".db-thum-pane ul").html("");
+		this.panel.find(".table-pane #dataset_infos table tbody").html("");
 		this.panel.find(".table-pane #dataset_fields table tbody").html("");
+		this.panel.find("#dataset_features_list table thead tr").html("");
 		this.panel.find(".table-pane #dataset_features table tbody").html("");
 		this.panel.find(".table-pane #dataset_preview img").css("src","");
 		this.panel.find(".query_count span").html(0);
@@ -342,6 +344,14 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".db-infos-pane table tbody").html("");
 		this.panel.find(".db-thum-pane ul").html("");
 		this.panel.find(".table-tree .nav").html("");
+		this.panel.find(".query_count span").html(0);
+		this.panel.find(".pages-form-page").val(0);
+		this.panel.find(".pages-form-pages").html(0);
+		this.panel.find(".table-pane #dataset_infos table tbody").html("");
+		this.panel.find(".table-pane #dataset_fields table tbody").html("");
+		this.panel.find("#dataset_features_list table thead tr").html("");
+		this.panel.find(".table-pane #dataset_features table tbody").html("");
+		this.panel.find(".table-pane #dataset_preview img").css("src","");
 		dbsManager.getDataSource(dataSourceName,
 				this.getDataSource_callback);
 	},

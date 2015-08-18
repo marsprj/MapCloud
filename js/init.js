@@ -169,6 +169,7 @@ $().ready(function(){
 		= new MapCloud.BaseLayerDialog("base_layer_dialog");
 
 	MapCloud.symbol_dialog = new MapCloud.SymbolDialog("symbol_dialog");
+	MapCloud.layer_info_dialog = new MapCloud.LayerInfoDialog("layer_info_dialog");
 
 
 

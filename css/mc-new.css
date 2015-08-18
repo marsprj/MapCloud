@@ -1067,7 +1067,7 @@ ul#ribbon_tabs li{
 .float-coordinates{
 	position: absolute;
 	height: 24px;
-	width: 112px;
+	width: 146px;
 	right: 30px;
 	bottom: 30px;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.3),0 4px 15px -5px rgba(0,0,0,0.0);	
@@ -3122,13 +3122,21 @@ ul.layers_row li:before {
 #map_info_dialog .modal-body{
 	height: 400px;
 }
+#map_info_dialog .tab-content{
+	height: 310px;
+}
+
 #map_info_dialog .modal-body .row{
 	margin: 10px 6px;
 }
 #map_info_dialog #map_layers{
 	margin-top: 10px;
 	padding: 10px;
+	height: 100%;
 	overflow-y: auto;
+}
+#map_info_dialog #map_layers table{
+	margin-bottom: 0px;
 }
 #map_info_dialog label{
 	font-weight: normal;
@@ -3517,19 +3525,19 @@ ul.layers_row li:before {
 /* Symbol   Dialog Begin				 									*/
 /***************************************************************************/
 #symbol_dialog .modal-dialog{
-	width: 300px;
+	width: 600px;
 }
 
 #symbol_dialog .modal-body{
-	height: 250px;
+	height: 350px;
 	overflow-y: auto;
 	padding: 5px 10px;
 }
 .symbol-wrapper{
 	position: relative;
 	float: left;
-    width: 40px;
-    height: 60px;
+    width: 30px;
+    height: 50px;
     margin: 10px;
 }
 .symbol-wrapper h6{
@@ -3538,13 +3546,13 @@ ul.layers_row li:before {
 
 .symbol-thumb{
 	display: block;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     background-repeat: no-repeat;
     background-position: center;
     border: 1px solid #ddd;
     border-radius: 2px;
-    background-size: 26px;
+    /*background-size: 26px;*/
 
     -webkit-transition: all .2s ease-in-out;
 	-o-transition: all .2s ease-in-out;
@@ -3575,4 +3583,22 @@ ul.layers_row li:before {
 }
 /***************************************************************************/
 /* Raster DBLayer   Dialog End				 								*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Layer Info  Dialog Begin				 								   */
+/***************************************************************************/
+#layer_info_dialog .modal-dialog{
+	width: 530px;
+}
+#layer_info_dialog .modal-body{
+	max-height: 510px;
+	overflow-y: auto;
+}
+#layer_info_dialog .modal-body table{
+	margin-bottom: 0px;
+}
+
+/***************************************************************************/
+/* Layer Info  Dialog End				 								   */
 /***************************************************************************/

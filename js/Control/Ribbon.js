@@ -665,13 +665,13 @@ MapCloud.Ribbon = MapCloud.Class({
 		// 前一页
 		if(currentPage == 1){
 			html += '<li class="disabled">'
-				+ '		<a href="#" aria-label="Previous">'
+				+ '		<a href="javascript:void(0)" aria-label="Previous">'
 				+ '			<span aria-hidden="true">«</span>'
 				+ '		</a>'
 				+ '	</li>';
 		}else{
 			html += '<li>'
-				+ '		<a href="#" aria-label="Previous">'
+				+ '		<a href="javascript:void(0)" aria-label="Previous">'
 				+ '			<span aria-hidden="true">«</span>'
 				+ '		</a>'
 				+ '	</li>';
@@ -681,14 +681,14 @@ MapCloud.Ribbon = MapCloud.Class({
 			for(var i = 1; i <= pageCount; ++i){
 				if(i == currentPage){
 					html += '<li class="active">'
-					+ 	'	<a href="#">' + currentPage.toString() 
+					+ 	'	<a href="javascript:void(0)">' + currentPage.toString() 
 					+ 	'		<span class="sr-only">(current)</span>'
 					// + 	'		<span class="sr-only">(' + currentPage + ')</span>'
 					+	'</a>'
 					+ 	'</li>';
 				}else{
 					html += "<li>"
-						+ "<a href='#'>" + i + "</a>"
+						+ "<a href='javascript:void(0)'>" + i + "</a>"
 						+ "</li>";	
 				}
 			}	
@@ -699,13 +699,13 @@ MapCloud.Ribbon = MapCloud.Class({
 				for(var i = currentPage; i < currentPage + this.pageNumber;++i){
 					if(i == currentPage){
 						html += '<li class="active">'
-						+ 	'	<a href="#">' + currentPage
+						+ 	'	<a href="javascript:void(0)">' + currentPage
 						// + 	'		<span class="sr-only">(current)</span>'
 						+	'</a>'
 						+ 	'</li>';
 					}else{
 						html += "<li>"
-							+ "<a href='#'>" + i + "</a>"
+							+ "<a href='javascript:void(0)'>" + i + "</a>"
 							+ "</li>";	
 					}					
 				}
@@ -713,13 +713,13 @@ MapCloud.Ribbon = MapCloud.Class({
 				for(var i = beginEndPage; i <= pageCount; ++i){
 					if(i == currentPage){
 						html += '<li class="active">'
-						+ 	'	<a href="#">' + currentPage
+						+ 	'	<a href="javascript:void(0)">' + currentPage
 						// + 	'		<span class="sr-only">(current)</span>'
 						+	'</a>'
 						+ 	'</li>';
 					}else{
 						html += "<li>"
-							+ "<a href='#'>" + i + "</a>"
+							+ "<a href='javascript:void(0)'>" + i + "</a>"
 							+ "</li>";	
 					}
 				}
@@ -729,13 +729,13 @@ MapCloud.Ribbon = MapCloud.Class({
 		// 最后一页
 		if(currentPage == pageCount){
 			html += '<li class="disabled">'
-				+ '		<a href="#" aria-label="Next">'
+				+ '		<a href="javascript:void(0)" aria-label="Next">'
 				+ '			<span aria-hidden="true">»</span>'
 				+ '		</a>'
 				+ '	</li>';
 		}else{
 			html += '<li>'
-				+ '		<a href="#" aria-label="Next">'
+				+ '		<a href="javascript:void(0)" aria-label="Next">'
 				+ '			<span aria-hidden="true">»</span>'
 				+ '		</a>'
 				+ '	</li>';
@@ -872,10 +872,10 @@ MapCloud.Ribbon = MapCloud.Class({
 			var thumbnail = map.thumbnail;
 			var aHtml = "";
 			if(thumbnail != null){
-				aHtml = 	"	<a href='#' class='map-thumb' style=\"background-image:url("
+				aHtml = 	"	<a href='javascript:void(0)' class='map-thumb' style=\"background-image:url("
 						+			thumbnail + ")\"></a>";
 			}else{
-				aHtml = 	"	<a href='#' class='map-thumb'></a>";
+				aHtml = 	"	<a href='javascript:void(0)' class='map-thumb'></a>";
 			}
 			html += "<li class='maps-thumb' name='" + name + "'>"
 				+	aHtml

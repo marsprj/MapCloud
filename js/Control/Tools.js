@@ -55,8 +55,8 @@ MapCloud.Tools = MapCloud.Class({
 		if(mapX == null || mapY == null){
 			return;
 		}
-		var str = mapX.toFixed(4) + "," + mapY.toFixed(4);
-		$(".float-coordinates span").html(str);
+		var str = mapX.toFixed(4) + " , " + mapY.toFixed(4);
+		$(".float-coordinates .coor-value").html(str);
 	},
 
 	showToolBox : function(flag){
