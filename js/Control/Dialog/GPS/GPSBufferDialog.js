@@ -52,7 +52,7 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			// MapCloud.gps_output_source_dialog.showDialog("buffer");
+			MapCloud.gps_output_source_dialog.showDialog("buffer","Feature");
 		});
 
 
@@ -63,20 +63,20 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			// if(dialog.outputSourceName == null){
-			// 	MapCloud.notify.showInfo("请选择输出的数据库","Warning");
-			// 	return;
-			// }
+			if(dialog.outputSourceName == null){
+				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
+				return;
+			}
 
-			// var outputTypeName = dialog.panel.find(".gps-output-typename").val();
-			// if(outputTypeName == ""){
-			// 	MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
-			// 	return;
-			// }
+			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
+			if(outputTypeName == ""){
+				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+				return;
+			}
 
-			var distanceInput = dialog.panel.find("input[name='buffer-diastance']:checked")
-				.parents(".form-group").find("input[type='text']");
-			if(distanceInput.hasClass("gps-buffer-distance")){
+			var checkedRadio =  dialog.panel.find("input[name='buffer-diastance']:checked");
+			if(checkedRadio.hasClass('buffer-distance-radio')){
+				var distanceInput = checkedRadio.parents(".form-group").find("input[type='text']");
 				var distance = distanceInput.val();
 				if(distance == ""){
 					MapCloud.notify.showInfo("请输入缓冲区距离","Warning");
@@ -84,16 +84,13 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 				MapCloud.notify.loading();
 				gpsManager.getBuffer(dialog.inputSourceName,dialog.inputTypeName,distance,null,
-					dialog.buffer_callback);
-			}else if(distanceInput.hasClass('gps-buffer-distance-field')){
-				var distanceField = distanceInput.val();
-				if(distanceField == ""){
-					MapCloud.notify.showInfo("请输入缓冲区字段","Warning");
-					return;
-				}
+					dialog.outputSourceName,outputTypeName,dialog.buffer_callback);
+			}else{
+				var distanceSelect = checkedRadio.parents(".form-group").find("select");
+				var distanceField = distanceSelect.val();
 				MapCloud.notify.loading();
 				gpsManager.getBuffer(dialog.inputSourceName,dialog.inputTypeName,null,distanceField,
-					dialog.buffer_callback);
+					dialog.outputSourceName,outputTypeName,dialog.buffer_callback);
 			}
 			
 		});
@@ -107,7 +104,10 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find("input[name='buffer-diastance']").change(function(){
 			dialog.panel.find("input[name='buffer-diastance']")
 				.parents(".form-group").find("input[type='text']").attr("disabled",true);
+			dialog.panel.find("input[name='buffer-diastance']")
+				.parents(".form-group").find("select").attr("disabled",true);
 			$(this).parents(".form-group").find("input[type='text']").attr("disabled",false);
+			$(this).parents(".form-group").find("select").attr("disabled",false);
 		});
 
 	},	
@@ -126,11 +126,20 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	// 输入参数
-	setDataSet : function(inputSourceName,inputTypeName){
+	setDataSet : function(inputSourceName,inputTypeName,fields){
 		this.inputSourceName = inputSourceName;
 		this.inputTypeName = inputTypeName;
 		this.panel.find(".gps-input-source-name").val(this.inputSourceName);
 		this.panel.find(".gps-input-type-name").val(this.inputTypeName);
+
+		var field = null;
+		var html = "";
+		for(var i = 0; i < fields.length; ++i){
+			field = fields[i];
+			html += "<option value='" + field.name + "'>" + field.name + "</option>";
+		}
+
+		this.panel.find(".gps-buffer-distance-field").html(html);
 	},
 
 	// 输出
@@ -142,9 +151,12 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 结果
 	buffer_callback : function(result){
 		MapCloud.notify.hideLoading();
-		var xmlString = (new XMLSerializer()).serializeToString(result);
-		var html = "<xmp>" + xmlString + "</xmp>";
 		var dialog = MapCloud.gps_buffer_dialog;
-		dialog.panel.find(".gps-oper-log-div").html(html);		
+		var html = "<div class='row'>"
+			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 表 : " + dialog.inputTypeName
+			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + "; 表 : " 
+			+ dialog.panel.find(".gps-output-typename").val() + " ];  结果 : "
+			+ result;
+		dialog.panel.find(".gps-oper-log-div").append(html);		
 	}		
 });

@@ -246,39 +246,43 @@ MapCloud.Ribbon = MapCloud.Class({
 					// 瓦片库
 					that.onTileDataSource();
 					break;
-				// Chart Events
 				case 26:
+					// 数据目录
+					that.onDataSourcePanel();
+					break;
+				// Chart Events
+				case 27:
 					// 分级图
 					that.onAddRangeChart();
 					break;
-				case 27 :
+				case 28 :
 					// 柱状图
 					that.onAddBarChart();
 					break;
-				case 28:
+				case 29:
 					// 饼状图
 					that.onAddPieChart();
 					break;
-				case 29:
+				case 30:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 30:
+				case 31:
 					that.onAQI();
 					break;
-				case 31:
+				case 32:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 32:
+				case 33:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 33:
+				case 34:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 34:
+				case 35:
 					// 工具箱
 					that.onTools();
 					break;

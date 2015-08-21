@@ -44,7 +44,7 @@ MapCloud.GPSFeatureImportDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("featureImport");
+			MapCloud.gps_output_source_dialog.showDialog("featureImport","Feature");
 		});	
 
 		// 添加

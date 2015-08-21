@@ -57,7 +57,7 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("featureProject");
+			MapCloud.gps_output_source_dialog.showDialog("featureProject","Feature");
 		});	
 
 		// choose ouput srid

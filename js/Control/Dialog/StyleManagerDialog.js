@@ -1120,15 +1120,15 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var path = null;
 		switch(styleType){
 			case GeoBeans.Style.FeatureStyle.GeomType.Point:{
-				path = "js/Style-xml/point.xml";
+				path = "js/StyleXML/point.xml";
 				break;
 			}
 			case GeoBeans.Style.FeatureStyle.GeomType.LineString:{
-				path = "js/Style-xml/line.xml";
+				path = "js/StyleXML/line.xml";
 				break;
 			}
 			case GeoBeans.Style.FeatureStyle.GeomType.Polygon:{
-				path = "js/Style-xml/polygon.xml";
+				path = "js/StyleXML/polygon.xml";
 				break;
 			}
 			default:
@@ -1281,9 +1281,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.wfsWorkspace = new GeoBeans.WFSWorkspace("tmp",
 				mapObj.server,"1.0.0");
-		var featureType = new GeoBeans.FeatureType(this.wfsWorkspace,
-				this.dbLayer.name);
-		var fields = featureType.getFields(mapObj.name);
+		// var featureType = new GeoBeans.FeatureType(this.wfsWorkspace,
+		// 		this.dbLayer.name);
+		// var fields = featureType.getFields(mapObj.name);
+		var fields = dbLayer.getFields();
 		this.setFields(fields);
 
 		
@@ -1740,7 +1741,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				break;
 			}
 			case GeoBeans.Symbolizer.Type.Polygon:{
-				type = "region";
+				type = "fill";
 				break;
 			}
 			default:

@@ -96,14 +96,24 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					MapCloud.notify.showInfo("请选择一个数据源","Warning");
 					return;
 				}
-				// var layerLi = dialog.panel.find(".wmts-layer.selected");
-				// var index = layerLi.attr("dindex");
-				// var index = layerLi.attr("dindex");
-				// if(dialog.layers == null){
-				// 	return;
-				// }
-				// var layer = dialog.layers[index];
-				// var parentDialog = MapCloud.wmts_dialog.setWMTSLayer(sourceName,layer);
+				if(dialog.tileStore != null){
+					var tileStore = dialog.tileStore;
+					var layer = new GeoBeans.Layer.WMTSLayer(tileStore.name,dbsManager.server,tileStore.name,
+					tileStore.extent,tileStore.tms,tileStore.format,tileStore.sourceName);
+					MapCloud.wmts_dialog.setWMTSLayer(sourceName,layer)
+				}
+				
+				dialog.closeDialog();
+			}else if(dialog.source == "buildPyramid"){
+				var sourceName = dialog.panel.find(".db-list").val();
+				if(sourceName == null || sourceName == ""){
+					MapCloud.notify.showInfo("请选择一个数据源","Warning");
+					return;
+				}
+				if(dialog.tileStore != null){
+					MapCloud.gps_build_pyramid_dialog.setTileStore(sourceName,dialog.tileStore.name);
+				}
+				
 				dialog.closeDialog();
 			}
 		});

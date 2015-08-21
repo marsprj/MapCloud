@@ -84,8 +84,8 @@ MapCloud.SymbolDialog = MapCloud.Class(MapCloud.Dialog,{
 			}else{
 				html += "<a href='javascript:void(0)' class='symbol-thumb' " ;
 			}
-				
-			html += " style='background-image:url(" 
+			html += " title='" + name + "' "	
+				+ " style='background-image:url(" 
 					+	icon + ")'></a>"
 				+ "<div class='caption text-center'>"
 				+ "	<h6>" + name + "</h6>"

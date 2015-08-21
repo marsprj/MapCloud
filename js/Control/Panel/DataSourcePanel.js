@@ -27,12 +27,28 @@ MapCloud.DataSourcePanel = MapCloud.Class(MapCloud.Panel,{
 			var sourceName = $(this).val();
 			that.getDataSource(sourceName);
 		});
+
+		// 刷新
+		this.panel.find(".btn-refresh").click(function(){
+			that.refresh();
+		});
+
+		// 导入
+		this.panel.find(".btn-upload").click(function(){
+			MapCloud.import_dialog.showDialog("dataPanel");
+			var sourceName = that.panel.find(".db-list").val();
+			MapCloud.import_dialog.setDataSourceName(sourceName);
+		});
 	},
 
 	getDataSources : function(){
 		dbsManager.getDataSources(this.getDataSources_callback,"Feature");
 	},
 
+	refresh : function(){
+		var sourceName = this.panel.find(".db-list").val();
+		this.getDataSource(sourceName);
+	},
 	getDataSources_callback : function(dataSources){
 		MapCloud.notify.hideLoading();
 		var panel = MapCloud.data_source_panel;
@@ -65,12 +81,12 @@ MapCloud.DataSourcePanel = MapCloud.Class(MapCloud.Panel,{
 	// 获取数据库
 	getDataSource : function(dataSourceName){
 		this.panel.find(".table-tree").empty();
+		MapCloud.notify.loading();
 		dbsManager.getDataSource(dataSourceName,
 				this.getDataSource_callback);
 	},
 
 	getDataSource_callback : function(dataSource){
-		MapCloud.notify.hideLoading();
 		var panel = MapCloud.data_source_panel;
 		panel.getDataSets(dataSource);
 	},
@@ -84,6 +100,7 @@ MapCloud.DataSourcePanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	getDataSets_callback : function(dataSets){
+		MapCloud.notify.hideLoading();
 		var panel = MapCloud.data_source_panel;
 		panel.showDataSets(dataSets);
 	},

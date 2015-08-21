@@ -99,7 +99,23 @@ ul {
 }
 
 .mc-icon-map-new{
-	background-image:url(../images/map-new-40.png);
+	background-image:url(../images/map_new_40_g.png);
+}
+
+.mc-icon-map-close{
+	background-image:url(../images/map_close_40_g.png);
+}
+
+.mc-icon-map-remove{
+	background-image:url(../images/map_remove_40_g.png);	
+}
+
+.mc-icon-map-info{
+	background-image:url(../images/map_info_40.png);		
+}
+
+.mc-icon-map-data{
+	background-image:url(../images/map_data_40.png);
 }
 
 .mc-icon-map-publish{
@@ -110,24 +126,78 @@ ul {
 	background-image:url(../images/Layers-40.png);
 }
 
-.mc-icon-layer_new{
-	background-image:url(../images/Layers-40.png);
+.mc-icon-layer-vector{
+	background-image:url(../images/layer_vector.png);	
 }
 
-.mc-icon-layer_vector{
-	background-image:url(../images/Layers-40.png);
+.mc-icon-layer-raster{
+	background-image:url(../images/layer_raster.png);
 }
-.mc-icon-layer_wms{
-	background-image:url(../images/Layers-40.png);
+
+.mc-icon-layer-wms{
+	background-image:url(../images/layer_wms.png);
 }
-.mc-icon-layers-wfs{
-	background-image:url(../images/Layers-40.png);
+
+.mc-icon-layer-wmts{
+	background-image:url(../images/layer_wmts.png);
 }
+.mc-icon-layer-wfs{
+	background-image:url(../images/layer_wfs.png);
+}
+.mc-icon-baselayer-image{
+	background-image:url(../images/baselayer_image.png);
+}
+
+.mc-icon-baselayer-vector{
+	background-image:url(../images/baselayer_vector.png);
+}
+
 .mc-icon-file{
-	background-image:url(../images/Layers-40.png);
+	background-image:url(../images/file_40.png);
 }
 .mc-icon-database{
-	background-image:url(../images/Layers-40.png);
+	background-image:url(../images/database_40.png);
+}
+.mc-icon-rasters{
+	background-image:url(../images/rasters_40.png);	
+}
+
+.mc-icon-tile{
+	background-image:url(../images/tile_40.png);	
+}
+
+.mc-icon-chart-range{
+	background-image:url(../images/chart_range_40.png);	
+}
+
+.mc-icon-chart-bar{
+	background-image:url(../images/chart_bar_40.png);	
+}
+
+.mc-icon-chart-pie{
+	background-image:url(../images/chart_pie_40.png);	
+}
+
+.mc-icon-chart-heatmap{
+	background-image:url(../images/chart_heatmap_40.png);	
+}
+
+.mc-icon-chart-aqi{
+	background-image:url(../images/chart_aqi_40.png);	
+}
+
+.mc-icon-chart-aqi-timeline{
+	background-image:url(../images/chart_aqi_timeline_40.png);	
+}
+
+.mc-icon-marker-1{
+	background-image:url(../images/marker_40.png);	
+}
+.mc-icon-style{
+	background-image:url(../images/style_40.png);	
+}
+.mc-icon-toolbox{
+	background-image:url(../images/toolbox_40.png);	
 }
 .mc-icon-layers{
 	background-image:url(../images/Layers-40.png);
@@ -578,9 +648,13 @@ ul#ribbon_tabs li{
 	margin-left:0px;
 	margin-right:0px;
 }
+.layers-items{
+	max-height: 600px;
+	overflow-y: auto;
+}
 #layers_row{
 	padding : 0px !important;
-	height : calc(100% - 80px);
+	/*height : calc(100% - 80px);*/
 	/*overflow-y: auto;*/
 	margin: 0px;
 }
@@ -979,7 +1053,7 @@ ul#ribbon_tabs li{
 }
 #gps_oper_wrapper .nav>li>a{
 	padding: 4px 6px;
-	font-size: 14px;
+	font-size: 12px;
 }
 #gps_oper_wrapper .nav>li>a:hover{
 	color :#fff;
@@ -1013,6 +1087,18 @@ ul#ribbon_tabs li{
 	display: none;
 	right: 10px;
 	top: 10px;	
+}
+
+#data_source_wrapper .btn i{
+	color : rgb(91, 154, 209);
+}
+#data_source_wrapper .btn-upload{
+	margin-left: 10px;
+	color: #F8F8F8;
+    cursor: pointer;
+}
+#data_source_wrapper .btn-upload:hover{
+	color: #5B9AD1;
 }
 #data_source_wrapper .panel-content{
 	height: calc( 100% - 45px);
@@ -1067,7 +1153,7 @@ ul#ribbon_tabs li{
 .float-coordinates{
 	position: absolute;
 	height: 24px;
-	width: 146px;
+	width: 166px;
 	right: 30px;
 	bottom: 30px;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.3),0 4px 15px -5px rgba(0,0,0,0.0);	
@@ -2842,6 +2928,10 @@ ul.layers_row li:before {
 #import_dialog .header-row{
 	border-bottom: 2px groove #ddd;
 }
+#import_dialog .import-list-div{
+	height: 255px;
+    overflow-y: auto;
+}
 
 .import-list-div .row{
 	border-bottom: 1px solid #DCDCDC;
@@ -2849,6 +2939,9 @@ ul.layers_row li:before {
 
 #import_dialog .row [class*="col-"]{
 	padding: 6px 2px 6px 2px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #import_dialog .import-log-row{
@@ -3172,8 +3265,8 @@ ul.layers_row li:before {
 /* GPS Oper Dialog Begin  												   */
 /***************************************************************************/
 #gps_kmean_dialog .log-li{
+	margin-top: 117px;
 	margin-bottom: 0px;
-	margin-top: 44px;
 }
 
 #gps_feature_project_dialog .log-li{
@@ -3302,7 +3395,7 @@ ul.layers_row li:before {
 /***************************************************************************/
 #gps_raster_reverse_dialog .log-li,#gps_raster_graylize_dialog .log-li,
 #gps_raster_stretch_dialog .log-li,#gps_raster_his_equal_dialog .log-li,
-#gps_raster_smooth_dialog .log-li,
+#gps_raster_smooth_dialog .log-li,#gps_raster_threshold_dialog .log-li,
 #gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li{
 	margin-top: 153px;
 	margin-bottom: 0px;
@@ -3538,10 +3631,16 @@ ul.layers_row li:before {
 	float: left;
     width: 30px;
     height: 50px;
-    margin: 10px;
+    margin: 15px;
+}
+.symbol-wrapper .text-center{
+	margin: 10px -15px;
 }
 .symbol-wrapper h6{
 	word-break: break-all;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .symbol-thumb{
@@ -3592,7 +3691,7 @@ ul.layers_row li:before {
 	width: 530px;
 }
 #layer_info_dialog .modal-body{
-	max-height: 510px;
+	max-height: 550px;
 	overflow-y: auto;
 }
 #layer_info_dialog .modal-body table{

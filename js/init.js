@@ -109,6 +109,8 @@ $().ready(function(){
 		= new MapCloud.GPSRasterSubtractDialog("gps_raster_subtract_dialog");
 	MapCloud.gps_raster_pixel_blend_dialog
 		= new MapCloud.GPSRasterPixelBlendDialog("gps_raster_pixel_blend_dialog");
+	MapCloud.gps_raster_threshold_dialog 
+		= new MapCloud.GPSRasterThresholdDialog("gps_raster_threshold_dialog");
 	MapCloud.gps_raster_his_equal_dialog
 		= new MapCloud.GPSRasterHisEquaDialog("gps_raster_his_equal_dialog");
 	MapCloud.gps_dem_slope_dialog

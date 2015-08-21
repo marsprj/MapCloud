@@ -175,7 +175,7 @@ MapCloud.refresh = MapCloud.Class({
 		if(baseLayer != null){
 			var baseLayerhtml = this.getBaseLayerHtml(baseLayer);
 			$("#baseLayer_row").html(baseLayerhtml);
-			$("#baseLayer_row").css("padding","6px");
+			$("#baseLayer_row").css("padding","6px 0px");
 			$("#baseLayer_row").removeClass("sm");
 		}else{
 			$("#baseLayer_row").empty();
@@ -330,7 +330,21 @@ MapCloud.refresh = MapCloud.Class({
 		//图层的显示与隐藏
 		this.panel.find(".glyphicon-eye-open,.glyphicon-eye-close").each(function(){
 			$(this).click(function(){
-
+				// 底图
+				if($(this).parents(".row").attr("id") == "baseLayer_row"){
+					if($(this).hasClass("glyphicon-eye-open")){
+					$(this).removeClass("glyphicon-eye-open");
+					$(this).addClass("glyphicon-eye-close");
+					mapObj.baseLayer.setVisiable(false);
+					mapObj.draw();
+				}else{
+					$(this).removeClass("glyphicon-eye-close");
+					$(this).addClass("glyphicon-eye-open");					
+					mapObj.baseLayer.setVisiable(true);
+					mapObj.draw();
+				}
+					return;
+				}
 				var li = $(this).parents("li");
 				var layerName = li.attr("lname");
 				var layer = mapObj.getLayer(layerName);
@@ -753,9 +767,13 @@ MapCloud.refresh = MapCloud.Class({
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon " + icon + "\"></div>"	
 				+	"	</div>"
-				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"	<div class=\"col-md-5 col-xs-1 layer_name\">"
 				+	"		<strong title='" + name + "'>" + name + "</strong>"
 				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+				+	"	</div>"				
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul>"
 				+	"			<li class=\"dropdown pull-right\">"
@@ -764,8 +782,8 @@ MapCloud.refresh = MapCloud.Class({
 				+	"				</a>"
 				+	"				<ul class=\"dropdown-menu\">"
 				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
-				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
-				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
 				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_remove_base\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"				+	"				</ul>"
 				+	"			</li>"
 				+	"		</ul>"
@@ -779,11 +797,11 @@ MapCloud.refresh = MapCloud.Class({
 		var name = wmsLayer.name;
 		html	= 	"<li class=\"row layer_row\" lname=\"" + name + "\">"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+				+	"		<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
 				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
-				+	"	</div>"
+				// +	"	<div class=\"col-md-1 col-xs-1\">"
+				// +	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+				// +	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">";
 		if(wmsLayer.visible){
 			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
@@ -794,8 +812,12 @@ MapCloud.refresh = MapCloud.Class({
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon mc-icon-color\"></div>"	
 				+	"	</div>"
-				+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+				+	"	<div class=\"col-md-5 col-xs-1 layer_name\">"
 				+	"		<strong>" + name + "</strong>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
 				+	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul class=\"layer_row_quick_tool_ul\">"
@@ -825,9 +847,9 @@ MapCloud.refresh = MapCloud.Class({
 			}
 			var name = mapLayer.name;
 			var row = "<div class=\"row wms_layer_row\" mname=\"" + name + "\" style=\"display:block\">"
-					 +"	<div class=\"col-md-1 col-xs-1\"></div>"
+					 // +"	<div class=\"col-md-1 col-xs-1\"></div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">"
-					 +	"	<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+					 +	"	<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
 					 +"	</div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">";
 			if(mapLayer.visible){
@@ -1007,9 +1029,9 @@ MapCloud.refresh = MapCloud.Class({
 			+	"	<div class=\"col-md-1 col-xs-1\">"
 			+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
 			+	"	</div>"
-			+	"	<div class=\"col-md-1 col-xs-1\">"
-			+	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
-			+	"	</div>"
+			// +	"	<div class=\"col-md-1 col-xs-1\">"
+			// +	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
+			// +	"	</div>"
 			+	"	<div class=\"col-md-1 col-xs-1\">";
 		if(layer.visible){
 			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>";
@@ -1021,8 +1043,12 @@ MapCloud.refresh = MapCloud.Class({
 			+	"	<div class=\"col-md-1 col-xs-1\">"
 			+	"		<div class=\"mc-icon mc-icon-layer mc-icon-wfslayer\"></div>"	
 			+	"	</div>"
-			+	"	<div class=\"col-md-6 col-xs-1 layer_name\">"
+			+	"	<div class=\"col-md-5 layer_name\">"
 			+	"		<strong>" + name + "</strong>"
+			+	"	</div>"
+			+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+			+	"	</div>"
+			+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
 			+	"	</div>"
 			+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 			+   "		<ul class=\"layer_row_quick_tool_ul\">"
@@ -1032,8 +1058,8 @@ MapCloud.refresh = MapCloud.Class({
 			+	"				</a>"
 			+	"				<ul class=\"dropdown-menu\">"
 			+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
-				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
-				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
 				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
 			+	"				</ul>"
 			+	"			</li>"

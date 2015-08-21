@@ -40,7 +40,8 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("buildPyramid");
+			// MapCloud.gps_output_source_dialog.showDialog("buildPyramid","Tile");
+			MapCloud.tile_db_dialog.showDialog("buildPyramid");
 		});	
 
 
@@ -94,6 +95,7 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	cleanup : function(){
 		this.outputSourceName = null;
+		this.tileStoreName = null;
 
 		this.panel.find(".gps-map-name").val("");
 		this.panel.find(".gps-output-source-name").val("");
@@ -103,10 +105,19 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-oper-log-div").empty();
 	},
 
-	// 输出
-	setOutputSource : function(outputSourceName){
-		this.outputSourceName = outputSourceName;
+	// // 输出
+	// setOutputSource : function(outputSourceName){
+	// 	this.outputSourceName = outputSourceName;
+	// 	this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	// },
+
+	// 输出瓦片库信息
+	setTileStore : function(sourceName,tileStoreName){
+		this.outputSourceName = sourceName;
 		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+
+		this.tileStoreName = tileStoreName;
+		this.panel.find(".gps-tile-store").val(this.tileStoreName);
 	},
 
 	// 结果

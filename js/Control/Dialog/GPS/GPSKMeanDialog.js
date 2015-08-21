@@ -52,7 +52,7 @@ MapCloud.GPSKMeanDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("kmean");
+			MapCloud.gps_output_source_dialog.showDialog("kmean","Feature");
 		});
 
 
@@ -92,7 +92,8 @@ MapCloud.GPSKMeanDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	cleanup : function(){
-		this.panel.find(".gps-input").val("");
+		this.panel.find(".gps-input-source-name").val("");
+		this.panel.find(".gps-input-type-name").val("");
 		this.panel.find(".gps-output-source-name").val("");
 		this.panel.find(".gps-output-typename").val("");
 		this.panel.find(".gps-kmean-clusters").val("10");

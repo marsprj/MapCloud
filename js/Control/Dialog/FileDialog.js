@@ -121,6 +121,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.list = null;
 		this.flag = null;
 		this.panel.find("#file_filter_select option[value='all']").attr("selected",true);
+		this.panel.find("#current_path").val("/");
 	},
 
 	showDialog : function(flag){

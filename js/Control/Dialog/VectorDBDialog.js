@@ -89,7 +89,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 				case "buffer":{
 					parentDialog = MapCloud.gps_buffer_dialog;
-					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					var fields = dataSet.getFields();
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name,fields);
 				}
 				case "centroid":{
 					parentDialog = MapCloud.gps_centroid_dialog;
@@ -129,7 +130,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 导入
 		this.panel.find(".btn-import").click(function(){
-			MapCloud.import_dialog.showDialog();
+			MapCloud.import_dialog.showDialog("vector");
 			MapCloud.import_dialog.setDataSourceName(dialog.dataSourceCur.name);
 		});
 
@@ -143,20 +144,26 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			dialog.refresh();
 		});
 
-		// 展示方式
+		// server pane 展示方式
 		// 详细信息
 		this.panel.find(".btn-infos").click(function(){
 			$(this).attr("disabled",true);
 			dialog.panel.find(".btn-thum").attr("disabled",false);
+			dialog.panel.find(".table-pane").css("display","none")
+			dialog.panel.find(".server-pane").css("display","block")
 			dialog.panel.find(".server-pane .db-content").css("display","none");
 			dialog.panel.find(".db-infos-pane").css("display","block");
+			dialog.panel.find(".table-tree .nav a.selected").removeClass("selected");
 		});
 
 		this.panel.find(".btn-thum").click(function(){
 			$(this).attr("disabled",true);
 			dialog.panel.find(".btn-infos").attr("disabled",false);
+			dialog.panel.find(".table-pane").css("display","none")
+			dialog.panel.find(".server-pane").css("display","block")
 			dialog.panel.find(".server-pane .db-content").css("display","none");
 			dialog.panel.find(".db-thum-pane").css("display","block");
+			dialog.panel.find(".table-tree .nav a.selected").removeClass("selected");
 		});
 
 		// table pane
@@ -414,14 +421,16 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		dialog.panel.find(".tree-table").click(function(){
 			dialog.panel.find(".table-tree .nav a.selected").removeClass("selected");
 			$(this).addClass("selected");
-			var index = $(this).attr("dindex");
-			if(dialog.dataSourceCur != null){
-				var dataSets = dialog.dataSourceCur.dataSets;
-				if(dataSets != null){
-					var dataSet = dataSets[index];
-					dialog.showDataSetPanel(dataSet);
-				}
-			}
+			var dataSetName = $(this).find("span").html();
+			dialog.getDataSet(dataSetName);
+			// var index = $(this).attr("dindex");
+			// if(dialog.dataSourceCur != null){
+			// 	var dataSets = dialog.dataSourceCur.dataSets;
+			// 	if(dataSets != null){
+			// 		var dataSet = dataSets[index];
+			// 		dialog.showDataSetPanel(dataSet);
+			// 	}
+			// }
 		});
 	},
 
@@ -489,11 +498,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".server-pane .dataset-name").click(function(){
 			var index = $(this).attr("dindex");
 			if(dialog.dataSourceCur != null){
-				var dataSets = dialog.dataSourceCur.dataSets;
-				if(dataSets != null){
-					var dataSet = dataSets[index];
-					dialog.showDataSetPanel(dataSet);
-				}
+				var name = $(this).text();
+				dialog.getDataSet(name);
 				dialog.panel.find(".table-tree .nav li a[dindex='" + index + "']").addClass("selected");
 			}
 		});
@@ -524,11 +530,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).addClass("selected");
 			var index = $(this).attr("dindex");
 			if(dialog.dataSourceCur != null){
-				var dataSets = dialog.dataSourceCur.dataSets;
-				if(dataSets != null){
-					var dataSet = dataSets[index];
-					dialog.showDataSetPanel(dataSet);
-				}
+				var name = $(this).parent().find("h6").text();
+				dialog.getDataSet(name);
 				dialog.panel.find(".table-tree .nav li a").removeClass("selected");
 				dialog.panel.find(".table-tree .nav li a[dindex='" + index + "']").addClass("selected");
 			}
@@ -576,6 +579,19 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = MapCloud.vector_db_dialog;
 		dialog.panel.find(".server-pane table tbody").html("");
 		dialog.getDataSets(dialog.dataSourceCur);
+	},
+
+	// 获取dataSet
+	getDataSet : function(dataSetName){
+		if(this.dataSourceCur == null){
+			return;
+		}
+		this.dataSourceCur.getDataSet(dataSetName,this.getDataSet_callback);
+	},
+
+	getDataSet_callback : function(dataSet){
+		var dialog = MapCloud.vector_db_dialog;
+		dialog.showDataSetPanel(dataSet);
 	},
 
 	showDataSetPanel : function(dataSet){
@@ -632,15 +648,55 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		html = "<tr>"
 			+ "<td>名称</td>"
 			+ "<td>" + dataSet.name + "</td>"
-			+ "</tr>"
-			+ "<tr>"
-			+ "<td>空间参考</td>"
-			+ "<td>" + dataSet.srid + "</td>"
-			+ "</tr>"
-			+ "<tr>"
-			+ "<td>几何类型</td>"
-			+ "<td>" + dataSet.geometryType + "</td>"
 			+ "</tr>";
+		if(dataSet.type != null){
+			html += "<tr>"
+			+ "<td>类型</td>"
+			+ "<td>" + dataSet.type + "</td>"
+			+ "</tr>"; 
+		}
+
+		var geomType = dataSet.geometryType;
+		if(geomType != null){
+			html +=  "<tr>"
+			+ "<td>几何类型</td>"
+			+ "<td>" + geomType + "</td>"
+			+ "</tr>";
+		}
+
+		var count = dataSet.count;
+		if(count != null){
+			html +=  "<tr>"
+			+ "<td>个数</td>"
+			+ "<td>" + count + "</td>"
+			+ "</tr>";			
+		}
+		var srid = dataSet.srid;
+		if(srid != null){
+			html +=  "<tr>"
+			+ "<td>空间参考</td>"
+			+ "<td>" + srid + "</td>"
+			+ "</tr>";		
+		}
+		var extent = dataSet.extent;
+		if(extent != null){
+			html += '	<tr>'
+			+ '		<td>范围</td>'
+			+ '		<td>东 :' + extent.xmax + "</td>"
+			+ '	</tr>'
+			+ '	<tr>'
+			+ '		<td></td>'
+			+ '		<td>西 :' + extent.xmin + "</td>"
+			+ '	</tr>'
+			+ '	<tr>'
+			+ '		<td></td>'
+			+ '		<td>南 :' + extent.ymin + "</td>"
+			+ '	</tr>'
+			+ '	<tr>'
+			+ '		<td></td>'
+			+ '		<td>北 :' + extent.ymax + "</td>"
+			+ '	</tr>'				
+		}
 		this.panel.find(".table-pane #dataset_infos table tbody").html(html);
 	},
 	// 字段
@@ -702,7 +758,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.displayDataSetFeaturesFields(fields);
 
 		//设置页码
-		var count = dataSet.getFeatureCount();
+		// var count = dataSet.getFeatureCount();
+		var count = dataSet.count;
 		var pageCount = Math.ceil(count/this.maxFeatures);
 		this.panel.find(".pages-form-pages").html(pageCount);
 		this.panel.find(".query_count span").html(count);
@@ -857,20 +914,22 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	// 刷新
 	refresh : function(){
-		var selectDataSet = this.panel.find(".tree-table.selected");
-		if(selectDataSet.length == 0){
-			var dbName = this.panel.find(".db-list").val();
-			this.getDataSource(dbName);
-		}else{
-			var index = selectDataSet.attr("dindex");
-			if(this.dataSourceCur != null){
-				var dataSets = this.dataSourceCur.dataSets;
-				if(dataSets != null){
-					var dataSet = dataSets[index];
-					this.showDataSetPanel(dataSet);
-				}
-			}
-		}
+		var dbName = this.panel.find(".db-list").val();
+		this.getDataSource(dbName);
+		// var selectDataSet = this.panel.find(".tree-table.selected");
+		// if(selectDataSet.length == 0){
+		// 	var dbName = this.panel.find(".db-list").val();
+		// 	this.getDataSource(dbName);
+		// }else{
+		// 	var index = selectDataSet.attr("dindex");
+		// 	if(this.dataSourceCur != null){
+		// 		var dataSets = this.dataSourceCur.dataSets;
+		// 		if(dataSets != null){
+		// 			var dataSet = dataSets[index];
+		// 			this.showDataSetPanel(dataSet);
+		// 		}
+		// 	}
+		// }
 	},
 
 	// 设置新注册的数据源的名称

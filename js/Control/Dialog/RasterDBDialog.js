@@ -184,6 +184,10 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog = MapCloud.gps_raster_pixel_blend_dialog;
 					break;
 				}
+				case "rasterThreshold":{
+					parentDialog = MapCloud.gps_raster_threshold_dialog;
+					break;
+				}
 				case "rasterHisEqual":{
 					parentDialog = MapCloud.gps_raster_his_equal_dialog;
 					break;

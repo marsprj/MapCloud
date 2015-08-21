@@ -53,16 +53,28 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
+	showDialog : function(source){
+		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
+		this.source = source;
+	},
+
 	cleanup : function(){
 		this.panel.find(".import-list-div").html("");
 		this.panel.find(".import-log-div").html("");
 		this.paths = [];
+		this.source = null;
 	},
 
 	closeDialog : function(){
 		this.panel.modal("hide");
-		var parent = MapCloud.vector_db_dialog;
-		parent.getDataSets(parent.dataSourceCur);
+		if(this.source == "vector"){
+			var parent = MapCloud.vector_db_dialog;
+			parent.getDataSets(parent.dataSourceCur);
+		}else if(this.source == "dataPanel"){
+			var parent = MapCloud.data_source_panel;
+			parent.refresh();
+		}
+		
 	},
 
 	// 设置数据库名称
@@ -222,12 +234,14 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		shpName = shpName.slice(0,shpName.lastIndexOf(".shp"));
 		shpPath = shpPath.slice(0,index+1);
 
+		MapCloud.notify.loading();
 		dbsManager.featureImport(this.dataSourceName,typeName,shpPath,
 			shpName,srid,geom,this.importFeature_callback);
 
 	},
 
 	importFeature_callback : function(result){
+		MapCloud.notify.hideLoading();
 		var dialog = MapCloud.import_dialog;
 		var f = dialog.features[0];
 		if(f != null){

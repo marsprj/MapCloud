@@ -268,6 +268,7 @@
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSmoothDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSubtractDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterPixelBlendDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterThresholdDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSepiaToneDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterHisEquaDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemSlopeDialog.js"></script>
@@ -384,49 +385,49 @@
 								<div class="ribbon_label">新建地图</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-close"></div>
 								<div class="ribbon_label">关闭地图</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-remove"></div>
 								<div class="ribbon_label">删除地图</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-info"></div>
 								<div class="ribbon_label">地图属性</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-data"></div>
 								<div class="ribbon_label">数据目录</div>
 							</div>
 						</div>
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-vector"></div>
 								<div class="ribbon_label">添加矢量图层</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-raster"></div>
 								<div class="ribbon_label">添加栅格图层</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_wms"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-wms"></div>
 								<div class="ribbon_label">WMS图层</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-wfs"></div>
 								<div class="ribbon_label">WFS图层</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-wmts"></div>
 								<div class="ribbon_label">WMTS图层</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-baselayer-image"></div>
 								<div class="ribbon_label">影像底图</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-baselayer-vector"></div>
 								<div class="ribbon_label">矢量底图</div>
 							</div>
 						</div>
@@ -435,7 +436,7 @@
 					<div id="layer_ribbon" class="ribbon_panel">
 						<div class="ribbon_group">
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-vector"></div>
 								<div class="ribbon_label">添加图层</div>
 							</div>
 							<div class="ribbon-item">
@@ -483,12 +484,6 @@
 						</div>
 					</div>
 					<div id="data_ribbon" class="ribbon_panel">
-						<!-- <div class="ribbon_group mc-border-right-light">
-							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
-								<div class="ribbon_label">专题图</div>
-							</div>
-						</div> -->
 						<div class="ribbon_group mc-border-right-light">
 
 							<div class="ribbon-item">
@@ -500,43 +495,49 @@
 								<div class="ribbon_label">地理库</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-rasters"></div>
 								<div class="ribbon_label">影像库</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-tile"></div>
 								<div class="ribbon_label">瓦片库</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">数据目录</div>
 							</div>
 						</div>
 					</div>
 					<div id="chart_ribbon" class="ribbon_panel">
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-range"></div>
 								<div class="ribbon_label">分级图</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-bar"></div>
 								<div class="ribbon_label">柱状图</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-wfs"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-pie"></div>
 								<div class="ribbon_label">饼状图</div>
 							</div>
 						</div>
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-heatmap"></div>
 								<div class="ribbon_label">热力图</div>
 							</div>
 						</div>
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-aqi"></div>
 								<div class="ribbon_label">AQI</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-aqi-timeline"></div>
 								<div class="ribbon_label">AQI序列图</div>
 							</div>
 						</div>
@@ -544,15 +545,15 @@
 					<div id="tool_ribbon" class="ribbon_panel">
 						<div class="ribbon_group mc-border-right-light">
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-layer_vector"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-marker-1"></div>
 								<div class="ribbon_label">标注</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-style"></div>
 								<div class="ribbon_label">图层样式</div>
 							</div>
 							<div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-heatmap"></div>
+								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
 								<div class="ribbon_label">工具箱</div>
 							</div>
 						</div>
@@ -620,10 +621,12 @@
 									<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
 								</div>
 							</div>
-							<div class="row" id="baseLayer_row">
+							<div class="layers-items">
+								<div class="row" id="baseLayer_row">
+								</div>
+								<ul class="row" id="layers_row">
+								</ul>
 							</div>
-							<ul class="row" id="layers_row">
-							</ul>
 						</div>
 							
 					</div>
@@ -818,7 +821,7 @@
 								</button>
 								<div class="panel-header-content float_left">
 									<h5>
-										<i class="fa fa-search fa-2"></i>&nbsp;简单查询
+										<i class="fa fa-search fa-2"></i>&nbsp;属性查询
 									</h5>
 								</div>
 							</div>
@@ -1602,13 +1605,20 @@
 									<h5>
 										<i class="fa fa-cog fa-2"></i>&nbsp;
 										数据目录
+										<i class="fa fa-upload btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入"></i>
 									</h5>
 								</div>
 							</div>
 							<div class="panel-content">
-								<select class="form-control db-list">
-								</select>
-								
+								<div class="input-group input-group-sm">
+									<select class="form-control db-list">
+									</select>
+									<span class="input-group-btn">
+										<button class="btn btn-default btn-refresh" type="button" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+											<i class="fa fa-refresh"></i>
+										</button>
+									</span>
+								</div>
 								<div class="table-tree">
 									<!-- <ul class="nav">
 									</ul> -->
@@ -2046,8 +2056,9 @@
 						<div class="form-group form-group-sm">
 							<label for="wms_url" class="col-sm-2 control-label">地址：</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/ows/user1/world/ims?">
+								<input type="text" class="form-control" placeholder="输入图层地址" style="" id="wms_url" value="/geoserver/radi/ows?">
 								<!-- value='/geoserver/radi/ows?' -->
+								<!-- value="/ows/user1/world/ims?" -->
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><a href="javascript:void(0)" class="navbar-link" id="wms_get_info">获取信息</a></label>
@@ -3323,17 +3334,23 @@
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
 									</button>
+									<button type="button" class="btn btn-default btn-tool btn-infos" data-toggle="tooltip" data-placement="top" data-original-title="详细信息" disabled>
+										<i class="fa fa-list"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-thum" data-toggle="tooltip" data-placement="top" data-original-title="缩略图">
+										<i class="fa fa-picture-o"></i>
+									</button>
 									<!-- <button type="button" class="btn btn-default btn-tool btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
 										<i class="fa fa-refresh"></i>
 									</button> -->
-									<div class="btn-group pull-right" role="group">
+									<!-- <div class="btn-group pull-right" role="group">
 										<button type="button" class="btn btn-default btn-infos" disabled>
 											详细信息
 										</button>
 										<button type="button" class="btn btn-default btn-thum">
 											缩略图
 										</button>
-									</div>
+									</div> -->
 								</div>
 								<div class="row db-content table-responsive db-infos-pane">
 									<table class="table table-hover borderless table-striped">
@@ -3376,6 +3393,12 @@
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-infos" data-toggle="tooltip" data-placement="top" data-original-title="详细信息">
+										<i class="fa fa-list"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-thum" data-toggle="tooltip" data-placement="top" data-original-title="缩略图">
+										<i class="fa fa-picture-o"></i>
 									</button>
 									<div class="btn-group pull-right" role="group">
 										<button type="button" class="btn btn-default" id="show-dataset-infos" disabled="disabled">元数据</button>
@@ -3602,7 +3625,7 @@
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-	                <h5 class="modal-title">显示属性</h5>
+	                <h5 class="modal-title">属性数据</h5>
 	            </div>
 	            <div class="modal-body">
 					<form class="form-horizontal pages-form" role="form" onsubmit="return false">
@@ -4080,7 +4103,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像数据库</h5>
+					<h5 class="modal-title">影像数据库上传</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row import-db">
@@ -4279,7 +4302,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">数据导入</h5>
+					<h5 class="modal-title">矢量数据导入</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -4359,7 +4382,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">投影变换</h5>
+					<h5 class="modal-title">矢量数据投影</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -4466,7 +4489,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像edgeDetect</h5>
+					<h5 class="modal-title">边缘检测</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -4752,7 +4775,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像Reverse</h5>
+					<h5 class="modal-title">影像灰度反转</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -4864,7 +4887,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像Graylize</h5>
+					<h5 class="modal-title">影像灰度化</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -4975,7 +4998,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像Smooth</h5>
+					<h5 class="modal-title">图像平滑</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -5086,7 +5109,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像拉伸</h5>
+					<h5 class="modal-title">影像灰度拉伸</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -5197,7 +5220,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像Subtract</h5>
+					<h5 class="modal-title">图像相减</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -5338,7 +5361,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像Pixel Blend</h5>
+					<h5 class="modal-title">像素融合</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -5473,13 +5496,124 @@
 		</div>
 	</div>
 
+	<!-- GPS Raster Threshold panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_raster_threshold_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">图像二值化</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input-raster" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										影像:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-raster-name" disabled>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										路径:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-raster-path" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										影像:
+									</label>
+									<div class="col-md-5">
+										<input type="text" class="form-control gps-output-raster-name" >
+									</div>
+									<div class="col-md-3">
+										<select class="form-control gps-output-raster-format">
+											<option value=".jpg">.jpg</option>
+											<option value=".png">.png</option>
+											<option value=".tif">.tif</option>
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- GPS Raster His Equal panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_raster_his_equal_dialog" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像直方图</h5>
+					<h5 class="modal-title">直方图均衡</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -6012,7 +6146,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">周长</h5>
+					<h5 class="modal-title">长度</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -6150,8 +6284,8 @@
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
-                                      	   <input type="radio" name="buffer-diastance" checked>
-                                      	   <span>距离:</span>
+                                  	   <input type="radio" name="buffer-diastance" class='buffer-distance-radio' checked>
+                                  	   <span>距离:</span>
 									</label>
 									<div class="col-md-8">
 										<input type="text" class="form-control gps-buffer-distance">
@@ -6159,11 +6293,11 @@
 								</div>
 								<div class="form-group form-group-sm">
 									<label class="col-md-2 control-label">
-                                      	   <input type="radio" name="buffer-diastance">
-                                      	   <span>字段:</span>
+                                  	   <input type="radio" name="buffer-diastance" class='buffer-distance-field-radio'>
+                                  	   <span>字段:</span>
 									</label>
 									<div class="col-md-8">
-										<input type="text" class="form-control gps-buffer-distance-field" disabled>
+										<select class="form-control gps-buffer-distance-field" disabled></select>
 									</div>
 								</div>
 							</form>
@@ -6206,7 +6340,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">质心</h5>
+					<h5 class="modal-title">中心点</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -6416,7 +6550,7 @@
 										瓦片库:
 									</label>
 									<div class="col-md-8">
-										<input type="text" class="form-control gps-tile-store">
+										<input type="text" class="form-control gps-tile-store" disabled="">
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
@@ -6577,7 +6711,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">KMean聚类分析</h5>
+					<h5 class="modal-title">KMeans聚类分析</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">

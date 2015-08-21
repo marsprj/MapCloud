@@ -72,10 +72,10 @@ MapCloud.GPSOutputSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 		});		
 	},
 
-	showDialog : function(source){
+	showDialog : function(source,type){
 		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
 		this.source = source;
-		dbsManager.getDataSources(this.getDataSources_callback);
+		dbsManager.getDataSources(this.getDataSources_callback,type);
 	},
 
 	getDataSources_callback : function(dataSources){

@@ -65,10 +65,11 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 					continue;
 				}
 				name = operObj.name;
+				var alias = operObj.alias;
 				html += '<li>'
-					+ 	'	<a href="javascript:void(0)" class="gps-oper">'
+					+ 	'	<a href="javascript:void(0)" class="gps-oper" oname="' + name+ '">'
 					+	'		<i class="fa fa-wrench"></i>'
-					+	'		<span>' + name + '</span>'
+					+	'		<span>' + alias + '</span>'
 					+	'	</a>'
 					+	"</li>";
 			}
@@ -99,7 +100,7 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 			dialog.panel.find(".gps-oper.selected").removeClass("selected");
 			$(this).addClass("selected");
 		}).dblclick(function(){
-			var operName = $(this).find("span").text();
+			var operName = $(this).attr("oname");
 			dialog.showOperDialog(operName);
 		});
 
@@ -160,6 +161,10 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			case "RasterPixelBlend":{
 				dialog = MapCloud.gps_raster_pixel_blend_dialog;
+				break;
+			}
+			case "RasterThreshold":{
+				dialog = MapCloud.gps_raster_threshold_dialog;
 				break;
 			}
 			case "RasterHistogramEqualization":{

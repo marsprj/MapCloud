@@ -52,7 +52,7 @@ MapCloud.GPSConvexHullDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			// MapCloud.gps_output_source_dialog.showDialog("convexHull");
+			MapCloud.gps_output_source_dialog.showDialog("convexHull","Feature");
 		});
 
 
@@ -63,18 +63,19 @@ MapCloud.GPSConvexHullDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			// if(dialog.outputSourceName == null){
-			// 	MapCloud.notify.showInfo("请选择输出的数据库","Warning");
-			// 	return;
-			// }
+			if(dialog.outputSourceName == null){
+				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
+				return;
+			}
 
-			// var outputTypeName = dialog.panel.find(".gps-output-typename").val();
-			// if(outputTypeName == ""){
-			// 	MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
-			// 	return;
-			// }
+			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
+			if(outputTypeName == ""){
+				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+				return;
+			}
 			MapCloud.notify.loading();
-			gpsManager.convexHull(dialog.inputSourceName,dialog.inputTypeName,dialog.convexHull_callback);
+			gpsManager.convexHull(dialog.inputSourceName,dialog.inputTypeName,
+				dialog.outputSourceName,outputTypeName,dialog.convexHull_callback);
 			
 		});
 
@@ -106,18 +107,21 @@ MapCloud.GPSConvexHullDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-type-name").val(this.inputTypeName);
 	},
 
-	// // 输出
-	// setOutputSource : function(outputSourceName){
-	// 	this.outputSourceName = outputSourceName;
-	// 	this.panel.find(".gps-output-source-name").val(this.outputSourceName);
-	// }
+	// 输出
+	setOutputSource : function(outputSourceName){
+		this.outputSourceName = outputSourceName;
+		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
+	},
 
 	// 结果
 	convexHull_callback : function(result){
 		MapCloud.notify.hideLoading();
-		var xmlString = (new XMLSerializer()).serializeToString(result);
-		var html = "<xmp>" + xmlString + "</xmp>";
 		var dialog = MapCloud.gps_convex_hull_dialog;
+		var html = "<div class='row'>"
+			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 表 : " + dialog.inputTypeName
+			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + "; 表 : " 
+			+ dialog.panel.find(".gps-output-typename").val() + " ];  结果 : "
+			+ result;
 		dialog.panel.find(".gps-oper-log-div").html(html);		
 	}
 });
