@@ -235,9 +235,12 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				var table = dialog.panel.find(".unique-pane .style-list-table");
 				var ruleSelected = table.find("tbody tr.selected");
-				var rulesTr = table.find(".tbody tr");
+				var rulesTr = table.find("tbody tr");
 				var index = rulesTr.index(ruleSelected);
 				if(index != -1){
+					if(!confirm("确定删除该行样式吗？")){
+						return;
+					}
 					dialog.uniqueStyle.removeRule(index);
 					dialog.displayUniqueStyle(dialog.uniqueStyle);
 				}
@@ -286,6 +289,42 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 
 			});
+		});
+
+		// 分级样式的添加所有值
+		this.panel.find("#quantities_add_all_value").click(function(){
+			var field = dialog.panel.find(".quantities-pane .layer-fields").val();
+			if(field == "none"){
+				dialog.quantitiesStyle = null;
+				dialog.cleanupQuantitiesPanel();
+			}else{
+				if(dialog.wfsWorkspace == null){
+					return;
+				}
+				dialog.wfsWorkspace.getMinMaxValue(dialog.typeName,
+					field, mapObj.name,dialog.getMinMaxValue_callback)
+			}
+		});
+
+		// 删除一个rule
+		this.panel.find("#quantities_remove_value").click(function(){
+			var table = dialog.panel.find(".quantities-pane .style-list-table");
+				var ruleSelected = table.find("tbody tr.selected");
+				var rulesTr = table.find("tbody tr");
+				var index = rulesTr.index(ruleSelected);
+				if(index != -1){
+					if(!confirm("确定删除该行样式吗？")){
+						return;
+					}
+					dialog.quantitiesStyle.removeRule(index);
+					dialog.displayQuantitiesStyle(dialog.quantitiesStyle);
+				}
+		});
+
+		// 删除分级样式的所有值
+		this.panel.find("#quantities_remove_all_value").click(function(){
+			dialog.quantitiesStyle = null;
+			dialog.cleanupQuantitiesPanel();
 		});
 
 		// 左侧样式类型选择
@@ -567,6 +606,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".unique-pane .style-list-table").html(html);
 		this.registerUniqueSymbolEvent();
 		this.registerUniqueSymbolIconEvent();
+		this.registerUnqiueSelectEvent();
 	},
 
 	// 分级样式
@@ -585,6 +625,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".quantities-pane .style-list-table").html(html);
 		this.registerQuantitiesSymbolEvent();
 		this.registerQuantitiesSymbolIconEvent();
+		this.registerQuantitiesSelectEvent();
 	},
 	 
 	// 设置各个panel的style,并设置各个页面的展示
@@ -639,7 +680,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 		});	
 	},
-	// 单一值修改样式
+	// 唯一值修改样式
 	registerUniqueSymbolEvent : function(){
 		var dialog = this;
 		this.panel.find(".unique-pane .style-symbol").click(function(){
@@ -658,7 +699,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
-	// 修改单一值符号
+	// 修改唯一值符号
 	registerUniqueSymbolIconEvent : function(){
 		var dialog = this;
 		this.panel.find(".unique-pane .symbol-icon").click(function(){
@@ -684,6 +725,15 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					}
 				}
 			}	
+		});
+	},
+
+	// 选中一行唯一值样式
+	registerUnqiueSelectEvent : function(){
+		var dialog = this;
+		this.panel.find(".unique-pane .style-list-table tbody tr").click(function(){
+			dialog.panel.find(".unique-pane .style-list-table tr").removeClass("selected");
+			$(this).addClass("selected");
 		});
 	},
 
@@ -732,6 +782,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					}
 				}
 			}	
+		});
+	},
+	// 分级样式的一行选择
+	registerQuantitiesSelectEvent : function(){
+		var dialog = this;
+		this.panel.find(".quantities-pane .style-list-table tbody tr").click(function(){
+			dialog.panel.find(".quantities-pane .style-list-table tr").removeClass("selected");
+			$(this).addClass("selected");
 		});
 	},
 

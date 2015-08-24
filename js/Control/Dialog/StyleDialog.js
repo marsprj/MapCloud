@@ -28,7 +28,9 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		//样式初始化，拖动条
 		this.panel.find(".slider").each(function(){
-			$(this).slider();
+			$(this).slider({
+				tooltip : 'hide'
+			});
 			$(this).on("slide",function(slideEvt){
 				var parent = $(this).parents(".form-group");
 				var input = parent.find(".slider-value")
@@ -297,11 +299,14 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		var stroke = symbolizer.stroke;
 		var strokeItem = this.panel.find("#style-info .style-stroke");
 		this.displayStroke(strokeItem,stroke);
+		var fill = symbolizer.fill;
+		var fillItem = this.panel.find("#style-info .style-fill");
+		this.displayFill(fillItem,fill);
 		var shadow = symbolizer.shadow;
 		var shadowItem = this.panel.find("#style-info .style-shadow");
 		this.displayShadow(shadowItem,shadow);
-		var fillItem = this.panel.find("#style-info .style-fill");
-		this.undisplayStyleItem(fillItem);
+		// var fillItem = this.panel.find("#style-info .style-fill");
+		// this.undisplayStyleItem(fillItem);
 		var markItem = this.panel.find("#style-info .style-mark");
 		this.undisplayStyleItem(markItem);
 	},
@@ -598,6 +603,10 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		var strokeItem = this.panel.find("#style-info .style-stroke");
 		var stroke = this.getStroke(strokeItem);
 		lineSymbolizer.stroke = stroke;
+
+		var fillItem = this.panel.find("#style-info .style-fill");
+		var fill = this.getFill(fillItem);
+		lineSymbolizer.fill = fill;
 
 		var shadowItem = this.panel.find("#style-info .style-shadow");
 		var shadow = this.getShadow(shadowItem);

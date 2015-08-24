@@ -1773,6 +1773,14 @@ ul.layers_row li:before {
 	height: 370px;
     overflow-y: auto;
 }
+.quantities-pane .style-list-table tbody{
+	height: 340px;
+}
+
+.quantities-pane .style-list-table{
+	height: 370px;
+}
+
 .style-list-table tbody tr.selected{
 	background-color: #E4E4E4;
 }
@@ -2495,6 +2503,11 @@ ul.layers_row li:before {
 }
 .table-tree li a span{
 	word-break: break-all;
+	display: inline-block;
+	max-width: 156px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .table-tree a.selected{
 	background-color: #dfeef5;

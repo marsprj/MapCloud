@@ -609,6 +609,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var btnId = this.panel.find(".table-pane .btn-group .btn[disabled='disabled']").attr("id")
 		if(dataSet.geometryType == null){
 			this.panel.find("#show-dataset-preview").attr("disabled",true);
+		}else{
+			this.panel.find("#show-dataset-preview").attr("disabled",false);
 		}
 		switch(btnId){
 			case "show-dataset-infos":{
