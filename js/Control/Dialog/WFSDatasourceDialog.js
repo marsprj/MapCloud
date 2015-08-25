@@ -25,19 +25,20 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				dialog.panel.find("#wfs_datasource_layer_url").each(function(){
 					var url = $(this).val();
 					if(url== ""){
-						alert("空");
+						MapCloud.notify.showInfo("请输入WFS服务地址","Warning");
+						dialog.panel.find("#wfs_datasource_layer_url").focus();
 						return;
 					}
 					var version = "1.0.0";
 
 					var wfsworkspace = new GeoBeans.WFSWorkspace("world", url, version);
 					if(wfsworkspace == null){
-						MapCloud.alert_info.showInfo("error");
+						MapCloud.notify.showInfo("error");
 						return;
 					}
 					types = wfsworkspace.getFeatureTypes();
 					if(types == null){
-						MapCloud.alert_info.showInfo("无法获取图层","error");
+						MapCloud.notify.showInfo("无法获取图层","error");
 						return;
 					}
 
@@ -51,19 +52,26 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				var layer_name = null;
-				dialog.panel.find("#wfs_datasource_layer_name").each(function(){
-					layer_name = $(this).val();
-				});
+				layer_name = dialog.panel.find("#wfs_datasource_layer_name").val();
 				if (layer_name == null || layer_name == "")
 				{
-					MapCloud.alert_info.showInfo("输入图层名","Warning");
+					MapCloud.notify.showInfo("输入图层名","Warning");
+					dialog.panel.find("#wfs_datasource_layer_name").focus();
 					return;
 				}
+
+				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				if(!nameReg.test(layer_name)){
+					MapCloud.notify.showInfo("请输入有效的图层名","Warning");
+					dialog.panel.find("#wfs_datasource_layer_name").focus();
+					return;
+				}
+
 				var layers = mapObj.getLayers();
 				for(var i = 0; i < layers.length; ++i){
 					var layer = layers[i];
 					if(layer.name == layer_name){
-						MapCloud.alert_info.showInfo("图层名重复，请修改","Warning");
+						MapCloud.notify.showInfo("图层名重复，请修改","Warning");
 						dialog.panel.find("#wfs_datasource_layer_name").focus();
 						return;
 					}
@@ -73,7 +81,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 				var typename = null;
 				typename = dialog.panel.find("#wfs_datasource_layers option:selected").text();
 				if(typename == null || typename == ""){
-					MapCloud.alert_info.showInfo("设置有效的图层","Warning");
+					MapCloud.notify.showInfo("设置有效的图层","Warning");
 					return;
 				}
 
@@ -84,7 +92,8 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 					server = $(this).val();
 				});
 				if(server == null || server == ""){
-					MapCloud.alert_info.showInfo("请输入有效的地址","Warning");
+					MapCloud.notify.showInfo("请输入有效的地址","Warning");
+					dialog.panel.find("#wfs_datasource_layer_url").focus();
 					return;
 				}
 				dialog.layer = new GeoBeans.Layer.WFSLayer(layer_name,

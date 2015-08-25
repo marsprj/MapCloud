@@ -11,7 +11,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 				var a = dialog.panel
 				.find(".maps-thumb .map-thumb.selected");
 				if(a.length == 0){
-					alert("请选择一个地图！");
+					MapCloud.notify.showInfo("请选择一个地图！","Warning");
 					return;
 				}
 				// 获得地图名称
@@ -32,14 +32,14 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 	showDialog : function(){
 		this.cleanup();
 		this.panel.modal();
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		// 获得地图列表
 		mapManager.getMaps(this.getMaps_callback);
 	},
 
 	// 返回地图列表
 	getMaps_callback : function(maps){
-		MapCloud.alert_info.hideLoading();
+		MapCloud.notify.hideLoading();
 		var dialog = MapCloud.get_maps_dlg;
 		var panel = dialog.panel;
 		var html = "";
@@ -85,11 +85,11 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 	///打开地图
 	openMap : function(name){
 		this.closeDialog();
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		var info = "打开地图 [ " + name + " ]";
 		mapObj = mapManager.getMap("mapCanvas_wrapper",name);
 		if(mapObj == null){
-			MapCloud.alert_info.showInfo("failed",info);
+			MapCloud.notify.showInfo("failed",info);
 		}else{
 			$("#layers_content").slideDown();
 			// if(mapObj.extent != null){
@@ -102,7 +102,7 @@ MapCloud.GetMapsDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.refresh_panel.refreshPanel();
 			MapCloud.dataGrid.cleanup();
 			//显示信息
-			MapCloud.alert_info.showInfo("success",info);
+			MapCloud.notify.showInfo("success",info);
 		}
 	}
 

@@ -132,7 +132,9 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// fill 拖动条
 		this.panel.find(".form-group-fill-opacity .slider").each(function(){
-			$(this).slider();
+			$(this).slider({
+				tooltip : 'hide'
+			});
 			$(this).on("slide",function(slideEvt){
 				var opacity = slideEvt.value;
 				that.panel.find("#chart_style_opacity").html(opacity/100);
@@ -144,7 +146,9 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// border 拖动条
 		this.panel.find(".form-group-border .slider").each(function(){
-			$(this).slider();
+			$(this).slider({
+				tooltip : 'hide'
+			});
 			$(this).on("slide",function(slideEvt){
 				var opacity = slideEvt.value;
 				that.panel.find("#chart_style_border_opacity").html(opacity/100);
@@ -393,23 +397,48 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 	// 添加图表
 	addChart : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空");
+			return;
+		}
 		var layerName = this.panel.find(".chart-base-layer").val();
 		var layer = mapObj.getLayer(layerName);
 		if(layer == null){
-			MapCloud.alert_info.showInfo("选择一个有效的底图","Waring");
+			MapCloud.notify.showInfo("选择一个有效的底图","Waring");
 			return;
 		}
 		var chartName = this.panel.find(".chart-table-name").val();
 		if(chartName == null || chartName == ""){
-			MapCloud.alert_info.showInfo("请输入图表名称","Waring");
+			MapCloud.notify.showInfo("请输入图表名称","Waring");
 			return;
 		}
 
 		var baseLayerField = this.panel.find(".chart-base-layer-fields").val();
+		if(baseLayerField == null || baseLayerField == ""){
+			MapCloud.notify.showInfo("请选择空间字段","Warning");
+			return;
+		}
+
+
 		var dbName = this.dbName;
 		var tableName = this.tableName;
+		if(dbName == null || tableName == null){
+			MapCloud.notify.showInfo("请设置表格","Warning");
+			return;
+		}
+
 		var tableField = this.panel.find(".chart-table-fields").val();
+		if(tableField == null || tableField == ""){
+			MapCloud.notify.showInfo("请设置关联字段","Warning");
+			return;
+		}
+
 		var chartField = this.panel.find("#chart_style_fields").val();
+		if(chartField == null || chartField == ""){
+			MapCloud.notify.showInfo("请设置分级图字段","Warning");
+			return;
+		}
+
 		var labelLayer = this.panel.find(".chart-label-layer").val();
 		var labelLayerField = this.panel.find(".chart-label-layer-fields").val();
 
@@ -428,242 +457,9 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 			var name = that.panel.find(".chart-table-name").val();
 			that.chartLayer = mapObj.getLayer(name);
 		}else{
-			MapCloud.alert_info.showInfo(result,"添加分级图");
+			MapCloud.notify.showInfo(result,"添加分级图");
 		}
 	},
-
-	// 根据设置获得样式
-	// getChartStyle : function(){
-	// 	var layerName = this.panel.find(".chart-base-layer").val();
-	// 	var layer = mapObj.getLayer(layerName);
-	// 	if(layer == null){
-	// 		return;
-	// 	}
-	// 	var layerField = this.panel.find(".chart-base-layer-fields").val(); 
-	// 	var tableField = this.panel.find(".chart-table-fields").val();
-	// 	var chartField = this.panel.find("#chart_style_fields").val();
-	// 	var count = this.panel.find("#chart_style_count").val();
-	// 	var colorMapID = this.panel.find(".select-color-ramp li").attr("cid");
-
-	// 	var style = layer.getRangeChartStyle(layerField,this.dataSource.name,
-	// 				this.dataSet.name,tableField,chartField,parseInt(colorMapID),parseInt(count));
-	// 	return style;
-	// },
-
-	// displayStyle : function(style){
-	// 	if(style == null){
-	// 		return;
-	// 	}
-	// 	var nodes = style.nodes;
-	// 	if(nodes == null){
-	// 		return;
-	// 	}
-	// 	var rules = style.rules;
-	// 	if(rules == null){
-	// 		return;
-	// 	}
-	// 	var rule = null;
-	// 	var symbolizer = null;
-	// 	var symbolizerHtml = "";
-	// 	var html = "";
-	// 	var labelHtml = "";
-	// 	var label = null;
-	// 	var fill = null;
-	// 	var fillColor = null;
-	// 	var hex = null;
-	// 	var opacity = null;
-	// 	for(var i = 0; i < rules.length; ++i){
-	// 		rule = rules[i];
-	// 		if(rule == null){
-	// 			continue;
-	// 		}
-	// 		symbolizer = rule.symbolizer;
-	// 		if(symbolizer == null){
-	// 			continue;
-	// 		}
-			
-	// 		fill = symbolizer.fill;
-	// 		if(fill == null){
-	// 			continue;
-	// 		}
-	// 		fillColor = fill.color;
-	// 		if(fillColor == null){
-	// 			continue;
-	// 		}
-	// 		// hex = fillColor.getHex();
-	// 		var lower = parseFloat(nodes[i]);
-	// 		var upper = parseFloat(nodes[i+1])
-	// 		label = lower.toFixed(2) + " ~ " + upper.toFixed(2);
-
-	// 		html += "<div class='form-group form-group-sm form-group-style' rid='" + i + "'>"
-	// 			+	"	<div class='col-md-1 col-md-offset-3'>"
-	// 			+	"		<div class='btn btn-default colorSelector'>"
-	// 			+	"			<div></div>"
-	// 			+	"		</div>"
-	// 			+	"	</div>"
-	// 			+	"	<div class='col-md-6'><span>"
-	// 			+		label 
-	// 			+	"	</span></div>"
-	// 			+ 	"</div>"
-	// 	}
-	// 	this.panel.find("#chart_style_coll .panel-body .form-horizontal .form-group-style").remove();
-	// 	this.panel.find("#chart_style_coll .panel-body .form-horizontal").append(html);
-
-		
-	// 	var that = this;
-	// 	this.panel.find(".form-group-style .colorSelector").each(function(){
-	// 		$(this).colpick({
-	// 			color:'EEEEEE',
-	// 			onChange:function(hsb,hex,rgb,el,bySetColor) {
-	// 				$(el).children().css("background-color","#" + hex);
-	// 				that.changeStyleByColor(el);
-	// 			},
-	// 			onSubmit:function(hsb,hex,rgb,el,bySetColor){
-	// 				$(el).children().css("background-color","#" + hex);
-	// 				$(el).colpickHide();
-	// 				that.changeStyleByColor(el);
-	// 			}
-	// 		});
-	// 		var formGroup = $(this).parents(".form-group-style");
-	// 		var rid = formGroup.attr("rid");
-	// 		if(that.style == null){
-	// 			return;
-	// 		}
-	// 		var rules = that.style.rules;
-	// 		if(rules == null){
-	// 			return;
-	// 		}
-	// 		var rule = rules[rid];
-	// 		if(rule == null){
-	// 			return;
-	// 		}
-	// 		// set fill 
-	// 		var color = rule.symbolizer.fill.color;
-	// 		var colorRgba = color.getRgba();
-	// 		var hex = color.getHex();
-	// 		// var opacity = color.getOpacity();
-	// 		$(this).colpickSetColor(hex);
-	// 		$(this).find("div").css("background-color",colorRgba);
-
-	// 		// set border
-	// 		var strokeColor = rule.symbolizer.stroke.color;
-	// 		var strokeRgba = strokeColor.getRgba();
-	// 		// var strokeHex = strokeColor.getHex();
-	// 		// var strokeOpacity = strokeColor.getOpacity();
-	// 		$(this).css("border-color",strokeRgba);
-	// 	});
-	// },
-
-	// //更换样式,样色更改
-	// changeStyleByColor : function(colorSel){
-	// 	var formGroup = $(colorSel).parents(".form-group-style");
-	// 	var rid = formGroup.attr("rid");
-	// 	if(this.style == null){
-	// 		return;
-	// 	}
-	// 	var rules = this.style.rules;
-	// 	if(rules == null){
-	// 		return;
-	// 	}
-	// 	var rule = rules[rid];
-	// 	if(rule == null){
-	// 		return;
-	// 	}
-	// 	var symbolizer = rule.symbolizer;
-	// 	if(symbolizer == null){
-	// 		return;
-	// 	}
-	// 	var fill = symbolizer.fill;
-	// 	if(fill == null){
-	// 		return;
-	// 	}
-	// 	var fillColor = fill.color;
-	// 	var opacity = fillColor.getOpacity();
-	// 	var backgroundColor = $(colorSel).find("div").css("background-color");
-	// 	var color = new GeoBeans.Color();
-	// 	color.setByRgb(backgroundColor,opacity);
-	// 	symbolizer.fill.color = color;
-	// },
-
-	// // 更改透明度
-	// changeStyleByOpactiy : function(opacity){
-	// 	if(this.style == null){
-	// 		return;
-	// 	}
-	// 	var rules = this.style.rules;
-	// 	if(rules == null){
-	// 		return;
-	// 	}
-	// 	var rule = null;
-	// 	var symbolizer = null;
-	// 	var fill = null;
-	// 	var fillColor = null;
-	// 	for(var i = 0; i < rules.length; ++i){
-	// 		rule = rules[i];
-	// 		if(rule != null){
-	// 			symbolizer = rule.symbolizer;
-	// 			if(symbolizer != null){
-	// 				fill = symbolizer.fill;
-	// 				if(fill != null){
-	// 					fillColor = fill.color;
-	// 					var hex = fillColor.getHex();
-	// 					var color = new GeoBeans.Color();
-	// 					color.setByHex(hex,opacity);
-	// 					fill.color = color;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// },
-
-	// changeStyleByBorder : function(rgb,opacity){
-	// 	if(this.style == null){
-	// 		return;
-	// 	}
-
-	// 	// var backgroundColor = $(colorSel).find("div").css("background-color");
-		
-	// 	var rules = this.style.rules;
-	// 	if(rules == null){
-	// 		return;
-	// 	} 
-	// 	var rule = null;
-	// 	var symbolizer = null;
-	// 	var stroke = null;
-	// 	var color = null;
-	// 	var op = null;
-	// 	var r = null;
-	// 	for(var i = 0 ; i < rules.length;++i){
-	// 		rule = rules[i];
-	// 		if(rule == null){
-	// 			continue;
-	// 		}
-	// 		symbolizer = rule.symbolizer;
-	// 		if(symbolizer == null){
-	// 			continue;
-	// 		}
-	// 		stroke = symbolizer.stroke;
-	// 		if(stroke == null){
-	// 			continue;
-	// 		}
-	// 		color = stroke.color;
-	// 		if(color == null){
-	// 			continue;
-	// 		}
-	// 		op = color.getOpacity();
-	// 		h = color.getRgb();
-	// 		if(rgb == null){
-	// 			rgb = r;
-	// 		}
-	// 		if(opacity == null){
-	// 			opacity = op;
-	// 		}
-	// 		var c = new GeoBeans.Color();
-	// 		c.setByRgb(rgb,opacity);
-	// 		stroke.color = c;
-	// 	}
-	// },
-
 
 	// 修改了参数
 	changeChartOption : function(){
@@ -671,6 +467,11 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		var name = this.panel.find(".chart-table-name").val();
+		if(name == null || name == ""){
+			MapCloud.notify.showInfo("请输入分级图名称","Warning");
+			this.panel.find(".chart-table-name").focus();
+			return;
+		}
 		var chartOption = this.getChartOption();
 		this.chartLayer.setChartOption(chartOption);
 		this.chartLayer.setName(name);

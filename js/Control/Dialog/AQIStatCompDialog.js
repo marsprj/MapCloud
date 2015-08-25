@@ -18,7 +18,7 @@ MapCloud.AQIStatCompDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.controlPanel.find(".aqi-station-btn .btn-comp").click(function(){
 			if(that.stations.length < 2){
-				MapCloud.alert_info.showInfo("请至少选择两个站点","Warning");
+				MapCloud.notify.showInfo("请至少选择两个站点","Warning");
 				return;
 			}
 			that.showDialog();

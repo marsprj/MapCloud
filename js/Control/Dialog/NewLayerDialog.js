@@ -17,8 +17,6 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		// 选择数据源,弹出数据源窗口
 		dialog.panel.find("#new_layer_select_dbs").each(function(){
 			$(this).click(function(){
-				// MapCloud.data_source_dialog.showDialog("select");
-				// MapCloud.db_admin_dialog.showDialog("select");
 				MapCloud.vector_db_dialog.showDialog("select");
 			});
 		});
@@ -42,8 +40,15 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 				var name = dialog.panel.find("#new_layer_name").val();
 				if(name == null || name == ""){
 					MapCloud.notify.showInfo("请输入名称","Warning");
+					dialog.panel.find("#new_layer_name").focus();
 					return;
 				}
+				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				if(!nameReg.test(name)){
+					MapCloud.notify.showInfo("请输入有效的名称","Warning");
+				}
+				
+
 				if(dialog.dataSource == null || 
 					dialog.dataSet == null){
 					MapCloud.notify.showInfo("请选择数据","Warning");

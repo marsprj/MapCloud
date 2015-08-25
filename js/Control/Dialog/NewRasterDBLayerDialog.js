@@ -26,6 +26,13 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 			var name = dialog.panel.find(".new-layer-name").val();
 			if(name == null || name == ""){
 				MapCloud.notify.showInfo("请输入名称","Warning");
+				dialog.panel.find(".new-layer-name").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_-]+$/;
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的名称","Warning");
+				dialog.panel.find(".new-layer-name").focus();
 				return;
 			}
 

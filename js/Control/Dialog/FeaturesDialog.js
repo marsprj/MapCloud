@@ -159,10 +159,10 @@ MapCloud.FeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 设置偏移量
 		var offset = ( page -1 ) * this.maxFeatures;
 		var layer = mapObj.getLayer(this.layerName);
-		MapCloud.alert_info.loading();
+		MapCloud.notify.loading();
 		var features = layer.getFeatureBBoxGet(null,this.maxFeatures,offset);
 		this.showFeatures(features);
-		MapCloud.alert_info.hideLoading();
+		MapCloud.notify.hideLoading();
 	},
 
 	// 显示features

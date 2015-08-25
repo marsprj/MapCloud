@@ -114,7 +114,9 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 透明度
 		this.panel.find(".slider").each(function(){
-			$(this).slider();
+			$(this).slider({
+				tooltip : 'hide'
+			});
 			$(this).on("slide",function(slideEvt){
 				var opacity = slideEvt.value;
 				that.panel.find(".chart-opacity").html(opacity/100);
@@ -499,15 +501,46 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 	// 添加图层
 	addChart : function(){
 		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
 			return;
 		}
+		var name = this.panel.find(".chart-table-name").val();
+		if(name == ""){
+			MapCloud.notify.showInfo("请输入专题图名称","Warning");
+			this.panel.find(".chart-table-name").focus();
+			return;
+		}
+
 		var baseLayerName = this.panel.find(".chart-base-layer").val();
+		if(baseLayerName == null || baseLayerName == ""){
+			MapCloud.notify.showInfo("请选择底图","Warning");
+			return;
+		}
+
 		var baseLayerField = this.panel.find(".chart-base-layer-fields").val();
+		if(baseLayerField == null || baseLayerField == ""){
+			MapCloud.notify.showInfo("请选择空间字段","Warning");
+			return;
+		}
+
 		var dbName =  this.dbName;
 		var tableName = this.tableName;
+		if(dbName == null || tableName == null){
+			MapCloud.notify.showInfo("请设置表格","Warning");
+			return;
+		}
 		var tableField = this.panel.find(".chart-table-fields").val();
+		if(tableField == null || tableField == ""){
+			MapCloud.notify.showInfo("请设置关联字段","Warning");
+			return;
+		}
+
 		var chartFields = this.getChartFields();
-		var name = this.panel.find(".chart-table-name").val();
+		if(chartFields == null || chartFields.length == 0){
+			MapCloud.notify.showInfo("请选择专题图字段","Warning");
+			return;
+		}
+		
 		var chartOption = this.getChartOption();
 		var chartLayer = new GeoBeans.Layer.BarChartLayer(name,baseLayerName,
 				baseLayerField,dbName,tableName,tableField,chartFields,chartOption);
@@ -521,7 +554,7 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 			var name = that.panel.find(".chart-table-name").val();
 			that.chartLayer = mapObj.getLayer(name);
 		}else{
-			MapCloud.alert_info.showInfo(result,"添加柱状图");
+			MapCloud.notify.showInfo(result,"添加柱状图");
 		}
 	},
 
@@ -531,6 +564,11 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		var name = this.panel.find(".chart-table-name").val();
+		if(name == null || name == ""){
+			MapCloud.notify.showInfo("请输入专题图名称","Warning");
+			this.panel.find(".chart-table-name").focus();
+			return;
+		}
 		var chartOption = this.getChartOption();
 		var chartFields = this.getChartFields();
 		this.chartLayer.setChartFields(chartFields);

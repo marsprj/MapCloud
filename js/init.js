@@ -16,8 +16,6 @@ $().ready(function(){
 	styleManager = user.getStyleManager();
 
 
-	MapCloud.alert_info 
-		= new MapCloud.AlertInfo("alert_info","alert_loading"); 
 	MapCloud.notify
 		= new MapCloud.Notify("container","alert_loading");
 	MapCloud.get_maps_dlg 
@@ -31,10 +29,6 @@ $().ready(function(){
 	MapCloud.wfs_datasource_dialog 
 		= new MapCloud.WFSDatasourceDialog("wfsDatasourceDialog");
 	MapCloud.wmts_dialog = new MapCloud.WMTSDialog("wmtsDialog");
-	MapCloud.data_source_dialog 
-		= new MapCloud.DataSourceDialog("dataSourceDialog");
-	MapCloud.db_admin_dialog 
-		= new MapCloud.DBAdminDialog("dbAdminDialog");
 	MapCloud.vector_db_dialog 
 		= new MapCloud.VectorDBDialog("vector_db_dialog");
 	MapCloud.pgis_connection_dialog 

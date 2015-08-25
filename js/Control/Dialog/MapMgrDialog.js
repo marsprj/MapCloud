@@ -29,7 +29,7 @@ MapCloud.MapMgrDialog = MapCloud.Class(MapCloud.Dialog,{
 					map = maps[i];
 					result = mapManager.removeMap(map);
 					var info = "Remove Map [ " + map + " ]";
-					MapCloud.alert_info.showInfo(result,info);
+					MapCloud.notify.showInfo(result,info);
 				}
 				// 删除完重新获取列表
 				mapManager.getMaps(dialog.getMaps_callback);

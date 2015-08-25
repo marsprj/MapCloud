@@ -232,7 +232,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 首页
 		this.panel.find(".glyphicon-step-backward").each(function(){
 			$(this).click(function(){
-				dialog.setDataSetFeaturePage(1);
+				var pageCount = parseInt(dialog.panel.find(".pages-form-pages").html());
+				if(pageCount >= 1){
+					dialog.setDataSetFeaturePage(1);
+				}
 			});
 		});
 
@@ -241,7 +244,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				var count = parseInt(dialog.panel
 					.find(".pages-form-pages").html());
-				dialog.setDataSetFeaturePage(count);
+				if(count >= 1){
+					dialog.setDataSetFeaturePage(count);
+				}
 			});
 		});
 
@@ -609,6 +614,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var btnId = this.panel.find(".table-pane .btn-group .btn[disabled='disabled']").attr("id")
 		if(dataSet.geometryType == null){
 			this.panel.find("#show-dataset-preview").attr("disabled",true);
+			if(btnId == "show-dataset-preview"){
+				this.panel.find(".table-pane .btn-group .show-dataset-infos").attr("disabled",true);
+				btnId = "show-dataset-infos";
+			}
 		}else{
 			this.panel.find("#show-dataset-preview").attr("disabled",false);
 		}
@@ -746,10 +755,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(dsName == null){
 			this.panel.find(".table-pane #dataset_features").attr("dsname",dataSet.name);
 		}
-		// 当前图层
-		if(dsName == dataSet.name){
-			return;
-		}
+		// // 当前图层
+		// if(dsName == dataSet.name){
+		// 	return;
+		// }
 		// 切换了图层
 		this.panel.find(".table-pane #dataset_features").attr("dsname",dataSet.name);
 		this.panel.find(".table-pane #dataset_features table tbody").html("");
@@ -768,6 +777,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 获得第一页数据
 		if(pageCount >= 1){
 			this.setDataSetFeaturePage(1);
+		}else{
+			this.panel.find(".pages-form-page").val(0);
 		}
 	},
 

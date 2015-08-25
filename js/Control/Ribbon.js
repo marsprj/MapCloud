@@ -370,7 +370,6 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 地图属性
 	onMapPropertis : function(){
-		// alert("onMapPropertis");
 		if(mapObj == null){
 			MapCloud.notify.showInfo("当前地图为空","Warning");
 			return;
@@ -428,31 +427,25 @@ MapCloud.Ribbon = MapCloud.Class({
 	// 饼状图
 	onAddPieChart : function(){
 		MapCloud.pie_chart_panel.showPanel();
-		// MapCloud.chart_dialog.showDialog();
-		// MapCloud.chart_dialog.setChartType("pie");
 	},
 
 	// 编辑图层
 	onEditLayer: function(){
-		alert("edit");
 	},
 	
 	// 分享图层
 	onShareLayer:function(){
-		alert("share");
 	},
 
 	// 复制图层
 	onDuplicateLayer:function(){
-		if(confirm("你确定要复制图层吗？")){
-			alert("复制图层并刷新tree");
-		}
+		
 	},
 
 	// 删除图层
 	onRemoveLayer : function(){
 		if($("#layers_row .layer_row.layer_row_selected").length == 0){
-			MapCloud.alert_info.showInfo("请选择图层","Warning");
+			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;			
 		}
 		var layerName = $("#layers_row .layer_row.layer_row_selected").attr("lname");
@@ -465,7 +458,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	removeLayer_callback : function(result){
-		MapCloud.alert_info.showInfo(result,"删除图层");
+		MapCloud.notify.showInfo(result,"删除图层");
 		var panel = MapCloud.refresh_panel;
 		panel.refreshPanel();
 	},
@@ -473,7 +466,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	// 图层定位
 	onZoomLayer:function(){
 		if($("#layers_row .layer_row.layer_row_selected").length == 0){
-			MapCloud.alert_info.showInfo("请选择图层","Warning");
+			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;			
 		}
 		var layerName = $("#layers_row .layer_row.layer_row_selected").attr("lname");
@@ -485,17 +478,14 @@ MapCloud.Ribbon = MapCloud.Class({
 	
 	// 选择所有图层
 	onSelectAllLayers:function(){
-		alert("选择所有图层");
 	},
 
 	// 导入图层
 	onImportLayer:function(){
-		alert("导入图层");
 	},
 	
 	// 导出图层
 	onExportLayer:function(){
-		alert("导出图层");
 	},
 	onCreateLayer:function(){
 		if(MapCloud.create_layer_dialog == null){
@@ -509,23 +499,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	/**************************************************************/
 	// 新增图表
 	addChart:function(){
-		// if($("#layers_row .layer_row.layer_row_selected").length == 0){
-		// 	MapCloud.alert_info.showInfo("请选择图层","Warning");
-		// 	return;			
-		// }
-		// var layerName = $("#layers_row .layer_row.layer_row_selected").attr("lname");
-		// var layer = mapObj.getLayer(layerName);
-		// if(layer == null){
-		// 	return;
-		// }
 		MapCloud.chart_panel.showPanel();
-		// MapCloud.chart_panel.setLayer(layer);
-		// alert('新增图表');
-		// if(MapCloud.new_chart_dialog == null){
-		// 	MapCloud.new_chart_dialog = new MapCloud.NewChartDialog("newChartDialog");
-		// }
-		// MapCloud.new_chart_dialog.showDialog();		
-
 	},
 
 	// 文件管理
@@ -535,8 +509,6 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 数据源管理
 	onDataSource : function(){
-		// MapCloud.data_source_dialog.showDialog();
-		// MapCloud.db_admin_dialog.showDialog();
 		MapCloud.vector_db_dialog.showDialog();
 	},
 
@@ -563,7 +535,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		var layerName = $("#layers_row .layer_row_selected")
 			.attr("lname");
 		if(layerName == null || layerName == ""){
-			MapCloud.alert_info.showInfo("请选择图层","Warning");
+			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;
 		}
 		var layer = mapObj.getLayer(layerName);
@@ -573,10 +545,10 @@ MapCloud.Ribbon = MapCloud.Class({
 		var geomType = layer.geomType;
 		if(geomType != GeoBeans.Geometry.Type.POINT &&
 			geomType != GeoBeans.Geometry.Type.MULTIPOINT){
-			MapCloud.alert_info.showInfo("请选择点图层","Warning");
+			MapCloud.notify.showInfo("请选择点图层","Warning");
 			return;
 		}
-		MapCloud.alert_info.hide();
+		MapCloud.notify.hide();
 		MapCloud.heatMap_dialog.showDialog();
 		MapCloud.heatMap_dialog.setLayer(layer);
 	},
@@ -1023,6 +995,9 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	showMapInfo : function(map){
 		$(".map-list-info").css("display","block");
+		if(map == null){
+			return;
+		}
 		var name = map.name;
 		var srid = map.srid;
 		$(".map-list-info .map-info-name").html(name);

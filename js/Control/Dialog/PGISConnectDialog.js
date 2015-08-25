@@ -23,10 +23,16 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		// 确定，新建连接
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
-				var name = dialog.panel
-					.find("#data_source_conn_name").val();
+				var name = dialog.panel.find("#data_source_conn_name").val();
 				if(name == null || name == ""){
 					MapCloud.notify.showInfo("请输入名称","Warning");
+					dialog.panel.find("#data_source_conn_name").focus();
+					return;
+				}
+				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				if(!nameReg.test(name)){
+					MapCloud.notify.showInfo("请输入有效的名称","Warning");
+					dialog.panel.find("#data_source_conn_name").focus();
 					return;
 				}
 
@@ -81,35 +87,60 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 
 	// 获得连接字符串
 	getConnetStr : function(){
-		var server = this.panel
-			.find("#data_source_conn_server").val();
+		var server = this.panel.find("#data_source_conn_server").val();
 		if(server == null || server == ""){
-			
+			MapCloud.notify.showInfo("请输入服务器地址","Warning");
+			this.panel.find("#data_source_conn_server").focus();
 			return null;
 		}
-		var instance = this.panel
-			.find("#data_source_conn_instance").val();
-		if(instance == null || instance == ""){
-			MapCloud.notify.showInfo("请输入端口","Warning");
+		var serverReg = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+		if(!serverReg.test(server)){
+			MapCloud.notify.showInfo("请输入有效的服务器地址","Warning");
+			this.panel.find("#data_source_conn_server").focus();
 			return null;
 		}
 
-		var db = this.panel
-			.find("#data_source_conn_db").val();
+		var instance = this.panel.find("#data_source_conn_instance").val();
+		if(instance == null || instance == ""){
+			MapCloud.notify.showInfo("请输入端口","Warning");
+			this.panel.find("#data_source_conn_instance").focus();
+			return null;
+		}
+		var instanceReg = /^[0-9]*[1-9][0-9]*$/;
+		if(!instanceReg.test(instance)){
+			MapCloud.notify.showInfo("请输入有效的端口","Warning");
+			this.panel.find("#data_source_conn_instance").focus();
+			return null;
+		}
+
+		var db = this.panel.find("#data_source_conn_db").val();
 		if(db == null || db == ""){
 			MapCloud.notify.showInfo("请输入数据库名称","Warning");
+			this.panel.find("#data_source_conn_db").focus();
 			return null;
 		}
-		var user = this.panel
-			.find("#data_source_conn_user").val();
+		var nameReg = /^[0-9a-zA-Z_-]+$/;
+		if(!nameReg.test(db)){
+			MapCloud.notify.showInfo("请输入有效的数据库名称","Warning");
+			this.panel.find("#data_source_conn_db").focus();
+			return null;
+		}
+
+		var user = this.panel.find("#data_source_conn_user").val();
 		if(user == null || user == ""){
 			MapCloud.notify.showInfo("请输入用户","Warning");
+			this.panel.find("#data_source_conn_user").focus();
 			return null;
 		}
-		var password = this.panel
-			.find("#data_source_conn_password").val();
+		if(!nameReg.test(user)){
+			MapCloud.notify.showInfo("请输入有效的用户","Warning");
+			this.panel.find("#data_source_conn_user").focus();
+			return null;
+		}
+		var password = this.panel.find("#data_source_conn_password").val();
 		if(password == null || password == ""){
 			MapCloud.notify.showInfo("请输入密码","Warning");
+			this.panel.find("#data_source_conn_password").focus();
 			return null;
 		}
 
@@ -177,28 +208,6 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		var info = "注册数据源";
 		MapCloud.notify.showInfo(result,info);
 		
-		// // 重新获取数据源列表
-		// var parentDialog = MapCloud.data_source_dialog;
-		// dbsManager.getDataSources(parentDialog
-		// 	.getDataSources_callback);
-		// var dialog = MapCloud.pgis_connection_dialog;
-		// dialog.closeDialog();
-
-		
-		// // 显示新添加的数据源
-		// var dbsList = parentDialog.panel.find("#data_source_list");
-		// var name = dialog.panel.find("#data_source_conn_name").val();
-		// dbsList.find("option[value='" + name + "']" )
-		// 	.attr("selected",true);
-		// parentDialog.getDataSource(name);
-
-		// var parentDialog = MapCloud.db_admin_dialog;
-		// dbsManager.getDataSources(parentDialog.getDataSources_callback);
-		// var dialog = MapCloud.pgis_connection_dialog;
-		// dialog.closeDialog();
-
-		
-
 		var dialog = MapCloud.pgis_connection_dialog;
 		var sourceName = dialog.panel.find("#data_source_conn_name").val();
 

@@ -2037,123 +2037,7 @@ ul.layers_row li:before {
 /* Create Map Dialog End   														*/
 /***************************************************************************/
 
-/***************************************************************************/
-/* DataSource Dialog Begin   														*/
-/***************************************************************************/
 
-#dataSourceDialog .modal-body{
-	height: 660px;
-}
-
-#dataSourceDialog .modal-dialog{
-	width: 740px;
-}
-
-#dataSourceDialog #datasets_div{
-	border: 1px solid #ccc;
-	border-radius :4px;
-	padding: 2px;
-  	height: 526px;
-  	background-color: #fff;
-}
-
-#datasets_div div{
-    height: 100%;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    overflow-y: auto;
-}
-
-#datasets_div .list-group-item{
-	border: 0px  solid #ddd;
-	border-bottom: 1px solid #ddd !important;
-	margin-bottom: 0px;
-	border-radius: 0px !important;
-}
-
-#datasets_div .list-group-item.selected{
-	background-color: rgba(169, 169, 169, 0.2);
-}
-
-#datasets_tab{
-	margin-bottom: 20px;
-}
-
-.dataset-name{
-	word-break: break-all;
-}
-#dataSourceDialog #dataset_fields{
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 2px;
-	height: 462px;
-}
-
-#dataSourceDialog #dataset_fields div{
-	height: 100%;
-	padding: 4px;
-	overflow-y: auto;
-}
-
-#dataSourceDialog #dataset_fields table thead th{
-	width: 50% !important;
-}
-
-#dataSourceDialog #dataset_fields table tbody td{
-	width: 50% !important;
-}
-
-.pages-form .form-group{
-	padding: 4px;
-	background-color: #f1f1f1;
-	margin: 0px;
-	border-radius: 4px;
-}
-
-.pages-form .form-group input{
-	/*height: 30px;*/
-	text-align: center;
-	margin-left: 10px;
-}
-.pages-form .form-group label{
-	padding-top: 10px;
-}
-
-.pages-form .form-group .query_count{
-	text-align: left;
-}
-.pages-form .form-group .query_count span{
-	margin-left: 6px;
-}
-.pages-form .form-group div a{
-	color: #333;
-}
-.pages-form .form-group div a.btn.btn-primary{
-	color: #fff;
-}
-#dataSourceDialog #dataset_features_list{
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 2px;
-	height: 398px;
-	margin-top: 20px;
-}
-#dataSourceDialog #dataset_features_list div{
-	overflow: auto;
-	height: 100%
-}
-
-#dataSourceDialog #dataset_preview{
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 2px;
-	height: 462px;
-}
-
-/***************************************************************************/
-/* DataSource Dialog End   														*/
-/***************************************************************************/
 /***************************************************************************/
 /* DataSource Connect Dialog Begin   														*/
 /***************************************************************************/
@@ -2175,21 +2059,9 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* New Layer Dialog End   														*/
 /***************************************************************************/
-
 /***************************************************************************/
 /* Warning Begin   														*/
 /***************************************************************************/
-#alert_info{
-	position: fixed;
-	right: 60px;
-	top: 20px;
-	width: 300px;
-	z-index: 1080; 
-	background-color: rgba(0, 0, 0, 0.83);
- 	color: #fff;
- 	font-size: 16px;
-}
-
 .screen-alert{
 	position: fixed;
 	top: 0px;
@@ -2221,7 +2093,7 @@ ul.layers_row li:before {
 
 /***************************************************************************/
 /* Warning End   														*/
-/***************************************************************************/
+/*
 
 /***************************************************************************/
 /* HeatMap Dialog Begin   														*/
@@ -2306,165 +2178,6 @@ ul.layers_row li:before {
 /* importVectorDialog Dialog End   														*/
 /***************************************************************************/
 
-/***************************************************************************/
-/* dbAdmin Dialog Begin  														*/
-/***************************************************************************/
-#dbAdminDialog .modal-dialog{
-	width: 1000px;
-}
-
-#dbAdminDialog .modal-body{
-	height: 660px;
-}
-
-#dbAdminDialog .modal-body .row{
-	margin-left: 0px;
-	margin-right: 0px;
-}
-#db-tree{
-	height: 630px;
-	border: 1px solid #ccc;
-	padding: 10px 20px 10px 0px;
-	overflow: auto;
-	background-color: #fff !important;
-}
-
-#db-tree ul{
-	padding-left: 20px;
-	margin: 0px;
-}
-/*.tree-servers-ul{
-	margin-left: 10px !important;
-	border-left: 1px dashed #2a2a2a;
-}*/
-#db-tree ul li a{
-	padding: 2px;
-	display: block;
-	/*padding-left: 0px;*/
-}
-#db-tree ul li a.selected{
-	/*background-color: #dfeef5;*/
-	color: #FD0534;
-}
-
-#db-tree ul li a i{
-	margin-right: 6px;
-}
-.mc-db-icon{
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	margin: 0px;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.mc-db-icon-servers{
-	background-image: url(../images/setting-16.png);
-}
-.mc-db-icon-server{
-	background-image: url(../images/server-16.png);
-}
-.mc-db-icon-folder{
-	background-image: url(../images/folder.png);
-}
-
-.mc-db-icon-dataset{
-	background-image: url(../images/table_16.png);
-}
-
-.mc-db-icon-dataset-point{
-	background-image: url(../images/marker_16.png);	
-}
-
-.mc-db-icon-dataset-line{
-	background-image: url(../images/polyline_16.png);	
-}
-
-.mc-db-icon-dataset-polygon{
-	background-image: url(../images/polygon-16.png);	
-}
-
-#db-tree ul li a span{
-	word-break: break-all;
-}
-#db-tree ul li a:hover{
-	/*background-color: #dfeef5;*/
-	color: #FD0534;
-}
-#db-tree .line{
-	display: inline-block;
-	width: 20px;
-	height: 0px;
-	border: 1px #2a2a2a dashed;
-}
-.tree-servers{
-	font-size: 14px;
-	font-weight: bold;
-}
-.tree-server{
-	font-size: 12px
-}
-.tree-table{
-	font-size: 12px;
-}
-
-#dbAdminDialog .table{
-	margin-bottom: 0px;
-}
-
-#dbAdminDialog .db-tool .btn-group{
-	height: 50px
-}
-#dbAdminDialog .db-tool .btn-group a i{
-	margin-right: 6px;
-}
-
-#dbAdminDialog .db-content{
-	height: 570px;
-	overflow:auto;
-	margin-top: 10px;
- 	border: 1px #ccc solid;
-}
-
-#dbAdminDialog .db-pane{
-	display: none;
-}
-#dbAdminDialog .table-pane .btn-group-justified .btn.selected{
-	background-color: #efefef;
-}
-#dbAdminDialog .dataset-pane{
-	display: none;
-	padding: 10px;
-	/*overflow: auto;*/
-	/*height: 100%;*/
-	height: 568px;
-}
-
-#dbAdminDialog .dataset-pane .inner-div{
-	height: 100%;
-}
-#dataset_features_list{
-	height: 500px;
-	overflow-y: auto;
-	margin-top: 10px;
-	border: 1px dashed #ccc;
-	padding: 10px;
-	border-radius: 4px;
-}
-#dataset_preview{
-	height: 568px;
-	width: 694px;
-	overflow: hidden;
-	padding: 0px;
-}
-#dataset_preview_img{
-	height: 100%;
-	width: 100%;
-}
-/***************************************************************************/
-/* dbAdmin Dialog End  														*/
-/***************************************************************************/
 
 /***************************************************************************/
 /* vector db Dialog Begin  													*/
@@ -2489,6 +2202,30 @@ ul.layers_row li:before {
 #vector_db_dialog .db-list-div .input-group-btn .btn i{
 	color : rgb(91, 154, 209);
 }
+.mc-db-icon{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.mc-db-icon-dataset-point{
+	background-image: url(../images/marker_16.png);	
+}
+
+.mc-db-icon-dataset-line{
+	background-image: url(../images/polyline_16.png);	
+}
+
+.mc-db-icon-dataset-polygon{
+	background-image: url(../images/polygon-16.png);	
+}
+.mc-db-icon-dataset{
+	background-image: url(../images/table_16.png);
+}
+
 #vector_db_dialog .table-tree{
 	height: calc( 100% - 60px);
 	border: 1px dashed #ccc;
@@ -2504,7 +2241,7 @@ ul.layers_row li:before {
 .table-tree li a span{
 	word-break: break-all;
 	display: inline-block;
-	max-width: 156px;
+	max-width: 140px;
 	white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -2586,6 +2323,44 @@ ul.layers_row li:before {
 }
 #vector_db_dialog .dataset-thum.enter{
 	border: 1px solid #428bca;
+}
+.pages-form .form-group{
+	padding: 4px;
+	background-color: #f1f1f1;
+	margin: 0px;
+	border-radius: 4px;
+}
+
+.pages-form .form-group input{
+	/*height: 30px;*/
+	text-align: center;
+	margin-left: 10px;
+}
+.pages-form .form-group label{
+	padding-top: 10px;
+}
+
+.pages-form .form-group .query_count{
+	text-align: left;
+}
+.pages-form .form-group .query_count span{
+	margin-left: 6px;
+}
+.pages-form .form-group div a{
+	color: #333;
+}
+.pages-form .form-group div a.btn.btn-primary{
+	color: #fff;
+}
+#dataset_preview{
+	height: 568px;
+	width: 694px;
+	overflow: hidden;
+	padding: 0px;
+}
+#dataset_preview_img{
+	height: 100%;
+	width: 100%;
 }
 /***************************************************************************/
 /* vector db Dialog End  													*/
@@ -3714,3 +3489,8 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* Layer Info  Dialog End				 								   */
 /***************************************************************************/
+.slider-handle{
+	height: 16px;
+	width: 16px;
+	margin-top: -4px !important;
+}

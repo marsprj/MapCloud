@@ -19,6 +19,13 @@ MapCloud.CreateTileStoreDialog = MapCloud.Class(MapCloud.Dialog,{
 			var name = dialog.panel.find(".tile-store-name").val();
 			if(name == null || name == ""){
 				MapCloud.notify.showInfo("请输入瓦片库的名称","Warning");
+				dialog.panel.find(".tile-store-name").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_-]+$/;
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的瓦片库名称","Warning");
+				dialog.panel.find(".tile-store-name").focus();
 				return;
 			}
 			var type = dialog.panel.find(".tile-store-type").val();
@@ -41,6 +48,10 @@ MapCloud.CreateTileStoreDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.source = source;
 		this.sourceName = sourceName;
 
+	},
+
+	cleanup : function(){
+		this.panel.find(".tile-store-name").val("");
 	},
 
 	createTileStore : function(sourceName,storeName,type){

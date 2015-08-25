@@ -189,20 +189,20 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 	addChart : function(){
 		var name = this.panel.find(".chart-table-name").val();
     	if(name == null || name == ""){
-    		MapCloud.alert_info.showInfo("请输入名称","Warning");
+    		MapCloud.notify.showInfo("请输入名称","Warning");
+    		this.panel.find(".chart-table-name").focus();
     		return;
     	}
 
     	var startTimePoint = this.panel.find(".aqi-start-time-points").val();
     	if(startTimePoint == null){
-    		MapCloud.alert_info.showInfo("请选择一个时刻","Warning");
+    		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	} 
 
-
     	var endTimePoint = this.panel.find(".aqi-end-time-points").val();
     	if(endTimePoint == null){
-    		MapCloud.alert_info.showInfo("请选择一个时刻","Warning");
+    		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	}  
     	var chartField = this.panel.find(".aqi-index").val();
@@ -217,11 +217,11 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
     	timeList.setMap(mapObj);
 		var list = timeList.getTimeList();
 		if(list.length == 0){
-			MapCloud.alert_info.showInfo("请选择一个有效的时间段","Warning");
+			MapCloud.notify.showInfo("请选择一个有效的时间段","Warning");
     		return;
 		}
 		if(list.length > 20){
-			MapCloud.alert_info.showInfo("请选择少于20个时间点的时间段","Warning");
+			MapCloud.notify.showInfo("请选择少于20个时间点的时间段","Warning");
 			return;
 		}
 
@@ -251,7 +251,7 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 				panel.chartLayer = layer;
 			}
 		}else{
-			MapCloud.alert_info.showInfo(result,"Error");
+			MapCloud.notify.showInfo(result,"Error");
 		}
 	},
 
@@ -262,12 +262,12 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 		// 时间段
 		var startTimePoint = this.panel.find(".aqi-start-time-points").val();
     	if(startTimePoint == null){
-    		MapCloud.alert_info.showInfo("请选择一个时刻","Warning");
+    		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	} 
 		var endTimePoint = this.panel.find(".aqi-end-time-points").val();
     	if(endTimePoint == null){
-    		MapCloud.alert_info.showInfo("请选择一个时刻","Warning");
+    		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	}  
 
@@ -283,11 +283,11 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 		    	timeList.setMap(mapObj);
 				var list = timeList.getTimeList();
 				if(list.length == 0){
-					MapCloud.alert_info.showInfo("请选择一个有效的时间段","Warning");
+					MapCloud.notify.showInfo("请选择一个有效的时间段","Warning");
 		    		return;
 				}
 				if(list.length > 20){
-					MapCloud.alert_info.showInfo("请选择少于20个时间点的时间段","Warning");
+					MapCloud.notify.showInfo("请选择少于20个时间点的时间段","Warning");
 					return;
 				}
 				this.chartLayer.setTimePoints(list);   			

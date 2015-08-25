@@ -190,12 +190,12 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 	addChart : function(){
 		var name = this.panel.find(".chart-table-name").val();
     	if(name == null || name == ""){
-    		MapCloud.alert_info.showInfo("请输入名称","Warning");
+    		MapCloud.notify.showInfo("请输入名称","Warning");
     		return;
     	}
     	var timePoint = this.panel.find(".aqi-time-points").val();
     	if(timePoint == null){
-    		MapCloud.alert_info.showInfo("请选择一个时刻","Warning");
+    		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	}
     	var chartField = this.panel.find(".aqi-index").val();
@@ -221,49 +221,9 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 				panel.chartLayer = layer;
 			}
 		}else{
-			MapCloud.alert_info.showInfo(result,"Error");
+			MapCloud.notify.showInfo(result,"Error");
 		}
 	},
-
-	// hitCallback : function(station_code,position_name,layer){
-	// 	var panel = MapCloud.aqi_chart_panel;
-	// 	panel.stationCode = station_code;
-	// 	panel.positionName = position_name;
-
-	// 	// 查看24小时变化
-	// 	$(".aqi_24_h").click(function(){
-
-	// 		mapObj.closeInfoWindow();
-	// 		var aqi24hDialog = MapCloud.aqi_24h_dialog;
-	// 		aqi24hDialog.setStationCode(panel.stationCode);
-	// 		var timeField = layer.getTimeField();
-	// 		aqi24hDialog.setTimeField(timeField);
-	// 		var timePoint = layer.timePoint;
-	// 		aqi24hDialog.setTimePoint(timePoint);
-	// 		var dbName = layer.getDbName();
-	// 		aqi24hDialog.setDbName(dbName);
-	// 		var tableName = layer.getTableName();
-	// 		aqi24hDialog.setTableName(tableName);
-	// 		var chartField = layer.getChartField();
-	// 		aqi24hDialog.setChartField(chartField);
-	// 		var flagField = layer.getFlagField();
-	// 		aqi24hDialog.setStationCodeField(flagField);
-	// 		aqi24hDialog.setPositionName(panel.positionName);
-
-	// 		aqi24hDialog.showAQIIndexChart();
-	// 	});
-
-	// 	// 加入对比
-	// 	$(".aqi_add_stat").click(function(){
-	// 		mapObj.closeInfoWindow();
-	// 		var station = {
-	// 			name : panel.positionName,
-	// 			code : panel.stationCode
-	// 		};
-	// 		MapCloud.aqi_stat_comp_dialog.addStation(station);
-	// 		MapCloud.aqi_stat_comp_dialog.setChartLayer(layer);
-	// 	});
-	// },	
 
 	// 修改了参数
 	changeChartOption : function(){

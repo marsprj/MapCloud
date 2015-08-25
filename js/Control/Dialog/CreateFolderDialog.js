@@ -9,7 +9,14 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-confirm").click(function(){
 			var name = dialog.panel.find("#create_folder_name").val();
 			if(name == ""){
-				MapCloud.alert_info.showInfo("请输入名称","Warning");
+				MapCloud.notify.showInfo("请输入名称","Warning");
+				dialog.panel.find("#create_folder_name").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_-]+$/;
+			if(!nameReg.test()){
+				MapCloud.notify.showInfo("请输入有效的名称","Warning");
+				dialog.panel.find("#create_folder_name").focus();
 				return;
 			}
 			if(dialog.source == "file"){

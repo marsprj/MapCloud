@@ -10,10 +10,17 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).click(function(){
 				var name = dialog.panel.find("#wms_style_add_name").val();
 				if(name == ""){
-					alert("请输入名称！");
+					MapCloud.notify.showInfo("请输入名称","Warning");
+					dialog.panel.find("#wms_style_add_name").focus();
 					return;
 				}
 
+				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				if(!nameReg.test(name)){
+					MapCloud.notify.showInfo("请输入有效的名称","Warning");
+					dialog.panel.find("#wms_style_add_name").focus();
+					return;
+				}
 
 				MapCloud.styleManager_dialog.setAddStyleName(name,dialog.flag);
 				dialog.closeDialog();

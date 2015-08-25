@@ -35,16 +35,16 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
 				//获得各个输入参数
-				var mapName = dialog.panel
-					.find("#create_map_name").val();
+				var mapName = dialog.panel.find("#create_map_name").val();
 				if(mapName == null || mapName == ""){
-					alert("请输入地图名称！");
+					MapCloud.notify.showInfo("请输入地图名称！","Warning");
+					dialog.panel.find("#create_map_name").focus();
 					return;
 				}
-				var srid = dialog.panel
-					.find("#create_map_srid").val();
+				var srid = dialog.panel.find("#create_map_srid").val();
 				if(srid == null || srid == ""){
-					alert("请输入srid！");
+					MapCloud.notify.showInfo("请输入空间参考","Warning");
+					dialog.panel.find("#create_map_srid").focus();
 					return;
 				}
 
@@ -62,10 +62,10 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 							parseFloat(xmax),
 							parseFloat(ymax));
 				if(extent == null){
-					alert("请输入有效的范围！");
+					MapCloud.notify.showInfo("请输入有效的范围！","Warning");
 					return;
 				}
-				MapCloud.alert_info.loading();
+				MapCloud.notify.loading();
 				//新建地图
 				mapManager.createMap("mapCanvas_wrapper",
 					mapName,extent,srid,dialog.createMap_callback);

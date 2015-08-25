@@ -30,8 +30,16 @@ MapCloud.WMTSDialog = MapCloud.Class(MapCloud.Dialog,{
 			var name = dialog.panel.find("#wmts_layer_name").val();
 			if(name == null || name == ""){
 				MapCloud.notify.showInfo("请输入图层名称","Warning");
+				dialog.panel.find("#wmts_layer_name").focus();
 				return;
 			}
+			var nameReg = /^[0-9a-zA-Z_-]+$/;
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的图层名称","Warning");
+				dialog.panel.find("#wmts_layer_name").focus();
+				return;
+			}
+
 			if(dialog.sourceName == null || dialog.layer == null){
 				MapCloud.notify.showInfo("请选择一个瓦片库","Warning");
 				return;

@@ -43,7 +43,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 颜色选择器
 		this.panel.find(".colorSelector").each(function(){
 			$(this).colpick({
-				color:'EEEEEE',
+				color:'cccccc',
 				onChange:function(hsb,hex,rgb,el,bySetColor) {
 					$(el).children().css("background-color","#" + hex);
 

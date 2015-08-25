@@ -13,13 +13,15 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find("#wms_url").each(function(){
 					var url = $(this).val();
 					if(url == ""){
-						alert("WMS地址为空，请输入！");
+						MapCloud.notify.showInfo("WMS地址为空，请输入","Warning");
+						dialog.panel.find("#wms_url").focus();
 						return;
 					}
 					var version = "1.3.0";
-					var wmsName = $("#wms_name").val();
+					var wmsName = dialog.panel.find("#wms_name").val();
 					if(wmsName == "" ||wmsName == undefined){
-						alert("请输入WMS图层名称!");
+						MapCloud.notify.showInfo("请输入WMS图层名称","Warning");
+						dialog.panel.find("#wms_name").focus();
 						return;
 					}
 
@@ -38,7 +40,14 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 					wms_name = $(this).val();
 				});
 				if(wms_name == null || wms_name == ""){
-					alert("请输入图层名称！");
+					MapCloud.notify.showInfo("请输入WMS图层名称","Warning");
+					dialog.panel.find("#wms_name").focus();
+					return;
+				}
+				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				if(!nameReg.test(wms_name)){
+					MapCloud.notify.showInfo("请输入有效的图层名称","Warning");
+					dialog.panel.find("#wms_name").focus();
 					return;
 				}
 
@@ -48,7 +57,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 				});
 
 				if(wms_url == null || wms_url == ""){
-					alert("请输入WMS地址！");
+					MapCloud.notify.showInfo("WMS地址为空，请输入","Warning");
 					return;
 				}
 
@@ -59,7 +68,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 				});
 
 				if(wms_layers.length == 0){
-					alert("请选择wms图层");
+					MapCloud.notify.showInfo("请选择wms图层","Warning");
 					return;
 				}
 
@@ -71,16 +80,17 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.layer = layer;
 				MapCloud.wms_layer = dialog.layer;
 				
+				if(mapObj == null){
+					MapCloud.notify.showInfo("当前地图为空","Warning");
+					return;
+				}
 				mapObj.addLayer(dialog.layer);
 				if(mapObj.getViewer() == null){
 					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
 				}
 				mapObj.draw();	
 
-
 				dialog.closeDialog();		
-				// var refresh = new MapCloud.refresh("left_panel");
-				
 				MapCloud.refresh_panel.refreshPanel();						
 			});
 		});
@@ -120,35 +130,5 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 		html += "</list-group>";
 		dialog.panel.find("#wms_layers").html(html);
 	},
-
-	// getLayerGeomTypeHtml : function(geomType){
-	// 	var html = "";
-	// 	switch(geomType){
-	// 		case GeoBeans.Geometry.Type.POINT:
-	// 		case GeoBeans.Geometry.Type.MULTIPOINT:{
-	// 			html = '<span class="glyphicon glyphicon-map-marker '
-	// 					+ 'glyphicon-geom-type"></span>';
-	// 			break;
-	// 		}
-	// 		case GeoBeans.Geometry.Type.LINESTRING:
-	// 		case GeoBeans.Geometry.Type.MULTILINESTRING:{
-	// 			html = '<span class="glyphicon glyphicon-align-justify '
-	// 					+ 'glyphicon-geom-type"></span>';
-	// 			break;
-	// 		}
-	// 		case GeoBeans.Geometry.Type.POLYGON:
-	// 		case GeoBeans.Geometry.Type.MULTIPOLYGON:{
-	// 			html = '<span class="glyphicon glyphicon-unchecked  '
-	// 					+ 'glyphicon-geom-type"></span>';
-	// 			break;
-	// 		}
-	// 		default :{
-	// 			html = '<span class="glyphicon glyphicon-unchecked  '
-	// 					+ 'glyphicon-geom-type"></span>';
-	// 			break;
-	// 		}
-	// 	}
-	// 	return html;
-	// }
 
 })
