@@ -341,13 +341,13 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(this.map != null){
 			this.map.removeBaseLayer("tile");
 			this.map.draw();
-			this.map.addLayer(layer);
+			this.map.insertLayer(layer);
 			this.map.draw();
 		}else{
 			var extent = layer.extent;
 			var srid = 4326;
 			this.map = new GeoBeans.Map(url,"tile_canvas_wrapper","tile",extent,srid,extent);
-			this.map.addLayer(layer);
+			this.map.insertLayer(layer);
 			this.map.draw();
 		}
 	},

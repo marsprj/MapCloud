@@ -25,10 +25,10 @@ MapCloud.DataGrid = MapCloud.Class({
 	initialize : function(id,controlId){
 		this.panel = $("#" + id);
 		this.controlPanel = $("#" + controlId);
+		this.panel.find('[data-toggle="tooltip"]').tooltip({container: 'body'});
 		this.registerExpand();
 		this.registerPageEvent();
 
-		// this.register
 	},
 
 	cleanup : function(){
@@ -41,7 +41,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		this.panel.find(".pages-form-pages").html("0");
 		this.features = null;
 		this.layer = null;
-		this.hidePanel();
+		// this.hidePanel();
 	},
 
 	// 展示
@@ -71,7 +71,7 @@ MapCloud.DataGrid = MapCloud.Class({
 		// 	mapObj.resize();
 		// }
 		this.panel.css("display","none");
-		this.controlPanel.css("display","block");
+		this.controlPanel.css("display","none");
 		// this.panel.slideDown();
 	},
 
@@ -91,10 +91,17 @@ MapCloud.DataGrid = MapCloud.Class({
 			}
 		});
 		this.panel.find(".close").click(function(){
-			that.hidePanel();
+			// that.hidePanel();
+			that.panel.css("display","none");
+			that.controlPanel.css("display","none");
 		});
 		this.controlPanel.find(".btn").click(function(){
 			that.showPanel();
+		});
+
+		this.panel.find(".btn-hide").click(function(){
+			that.panel.css("display","none");
+			that.controlPanel.css("display","block");
 		});
 	},
 

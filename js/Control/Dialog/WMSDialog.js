@@ -84,7 +84,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 					MapCloud.notify.showInfo("当前地图为空","Warning");
 					return;
 				}
-				mapObj.addLayer(dialog.layer);
+				mapObj.insertLayer(dialog.layer);
 				if(mapObj.getViewer() == null){
 					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
 				}

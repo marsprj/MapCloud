@@ -1066,7 +1066,7 @@ ul#ribbon_tabs li{
 #gps_oper_wrapper .nav>li>a>i{
 	margin-right: 6px;
 }
-#gps_oper_wrapper .btn-hide{
+.btn-hide{
 	font-size: 20px;
     margin-right: 10px;
     margin-top: 6px;
@@ -1127,7 +1127,6 @@ ul#ribbon_tabs li{
 #data_source_wrapper .panel-content .row:hover .add_layer{
 	color:#000;;
 }
-
 
 .float-tool-box{
     position: absolute;
@@ -1445,31 +1444,6 @@ legend {
 /* Layer Appearance Dialog End                                           */
 /***************************************************************************/
 
-/***************************************************************************/
-/* New Chart Dialog Begin                                           */
-/***************************************************************************/
-.chart-div{
-	height:200px;
-	width: 200px;
-	position: absolute;
-	border: 1px solid #ccc;
-}
-#newChartDialog .modal-dialog{
-	width: 540px;
-}
-#newChartDialog .modal-body{
-	height:650px;
-	overflow-y: auto;
-}
-
-.chart-fieldset .col-sm-1{
-	padding-top:3px;
-}
-.chart-fieldset label{
-	padding-left: 0px;
-}
-/***************************************************************************/
-/* New Chart Dialog End    		                                        */
 /***************************************************************************/
 
 /***************************************************************************/
@@ -1799,6 +1773,7 @@ ul.layers_row li:before {
 	background-color: #F1F1F1;
 	height: 44px;
 }
+
 /***************************************************************************/
 /* WMSStyleMgr Dialog End   														*/
 /***************************************************************************/
@@ -3494,3 +3469,40 @@ ul.layers_row li:before {
 	width: 16px;
 	margin-top: -4px !important;
 }
+
+/***************************************************************************/
+/* Query  Dialog Begin				 								   		*/
+/***************************************************************************/
+#query_dialog .modal-dialog{
+	width: 400px;
+}
+#query_dialog .oper-row .btn{
+	min-width: 45px;
+}
+#query_dialog .query-field{
+	margin-bottom: 15px;
+}
+#query_dialog .query-exp{
+	margin: 0px;
+	border: 1px solid #ddd;
+	padding: 6px;
+}
+#query_dialog .query-exp  [class*='col-md']{
+	padding: 4px;
+}
+#query_dialog .query-exp label{
+	margin-top: 10px;
+}
+#query_dialog .query-exp label,#query_dialog .query-exp input{
+	text-align: center;
+}
+#query_dialog .list-group-item{
+    padding: 6px 15px;
+    border: none;
+    z-index: inherit;
+}
+
+
+/***************************************************************************/
+/* Query  Dialog End				 								   		*/
+/***************************************************************************/

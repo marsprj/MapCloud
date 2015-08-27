@@ -43,7 +43,7 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 			var layer = new GeoBeans.Layer.RasterDBLayer(name,null,dialog.sourceName,
 				dialog.rasterName,null,true,dialog.rasterPath);
 			MapCloud.notify.loading();
-			mapObj.addLayer(layer,dialog.addLayer_callback);
+			mapObj.insertLayer(layer,dialog.insertLayer_callback);
 		});
 	},
 
@@ -59,7 +59,7 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	// 注册图层回调函数
-	addLayer_callback : function(result){
+	insertLayer_callback : function(result){
 		var dialog = MapCloud.new_raster_dblayer_dialog;
 		var name = dialog.panel.find(".new-layer-name").val();
 		var info = "注册图层 [ " + name + " ]";

@@ -619,7 +619,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				btnId = "show-dataset-infos";
 			}
 		}else{
-			this.panel.find("#show-dataset-preview").attr("disabled",false);
+			if(btnId != "show-dataset-preview"){
+				this.panel.find("#show-dataset-preview").attr("disabled",false);
+			}
 		}
 		switch(btnId){
 			case "show-dataset-infos":{
@@ -902,8 +904,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		// height = parseFloat(height);
 		// width = parseFloat(width);
 
-		var url = dataSet.getPreview(512,384);
-		this.panel.find("#dataset_preview_img").attr("src",url);
+		// var url = dataSet.getPreview(512,384);
+		// this.panel.find("#dataset_preview_img").attr("src",url);
+		this.panel.find("#dataset_preview_img").attr("src",dataSet.thumbnail);
 	},
 
 	// 删除数据库

@@ -45,7 +45,7 @@ MapCloud.WMTSDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			dialog.layer.name = name;
-			mapObj.addLayer(dialog.layer);
+			mapObj.insertLayer(dialog.layer);
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
 			

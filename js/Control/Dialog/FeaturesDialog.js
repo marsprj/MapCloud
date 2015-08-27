@@ -20,7 +20,6 @@ MapCloud.FeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 		var layer = mapObj.getLayer(this.layerName);
 		var count = layer.getFeatureCount(null,null);
 		this.showPages(count);
-		this.setPage(1);
 	},
 
 	cleanup : function(){

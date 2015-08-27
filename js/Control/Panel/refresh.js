@@ -98,6 +98,17 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.notify.showInfo("failed","刷新地图");
 			}else{
 				MapCloud.notify.showInfo("success","刷新地图");
+				var layers = map.getLayers();
+				for(var i = 0; i < layers.length; ++i){
+					var layer = layers[i];
+					if(layer != null){
+						var name = layer.name;
+						var layer_n = mapObj.getLayer(name);
+						if(layer_n != null){
+							layer.visible = layer_n.visible;
+						}
+					}
+				}
 				mapObj = map;
 				MapCloud.refresh_panel.refreshPanel();
 				MapCloud.dataGrid.cleanup();
@@ -184,7 +195,7 @@ MapCloud.refresh = MapCloud.Class({
 		// 各个图层
 		var layers = mapObj.getLayers();
 		var that = this;
-		for(var i = layers.length -1; i >= 0; --i){
+		for(var i = 0; i < layers.length; ++i){
 			var layer = layers[i];
 			if(layer == null){
 				continue;
@@ -202,6 +213,13 @@ MapCloud.refresh = MapCloud.Class({
 		}
 
 		$("#layers_row").html(html);
+		var height = $(".layers-items").css("height");
+		height = parseInt(height.slice(0,height.lastIndexOf("px")));
+		if(height < 600){
+			$(".layers-items").css("overflow-y","visible");
+		}else{
+			$(".layers-items").css("overflow-y","auto");
+		}
 
 		// 样式
 		this.panel.find(".glyphicon-chevron-right").click(function(){
@@ -242,90 +260,9 @@ MapCloud.refresh = MapCloud.Class({
 			}
 		});
 
-		// 样式修改
-		this.panel.find(".style-symbol").each(function(){
-			$(this).click(function(){
-				var li = $(this).parents(".layer_row");
-				var layerName = li.attr("lname");
-				var layer = mapObj.getLayer(layerName);
-				if(layer == null){
-					return;
-				}
-				
-				var style = layer.style;
-				if(style == null){
-					return;
-				}
-				var rules = style.rules;
-				if(rules == null){
-					return;
-				}
+		this.registerStyleSymbolClickEvent();
 
-				var styleRow = $(this).parents(".layer_style_row");
-				var sID = styleRow.first().attr("sID");
-				var rule = rules[sID];
-				if(rule == null){
-					return;
-				}
-				var fields = null;
-				if(layer instanceof GeoBeans.Layer.DBLayer){
-					var wfsWorkspace = new GeoBeans.WFSWorkspace("tmp",
-							mapObj.server,"1.0.0");
-					var featureType = new GeoBeans.FeatureType(wfsWorkspace,
-							layer.name);
-					fields = featureType.getFields(mapObj.name);					
-				}
-				if(fields == null){
-					return;
-				}
-				that.layerName = layerName;
-				that.styleID = sID;
-				MapCloud.style_dialog.showDialog();	
-				MapCloud.style_dialog.setRule(rule,
-					fields,"refresh");			
-			});
-		});
-
-
-		// 符号修改
-		this.panel.find(".symbol-icon").click(function(){
-			var li = $(this).parents(".layer_row");
-			var layerName = li.attr("lname");
-			var layer = mapObj.getLayer(layerName);
-			if(layer == null){
-				return;
-			}
-			
-			var style = layer.style;
-			if(style == null){
-				return;
-			}
-			var rules = style.rules;
-			if(rules == null){
-				return;
-			}
-			var styleRow = $(this).parents(".layer_style_row");
-			var sID = styleRow.first().attr("sID");
-			var rule = rules[sID];
-			if(rule == null){
-				return;
-			}
-			var symbolizer = rule.symbolizer;
-			if(symbolizer == null){
-				return;
-			}
-			var symbol = symbolizer.symbol;
-			that.layerName = layerName;
-			that.styleID = sID;
-			var type = MapCloud.styleManager_dialog.getSymbolIconType(symbolizer.type);
-			var symbolName = null;
-			if(symbol != null){
-				symbolName = symbol.name;
-			}
-			// 打开符号库
-			MapCloud.symbol_dialog.showDialog("refresh",type,symbolName);
-		});
-
+		this.registerSymbolIconClickEvent();
 
 		//图层的显示与隐藏
 		this.panel.find(".glyphicon-eye-open,.glyphicon-eye-close").each(function(){
@@ -649,6 +586,96 @@ MapCloud.refresh = MapCloud.Class({
 			}
 		});
 	},
+
+	// 样式修改
+	registerStyleSymbolClickEvent : function(){
+		var that = this;
+		this.panel.find(".style-symbol").each(function(){
+			$(this).click(function(){
+				var li = $(this).parents(".layer_row");
+				var layerName = li.attr("lname");
+				var layer = mapObj.getLayer(layerName);
+				if(layer == null){
+					return;
+				}
+				
+				var style = layer.style;
+				if(style == null){
+					return;
+				}
+				var rules = style.rules;
+				if(rules == null){
+					return;
+				}
+
+				var styleRow = $(this).parents(".layer_style_row");
+				var sID = styleRow.first().attr("sID");
+				var rule = rules[sID];
+				if(rule == null){
+					return;
+				}
+				var fields = null;
+				if(layer instanceof GeoBeans.Layer.DBLayer){
+					var wfsWorkspace = new GeoBeans.WFSWorkspace("tmp",
+							mapObj.server,"1.0.0");
+					var featureType = new GeoBeans.FeatureType(wfsWorkspace,
+							layer.name);
+					fields = featureType.getFields(mapObj.name);					
+				}
+				if(fields == null){
+					return;
+				}
+				that.layerName = layerName;
+				that.styleID = sID;
+				MapCloud.style_dialog.showDialog();	
+				MapCloud.style_dialog.setRule(rule,
+					fields,"refresh");			
+			});
+		});
+	},
+
+	// 符号修改
+	registerSymbolIconClickEvent : function(){
+		var that = this;
+		this.panel.find(".symbol-icon").click(function(){
+			var li = $(this).parents(".layer_row");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			
+			var style = layer.style;
+			if(style == null){
+				return;
+			}
+			var rules = style.rules;
+			if(rules == null){
+				return;
+			}
+			var styleRow = $(this).parents(".layer_style_row");
+			var sID = styleRow.first().attr("sID");
+			var rule = rules[sID];
+			if(rule == null){
+				return;
+			}
+			var symbolizer = rule.symbolizer;
+			if(symbolizer == null){
+				return;
+			}
+			var symbol = symbolizer.symbol;
+			that.layerName = layerName;
+			that.styleID = sID;
+			var type = MapCloud.styleManager_dialog.getSymbolIconType(symbolizer.type);
+			var symbolName = null;
+			if(symbol != null){
+				symbolName = symbol.name;
+			}
+			// 打开符号库
+			MapCloud.symbol_dialog.showDialog("refresh",type,symbolName);
+		});
+	},
+	// 符号修改
 	
 	createSymbolizerIcon: function(symbolizer,geomType){
 		if(symbolizer == null || geomType == null){
@@ -903,11 +930,11 @@ MapCloud.refresh = MapCloud.Class({
 
 						html += '<div class="row layer_style_row" lID="'
 							 +			index+ '" sID="0">'
-							 // + 	'	<div class="col-md-1 col-xs-1"></div>'
-							 // + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 + 	'	<div class="col-md-1 col-xs-1"></div>'
+							 +  '	<div class="col-md-1 col-xs-1"></div>'
 							 // +  '	<div class="col-md-1 col-xs-1"></div>'
-							 // +  '	<div class="col-md-1 col-xs-1"></div>'
-							 +  '	<div class="col-md-1 col-xs-1 col-md-offset-4">'
+							 +  '	<div class="col-md-1 col-xs-1">'
 							 +       symbolizerHtml
 							 +  '	</div>'
 							 +  '	<div class="col-md-1">'
@@ -919,18 +946,22 @@ MapCloud.refresh = MapCloud.Class({
 				}
 			}
 		}else{
+			var html = "";
 			// 多种样式
-			var field = MapCloud.styleManager_dialog
-						.getProperyNameByRule(rules[0]); 
-			html += '<div class="row layer_style_row" lID="' + index + '">'
-				 // + 	'	<div class="col-md-1 col-xs-1"></div>'
-				 // + 	'	<div class="col-md-1 col-xs-1"></div>'
-				 // +  '	<div class="col-md-1 col-xs-1"></div>'
-				 // +  '	<div class="col-md-1 col-xs-1"></div>'
-				 +  '	<div class="col-md-5 col-xs-5 col-md-offset-5"><strong>'
-				 +      field 
-				 +  '	</strong></div>'
-				 +  '</div>';
+			if(style.styleClass == GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE
+				|| style.styleClass == GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES){
+				var field = MapCloud.styleManager_dialog
+							.getProperyNameByRule(rules[0]); 
+				html += '<div class="row layer_style_row" lID="' + index + '">'
+					 + 	'	<div class="col-md-1 col-xs-1"></div>'
+					 + 	'	<div class="col-md-1 col-xs-1"></div>'
+					 +  '	<div class="col-md-1 col-xs-1"></div>'
+					 // +  '	<div class="col-md-1 col-xs-1"></div>'
+					 +  '	<div class="col-md-5 col-xs-5"><strong>'
+					 +      field 
+					 +  '	</strong></div>'
+					 +  '</div>';
+			}
 
 			for(var i = 0; i < rules.length;++i){
 				var rule = rules[i];
@@ -942,45 +973,35 @@ MapCloud.refresh = MapCloud.Class({
 				if(filter == null){
 					continue;
 				}
-				var type = filter.type;
-				if(type == GeoBeans.Filter.Type.FilterComparsion){
-					var operator = filter.operator;
-					if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprEqual){
-						var expression1 = filter.expression1;
-						var expression2 = filter.expression2;
-						if(expression1 != null && 
-							expression1.type == GeoBeans.Expression.Type.Literal){
-							value = expression1.value;
-						}else if(expression2 != null && 
-							expression2.type == GeoBeans.Expression.Type.Literal){
-							value = expression2.value;
-						}
-					}else if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprIsBetween){
-						var lowerBound = filter.lowerBound;
-						var upperBound = filter.upperBound;
-						var lowerBoundValue = "";
-						var upperBoundValue = "";
-						if(lowerBound != null){
-							lowerBoundValue = parseFloat(lowerBound.value);
-						}
-						if(upperBound != null){
-							upperBoundValue = parseFloat(upperBound.value);
-						}
-						value = lowerBoundValue.toFixed(2) + "-" + upperBoundValue.toFixed(2);
-					}
-				}
-
-				// if(filter != null){
-				// 	var expression1 = filter.expression1;
-				// 	var expression2 = filter.expression2;
-				// 	if(expression1 != null && 
-				// 		expression1.type == GeoBeans.Expression.Type.Literal){
-				// 		value = expression1.value;
-				// 	}else if(expression2 != null && 
-				// 		expression2.type == GeoBeans.Expression.Type.Literal){
-				// 		value = expression2.value;
-				// 	}					
+				// var type = filter.type;
+				// if(type == GeoBeans.Filter.Type.FilterComparsion){
+				// 	var operator = filter.operator;
+				// 	if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprEqual){
+				// 		var expression1 = filter.expression1;
+				// 		var expression2 = filter.expression2;
+				// 		if(expression1 != null && 
+				// 			expression1.type == GeoBeans.Expression.Type.Literal){
+				// 			value = expression1.value;
+				// 		}else if(expression2 != null && 
+				// 			expression2.type == GeoBeans.Expression.Type.Literal){
+				// 			value = expression2.value;
+				// 		}
+				// 	}else if(operator == GeoBeans.ComparisionFilter.OperatorType.ComOprIsBetween){
+				// 		var lowerBound = filter.lowerBound;
+				// 		var upperBound = filter.upperBound;
+				// 		var lowerBoundValue = "";
+				// 		var upperBoundValue = "";
+				// 		if(lowerBound != null){
+				// 			lowerBoundValue = parseFloat(lowerBound.value);
+				// 		}
+				// 		if(upperBound != null){
+				// 			upperBoundValue = parseFloat(upperBound.value);
+				// 		}
+				// 		value = lowerBoundValue.toFixed(2) + "-" + upperBoundValue.toFixed(2);
+				// 	}
 				// }
+
+				var sqlExpression = MapCloud.styleManager_dialog.getSqlExpression(filter);
 
 				var symbolizer = rule.symbolizer;
 				var symbolizerHtml = this.getSymbolizerHtml(symbolizer);
@@ -990,7 +1011,7 @@ MapCloud.refresh = MapCloud.Class({
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
 				 + 	'	<div class="col-md-1 col-xs-1"></div>'
 				 +  '	<div class="col-md-1 col-xs-1"></div>'
-				 +  '	<div class="col-md-1 col-xs-1"></div>'
+				 // +  '	<div class="col-md-1 col-xs-1"></div>'
 				 +  '	<div class="col-md-1 col-xs-1">'
 				 + 			symbolizerHtml
 				 +  '	</div>'
@@ -998,7 +1019,7 @@ MapCloud.refresh = MapCloud.Class({
 				 + 			symbolIconHtml
 				 +  '	</div>'				 
 				 +  '	<div class="col-md-5 col-xs-5">'
-				 +    		value
+				 +    		sqlExpression
 				 + 	'	</div>'
 				 + 	'</div>';
 			}
@@ -1470,6 +1491,15 @@ MapCloud.refresh = MapCloud.Class({
 		var li = panel.panel.find(".layer_row[lname='" + panel.getStyleLayerName + "']");
 		var styleHtml = panel.getStyleHtml(-1,style);
 		li.append(styleHtml);
+		var height = $(".layers-items").css("height");
+		height = parseInt(height.slice(0,height.lastIndexOf("px")));
+		if(height < 600){
+			$(".layers-items").css("overflow-y","visible");
+		}else{
+			$(".layers-items").css("overflow-y","auto");
+		}
+		panel.registerSymbolIconClickEvent();
+		panel.registerStyleSymbolClickEvent();
 		var layer = mapObj.getLayer(panel.getStyleLayerName);
 		layer.style = style;
 		panel.getStyleLayerName = null;
