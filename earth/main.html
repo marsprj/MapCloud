@@ -1,0 +1,1407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/webuploader/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-multiselect.css"/>
+
+	<link rel="stylesheet" type="text/css" href="../css/zTreeStyle/zTreeStyle.css">
+	<link rel="stylesheet" type="text/css" href="../css/colpick/colpick.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/jquery-ui.min.css" type="text/css">
+
+	<link rel="stylesheet" type="text/css" href="../css/mc-new.css"/>
+	<link rel="stylesheet" type="text/css" href="../Map5/css/custom_slider.css"/>
+
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/colpick/colpick.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery.ztree.core-3.5.js" charset="utf-8"></script>
+	
+
+	<script type="text/javascript">
+	var Msg = {}; //declare this or modify line 1 of core.js
+	</script>
+
+
+<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="../js/MapCloud.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+
+<script type="text/javascript" src="../js/Class/Class.js"></script>
+<script type="text/javascript" src="../js/Control/Ribbon.js"></script>
+<script type="text/javascript" src="../js/Control/Logo.js"></script>
+<title>MapCloud</title>
+</head>
+
+<body>
+	<div class="jumbotron" style="padding:0px;height:100%;background: #fff;">
+		<div class="container mc-theme-color">
+			<div class="navbar-header">
+				<div id="logo_panel"></div>
+			</div>
+			<div class="collapse navbar-collapse ">
+				<ul id="user_tool_bar" >
+					<li class="dropdown pull-right" style="display:none">
+						<a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle" style="color:white">您好
+							<b class="caret"></b>
+						</a>
+						<ul class="mc-font dropdown-menu">
+							<li><a href="javascript:void(0)">我的应用</a></li>
+							<li><a href="javascript:void(0)">我的账户</a></li>
+							<li><a href="javascript:void(0)">操作手册</a></li>
+							<li class="divider"></li>
+							<li><a href="javascript:void(0)">退出</a></li>
+						</ul>
+					</li>
+					<li class="pull-right">
+						<a href="api/" target="_blank">API</a>
+					</li>
+					<li class="pull-right">
+						<a href="javascript:void(0)" id="login_btn">登录</a>
+					</li>
+					<li class="pull-right">
+						<a href="register.html" id="login_btn">注册</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container" style="width:100%;padding:0px;">
+			<div id="ribbon_wrapper">
+				<div id="ribbon" class="mc-theme-color">
+					<ul id="ribbon_tabs" class="mc-theme-color">
+						<li id="home_tab" class="mc-active-tab"><a href="javascript:void(0)">首页</a></li>
+						<li id="map_tab"><a href="javascript:void(0)">地图</a></li>
+						<li id="layer_tab"><a href="javascript:void(0)">图层</a></li>
+						<li id="data_tab"><a href="javascript:void(0)">数据</a></li>
+						<li id="chart_tab"><a href="javascript:void(0)">专题图</a></li>
+						<!--<li id="analysis_tab"><a href="javascript:void(0)">分析</a></li>-->
+						<li id="tool_tab"><a href="javascript:void(0)">工具</a></li>
+					</ul>
+				</div>
+				<div id="ribbon_container">
+					<div id="home_ribbon" class="ribbon_panel">
+						<div class="home_ribbon_tool">
+								<button type="button" class="btn btn-default btn-success btn-new-map">新建地图</button>
+							<div class="pull-right map-page-div">
+								<div class="maps-count">
+									<p class="text-primary">地图总数：<span>0</span></p>
+								</div>
+								<div class="maps-page">
+									<ul class="pagination" style="margin:1px 0px">
+									</ul>
+								</div>
+								
+							</div>
+							
+							
+						</div>	
+						<!-- </div> -->
+					</div>
+					<div id="map_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">新建地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-close"></div>
+								<div class="ribbon_label">关闭地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-remove"></div>
+								<div class="ribbon_label">删除地图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-info"></div>
+								<div class="ribbon_label">地图属性</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-data"></div>
+								<div class="ribbon_label">数据目录</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-vector"></div>
+								<div class="ribbon_label">添加矢量图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-raster"></div>
+								<div class="ribbon_label">添加栅格图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-wms"></div>
+								<div class="ribbon_label">WMS图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-wfs"></div>
+								<div class="ribbon_label">WFS图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-wmts"></div>
+								<div class="ribbon_label">WMTS图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-baselayer-image"></div>
+								<div class="ribbon_label">影像底图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-baselayer-vector"></div>
+								<div class="ribbon_label">矢量底图</div>
+							</div>
+						</div>
+						
+					</div>
+					<div id="layer_ribbon" class="ribbon_panel">
+						<div class="ribbon_group">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layer-vector"></div>
+								<div class="ribbon_label">添加图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers-edit"></div>
+								<div class="ribbon_label">编辑图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-publish"></div>
+								<div class="ribbon_label">分享图层</div>
+							</div>
+						</div>
+						<div class="ribbon_group">
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-create"></div>
+								<div class="ribbon_label">新建图层</div>
+							</div>
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-duplicate"></div>
+								<div class="ribbon_label">复制图层</div>
+							</div>
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-remove"></div>
+								<div class="ribbon_label">删除图层</div>
+							</div>
+						</div>
+						<div class="ribbon_group">
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-layers-zoom"></div>
+								<div class="ribbon_label">图层定位</div>
+							</div>
+							<div class="ribbon_button_16 ribbon-item ribbon-item-wide">
+								<div class="ribbon_image_16 mc-icon-map-select"></div>
+								<div class="ribbon_label">所有图层</div>
+							</div>
+						</div>
+						<div class="ribbon_group">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_label">导入图层</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-layers"></div>
+								<div class="ribbon_label">导出图层</div>
+							</div>
+						</div>
+					</div>
+					<div id="data_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-file"></div>
+								<div class="ribbon_label">文件管理</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-database"></div>
+								<div class="ribbon_label">地理库</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-rasters"></div>
+								<div class="ribbon_label">影像库</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-tile"></div>
+								<div class="ribbon_label">瓦片库</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-map-new"></div>
+								<div class="ribbon_label">数据目录</div>
+							</div>
+						</div>
+					</div>
+					<div id="chart_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-range"></div>
+								<div class="ribbon_label">分级图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-bar"></div>
+								<div class="ribbon_label">柱状图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-pie"></div>
+								<div class="ribbon_label">饼状图</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-heatmap"></div>
+								<div class="ribbon_label">热力图</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-aqi"></div>
+								<div class="ribbon_label">AQI</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-aqi-timeline"></div>
+								<div class="ribbon_label">AQI序列图</div>
+							</div>
+						</div>
+					</div>
+					<div id="tool_ribbon" class="ribbon_panel">
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-marker-1"></div>
+								<div class="ribbon_label">标绘</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-style"></div>
+								<div class="ribbon_label">图层样式</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
+								<div class="ribbon_label">工具箱</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="main_panel">
+			<div class="row" id="main_panel_row">
+				<div class="left-panel">
+					<div id="left_panel" class="left-panel-tab">
+						<div class="row" id="map_row">
+							<div class="col-md-6">
+								<a href="javascript:void(0)" id="map_name">Sample</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="cut_map_btn"data-toggle="tooltip" data-placement="top" data-original-title="切图">
+									<i class="mc-icon mc-icon-pyramid"></i>
+								</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="map_globe_btn" data-toggle="tooltip" data-placement="top" data-original-title="全图">
+									<i class="fa fa-globe"></i>
+								</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="save_map_btn" data-toggle="tooltip" data-placement="top" data-original-title="保存">
+									<i class="fa fa-floppy-o"></i>
+								</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="refresh_map_btn" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+									<i class="fa fa-refresh"></i>
+								</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="layers_content_btn">
+									<i class="fa fa-chevron-down"></i>
+								</a>
+							</div>
+						</div>
+						<div id="layers_content">
+							<div class="row" id="layer_tool_row">
+								<div class="col-md-1">
+								</div>
+								<!-- <div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-ok mc-icon"></div>
+								</div> -->
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-eye-open mc-icon"></div>	
+								</div>
+								<div class="col-md-1 col-xs-1 col-md-offset-2">
+									<div class="glyphicon glyphicon-plus mc-icon"></div>										
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-minus mc-icon"></div>										
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-folder-close mc-icon"></div>			
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-user mc-icon"></div>										
+								</div>
+								<div class="col-md-1 col-xs-1">
+									<div class="glyphicon glyphicon-zoom-in mc-icon"></div>										
+								</div>
+							</div>
+							<div class="layers-items">
+								<div class="row" id="baseLayer_row">
+								</div>
+								<ul class="row" id="layers_row">
+								</ul>
+							</div>
+						</div>
+							
+					</div>
+					<div id="left_panel_overlay" class="left-panel-tab">
+						<div class="row left_row">
+							<button type="button" class="btn btn-primary btn-confirm pull-right">返回</button>
+						</div>
+						<ul class="row" id="overlays_row">
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-map-marker span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="点">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-align-justify span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="线">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>						
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="Username" readonly value="面">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>	
+							<li class="row left_row overlay_row">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-unchecked span-overlay-marker" ></span>
+									<input type="text" class="form-control input-overlay-read" placeholder="" readonly value="面">
+									<span class="input-group-btn" >
+										<button class="btn btn-default" type="button">编辑</button>
+										<button class="btn btn-default" type="button">删除</button>
+									</span>
+								</div>						
+							</li>							
+						</ul>
+					</div>
+				</div>
+				<div class="" id="map_btn">
+					<img id="map_btn_img" src="images/arrow-left-8.png">
+				</div>
+				<div class="row right-panel mc-panel-full">
+					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
+						<div id="mapCanvas_wrapper">
+						</div>
+						<div id="datagrid_wrapper">
+							<div class="panel-header" style="height:55px">
+								<button type="button" class="close" data-toggle="tooltip" data-placement="top" data-original-title="关闭">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<button type="button" class="btn-hide" style="font-size: 20px;margin-right: 10px;margin-top: 6px;" data-toggle="tooltip" data-placement="top" data-original-title="隐藏">
+                             		<i class="fa fa-chevron-down"></i>
+  								</button>
+								<div class="panel-header-content">
+									<form class="form-horizontal pages-form" role="form">
+									<div class="form-group row">
+										<div class="col-md-8">
+											<label class="col-md-2 control-label panel-header-content-name" >
+												<i class="fa fa-table fa-2"></i>&nbsp;查询结果 ：
+											</label>
+											<label class="col-md-1 control-label query_count">12</label>
+											<label class="col-md-1 control-label">条</label>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-step-backward btn disabled" href="javascript:void(0)"></a>
+											</div>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-chevron-left btn disabled"></a>
+											</div>
+											<div class="col-md-2">
+												<input class="form-control pages-form-page" type="text" value="0">
+											</div>
+											<label class="col-md-1 control-label">
+												/
+											</label>
+											<label class="col-md-1 control-label pages-form-pages">1</label>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon glyphicon-chevron-right btn disabled" href="javascript:void(0)"></a>
+											</div>
+											<div class="col-md-1">
+												<a class="glyphicon glyphicon-step-forward btn disabled" href="javascript:void(0)"></a>
+											</div>
+										</div>
+										<div class="col-md-3 row" style="margin-left:60px">
+											<div class="col-md-6">
+												<a class="btn btn-default  btn-group-justified download-features btn-primary" style="margin-top:2px;">
+		 											<i class="fa fa-download"></i>
+													导出
+												</a>
+											</div>
+											<div class="col-md-6">
+												<a class="btn btn-default btn-primary btn-group-justified clear-features" style="margin-top:2px;">
+		 											<i class="fa fa-trash-o"></i>
+													清空
+												</a>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<div class="col-md-2">
+											<a class="btn btn-default  btn-group-justified download-features" style="margin-top:2px;">
+	 											<i class="fa fa-download"></i>
+												导出
+											</a>
+										</div>
+									</div> -->
+								</form>
+								</div>
+							</div>
+							<div id="datagrid_content" class="table-responsive">
+								<table class="table table-hover table-striped borderless">
+									<thead><tr></tr></thead>
+									<tbody></tbody>
+								</table>
+							</div>
+							<!-- <div id="datagrid_pages">
+								<form class="form-horizontal pages-form" role="form">
+									<div class="form-group" style="width:600px;float:left;">
+										<label class="col-md-2 control-label" style="tfont-weight:normal">
+											查询条数：
+										</label>
+										<label class="col-md-1 control-label query_count">
+											0
+										</label>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon-step-backward btn" href="javascript:void(0)"></a>
+										</div>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon-chevron-left btn"></a>
+										</div>
+										<div class="col-md-2">
+											<input class="form-control pages-form-page" type="text" value="0">
+										</div>
+										<label class="col-md-1 control-label">
+											/
+										</label>
+										<label class="col-md-1 control-label pages-form-pages">
+											0
+										</label>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="javascript:void(0)"></a>
+										</div>
+										<div class="col-md-1">
+											<a class="glyphicon glyphicon-step-forward btn" href="javascript:void(0)"></a>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-2">
+											<a class="btn btn-default  btn-group-justified download-features" style="margin-top:2px;">
+	 											<i class="fa fa-download"></i>
+												导出
+											</a>
+										</div>
+									</div>
+								</form>
+							</div> -->
+						</div>
+						<div id="datagrid_control_wrapper">
+							<div id="datagrid_control">
+								<a class="btn btn-default btn-group-justified btn-link">
+									<i class="fa fa-table"></i>
+									结果
+									<i class="fa fa-arrow-up"></i>
+								</a>
+							</div>
+						</div>
+						<div id="search_wrapper" class="mc-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-search fa-2"></i>&nbsp;查询条件
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<div class="search-fields-div list-group">
+									<a href="javascript:void(0)" class="list-group-item">gid</a>
+									<a href="javascript:void(0)" class="list-group-item">id</a>
+									<a href="javascript:void(0)" class="list-group-item">name</a>
+									<a href="javascript:void(0)" class="list-group-item">gid</a>
+									<a href="javascript:void(0)" class="list-group-item">id</a>
+									<a href="javascript:void(0)" class="list-group-item">name</a>
+									<a href="javascript:void(0)" class="list-group-item">gid</a>
+									<a href="javascript:void(0)" class="list-group-item">id</a>
+									<a href="javascript:void(0)" class="list-group-item">name</a>
+								</div>
+								<div class="row search-oper-values">
+									<div class="col-md-5 search-oper">
+										<div class="row oper-row">
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified">=</a>
+											</div>
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified"><></a>
+											</div>
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified">Like</a>
+											</div>
+										</div>
+										<div class="row oper-row">
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified">></a>
+											</div>
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified">>=</a>
+											</div>
+											<!-- <div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified">And</a>
+											</div> -->
+										</div>
+										<div class="row oper-row">
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified"><</a>
+											</div>
+											<div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified"><=</a>
+											</div>
+											<!-- <div class="col-md-4">
+												<a href="javascript:void(0)" class="btn btn-default btn-xs btn-group-justified">Or</a>
+											</div> -->
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<a class="btn btn-default btn-group-justified btn-primary" id="get_unique_btn">获取唯一值</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-7 list-group search-unique-values">
+										
+									</div>
+								</div>
+								<div class="search-sql">
+									 <textarea class="form-control" rows="5" id="search-sql-content"></textarea>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default sql-clear-btn">清空</button>
+								<button type="button" class="btn btn-primary btn-search">应用</button>
+							</div>
+						</div>
+						<div id="chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-bar-chart fa-2"></i>&nbsp;分级图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-8">
+								      		<input class="form-control chart-table-name" type="text" value="分级图">
+								    	</div>
+								  	</div>
+								</form>
+								<div class="panel-group" id="chart_accordion" role="tablist">
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#chart_accordion" href="#chart_base_layer_coll" aria-expanded="true" aria-controls="chart_base_layer_coll">
+									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+													<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">表:
+									      				</label>
+														<div class="col-md-8">
+														 	<div class="input-group ">
+														    	<input type="text" class="form-control chart-table" disabled="">
+														    	<span class="input-group-btn">
+														   			<button class="btn btn-sm btn-success btn-chose-chart" type="button">选择</button>
+														   		</span>
+														  	</div>
+														</div>
+													</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">关联字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-table-fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">底图:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">标注图层:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-label-layer" ></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-label-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_style_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#chart_accordion" href="#chart_style_coll" aria-expanded="true" aria-controls="chart_style_coll">
+									          		<i class="fa fa-bars"></i>&nbsp;分级设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="chart_style_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control" id="chart_style_fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm form-group-border">
+									      				<label class="control-label col-md-3">边界:
+									      				</label>
+									      				<div class="col-md-1" style="padding-top:6px">
+									      					<div class="btn btn-default colorSelector">			
+									      						<div style="opacity: 0.6; background-color: rgb(99, 37, 147);"></div>		
+									      					</div>
+									      				</div>
+									      				<div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label id="chart_style_border_opacity" class="control-label col-md-1">1</label>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">色阶:
+									      				</label>
+													    <div class="col-md-8 color-ramp-div">
+															<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+																<div class="color-ramp-item">
+																</div>
+															</button>
+															<ul class="dropdown-menu" role="menu" id="">
+																<li>
+																	<div class="color-ramp-item"></div>
+																</li>
+																<li>
+																	<div class="color-ramp-item"></div>
+																</li>
+															</ul>
+														</div>
+									      			</div>
+									      			<div class="form-group form-group-sm form-group-fill-opacity">
+									      				<label class="control-label col-md-3">透明度:
+									      				</label>
+													    <div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label id="chart_style_opacity" class="control-label col-md-1">1</label>
+									      			</div>
+									      		</form>
+									      		<div id="chart_style_div">
+									      		</div>
+									      	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+
+						<div id="bar_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-bar-chart fa-2"></i>&nbsp;柱状图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-8">
+								      		<input class="form-control chart-table-name" type="text" value="分级图">
+								    	</div>
+								  	</div>
+								</form>
+								<div class="panel-group" id="bar_chart_accordion" role="tablist">
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_base_layer_coll" aria-expanded="true" aria-controls="bar_chart_base_layer_coll">
+									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="bar_chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">表:
+									      				</label>
+														<div class="col-md-8">
+														 	<div class="input-group ">
+														    	<input type="text" class="form-control chart-table" disabled="">
+														    	<span class="input-group-btn">
+														   			<button class="btn btn-sm btn-success btn-chose-chart" type="button">选择</button>
+														   		</span>
+														  	</div>
+														</div>
+													</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">关联字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-table-fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">底图:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="bar_chart_table_set_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_table_set_coll" aria-expanded="false">
+									          		<i class="fa fa-info"></i>&nbsp;基本设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="bar_chart_table_set_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">大小:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-height" type="text" value="200" data-toggle="tooltip" data-placement="top" data-original-title="高度">
+									      				</div>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-width" type="text" value="80" data-toggle="tooltip" data-placement="top" data-original-title="宽度">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">偏移:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-x" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="X向,向右为正">
+									      				</div>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-y" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="Y向,向上为正">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">X轴:
+									      				</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-x-axisLine">axisLine</label>
+									      				</div>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-x-splitLine">splitLine</label>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">Y轴:
+									      				</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-y-axisLine">axisLine</label>
+									      				</div>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-y-splitLine">splitLine</label>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">标签</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-show-label"></label>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="bar_chart_table_style_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_table_style_coll" aria-expanded="false">
+									          		<i class="fa fa-cog"></i>&nbsp;样式设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="bar_chart_table_style_coll" class="panel-collapse collapse" role="tabpanel">
+									    	<div class="panel-body">
+									    		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">字段:</label>
+									      				<div class="col-md-9 chart-fields">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">透明度:
+									      				</label>
+													    <div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label class="control-label col-md-1 chart-opacity">1</label>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">属性:
+									      				</label>
+									      			</div>
+									      		</form>
+									    	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="pie_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-pie-chart fa-2"></i>&nbsp;饼状图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-8">
+								      		<input class="form-control chart-table-name" type="text" value="饼状图">
+								    	</div>
+								  	</div>
+								</form>
+								<div class="panel-group" id="pie_chart_accordion" role="tablist">
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_base_layer_coll" aria-expanded="true" aria-controls="pie_chart_base_layer_coll">
+									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="pie_chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">表:
+									      				</label>
+														<div class="col-md-8">
+														 	<div class="input-group ">
+														    	<input type="text" class="form-control chart-table" disabled="">
+														    	<span class="input-group-btn">
+														   			<button class="btn btn-sm btn-success btn-chose-chart" type="button">选择</button>
+														   		</span>
+														  	</div>
+														</div>
+													</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">关联字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-table-fields"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">底图:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer"></select>
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">空间字段:
+									      				</label>
+									      				<div class="col-md-8">
+									      					<select class="form-control chart-base-layer-fields" ></select>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="pie_chart_table_set_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_table_set_coll" aria-expanded="false">
+									          		<i class="fa fa-info"></i>&nbsp;基本设置
+									        	</a>
+									      	</h4>
+									    </div>
+									    <div id="pie_chart_table_set_coll" class="panel-collapse collapse" role="tabpanel">
+									      	<div class="panel-body">
+									      		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">半径:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-radius" type="text" value="40" data-toggle="tooltip" data-placement="top" data-original-title="半径">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">偏移:
+									      				</label>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-x" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="X向,向右为正">
+									      				</div>
+									      				<div class="col-md-4">
+									      					<input class="form-control chart-table-offset-y" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="Y向,向上为正">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">标签</label>
+									      				<div class="col-md-4 checkbox">
+									      					<label><input type="checkbox" class="chart-table-show-label"></label>
+									      				</div>
+									      			</div>
+									      		</form>
+									      	</div>
+									    </div>
+									</div>
+
+									<div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="pie_chart_table_style_head">
+									      	<h4 class="panel-title">
+									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_table_style_coll" aria-expanded="false">
+									          		<i class="fa fa-cog"></i>&nbsp;样式设置
+									        	</a>
+									      	</h4>
+									    </div>
+									     <div id="pie_chart_table_style_coll" class="panel-collapse collapse" role="tabpanel">
+									    	<div class="panel-body">
+									    		<form class="form-horizontal" role="form">
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">字段:</label>
+									      				<div class="col-md-9 chart-fields">
+									      				</div>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">透明度:
+									      				</label>
+													    <div class="col-md-6 control-label">
+															<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+														</div>
+														<label class="control-label col-md-1 chart-opacity">1</label>
+									      			</div>
+									      			<div class="form-group form-group-sm">
+									      				<label class="control-label col-md-3">属性:
+									      				</label>
+									      			</div>
+									      		</form>
+									    	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="aqi_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cloud fa-2"></i>&nbsp;空气质量指数时刻图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-9">
+								      		<input class="form-control chart-table-name" type="text" value="空气质量指数专题图">
+								    	</div>
+								  	</div>
+								  	<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										日期:
+										</label>
+										<div class="col-md-9">
+											<div class="input-group date form_datetime" data-date="2014-06-12">
+												<input class="form-control" size="16" type="text" value="" readonly="">
+												<span class="input-group-addon" style='background-color:#5CB85C'>
+													<span class="fa fa-calendar" style='color:#fff'></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										时刻:
+										</label>
+										<div class="col-md-9 aqi-time-points-div">
+											<select class="form-control aqi-time-points">
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										质量指数:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-index">
+												<option value="aqi">空气质量指数</option>
+												<option value="pm10">颗粒物（粒径小于等于10μm）1小时平均</option>
+												<option value="pm10_24h">颗粒物（粒径小于等于10μm）24小时滑动平均</option>
+												<option value="pm2_5">颗粒物（粒径小于等于2.5μm）1小时平均</option>
+												<option value="pm2_5_24h">颗粒物（粒径小于等于2.5μm）24小时滑动平均</option>
+												<option value="no2">二氧化氮1小时平均</option>
+												<option value="no2_24h">二氧化氮24小时滑动平均</option>
+												<option value="o3">臭氧1小时平均</option>
+												<option value="o3_24h">臭氧日最大1小时平均</option>
+												<option value="o3_8h">臭氧8小时滑动平均</option>
+												<option value="o3_8h_24h">臭氧日最大8小时滑动平均</option>
+												<option value="so2">二氧化硫1小时平均</option>
+												<option value="so2_24h">二氧化硫24小时滑动平均</option>
+												<option value="co">一氧化碳1小时平均</option>
+												<option value="co_24h">一氧化碳24小时滑动平均</option>
+											</select>							
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">色阶:
+					      				</label>
+									    <div class="col-md-9 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+											</ul>
+										</div>
+					      			</div>
+								</form>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="aqi_timeline_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cloud fa-2"></i>&nbsp;空气质量指数时间序列图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-9">
+								      		<input class="form-control chart-table-name" type="text" value="空气质量指数时间序列图">
+								    	</div>
+								  	</div>
+								  	<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										起始日期:
+										</label>
+										<div class="col-md-9">
+											<div class="input-group date start_form_datetime" data-date="2014-06-12">
+												<input class="form-control" size="16" type="text" value="" readonly="">
+												<span class="input-group-addon" style='background-color:#5CB85C'>
+													<span class="fa fa-calendar" style='color:#fff'></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										起始时刻:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-start-time-points">
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										终止日期:
+										</label>
+										<div class="col-md-9">
+											<div class="input-group date end_form_datetime" data-date="2014-06-12">
+												<input class="form-control" size="16" type="text" value="" readonly="">
+												<span class="input-group-addon" style='background-color:#5CB85C'>
+													<span class="fa fa-calendar" style='color:#fff'></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										终止时刻:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-end-time-points">
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<label class="control-label col-md-3">
+										质量指数:
+										</label>
+										<div class="col-md-9">
+											<select class="form-control aqi-index">
+												<option value="aqi">空气质量指数</option>
+												<option value="pm10">颗粒物（粒径小于等于10μm）1小时平均</option>
+												<option value="pm10_24h">颗粒物（粒径小于等于10μm）24小时滑动平均</option>
+												<option value="pm2_5">颗粒物（粒径小于等于2.5μm）1小时平均</option>
+												<option value="pm2_5_24h">颗粒物（粒径小于等于2.5μm）24小时滑动平均</option>
+												<option value="no2">二氧化氮1小时平均</option>
+												<option value="no2_24h">二氧化氮24小时滑动平均</option>
+												<option value="o3">臭氧1小时平均</option>
+												<option value="o3_24h">臭氧日最大1小时平均</option>
+												<option value="o3_8h">臭氧8小时滑动平均</option>
+												<option value="o3_8h_24h">臭氧日最大8小时滑动平均</option>
+												<option value="so2">二氧化硫1小时平均</option>
+												<option value="so2_24h">二氧化硫24小时滑动平均</option>
+											</select>							
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">色阶:
+					      				</label>
+									    <div class="col-md-9 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+											</ul>
+										</div>
+					      			</div>
+					      			<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">时间间隔:
+					      				</label>
+					      				<div class="col-md-3" style="padding-right:0px">
+								      		<input class="form-control chart-interval" type="text" value="1500">
+								    	</div>
+								    	<label class="control-label col-md-2">
+								    	毫秒
+								    	</label>
+					      			</div>
+								</form>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<div id="gps_oper_wrapper" class="mc-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<button type="button" class="btn-hide" style="font-size: 20px;margin-right: 10px;margin-top: 6px;">
+                             		<i class="fa fa-chevron-down"></i>
+  								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cog fa-2"></i>&nbsp;
+										工具箱
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<ul class="nav">
+								</ul>
+							</div>
+							<!-- <div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-oper">选择</button>
+							</div> -->
+						</div>
+						<!-- 数据目录 -->
+						<div id="data_source_wrapper" class="mc-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-cog fa-2"></i>&nbsp;
+										数据目录
+										<i class="fa fa-upload btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入"></i>
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<div class="input-group input-group-sm">
+									<select class="form-control db-list">
+									</select>
+									<span class="input-group-btn">
+										<button class="btn btn-default btn-refresh" type="button" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+											<i class="fa fa-refresh"></i>
+										</button>
+									</span>
+								</div>
+								<div class="table-tree">
+									<!-- <ul class="nav">
+									</ul> -->
+								</div>
+							</div>
+						</div>
+						<div id="map_bar_wrapper" class="mc-border" >
+							<div class="mc-icon control-icon">
+								<a class="btn btn-default btn-link btn-sm ">
+							  		<i class="fa fa-angle-double-left"></i>
+								</a>
+							</div>	
+							<div class="mc-icon mc-icon-area" data-toggle="tooltip" data-placement="top" data-original-title="区域查询"></div>
+							<div class="mc-icon mc-icon-plus"></div>
+							<div class="mc-icon mc-icon-minus"></div>
+							<div class="mc-icon mc-icon-info"  data-toggle="tooltip" data-placement="top" data-original-title="点击查询"></div>
+							<div class="mc-icon mc-icon-mouse active" data-toggle="tooltip" data-placement="top" data-original-title="鼠标状态"></div>
+							<div class="mc-icon mc-icon-world" data-toggle="tooltip" data-placement="top" data-original-title="全图显示"></div>
+							<div class="mc-icon mc-icon-hand-up"></div>
+							<div class="mc-icon mc-icon-full-screen"></div>
+							<div class="mc-icon mc-icon-zoom-in"></div>
+							<div class="mc-icon mc-icon-pin"></div>					
+						</div>
+						<!-- 悬浮窗 -->
+						<div class="float-tool-box">
+							<i class="fa fa-bar-chart"></i>
+						</div>
+						<div class="float-coordinates">
+							<span>坐标:</span>
+							<span class='coor-value'>0, 0 </span>
+						</div>
+						<div id="map_overlay_wrapper" class="">
+							<div class="btn-group"><!-- btn-group-lg -->
+								<button type="button" class="btn btn-default" id="track_marker">点</button>
+								<button type="button" class="btn btn-default" id="track_polyline">线</button>
+								<button type="button" class="btn btn-default" id="track_polygon">面</button>
+							</div>
+						</div>
+
+						<!-- 加入对比panel -->
+						<div id="aqi_station_comp_panel">
+							<div class="aqi-station-list">
+							</div>
+							<div class="aqi-station-btn">
+								<a class="btn btn-link btn-sm btn-comp">
+								开始对比
+								</a>
+							</div>
+							<div class="aqi-station-btn">
+								<a class="btn btn-link btn-sm btn-close">
+								关闭
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>

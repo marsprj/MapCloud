@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello World!</title>
+    <script src="../esium/Cesium.js"></script>
+    <style>
+      @import url(../Cesium/Widgets/widgets.css);
+      #cesiumContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+    </style>
+  </head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    var viewer = new Cesium.Viewer('cesiumContainer');
+    var wmts_layer = new Cesium.WebMapTileServiceImageryProvider({
+      url : 'http://127.0.0.1/geoserver/gwc/service/wmts?REQUEST=GetCapabilities',
+      layer : 'country',
+      style : 'default',
+      format : 'image/jpeg',
+      tileMatrixSetID : 'EPSG:4326',
+      // tileMatrixLabels : ['default028mm:0', 'default028mm:1', 'default028mm:2' ...],
+      maximumLevel: 19,
+      credit : new Cesium.Credit('world_country')
+  });
+  viewer.imageryLayers.addImageryProvider(wmts_layer);
+  </script>
+</body>
+</html>
