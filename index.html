@@ -2253,12 +2253,13 @@
 								<a href="javascript:void(0)" class="list-group-item single-style">单一样式</a>
 								<a href="javascript:void(0)" class="list-group-item unique-style">唯一值样式</a>
 								<a href="javascript:void(0)" class="list-group-item quantities-style">分级样式</a>
+								<a href="javascript:void(0)" class="list-group-item dot-density-style">点密度样式</a>
 								<a href="javascript:void(0)" class="list-group-item custom-style">自定义</a>
 							</div>
 						</div>
 						<div class="col-md-9" id="display_styles_div">
 							<div class="style-pane single-pane">
-								<form class="form-horizontal single-form" role="form">
+								<form class="form-horizontal parm-form" role="form">
 									<div class="form-group">
 										<label class="col-md-2 control-label">
 										样式
@@ -2397,6 +2398,35 @@
 									<a class="btn btn-default" id="custom_remove_value">删除</a>
 									<a class="btn btn-default" id="custom_remove_all_value">删除所有值</a>
 								</div>
+							</div>
+							<div class="style-pane dot-density-pane">
+								<form class="form-horizontal parm-form" role="form">
+									<div class="form-group">
+										<label class="col-md-2 control-label">
+											字段
+										</label>
+										<div class="col-md-3">
+											<select class="form-control layer-fields">
+											</select>
+										</div>
+										<!-- <div class="col-md-6 color-ramp-div">
+											<button type="button" class="btn btn-default dropdown-toggle btn-group-justified select-color-ramp" data-toggle="dropdown" aria-expanded="false">
+												<div class="color-ramp-item">
+												</div>
+											</button>
+											<ul class="dropdown-menu" role="menu" id="">
+											</ul>
+										</div> -->
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">
+										样式
+										</label>
+										<div class="col-md-2" style="padding-top:6px">
+											<div class="style-symbol"></div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

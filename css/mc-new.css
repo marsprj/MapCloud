@@ -1616,8 +1616,8 @@ ul.layers_row li:before {
 	background-color: #F1F1F1;
 }
 #style-mgr-dialog #display_styles_div .parm-form .form-group{
-	/*margin-bottom: 0px;*/
 	margin: 2px;
+	height: 34px;
 }
 #style-mgr-dialog #display_styles_div .parm-form .control-label{
 	padding: 6px;
@@ -1766,12 +1766,8 @@ ul.layers_row li:before {
 .style-pane{
 	display: none;
 }
-.single-form{
-	padding: 4px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	background-color: #F1F1F1;
-	height: 44px;
+#style-mgr-dialog .list-group-item.disabled{
+	pointer-events: none;
 }
 
 /***************************************************************************/

@@ -896,7 +896,7 @@ MapCloud.Ribbon = MapCloud.Class({
 					MapCloud.notify.showInfo("Warning",info + "失败");
 				}else{
 					mapObj.setNavControl(false);
-					mapObj.draw();
+					mapObj.draw(true);
 					mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
 					MapCloud.refresh_panel.refreshPanel();
 					MapCloud.dataGrid.cleanup();

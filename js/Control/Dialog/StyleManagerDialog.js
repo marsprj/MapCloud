@@ -52,6 +52,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	customStyle 		: null,
 	customStyleFilters 	: null,
 
+	// 点密度样式
+	dotDensityStyle 	: null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
@@ -119,6 +122,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 注册单一样式的点击事件
 		this.registerSingleSymbolEvent();
+		// 点密度样式的点击事件
+		this.registerDotDensitySymbolEvent();
 		
 		//切换样式类型
 		this.panel.find("#style_type_list li a").each(function(){
@@ -387,6 +392,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}else if($(this).hasClass("custom-style")){
 				dialog.panel.find(".style-pane").css("display","none");
 				dialog.panel.find(".custom-pane").css("display","block");
+			}else if($(this).hasClass("dot-density-style")){
+				dialog.panel.find(".style-pane").css("display","none");
+				dialog.panel.find(".dot-density-pane").css("display","block");
+				if(dialog.dotDensityStyle == null){
+					var style = dialog.getDotDensityStyle(dialog.singleStyle);
+					dialog.dotDensityStyle = style;
+				}
+				dialog.displayDotDensityStyle(dialog.dotDensityStyle);
 			}
 		});
 
@@ -404,7 +417,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}else if(geomType == GeoBeans.Style.FeatureStyle.GeomType.Polygon){
 				type = "fill";
 			}
-			dialog.symbolChangedClass = "single";
+			dialog.symbolChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.SINGLE;
 			dialog.symbolChangedIndex = 0;
 			var symbol = dialog.singleStyle.rules[0].symbolizer.symbol;
 			var symbolName = null;
@@ -444,6 +457,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.wfsWorkspace = null;
 		this.panel.find("#style_type_name").removeClass("disabled");
 		this.panel.find("#layer_fields").html("");
+		this.panel.find(".layer-fields").html("");
 		this.dbLayer = null;
 
 		this.singleStyle = null;
@@ -451,6 +465,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.quantitiesStyle = null;
 		this.customStyle = null;
 		this.customStyleFilters = [];
+		this.dotDensityStyle = null;
 
 		this.cleanupUniquePanel();
 		this.cleanupQuantitiesPanel();
@@ -558,7 +573,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			if(rule != null){
 				var filter = rule.filter;
 				if(filter == null){
-					return "single";
+					return GeoBeans.Style.FeatureStyle.StyleClass.SINGLE;
 				}
 			}
 		}else{
@@ -582,10 +597,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				}
 			}
 			if(uniqueCount == rules.length){
-				return "unique";
+				return GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE;
 			}
 			if(quantitiesCount == rules.length){
-				return "quantities";
+				return GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES;
 			}
 		}
 		return null;
@@ -696,14 +711,52 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.registerCustomSymbolIconEvent();
 		this.registerCustomSelectEvent();
 	},
+
+	// 点密度样式
+	displayDotDensityStyle : function(style){
+		if(style == null){
+			return;
+		}
+		var rules = style.rules;
+		if(rules == null){
+			return;
+		}
+		var length = rules.length;
+		if(length != 1){
+			return;
+		}
+		var rule = rules[0];
+		if(rule == null){
+			return;
+		}
+		var symbolizer = rule.symbolizer;
+		if(symbolizer == null){
+			return;
+		}
+		var cssObj = this.getStyleSymbolCss(symbolizer);
+		this.panel.find(".dot-density-pane .style-symbol").css(cssObj);
+
+		var field = style.field;
+		if(field != null){
+			var fieldOption = this.panel.find(".dot-density-pane .layer-fields option[value='" +
+							field + "']");
+			fieldOption.attr("selected",true);
+		}
+	},
 	 
 	// 设置各个panel的style,并设置各个页面的展示
 	setPanelStyle : function(style,styleClass){
 		var singleStyle = this.getSingleStyle(style);
 		this.singleStyle = singleStyle;
+		if(style.geomType != GeoBeans.Style.FeatureStyle.GeomType.Polygon){
+			this.panel.find(".dot-density-style").addClass('disabled');
+		}else{
+			// 面符号则需要设置点密度样式
+			this.panel.find(".dot-density-style").removeClass('disabled');
+		}
 		// 都需要展示单一值页面
 		this.displaySingleStyle(this.singleStyle);
-		if(styleClass == "single"){
+		if(styleClass == GeoBeans.Style.FeatureStyle.StyleClass.SINGLE){
 			this.uniqueStyle = null;
 			this.quantitiesStyle = null;
 			this.customStyle = null;
@@ -714,7 +767,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.panel.find(".single-pane").css("display","block");
 			this.panel.find(".list-group-item").removeClass("active");
 			this.panel.find(".single-style").addClass("active");
-		}else if(styleClass == "unique"){
+		}else if(styleClass == GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE){
 			this.uniqueStyle = style.clone();
 			this.quantitiesStyle = null;
 			this.customStyle = null;
@@ -725,7 +778,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.panel.find(".unique-pane").css("display","block");
 			this.panel.find(".list-group-item").removeClass("active");
 			this.panel.find(".unique-style").addClass("active");
-		}else if(styleClass == "quantities"){
+		}else if(styleClass == GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES){
 			this.uniqueStyle = null;
 			this.customStyle = null;
 			this.cleanupUniquePanel();
@@ -736,7 +789,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.panel.find(".quantities-pane").css("display","block");
 			this.panel.find(".list-group-item").removeClass("active");
 			this.panel.find(".quantities-style").addClass("active");
-		}else if(styleClass == "custom"){
+		}else if(styleClass == GeoBeans.Style.FeatureStyle.StyleClass.CUSTOM){
 			this.uniqueStyle = null;
 			this.quantitiesStyle = null;
 			this.cleanupUniquePanel();
@@ -749,6 +802,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.panel.find(".custom-pane").css("display","block");
 			this.panel.find(".list-group-item").removeClass("active");
 			this.panel.find(".custom-style").addClass("active");
+		}else if(styleClass == GeoBeans.Style.FeatureStyle.StyleClass.DOTDENSITY){
+			this.dotDensityStyle = style.clone();
+			this.displayDotDensityStyle(this.dotDensityStyle);
+
+			this.panel.find(".style-pane").css("display","none");
+			this.panel.find(".dot-density-pane").css("display","block");
+			this.panel.find(".list-group-item").removeClass("active");
+			this.panel.find(".dot-density-style").addClass("active");
 		}
 	},
 
@@ -762,7 +823,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					var rule = rules[0];
 					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
 					MapCloud.style_dialog.showDialog();	
-					dialog.styleChangedClass = "single";
+					dialog.styleChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.SINGLE;
 					dialog.styleChangedIndex = 0;
 				}
 			}
@@ -780,7 +841,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					var rule = rules[index];
 					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
 					MapCloud.style_dialog.showDialog();	
-					dialog.styleChangedClass = "unique";
+					dialog.styleChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE;
 					dialog.styleChangedIndex = index;
 				}
 			}
@@ -807,7 +868,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 							}
 							var type = dialog.getSymbolIconType(symbolizer.type);
 							MapCloud.symbol_dialog.showDialog("styleManager",type,symbolName);
-							dialog.symbolChangedClass = "unique";
+							dialog.symbolChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE;
 							dialog.symbolChangedIndex = index;
 						}
 					}
@@ -837,7 +898,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					var rule = rules[index];
 					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
 					MapCloud.style_dialog.showDialog();	
-					dialog.styleChangedClass = "quantities";
+					dialog.styleChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES;
 					dialog.styleChangedIndex = index;
 				}
 			}
@@ -864,7 +925,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 							}
 							var type = dialog.getSymbolIconType(symbolizer.type);
 							MapCloud.symbol_dialog.showDialog("styleManager",type,symbolName);
-							dialog.symbolChangedClass = "quantities";
+							dialog.symbolChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES;
 							dialog.symbolChangedIndex = index;
 						}
 					}
@@ -892,7 +953,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					var rule = rules[index];
 					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
 					MapCloud.style_dialog.showDialog();	
-					dialog.styleChangedClass = "custom";
+					dialog.styleChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.CUSTOM;
 					dialog.styleChangedIndex = index;
 				}
 			}
@@ -919,7 +980,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 							}
 							var type = dialog.getSymbolIconType(symbolizer.type);
 							MapCloud.symbol_dialog.showDialog("styleManager",type,symbolName);
-							dialog.symbolChangedClass = "custom";
+							dialog.symbolChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.CUSTOM;
 							dialog.symbolChangedIndex = index;
 						}
 					}
@@ -937,6 +998,23 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
+	// 点密度样式的修改样式
+	registerDotDensitySymbolEvent : function(){
+		var dialog = this;
+		this.panel.find(".dot-density-pane .style-symbol").click(function(){
+			if(dialog.dotDensityStyle != null){
+				var rules = dialog.dotDensityStyle.rules;
+				if(rules != null){
+					var rule = rules[0];
+					MapCloud.style_dialog.setRule(rule,dialog.fields,"styleMgr");
+					MapCloud.style_dialog.showDialog();	
+					dialog.styleChangedClass = GeoBeans.Style.FeatureStyle.StyleClass.DOTDENSITY;
+					dialog.styleChangedIndex = 0;
+				}
+			}
+		});	
+	},
+
 	// 获得单一样式值，取第一个样式
 	getSingleStyle : function(style){
 		if(style == null){
@@ -947,19 +1025,32 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		var geomType = style.geomType;
-
+		var styleClass = style.styleClass;
 		var singleStyle = null;
 		if(rules.length >= 1){
 			var rule = rules[0];
 			if(rule != null){
-				var filter = rule.filter;
 				var textSymbolizer = rule.textSymbolizer;
 				var symbolizer = rule.symbolizer;
 				var singleStyle = new GeoBeans.Style.FeatureStyle("single",geomType);
 				singleStyle.styleClass = GeoBeans.Style.FeatureStyle.StyleClass.SINGLE;
 				var rule = new GeoBeans.Rule();
 				if(symbolizer != null){
-					rule.symbolizer = symbolizer.clone();
+					if(styleClass == GeoBeans.Style.FeatureStyle.StyleClass.DOTDENSITY){
+						var fill =  symbolizer.fill;
+						var stroke = symbolizer.stroke;
+						var polygonSymbolizer = new GeoBeans.Symbolizer.PolygonSymbolizer();
+						if(fill != null){
+							polygonSymbolizer.fill = fill.clone();
+						}
+						if(stroke != null){
+							polygonSymbolizer.stroke = stroke.clone();
+						}
+						rule.symbolizer = polygonSymbolizer;
+						singleStyle.geomType = GeoBeans.Style.FeatureStyle.GeomType.Polygon;
+					}else{
+						rule.symbolizer = symbolizer.clone();
+					}
 				}
 				if(textSymbolizer != null){
 					rule.textSymbolizer = textSymbolizer.clone();
@@ -970,6 +1061,39 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		return singleStyle;
 	},
 
+	// 获取点密度的样式，从单一值上获取
+	getDotDensityStyle : function(style){
+		if(style == null){
+			return null;
+		}
+		var geomType = GeoBeans.Style.FeatureStyle.GeomType.Point;
+		var dotDensityStyle = new GeoBeans.Style.FeatureStyle("dotDensity",geomType);
+		dotDensityStyle.styleClass = GeoBeans.Style.FeatureStyle.StyleClass.DOTDENSITY;
+		var rule = new GeoBeans.Rule();
+		var pointSymbolizer = new GeoBeans.Symbolizer.PointSymbolizer();
+
+		var rules = style.rules;
+		if(rules != null){
+			var rule = rules[0];
+			if(rule != null){
+				var symbolizer = rule.symbolizer;
+				if(symbolizer != null){
+					var fill = symbolizer.fill;
+					var stroke = symbolizer.stroke;
+					if(fill != null){
+						pointSymbolizer.fill = fill.clone();
+					}
+					if(stroke != null){
+						pointSymbolizer.stroke = stroke.clone();
+					}
+				}
+			}
+		}
+
+		rule.symbolizer = pointSymbolizer;
+		dotDensityStyle.addRule(rule);
+		return dotDensityStyle;
+	},
 
 	// 样式CSS
 	getStyleSymbolCss : function(symbolizer){
@@ -1263,29 +1387,36 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(rule == null){
 			return;
 		}
-		if(this.styleChangedClass == "single" && this.styleChangedIndex == 0){
+		if(this.styleChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.SINGLE 
+			&& this.styleChangedIndex == 0){
 			var symbol = this.singleStyle.rules[0].symbolizer.symbol;
 			rule.symbolizer.symbol = symbol;
 			this.singleStyle.rules[0] = rule;
 			this.displaySingleStyle(this.singleStyle);
-		}else if(this.styleChangedClass == "unique"){
+		}else if(this.styleChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE){
 			var symbol = this.uniqueStyle.rules[this.styleChangedIndex].symbolizer.symbol;
 			rule.symbolizer.symbol = symbol;
 			this.uniqueStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
 			this.uniqueStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
 			this.displayUniqueStyle(this.uniqueStyle);
-		}else if(this.styleChangedClass == "quantities"){
+		}else if(this.styleChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES){
 			var symbol = this.quantitiesStyle.rules[this.styleChangedIndex].symbolizer.symbol;
 			rule.symbolizer.symbol = symbol;
 			this.quantitiesStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
 			this.quantitiesStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
 			this.displayQuantitiesStyle(this.quantitiesStyle);
-		}else if(this.styleChangedClass == "custom"){
+		}else if(this.styleChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.CUSTOM){
 			var symbol = this.customStyle.rules[this.styleChangedIndex].symbolizer.symbol;
 			rule.symbolizer.symbol = symbol;
 			this.customStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
 			this.customStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
 			this.displayCustomStyle(this.customStyle);
+		}else if(this.styleChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.DOTDENSITY){
+			var symbol = this.dotDensityStyle.rules[this.styleChangedIndex].symbolizer.symbol;
+			rule.symbolizer.symbol = symbol;
+			this.dotDensityStyle.rules[this.styleChangedIndex].symbolizer = rule.symbolizer;
+			this.dotDensityStyle.rules[this.styleChangedIndex].textSymbolizer = rule.textSymbolizer;
+			this.displayDotDensityStyle(this.dotDensityStyle);
 		}
 	},
 
@@ -1363,6 +1494,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return this.quantitiesStyle;
 		}else if(activeItem.hasClass("custom-style")){
 			return this.customStyle;
+		}else if(activeItem.hasClass('dot-density-style')){
+			var field = this.panel.find(".dot-density-pane .layer-fields").val();
+			if(field == null || field == ""){
+				MapCloud.notify.showInfo("请选择一个字段","Warning");
+				return null;
+			}
+			this.dotDensityStyle.field = field;
+			return this.dotDensityStyle;
 		}
 	},
 
@@ -1576,6 +1715,20 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 		}
 		this.panel.find(".custom-pane .layer-fields").html(html);
+
+		// 点密度样式的设置
+		html = "";
+		html = null;
+		var type = null;
+		for(var i = 0; i < fields.length; ++i){
+			field = fields[i];
+			type = field.type;
+			if(type == "int" || type == "double" || type == "float"){
+				name = field.name;
+				html += "<option value='" + name + "'>" + name + "</option>";
+			}
+		}
+		this.panel.find(".dot-density-pane .layer-fields").html(html);
 	},
 
 	//色阶地图
@@ -1933,24 +2086,25 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		var url = "url(" + symbol.icon + ")";
 
-		if(this.symbolChangedClass == "single" && this.symbolChangedIndex == 0){
+		if(this.symbolChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.SINGLE 
+			&& this.symbolChangedIndex == 0){
 			this.panel.find(".single-pane .symbol-icon").css("background-image",url);
 			if(this.singleStyle != null){
 				this.singleStyle.rules[0].symbolizer.symbol = symbol;
 			}
-		}else if(this.symbolChangedClass == "unique"){
+		}else if(this.symbolChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.UNIQUE){
 			var symbolIcon = this.panel.find(".unique-pane .symbol-icon")[this.symbolChangedIndex];
 			$(symbolIcon).css("background-image",url);
 			if(this.uniqueStyle != null){
 				this.uniqueStyle.rules[this.symbolChangedIndex].symbolizer.symbol = symbol;
 			}
-		}else if(this.symbolChangedClass == "quantities"){
+		}else if(this.symbolChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.QUANTITIES){
 			var symbolIcon = this.panel.find(".quantities-pane .symbol-icon")[this.symbolChangedIndex];
 			$(symbolIcon).css("background-image",url);
 			if(this.quantitiesStyle != null){
 				this.quantitiesStyle.rules[this.symbolChangedIndex].symbolizer.symbol = symbol;
 			}
-		}else if(this.symbolChangedClass == "custom"){
+		}else if(this.symbolChangedClass == GeoBeans.Style.FeatureStyle.StyleClass.CUSTOM){
 			var symbolIcon = this.panel.find(".custom-pane .symbol-icon")[this.symbolChangedIndex];
 			$(symbolIcon).css("background-image",url);
 			if(this.customStyle != null){

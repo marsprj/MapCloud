@@ -113,7 +113,7 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.refresh_panel.refreshPanel();
 				MapCloud.dataGrid.cleanup();
 				mapObj.setViewer(extent);
-				mapObj.draw();
+				mapObj.draw(true);
 			}
 		});
 	},
