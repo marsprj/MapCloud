@@ -1,5 +1,5 @@
-MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
-
+MapCloud.GenRandomPointsInPolygonDialog = MapCloud.Class(MapCloud.Dialog,{
+	
 	// 输入数据库
 	inputSourceName : null,
 
@@ -7,8 +7,7 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 	inputTypeName : null,
 
 	// 输出数据库
-	outputSourceName : null,	
-
+	outputSourceName : null,
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
@@ -19,6 +18,7 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	registerPanelEvent : function(){
 		var dialog = this;
+
 
 		this.panel.find('[data-toggle="tooltip"]').tooltip({container: 'body'});
 
@@ -47,15 +47,14 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose input source name & input type name
 		dialog.panel.find(".btn-choose-input").click(function(){
-			MapCloud.vector_db_dialog.showDialog("getArea");
+			MapCloud.vector_db_dialog.showDialog("genRandomPointsInPolgyon");
 		});
 
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("getArea","Feature");
+			MapCloud.gps_output_source_dialog.showDialog("genRandomPointsInPolgyon","Feature");
 		});
-
 
 		// 操作
 		this.panel.find(".gps-btn-oper-btn").click(function(){
@@ -74,17 +73,25 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
 				return;
 			}
+			var count = dialog.panel.find(".gps-output-count").val();
+			count = parseInt(count);
+			if(count == null || count < 0){
+				MapCloud.notify.showInfo("请输入随机生成点的个数","Warning");
+				return;
+			}
 			MapCloud.notify.loading();
-			gpsManager.getArea(dialog.inputSourceName,dialog.inputTypeName,
-				dialog.outputSourceName,outputTypeName,dialog.getArea_callback);
+			gpsManager.generateRandomPointsInPolygon(dialog.inputSourceName,dialog.inputTypeName,
+				dialog.outputSourceName,outputTypeName,count,dialog.generateRandomPointsInPolygon_callback);
 		});
+
 
 		// 重置
 		this.panel.find(".gps-btn-reset").click(function(){
 			dialog.cleanup();
 		});
 
-	},	
+
+	},
 
 	cleanup : function(){
 		this.panel.find(".gps-input-source-name").val("");
@@ -92,6 +99,7 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-output-source-name").val("");
 		this.panel.find(".gps-output-typename").val("");
 		this.panel.find(".gps-oper-log-div").empty();
+		this.panel.find(".gps-output-count").val("");
 
 		this.inputSourceName = null;
 		this.inputTypeName = null;
@@ -113,14 +121,15 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
 	},
 
-	getArea_callback : function(result){
+	generateRandomPointsInPolygon_callback : function(result){
 		MapCloud.notify.hideLoading();
-		var dialog = MapCloud.gps_get_area_dialog;
+		var dialog = MapCloud.gps_gen_random_points_in_polygon_dialog;
 		var html = "<div class='row'>"
 			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 表 : " + dialog.inputTypeName
 			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + "; 表 : " 
 			+ dialog.panel.find(".gps-output-typename").val() + " ];  结果 : "
-			+ result;
+			+ result + "</div>";
 		dialog.panel.find(".gps-oper-log-div").append(html);
-	}	
+	},
+
 });

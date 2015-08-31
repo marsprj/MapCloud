@@ -12,6 +12,9 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 输出数据库
 	outputSourceName : null,
 
+	// 输出srid
+	outputSrid : null,
+
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
@@ -120,6 +123,7 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.inputTypeName = null;
 		this.inputSrid = null;
 		this.outputSourceName = null;
+		this.outputSrid = null;
 	},
 
 	// 输入参数
@@ -154,7 +158,7 @@ MapCloud.GPSFeatureProjectDialog = MapCloud.Class(MapCloud.Dialog,{
 			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 图层 : " + dialog.inputTypeName
 			+ "] ; 输出 [ 数据库 : " + dialog.outputSourceName + " ; 图层 : "
 			+ dialog.panel.find(".gps-output-typename").val() + " ; 空间参考 : " 
-			+ dialog.outputSrid + " ]; 结果 : " + result ;
+			+ dialog.outputSrid + " ]; 结果 : " + result + "</div>" ;
 		dialog.panel.find(".gps-oper-log-div").append(html);		
 	}
 });

@@ -1,5 +1,5 @@
-MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
-
+MapCloud.GPSMultiPointToPointsDialog = MapCloud.Class(MapCloud.Dialog,{
+	
 	// 输入数据库
 	inputSourceName : null,
 
@@ -7,7 +7,7 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 	inputTypeName : null,
 
 	// 输出数据库
-	outputSourceName : null,	
+	outputSourceName : null,
 
 
 	initialize : function(id){
@@ -47,13 +47,13 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose input source name & input type name
 		dialog.panel.find(".btn-choose-input").click(function(){
-			MapCloud.vector_db_dialog.showDialog("getArea");
+			MapCloud.vector_db_dialog.showDialog("multiPointToPoints");
 		});
 
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("getArea","Feature");
+			MapCloud.gps_output_source_dialog.showDialog("multiPointToPoints","Feature");
 		});
 
 
@@ -75,17 +75,15 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			MapCloud.notify.loading();
-			gpsManager.getArea(dialog.inputSourceName,dialog.inputTypeName,
-				dialog.outputSourceName,outputTypeName,dialog.getArea_callback);
+			gpsManager.multiPointToPoints(dialog.inputSourceName,dialog.inputTypeName,
+				dialog.outputSourceName,outputTypeName,dialog.multiPointToPoints_callback);
 		});
 
 		// 重置
 		this.panel.find(".gps-btn-reset").click(function(){
 			dialog.cleanup();
 		});
-
 	},	
-
 	cleanup : function(){
 		this.panel.find(".gps-input-source-name").val("");
 		this.panel.find(".gps-input-type-name").val("");
@@ -107,20 +105,21 @@ MapCloud.GPSGetAreaDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-type-name").val(this.inputTypeName);
 	},
 
+
 	// 输出
 	setOutputSource : function(outputSourceName){
 		this.outputSourceName = outputSourceName;
 		this.panel.find(".gps-output-source-name").val(this.outputSourceName);
 	},
 
-	getArea_callback : function(result){
+	multiPointToPoints_callback : function(result){
 		MapCloud.notify.hideLoading();
-		var dialog = MapCloud.gps_get_area_dialog;
+		var dialog = MapCloud.gps_multi_point_to_points_dialog;
 		var html = "<div class='row'>"
 			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 表 : " + dialog.inputTypeName
 			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + "; 表 : " 
 			+ dialog.panel.find(".gps-output-typename").val() + " ];  结果 : "
 			+ result;
 		dialog.panel.find(".gps-oper-log-div").append(html);
-	}	
+	},
 });

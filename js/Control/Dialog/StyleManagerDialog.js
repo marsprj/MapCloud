@@ -643,7 +643,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}else{
 				switch(symbolizer.type){
 					case GeoBeans.Symbolizer.Type.Point:{
-						icon = "images/circle.png";
+						icon = "images/Circle.png";
 						break;
 					}
 					case GeoBeans.Symbolizer.Type.Line:{

@@ -102,6 +102,29 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
 					break;
 				}
+				case "multiPointToPoints":{
+					parentDialog = MapCloud.gps_multi_point_to_points_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+				}
+				case "lineToPoints":{
+					parentDialog = MapCloud.gps_line_to_points_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "polygonToPoints":{
+					parentDialog = MapCloud.gps_polygon_to_points_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "polygonToLine":{
+					parentDialog = MapCloud.gps_polygon_to_line_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
+				case "genRandomPointsInPolgyon":{
+					parentDialog = MapCloud.gps_gen_random_points_in_polygon_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+				}
 				default:{
 					break;
 				}

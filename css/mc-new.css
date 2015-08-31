@@ -3155,13 +3155,18 @@ ul.layers_row li:before {
 #gps_raster_reverse_dialog .log-li,#gps_raster_graylize_dialog .log-li,
 #gps_raster_stretch_dialog .log-li,#gps_raster_his_equal_dialog .log-li,
 #gps_raster_smooth_dialog .log-li,#gps_raster_threshold_dialog .log-li,
-#gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li{
+#gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li,
+#gps_dem_stretch_dialog .log-li{
 	margin-top: 153px;
 	margin-bottom: 0px;
 }
 #gps_raster_subtract_dialog .log-li{
 	margin-top: 313px;
 	margin-bottom: 0px;
+}
+#gps_dem_hillshade_dialog .log-li{
+	margin-bottom: 0px;
+    margin-top: 260px;
 }
 /***************************************************************************/
 /* GPS Raster  Dialog End  	 										*/
@@ -3171,7 +3176,9 @@ ul.layers_row li:before {
 /***************************************************************************/
 
 #gps_get_area_dialog .log-li,#gps_get_length_dialog .log-li,
-#gps_centroid_dialog .log-li,#gps_convex_hull_dialog .log-li{
+#gps_centroid_dialog .log-li,#gps_convex_hull_dialog .log-li,
+#gps_line_to_points_dialog .log-li,#gps_polygon_to_points_dialog .log-li,
+#gps_polygon_to_line_dialog .log-li,#gps_multi_point_to_points_dialog .log-li{
 	margin-top: 81px;
 	margin-bottom: 0px;
 }
@@ -3179,6 +3186,16 @@ ul.layers_row li:before {
 #gps_buffer_dialog .log-li{
 	margin-top: 153px;
 	margin-bottom: 0px;
+}
+
+#gps_gen_random_points_dialog .log-li{
+	margin-top: 100px;
+	margin-bottom: 0px;
+}
+
+#gps_gen_random_points_in_polygon_dialog .log-li{
+	margin-top: 117px;
+	margin-bottom: 0px;	
 }
 /***************************************************************************/
 /* GPS Geometry  Dialog End	 												*/

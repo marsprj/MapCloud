@@ -80,8 +80,7 @@ $().ready(function(){
 		= new MapCloud.GPSKMeanDialog("gps_kmean_dialog");
 	MapCloud.gps_feature_project_dialog
 		= new MapCloud.GPSFeatureProjectDialog("gps_feature_project_dialog");
-	MapCloud.gps_convex_hull_dialog
-		= new MapCloud.GPSConvexHullDialog("gps_convex_hull_dialog");
+
 	MapCloud.gps_raster_edge_detect_dialog
 		= new MapCloud.GPSRasterEdgeDetectDialog("gps_raster_edge_detect_dialog");
 	MapCloud.gps_raster_stretch_dialog
@@ -110,12 +109,30 @@ $().ready(function(){
 		= new MapCloud.GPSDemSlopeDialog("gps_dem_slope_dialog");
 	MapCloud.gps_dem_aspect_dialog
 		= new MapCloud.GPSDemAspectDialog("gps_dem_aspect_dialog");
+	MapCloud.gps_dem_stretch_dialog
+		= new MapCloud.GPSDemStretchDialog("gps_dem_stretch_dialog");
+	MapCloud.gps_dem_hillshade_dialog
+		= new MapCloud.GPSDemHillshadeDialog("gps_dem_hillshade_dialog");
 	MapCloud.gps_get_area_dialog
 		= new MapCloud.GPSGetAreaDialog("gps_get_area_dialog");
 	MapCloud.gps_get_length_dialog
 		= new MapCloud.GPSGetLengthDialog("gps_get_length_dialog");
 	MapCloud.gps_centroid_dialog
 		= new MapCloud.GPSCentroidDialog("gps_centroid_dialog");
+	MapCloud.gps_convex_hull_dialog
+		= new MapCloud.GPSConvexHullDialog("gps_convex_hull_dialog");
+	MapCloud.gps_multi_point_to_points_dialog
+		= new MapCloud.GPSMultiPointToPointsDialog("gps_multi_point_to_points_dialog");
+	MapCloud.gps_line_to_points_dialog
+		= new MapCloud.GPSLineToPointsDialog("gps_line_to_points_dialog");
+	MapCloud.gps_polygon_to_points_dialog
+		= new MapCloud.GPSPolygonToPointsDialog("gps_polygon_to_points_dialog");
+	MapCloud.gps_polygon_to_line_dialog
+		= new MapCloud.GPSPolygonToLineDialog("gps_polygon_to_line_dialog");
+	MapCloud.gps_gen_random_points_dialog
+		= new MapCloud.GPSGenRandomPointsDialog("gps_gen_random_points_dialog");
+	MapCloud.gps_gen_random_points_in_polygon_dialog
+		= new MapCloud.GenRandomPointsInPolygonDialog("gps_gen_random_points_in_polygon_dialog");
 	MapCloud.gps_buffer_dialog
 		= new MapCloud.GPSBufferDialog("gps_buffer_dialog");
 	MapCloud.gps_build_pyramid_dialog

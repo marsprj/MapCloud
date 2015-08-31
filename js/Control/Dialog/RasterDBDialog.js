@@ -204,6 +204,14 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog = MapCloud.gps_dem_slope_dialog;
 					break;
 				}
+				case "demStretch":{
+					parentDialog = MapCloud.gps_dem_stretch_dialog;
+					break;
+				}
+				case "demHillshade":{
+					parentDialog = MapCloud.gps_dem_hillshade_dialog;
+					break;
+				}
 				default:{
 					break;
 				}

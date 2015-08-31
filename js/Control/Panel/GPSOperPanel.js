@@ -183,6 +183,14 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 				dialog = MapCloud.gps_dem_aspect_dialog;
 				break;
 			}
+			case "DemStretch":{
+				dialog = MapCloud.gps_dem_stretch_dialog;
+				break;
+			}
+			case "DemHillshade":{
+				dialog = MapCloud.gps_dem_hillshade_dialog;
+				break;
+			}
 			case "GetArea":{
 				dialog = MapCloud.gps_get_area_dialog;
 				break;
@@ -203,8 +211,32 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 				dialog = MapCloud.gps_convex_hull_dialog;
 				break;
 			}
+			case "MultiPointToPoints":{
+				dialog = MapCloud.gps_multi_point_to_points_dialog;
+				break;
+			}
+			case "LineToPoints":{
+				dialog = MapCloud.gps_line_to_points_dialog;
+				break;
+			}
+			case "PolygonToPoints":{
+				dialog = MapCloud.gps_polygon_to_points_dialog;
+				break;
+			}
+			case "PolygonToLine":{
+				dialog = MapCloud.gps_polygon_to_line_dialog;
+				break;
+			}
 			case "BuildPyramid":{
 				dialog = MapCloud.gps_build_pyramid_dialog;
+				break;
+			}
+			case "GenerateRandomPoints":{
+				dialog = MapCloud.gps_gen_random_points_dialog;
+				break;
+			}
+			case "GenerateRandomPointsInPolygon":{
+				dialog = MapCloud.gps_gen_random_points_in_polygon_dialog;
 				break;
 			}
 			case "UpdateTile":{

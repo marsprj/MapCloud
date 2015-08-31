@@ -54,6 +54,30 @@ MapCloud.GPSOutputSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 					parent = MapCloud.gps_convex_hull_dialog;
 					break;
 				}
+				case "multiPointToPoints":{
+					parent = MapCloud.gps_multi_point_to_points_dialog;
+					break;
+				}
+				case "polygonToPoints":{
+					parent = MapCloud.gps_polygon_to_points_dialog;
+					break;
+				}
+				case "lineToPoints":{
+					parent = MapCloud.gps_line_to_points_dialog;
+					break;
+				}
+				case "polygonToLine":{
+					parent = MapCloud.gps_polygon_to_line_dialog;
+					break;
+				}
+				case "genRandomPoints":{
+					parent = MapCloud.gps_gen_random_points_dialog;
+					break;
+				}
+				case "genRandomPointsInPolgyon":{
+					parent = MapCloud.gps_gen_random_points_in_polygon_dialog;
+					break;
+				}
 				case "buildPyramid":{
 					parent = MapCloud.gps_build_pyramid_dialog;
 					break;

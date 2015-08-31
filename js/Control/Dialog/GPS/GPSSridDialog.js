@@ -49,6 +49,15 @@ MapCloud.GPSSridDialog = MapCloud.Class(MapCloud.Dialog,{
 				}	
 				var parent = MapCloud.gps_feature_project_dialog;
 				parent.setSrid(srid);			
+			}else if(dialog.source == "genRandomPoints"){
+				var row = dialog.panel.find(".srid-list-div .row.selected");
+				var srid = row.attr("sname");
+				if(srid == null){
+					MapCloud.notify.showInfo("请选择一个空间参考","Warning");
+					return;
+				}	
+				var parent = MapCloud.gps_gen_random_points_dialog;
+				parent.setSrid(srid);			
 			}
 			dialog.closeDialog();
 		
