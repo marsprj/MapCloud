@@ -65,14 +65,32 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 
 			var start = dialog.panel.find(".gps-start-level").val();
-			if(start == ""){
+			if(!$.isNumeric(start)){
 				MapCloud.notify.showInfo("请输入起始级别","Warning");
+				dialog.panel.find(".gps-start-level").focus();
+				return;
+			}
+			start = parseInt(start);
+			if(start <= 0){
+				MapCloud.notify.showInfo("请输入有效的起始级别","Warning");
+				dialog.panel.find(".gps-start-level").focus();
 				return;
 			}
 
 			var end = dialog.panel.find(".gps-end-level").val();
-			if(end == ""){
+			if(!$.isNumeric(end)){
 				MapCloud.notify.showInfo("请输入终止级别","Warning");
+				dialog.panel.find(".gps-end-level").focus();
+				return;
+			}
+			end = parseInt(end);
+			if(end <= 0){
+				MapCloud.notify.showInfo("请输入有效的终止级别","Warning");
+				dialog.panel.find(".gps-end-level").focus();
+				return;
+			}
+			if(start > end){
+				MapCloud.notify.showInfo("请输入有效的起止级别","Warning");
 				return;
 			}
 			MapCloud.notify.loading();

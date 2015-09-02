@@ -96,6 +96,13 @@ MapCloud.GPSRasterPixelBlendDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请选择输出影像的名称","Warning");
 				return;
 			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputRasterName)){
+				MapCloud.notify.showInfo("请输入有效的输出影像的名称","Warning");
+				dialog.panel.find(".gps-output-raster-name").focus();
+				return;
+			}
+			
 			var ouputRasterFormat = dialog.panel.find(".gps-output-raster-format").val();
 			outputRasterName += ouputRasterFormat;
 

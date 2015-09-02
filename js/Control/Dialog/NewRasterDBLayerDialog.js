@@ -29,7 +29,7 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".new-layer-name").focus();
 				return;
 			}
-			var nameReg = /^[0-9a-zA-Z_-]+$/;
+			var nameReg = /^[0-9a-zA-Z_]+$/;
 			if(!nameReg.test(name)){
 				MapCloud.notify.showInfo("请输入有效的名称","Warning");
 				dialog.panel.find(".new-layer-name").focus();
@@ -47,6 +47,18 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
+	cleanup : function(){
+		this.sourceName = null;
+		this.rasterName = null;
+		this.rasterPath = null;
+
+		this.panel.find(".source-name").val("");
+		this.panel.find(".raster-name").val("");
+		this.panel.find(".new-layer-name").val("");
+		this.panel.find(".raster-path").val("");	
+
+	},
+
 	// 输入影像
 	setRaster : function(sourceName,rasterName,rasterPath){
 		this.sourceName = sourceName;
@@ -55,7 +67,11 @@ MapCloud.NewRasterDBLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find(".source-name").val(this.sourceName);
 		this.panel.find(".raster-name").val(this.rasterName);
+		
 		this.panel.find(".raster-path").val(this.rasterPath);
+
+		var name = this.rasterName.slice(0,this.rasterName.lastIndexOf("."));
+		this.panel.find(".new-layer-name").val(name);
 	},
 
 	// 注册图层回调函数

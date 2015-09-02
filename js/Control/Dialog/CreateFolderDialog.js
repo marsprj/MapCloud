@@ -13,8 +13,8 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find("#create_folder_name").focus();
 				return;
 			}
-			var nameReg = /^[0-9a-zA-Z_-]+$/;
-			if(!nameReg.test()){
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(name)){
 				MapCloud.notify.showInfo("请输入有效的名称","Warning");
 				dialog.panel.find("#create_folder_name").focus();
 				return;

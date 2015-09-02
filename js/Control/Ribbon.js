@@ -126,6 +126,13 @@ MapCloud.Ribbon = MapCloud.Class({
 			// 新建地图
 			that.onCreateMap();
 		});
+
+
+		$(".query-map-name").on("input",function(e){
+			console.log($(this).val());
+			that.onQueryMap($(this).val());
+		});
+		
 		$(".ribbon-item").each(function(index, element) {
 			$(this).click(function(e) {
 				switch(index){
@@ -630,6 +637,12 @@ MapCloud.Ribbon = MapCloud.Class({
 		rightWidth = parseInt(rightWidth.slice(0,rightWidth.lastIndexOf("px")));
 		$("#home_ribbon .map-page-div").css("right",rightWidth + "px");
 
+		var mapsCountWidth = $(".maps-count").css("width");
+		mapsCountWidth = parseInt(mapsCountWidth.slice(0,mapsCountWidth.lastIndexOf("px")));
+		var paginationWidth = $("#home_ribbon .pagination").css("width");
+		paginationWidth = parseInt(paginationWidth.slice(0,paginationWidth.lastIndexOf("px")));
+		var mapPageDivWidth =  mapsCountWidth + paginationWidth;
+		$("#home_ribbon .map-page-div").css("width",mapPageDivWidth + "px");
 	},
 
 	// 初始化页码
@@ -727,48 +740,6 @@ MapCloud.Ribbon = MapCloud.Class({
 		this.showMaps(startIndex,endIndex);
 	},
 	
-	// 翻页事件
-	// registerPageEvent : function(){
-	// 	var that = this;
-	// 	this.ribbonContainer.find(".glyphicon-step-backward").each(function(){
-	// 		$(this).click(function(){
-	// 			var count = parseInt(that.ribbonContainer
-	// 				.find(".pages-form-pages").html());
-	// 			if(count >=1){
-	// 				that.setPage(1);
-	// 			}
-	// 		});
-	// 	});
-	// 	//末页
-	// 	this.ribbonContainer.find(".glyphicon-step-forward").each(function(){
-	// 		$(this).click(function(){
-	// 			var count = parseInt(that.ribbonContainer
-	// 				.find(".pages-form-pages").html());
-	// 			if(count >= 1){
-	// 				that.setPage(count);
-	// 			}
-	// 		});
-	// 	});
-
-	// 	//上一页
-	// 	this.ribbonContainer.find(".glyphicon-chevron-left").each(function(){
-	// 		$(this).click(function(){
-	// 			var page = parseInt(that.ribbonContainer
-	// 				.find(".pages-form-page").val());
-	// 			that.setPage(page - 1);
-	// 		});	
-	// 	});
-
-	// 	//下一页
-	// 	this.ribbonContainer.find(".glyphicon-chevron-right").each(function(){
-	// 		$(this).click(function(){
-	// 			var page = parseInt(that.ribbonContainer
-	// 				.find(".pages-form-page").val());
-	// 			that.setPage(page + 1);
-	// 		});
-	// 	});
-
-	// },
 
 	// NEW 翻页事件
 	registerPageEvent : function(){
@@ -790,49 +761,6 @@ MapCloud.Ribbon = MapCloud.Class({
 		});
 	},
 
-	// setPage : function(page){
-	// 	var pageCount = parseInt(this.ribbonContainer
-	// 			.find(".pages-form-pages").html());
-
-	// 	this.ribbonContainer.find(".pages-form-page").val(page);
-	// 	if(page　== 1 ){
-	// 		this.ribbonContainer.find(".glyphicon-step-backward")
-	// 			.addClass("disabled");
-	// 	}else{
-	// 		this.ribbonContainer.find(".glyphicon-step-backward")
-	// 			.removeClass("disabled");
-	// 	}
-	// 	if(page == pageCount){
-	// 		this.ribbonContainer.find(".glyphicon-step-forward")
-	// 			.addClass("disabled");
-	// 	}else{
-	// 		this.ribbonContainer.find(".glyphicon-step-forward")
-	// 			.removeClass("disabled");
-	// 	}
-
-	// 	if(page - 1 <= 0){
-	// 		this.ribbonContainer.find(".glyphicon-chevron-left")
-	// 			.addClass("disabled");
-	// 	}else{
-	// 		this.ribbonContainer.find(".glyphicon-chevron-left")
-	// 			.removeClass("disabled");
-	// 	}
-
-	// 	if(page + 1 > pageCount){
-	// 		this.ribbonContainer.find(".glyphicon-chevron-right")
-	// 			.addClass("disabled");
-	// 	}else{
-	// 		this.ribbonContainer.find(".glyphicon-chevron-right")
-	// 			.removeClass("disabled");
-	// 	}
-	// 	if(page < 0 || page > pageCount){
-	// 		return;
-	// 	}
-	// 	var startIndex = (page-1) * this.maxCount;
-	// 	var endIndex = page*this.maxCount - 1;
-	// 	this.showMaps(startIndex,endIndex);
-
-	// },
 
 	showMaps : function(startIndex,endIndex){
 		$("#map-infos").css("display","none");
@@ -869,6 +797,12 @@ MapCloud.Ribbon = MapCloud.Class({
 		var map = mapManager.getMap("mapCanvas_wrapper",name);
 		that.showMapInfo(map);
 
+		that.registerMapListClickEvent();
+	},
+
+	// 点击，双击地图列表事件
+	registerMapListClickEvent : function(){
+		var that = this;
 		var DELAY = 300, clicks = 0, timer = null;
 		$("#maps_list_ul").find(".map-thumb").click(function(){
 			clicks++;
@@ -923,76 +857,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		// ribbonObj.setPage(1);
 	},
 
-	// showMapInfo : function(map){
-	// 	if(map == null){
-	// 		return;
-	// 	}
-	// 	$("#map-infos").css("display","block");
-	// 	var name = map.name;
-	// 	var srid = map.srid;
-	// 	$("#map-infos .map-info-name").html(name);
-	// 	$("#map-infos .map-info-srid").html(srid);
-
-	// 	var extent = map.extent;
-	// 	if(extent != null){
-	// 		$("#map-infos .map-info-xmin").html(extent.xmin.toFixed(2));
-	// 		$("#map-infos .map-info-ymin").html(extent.ymin.toFixed(2));
-	// 		$("#map-infos .map-info-xmax").html(extent.xmax.toFixed(2));
-	// 		$("#map-infos .map-info-ymax").html(extent.ymax.toFixed(2));
-	// 	}
-	// 	$("#map-infos .map-info-extent").html(extent.toString());
-
-	// 	// 图层
-	// 	$("#map-infos .layer-info-row").remove();
-	// 	var layers = map.getLayers();
-	// 	var layer = null;
-	// 	var name = null;
-	// 	var extent = null;
-	// 	var html = "";
-	// 	var geomType = null;
-	// 	for(var i = 0; i < layers.length;++i){
-	// 		layer = layers[i];
-	// 		if(layer == null){
-	// 			continue;
-	// 		}
-	// 		name = layer.name;
-	// 		html += '<li class="row layer-info-row">'
-	// 			+	'		<div class="col-md-3"></div>'
-	// 			+	'		<div class="col-md-2">' + name + '</div>'
-	// 			+	'		<div class="col-md-3"></div>'
-	// 			+	'	</li>';
-	// 		geomType = layer.geomType;
-	// 		if(geomType != null){
-	// 			html += '<li class="row layer-info-row">'
-	// 			+	'		<div class="col-md-3"></div>'
-	// 			+	'		<div class="col-md-2">类型:</div>'
-	// 			+	'		<div class="col-md-3">'+  geomType + '</div>'
-	// 			+	'	</li>';
-	// 		}
-	// 		extent = layer.extent;
-	// 		if(extent != null){
-	// 			html += '<li class="row layer-info-row">'
-	// 			+	'		<div class="col-md-3"></div>'
-	// 			+	'		<div class="col-md-2">范围:</div>'
-	// 			+   '		<div class="col-md-1 map-layer-info-extent">xMin:</div>'
-	// 			+   '		<div class="col-md-2">'+ extent.xmin.toFixed(2) + '</div>'
-	// 			+   '		<div class="col-md-1 map-layer-info-extent">yMin:</div>'
-	// 			+   '		<div class="col-md-2">'+ extent.ymin.toFixed(2) + '</div>'
-	// 			+ 	'	</li>'
-	// 			+ 	'	<li class="row layer-info-row">'
-	// 			+	'		<div class="col-md-3"></div>'
-	// 			+	'		<div class="col-md-2"></div>'
-	// 			+   '		<div class="col-md-1 map-layer-info-extent">xMax:</div>'
-	// 			+   '		<div class="col-md-2">'+ extent.xmax.toFixed(2) + '</div>'
-	// 			+   '		<div class="col-md-1 map-layer-info-extent">yMax:</div>'
-	// 			+   '		<div class="col-md-2">'+ extent.ymax.toFixed(2) + '</div>'
-	// 			+ 	'	</li>';
-	// 		}
-	// 		$("#map-infos").append(html);
-	// 	}
-		
-	// },
-
+	// 展示地图的信息
 	showMapInfo : function(map){
 		$(".map-list-info").css("display","block");
 		if(map == null){
@@ -1047,6 +912,55 @@ MapCloud.Ribbon = MapCloud.Class({
 			}	
 		}
 		$(".map-list-info .map-info-layers").append(html);
-	}
+	},
+
+	// 查询地图
+	onQueryMap : function(mapName){
+		if(mapName == null ){
+			return;
+		}
+		var maps = null;
+		if(mapName == ""){
+			maps = mapManager.maps;
+		}else{
+			maps = mapManager.getMapByNameChar(mapName);
+		}
+		if(maps == null ||maps.length == 0){
+			return;
+		}
+		var map = null;
+		var html = "";
+		for(var i = 0; i < maps.length; ++i){
+			map = maps[i];
+			var name = map.name;
+			var thumbnail = map.thumbnail;
+			var aHtml = "";
+			if(thumbnail != null){
+				aHtml = 	"	<a href='javascript:void(0)' class='map-thumb' style=\"background-image:url("
+						+			thumbnail + ")\"></a>";
+			}else{
+				aHtml = 	"	<a href='javascript:void(0)' class='map-thumb'></a>";
+			}
+			html += "<li class='maps-thumb' name='" + name + "'>"
+				+	aHtml
+				+ 	"	<div class='caption text-center'>"
+				+ 	"		<h6>" + name + "</h6>"
+				+ 	"	</div>"
+				+ 	"</li>";	
+		}
+		$("#maps_list_ul").html(html);	
+		
+		// 展示第一个
+		var firstMap = $("#maps_list_ul").find("li").first();
+		firstMap.find("a").addClass("selected");
+		var name = firstMap.attr("name");
+		var map = mapManager.getMap("mapCanvas_wrapper",name);
+		this.showMapInfo(map);
+
+		$(".btn-list-maps").removeClass("disabled");
+
+		this.registerMapListClickEvent();
+	},
+
 });
 	

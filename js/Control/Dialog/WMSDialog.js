@@ -44,7 +44,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 					dialog.panel.find("#wms_name").focus();
 					return;
 				}
-				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				var nameReg = /^[0-9a-zA-Z_]+$/;
 				if(!nameReg.test(wms_name)){
 					MapCloud.notify.showInfo("请输入有效的图层名称","Warning");
 					dialog.panel.find("#wms_name").focus();

@@ -71,15 +71,26 @@ MapCloud.GPSKMeanDialog = MapCloud.Class(MapCloud.Dialog,{
 			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
 			if(outputTypeName == ""){
 				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputTypeName)){
+				MapCloud.notify.showInfo("请输入有效的输出数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
 				return;
 			}
 
+
 			var clusters = dialog.panel.find(".gps-kmean-clusters").val();
-			clusters = parseInt(clusters);
-			if(clusters == null){
+			if(!$.isNumeric(clusters)){
 				MapCloud.notify.showInfo("请输入聚类","Warning");
+				dialog.panel.find(".gps-kmean-clusters").focus();
 				return;
 			}
+			clusters = parseInt(clusters);
+			
+
 			MapCloud.notify.loading();
 			gpsManager.clusterKmean(dialog.inputSourceName,dialog.inputTypeName,
 				dialog.outputSourceName,outputTypeName,clusters,dialog.clusterKmean_callback);

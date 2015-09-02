@@ -22,7 +22,7 @@ MapCloud.CreateTileStoreDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".tile-store-name").focus();
 				return;
 			}
-			var nameReg = /^[0-9a-zA-Z_-]+$/;
+			var nameReg = /^[0-9a-zA-Z_]+$/;
 			if(!nameReg.test(name)){
 				MapCloud.notify.showInfo("请输入有效的瓦片库名称","Warning");
 				dialog.panel.find(".tile-store-name").focus();

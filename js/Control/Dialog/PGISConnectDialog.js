@@ -29,7 +29,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 					dialog.panel.find("#data_source_conn_name").focus();
 					return;
 				}
-				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				var nameReg = /^[0-9a-zA-Z_]+$/;
 				if(!nameReg.test(name)){
 					MapCloud.notify.showInfo("请输入有效的名称","Warning");
 					dialog.panel.find("#data_source_conn_name").focus();
@@ -119,7 +119,7 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 			this.panel.find("#data_source_conn_db").focus();
 			return null;
 		}
-		var nameReg = /^[0-9a-zA-Z_-]+$/;
+		var nameReg = /^[0-9a-zA-Z_]+$/;
 		if(!nameReg.test(db)){
 			MapCloud.notify.showInfo("请输入有效的数据库名称","Warning");
 			this.panel.find("#data_source_conn_db").focus();

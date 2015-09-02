@@ -15,7 +15,7 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 					return;
 				}
 
-				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				var nameReg = /^[0-9a-zA-Z_]+$/;
 				if(!nameReg.test(name)){
 					MapCloud.notify.showInfo("请输入有效的名称","Warning");
 					dialog.panel.find("#wms_style_add_name").focus();

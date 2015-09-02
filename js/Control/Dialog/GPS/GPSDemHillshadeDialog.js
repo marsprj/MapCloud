@@ -79,6 +79,14 @@ MapCloud.GPSDemHillshadeDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请选择输出影像的名称","Warning");
 				return;
 			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputRasterName)){
+				MapCloud.notify.showInfo("请输入有效的输出影像的名称","Warning");
+				dialog.panel.find(".gps-output-raster-name").focus();
+				dialog.panel.find(".gps-output-azimuth").focus();
+				return;
+			}
+
 
 			var ouputRasterFormat = dialog.panel.find(".gps-output-raster-format").val();
 			outputRasterName += ouputRasterFormat;
@@ -123,9 +131,10 @@ MapCloud.GPSDemHillshadeDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-output-source-name").val("");
 		this.panel.find(".gps-output-raster-path").val("");
 		this.panel.find(".gps-output-raster-name").val("");
-		this.panel.find(".gps-ouput-zenith").val("");
-		this.panel.find(".gps-output-azimuth").val("");
-		this.panel.find(".gps-output-zscale").val("");
+		this.panel.find(".gps-output-azimuth").val("135");
+		this.panel.find(".gps-output-zenith").val("45");
+		
+		this.panel.find(".gps-output-zscale").val("1");
 		this.panel.find(".gps-oper-log-div").empty();
 
 		this.inputSourceName = null;

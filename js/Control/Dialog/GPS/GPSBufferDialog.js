@@ -73,13 +73,26 @@ MapCloud.GPSBufferDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
 				return;
 			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputTypeName)){
+				MapCloud.notify.showInfo("请输入有效的输出数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
+				return;
+			}
 
 			var checkedRadio =  dialog.panel.find("input[name='buffer-diastance']:checked");
 			if(checkedRadio.hasClass('buffer-distance-radio')){
 				var distanceInput = checkedRadio.parents(".form-group").find("input[type='text']");
 				var distance = distanceInput.val();
-				if(distance == ""){
+				if(!$.isNumeric(distance)){
 					MapCloud.notify.showInfo("请输入缓冲区距离","Warning");
+					checkedRadio.parents(".form-group").find("input[type='text']").focus();
+					return;
+				}	
+				distance = parseFloat(distance);
+				if(distance <= 0){
+					MapCloud.notify.showInfo("请输入有效的缓冲区距离","Warning");
+					checkedRadio.parents(".form-group").find("input[type='text']").focus();
 					return;
 				}
 				MapCloud.notify.loading();

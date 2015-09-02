@@ -71,8 +71,16 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
 			if(outputTypeName == ""){
 				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
 				return;
 			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputTypeName)){
+				MapCloud.notify.showInfo("请输入有效的输出数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
+				return;
+			}
+
 
 			gpsManager.getCentroid(dialog.inputSourceName,dialog.inputTypeName,
 				dialog.outputSourceName,outputTypeName,	dialog.getCentroid_callback);
@@ -122,6 +130,6 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + "; 表 : " 
 			+ dialog.panel.find(".gps-output-typename").val() + " ];  结果 : "
 			+ result;
-		dialog.panel.find(".gps-oper-log-div").html(html);
+		dialog.panel.find(".gps-oper-log-div").append(html);
 	}		
 });

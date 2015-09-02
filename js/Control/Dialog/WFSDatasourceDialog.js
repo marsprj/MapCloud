@@ -60,7 +60,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 					return;
 				}
 
-				var nameReg = /^[0-9a-zA-Z_-]+$/;
+				var nameReg = /^[0-9a-zA-Z_]+$/;
 				if(!nameReg.test(layer_name)){
 					MapCloud.notify.showInfo("请输入有效的图层名","Warning");
 					dialog.panel.find("#wfs_datasource_layer_name").focus();

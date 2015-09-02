@@ -64,13 +64,26 @@ MapCloud.GPSGenRandomPointsDialog = MapCloud.Class(MapCloud.Dialog,{
 			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
 			if(outputTypeName == ""){
 				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputTypeName)){
+				MapCloud.notify.showInfo("请输入有效的输出数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
 				return;
 			}
 
 			var count = dialog.panel.find(".gps-output-count").val();
-			count = parseInt(count);
-			if(count == null || count < 0){
+			if(!$.isNumeric(count)){
 				MapCloud.notify.showInfo("请输入随机生成点的个数","Warning");
+				dialog.panel.find(".gps-output-count").focus();
+				return;
+			}
+			count = parseInt(count);
+			if(count <= 0){
+				MapCloud.notify.showInfo("请输入正数","Warning");
+				dialog.panel.find(".gps-output-count").focus();
 				return;
 			}
 

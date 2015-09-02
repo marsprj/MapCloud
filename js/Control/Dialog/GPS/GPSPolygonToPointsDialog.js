@@ -73,8 +73,16 @@ MapCloud.GPSPolygonToPointsDialog = MapCloud.Class(MapCloud.Dialog,{
 			var outputTypeName = dialog.panel.find(".gps-output-typename").val();
 			if(outputTypeName == ""){
 				MapCloud.notify.showInfo("请输入输出的数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
 				return;
 			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputTypeName)){
+				MapCloud.notify.showInfo("请输入有效的输出数据名称","Warning");
+				dialog.panel.find(".gps-output-typename").focus();
+				return;
+			}
+
 			MapCloud.notify.loading();
 			gpsManager.polygonToPoints(dialog.inputSourceName,dialog.inputTypeName,
 				dialog.outputSourceName,outputTypeName,dialog.polygonToPoints_callback);

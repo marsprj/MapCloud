@@ -78,6 +78,13 @@ MapCloud.GPSRasterSmoothDialog = MapCloud.Class(MapCloud.Dialog,{
 			var outputRasterName = dialog.panel.find(".gps-output-raster-name").val();
 			if(outputRasterName == null || outputRasterName == ""){
 				MapCloud.notify.showInfo("请选择输出影像的名称","Warning");
+				dialog.panel.find(".gps-output-raster-name").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(outputRasterName)){
+				MapCloud.notify.showInfo("请输入有效的输出影像的名称","Warning");
+				dialog.panel.find(".gps-output-raster-name").focus();
 				return;
 			}
 
