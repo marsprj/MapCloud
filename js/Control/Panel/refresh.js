@@ -113,6 +113,9 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.refresh_panel.refreshPanel();
 				MapCloud.dataGrid.cleanup();
 				mapObj.setViewer(extent);
+				mapObj.setNavControl(false);
+				mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
+				$(".mc-panel").css("display","none");
 				mapObj.draw(true);
 			}
 		});
@@ -329,9 +332,13 @@ MapCloud.refresh = MapCloud.Class({
 		// 放大图层
 		this.panel.find(".layer_row_quick_tool_zoom").each(function(){
 			$(this).click(function(){
-				var li = $(this).parents("li.layer_row");
-				var layerName = li.attr("lname");
-				mapObj.zoomToLayer(layerName);
+				if($(this).parents(".row").attr("id") == "baseLayer_row"){
+					mapObj.zoomToBaseLayer();
+				}else{
+					var li = $(this).parents("li.layer_row");
+					var layerName = li.attr("lname");
+					mapObj.zoomToLayer(layerName);
+				}
 			});
 		});
 
@@ -1341,7 +1348,7 @@ MapCloud.refresh = MapCloud.Class({
 				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
 				+	"				</a>"
 				+	"				<ul class=\"dropdown-menu\">"
-				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
 				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_layer_info\"><i class='dropdown-menu-icon fa fa-list-ul'></i>图层属性</a></li>"	
 				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
 				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"

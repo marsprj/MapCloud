@@ -180,6 +180,7 @@
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/SpatialReference.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/Job.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
@@ -289,6 +290,7 @@
 <script type="text/javascript" src="js/Control/Dialog/CreateTileStoreDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
 <title>MapCloud</title>
 </head>
 
@@ -535,6 +537,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
 								<div class="ribbon_label">工具箱</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
+								<div class="ribbon_label">进程管理</div>
 							</div>
 						</div>
 					</div>
@@ -5190,7 +5196,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像Sepial tone</h5>
+					<h5 class="modal-title">旧照片效果</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-bottom:15px">
@@ -7298,7 +7304,6 @@
 								<select class="form-control tile-store-type">
 									<option value="PGIS">PGIS</option>
 									<option value="GoogleCRS84Quad">GoogleCRS84Quad</option>
-									<option value="EPSG4326">EPSG4326</option>
 								</select>
 							</div>
 						</div>
@@ -7430,6 +7435,92 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- process panel -->
+	<div class="modal fade" id="process_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">进程管理</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-4" style="padding:0px;">
+							<select class="form-control col-md-4">
+								<option value="running">Running</option>
+								<option value="finished">Finished</option>
+								<option value="canceled">Canceled</option>
+							</select>
+						</div>
+					</div>
+					<div class="job-list-wrapper">
+						<div class="row header-row">
+							<div class="col-md-2">
+								操作
+							</div>
+							<div class="col-md-3">
+								服务器
+							</div>
+							<div class="col-md-3">
+								开始时间
+							</div>
+							<div class="col-md-3">
+								结束时间
+							</div>
+						</div>
+						<div class="job-list">
+							<div class="row">
+								<div class="col-md-2">DemHillshade</div>
+								<div class="col-md-3">192.168.111.152</div>
+								<div class="col-md-3">0-00-00 00:00:00</div>
+								<div class="col-md-3">0-00-00 00:00:00</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">DemHillshade</div>
+								<div class="col-md-3">192.168.111.152</div>
+								<div class="col-md-3">0-00-00 00:00:00</div>
+								<div class="col-md-3">0-00-00 00:00:00</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">DemHillshade</div>
+								<div class="col-md-3">192.168.111.152</div>
+								<div class="col-md-3">0-00-00 00:00:00</div>
+								<div class="col-md-3">0-00-00 00:00:00</div>
+							</div>
+						</div>
+					</div>
+					<ul class="pagination" style="margin:1px 0px">
+						<li class="disabled">
+							<a href="javascript:void(0)" aria-label="Previous">
+								<span aria-hidden="true">«</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="javascript:void(0)">1
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">2</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">3</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">4</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" aria-label="Next">
+								<span aria-hidden="true">»</span>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

@@ -42,6 +42,13 @@ MapCloud.MapInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			+ '</tr>'
 			+ '</thead>'
 		 	+ '<tbody>';
+		if(map.baseLayer != null){
+			html += "<tr>"
+			+ "<td>" + map.baseLayer.name + "</td>"
+			+ "<td>" + "底图" + "</td>"
+			+ "<td>" + map.baseLayer.extent + "</td>"
+			+ "</tr>";
+		}
 
 		var layers = map.getLayers();
 		var extent = null;
@@ -65,10 +72,12 @@ MapCloud.MapInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 				extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
 					+ " , " + extent.xmax.toFixed(2) + " , " + extent.ymax.toFixed(2);
 			}
-			
+			if(type == null){
+				type = layer.type;
+			}
 			html += "<tr>"
 			+ "<td>" + name + "</td>"
-			+ "<td>" + type + "</td>"
+			+ "<td>" + ((type==null)?"":type) + "</td>"
 			+ "<td>" + extentStr + "</td>"
 			+ "</tr>";
 		}

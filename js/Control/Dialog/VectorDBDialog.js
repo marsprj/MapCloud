@@ -153,6 +153,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 导入
 		this.panel.find(".btn-import").click(function(){
+			if(dialog.dataSourceCur == null){
+				MapCloud.notify.showInfo("请先选择一个数据源","Warning");
+				return;
+			}
 			MapCloud.import_dialog.showDialog("vector");
 			MapCloud.import_dialog.setDataSourceName(dialog.dataSourceCur.name);
 		});
@@ -405,6 +409,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		MapCloud.notify.loading();
 		this.panel.find(".table-tree .nav").html("");
+		this.panel.find(".db-infos-pane table tbody").html("");
 		dataSource.getDataSets(this.getDataSets_callback);
 	},
 
@@ -440,25 +445,23 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				+ 	"	<a href='#' class='tree-table' dindex='"
 				+		i + "'>"
 				+ 		geomTypeHtml
-				+	"		<span>"	 + name + "</span>"
+				+	"		<span title='" + name + "'>"	 + name + "</span>"
 				+	"	</a>"
 				+	"</li>";
 		}
 		dialog.panel.find(".table-tree .nav").html(html);
 
 		dialog.panel.find(".tree-table").click(function(){
+			var currentIndex = $(this).attr("dindex");
+			var selectedIndex = dialog.panel.find(".table-tree .nav a.selected").attr("dindex");
+			if(currentIndex == selectedIndex){
+				return;
+			}
 			dialog.panel.find(".table-tree .nav a.selected").removeClass("selected");
 			$(this).addClass("selected");
 			var dataSetName = $(this).find("span").html();
 			dialog.getDataSet(dataSetName);
-			// var index = $(this).attr("dindex");
-			// if(dialog.dataSourceCur != null){
-			// 	var dataSets = dialog.dataSourceCur.dataSets;
-			// 	if(dataSets != null){
-			// 		var dataSet = dataSets[index];
-			// 		dialog.showDataSetPanel(dataSet);
-			// 	}
-			// }
+			
 		});
 	},
 

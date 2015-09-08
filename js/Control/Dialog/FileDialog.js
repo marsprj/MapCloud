@@ -131,9 +131,11 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		if(this.flag != null){
 			this.panel.find(".btn-confirm").html("选择");
 			this.panel.find(".btn-group-tool").css("display","none");
+			this.panel.find("#current_path").parent().removeClass("col-md-8").addClass("col-md-12");
 		}else{
 			this.panel.find(".btn-confirm").html("确定");
 			this.panel.find(".btn-group-tool").css("display","block");
+			this.panel.find("#current_path").parent().addClass("col-md-8").removeClass("col-md-12");
 		}
 
 		this.panel.modal();

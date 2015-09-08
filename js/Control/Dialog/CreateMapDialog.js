@@ -41,12 +41,27 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 					dialog.panel.find("#create_map_name").focus();
 					return;
 				}
+				var nameReg = /^[0-9a-zA-Z_]+$/;
+				if(!nameReg.test(mapName)){
+					MapCloud.notify.showInfo("请输入有效的地图名称","Warning");
+					dialog.panel.find("#create_map_name").focus();
+					return;
+				}
+
 				var srid = dialog.panel.find("#create_map_srid").val();
 				if(srid == null || srid == ""){
 					MapCloud.notify.showInfo("请输入空间参考","Warning");
 					dialog.panel.find("#create_map_srid").focus();
 					return;
 				}
+
+				if(!$.isNumeric(srid)){
+					MapCloud.notify.showInfo("请输入有效的空间参考","Warning");
+					dialog.panel.find("#create_map_srid").focus();
+					return;
+				}
+
+
 
 				var xmin = dialog.panel
 					.find("#create_map_xmin").val();
@@ -128,6 +143,7 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 			mapObj.draw();
 		}
+		$(".mc-panel").css("display","none");
 	},
 
 	//整理整个页面

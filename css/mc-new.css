@@ -835,7 +835,7 @@ ul#ribbon_tabs li{
 	border:1px solid #ccc;
 	z-index: 1030;
 	box-shadow: 2px 2px rgba(204, 204, 204, 0.17);
-	opacity: 0.8;
+	opacity: 1;
 }
 
 #datagrid_wrapper #datagrid_content{
@@ -2193,6 +2193,19 @@ ul.layers_row li:before {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+.mc-db-icon-servers{
+	background-image: url(../images/setting-16.png);
+}
+.mc-db-icon-server{
+	background-image: url(../images/server-16.png);
+}
+.mc-db-icon-folder{
+	background-image: url(../images/folder.png);
+}
+
+.mc-db-icon-dataset{
+	background-image: url(../images/table_16.png);
+}
 
 .mc-db-icon-dataset-point{
 	background-image: url(../images/marker_16.png);	
@@ -2497,7 +2510,7 @@ ul.layers_row li:before {
 }
 
 #aqiStatCompDialog .modal-body{
-	height: 600px;
+	height: 630px;
 }
 #aqi_stat_com_div{
 	height: 600px;
@@ -3530,4 +3543,47 @@ ul.layers_row li:before {
 
 /***************************************************************************/
 /* Query  Dialog End				 								   		*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Process  Dialog Begin				 								   		*/
+/***************************************************************************/
+#process_dialog .modal-dialog{
+	width: 800px;
+}
+
+#process_dialog .modal-body{
+}
+
+#process_dialog .job-list-wrapper{
+	margin: 10px 0px;
+    border: 1px solid #ddd;
+    border-radius: 4px; 
+}
+#process_dialog .row{
+	margin: 0px;
+    padding: 6px 2px;
+}
+#process_dialog .header-row {
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+}
+#process_dialog .job-list{
+	height: 390px;
+	overflow-y : auto;
+}
+#process_dialog .job-list .row:hover{
+	background-color: #DFF1F8;
+	cursor: pointer;
+}
+#process_dialog .job-list .row [class*='col-']{
+	padding: 0px 4px;
+}
+#process_dialog  .text-ellip{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+/***************************************************************************/
+/* Process  Dialog End				 								   		*/
 /***************************************************************************/

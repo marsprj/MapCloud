@@ -540,8 +540,8 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					+ "		<span>" + name + "</span>"
 					+ "</div>"
 					+ "<div class='col-md-1'>文件夹</div>"
-					+ "<div class='col-md-3'>" + accessTime + "</div>"
-					+ "<div class='col-md-3'>" + lastTime + "</div>"
+					+ "<div class='col-md-3'>" + ((accessTime == null)?(" "):accessTime) +  "</div>"
+					+ "<div class='col-md-3'>" + ((lastTime == null)?(" "):lastTime) + "</div>"
 					+ "<div class='col-md-1'></div>"
 					+ "</div>";			
 				}				

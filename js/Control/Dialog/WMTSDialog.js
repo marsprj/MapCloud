@@ -70,7 +70,7 @@ MapCloud.WMTSDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".wmts-source-name").val(sourceName);
 		if(this.layer != null){
 			this.panel.find(".wmts-tile-store").val(this.layer.name);
-			this.panel.find(".wmts_layer_name").val(this.layer.name);
+			this.panel.find("#wmts_layer_name").val(this.layer.name);
 		}
 	},
 });

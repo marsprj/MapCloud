@@ -151,7 +151,7 @@ MapCloud.DataSourcePanel = MapCloud.Class(MapCloud.Panel,{
 			var dbName = that.panel.find(".db-list").val();
 			var layer = new GeoBeans.Layer.FeatureDBLayer(name,null,dbName,name,null,null);
 			MapCloud.notify.loading();
-			mapObj.addLayer(layer,that.addLayer_callback);
+			mapObj.insertLayer(layer,that.addLayer_callback);
 		});
 	},
 

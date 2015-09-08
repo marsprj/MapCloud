@@ -129,7 +129,6 @@ MapCloud.Ribbon = MapCloud.Class({
 
 
 		$(".query-map-name").on("input",function(e){
-			console.log($(this).val());
 			that.onQueryMap($(this).val());
 		});
 		
@@ -293,6 +292,10 @@ MapCloud.Ribbon = MapCloud.Class({
 					// 工具箱
 					that.onTools();
 					break;
+				case 36:
+					// 进程管理
+					that.onProcess();
+					break
 				};
 			});
         });
@@ -317,16 +320,20 @@ MapCloud.Ribbon = MapCloud.Class({
 			MapCloud.notify.showInfo("当前地图为空","Warning");
 			return;
 		}
-
+		$(".mc-panel").css("display","none");
 		MapCloud.refresh_panel.cleanup();
 		mapObj.close();
 		mapObj = null;
+		
 	},
 
 	// 删除地图
 	onRemoveMap : function(){
 		if(mapObj == null){
 			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		if(!confirm("确定要删除当前地图吗？")){
 			return;
 		}
 		var result = mapManager.removeMap(mapObj.name);
@@ -555,7 +562,7 @@ MapCloud.Ribbon = MapCloud.Class({
 			MapCloud.notify.showInfo("请选择点图层","Warning");
 			return;
 		}
-		MapCloud.notify.hide();
+		MapCloud.notify.hideLoading();
 		MapCloud.heatMap_dialog.showDialog();
 		MapCloud.heatMap_dialog.setLayer(layer);
 	},
@@ -582,6 +589,11 @@ MapCloud.Ribbon = MapCloud.Class({
 	// 工具箱
 	onTools : function(){
 		MapCloud.gps_oper_panel.showPanel();
+	},
+
+	// 进程管理
+	onProcess : function(){
+		MapCloud.process_dialog.showDialog();		
 	},
 
 	setMaps : function(maps){
@@ -830,6 +842,7 @@ MapCloud.Ribbon = MapCloud.Class({
 					MapCloud.notify.showInfo("Warning",info + "失败");
 				}else{
 					mapObj.setNavControl(false);
+					$(".mc-panel").css("display","none");
 					mapObj.draw(true);
 					mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
 					MapCloud.refresh_panel.refreshPanel();
@@ -961,6 +974,8 @@ MapCloud.Ribbon = MapCloud.Class({
 
 		this.registerMapListClickEvent();
 	},
+
+
 
 });
 	

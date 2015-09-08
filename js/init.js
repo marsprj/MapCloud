@@ -144,6 +144,10 @@ $().ready(function(){
 	MapCloud.tile_db_dialog = new MapCloud.TileDBDialog("tile_db_dialog");
 	MapCloud.create_tile_store_dialog 
 		= new MapCloud.CreateTileStoreDialog("create_tile_store_dialog");
+	MapCloud.process_dialog
+		= new MapCloud.ProcessDialog("process_dialog");
+		
+
 
 
 	MapCloud.refresh_panel 
