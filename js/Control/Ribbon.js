@@ -47,8 +47,21 @@ MapCloud.Ribbon = MapCloud.Class({
 		$("#"+type+"_ribbon").css("display","block");
 		if(type == "home"){
 			this.showMapListPanel();
+			$(".query-map-name").val("");
 		}else{
-			this.showMapPanel();
+			// 刷新地图
+			if(mapObj != null && $("#main_panel").css("display") == "none"){
+				$("#map_list_panel").css("display","none");
+				$("#main_panel").css("display","block");
+				var extent = mapObj.viewer;
+				var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
+				mapObj = map;
+				mapObj.setViewer(extent);
+				mapObj.draw();
+			}else{
+				$("#map_list_panel").css("display","none");
+				$("#main_panel").css("display","block");
+			}
 		}
 	},
 	
@@ -324,7 +337,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.refresh_panel.cleanup();
 		mapObj.close();
 		mapObj = null;
-		
+
 	},
 
 	// 删除地图
@@ -935,6 +948,10 @@ MapCloud.Ribbon = MapCloud.Class({
 		var maps = null;
 		if(mapName == ""){
 			maps = mapManager.maps;
+			if(mapManager.maps != null){
+				this.setMaps(maps);
+				return;
+			}
 		}else{
 			maps = mapManager.getMapByNameChar(mapName);
 		}

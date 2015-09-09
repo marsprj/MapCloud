@@ -70,6 +70,12 @@ MapCloud.MapBar = MapCloud.Class({
 			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;
 		}
+		var layer = mapObj.getLayer(layerName);
+		if(layer == null || layer.type != GeoBeans.Layer.DBLayer.Type.Feature){
+			MapCloud.notify.showInfo("请选择一个矢量图层","Warning");
+			return;
+		}
+		
 		this.panel.find(".mc-icon").removeClass("active");
 		this.panel.find(".mc-icon-area").addClass("active");
 		mapObj.queryByRect(layerName,this.query_callback);
@@ -100,6 +106,12 @@ MapCloud.MapBar = MapCloud.Class({
 			MapCloud.notify.showInfo("请选择图层","Warning");
 			return;
 		}
+		var layer = mapObj.getLayer(layerName);
+		if(layer == null || layer.type != GeoBeans.Layer.DBLayer.Type.Feature){
+			MapCloud.notify.showInfo("请选择一个矢量图层","Warning");
+			return;
+		}
+		
 		this.panel.find(".mc-icon").removeClass("active");
 		this.panel.find(".mc-icon-info").addClass("active");
 		mapObj.queryByClick(layerName,this.onFeatureInfo_callback);
@@ -187,5 +199,13 @@ MapCloud.MapBar = MapCloud.Class({
 			this.panel.children().not(".control-icon").css("display","block");
 			this.panel.css("width","332px");
 		}
-	}
+	},
+
+	// 回到初始状态
+	returnEndQuery : function(){
+		this.endQuery();
+		this.panel.find(".mc-icon").removeClass("active");
+		this.panel.find(".mc-icon-mouse").addClass("active");
+	},
+
 });

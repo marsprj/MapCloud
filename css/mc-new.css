@@ -585,6 +585,7 @@ ul#ribbon_tabs li{
 	-moz-transition: all .5s ease-in-out;
 	-o-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;	
+	
 }
 .mc-panel-full{
 	height:100%;
@@ -1215,7 +1216,7 @@ ul#ribbon_tabs li{
 }
 .map-list-col{
 	height: 100%;
-	padding: 30px;
+	padding: 24px;
 }
 .map-list-thum{
 	float: left;
@@ -1258,7 +1259,7 @@ ul#ribbon_tabs li{
 .map-info-item{
 	width: 60px;
 	text-align: right;
-	margin-right: 10px;	
+	margin-right: 6px;	
 }
 
 #map-infos{

@@ -126,10 +126,12 @@ MapCloud.DataSourcePanel = MapCloud.Class(MapCloud.Panel,{
 			html += "<div class='row' lname='" + name + "'>"
 			+ "<div class='col-md-1'>" + geomTypeHtml + "</div>"
 			+ "<div class='col-md-9'>" + name + "</div>"
-			+ "<div class='col-md-1'>"
-			+ "		<div class='fa fa-plus mc-icon add_layer'  "
-			+ "data-toggle='tooltip' data-placement='top' data-original-title='添加到地图'></div>"
-			+ "</div>"
+			+ "<div class='col-md-1'>";
+			if(geomType != null){
+				html +=	"<div class='fa fa-plus mc-icon add_layer'  "
+					+ "	data-toggle='tooltip' data-placement='top' data-original-title='添加到地图'></div>"
+			}
+			html += "</div>"
 			+ "</div>"
 		}
 		this.panel.find(".table-tree").html(html);	

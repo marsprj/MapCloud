@@ -326,6 +326,7 @@ MapCloud.refresh = MapCloud.Class({
 				layer_row.addClass("layer_row_selected");
 				var layerName = layer_row.attr("lname");
 				that.registerAQILayerHitEvent(preLayerName,layerName);
+				MapCloud.mapBar.returnEndQuery();
 			});
 		});
 
