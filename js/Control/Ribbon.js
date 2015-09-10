@@ -539,11 +539,6 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.vector_db_dialog.showDialog();
 	},
 
-	//导入矢量
-	onImportVector : function(){
-		MapCloud.importVector_dialog.showDialog();
-	},
-
 	//导入影像
 	onImportImage : function(){
 		MapCloud.raster_db_dialog.showDialog();

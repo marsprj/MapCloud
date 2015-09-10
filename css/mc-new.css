@@ -3182,7 +3182,7 @@ ul.layers_row li:before {
 #gps_raster_stretch_dialog .log-li,#gps_raster_his_equal_dialog .log-li,
 #gps_raster_smooth_dialog .log-li,#gps_raster_threshold_dialog .log-li,
 #gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li,
-#gps_dem_stretch_dialog .log-li{
+#gps_dem_stretch_dialog .log-li,#gps_raster_edge_detect_dialog .log-li{
 	margin-top: 153px;
 	margin-bottom: 0px;
 }

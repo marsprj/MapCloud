@@ -97,10 +97,9 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 
 		// 上传
 		this.panel.find(".btn-upload-file").click(function(){
-			MapCloud.importVector_dialog.showDialog();
+			
 			var currentPath = dialog.panel.find("#current_path").val();
-			MapCloud.importVector_dialog.setUploadPath(currentPath);
-			// MapCloud.importVector_dialog.setDataSource("default");
+			MapCloud.importVector_dialog.showDialog(currentPath);
 		});
 
 		// 刷新

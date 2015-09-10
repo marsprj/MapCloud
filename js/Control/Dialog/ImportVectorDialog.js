@@ -39,16 +39,19 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 	cleanup : function(){
 		this.dataSourceName = null;
 		this.source = null;
+		this.uploadPath = null;
 		this.panel.find("#vector_list").html("");
 	},
 
-	showDialog : function(){
+	showDialog : function(uploadPath){
 		this.cleanup();
 		this.panel.modal();
 		this.uploadList = this.panel.find("#vector_list");
 		this.uploadState = "pending";
 		var dialog = this;
-
+		if(uploadPath != null){
+			this.setUploadPath(uploadPath);
+		}
 
 		// 初始化uploader
 		if(this.uploader == null){
