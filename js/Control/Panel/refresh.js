@@ -894,7 +894,7 @@ MapCloud.refresh = MapCloud.Class({
 			}
 			row	 +=" </div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">"
-					 +" 	<div class=\"mc-icon mc-icon-wmslayer mc-icon-layer\"></div>"
+					 // +" 	<div class=\"mc-icon mc-icon-wmslayer mc-icon-layer\"></div>"
 					 +"	</div>"
 					 +"	<div class=\"col-md-5 col-xs-5\">"
 					 +"		<strong class='wms-map-layer'>" + name + "</strong>"

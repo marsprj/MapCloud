@@ -26,6 +26,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 					}
 
 					dialog.wmsWorkspace = new GeoBeans.WMSWorkspace(wmsName,url,version);
+					MapCloud.notify.loading();
 					dialog.wmsWorkspace.getLayers(dialog.getLayersCallback);
 					dialog.panel.find("#wms_layers").html("");
 				});
@@ -110,6 +111,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	getLayersCallback : function(layers){
+		MapCloud.notify.hideLoading();
 		var html = "<list-group>";
 		var layer,name,geomType,layerTypeHtml;
 		var dialog = MapCloud.wms_dialog;

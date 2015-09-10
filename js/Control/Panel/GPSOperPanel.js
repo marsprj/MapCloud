@@ -15,7 +15,16 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 		// 	var operName = operLi.find("span").text();
 		// 	that.showOperDialog(operName);
 		// });
-		this.registerEvent();
+		
+		var dialog = this;
+		this.panel.find(".gps-oper-set").click(function(){
+			var ul = $(this).parent().find("ul");
+			if(ul.css("display") == "none"){
+				ul.slideDown();
+			}else if(ul.css("display","block")){
+				ul.slideUp();
+			}
+		});
 	},
 
 
@@ -81,21 +90,13 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 
 		this.panel.find(".panel-content").html(html);
 
-		
+		this.registerEvent();
 	},
 
 	// 注册收缩事件
 	registerEvent : function(){
+		
 		var dialog = this;
-		this.panel.find(".gps-oper-set").click(function(){
-			var ul = $(this).parent().find("ul");
-			if(ul.css("display") == "none"){
-				ul.slideDown();
-			}else if(ul.css("display","block")){
-				ul.slideUp();
-			}
-		});
-
 		// 单击选中
 		this.panel.find(".gps-oper").click(function(){
 			dialog.panel.find(".gps-oper.selected").removeClass("selected");
