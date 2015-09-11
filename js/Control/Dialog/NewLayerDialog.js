@@ -60,6 +60,10 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 				}
 				var dbName = dialog.dataSource.name;
 				var typeName = dialog.dataSet.name;
+				if(mapObj == null){
+					MapCloud.notify.showInfo("当前地图为空","Warning");
+					return;
+				}
 				if(mapObj != null){
 					var layer = new GeoBeans.Layer.FeatureDBLayer(name,null,dbName,name,null,null);
 					// var layer = new GeoBeans.Layer.DBLayer(name,
@@ -112,6 +116,7 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 			// mapObj.draw();
 			mapObj.setStyle(name,dialog.style,dialog.setStyle_callback);			
 		}
+		mapObj.draw();
 	},
 
 	setStyle : function(style){

@@ -88,12 +88,19 @@ MapCloud.GPSRasterSmoothDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
+
 			var ouputRasterFormat = dialog.panel.find(".gps-output-raster-format").val();
 			outputRasterName += ouputRasterFormat;
 			
+			var operator = dialog.panel.find(".gps-output-raster-operator").val();
+			if(operator == null){
+				MapCloud.notify.showInfo("请选择一种滤波方式","Warning");
+				return;
+			}
+
 			MapCloud.notify.loading();
 			gpsManager.rasterSmooth(dialog.inputSourceName,dialog.inputRasterName,
-				dialog.inputRasterPath,dialog.outputSourceName, outputRasterName,
+				dialog.inputRasterPath,operator,dialog.outputSourceName, outputRasterName,
 				dialog.outputRasterPath,dialog.rasterSmooth_callback);
 		});
 

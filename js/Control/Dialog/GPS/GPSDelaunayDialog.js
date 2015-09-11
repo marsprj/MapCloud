@@ -1,4 +1,4 @@
-MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
+MapCloud.GPSDelaunayDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 输入数据库
 	inputSourceName : null,
 
@@ -6,7 +6,7 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 	inputTypeName : null,
 
 	// 输出数据库
-	outputSourceName : null,	
+	outputSourceName : null,
 
 
 	initialize : function(id){
@@ -46,13 +46,13 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// choose input source name & input type name
 		dialog.panel.find(".btn-choose-input").click(function(){
-			MapCloud.vector_db_dialog.showDialog("centroid");
+			MapCloud.vector_db_dialog.showDialog("delaunay");
 		});
 
 
 		// choose output sourcename
 		dialog.panel.find(".btn-choose-output-source-name").click(function(){
-			MapCloud.gps_output_source_dialog.showDialog("centroid","Feature");
+			MapCloud.gps_output_source_dialog.showDialog("delaunay","Feature");
 		});
 
 
@@ -60,6 +60,11 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-btn-oper-btn").click(function(){
 			if(dialog.inputSourceName == null || dialog.inputTypeName == null){
 				MapCloud.notify.showInfo("请选择输入的数据","Warning");
+				return;
+			}
+			var inputZField = dialog.panel.find(".gps-z-field").val();
+			if(inputZField == ""){
+				MapCloud.notify.showInfo("请选择高程字段","Warning");
 				return;
 			}
 
@@ -80,10 +85,10 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".gps-output-typename").focus();
 				return;
 			}
-
+			
 			MapCloud.notify.loading();
-			gpsManager.getCentroid(dialog.inputSourceName,dialog.inputTypeName,
-				dialog.outputSourceName,outputTypeName,	dialog.getCentroid_callback);
+			gpsManager.delaunay(dialog.inputSourceName,dialog.inputTypeName,inputZField,
+				dialog.outputSourceName,outputTypeName,	dialog.delaunay_callback);
 			
 		});
 
@@ -91,15 +96,16 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-btn-reset").click(function(){
 			dialog.cleanup();
 		});
-
-	},	
+	},
 
 	cleanup : function(){
 		this.panel.find(".gps-input-source-name").val("");
 		this.panel.find(".gps-input-type-name").val("");
+		this.panel.find(".gps-input-type-name").val("");
 		this.panel.find(".gps-output-source-name").val("");
 		this.panel.find(".gps-output-typename").val("");
 		this.panel.find(".gps-oper-log-div").empty();
+		this.panel.find(".gps-z-field").empty();
 
 		this.inputSourceName = null;
 		this.inputTypeName = null;
@@ -108,11 +114,20 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	// 输入参数
-	setDataSet : function(inputSourceName,inputTypeName){
+	setDataSet : function(inputSourceName,inputTypeName,fields){
 		this.inputSourceName = inputSourceName;
 		this.inputTypeName = inputTypeName;
 		this.panel.find(".gps-input-source-name").val(this.inputSourceName);
 		this.panel.find(".gps-input-type-name").val(this.inputTypeName);
+
+		var field = null;
+		var html = "";
+		for(var i = 0; i < fields.length; ++i){
+			field = fields[i];
+			html += "<option value='" + field.name + "'>" + field.name + "</option>";
+		}
+
+		this.panel.find(".gps-z-field").html(html);
 	},
 
 	// 输出
@@ -122,14 +137,15 @@ MapCloud.GPSCentroidDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	// 结果
-	getCentroid_callback : function(result){
+	delaunay_callback : function(result){
 		MapCloud.notify.hideLoading();
-		var dialog = MapCloud.gps_centroid_dialog;
+		var dialog = MapCloud.gps_delaunay_dialog;
 		var html = "<div class='row'>"
 			+ "输入 [ 数据库 : " + dialog.inputSourceName + " ; 表 : " + dialog.inputTypeName
 			+ " ]; 输出 [ 数据库 : " + dialog.outputSourceName + "; 表 : " 
 			+ dialog.panel.find(".gps-output-typename").val() + " ];  结果 : "
 			+ result;
-		dialog.panel.find(".gps-oper-log-div").append(html);
-	}		
+		dialog.panel.find(".gps-oper-log-div").append(html);		
+	}	
+
 });

@@ -271,6 +271,7 @@
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemStretchDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemHillshadeDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetAreaDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDelaunayDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetLengthDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSCentroidDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSConvexHullDialog.js"></script>
@@ -4541,6 +4542,19 @@
 										</select>
 									</div>
 								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										方式:
+									</label>
+									<div class="col-md-5">
+										<select class="form-control gps-output-raster-operator">
+											<option value="Gauss">高斯滤波</option>
+											<option value="Mean">均值滤波</option>
+											<option value="Median">中值滤波</option>
+											<option value="Bilateral">双边滤波</option>
+										</select>
+									</div>
+								</div>
 							</form>
 						</div>
 						<div class="col-md-1 gps-oper-tool-div">
@@ -5766,6 +5780,102 @@
 		</div>
 	</div>
 
+	<!-- GPS delaunay panel-->
+	<div class="modal fade gps-oper-dialog" id="gps_delaunay_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">Delaunay三角网</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row" style="margin-bottom:15px">
+						<div class="col-md-11">
+							<label>输入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-type-name" disabled>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										高程字段:
+									</label>
+									<div class="col-md-8">
+										<select class="form-control gps-z-field">
+										</select>
+									</div>
+								</div>
+							</form>
+							<label>输出</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-output-source-name" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										图层:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-output-typename">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
+										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
 
 	<!-- GPS Get Area panel -->
 	<div class="modal fade gps-oper-dialog" id="gps_get_area_dialog" tabindex="-1" role="dialog" aria-hidden="true">

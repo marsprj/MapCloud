@@ -125,6 +125,11 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog = MapCloud.gps_gen_random_points_in_polygon_dialog;
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
 				}
+				case "delaunay":{
+					parentDialog = MapCloud.gps_delaunay_dialog;
+					var fields = dataSet.getFields();
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name,fields);
+				}
 				default:{
 					break;
 				}

@@ -20,14 +20,14 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		//具体信息的展示
 		this.panel.find("#create_map_infos").click(function(){
-			if($(this).hasClass(".info-invis")){
+			if($(this).hasClass("info-invis")){
 				dialog.panel.find(".create-map-info-item").slideDown();	
-				$(this).removeClass(".info-invis");
-				$(this).addClass(".info-vis");
+				$(this).removeClass("info-invis");
+				$(this).addClass("info-vis");
 			}else{
 				dialog.panel.find(".create-map-info-item").slideUp();	
-				$(this).addClass(".info-invis");
-				$(this).removeClass(".info-vis");
+				$(this).addClass("info-invis");
+				$(this).removeClass("info-vis");
 			}
 		});
 
@@ -84,6 +84,7 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 				//新建地图
 				mapManager.createMap("mapCanvas_wrapper",
 					mapName,extent,srid,dialog.createMap_callback);
+				ribbonObj.showMapTab();
 			});
 		});
 	},
@@ -95,7 +96,7 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		var info = "创建地图 [ " + name + " ]";
 		MapCloud.notify.showInfo(result,info);
 		dialog.closeDialog();
-		ribbonObj.showMapTab();
+		// ribbonObj.showMapTab();
 		
 		// 获取底图名称
 		var url = null;
@@ -142,6 +143,8 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 				mapObj.setViewer(mapObj.extent);
 			}
 			mapObj.draw();
+			mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
+			mapObj.setNavControl(false);
 		}
 		$(".mc-panel").css("display","none");
 	},
@@ -150,5 +153,6 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 	cleanupPage : function(){
 		MapCloud.refresh_panel.refreshPanel();
 		MapCloud.dataGrid.cleanup();
+		$(".mc-panel").css("display","none");
 	}
 });

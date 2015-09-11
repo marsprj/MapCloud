@@ -113,6 +113,8 @@ $().ready(function(){
 		= new MapCloud.GPSDemStretchDialog("gps_dem_stretch_dialog");
 	MapCloud.gps_dem_hillshade_dialog
 		= new MapCloud.GPSDemHillshadeDialog("gps_dem_hillshade_dialog");
+	MapCloud.gps_delaunay_dialog
+		= new MapCloud.GPSDelaunayDialog("gps_delaunay_dialog");
 	MapCloud.gps_get_area_dialog
 		= new MapCloud.GPSGetAreaDialog("gps_get_area_dialog");
 	MapCloud.gps_get_length_dialog
@@ -147,7 +149,6 @@ $().ready(function(){
 	MapCloud.process_dialog
 		= new MapCloud.ProcessDialog("process_dialog");
 		
-
 
 
 	MapCloud.refresh_panel 

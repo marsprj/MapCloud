@@ -34,6 +34,10 @@ MapCloud.GPSOutputSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 					parent = MapCloud.gps_feature_import_dialog;
 					break;
 				}
+				case "delaunay":{
+					parent = MapCloud.gps_delaunay_dialog;
+					break;
+				}
 				case "getArea":{
 					parent = MapCloud.gps_get_area_dialog;
 					break;

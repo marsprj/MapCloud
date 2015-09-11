@@ -3165,16 +3165,7 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* GPS Output Source Dialog End  										   */
 /***************************************************************************/
-/***************************************************************************/
-/* GPS Raster Extract Dialog Begin	 										*/
-/***************************************************************************/
-#gps_raster_extract_dialog .log-li{
-	margin-top: 296px;
-	margin-bottom: 0px;
-}
-/***************************************************************************/
-/* GPS Raster Extract Dialog End  	 										*/
-/***************************************************************************/
+
 /***************************************************************************/
 /* GPS Raster  Dialog Begin	 										*/
 /***************************************************************************/
@@ -3182,7 +3173,8 @@ ul.layers_row li:before {
 #gps_raster_stretch_dialog .log-li,#gps_raster_his_equal_dialog .log-li,
 #gps_raster_smooth_dialog .log-li,#gps_raster_threshold_dialog .log-li,
 #gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li,
-#gps_dem_stretch_dialog .log-li,#gps_raster_edge_detect_dialog .log-li{
+#gps_dem_stretch_dialog .log-li,#gps_raster_edge_detect_dialog .log-li,
+#gps_raster_sepia_tone_dialog .log-li{
 	margin-top: 153px;
 	margin-bottom: 0px;
 }
@@ -3193,6 +3185,18 @@ ul.layers_row li:before {
 #gps_dem_hillshade_dialog .log-li{
 	margin-bottom: 0px;
     margin-top: 260px;
+}
+#gps_raster_smooth_dialog .log-li{
+	margin-bottom: 0px;
+	margin-top: 189px;
+}
+#gps_raster_extract_dialog .log-li{
+	margin-top: 296px;
+	margin-bottom: 0px;
+}
+#gps_delaunay_dialog .log-li{
+	margin-bottom: 0px;
+    margin-top: 117px;
 }
 /***************************************************************************/
 /* GPS Raster  Dialog End  	 										*/

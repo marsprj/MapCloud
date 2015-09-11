@@ -193,6 +193,10 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 				dialog = MapCloud.gps_dem_hillshade_dialog;
 				break;
 			}
+			case "Delaunay":{
+				dialog = MapCloud.gps_delaunay_dialog;
+				break;
+			}
 			case "GetArea":{
 				dialog = MapCloud.gps_get_area_dialog;
 				break;

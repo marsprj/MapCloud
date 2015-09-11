@@ -69,12 +69,37 @@ MapCloud.refresh = MapCloud.Class({
 				MapCloud.notify.showInfo("当前地图为空","Warning");
 				return;
 			}
-			var extent = mapObj.extent;
+			// 重新读取一遍范围
+			var extent = null;
+			var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
+			if(map == null){
+				MapCloud.notify.showInfo("failed","全图显示失败");
+			}else{
+				extent = map.extent;
+			}
+			var layers = map.getLayers();
+			for(var i = 0; i < layers.length; ++i){
+				var layer = layers[i];
+				if(layer != null){
+					var name = layer.name;
+					var layer_n = mapObj.getLayer(name);
+					if(layer_n != null){
+						layer.visible = layer_n.visible;
+					}
+				}
+			}
+			mapObj = map;
 			if(extent == null){
 				return;
 			}
 			mapObj.setViewer(extent);
-			mapObj.draw();
+
+			mapObj.draw(true);
+			MapCloud.refresh_panel.refreshPanel();
+			MapCloud.dataGrid.cleanup();
+			mapObj.setViewer(extent);
+			mapObj.setNavControl(false);
+			mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
 		});
 
 		// 保存地图
