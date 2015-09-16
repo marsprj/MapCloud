@@ -189,6 +189,9 @@ MapCloud.LayerInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		var type = layerInfo.type;
+		if(type == null){
+			return;
+		}
 		type = type.toLowerCase();
 		if(type == "raster"){
 			this.showRasterDBLayer(layerInfo);

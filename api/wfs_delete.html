@@ -5,18 +5,20 @@
 
 	<link rel="stylesheet" type="text/css" href="css/buttons.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/styles/default.css"/>	
+	<link rel="stylesheet" type="text/css" href="css/codemirror.css"/>	
 	<link rel="stylesheet" type="text/css" href="css/api.css"/>	
 
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="js/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+	<script type="text/javascript" src="js/codemirror.js"></script>
+	<script type="text/javascript" src="js/xml.js"></script>
 
 	<title>WFS Delete服务接口</title>
 </head>
 
 <body>
-	<div style="padding:0px;height:100%;background:#fff;">
+	<div style="padding:0px;height:calc(100% - 80px);background:#fff;">
+		<div class="service_name">
+		</div>
 		<div class="servcie_request">
 			<div id="request_bar" class="service_bar">
 				<!-- <span>请求参数：</span> -->
@@ -39,12 +41,12 @@
 	xmlns:gml="http://www.opengis.net/gml" 
 	xmlns:ogc="http://www.opengis.net/ogc" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-transaction.xsd http://www.openplans.org/cities  http://localhost:8080/geoserver/wfs/DescribeFeaturename?name=world:cities">
-	<wfs:Delete name="world:cities">
+	xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-transaction.xsd http://www.openplans.org/cities  http://localhost:8080/geoserver/wfs/DescribeFeaturename?name=world:cities" sourceName="db1">
+	<wfs:Delete name="cities_a">
 		<ogc:Filter>
 			<ogc:PropertyIsEqualTo>
 				<ogc:PropertyName>gid</ogc:PropertyName>
-				<ogc:Literal>607</ogc:Literal>
+				<ogc:Literal>1</ogc:Literal>
 			</ogc:PropertyIsEqualTo>
 		</ogc:Filter>
 	</wfs:Delete>
@@ -58,49 +60,65 @@
 		<div class="servcie_response" class="service_style">
 			<div id="response_bar" class="service_bar">
 				<!-- <span>返回结果：</span> -->
-				<a href="javascript:void(0);" class="button button-primary button-rounded button-small btn-margin-top" onclick="javascript:onGet();">发送请求</a>
+				<a href="javascript:void(0);" class="button button-primary button-rounded button-small btn-margin-top" onclick="javascript:onPost();">发送请求</a>
 			</div>
 			<div id="response_container">
+				<textarea id="text_area" style="height:100%;width:100%;display:none"></textarea>
 			</div>
 		</div>
 	</div>
 </body>
 
 <script type="text/javascript">
-	var request_panel_height = 0;
+	var editor = null;
 	$().ready(function(){
-		request_panel_height = $("#request_parameters").height();
 
+		$(".service_name").html(document.title);
+		
+		// change hostname
+		var hostname = window.location.hostname;
+		var url = $("#request_parameters input[name='service_url']").val();
+		var newUrl = url.replace("127.0.0.1",hostname);
+		$("#request_parameters input[name='service_url']").val(newUrl);
+		
 		$("#request_bar").click(function(){
 			var request_panel = $("#request_parameters");
-			if($("#request_parameters").height()==0)
+			if($("#request_parameters").css("display")=="none")
 			{
-				request_panel.css("height", request_panel_height.toString() + "px");
+				request_panel.slideDown(200,function(){
+					changeEditorSize();
+				});
 			}
 			else
 			{
-				request_panel.css("height","0px");
+				request_panel.slideUp(200,function(){
+					changeEditorSize();
+				});
 			}
-		})
-	})
+			
+		});
 
-	function onGet(){
+
+
+		var requestHeight = $(".servcie_request").height().toString();
+		var nameHeight = $(".service_name").height().toString();
+		var height = parseInt(requestHeight) + parseInt(nameHeight);
+		var responseHeight = "calc(100% - " + height + "px)";
+		$(".servcie_response").css("height",responseHeight);
+	});
+
+	window.onresize = function(){
+		changeEditorSize();
+	};
+
+	function onPost(){
 		var url = $("#request_parameters input[name='service_url']").val();
-		var params = "";
-		$("#request_parameters input").each(function(){
-			var name = $(this).attr("name");
-			var value= $(this).attr("value");
-			if(name != 'service_url'){
-				if(params.length > 0){
-					params += "&";
-				}
-				params += name + "=" + value;
-			}
-		})
+		
+		var xml = $(".post_xml").val();
 		$.ajax({
-			type	:"get",
+			type	:"post",
 			url		: url,
-			 data	: encodeURI(params),
+			data : xml,
 			// contentType: "application/xml",
 			contentType: "text/xml",
 			dataType: "text",
@@ -108,15 +126,40 @@
 			beforeSend: function(XMLHttpRequest){
 			},
 			success	: function(xml, textStatus){
-				var text = "<textarea style='width:100%;height:100%'>"
-						 + xml
-						 + "</textarea>";
-				document.getElementById('response_container').innerHTML = text;
+				document.getElementById('text_area').innerHTML = xml;
+				
+				if(editor == null){
+					editor = CodeMirror.fromTextArea(document.getElementById("text_area"), {
+				        mode: "text/html",
+				        lineNumbers: true,
+				         gutter: true,
+	   					 lineWrapping: true
+				    });
+			    }else{
+			    	editor.setValue(xml);
+			    }
+				var height = $("#response_container").height();
+				var width = $("#response_container").width();
+				editor.setSize(width,height);
 			},
 			complete: function(XMLHttpRequest, textStatus){
 			},
 			error	: function(){
 			}
 		});	
+	}
+
+	function changeEditorSize(){
+		var requestHeight = $(".servcie_request").height().toString();
+		var nameHeight = $(".service_name").height().toString();
+		var height = parseInt(requestHeight) + parseInt(nameHeight);
+		var responseHeight = "calc(100% - " + height + "px)";
+		$(".servcie_response").css("height",responseHeight);
+		if(editor != null){
+			var height = $("#response_container").height();
+			var width = $("#response_container").width();
+			editor.setSize(width,height);
+			editor.refresh();
+		}
 	}
 </script>

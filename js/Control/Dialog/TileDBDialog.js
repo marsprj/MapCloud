@@ -147,8 +147,8 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".db-list").empty();
 		this.panel.find(".layer-tree .nav").empty();
 		this.panel.find(".layer-infos-pane").empty();
-
-		
+		this.panel.find(".db-tool .btn-group .btn").attr("disabled",false);
+		this.panel.find(".btn-infos").attr("disabled",true);
 	},
 
 	getDataSources_callback : function(dataSources){
@@ -242,6 +242,12 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".tile-store-name").click(function(){
 			var tileStoreName = $(this).find("span").html();
 			dialog.showTileStore(tileStoreName);
+			// var selectedBtn = dialog.panel.find(".db-tool .btn-group .btn[disabled='disabled']");
+			// if(selectedBtn.hasClass("btn-preview")){
+			// 	dialog.showTileStore(tileStoreName);
+			// }else if(selectedBtn.hasClass("btn-infos")){
+
+			// }
 		});
 
 
@@ -262,8 +268,13 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	describeTileStore_callback : function(tileStore){
 		MapCloud.notify.hideLoading();
 		var dialog = MapCloud.tile_db_dialog;
-		dialog.showTileStoreInfo(tileStore);
-
+		var selectedBtn = dialog.panel.find(".db-tool .btn-group .btn[disabled='disabled']");
+		if(selectedBtn.hasClass("btn-preview")){
+			dialog.showTileStorePreview(tileStore);
+		}else if(selectedBtn.hasClass("btn-infos")){
+			dialog.showTileStoreInfo(tileStore);
+		}
+		
 	},
 
 	showTileStoreInfo : function(tileStore){

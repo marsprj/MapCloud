@@ -15,10 +15,10 @@ var g_catalog =
                 "name": "GetFeature",
                 "link": "wfs_get_feature.html"
             },
-            {
-                "name": "GetGmlObject",
-                "link": "wfs_get_gmlobject.html"
-            },
+            // {
+            //     "name": "GetGmlObject",
+            //     "link": "wfs_get_gmlobject.html"
+            // },
             {
                 "name": "Insert",
                 "link": "wfs_insert.html"
@@ -52,15 +52,14 @@ var g_catalog =
                 "name": "GetMap",
                 "link": "wms_get_map.html"
             },
-            {
-                "name": "GetFeatureInfo",
-                "link": "wms_get_featureinfo.html"
-            },
-            {
-                "name": "GetStyle",
-                "link": "wms_get_style.html"
-            }
-            ,
+            // {
+            //     "name": "GetFeatureInfo",
+            //     "link": "wms_get_featureinfo.html"
+            // },
+            // {
+            //     "name": "GetStyle",
+            //     "link": "wms_get_style.html"
+            // },
             {
                 "name": "SetStyle",
                 "link": "wms_set_style.html"
@@ -70,13 +69,29 @@ var g_catalog =
     {
         "name": "瓦片地图服务",
         "items": [
+            // {
+            //     "name": "GetCapabilities",
+            //     "link": "wmts_getcapabilities.html"
+            // },
             {
-                "name": "GetCapabilities",
-                "link": "wmts_getcapabilities.html"
+                name : "GetDataSource",
+                link : "dbs_get_tile_datasource.html"
+            },
+            {
+                name : "DescribeTileStore",
+                link : "dbs_describe_tilestore.html"
+            },
+            {
+                name : "CreateTileStore",
+                link : "dbs_create_tilestore.html"
+            },
+            {
+                name : "RemoveTileStore",
+                link : "dbs_remove_tilestore.html"
             },
             {
                 "name": "GetTile",
-                "link": "wmts_get_tile.html"
+                "link": "dbs_get_tile.html"
             }
         ]
     },
@@ -88,26 +103,6 @@ var g_catalog =
                 "link": "gps_getcapabilities.html"
             },
             {
-                "name": "GetArea",
-                "link": "gps_get_area.html"
-            },
-            {
-                "name": "GetLength",
-                "link": "gps_get_length.html"
-            },
-            {
-                "name": "Buffer",
-                "link": "gps_buffer.html"
-            },
-            {
-                "name": "Convexhull",
-                "link": "gps_convexhull.html"
-            },
-            {
-                "name": "Centroid",
-                "link": "gps_centroid.html"
-            },
-            {
                 "name": "FeatureImport",
                 "link": "gps_feature_import.html"
             },
@@ -116,16 +111,25 @@ var g_catalog =
                 "link": "gps_feature_project.html"
             },
             {
-                "name": "RasterExtractByRect",
+                "name": "GetSpatialReference",
+                "link": "gps_get_srid.html"
+            },
+            
+            {
+                "name": "RasterEdgeDetect",
+                "link": "gps_raster_edge_detect.html"
+            },
+            {
+                "name": "RasterExtractByRectangle",
                 "link": "gps_raster_extract_by_rect.html"
             },
-            {
-                "name": "RasterGraylize",
-                "link": "gps_raster_graylize.html"
-            },
-            {
+             {
                 "name": "RasterReverse",
                 "link": "gps_raster_reverse.html"
+            },
+                        {
+                "name": "RasterGraylize",
+                "link": "gps_raster_graylize.html"
             },
             {
                 "name": "RasterSmooth",
@@ -140,22 +144,107 @@ var g_catalog =
                 "link": "gps_raster_subtract.html"
             },
             {
+                "name": "RasterPixelBlend",
+                "link": "gps_raster_pixel_blend.html"
+            },
+            {
+                "name": "RasterThreshold",
+                "link": "gps_raster_threshold.html"
+            },
+            {
+                "name": "RasterHistogramEqualization",
+                "link": "gps_raster_his_equal.html"
+            },
+            {
+                "name": "RasterSepiaTone",
+                "link": "gps_raster_sepia_tone.html"
+            },
+            {
+                "name": "DemSlope",
+                "link": "gps_dem_slope.html"
+            },
+            {
+                "name": "DemAspect",
+                "link": "gps_dem_aspect.html"
+            },
+            {
+                "name": "DemStretch",
+                "link": "gps_dem_stretch.html"
+            },
+            {
+                "name": "DemHillshade",
+                "link": "gps_dem_hillshade.html"
+            },
+            {
+                "name": "Delaunay",
+                "link": "gps_delaunay.html"
+            },
+            {
+                "name": "GetArea",
+                "link": "gps_get_area.html"
+            },
+            {
+                "name": "GetLength",
+                "link": "gps_get_length.html"
+            },
+            {
+                "name": "Buffer",
+                "link": "gps_buffer.html"
+            },
+            {
+                "name": "Centroid",
+                "link": "gps_centroid.html"
+            },
+            {
+                "name": "Convexhull",
+                "link": "gps_convexhull.html"
+            },
+            {
+                "name": "MultiPointToPoints",
+                "link": "gps_multi_points_to_points.html"
+            },
+            {
+                "name": "LineToPoints",
+                "link": "gps_line_to_points.html"
+            },
+            {
+                "name": "PolygonToPoints",
+                "link": "gps_polygon_to_points.html"
+            },
+            {
+                "name": "PolygonToLine",
+                "link": "gps_polygon_to_line.html"
+            },
+            {
+                "name": "GenerateRandomPoints",
+                "link": "gps_gen_random_points.html"
+            },
+            {
+                "name": "GenerateRandomPointsInPolygon",
+                "link": "gps_gen_random_points_in_polygon.html"
+            },
+            {
                 "name": "BuildPyramid",
                 "link": "gps_pyramid_build.html"
             },
+            // {
+            //     "name": "TileUpdate",
+            //     "link": "gps_tile_update.html"
+            // }
             {
-                "name": "TileUpdate",
-                "link": "gps_tile_update.html"
+                "name": "KMean",
+                "link": "gps_kmean.html"
             }
+
         ]
     },
     {
         "name": "系统管理服务",
         "items": [
-            {
-                "name": "GetCapabilities",
-                "link": "ims_getcapabilities.html"
-            },
+            // {
+            //     "name": "GetCapabilities",
+            //     "link": "ims_getcapabilities.html"
+            // }, 
             {
                 "name": "CreateMap",
                 "link": "ims_create_map.html"
@@ -164,10 +253,10 @@ var g_catalog =
                 "name": "DescribeMap",
                 "link": "ims_describe_map.html"
             },
-            {
-                "name": "RegisterMap",
-                "link": "ims_register_map.html"
-            },
+            // {
+            //     "name": "RegisterMap",
+            //     "link": "ims_register_map.html"
+            // },
             {
                 "name": "RemoveMap",
                 "link": "ims_remove_map.html"
@@ -176,10 +265,10 @@ var g_catalog =
                 "name": "SaveMap",
                 "link": "ims_save_map.html"
             },
-            {
-                "name": "UpdateMapLayerOrder",
-                "link": "ims_update_map_layer_order.html"
-            },
+            // {
+            //     "name": "UpdateMapLayerOrder",
+            //     "link": "ims_update_map_layer_order.html"
+            // },
             {
                 "name": "RegisterLayer",
                 "link": "ims_register_layer.html"
@@ -189,7 +278,11 @@ var g_catalog =
                 "link": "ims_unregister_layer.html"
             },
             {
-                "name": "SetStyle(*)",
+                "name": "DescribeLayer",
+                "link": "ims_describe_layer.html"
+            },
+            {
+                "name": "SetStyle",
                 "link": "ims_set_style.html"
             }
 		]
@@ -198,7 +291,7 @@ var g_catalog =
         "name": "样式管理服务",
         "items": [
             {
-                "name": "AddStyle(*)",
+                "name": "AddStyle",
                 "link": "ims_add_style.html"
             },
             {
@@ -210,7 +303,7 @@ var g_catalog =
                 "link": "ims_remove_style.html"
             },
             {
-                "name": "UpdateStyle(*)",
+                "name": "UpdateStyle",
                 "link": "ims_update_style.html"
             },
             {
@@ -231,10 +324,10 @@ var g_catalog =
     {
         "name": "栅格数据服务",
         "items": [
-            {
-                "name": "GetCapabilities(*)",
-                "link": "rds_getcapabilities.html"
-            },
+            // {
+            //     "name": "GetCapabilities(*)",
+            //     "link": "rds_getcapabilities.html"
+            // },
             {
                 "name": "DescribeRaster",
                 "link": "rds_describe_raster.html"
@@ -266,20 +359,20 @@ var g_catalog =
             {
                 "name": "List",
                 "link": "rds_list.html"
-            },
-            {
-                "name": "Move(*)",
-                "link": "rds_move.html"
             }
+            // {
+            //     "name": "Move(*)",
+            //     "link": "rds_move.html"
+            // }
         ]
     },
     {
         "name": "数据库管理服务",
         "items": [
-            {
-                "name": "GetCapabilities",
-                "link": "dbs_getcapabilities.html"
-            },
+            // {
+            //     "name": "GetCapabilities",
+            //     "link": "dbs_getcapabilities.html"
+            // },
             {
                 "name": "GetDataSource",
                 "link": "dbs_get_datasource.html"
@@ -301,6 +394,10 @@ var g_catalog =
                 "link": "dbs_remove_dataset.html"
             },
             {
+                "name": "GetDataSet",
+                "link": "dbs_get_dataset.html"
+            },
+            {
                 "name": "GetPreview",
                 "link": "dbs_get_preview.html"
             },
@@ -311,16 +408,28 @@ var g_catalog =
         ]
     },
     {
-        "name": "瓦片地图服务",
+        "name": "文件管理服务",
         "items": [
+            // {
+            //     "name": "GetCapabilities",
+            //     "link": "dbs_getcapabilities.html"
+            // },
             {
-                "name": "GetCapabilities",
-                "link": "wmts_getcapabilities.html"
+                "name": "List",
+                "link": "ufs_list.html"
             },
             {
-                "name": "GetTile",
-                "link": "wmts_get_tile.html"
-            }
+                "name": "CreateFolder",
+                "link": "ufs_create_folder.html"
+            },
+            {
+                "name": "RemoveFolder",
+                "link": "ufs_remove_folder.html"
+            },
+            {
+                "name": "RemoveFile",
+                "link": "ufs_remove_file.html"
+            },
         ]
     }
 ];

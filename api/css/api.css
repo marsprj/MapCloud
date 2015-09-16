@@ -20,6 +20,9 @@ div{
 	overflow: hidden;
 }
 
+.CodeMirror-linenumber{
+	overflow: visible !important;
+}
 .align_center{
 	margin-left: auto;
 	margin-right: auto;
@@ -102,7 +105,7 @@ div{
 /* 	margin: 5px;
 width: 100%-10px; */
 	width: 320px;
-	height: 100%;
+	height: calc(100% - 80px);
 	overflow-y: scroll; 
 	border-right: 1px solid #000000;
 	box-shadow: 1px 0px 4px 0px #828e9a;
@@ -122,6 +125,8 @@ width: 100%-10px; */
 	background-color: #00C5FF;
 	/* box-shadow: 1px 0px 4px 0px #828e9a; */
 	box-shadow: #666 0px 0px 10px;  
+	cursor: pointer;
+	margin-bottom: 2px;
 }
 
 .service_title_icon{
@@ -136,7 +141,7 @@ width: 100%-10px; */
 
 .item_container{
 	margin-top: 2px;
-	transition: all .2s ease-in-out;	
+	/*transition: all .2s ease-in-out;	*/
 }
 
 .item_block{
@@ -147,9 +152,13 @@ width: 100%-10px; */
 	border-bottom: 1px dashed #cad2dd;
 }
 
+
 .item_block:hover{
 	background-color: #DFF1F8;
 	cursor:pointer;
+}
+.item_block.active{
+	background-color: #DFF1F8;	
 }
 
 .item_block_icon{
@@ -182,6 +191,13 @@ width: 100%-10px; */
 	/*background-color: #FF0000;*/
 }
 
+.service_name{
+    font-size: 18px;
+    padding: 0px 14px;
+    height: 40px;
+    line-height: 40px;
+}
+
 .servcie_request{
 	/*background-color: #00FF00;	*/
 }
@@ -193,7 +209,7 @@ width: 100%-10px; */
 
 #request_parameters{
 	margin: 0px;
-	transition: all .2s ease-in-out;
+	/*transition: all .2s ease-in-out;*/
 }
 
 #request_parameters table{
@@ -230,5 +246,5 @@ width: 100%-10px; */
 
 #response_container{
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 40px);
 }
