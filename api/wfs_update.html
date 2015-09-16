@@ -34,7 +34,7 @@
 						</tr>
 						<tr>
 							<td class="request_column"><span>请求文档</span></td>
-							<td><textarea style="margin:0px 0px 10px 10px;width:95%;height:350px;">
+							<td><textarea style="margin:0px 0px 10px 10px;width:95%;height:350px;" class="post_xml">
 <wfs:Transaction service="WFS" version="1.0.0" 
 	xmlns:wfs="http://www.opengis.net/wfs" 
 	xmlns:world="http://www.openplans.org/world" 
@@ -44,11 +44,14 @@
 	xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-transaction.xsd http://www.openplans.org/cities  http://localhost:8080/geoserver/wfs/DescribeFeaturename?name=world:cities" sourceName="db1">
 	<wfs:Update name="cities_a">
 		<wfs:Property>
-			<wfs:Name>name</wfs:Name>
-			<wfs:Value>xxxx</wfs:Value>
+			<wfs:Name>country</wfs:Name>
+			<wfs:Value>test</wfs:Value>
 		</wfs:Property>
 		<ogc:Filter>
-			<ogc:FeatureId fid="cities.1"/>
+			<ogc:PropertyIsEqualTo>
+				<ogc:PropertyName>name</ogc:PropertyName>
+				<ogc:Literal>alley</ogc:Literal>
+			</ogc:PropertyIsEqualTo>
 		</ogc:Filter>
 	</wfs:Update>
 </wfs:Transaction>
@@ -119,7 +122,7 @@
 		$.ajax({
 			type	:"post",
 			url		: url,
-			data : xml,
+			data 	: xml,
 			// contentType: "application/xml",
 			contentType: "text/xml",
 			dataType: "text",

@@ -199,6 +199,22 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 
 		// table pane
+		// 刷新dataset
+		this.panel.find(".table-pane .btn-refresh-dataset").click(function(){
+			var selectDataSet = dialog.panel.find(".tree-table.selected");
+			var index = selectDataSet.attr("dindex");
+			if(dialog.dataSourceCur != null){
+				var dataSets = dialog.dataSourceCur.dataSets;
+				if(dataSets != null){
+					var dataSet = dataSets[index];
+					if(dataSet != null){
+						dialog.dataSourceCur.refresh(dataSet.name,dialog.refreshDataSet_callback);
+					}
+				}
+			}
+		});	
+
+
 		// 展示信息
 		dialog.panel.find("#show-dataset-infos").click(function(){
 			dialog.panel.find(".table-pane .btn-group .btn").attr("disabled",false);
@@ -639,6 +655,8 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find(".table-pane #dataset_fields").css("display","block");
 
+		// this.panel.find(".table-pane .btn-refresh-dataset").attr("disabled","false");
+
 		// this.panel.find(".table-pane .btn-group .btn").attr("disabled",false);
 		// this.panel.find("#show-dataset-fields").attr("disabled",true);
 		// 显示上一次的那个
@@ -759,10 +777,12 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var field = null;
 		var name = null;
 		var type = null;
+		var length = null;
 		for(var i = 0; i < fields.length; ++i){
 			field = fields[i];
 			name = field.name;
 			type = field.type;
+			length = field.length;
 			html += "<tr>"
 				+ 	"	<td>"
 				+ 			name 
@@ -770,6 +790,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				+ 	"	<td>"
 				+ 			type
 				+ 	"	</td>"
+				+ 	"	<td>"
+				+ 			((length == null)?"":length)
+				+ 	"	</td>"				
 				+	"</tr>";
 		}
 		this.panel.find("#dataset_fields table tbody").html(html);
@@ -982,6 +1005,16 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 设置新注册的数据源的名称
 	setRegisterDataSourceName : function(registerDataSourceName){
 		this.registerDataSourceName = registerDataSourceName;
-	}	
+	},
+
+
+	refreshDataSet_callback : function(result){
+		var dialog = MapCloud.vector_db_dialog;
+		var dataSetName = dialog.panel.find(".tree-table.selected span").html();
+		MapCloud.notify.showInfo(result,"刷新[" + dataSetName + "]");
+		if(result == "success"){
+			dialog.getDataSet(dataSetName);
+		}
+	},	
 
 });
