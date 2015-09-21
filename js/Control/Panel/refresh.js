@@ -92,7 +92,7 @@ MapCloud.refresh = MapCloud.Class({
 			if(extent == null){
 				return;
 			}
-			mapObj.setViewer(extent);
+			// mapObj.setViewer(extent);
 
 			mapObj.draw(true);
 			MapCloud.refresh_panel.refreshPanel();

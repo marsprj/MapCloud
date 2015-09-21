@@ -77,15 +77,23 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					if(style == null){
 						//添加
 						dialog.addStyle(currentStyle);
+						dialog.setLayerStyleFlag = true;
+						dialog.closeDialog();
+						return;
 					}else{
 						// 更新
 						dialog.updateStyle(currentStyle);
+						if(dialog.typeName != null){
+							// 给当前图层设定样式
+							dialog.setStyle(dialog.typeName,currentStyle,dialog.setStyle_callback);
+						}
+						dialog.closeDialog();
+						return;		
 					}
 				}
 				if(dialog.typeName != null){
 					// 给当前图层设定样式
-					dialog.setStyle(dialog.typeName,currentStyle,
-					dialog.setStyle_callback);
+					dialog.setStyle(dialog.typeName,currentStyle,dialog.setStyle_callback);
 				}
 				dialog.closeDialog();
 			});
@@ -101,21 +109,27 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					return;
 				}
 				currentStyle.name = name;
-				// 是否是WFS图层的默认样式
+					// 是否是WFS图层的默认样式
 				if(name != "default"){ 
 					var style = dialog.styleMgr.getStyle(name);
 					if(style == null){
 						//添加
 						dialog.addStyle(currentStyle);
+						dialog.setLayerStyleFlag = true;
+						return;
 					}else{
 						// 更新
 						dialog.updateStyle(currentStyle);
+						if(dialog.typeName != null){
+							// 给当前图层设定样式
+							dialog.setStyle(dialog.typeName,currentStyle,dialog.setStyle_callback);
+						}
+						return;		
 					}
 				}
 				if(dialog.typeName != null){
 					// 给当前图层设定样式
-					dialog.setStyle(dialog.typeName,currentStyle,
-					dialog.setStyle_callback);
+					dialog.setStyle(dialog.typeName,currentStyle,dialog.setStyle_callback);
 				}
 			});
 		});
@@ -1575,6 +1589,15 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			dialog.getStyleXML_callback);
 		}
 		dialog.addStyleName = null;
+
+		if(dialog.setLayerStyleFlag){
+			if(dialog.typeName != null){
+				// 给当前图层设定样式
+				var currentStyle = dialog.getCurrentStyle();
+				dialog.setStyle(dialog.typeName,currentStyle,dialog.setStyle_callback);
+			}
+		}
+		dialog.setLayerStyleFlag = false;
 	},
 
 	/******************绑定图层*************/

@@ -112,6 +112,11 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	getLayersCallback : function(layers){
 		MapCloud.notify.hideLoading();
+		if(!$.isArray(layers)){
+			MapCloud.notify.showInfo(layers,"获取WMS图层");
+			return;
+		}
+		
 		var html = "<list-group>";
 		var layer,name,geomType,layerTypeHtml;
 		var dialog = MapCloud.wms_dialog;

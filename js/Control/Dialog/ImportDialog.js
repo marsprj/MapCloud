@@ -51,6 +51,11 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find("button.close").click(function(){
 			dialog.closeDialog();
 		});
+
+
+		this.panel.on('hidden.bs.modal',function(){
+			dialog.closeDialog();
+		});		
 	},
 
 	showDialog : function(source){

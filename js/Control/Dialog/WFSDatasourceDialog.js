@@ -67,6 +67,11 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 					return;
 				}
 
+				if(mapObj == null){
+					MapCloud.notify.showInfo("当前地图为空","Warning");
+					return;
+				}
+
 				var layers = mapObj.getLayers();
 				for(var i = 0; i < layers.length; ++i){
 					var layer = layers[i];

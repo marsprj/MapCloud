@@ -173,6 +173,14 @@ MapCloud.FeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 		var feature = null;
 		var value = null;
 		var values = null;
+		var fields = null;
+		var field = null;
+		if(features[0] != null){
+			var featureType = features[0].featureType;
+			if(featureType != null){
+				fields = featureType.fields;
+			}
+		}
 		for(var i = 0; i < features.length; ++i){
 			feature = features[i];
 			if(feature == null){
@@ -184,10 +192,17 @@ MapCloud.FeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 			html += "<tr>";
 			for(var j = 0; j < values.length;++j){
+				if(fields != null){
+					field = fields[j];
+				}
+				if(field != null && field.type == "geometry"){
+					continue;
+				}
 				value = values[j];
 				if(value instanceof GeoBeans.Geometry){
 					continue;
 				}
+
 				html += '<td>' + value + "</td>"
 			}
 			html += "</tr>";
