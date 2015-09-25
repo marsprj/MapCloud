@@ -17,14 +17,16 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 		// });
 		
 		var dialog = this;
-		this.panel.find(".gps-oper-set").click(function(){
-			var ul = $(this).parent().find("ul");
-			if(ul.css("display") == "none"){
-				ul.slideDown();
-			}else if(ul.css("display","block")){
-				ul.slideUp();
+		this.panel.find(".btn-hide").click(function(){
+			var body = dialog.panel.find(".panel-content");
+			if(body.css("display") == "block"){
+				body.slideUp();
+				dialog.panel.css("height","44px");
+			}else{
+				body.slideDown();
+				dialog.panel.css("height","600px");
 			}
-		});
+		});		
 	},
 
 
@@ -106,16 +108,16 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 			dialog.showOperDialog(operName);
 		});
 
-		this.panel.find(".btn-hide").click(function(){
-			var body = dialog.panel.find(".panel-content");
-			if(body.css("display") == "block"){
-				body.slideUp();
-				dialog.panel.css("height","44px");
-			}else{
-				body.slideDown();
-				dialog.panel.css("height","600px");
+		this.panel.find(".gps-oper-set").click(function(){
+			var ul = $(this).parent().find("ul");
+			if(ul.css("display") == "none"){
+				ul.slideDown();
+			}else if(ul.css("display","block")){
+				ul.slideUp();
 			}
 		});
+
+
 	},
 
 	// 展示操作对话框

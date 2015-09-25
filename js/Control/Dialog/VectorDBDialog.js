@@ -574,7 +574,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				+ "<a href='#' class='dataset-thum' dindex='" + i 
 				+ "' style='background-image:url(" + thumbnail + ")'></a>";
 			}
-			html += "<div class='caption text-center'><h6>" + name + "</h6></div></li>";
+			html += "<div class='caption text-center'><h6 title='" + name + "'>" + name + "</h6></div></li>";
 		}
 		this.panel.find(".server-pane .db-thum-pane ul").html(html);
 
@@ -851,9 +851,9 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			field = fields[i];
 			if(field.type != "geometry"){
 				name = field.name;
-				html += "<th width='80'>"
+				html += "<th width='80'><nobr>"
 				+ 		name 
-				+ 	"</th>";
+				+ 	"</nobr></th>";
 				widthAll += 1;
 			}
 		}
@@ -898,8 +898,17 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 
 		var offset = ( page -1 ) * this.maxFeatures;
-		var features = this.dataSetCur.getFeatures(this.maxFeatures, offset); 
-		this.displayFeatures(features);
+		// var features = this.dataSetCur.getFeatures(this.maxFeatures, offset,this.getFeatures_callback); 
+		// this.displayFeatures(features);
+		MapCloud.notify.loading();
+		var fields = this.dataSetCur.getFieldsWithoutGeom();
+		this.dataSetCur.getFeatures(this.maxFeatures, offset,fields,this.getFeatures_callback); 
+	},
+
+	getFeatures_callback : function(features){
+		MapCloud.notify.hideLoading();
+		var dialog = MapCloud.vector_db_dialog;
+		dialog.displayFeatures(features);
 	},
 
 	// 展示元素

@@ -466,6 +466,8 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				var heatMapLayer = layer.getHeatMapLayer();
 				if(heatMapLayer == null){
+					MapCloud.heatMap_dialog.showDialog();
+					MapCloud.heatMap_dialog.setLayer(layer);
 					return;
 				}
 				// 展示热力图
@@ -570,6 +572,9 @@ MapCloud.refresh = MapCloud.Class({
 				var layerName = li.attr("lname");
 				var layer = mapObj.getLayer(layerName);
 				if(layer == null){
+					return;
+				}
+				if(layer.type != GeoBeans.Layer.DBLayer.Type.Feature){
 					return;
 				}
 				// MapCloud.styleMgr_dialog.showDialog();
@@ -1294,7 +1299,7 @@ MapCloud.refresh = MapCloud.Class({
 
 		html	+=	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"mc-icon mc-icon-dblayer\"></div>"	
+				+	"		<div class=\"mc-icon mc-icon-dblayer mc-icon-dblayer-raster\"></div>"	
 				+	"	</div>"
 				+	"	<div class=\"col-md-5 layer_name\">"
 				+	"		<strong title='" + name + "'>" + name + "</strong>"

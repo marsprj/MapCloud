@@ -328,6 +328,9 @@ ul {
 	/*background-image:url(../images/database.png);*/
 	background-image:url(../images/palette_16_1.png);
 }
+.mc-icon-dblayer-raster{
+	cursor: default;
+}
 .mc-icon-wmslayer{
 	background-image:url(../images/wms-layer.png);
 }
@@ -2235,7 +2238,7 @@ ul.layers_row li:before {
  .table-tree li a i{
 	margin-right: 4px;
 }
-.table-tree li a span{
+.table-tree li a span,#vector_db_dialog .db-thum-pane li h6{
 	word-break: break-all;
 	display: inline-block;
 	max-width: 140px;

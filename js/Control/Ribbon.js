@@ -82,6 +82,12 @@ MapCloud.Ribbon = MapCloud.Class({
 		$("#main_panel").css("height","calc(100% - 122px)");
 		$("#map_list_panel").css("top","122px");
 		mapManager.getMaps(ribbonObj.getMaps_callback);
+		$("#ribbon_container").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+		function(){ 
+			if(mapObj != null){
+				mapObj.resize("height");
+			}
+		});
 	},
 	
 	collapse : function(){
@@ -90,6 +96,12 @@ MapCloud.Ribbon = MapCloud.Class({
 		$("#main_panel").css("height","calc(100% - 42px)");
 		$("#map_list_panel").css("top","42px");
 		mapManager.getMaps(ribbonObj.getMaps_callback);
+		$("#ribbon_container").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+		function(){ 
+			if(mapObj != null){
+				mapObj.resize("height");
+			}
+		});	
 	},
 	
 	isCollapsed : function(){
@@ -842,6 +854,7 @@ MapCloud.Ribbon = MapCloud.Class({
 				console.log("Double Click");  //perform double-click action
 				var name = $(this).parent().attr("name");
 				MapCloud.notify.loading();
+				mapObj = null;
 				// that.showMapPanel();
 				that.showMapTab();
 				var info = "打开地图[" + name + "]";

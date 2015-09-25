@@ -12,6 +12,21 @@ MapCloud.Logo = MapCloud.Class({
 					ribbonObj.collapse();
 				}
 			});
+
+			// $(this).click(function(){
+			// 	if(ribbonObj.isCollapsed()){
+			// 		ribbonObj.ribbon.slideDown(200,function(){
+			// 			ribbonObj.expand();
+			// 		});
+			// 		// ribbonObj.expand();
+			// 	}
+			// 	else{
+			// 		ribbonObj.ribbon.slideUp(200,function(){
+			// 			ribbonObj.collapse();
+			// 		});
+					
+			// 	}				
+			// });
         });
 	}
 });
