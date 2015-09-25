@@ -981,6 +981,19 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(!confirm("确定要删除[" + name + "]数据库吗?")){
 			return;
 		}
+		this.panel.find(".table-pane").css("display","none");
+		this.panel.find(".server-pane").css("display","block");
+		this.panel.find(".db-infos-pane table tbody").html("");
+		this.panel.find(".table-tree .nav").html("");
+		this.panel.find(".db-thum-pane ul").html("");
+		this.panel.find(".query_count span").html(0);
+		this.panel.find(".pages-form-page").val(0);
+		this.panel.find(".pages-form-pages").html(0);
+		this.panel.find(".table-pane #dataset_infos table tbody").html("");
+		this.panel.find(".table-pane #dataset_fields table tbody").html("");
+		this.panel.find("#dataset_features_list table thead tr").html("");
+		this.panel.find(".table-pane #dataset_features table tbody").html("");
+		this.panel.find(".table-pane #dataset_preview img").css("src","");
 		dbsManager.unRegisterDataSource(name,this.unRegisterDataSource_callback);
 	},
 
