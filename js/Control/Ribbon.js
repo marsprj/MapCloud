@@ -796,7 +796,7 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	showMaps : function(startIndex,endIndex){
 		$("#map-infos").css("display","none");
-		MapCloud.notify.hideLoading();
+		
 		if(this.maps == null){
 			return;
 		}
@@ -886,7 +886,9 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	getMaps_callback : function(maps){
+		MapCloud.notify.hideLoading();
 		$(".map-list-info").css("display","none");
+		$("#maps_list_ul").empty();
 		ribbonObj.setMaps(maps);
 		// ribbonObj.setPage(1);
 	},
