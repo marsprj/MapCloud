@@ -43,6 +43,10 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 刷新
 		this.panel.find(".btn-refresh").click(function(){
 			var dbName = dialog.panel.find(".db-list").val();
+			if(dbName == null){
+				MapCloud.notify.showInfo("请选择一个数据源","Warning");
+				return;
+			}
 			dialog.getTileStores(dbName);
 			// MapCloud.notify.showInfo("刷新成功","Info");
 		});
@@ -50,16 +54,24 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 新增瓦片库
 		this.panel.find(".btn-create-tile-store").click(function(){
 			var sourceName = dialog.panel.find(".db-list").val();
+			if(sourceName == null){
+				MapCloud.notify.showInfo("请选择一个数据源","Warning");
+				return;
+			}
 			MapCloud.create_tile_store_dialog.showDialog("tileDB",sourceName);
 		});
 
 		// 删除瓦片库
 		this.panel.find(".btn-remove-tile-store").click(function(){
+			var sourceName = dialog.panel.find(".db-list").val();
+			if(sourceName == null){
+				MapCloud.notify.showInfo("请选择一个数据源","Warning");
+				return;
+			}
 			var tileStoreName = dialog.panel.find(".tile-store-name.selected span").html();
 			if(!confirm("确定删除[" + tileStoreName + "]瓦片库吗？")){
 				return;
 			}
-			var sourceName = dialog.panel.find(".db-list").val();
 			dialog.removeTileStore(sourceName,tileStoreName);
 		});
 
@@ -325,11 +337,17 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	removeDataSource : function(){
 		var name = this.panel.find(".db-list").val();
 		if(name == null){
+			MapCloud.notify.showInfo("请选择一个数据源","Warning");
 			return;
 		}
 		if(!confirm("确定要删除[" + name + "]数据库吗?")){
 			return;
 		}
+		this.panel.find(".db-list").empty();
+		this.panel.find(".layer-tree .nav").empty();
+		this.panel.find(".layer-infos-pane").empty();
+		this.panel.find(".db-tool .btn-group .btn").attr("disabled",false);
+		this.panel.find(".btn-infos").attr("disabled",true);
 		dbsManager.unRegisterDataSource(name,this.unRegisterDataSource_callback);
 	},
 
