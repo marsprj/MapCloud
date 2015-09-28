@@ -80,7 +80,10 @@
 		
 		// change hostname
 		var hostname = window.location.hostname;
-		var url = $("#request_parameters input[name='service_url']").val();
+		var port = window.location.port;
+		if(port != ""){
+			hostname += ":" + port;
+		}		var url = $("#request_parameters input[name='service_url']").val();
 		var newUrl = url.replace("127.0.0.1",hostname);
 		$("#request_parameters input[name='service_url']").val(newUrl);
 		

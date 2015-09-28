@@ -2152,6 +2152,7 @@ ul.layers_row li:before {
 #vector_list .row .progress-div{
 /*#vector_list .row .import-vector-infos{*/
 	padding-top: 8px;
+	word-break: break-all;
 }
 #vector_list .row .import-vector-infos{
 	padding-top: 2px;

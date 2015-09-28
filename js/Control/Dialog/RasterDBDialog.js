@@ -58,6 +58,11 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 删除
 		this.panel.find(".btn-remove-file").click(function(){
+			var sourceName = dialog.panel.find(".db-list").val();
+			if(sourceName == null){
+				MapCloud.notify.showInfo("请选择一个数据源","Warning");
+				return;
+			}
 			var checkboxs = dialog.panel.find("input[type='checkbox']:checked");
 			if(checkboxs.length == 0){
 				var path = dialog.panel.find(".tree-folder.selected").attr("fpath");
@@ -66,6 +71,10 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					return;
 				}
 				var folderName = dialog.panel.find(".tree-folder.selected span").html();
+				if(folderName == null){
+					MapCloud.notify.showInfo("请选择删除的文件","Warning");
+					return;
+				}
 				if(!confirm("确定要删除文件夹[" + folderName + "]?")){
 					return;
 				}
@@ -100,6 +109,10 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 上传
 		this.panel.find(".btn-upload-raster").click(function(){
 			var sourceName = dialog.panel.find(".db-list").val();
+			if(sourceName == null){
+				MapCloud.notify.showInfo("请选择要上传的数据源","Warning");
+				return;
+			}
 			var path = dialog.panel.find(".current-path").val();
 			MapCloud.import_raster_dialog.showDialog();
 			MapCloud.import_raster_dialog.setRasterPath(sourceName,path);
@@ -107,9 +120,8 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 刷新
 		this.panel.find(".btn-refresh").click(function(){
-			var sourceName = dialog.panel.find(".db-list").val();
-			var path = dialog.panel.find(".current-path").val();
-			dialog.getListRefresh(sourceName,path);
+
+			dialog.getListRefresh();
 		});
 
 		// 影像信息
@@ -314,6 +326,9 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".raster-list-content-div").empty();
 		this.panel.find(".current-path").val("/");
 		this.panel.find(".current-raster-path").val("");
+
+		this.panel.find(".raster-col").css("display","none");
+		this.panel.find(".raster-list-col").css("display","block");
 	},
 
 	getDataSources_callback : function(dataSources){
@@ -678,8 +693,14 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	// 刷新
 	getListRefresh : function(sourceName,path){
-		if(sourceName == null || path == null){
+		var sourceName = this.panel.find(".db-list").val();
+		if(sourceName == null){
+			MapCloud.notify.showInfo("请选择一个数据源","Warning");
 			return;
+		}
+		var path = this.panel.find(".current-path").val();
+		if(path == null){
+			MapCloud.notify.showInfo("请选择刷新的路径","Warning");
 		}
 		MapCloud.notify.loading();
 		rasterDBManager.getList(sourceName,path,this.getListRefresh_callback);
@@ -825,11 +846,20 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	removeDataSource : function(){
 		var name = this.panel.find(".db-list").val();
 		if(name == null || name == ""){
+			MapCloud.notify.showInfo("请选择一个数据源","Warning");
 			return;
 		}
 		if(!confirm("确定要删除[" + name + "]数据库吗?")){
 			return;
 		}
+
+		this.panel.find(".db-list").html("");
+		this.panel.find(".nav.foler-ul").remove();
+		this.panel.find(".raster-list-content-div").empty();
+		this.panel.find(".current-path").val("/");
+		this.panel.find(".current-raster-path").val("");
+		this.panel.find(".raster-col").css("display","none");
+		this.panel.find(".raster-list-col").css("display","block");
 		dbsManager.unRegisterDataSource(name,this.unRegisterDataSource_callback);		
 	},
 

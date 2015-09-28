@@ -158,12 +158,13 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 导入
 		this.panel.find(".btn-import").click(function(){
-			if(dialog.dataSourceCur == null){
+			var dbName = dialog.panel.find(".db-list").val();
+			if(dbName == null){
 				MapCloud.notify.showInfo("请先选择一个数据源","Warning");
 				return;
 			}
 			MapCloud.import_dialog.showDialog("vector");
-			MapCloud.import_dialog.setDataSourceName(dialog.dataSourceCur.name);
+			MapCloud.import_dialog.setDataSourceName(dbName);
 		});
 
 		// 删除
@@ -974,7 +975,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	// 删除数据库
 	removeDataSource : function(){
-		var name = this.dataSourceCur.name;
+		var name = this.panel.find(".db-list").val();
 		if(name == null){
 			return;
 		}
@@ -1007,6 +1008,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 刷新
 	refresh : function(){
 		var dbName = this.panel.find(".db-list").val();
+		if(dbName == null){
+			MapCloud.notify.showInfo("请先选择一个数据源","Warning");
+			return;
+		}
 		this.getDataSource(dbName);
 		// var selectDataSet = this.panel.find(".tree-table.selected");
 		// if(selectDataSet.length == 0){
