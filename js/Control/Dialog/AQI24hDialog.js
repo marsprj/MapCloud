@@ -84,6 +84,10 @@ MapCloud.AQI24hDialog = MapCloud.Class(MapCloud.Dialog,{
 			 buttonWidth: '30px',
 			 onChange : function(element,checked){
 			 	var chartFields = that.indexSelect.val();
+			 	if(chartFields == null){
+			 		MapCloud.notify.showInfo("请选择一个展示的质量指数","Warning");
+			 		return;
+			 	}
 				that.chartFields = chartFields;
 				if(that.chart != null){
 					that.chart.setChartFields(chartFields);
