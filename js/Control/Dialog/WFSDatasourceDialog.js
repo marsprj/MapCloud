@@ -4,6 +4,8 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 	layer: null,
 
+
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		
@@ -44,6 +46,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 
 					// 展示图层
 					dialog.displayLayers(types);
+					dialog.types = types;
 				});
 			});
 		});
@@ -105,8 +108,11 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 										server,
 										typename,
 										"GML2");
-				
-
+				var type = dialog.getFeatureType(typename);
+				if(type != null){
+					var extent = type.extent;
+					dialog.layer.extent = extent;
+				}
 
 				mapObj.addLayer(dialog.layer);
 
@@ -170,173 +176,15 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.find("#wfs_datasource_layers").each(function(){
 			$(this).empty();
 		});
+
+		this.geomType = null;
+
+		this.layer = null;
+
+		this.types = null;
 	
 	},
 	
-	// getDefaultStyle:function(){
-
-	// 	//获得空间类型（点线面）
-	// 	var ft = this.layer.featureType;
-	// 	if(ft == null){
-	// 		ft = this.layer.workspace.getFeatureType(this.layer.typeName);
-	// 		if(ft == null){
-	// 			return null;
-	// 		}
-	// 		this.layer.featureType = ft;
-	// 	}
-	// 	var fieldsArray = ft.fields;
-	// 	if(fieldsArray == null){
-	// 		fieldsArray = this.layer.featureType.getFields();
-	// 		if(fieldsArray == null){
-	// 			return null;
-	// 		}
-	// 	}
-	// 	var geom = ft.geomFieldName;
-	// 	if(geom == null){
-	// 		return null;
-	// 	}
-
-	// 	var index = ft.getFieldIndex(geom);
-	// 	if(index < -1 || index >= fieldsArray.length){
-	// 		return null;
-	// 	}
-	// 	var field = fieldsArray[index];
-	// 	if(field == null){
-	// 		return null;
-	// 	}
-	// 	var geomType = field.geomType;
-	// 	if(geomType == null){
-	// 		return null;
-	// 	}
-	// 	this.geomType = geomType;
-
-	// 	var symbolizer = MapCloud.getDeafaultSymbolizer(this.geomType);
-
-	// 	return symbolizer;
-	// },
-
-	// showFeaturesTable: function(){
-	// 	var dialog = this;
-	// 	var ft = this.layer.featureType;
-	// 	if(ft == null){
-	// 		return;
-	// 	}
-	// 	var fieldsArray = ft.getFields();
-	// 	if(fieldsArray == null){
-	// 		return;
-	// 	}
-	// 	var geomName = ft.geomFieldName;
-	// 	var model = new Array();
-	// 	model[0] = new Object();
-	// 	model[0].display = "fid";
-	// 	model[0].name = "fid";
-	// 	for(var i = 0; i < fieldsArray.length ; ++i){
-	// 		var field = fieldsArray[i];
-	// 		var obj = new Object();
-	// 		obj.display = field.name;
-	// 		obj.name = field.name;
-	// 		if(obj.name == geomName){
-	// 			obj.hide = true;
-	// 		}
-	// 		model[i + 1] = obj;
-	// 	}
-	// 	var datas = new Array();
-	// 	var fts = null;
-	// 	this.layer.featureType.getFeatures(function(featureType, features){
-	// 		fts = features;
-	// 		if(fts == null){
-	// 			return;
-	// 		}
-	// 		for(var i = 0; i < fts.length; ++i){
-	// 			var feature = fts[i];
-	// 			datas[i] = feature.values;
-	// 			datas[i].splice(0,0,i);
-	// 		}
-
-
-	// 		var table = new MapCloud.Table("datagrid_content",200,270,model,datas,10);
-	// 		table.show(dialog.onFeatureTableSelected);
-
-	// 	});
-	// },
-	
-	// onFeatureHit:function(layer, selection, selection_old){
-	// 	var i;
-	// 	len = selection.length;
-	// 	for(i=0; i<len; i++){
-	// 		var f = selection[i];
-	// 		layer.drawFeature(f, MapCloud.hited_symbolizer);
-	// 	}
-	// },
-	
-	// onFeatureTableSelected:function(trSelected){
-	// 	if(trSelected == null){
-	// 		return;
-	// 	}
-	// 	trSelected.parent().find("tr.trSelected").each(function(){
-	// 		var fid_old = $(this).find("td:first div").html();
-	// 		var feature_old = MapCloud.wfs_layer.getFeature(fid_old);
-	// 		if(feature_old != null){
- // 				MapCloud.wfs_layer.drawFeature(feature_old);
-	// 		}
-	// 		$(this).removeClass("trSelected");
-	// 	});
-
-	// 	trSelected.addClass("trSelected");
-
-	// 	var fid = -1;
-	// 	var dialog = this;
-
-	// 	trSelected.find("td:first div").each(function(){
-	// 		var fid = $(this).html();
-
-	// 		var feature = MapCloud.wfs_layer.getFeature(fid);
-	// 		if(feature != null){
- // 				MapCloud.wfs_layer.drawFeature(feature, MapCloud.hited_symbolizer);
-	// 			$("#right_panel").css("display","block");
-	// 			$("#center_panel").addClass("col-md-7");
-	// 			$("#center_panel").addClass("col-xs-7");
-	// 			$("#center_panel").addClass("col-lg-7");
-	// 			$("#center_panel").removeClass("col-md-9");
-	// 			$("#center_panel").removeClass("col-xs-9");
-	// 			$("#center_panel").removeClass("col-lg-9");
-
-	// 			var values = feature.values;
-	// 			var featureType = feature.featureType;
-	// 			if(featureType == null){
-	// 				return;
-	// 			}
-	// 			var fields = featureType.fields;
-	// 			if(fields == null){
-	// 				return;
-	// 			}
-	// 			var html = "";
-	// 			for(var i = 0; i < fields.length; ++i){
-	// 				var field= fields[i];
-	// 				if(i % 2 == 1){
-	// 					html += "<tr class=\"erow\">";
-	// 				}else{
-	// 					html += "<tr>";	
-	// 				}
-					
-	// 				if(featureType.geomFieldName == field.name){
-	// 					continue;
-	// 				}
-	// 				html += "<td class=\"table-info-key\">";
-	// 				html += field.name;
-	// 				html += "</td>";
-	// 				html += "<td>";
-	// 				html += values[i];
-	// 				html += "</td>";
-	// 				html += "</tr>";
-	// 			}
-	// 			$("#right_panel #feature_info table tbody").html(html);
-
-	// 		}
-
-	// 	});
-
-	// },
 
 	// 展示获取到的图层
 	displayLayers : function(types){
@@ -370,6 +218,21 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.panel.find("#wfs_datasource_layer_ymax").each(function(){
 			$(this).val(extent.ymax);
 		});		
+	},
+
+
+	getFeatureType : function(name){
+		if(this.types == null){
+			return null;
+		}
+		var type = null;
+		for(var i = 0; i < this.types.length; ++i){
+			type = this.types[i];
+			if(type.name == name){
+				return type;
+			}
+		}
+		return null;
 	}
 
 		

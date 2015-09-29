@@ -472,6 +472,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find("#style_type_name").removeClass("disabled");
 		this.panel.find("#layer_fields").html("");
 		this.panel.find(".layer-fields").html("");
+
+		this.panel.find("#add_style,#save_style,#remove_style").removeAttr("disabled");
+		this.panel.find("#style_list").removeAttr("disabled");
+		this.panel.find(".col-md-3 .list-group-item").removeClass("disabled");
 		this.dbLayer = null;
 
 		this.singleStyle = null;
@@ -1614,6 +1618,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(style == null){
 			return;
 		}
+		this.typeName = this.wfsLayer.name;
 		var fields = wfsLayer.featureType.fields;
 		this.setFields(fields);
 
@@ -1642,6 +1647,16 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					.attr("selected",true);
 			this.getStyleXML_callback(style);
 		}
+
+		// 只让设置默认的样式，不让选择其它的
+		this.setWFSLayerPanelStyle();
+	},
+
+	setWFSLayerPanelStyle : function(){
+		this.panel.find("#add_style,#save_style,#remove_style").attr("disabled","true");
+		this.panel.find("#style_list").attr("disabled","true");
+		this.panel.find(".col-md-3 .list-group-item").addClass("disabled");
+		this.panel.find(".single-pane .symbol-icon").unbind("click");
 	},
 
 	//DBLayer

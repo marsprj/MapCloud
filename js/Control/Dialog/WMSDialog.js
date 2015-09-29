@@ -85,14 +85,14 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 					MapCloud.notify.showInfo("当前地图为空","Warning");
 					return;
 				}
-				mapObj.insertLayer(dialog.layer);
-				if(mapObj.getViewer() == null){
-					mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
-				}
-				mapObj.draw();	
+				mapObj.insertLayer(dialog.layer,dialog.insertLayer_callback);
+				// if(mapObj.getViewer() == null){
+				// 	mapObj.setViewer(new GeoBeans.Envelope(-180,-90,180,90));	
+				// }
+				// mapObj.draw();	
 
-				dialog.closeDialog();		
-				MapCloud.refresh_panel.refreshPanel();						
+				// dialog.closeDialog();		
+				// MapCloud.refresh_panel.refreshPanel();						
 			});
 		});
 	},
@@ -136,6 +136,15 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		html += "</list-group>";
 		dialog.panel.find("#wms_layers").html(html);
+	},
+
+
+	insertLayer_callback : function(result){
+		MapCloud.notify.showInfo(result,"添加WMS图层");
+		var dialog = MapCloud.wms_dialog;
+		mapObj.draw();	
+		dialog.closeDialog();		
+		MapCloud.refresh_panel.refreshPanel();		
 	},
 
 })

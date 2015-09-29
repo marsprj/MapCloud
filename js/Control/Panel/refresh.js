@@ -257,6 +257,47 @@ MapCloud.refresh = MapCloud.Class({
 			if(layer == null){
 				return;
 			}
+			// WMS Layer
+			if(layer instanceof GeoBeans.Layer.WMSLayer){
+				if($(this).hasClass("mc-icon-right")){
+					$(li).find(".wms_layer_row").slideDown();
+					$(this).removeClass("mc-icon-right");
+					$(this).addClass("mc-icon-down");
+					$(this).css("transform","rotate(90deg) translate(3px,0px)");
+				}else{
+					$(li).find(".wms_layer_row").slideUp();
+					$(this).css("transform","rotate(0deg) translate(0px,0px)");
+					$(this).addClass("mc-icon-right");
+					$(this).removeClass("mc-icon-down");	
+				}
+				return;
+			}
+
+			// WFS Layer
+			if(layer instanceof GeoBeans.Layer.WFSLayer){
+				if($(this).hasClass("mc-icon-right")){
+					if(li.find(".row").length == 0){
+						var style = layer.style;
+						if(style != null){
+							var styleHtml = that.getStyleHtml(-1,style);
+							li.append(styleHtml);
+							that.registerStyleSymbolClickEvent();
+						}
+					}else{
+						$(li).find(".row").slideDown();
+					}
+					
+					$(this).removeClass("mc-icon-right");
+					$(this).addClass("mc-icon-down");
+					$(this).css("transform","rotate(90deg) translate(3px,0px)");
+				}else{
+					$(li).find(".row").slideUp();
+					$(this).css("transform","rotate(0deg) translate(0px,0px)");
+					$(this).addClass("mc-icon-right");
+					$(this).removeClass("mc-icon-down");	
+				}				
+				return;
+			}
 			if(layer.type != GeoBeans.Layer.DBLayer.Type.Feature){
 				return;
 			}
@@ -277,7 +318,6 @@ MapCloud.refresh = MapCloud.Class({
 
 				$(this).removeClass("mc-icon-right");
 				$(this).addClass("mc-icon-down");
-
 				$(this).css("transform","rotate(90deg) translate(3px,0px)");
 
 			}else{
@@ -560,7 +600,7 @@ MapCloud.refresh = MapCloud.Class({
 				if(style == null){
 					return;
 				}
-				MapCloud.styleManager_dialog.showDialog();
+				MapCloud.styleManager_dialog.showDialog(false);
 				MapCloud.styleManager_dialog.setWFSLayer(wfsLayer);
 			});
 		});
@@ -659,6 +699,8 @@ MapCloud.refresh = MapCloud.Class({
 					var featureType = new GeoBeans.FeatureType(wfsWorkspace,
 							layer.name);
 					fields = featureType.getFields(mapObj.name);					
+				}else if(layer instanceof GeoBeans.Layer.WFSLayer){
+					fields = layer.featureType.getFields();
 				}
 				if(fields == null){
 					return;
@@ -682,7 +724,9 @@ MapCloud.refresh = MapCloud.Class({
 			if(layer == null){
 				return;
 			}
-			
+			if(layer instanceof GeoBeans.Layer.WFSLayer){
+				return;
+			}
 			var style = layer.style;
 			if(style == null){
 				return;
@@ -880,9 +924,9 @@ MapCloud.refresh = MapCloud.Class({
 				+	"	<div class=\"col-md-5 col-xs-1 layer_name\">"
 				+	"		<strong>" + name + "</strong>"
 				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 				+   "		<ul class=\"layer_row_quick_tool_ul\">"
@@ -911,10 +955,10 @@ MapCloud.refresh = MapCloud.Class({
 				continue;
 			}
 			var name = mapLayer.name;
-			var row = "<div class=\"row wms_layer_row\" mname=\"" + name + "\" style=\"display:block\">"
+			var row = "<div class=\"row wms_layer_row\" mname=\"" + name + "\" style=\"display:none\">"
 					 // +"	<div class=\"col-md-1 col-xs-1\"></div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">"
-					 +	"	<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
+					 // +	"	<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
 					 +"	</div>"
 					 +"	<div class=\"col-md-1 col-xs-1\">";
 			if(mapLayer.visible){
@@ -1086,7 +1130,7 @@ MapCloud.refresh = MapCloud.Class({
 
 		html = 	"<li class=\"row layer_row\" lname=\"" + name + "\">"
 			+	"	<div class=\"col-md-1 col-xs-1\">"
-			+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon mc-icon-down mc-icon-rotate\"></div>"							
+			+	"		<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
 			+	"	</div>"
 			// +	"	<div class=\"col-md-1 col-xs-1\">"
 			// +	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
@@ -1105,9 +1149,9 @@ MapCloud.refresh = MapCloud.Class({
 			+	"	<div class=\"col-md-5 layer_name\">"
 			+	"		<strong>" + name + "</strong>"
 			+	"	</div>"
-			+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+			+	"	<div class=\"col-md-1 col-xs-1\">"
 			+	"	</div>"
-			+	"	<div class=\"col-md-1 col-xs-1 layer_name\">"
+			+	"	<div class=\"col-md-1 col-xs-1\">"
 			+	"	</div>"
 			+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
 			+   "		<ul class=\"layer_row_quick_tool_ul\">"
@@ -1126,8 +1170,8 @@ MapCloud.refresh = MapCloud.Class({
 			+	"	</div>"
 			+	"	<br/>";
 			// +	"</li>";	
-		var styleHtml = this.getStyleHtml(-1,style);
-		html += styleHtml;
+		// var styleHtml = this.getStyleHtml(-1,style);
+		// html += styleHtml;
 		html += "</li>";
 		return html;
 	},
