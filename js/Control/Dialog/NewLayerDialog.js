@@ -54,10 +54,10 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 					MapCloud.notify.showInfo("请选择数据","Warning");
 					return;
 				}
-				if(dialog.style == null){
-					MapCloud.notify.showInfo("请选择样式","Warning");
-					return;
-				}
+				// if(dialog.style == null){
+				// 	MapCloud.notify.showInfo("请选择样式","Warning");
+				// 	return;
+				// }
 				var dbName = dialog.dataSource.name;
 				var typeName = dialog.dataSet.name;
 				if(mapObj == null){
@@ -65,7 +65,7 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 					return;
 				}
 				if(mapObj != null){
-					var layer = new GeoBeans.Layer.FeatureDBLayer(name,null,dbName,name,null,null);
+					var layer = new GeoBeans.Layer.FeatureDBLayer(name,null,dbName,typeName,null,null);
 					// var layer = new GeoBeans.Layer.DBLayer(name,
 					// 	dbName,typeName); 
 					MapCloud.notify.loading();
@@ -114,7 +114,9 @@ MapCloud.NewLayerDialog = MapCloud.Class(MapCloud.Dialog, {
 		if(result.toLowerCase() == "success"){
 			MapCloud.refresh_panel.refreshPanel();
 			// mapObj.draw();
-			mapObj.setStyle(name,dialog.style,dialog.setStyle_callback);			
+			if(dialog.style != null){
+				mapObj.setStyle(name,dialog.style,dialog.setStyle_callback);
+			}			
 		}
 		mapObj.draw();
 	},
