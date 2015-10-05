@@ -53,11 +53,7 @@ MapCloud.Ribbon = MapCloud.Class({
 			if(mapObj != null && $("#main_panel").css("display") == "none"){
 				$("#map_list_panel").css("display","none");
 				$("#main_panel").css("display","block");
-				var extent = mapObj.viewer;
-				var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
-				mapObj = map;
-				mapObj.setViewer(extent);
-				mapObj.draw();
+				// mapManager.refreshMap(mapObj,this.refreshMap_callback);
 			}else{
 				$("#map_list_panel").css("display","none");
 				$("#main_panel").css("display","block");
@@ -826,8 +822,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		var firstMap = $("#maps_list_ul").find("li").first();
 		firstMap.find("a").addClass("selected");
 		var name = firstMap.attr("name");
-		var map = mapManager.getMap("mapCanvas_wrapper",name);
-		that.showMapInfo(map);
+		mapManager.getMapObj(name,this.showMapInfo);
 
 		that.registerMapListClickEvent();
 	},
@@ -845,8 +840,8 @@ MapCloud.Ribbon = MapCloud.Class({
 			        $("#maps_list_ul").find(".map-thumb").removeClass("selected");
 					$(node).addClass("selected");
 					var name = $(node).parent().attr("name");
-					var map = mapManager.getMap("mapCanvas_wrapper",name);
-					that.showMapInfo(map);
+					mapManager.getMapObj(name,that.showMapInfo);
+
 			        clicks = 0;             //after action performed, reset counter
 			    }, DELAY);
 			}else{
@@ -913,7 +908,8 @@ MapCloud.Ribbon = MapCloud.Class({
 
 		// layer
 		$(".map-list-info .map-info-layers").empty();
-		var layers = map.getLayers();
+		// var layers = map.getLayers();
+		var layers = map.layers;
 		var layer = null;
 		var name = null;
 		var extent = null;
@@ -994,14 +990,19 @@ MapCloud.Ribbon = MapCloud.Class({
 		var firstMap = $("#maps_list_ul").find("li").first();
 		firstMap.find("a").addClass("selected");
 		var name = firstMap.attr("name");
-		var map = mapManager.getMap("mapCanvas_wrapper",name);
-		this.showMapInfo(map);
+		mapManager.getMapObj(name,this.showMapInfo);
+		// var map = mapManager.getMap("mapCanvas_wrapper",name);
+		// this.showMapInfo(map);
 
 		$(".btn-list-maps").removeClass("disabled");
 
 		this.registerMapListClickEvent();
 	},
 
+	refreshMap_callback : function(result){
+		mapObj.draw(true);
+		MapCloud.refresh_panel.refreshPanel();
+	}
 
 
 });
