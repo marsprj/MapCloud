@@ -431,5 +431,34 @@ var g_catalog =
                 "link": "ufs_remove_file.html"
             },
         ]
+    },
+    {
+        "name": "用户管理",
+        "items": [
+            // {
+            //     "name": "GetCapabilities",
+            //     "link": "dbs_getcapabilities.html"
+            // },
+            {
+                "name": "CreateUser",
+                "link": "auth_create_user.html"
+            },
+            {
+                "name": "RemoveUser",
+                "link": "auth_remove_user.html"
+            },
+            {
+                "name": "GetUser",
+                "link": "auth_get_user.html"
+            },
+            {
+                "name": "Login",
+                "link": "auth_login.html"
+            },
+            {
+                "name": "Logout",
+                "link": "auth_logout.html"
+            },
+        ]
     }
 ];
