@@ -3596,3 +3596,73 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* Process  Dialog End				 								   		*/
 /***************************************************************************/
+
+/***************************************************************************/
+/* Import CSV  Dialog Begin				 								   */
+/***************************************************************************/
+#import_csv_dialog .modal-dialog{
+	width : 800px;
+}
+
+#import_csv_dialog .modal-body{
+	height: 470px;
+}
+#import_csv_dialog .row{
+	margin: 0px 0px;
+}
+#import_csv_dialog label {
+    margin-bottom: 0px;
+    margin-left: 2px;
+}
+#import_csv_dialog .csv-file-div{
+	border: 1px groove #ddd;
+	margin-bottom: 20px;
+}
+#import_csv_dialog .header-row {
+    border-bottom: 2px groove #ddd;
+    /*text-align: center;*/
+}
+#import_csv_dialog .csv-fields-wrapper{
+	border: 1px groove #ddd;
+}
+#import_csv_dialog .csv-fields-wrapper .row {
+    padding: 0px 8px;
+}
+#import_csv_dialog .csv-fields-div{
+	height: 250px;
+	overflow-y : auto;
+}
+
+#import_csv_dialog .row [class*="col-"] {
+    padding: 6px 2px 6px 2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#import_csv_dialog .csv-fields-div .row [class*="col-"]{
+	padding-right: 20px;
+}
+
+#import_csv_dialog .import-tool-div ul li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#import_csv_dialog .import-tool-div ul{
+	margin: 0px;
+}
+#import_csv_dialog .import-log-wrapper {
+    height: 120px;
+    display: none;
+    margin-top: 10px !important;
+}
+#import_csv_dialog .import-log-row {
+    height: calc( 100% - 18px);
+}
+#import_csv_dialog .import-log-div {
+    height: 100%;
+    border: 1px groove #ddd;
+}
+/***************************************************************************/
+/* Import CSV  Dialog End				 								   */
+/***************************************************************************/

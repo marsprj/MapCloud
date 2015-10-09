@@ -57,6 +57,8 @@ $().ready(function(){
 		= new MapCloud.HeatMapDialog("heatMapDialog");
 	MapCloud.importVector_dialog
 		= new MapCloud.ImportVectorDialog("importVectorDialog");
+	MapCloud.importCSV_dialog
+		= new MapCloud.ImportCSVDialog("import_csv_dialog");
 	MapCloud.features_dialog
 		= new MapCloud.FeaturesDialog("featuresDialog");
 

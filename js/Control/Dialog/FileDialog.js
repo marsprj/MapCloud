@@ -46,6 +46,14 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					MapCloud.import_raster_dialog.addImportPaths(importPaths);
 					break;	
 				}
+				case "csv":{
+					var importPath = dialog.getImportCSVPath();
+					if(importPath == null){
+						MapCloud.notify.showInfo("请选择要导入的csv文件","Warning");
+						return;
+					}
+					MapCloud.importCSV_dialog.setImportCsv(importPath);
+				}
 				default:
 					break;
 			}
@@ -313,6 +321,13 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					}else{
 						html += "		<input type='checkbox' name='" + name + "' disabled>";
 					}
+				}else if(this.flag == "csv"){
+					var fileFix = name.slice(name.lastIndexOf(".")+1,name.length);
+					if(fileFix.toLowerCase() == "csv"){
+						html += "		<input type='radio' name='csv'>";
+					}else{
+						html += "		<input type='radio' name='csv' disabled>";
+					}
 				}else{
 					html += "		<input type='checkbox' name='" + name + "'>";
 				}
@@ -502,6 +517,16 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		}
 		return paths;
 	},
+
+	// 获取csv文件的路径
+	getImportCSVPath : function(){
+		var radio = this.panel.find("input[name='csv']:checked");
+		if(radio.length == 0){
+			return null;
+		}
+		var path = radio.parents(".row-file").attr("fpath");
+		return path;
+	}
 
 });
 	

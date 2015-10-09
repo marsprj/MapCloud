@@ -173,6 +173,7 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/GField.js"></script>
 
 <script type="text/javascript" src="../Map5/lib/GeoBeans/File/File.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/File/FileManager.js"></script>
@@ -233,6 +234,7 @@
 <script type="text/javascript" src="js/Control/Dialog/RasterDBDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ImportRasterDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportCSVDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMSDialog.js"></script>
@@ -292,7 +294,7 @@
 <script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
-<title>MapCloud</title>
+<title>MapEditor</title>
 </head>
 
 <body>
@@ -5388,11 +5390,7 @@
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 									<div class="col-md-3">
-										<select class="form-control gps-output-raster-format">
-											<option value=".jpg">.jpg</option>
-											<option value=".png">.png</option>
-											<option value=".tif">.tif</option>
-										</select>
+										<input type="text" class="form-control gps-output-raster-format" value=".tif" disabled="">
 									</div>
 								</div>
 							</form>
@@ -5499,11 +5497,7 @@
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 									<div class="col-md-3">
-										<select class="form-control gps-output-raster-format">
-											<option value=".jpg">.jpg</option>
-											<option value=".png">.png</option>
-											<option value=".tif">.tif</option>
-										</select>
+										<input type="text" class="form-control gps-output-raster-format" value=".tif" disabled="">
 									</div>
 								</div>
 							</form>
@@ -5611,11 +5605,7 @@
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 									<div class="col-md-3">
-										<select class="form-control gps-output-raster-format">
-											<option value=".jpg">.jpg</option>
-											<option value=".png">.png</option>
-											<option value=".tif">.tif</option>
-										</select>
+										<input type="text" class="form-control gps-output-raster-format" value=".tif" disabled="">
 									</div>
 								</div>
 							</form>
@@ -7639,4 +7629,141 @@
 		</div>
 	</div>
 
+	<!-- import csv panel -->
+	<div class="modal fade" id="import_csv_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">导入CSV</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row import-db">
+						<h5 style=" margin-top: 0px;">
+							<span>
+								<i class="mc-db-icon mc-db-icon-server"></i>
+								<span>数据库:  </span>
+								<span class="import-db-name">ceshi</span>
+							</span>
+						</h5>
+					</div>
+					<label>输入CSV</label>
+					<div class="row">
+						<div class="col-md-11" style="height:100%">
+							
+							<div class="csv-file-div">
+								<div class="row header-row">
+									<div class="col-md-6">
+										路径
+									</div>
+									<div class="col-md-6">
+										名称
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 csv-path">
+										/csv/60_people.csv
+									</div>
+									<div class="col-md-6 csv-table">
+										<span>60_people</span>
+									</div>
+								</div>
+							</div>
+							<label>字段编辑</label>
+							<div class="csv-fields-wrapper">
+								<div class="row header-row">
+									<div class="col-md-5">
+										字段名称
+									</div>
+									<div class="col-md-4">
+										字段类型
+									</div>
+									<div class="col-md-3">
+										字段长度
+									</div>
+								</div>
+								<div class="csv-fields-div">
+									<div class="row">
+										<div class="col-md-5">
+											<input class="form-control input-sm" type="text" value="地区" disabled="">
+										</div>
+										<div class="col-md-3">
+											<select class="form-control input-sm">
+												<option>int</option>
+												<option>string</option>
+												<option>double</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<input class="form-control input-sm" type="text" value="8" disabled="">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-5">
+											<input class="form-control input-sm" type="text" value="基本健康" disabled="">
+										</div>
+										<div class="col-md-3">
+											<select class="form-control input-sm">
+												<option>int</option>
+												<option>string</option>
+												<option>double</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<input class="form-control input-sm" type="text" value="8" disabled="">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-5">
+											<input class="form-control input-sm" type="text" value="合计" disabled="">
+										</div>
+										<div class="col-md-3">
+											<select class="form-control input-sm">
+												<option>int</option>
+												<option>string</option>
+												<option>double</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<input class="form-control input-sm" type="text" value="8" disabled="">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1 import-tool-div">
+							<ul>
+  							  	<li>
+  							  		<button class="btn btn-lg btn-default import-btn-add btn-green" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-remove btn-red" data-toggle="tooltip" data-placement="top" data-original-title="清空">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-upload btn-green" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-upload"></i>
+  									</button>
+  								 </li>
+  								 <li style="margin-top:200px;margin-bottom:0px;">
+  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+  							  			<i class="fa fa-chevron-down"></i>
+  									</button>
+  								 </li>
+  							</ul>
+						</div>
+					</div>
+					<div class="import-log-wrapper">
+						<label>结果</label>
+						<div class="row import-log-row">
+							<div class="col-md-11 import-log-div"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
