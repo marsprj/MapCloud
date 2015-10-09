@@ -153,6 +153,12 @@ MapCloud.GPSDemHillshadeDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-input-source-name").val(this.inputSourceName);
 		this.panel.find(".gps-input-raster-name").val(this.inputRasterName);
 		this.panel.find(".gps-input-raster-path").val(this.inputRasterPath);
+
+
+		// 设置输出后缀
+		var index = this.inputRasterName.lastIndexOf(".");
+		var format = this.inputRasterName.slice(index,this.inputRasterName.length);
+		this.panel.find(".gps-output-raster-format").val(format);
 	},
 	
 	// 输出参数
