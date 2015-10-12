@@ -38,7 +38,7 @@ function loadCatalog(){
 			//html += "<div class='item_block' onclick='onItemClick(\"" + item.name + "\",\"" + item.link + "\");'>" + item.name + "</div>";
 			html += "<div class='item_block' onclick='onItemClick(\"" + item.name + "\",\"" + item.link + "\");'>";
 			html += "<div class='item_block_icon'></div>";
-			html += "<span>" + item.name + "</span>";
+			html += "<span>" + item.capation + "</span>";
 			html += "</div>";
 		}
 

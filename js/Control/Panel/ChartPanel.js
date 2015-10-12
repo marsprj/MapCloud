@@ -14,8 +14,6 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		this.panel.find("#chart_accordion").collapse();
-		// this.styleMgr = new GeoBeans.StyleManager(url);
-		this.styleMgr = styleManager;
 		
 		this.registerEvent();
 	},
@@ -34,9 +32,8 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 				firstPanel.collapse("show");
 			}
 			this.showLayersTab();
-			var colors = this.styleMgr.getColorMaps();
+			var colors = styleManager.getColorMaps();
 			this.getColorMaps_callback(colors);
-			// this.styleMgr.getColorMaps(this.getColorMaps_callback);
 		}
 	},
 

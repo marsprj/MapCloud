@@ -3,11 +3,23 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui/ui.notify.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/mc-new.css"/>
 
 
 	<script type="text/javascript" src="js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/3rd/jquery-ui/jquery.notify.min.js"></script>
 	<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+
+	<script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+
+	<script type="text/javascript" src="js/MapCloud.js"></script>
+	<script type="text/javascript" src="js/Class/Class.js"></script>
+	<script type="text/javascript" src="js/Control/Panel/Panel.js"></script>
+	<script type="text/javascript" src="js/Control/Panel/Notify.js"></script>
 	<style type="text/css">
 		#user_tool_bar li a{
 			color: #fff;
@@ -18,6 +30,89 @@
 			font-weight:normal;
 		}
 	</style>
+	<script type="text/javascript">
+	$().ready(function(){
+
+		MapCloud.notify = new MapCloud.Notify("container","alert_loading");
+		$(".btn-register").click(function(){
+			// 名称
+			var name = $("input[name='username']").val();
+			if(name == null || name == "" ){
+				MapCloud.notify.showInfo("请输入注册的用户名","Warning");
+				$("input[name='username']").focus();
+				return;
+			}
+			var nameReg = /^[0-9a-zA-Z_]+$/;
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的用户名","Warning");
+				$("input[name='username']").focus();
+				return;
+			}
+
+			// 昵称
+			var alias = $("input[name='alias']").val();
+			if(alias == null || alias == ""){
+				MapCloud.notify.showInfo("请输入注册的昵称","Warning");
+				$("input[name='alias'").focus();
+				return;
+			}
+			if(!nameReg.test(alias)){
+				MapCloud.notify.showInfo("请输入有效的昵称","Warning");
+				$("input[name='alias'").focus();
+				return;
+			}
+
+			// 邮箱
+			var email = $("input[name='email']").val();
+			if(email == null || email == ""){
+				MapCloud.notify.showInfo("请输入注册的邮箱","Warning");
+				$("input[name='email']").focus();
+				return;
+			}
+			var emailReg = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if(!emailReg.test(email)){
+				MapCloud.notify.showInfo("请输入有效的邮箱","Warning");
+				$("input[name='email']").focus();
+				return;
+			}
+
+			// 密码
+			var password = $("input[name='password']").val();
+			if(password == null || password == ""){
+				MapCloud.notify.showInfo("请输入注册的密码","Warning");
+				$("input[name='password']").focus();
+				return;
+			}
+
+			var repassword = $("input[name='repassword'").val();
+			if(repassword == null || repassword == ""){
+				MapCloud.notify.showInfo("请再次输入注册的密码","Warning");
+				$("input[name='repassword']").focus();
+				return;
+			}
+
+			if(password != repassword){
+				MapCloud.notify.showInfo("两次输入的密码不同","Warning");
+				$("input[name='repassword']").focus();
+				return;
+			}
+
+			var authServer = "/ows/admin/mgr";
+			var authManager = new GeoBeans.AuthManager(authServer);
+			authManager.createUser(name,alias,password,email,"normal",register_callback);
+
+		});
+	});
+
+	function register_callback(result){
+		MapCloud.notify.showInfo(result,"注册用户");
+		if(result == "success"){
+			var name = $("input[name='username']").val();
+			window.location.href = 'index.html&user=' + name;
+		}
+	}
+	</script>
+	<title>MapEditor--注册用户</title>
 </head>
 <body>
 	<div class="jumbotron" style="padding:0px;background: #fff;">
@@ -27,69 +122,77 @@
 			</div>
 			<div class="collapse navbar-collapse ">
 				<ul id="user_tool_bar">
-					<li class="dropdown pull-right" style="display:none">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color:white">您好
-							<b class="caret"></b>
-						</a>
-						<ul class="mc-font dropdown-menu">
-							<li><a href="#">我的应用</a></li>
-							<li><a href="#">我的账户</a></li>
-							<li><a href="#">操作手册</a></li>
-							<li class="divider"></li>
-							<li><a href="#">退出</a></li>
-						</ul>
-					</li>
 					<li class="pull-right">
 						<a href="index.html" >返回</a>
 					</li>
-					<li class="pull-right">
-						<a href="register.html" id="login_btn">注册</a>
-					</li>
-
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container" style="margin:80px auto;width:760px;height:500px">
-			<div class="jumbotron" style="height:100%">
-				<h2 style="text-align:center">欢迎注册</h2>
-				<p>
-					<form class="form-horizontal col-md-8 col-md-offset-2" role="form" >
-	            		<div class="form-group">
-	            			<label class="control-label col-md-4">
-	            				用户名：
-	            			</label>
-	            			<div class="col-md-7">
-	            				<input type="text" class="form-control" name="username">
-	            			</div>
-	            		</div>
-	            		<div class="form-group">
-	            			<label class="control-label col-md-4">
-	            				密码：
-	            			</label>
-	            			<div class="col-md-7">
-	            				<input type="password" class="form-control" name="password">
-	            			</div>
-	            		</div>
-	            		<div class="form-group">
-	            			<label class="control-label col-md-4">
-	            				再次输入密码：
-	            			</label>
-	            			<div class="col-md-7">
-	            				<input type="password" class="form-control" name="password">
-	            			</div>
-	            		</div>
-	            		<div class="form-group" style="margin-top:40px">
-	            			<div class="col-md-offset-3 col-md-6">
-	            				<a class="btn btn-lg btn-primary btn-block" href="javascript:void(0)" role="button" style="  padding: 14px 24px; font-size: 21px; width:100%">注册</a>
-	            			</div>
-	            		</div>
-	            	</form>
-				</p>
-				<p>
-					
-				</p>
-			</div>
+		<div class="jumbotron" style="height:100%">
+			<h2 style="text-align:center">欢迎注册</h2>
+			<p>
+				<form class="form-horizontal col-md-8 col-md-offset-2" role="form">
+            		<div class="form-group">
+            			<label class="control-label col-md-4">
+            				用户名：
+            			</label>
+            			<div class="col-md-7">
+            				<input type="text" class="form-control" name="username">
+            			</div>
+            		</div>
+            		<div class="form-group">
+            			<label class="control-label col-md-4">
+            				昵称：
+            			</label>
+            			<div class="col-md-7">
+            				<input type="text" class="form-control" name="alias">
+            			</div>
+            		</div>
+            		<div class="form-group">
+            			<label class="control-label col-md-4">
+            				邮箱：
+            			</label>
+            			<div class="col-md-7">
+            				<input type="text" class="form-control" name="email">
+            			</div>
+            		</div>
+            		<div class="form-group">
+            			<label class="control-label col-md-4">
+            				密码：
+            			</label>
+            			<div class="col-md-7">
+            				<input type="password" class="form-control" name="password">
+            			</div>
+            		</div>
+            		<div class="form-group">
+            			<label class="control-label col-md-4">
+            				再次输入密码：
+            			</label>
+            			<div class="col-md-7">
+            				<input type="password" class="form-control" name="repassword">
+            			</div>
+            		</div>
+            		<div class="form-group" style="margin-top:40px">
+            			<div class="col-md-offset-3 col-md-6">
+            				<a class="btn btn-lg btn-primary btn-block btn-register" href="javascript:void(0)" role="button" style="  padding: 14px 24px; font-size: 21px; width:100%">注册</a>
+            			</div>
+            		</div>
+            	</form>
+			</p>
+			<p>
+				
+			</p>
 		</div>
+	</div>
+		<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
 </body>
 </html>

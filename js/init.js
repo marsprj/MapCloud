@@ -2,19 +2,22 @@ var mapObj = null;
 var ribbonObj = null;
 var mapManager = null;
 var dbsManager = null;
+var fileManager = null;
 var styleManager = null;
 var gpsManager = null;
 var rasterDBManager = null;
 var tileDBManger = null;
 var url = "/ows/user1/mgr";
-var user = new GeoBeans.User("user1");
+var authServer = "/ows/admin/mgr";
+var authManager = new GeoBeans.AuthManager(authServer);
+// var user = new GeoBeans.User("user1");
 
 $().ready(function(){
 
 
-	mapManager = user.getMapManager();
-	styleManager = user.getStyleManager();
 
+
+	MapCloud.account = new MapCloud.Account("login-panel","register-panel");
 
 	MapCloud.notify
 		= new MapCloud.Notify("container","alert_loading");
@@ -57,6 +60,8 @@ $().ready(function(){
 		= new MapCloud.HeatMapDialog("heatMapDialog");
 	MapCloud.importVector_dialog
 		= new MapCloud.ImportVectorDialog("importVectorDialog");
+	MapCloud.importCSV_dialog
+		= new MapCloud.ImportCSVDialog("import_csv_dialog");
 	MapCloud.features_dialog
 		= new MapCloud.FeaturesDialog("featuresDialog");
 
@@ -200,11 +205,11 @@ $().ready(function(){
 	MapCloud.tools = new MapCloud.Tools();
 	
 	// mapManager = new GeoBeans.MapManager(url);
-	dbsManager = new GeoBeans.DBSManager(url);
-	fileManager = new GeoBeans.FileManager(url);
+	// dbsManager = new GeoBeans.DBSManager(url);
+	// fileManager = new GeoBeans.FileManager(url);
 	// styleManager = new GeoBeans.StyleManager(url);
-	gpsManager = new GeoBeans.GPSManager(url);
-	rasterDBManager = new GeoBeans.RasterDBManager(url);
+	// gpsManager = new GeoBeans.GPSManager(url);
+	// rasterDBManager = new GeoBeans.RasterDBManager(url);
 
 
 
@@ -232,14 +237,15 @@ $().ready(function(){
 		}
 	});
 
-	// 加载地图
-	MapCloud.notify.loading();
-	mapManager.getMaps(ribbonObj.getMaps_callback);
+	// // 加载地图
+	// MapCloud.notify.loading();
+	// mapManager.getMaps(ribbonObj.getMaps_callback);
 
 
 	$(window).resize(function(){
 		if($("#home_tab").hasClass("mc-active-tab")){
-			mapManager.getMaps(ribbonObj.getMaps_callback);
+			// 考虑是否登录账户
+			// mapManager.getMaps(ribbonObj.getMaps_callback);
 		}
 	});
 

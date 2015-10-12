@@ -21,11 +21,287 @@
 	<link rel="stylesheet" type="text/css" href="../Map5/css/Map5.css"/>
 	<link rel="stylesheet" type="text/css" href="../Map5/css/custom_slider.css"/>
 
-	<title>MapEditor</title>
+	<script type="text/javascript" src="js/3rd/jquery-1.11.1.js"></script>
+
+	<script type="text/javascript" src="js/3rd/colpick/colpick.js"></script>
+
+	<script src="js/3rd/jquery.ztree.core-3.5.js" type="text/javascript" charset="utf-8"></script>
+	
+
+	<script type="text/javascript">
+	var Msg = {}; //declare this or modify line 1 of core.js
+	</script>
+
+
+
+<!-- <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script> -->
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-multiselect.js"></script>
+
+<script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/3rd/jquery-ui/jquery.notify.min.js"></script>
+
+<!-- <script type="text/javascript" src="js/3rd/echarts-plain.js"></script> -->
+<script type="text/javascript" src="js/3rd/jquery-sortable.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="../Map5/lib/echarts-all.js"></script>
+<script type="text/javascript" src="../Map5/lib/heatmap.min.js"></script>
+<script type="text/javascript" src="../Map5/lib/jquery.nouislider.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/User.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Field.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Feature.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/FeatureType.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Workspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/WMTS/WMTSWorkspace.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQIChartLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQITimelineLayer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
+
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
+
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/InfoWindow.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/MapManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIIndexChart.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIStatCompChart.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQITimePointList.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/MapWorkspace.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Font.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Stroke.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Fill.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbol.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/FontManager.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Label.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Label/PointLabel.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/GField.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/File/File.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/File/FileManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/File/Folder.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/SpatialReference.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/Job.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
+
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+
+
+<script type="text/javascript" src="js/MapCloud.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+
+<script type="text/javascript" src="js/Class/Class.js"></script>
+
+<script type="text/javascript" src="js/charts/Chart.js"></script>
+<script type="text/javascript" src="js/charts/WFSLayerChart.js"></script>
+
+<script type="text/javascript" src="js/Control/Ribbon.js"></script>
+<script type="text/javascript" src="js/Control/Logo.js"></script>
+<script type="text/javascript" src="js/Control/Tools.js"></script>
+<script type="text/javascript" src="js/Control/Account.js"></script>
+
+
+<script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
+<script type="text/javascript" src="js/Control/Panel/DataGrid.js"></script>
+<script type="text/javascript" src="js/Control/Panel/Panel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/SearchPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/ChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/BarChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/PieChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/AQIChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/AQITimelineChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/GPSOperPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/DataSourcePanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
+<script type="text/javascript" src="js/Control/Panel/Table.js"></script>
+<script type="text/javascript" src="js/Control/Panel/Notify.js"></script>
+<script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
+<script type="text/javascript" src="js/Control/Panel/refresh.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/Dialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GetMapsDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/MapMgrDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateMapDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/NewLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/NewRasterDBLayerDialog.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/PGISConnectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/VectorDBDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/FileDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateFolderDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/RasterDBDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportRasterDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportCSVDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/WMSDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/StyleManagerDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/StyleDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/StyleNameDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/HeatMapDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ImportVectorDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/FeaturesDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/AQI24hDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/AQIStatCompDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/LoginDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/StyleListDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/MapInfoDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/BaseLayerDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/LayerInfoDialog.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSKMeanDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSOutputSourceDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureProjectDialog.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterEdgeDetectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterStretchDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureImportDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterExtractDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterReverseDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterGraylizeDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSmoothDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSubtractDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterPixelBlendDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterThresholdDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSepiaToneDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterHisEquaDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemSlopeDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemAspectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemStretchDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemHillshadeDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetAreaDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDelaunayDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetLengthDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSCentroidDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSConvexHullDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSMultiPointToPointsDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSLineToPointsDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSPolygonToPointsDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSPolygonToLineDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGenRandomPointsDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GenRandomPointsInPolygonDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSBufferDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSBuildPyramidDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSUpdateTileDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSSridDialog.js"></script>
+
+<script type="text/javascript" src="js/Control/Dialog/CutMapDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/TileDBDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateTileStoreDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
+<title>MapEditor</title>
 </head>
 
 <body>
-	<div class="jumbotron" style="padding:0px;height:100%;background: #fff;">
+	<div class="jumbotron map-panel" style="padding:0px;height:100%;background: #fff;">
 		<div class="container mc-theme-color">
 			<div class="navbar-header">
 				<div id="logo_panel"></div>
@@ -47,10 +323,10 @@
 					<li class="pull-right">
 						<a href="api/" target="_blank">API</a>
 					</li>
-					<li class="pull-right">
+					<li class="pull-right login-li">
 						<a href="javascript:void(0)" id="login_btn">登录</a>
 					</li>
-					<li class="pull-right">
+					<li class="pull-right register-li">
 						<a href="register.html" id="login_btn">注册</a>
 					</li>
 				</ul>
@@ -1480,6 +1756,136 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Login panel -->
+	<div class="jumbotron login-panel" style="padding:0px;background: #fff;">
+		<div class="container mc-theme-color">
+			<div class="navbar-header">
+				<div id="logo_panel"></div>
+			</div>
+			<div class="collapse navbar-collapse ">
+				<ul id="user_tool_bar">
+					<li class="pull-right">
+						<a href="javascript:void(0)" class="btn-register">注册</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container mc-theme-color" style="height:18px;">
+		</div>
+		<div class="container">
+			<div class="row" style="margin-top:60px;">
+				<div class="col-md-4 col-md-offset-4">
+					<!-- <h1></h1> -->
+					<div class="account-panel">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-md-3">
+		            				用户名：
+		            			</label>
+		            			<div class="col-md-7">
+		            				 <input type="text" class="form-control" placeholder="" autofocus="" name="username">
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+				               	<label class="control-label col-md-3">
+		            				密码：
+		            			</label>
+		            			<div class="col-md-7">
+		            				 <input type="password" class="form-control" placeholder="" required="" name="password">
+		            			</div>
+		            		</div>
+		            		<div class="form-group" style="margin-top:40px;">
+		            			<div class="col-md-6 col-md-offset-3">
+		            				 <a class="btn btn-lg btn-primary btn-block btn-account">
+					                    登录
+					                </a>
+		            			</div>
+		            		</div>
+                		</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- register panel -->
+	<div class="jumbotron register-panel" style="padding:0px;background: #fff;">
+		<div class="container mc-theme-color">
+			<div class="navbar-header">
+				<div id="logo_panel"></div>
+			</div>
+			<div class="collapse navbar-collapse ">
+				<ul id="user_tool_bar">
+					<li class="pull-right">
+						<a href="javascript:void(0)" class='btn-login'>登录</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container mc-theme-color" style="height:18px;">
+		</div>
+		<div class="container">
+			<div class="row" style="margin-top:60px;">
+				<div class="col-md-6 col-md-offset-3">
+					<!-- <h1></h1> -->
+					<div class="account-panel">
+						<form class="form-horizontal" role="form">
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				用户名：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="text" class="form-control" name="username" required autofocus>
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				昵称：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="text" class="form-control" name="alias" required>
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				邮箱：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="text" class="form-control" name="email">
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				密码：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="password" class="form-control" name="password">
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				再次输入密码：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="password" class="form-control" name="repassword">
+		            			</div>
+		            		</div>
+		            		<div class="form-group" style="margin-top:40px">
+		            			<div class="col-md-offset-3 col-md-6">
+		            				<!-- <a class="btn btn-lg btn-primary btn-block btn-register" href="javascript:void(0)" role="button" style="  padding: 14px 24px; font-size: 21px; width:100%">注册</a> -->
+		            				 <a class="btn btn-lg btn-primary btn-block btn-account btn-register" type="submit">
+					                    注册
+					                </a>
+		            			</div>
+		            		</div>
+		            	</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
 	<!-- alert info  panel -->
 	<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
 	    <button type="button" class="close" aria-label="Close">
@@ -5117,11 +5523,7 @@
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 									<div class="col-md-3">
-										<select class="form-control gps-output-raster-format">
-											<option value=".jpg">.jpg</option>
-											<option value=".png">.png</option>
-											<option value=".tif">.tif</option>
-										</select>
+										<input type="text" class="form-control gps-output-raster-format" value=".tif" disabled="">
 									</div>
 								</div>
 							</form>
@@ -5228,11 +5630,7 @@
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 									<div class="col-md-3">
-										<select class="form-control gps-output-raster-format">
-											<option value=".jpg">.jpg</option>
-											<option value=".png">.png</option>
-											<option value=".tif">.tif</option>
-										</select>
+										<input type="text" class="form-control gps-output-raster-format" value=".tif" disabled="">
 									</div>
 								</div>
 							</form>
@@ -5340,11 +5738,7 @@
 										<input type="text" class="form-control gps-output-raster-name" >
 									</div>
 									<div class="col-md-3">
-										<select class="form-control gps-output-raster-format">
-											<option value=".jpg">.jpg</option>
-											<option value=".png">.png</option>
-											<option value=".tif">.tif</option>
-										</select>
+										<input type="text" class="form-control gps-output-raster-format" value=".tif" disabled="">
 									</div>
 								</div>
 							</form>
@@ -7368,274 +7762,141 @@
 		</div>
 	</div>
 
+	<!-- import csv panel -->
+	<div class="modal fade" id="import_csv_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">导入CSV</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row import-db">
+						<h5 style=" margin-top: 0px;">
+							<span>
+								<i class="mc-db-icon mc-db-icon-server"></i>
+								<span>数据库:  </span>
+								<span class="import-db-name">ceshi</span>
+							</span>
+						</h5>
+					</div>
+					<label>输入CSV</label>
+					<div class="row">
+						<div class="col-md-11" style="height:100%">
+							
+							<div class="csv-file-div">
+								<div class="row header-row">
+									<div class="col-md-6">
+										路径
+									</div>
+									<div class="col-md-6">
+										名称
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 csv-path">
+										/csv/60_people.csv
+									</div>
+									<div class="col-md-6 csv-table">
+										<span>60_people</span>
+									</div>
+								</div>
+							</div>
+							<label>字段编辑</label>
+							<div class="csv-fields-wrapper">
+								<div class="row header-row">
+									<div class="col-md-5">
+										字段名称
+									</div>
+									<div class="col-md-4">
+										字段类型
+									</div>
+									<div class="col-md-3">
+										字段长度
+									</div>
+								</div>
+								<div class="csv-fields-div">
+									<div class="row">
+										<div class="col-md-5">
+											<input class="form-control input-sm" type="text" value="地区" disabled="">
+										</div>
+										<div class="col-md-3">
+											<select class="form-control input-sm">
+												<option>int</option>
+												<option>string</option>
+												<option>double</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<input class="form-control input-sm" type="text" value="8" disabled="">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-5">
+											<input class="form-control input-sm" type="text" value="基本健康" disabled="">
+										</div>
+										<div class="col-md-3">
+											<select class="form-control input-sm">
+												<option>int</option>
+												<option>string</option>
+												<option>double</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<input class="form-control input-sm" type="text" value="8" disabled="">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-5">
+											<input class="form-control input-sm" type="text" value="合计" disabled="">
+										</div>
+										<div class="col-md-3">
+											<select class="form-control input-sm">
+												<option>int</option>
+												<option>string</option>
+												<option>double</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<input class="form-control input-sm" type="text" value="8" disabled="">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1 import-tool-div">
+							<ul>
+  							  	<li>
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="清空">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-upload"></i>
+  									</button>
+  								 </li>
+  								 <li style="margin-top:200px;margin-bottom:0px;">
+  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+  							  			<i class="fa fa-chevron-down"></i>
+  									</button>
+  								 </li>
+  							</ul>
+						</div>
+					</div>
+					<div class="import-log-wrapper">
+						<label>结果</label>
+						<div class="row import-log-row">
+							<div class="col-md-11 import-log-div"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
-
-<script type="text/javascript" src="js/3rd/jquery-1.11.1.js"></script>
-
-<script type="text/javascript" src="js/3rd/colpick/colpick.js"></script>
-
-<script src="js/3rd/jquery.ztree.core-3.5.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script> -->
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-multiselect.js"></script>
-
-<script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/3rd/jquery-ui/jquery.notify.min.js"></script>
-
-<!-- <script type="text/javascript" src="js/3rd/echarts-plain.js"></script> -->
-<script type="text/javascript" src="js/3rd/jquery-sortable.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
-<script type="text/javascript" src="../Map5/lib/echarts-all.js"></script>
-<script type="text/javascript" src="../Map5/lib/heatmap.min.js"></script>
-<script type="text/javascript" src="../Map5/lib/jquery.nouislider.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/User.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Point.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GML.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Field.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Feature.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/FeatureType.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Workspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMTS/WMTSWorkspace.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Expression.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Literal.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Tile.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQIChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQITimelineLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
-
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
-
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/InfoWindow.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/MapManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIIndexChart.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIStatCompChart.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQITimePointList.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/MapWorkspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Font.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Stroke.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Fill.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbol.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/FontManager.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Label.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Label/PointLabel.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/File/File.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/File/FileManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/File/Folder.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/SpatialReference.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/Job.js"></script>
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
-
-
-<script type="text/javascript" src="js/MapCloud.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/init.js"></script>
-
-<script type="text/javascript" src="js/Class/Class.js"></script>
-
-<script type="text/javascript" src="js/charts/Chart.js"></script>
-<script type="text/javascript" src="js/charts/WFSLayerChart.js"></script>
-
-<script type="text/javascript" src="js/Control/Ribbon.js"></script>
-<script type="text/javascript" src="js/Control/Logo.js"></script>
-<script type="text/javascript" src="js/Control/Tools.js"></script>
-
-
-<script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
-<script type="text/javascript" src="js/Control/Panel/DataGrid.js"></script>
-<script type="text/javascript" src="js/Control/Panel/Panel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/SearchPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/ChartPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/BarChartPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/PieChartPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/AQIChartPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/AQITimelineChartPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/GPSOperPanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/DataSourcePanel.js"></script>
-<script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
-<script type="text/javascript" src="js/Control/Panel/Table.js"></script>
-<script type="text/javascript" src="js/Control/Panel/Notify.js"></script>
-<script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
-<script type="text/javascript" src="js/Control/Panel/refresh.js"></script>
-
-<script type="text/javascript" src="js/Control/Dialog/Dialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GetMapsDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/MapMgrDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/CreateMapDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/NewLayerDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/NewRasterDBLayerDialog.js"></script>
-
-<script type="text/javascript" src="js/Control/Dialog/PGISConnectDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/VectorDBDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/FileDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/CreateFolderDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/RasterDBDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/ImportRasterDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/WMSDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/StyleManagerDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/StyleDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/StyleNameDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/HeatMapDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/ImportVectorDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/FeaturesDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/AQI24hDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/AQIStatCompDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/LoginDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/StyleListDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/MapInfoDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/BaseLayerDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/LayerInfoDialog.js"></script>
-
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSKMeanDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSOutputSourceDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureProjectDialog.js"></script>
-
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterEdgeDetectDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterStretchDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureImportDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterExtractDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterReverseDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterGraylizeDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSmoothDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSubtractDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterPixelBlendDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterThresholdDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterSepiaToneDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterHisEquaDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemSlopeDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemAspectDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemStretchDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDemHillshadeDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetAreaDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSDelaunayDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGetLengthDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSCentroidDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSConvexHullDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSMultiPointToPointsDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSLineToPointsDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSPolygonToPointsDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSPolygonToLineDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSGenRandomPointsDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GenRandomPointsInPolygonDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSBufferDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSBuildPyramidDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSUpdateTileDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/GPS/GPSSridDialog.js"></script>
-
-<script type="text/javascript" src="js/Control/Dialog/CutMapDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/TileDBDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/CreateTileStoreDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
-
-<script type="text/javascript">
-var Msg = {}; //declare this or modify line 1 of core.js
-</script>

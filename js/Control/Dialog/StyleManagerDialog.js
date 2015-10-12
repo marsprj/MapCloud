@@ -1,9 +1,6 @@
 // 图层样式对话框
 MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	
-	// 样式管理器
-	styleMgr 			: null,
-	
 	// 当前样式名称 
 	styleNameCur 		: null, 
 
@@ -59,7 +56,6 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
 
-		this.styleMgr = styleManager;
 
 		//确定
 		this.panel.find(".btn-confirm").each(function(){
@@ -73,7 +69,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				currentStyle.name = name;
 				// 是否是WFS图层的默认样式
 				if(name != "default"){ 
-					var style = dialog.styleMgr.getStyle(name);
+					var style = styleManager.getStyle(name);
 					if(style == null){
 						//添加
 						dialog.addStyle(currentStyle);
@@ -111,7 +107,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				currentStyle.name = name;
 					// 是否是WFS图层的默认样式
 				if(name != "default"){ 
-					var style = dialog.styleMgr.getStyle(name);
+					var style = styleManager.getStyle(name);
 					if(style == null){
 						//添加
 						dialog.addStyle(currentStyle);
@@ -149,13 +145,13 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 				value = value.toLowerCase();
 				if(value == "all"){
-					var styles = dialog.styleMgr.getStyles();
+					var styles = styleManager.getStyles();
 					dialog.getStyles_callback(styles);
 				}else{
 					// 点线面类型
 					var type = dialog.getStyleType(value);
 					if(type != null){
-						var styles = dialog.styleMgr.getStyleByType(type);
+						var styles = styleManager.getStyleByType(type);
 						dialog.getStyles_callback(styles);
 					}
 				}
@@ -177,9 +173,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 				var selected = $(this).children(":selected");
 				var name = selected.text();
-				var style = dialog.styleMgr.getStyle(name);
+				var style = styleManager.getStyle(name);
 				if(style != null){
-					dialog.styleMgr.getStyleXML(name,
+					styleManager.getStyleXML(name,
 					dialog.getStyleXML_callback);
 				}
 			});
@@ -215,7 +211,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					MapCloud.styleName_dialog.showDialog();					
 					return;
 				}else{
-					var style = dialog.styleMgr.getStyle(styleName);
+					var style = styleManager.getStyle(styleName);
 					if(style == null){
 						// 添加样式
 						dialog.addStyle(currentStyle);
@@ -234,7 +230,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var result = confirm("确认删除" + name + "样式？");
 				if(result){
 					MapCloud.notify.loading();
-					dialog.styleMgr.removeStyle(name,dialog.removeStyle_callback)
+					styleManager.removeStyle(name,dialog.removeStyle_callback)
 				}
 			});
 		});
@@ -307,7 +303,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 						field, mapObj.name,dialog.getMinMaxValue_callback);
 				}else{
 					// var count = dialog.panel.find(".quantities-pane .classes option:selected").val();
-					dialog.styleMgr.getColorMap(id,count,
+					styleManager.getColorMap(id,count,
 						dialog.getColorMapMinMax_callback);
 				}
 
@@ -448,16 +444,16 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var html = "All<span class='caret'></span>";
 		this.panel.find("#style_type_name").html(html);
 
-		// this.styleMgr = new GeoBeans.StyleManager(url);
-		// this.styleMgr = styleManager;
+		// styleManager = new GeoBeans.StyleManager(url);
+		// styleManager = styleManager;
 		
 
-		var styles = this.styleMgr.getStyles();
+		var styles = styleManager.getStyles();
 		if(flag == null || flag == undefined){
 			flag = true;
 		}
 		this.getStyles_callback(styles,flag);
-		this.styleMgr.getColorMaps(this.getColorMaps_callback);
+		styleManager.getColorMaps(this.getColorMaps_callback);
 	},
 
 	cleanup : function(){
@@ -557,7 +553,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(flag){
 			var styleName = panel.find("#style_list option:selected").val();
 			dialog.styleNameCur = styleName;
-			dialog.styleMgr.getStyleXML(dialog.styleNameCur,
+			styleManager.getStyleXML(dialog.styleNameCur,
 				dialog.getStyleXML_callback);
 		}
 	},
@@ -655,7 +651,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				icon = symbol.icon;
 				if(icon == null){
 					var type = this.getSymbolIconType(symbolizer.type); 
-					icon = this.styleMgr.getSymbolIcon(type,name);
+					icon = styleManager.getSymbolIcon(type,name);
 				}
 				
 			}else{
@@ -1229,7 +1225,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			icon = symbol.icon;
 			if(icon == null){
 				var type = this.getSymbolIconType(symbolizerType);
-				icon = this.styleMgr.getSymbolIcon(type,symbol.name);
+				icon = styleManager.getSymbolIcon(type,symbol.name);
 			}
 		}
 		
@@ -1378,12 +1374,12 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			var value = panel.find("#style_type_name").text();
 			value = value.toLowerCase();
 			if(value == "all"){
-				var styles = dialog.styleMgr.getStyles();
+				var styles = styleManager.getStyles();
 				dialog.getStyles_callback(styles);
 			}else{
 				var type = dialog.getStyleType(value);
 				if(type != null){
-					var styles = dialog.styleMgr.getStyleByType(type);
+					var styles = styleManager.getStyleByType(type);
 					dialog.getStyles_callback(styles);
 				}
 			}
@@ -1444,7 +1440,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		this.addStyleName = styleName;
-		var style = this.styleMgr.getStyle(styleName);
+		var style = styleManager.getStyle(styleName);
 		if(style != null){
 			var info = "已经有" + styleName + "样式，请重新输入";
 			MapCloud.notify.showInfo("failed",info);
@@ -1493,7 +1489,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				break;
 		}	
 		$.get(path,function(xml){
-			var style = that.styleMgr.reader.read(xml);
+			var style = styleManager.reader.read(xml);
 			style.name = that.addStyleName;
 			var geomType = that.panel.find("#style_type_name").text();
 			style.geomType = geomType;
@@ -1533,9 +1529,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(name == "default"){
 			return;
 		}
-		var xml = this.styleMgr.writer.write(style);
+		var xml = styleManager.writer.write(style);
 		MapCloud.notify.loading();
-		this.styleMgr.updateStyle(xml,name,this.updateCallback);
+		styleManager.updateStyle(xml,name,this.updateCallback);
 	},
 
 	// 更新样式结果
@@ -1553,14 +1549,14 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(style == null){
 			return;
 		}
-		var xml =this.styleMgr.writer.write(style);
+		var xml =styleManager.writer.write(style);
 		if(xml == null){
 			return;
 		}
 		var name = style.name;
 		var geomType = style.geomType;
 		MapCloud.notify.loading();
-		this.styleMgr.addStyle(xml,name
+		styleManager.addStyle(xml,name
 				,geomType,this.addStyleCallback);
 	},
 
@@ -1570,7 +1566,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var type = dialog.panel.find("#style_type_name").text();
 		var styleType = dialog.getStyleType(type.toLowerCase());
-		var styles = dialog.styleMgr.getStyleByType(styleType);
+		var styles = styleManager.getStyleByType(styleType);
 		dialog.getStyles_callback(styles);
 
 		var styleName = dialog.addStyleName;
@@ -1587,9 +1583,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		dialog.styleNameCur = dialog.addStyleName;
 		dialog.isDefaultStyle = false;	
 		// 通过名字获取到style
-		var style = dialog.styleMgr.getStyle(styleName);
+		var style = styleManager.getStyle(styleName);
 		if(style != null){
-			dialog.styleMgr.getStyleXML(styleName,
+			styleManager.getStyleXML(styleName,
 			dialog.getStyleXML_callback);
 		}
 		dialog.addStyleName = null;
@@ -1634,7 +1630,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		styleOptions.html(styleGeomTypeOptions);
 
 		//
-		var styleS = this.styleMgr.getStyle(styleName);
+		var styleS = styleManager.getStyle(styleName);
 		if(styleName == "default" ||styleS == null){
 			styleOptions.append("<option value='default'>default</option>");
 			styleOptions.find("option[value='default']")
@@ -1693,10 +1689,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 			styleOptions.find("option[value='" + styleName + "']")
 						.attr("selected",true);
-			this.styleMgr.getStyleXML(this.styleNameCur,
+			styleManager.getStyleXML(this.styleNameCur,
 				this.getStyleXML_callback);
 		}else{
-			var styles = this.styleMgr.getStyleByType(styleGeomType);
+			var styles = styleManager.getStyleByType(styleGeomType);
 			this.getStyles_callback(styles);
 		}
 		
@@ -1823,7 +1819,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 							dialog.getValuesCallback);
 			}else{
 				var count = dialog.uniqueValues.length;
-				dialog.styleMgr.getColorMap(id,count,
+				styleManager.getColorMap(id,count,
 						dialog.getColorMap_callback)
 			}
 		});
@@ -1844,7 +1840,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 					field, mapObj.name,dialog.getMinMaxValue_callback);
 			}else{
 				var count = dialog.panel.find(".quantities-pane .classes option:selected").val();
-				dialog.styleMgr.getColorMap(id,count,
+				styleManager.getColorMap(id,count,
 					dialog.getColorMapMinMax_callback);
 			}
 		});
@@ -1857,7 +1853,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			var backgroundUrl = $(this).find(".color-ramp-item").css("background-image");
 			customPanel.find(".select-color-ramp li .color-ramp-item").css("background-image",backgroundUrl);
 			var count = dialog.customStyleFilters.length;
-			dialog.styleMgr.getColorMap(id,count,dialog.getColorMapCustom_callback);
+			styleManager.getColorMap(id,count,dialog.getColorMapCustom_callback);
 		});
 	},
 
@@ -1872,7 +1868,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var panel = dialog.panel;
 		dialog.uniqueValues = values;
 		var id = panel.find(".unique-pane .select-color-ramp li").attr("cid");
-		dialog.styleMgr.getColorMap(id,count,
+		styleManager.getColorMap(id,count,
 			dialog.getColorMap_callback);
 	},
 
@@ -1913,7 +1909,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		
 		// 获得色阶值
 		var id = dialog.panel.find(".quantities-pane .select-color-ramp li").attr("cid");
-		dialog.styleMgr.getColorMap(id,classes,
+		styleManager.getColorMap(id,classes,
 			dialog.getColorMapMinMax_callback);
 		// var classes = dialog.panel.find(".quantities-pane .classes option:selected").val();
 
@@ -2273,7 +2269,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 获取色阶
 		var id = this.panel.find(".custom-pane .select-color-ramp li").attr("cid");
 		var count = this.customStyleFilters.length;
-		this.styleMgr.getColorMap(id,count,this.getColorMapCustom_callback);
+		styleManager.getColorMap(id,count,this.getColorMapCustom_callback);
 	},
 
 	getColorMapCustom_callback : function(colors){
