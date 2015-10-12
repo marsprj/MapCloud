@@ -113,7 +113,7 @@ MapCloud.WMSDialog = MapCloud.Class(MapCloud.Dialog,{
 	getLayersCallback : function(layers){
 		MapCloud.notify.hideLoading();
 		if(!$.isArray(layers)){
-			MapCloud.notify.showInfo(layers,"获取WMS图层");
+			MapCloud.notify.showInfo("获取WMS图层" + layers,"Warning");
 			return;
 		}
 		

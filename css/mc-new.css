@@ -2737,6 +2737,10 @@ ul.layers_row li:before {
 	height: calc( 100% - 18px);
 }
 
+#import_dialog .import-log-row .row{
+	white-space: normal;
+}
+
 #import_dialog .import-log-div{
 	height: 100%;
 	overflow-y: auto;
@@ -3676,13 +3680,18 @@ ul.layers_row li:before {
 /* Login  Panel Begin				 								   		*/
 /***************************************************************************/
 .login-panel{
-	display: block;
+	display: none;
 }
 .map-panel{
-	display: none;
+	display: block;
 }
 .register-panel{
 	display: none;
+}
+.logo-img{
+	width: 100%;
+	border-radius: 6px;
+	box-shadow: 1px 1px 1px 2px rgba(0,0,0,0.3)
 }
 .account-panel{
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -3699,4 +3708,40 @@ ul.layers_row li:before {
 }
 /***************************************************************************/
 /* Login  Panel End				 								   		*/
+/***************************************************************************/
+/***************************************************************************/
+/* Create DataSet  Panel Begin				 								*/
+/***************************************************************************/
+#create_dataset_dialog .modal-body{
+	height: 600px;
+}
+
+#create_dataset_dialog .form-group{
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+#create_dataset_dialog .fields-form .form-group{
+	border-bottom: 1px solid #e5e5e5;
+    padding: 4px 0px 6px;
+}
+
+#create_dataset_dialog .form-group-header{
+	border-bottom: 1px dashed #989898;
+}
+
+#create_dataset_dialog .fields-form{
+	border: 1px dashed #989898;
+	height: 420px;
+	overflow-y: auto; 
+}
+
+.fields-empty{
+	margin-top: 100px;
+	text-indent: 0.6em;
+	letter-spacing: 0.6em;
+	font-family: "Microsoft YaHei";
+}
+/***************************************************************************/
+/* Create DataSet  Panel End				 								*/
 /***************************************************************************/

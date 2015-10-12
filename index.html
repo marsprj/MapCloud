@@ -204,6 +204,7 @@
 <script type="text/javascript" src="js/Control/Logo.js"></script>
 <script type="text/javascript" src="js/Control/Tools.js"></script>
 <script type="text/javascript" src="js/Control/Account.js"></script>
+<script type="text/javascript" src="js/Control/Cookie.js"></script>
 
 
 <script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
@@ -297,6 +298,7 @@
 <script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateDataSetDialog.js"></script>
 <title>MapEditor</title>
 </head>
 
@@ -1775,7 +1777,10 @@
 		</div>
 		<div class="container">
 			<div class="row" style="margin-top:60px;">
-				<div class="col-md-4 col-md-offset-4">
+				<div class="col-md-offset-1 col-md-5">
+					<img src="images/cloud3.png" class="logo-img">
+				</div>
+				<div class="col-md-4 col-md-offset-1">
 					<!-- <h1></h1> -->
 					<div class="account-panel">
 						<form class="form-horizontal">
@@ -2939,6 +2944,9 @@
 									<button type="button" class="btn btn-default btn-tool btn-import-csv" data-toggle="tooltip" data-placement="top" data-original-title="导入CSV">
 										<i class="fa fa-table"></i>
 									</button>
+									<button type="button" class="btn btn-default btn-tool btn-create-dataset" data-toggle="tooltip" data-placement="top" data-original-title="增加">
+										<i class="fa fa-plus"></i>
+									</button>
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
 									</button>
@@ -3001,6 +3009,9 @@
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-import-csv" data-toggle="tooltip" data-placement="top" data-original-title="导入CSV">
 										<i class="fa fa-table"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-tool btn-create-dataset" data-toggle="tooltip" data-placement="top" data-original-title="增加">
+										<i class="fa fa-plus"></i>
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
@@ -7895,6 +7906,50 @@
 							<div class="col-md-11 import-log-div"></div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- create dataset panel -->
+	<div class="modal fade" id="create_dataset_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建表格</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-md-3 control-label">数据库</label>
+							<div class="col-md-7">
+								<input class="form-control db-name" type="text" disabled="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">名称</label>
+							<div class="col-md-7">
+								<input class="form-control dataset-name" type="text">
+							</div>
+						</div>
+						<div class="form-group"  style="margin:20px 0px">
+							<div class="col-md-2 col-md-offset-2">
+								<button class="btn btn-success btn-default btn-create-field">新建字段</button>
+							</div>
+							<div class="col-md-2 col-md-offset-1">
+								<button class="btn btn-success btn-default btn-remove-fields">清空字段</button>
+							</div>
+							<div class="col-md-2 col-md-offset-1">
+								<button class="btn btn-primary btn-default btn-create-dataset">创建表格</button>
+							</div>
+						</div>
+					</form>
+					<form class="form-horizontal fields-form" role="form">
+						<div class='text-center'>
+							<h2 class="text-muted fields-empty">空白字段</h2>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

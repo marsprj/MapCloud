@@ -65,7 +65,7 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 
 		// 关闭
-		this.panel.find("button.close").click(function(){
+		this.panel.on('hidden.bs.modal',function(){
 			dialog.closeDialog();
 		});
 

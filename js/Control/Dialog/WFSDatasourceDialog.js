@@ -40,7 +40,7 @@ MapCloud.WFSDatasourceDialog = MapCloud.Class(MapCloud.Dialog, {
 					}
 					types = wfsworkspace.getFeatureTypes();
 					if(types == null){
-						MapCloud.notify.showInfo("无法获取图层","error");
+						MapCloud.notify.showInfo("无法获取图层","Warning");
 						return;
 					}
 
