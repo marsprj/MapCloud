@@ -25,7 +25,6 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
-		this.styleMgr = styleManager;
 
 		this.registerEvent();
 	},
@@ -35,7 +34,7 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 			this.cleanup();
 			this.panel.css("display","block");
 
-			var colors = this.styleMgr.getColorMaps();
+			var colors = styleManager.getColorMaps();
 			this.getColorMaps_callback(colors);
 		}
 	},

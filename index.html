@@ -188,6 +188,8 @@
 <script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
 <script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
 
+<script type="text/javascript" src="../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+
 
 <script type="text/javascript" src="js/MapCloud.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
@@ -201,6 +203,7 @@
 <script type="text/javascript" src="js/Control/Ribbon.js"></script>
 <script type="text/javascript" src="js/Control/Logo.js"></script>
 <script type="text/javascript" src="js/Control/Tools.js"></script>
+<script type="text/javascript" src="js/Control/Account.js"></script>
 
 
 <script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
@@ -298,7 +301,7 @@
 </head>
 
 <body>
-	<div class="jumbotron" style="padding:0px;height:100%;background: #fff;">
+	<div class="jumbotron map-panel" style="padding:0px;height:100%;background: #fff;">
 		<div class="container mc-theme-color">
 			<div class="navbar-header">
 				<div id="logo_panel"></div>
@@ -320,10 +323,10 @@
 					<li class="pull-right">
 						<a href="api/" target="_blank">API</a>
 					</li>
-					<li class="pull-right">
+					<li class="pull-right login-li">
 						<a href="javascript:void(0)" id="login_btn">登录</a>
 					</li>
-					<li class="pull-right">
+					<li class="pull-right register-li">
 						<a href="register.html" id="login_btn">注册</a>
 					</li>
 				</ul>
@@ -1753,6 +1756,136 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Login panel -->
+	<div class="jumbotron login-panel" style="padding:0px;background: #fff;">
+		<div class="container mc-theme-color">
+			<div class="navbar-header">
+				<div id="logo_panel"></div>
+			</div>
+			<div class="collapse navbar-collapse ">
+				<ul id="user_tool_bar">
+					<li class="pull-right">
+						<a href="javascript:void(0)" class="btn-register">注册</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container mc-theme-color" style="height:18px;">
+		</div>
+		<div class="container">
+			<div class="row" style="margin-top:60px;">
+				<div class="col-md-4 col-md-offset-4">
+					<!-- <h1></h1> -->
+					<div class="account-panel">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-md-3">
+		            				用户名：
+		            			</label>
+		            			<div class="col-md-7">
+		            				 <input type="text" class="form-control" placeholder="" autofocus="" name="username">
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+				               	<label class="control-label col-md-3">
+		            				密码：
+		            			</label>
+		            			<div class="col-md-7">
+		            				 <input type="password" class="form-control" placeholder="" required="" name="password">
+		            			</div>
+		            		</div>
+		            		<div class="form-group" style="margin-top:40px;">
+		            			<div class="col-md-6 col-md-offset-3">
+		            				 <a class="btn btn-lg btn-primary btn-block btn-account">
+					                    登录
+					                </a>
+		            			</div>
+		            		</div>
+                		</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- register panel -->
+	<div class="jumbotron register-panel" style="padding:0px;background: #fff;">
+		<div class="container mc-theme-color">
+			<div class="navbar-header">
+				<div id="logo_panel"></div>
+			</div>
+			<div class="collapse navbar-collapse ">
+				<ul id="user_tool_bar">
+					<li class="pull-right">
+						<a href="javascript:void(0)" class='btn-login'>登录</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container mc-theme-color" style="height:18px;">
+		</div>
+		<div class="container">
+			<div class="row" style="margin-top:60px;">
+				<div class="col-md-6 col-md-offset-3">
+					<!-- <h1></h1> -->
+					<div class="account-panel">
+						<form class="form-horizontal" role="form">
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				用户名：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="text" class="form-control" name="username" required autofocus>
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				昵称：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="text" class="form-control" name="alias" required>
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				邮箱：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="text" class="form-control" name="email">
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				密码：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="password" class="form-control" name="password">
+		            			</div>
+		            		</div>
+		            		<div class="form-group">
+		            			<label class="control-label col-md-4">
+		            				再次输入密码：
+		            			</label>
+		            			<div class="col-md-5">
+		            				<input type="password" class="form-control" name="repassword">
+		            			</div>
+		            		</div>
+		            		<div class="form-group" style="margin-top:40px">
+		            			<div class="col-md-offset-3 col-md-6">
+		            				<!-- <a class="btn btn-lg btn-primary btn-block btn-register" href="javascript:void(0)" role="button" style="  padding: 14px 24px; font-size: 21px; width:100%">注册</a> -->
+		            				 <a class="btn btn-lg btn-primary btn-block btn-account btn-register" type="submit">
+					                    注册
+					                </a>
+		            			</div>
+		            		</div>
+		            	</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
 	<!-- alert info  panel -->
 	<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
 	    <button type="button" class="close" aria-label="Close">
@@ -7734,17 +7867,17 @@
 						<div class="col-md-1 import-tool-div">
 							<ul>
   							  	<li>
-  							  		<button class="btn btn-lg btn-default import-btn-add btn-green" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
   							  			<i class="fa fa-plus"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-remove btn-red" data-toggle="tooltip" data-placement="top" data-original-title="清空">
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="清空">
   							  			<i class="fa fa-remove"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-upload btn-green" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
   							  			<i class="fa fa-upload"></i>
   									</button>
   								 </li>

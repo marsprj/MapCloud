@@ -6,6 +6,9 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 文件路径
 	csvPath : null,
 
+	// dataSet name
+	typeName : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 
@@ -38,6 +41,9 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请输入导入后的文件名称","Warning");
 				return;
 			}
+			dialog.typeName = name;
+			var html = "<div class='row'>开始新建表格</div>"
+			dialog.panel.find(".import-log-div").append(html);
 			dbsManager.createDataSet(dialog.dataSourceName,name,fields,dialog.createDataSet_callback);
 		});
 
@@ -95,6 +101,13 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.dataSourceName = null;
 		this.csvPath = null;
+		this.typeName = null;
+	},
+
+	closeDialog : function(){
+		this.panel.modal("hide");
+		var parent = MapCloud.vector_db_dialog;
+		parent.getDataSets(parent.dataSourceCur);
 	},
 
 	// 设置数据库名称
@@ -171,11 +184,8 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	getFields : function(){
 		var fields = [];
-		var a = 1;
 		this.panel.find(".csv-fields-div .row").each(function(){
 			var name = $(this).find(".csv-field-name").val();
-			a++
-			name = "aaa" + a;
 			var type = $(this).find(".csv-field-type").val();
 			var length = null;
 			if(type == "string"){
@@ -189,6 +199,35 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	createDataSet_callback : function(result){
-		alert(result);
+		var html = "<div class='row'>创建表格结束：" + result + "</div>";
+		var dialog = MapCloud.importCSV_dialog;
+		dialog.panel.find(".import-log-div").append(html);
+
+		if(result == "success"){
+			dialog.importCsv();
+		}
+
 	},
+
+	// 导入CSV
+	importCsv : function(){
+		var sourceName = this.dataSourceName;
+		var typeName = this.typeName;
+
+		var path = this.csvPath;
+		var name = this.csvPath.slice(this.csvPath.lastIndexOf("/")+1,this.csvPath.length);
+		var csvPath = this.csvPath.slice(0,this.csvPath.lastIndexOf("/"));
+
+
+		var html = "<div class='row'>开始导入到数据中</div>"; 
+		this.panel.find(".import-log-div").append(html);
+		gpsManager.csvImport(sourceName,typeName,csvPath,name,null,this.importCsv_callback);
+
+	},
+
+	importCsv_callback : function(result){
+		var html = "<div class='row'>导入到数据库结束：" + result + "</div>"; 
+		var dialog = MapCloud.importCSV_dialog;
+		dialog.panel.find(".import-log-div").append(html);
+	}
 });
