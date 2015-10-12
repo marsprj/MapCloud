@@ -1,0 +1,3 @@
+UserInfoPanel = function(){
+	
+}
