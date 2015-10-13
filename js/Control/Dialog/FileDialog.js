@@ -53,6 +53,16 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 						return;
 					}
 					MapCloud.importCSV_dialog.setImportCsv(importPath);
+					break;
+				}
+				case "csvImport":{
+					var importPath = dialog.getImportCSVPath();
+					if(importPath == null){
+						MapCloud.notify.showInfo("请选择要导入的csv文件","Warning");
+						return;
+					}
+					MapCloud.gps_csv_import_dialog.setImportCsv(importPath);
+					break;
 				}
 				default:
 					break;
@@ -321,7 +331,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					}else{
 						html += "		<input type='checkbox' name='" + name + "' disabled>";
 					}
-				}else if(this.flag == "csv"){
+				}else if(this.flag == "csv" || this.flag == "csvImport"){
 					var fileFix = name.slice(name.lastIndexOf(".")+1,name.length);
 					if(fileFix.toLowerCase() == "csv"){
 						html += "		<input type='radio' name='csv'>";

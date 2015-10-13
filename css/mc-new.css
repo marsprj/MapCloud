@@ -2229,7 +2229,7 @@ ul.layers_row li:before {
 
 #vector_db_dialog .table-tree{
 	height: calc( 100% - 60px);
-	border: 1px dashed #ccc;
+	border: 1px solid #ccc;
 	margin-top: 10px;
 	overflow-y: auto;
 }
@@ -2684,12 +2684,15 @@ ul.layers_row li:before {
 }
 #import_dialog .import-list-wrapper{
 	height: 100%;
-	border: 1px groove #ddd;
+	border: 1px solid #ddd;
+	margin: -1px;
 }
 
 #import_dialog label{
 	margin-bottom: 0px;
 	margin-left: 2px;
+	font-size: 14px;
+	font-weight: normal;
 }
 #import_dialog .import-tools{
 	/*height: 12%;*/
@@ -2713,9 +2716,10 @@ ul.layers_row li:before {
 #import_dialog .import-content-div{
 	height: 300px;
 	padding: 0px;
+	margin-top: -2px;
 }
 #import_dialog .header-row{
-	border-bottom: 2px groove #ddd;
+	border-bottom: 1px solid #ddd;
 }
 #import_dialog .import-list-div{
 	height: 255px;
@@ -2745,7 +2749,8 @@ ul.layers_row li:before {
 	height: 100%;
 	overflow-y: auto;
 	padding: 4px;
-	border: 1px groove#ddd;
+	border: 1px solid #ddd;
+	margin: -1px;
 }
 
 #import_dialog .import-tool-div ul{
@@ -2776,6 +2781,12 @@ ul.layers_row li:before {
 .btn-green{
 	color:green;
 	border-color: green;
+}
+.import-db-name{
+    border: 1px solid #ccc;
+    padding: 5px 6px;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 /***************************************************************************/
 /* Import  dialog End  													   */
@@ -3610,6 +3621,11 @@ ul.layers_row li:before {
 
 #import_csv_dialog .modal-body{
 	height: 470px;
+	
+	-webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 #import_csv_dialog .row{
 	margin: 0px 0px;
@@ -3619,15 +3635,15 @@ ul.layers_row li:before {
     margin-left: 2px;
 }
 #import_csv_dialog .csv-file-div{
-	border: 1px groove #ddd;
+	border: 1px solid #ddd;
 	margin-bottom: 20px;
 }
 #import_csv_dialog .header-row {
-    border-bottom: 2px groove #ddd;
+    border-bottom: 1px solid #ddd;
     /*text-align: center;*/
 }
 #import_csv_dialog .csv-fields-wrapper{
-	border: 1px groove #ddd;
+	border: 1px solid #ddd;
 }
 #import_csv_dialog .csv-fields-wrapper .row {
     padding: 0px 8px;
@@ -3665,7 +3681,7 @@ ul.layers_row li:before {
 }
 #import_csv_dialog .import-log-div {
     height: 100%;
-    border: 1px groove #ddd;
+    border: 1px solid #ddd;
     overflow-y : auto !important;
 }
 
@@ -3721,6 +3737,9 @@ ul.layers_row li:before {
 	margin-left: 0px;
 }
 
+#create_dataset_dialog label{
+	font-weight: normal;
+}
 #create_dataset_dialog .fields-form .form-group{
 	border-bottom: 1px solid #e5e5e5;
     padding: 4px 0px 6px;

@@ -50,13 +50,11 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		// log
 		this.panel.find(".import-btn-log").click(function(){
 			if($(this).hasClass("log-col")){
-				// dialog.panel.find(".import-log-fieldset").css("display","block");
 				dialog.panel.find(".modal-body").css("height","600px");
 				dialog.panel.find(".import-log-wrapper").slideDown(500); 
 				$(this).find("i").removeClass("fa-chevron-down").addClass("fa-chevron-up");
 				$(this).removeClass("log-col").addClass("log-exp");
 			}else{
-				// dialog.panel.find(".import-log-fieldset").css("display","none");
 				dialog.panel.find(".modal-body").css("height","470px");
 				dialog.panel.find(".import-log-wrapper").slideUp(500);
 				$(this).find("i").removeClass("fa-chevron-up").addClass("fa-chevron-down");

@@ -92,6 +92,8 @@ $().ready(function(){
 		= new MapCloud.GPSRasterSepiaToneDialog("gps_raster_sepia_tone_dialog");
 	MapCloud.gps_feature_import_dialog
 		= new MapCloud.GPSFeatureImportDialog("gps_feature_import_dialog");
+	MapCloud.gps_csv_import_dialog
+		= new MapCloud.GPSCsvImportDialog("gps_csv_import_dialog");		
 	MapCloud.gps_raster_extract_dialog
 		= new MapCloud.GPSRasterExtractDialog("gps_raster_extract_dialog");
 	MapCloud.gps_raster_reverse_dialog

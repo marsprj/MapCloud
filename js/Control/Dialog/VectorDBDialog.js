@@ -77,6 +77,15 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet);
 					break;
 				}
+				case "csvImport":{
+					if(dataSet.geometryType != null){
+						MapCloud.notify.showInfo("请选择一个属性数据","Warning");
+						return;
+					}
+					parentDialog = MapCloud.gps_csv_import_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet);
+					break;
+				}
 				case "getArea":{
 					parentDialog = MapCloud.gps_get_area_dialog;
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);

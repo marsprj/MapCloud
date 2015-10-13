@@ -259,6 +259,7 @@
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSKMeanDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSOutputSourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureProjectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSCsvImportDialog.js"></script>
 
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterEdgeDetectDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterStretchDialog.js"></script>
@@ -3552,13 +3553,12 @@
 					<div class="row import-db">
 						<h5 style=" margin-top: 0px;">
 							<span>
-								<i class="mc-db-icon mc-db-icon-server "></i>
 								<span>数据库:  </span>
 								<span class="import-db-name">Name</span>
 							</span>
 						</h5>
 					</div>
-					<label>输入图层</label>
+					<label>输入:</label>
 					<div class="row import-content-div">
 						<div class="col-md-11" style="height:100%">
 							<div class="import-list-wrapper">
@@ -3576,18 +3576,18 @@
 						<div class="col-md-1 import-tool-div">
 							<ul>
   							  	<li>
-  							  		<button class="btn btn-lg btn-default import-btn-add btn-green" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
   							  			<i class="fa fa-plus"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-remove btn-red" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
   							  			<i class="fa fa-remove"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-upload btn-green" data-toggle="tooltip" data-placement="top" data-original-title="导入">
-  							  			<i class="fa fa-upload"></i>
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-arrow-right"></i>
   									</button>
   								 </li>
   								 <li style="margin-top:108px">
@@ -3600,7 +3600,7 @@
 					</div>
 						
 					<div class="import-log-wrapper">
-						<label>结果</label>
+						<label>结果:</label>
 						<div class="row import-log-row">
 							<div class="col-md-11 import-log-div">
 
@@ -4082,6 +4082,86 @@
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
 										<i class="fa fa-wrench"></i>
+									</button>
+								</li>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li class="log-li">
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Csv import panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_csv_import_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">CSV数据导入</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11">
+							<label>数据</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										CSV数据:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-csv-path" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-csv" type="button">选择</button>
+									</div>
+								</div>
+							</form>
+							<label>导入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										表格:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+										<i class="fa fa-upload"></i>
 									</button>
 								</li>
 								<li>
@@ -7785,7 +7865,6 @@
 					<div class="row import-db">
 						<h5 style=" margin-top: 0px;">
 							<span>
-								<i class="mc-db-icon mc-db-icon-server"></i>
 								<span>数据库:  </span>
 								<span class="import-db-name">ceshi</span>
 							</span>
@@ -7827,51 +7906,6 @@
 									</div>
 								</div>
 								<div class="csv-fields-div">
-									<div class="row">
-										<div class="col-md-5">
-											<input class="form-control input-sm" type="text" value="地区" disabled="">
-										</div>
-										<div class="col-md-3">
-											<select class="form-control input-sm">
-												<option>int</option>
-												<option>string</option>
-												<option>double</option>
-											</select>
-										</div>
-										<div class="col-md-4">
-											<input class="form-control input-sm" type="text" value="8" disabled="">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-5">
-											<input class="form-control input-sm" type="text" value="基本健康" disabled="">
-										</div>
-										<div class="col-md-3">
-											<select class="form-control input-sm">
-												<option>int</option>
-												<option>string</option>
-												<option>double</option>
-											</select>
-										</div>
-										<div class="col-md-4">
-											<input class="form-control input-sm" type="text" value="8" disabled="">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-5">
-											<input class="form-control input-sm" type="text" value="合计" disabled="">
-										</div>
-										<div class="col-md-3">
-											<select class="form-control input-sm">
-												<option>int</option>
-												<option>string</option>
-												<option>double</option>
-											</select>
-										</div>
-										<div class="col-md-4">
-											<input class="form-control input-sm" type="text" value="8" disabled="">
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -7889,7 +7923,7 @@
   								 </li>
   								 <li>
   							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
-  							  			<i class="fa fa-upload"></i>
+  							  			<i class="fa fa-arrow-right"></i>
   									</button>
   								 </li>
   								 <li style="margin-top:200px;margin-bottom:0px;">
@@ -7922,26 +7956,26 @@
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-md-3 control-label">数据库</label>
+							<label class="col-md-3 control-label">数据库:</label>
 							<div class="col-md-7">
 								<input class="form-control db-name" type="text" disabled="">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label">名称</label>
+							<label class="col-md-3 control-label">名称:</label>
 							<div class="col-md-7">
 								<input class="form-control dataset-name" type="text">
 							</div>
 						</div>
 						<div class="form-group"  style="margin:20px 0px">
 							<div class="col-md-2 col-md-offset-2">
-								<button class="btn btn-success btn-default btn-create-field">新建字段</button>
+								<button type="button" class="btn btn-success btn-default btn-create-field">新建字段</button>
 							</div>
 							<div class="col-md-2 col-md-offset-1">
-								<button class="btn btn-success btn-default btn-remove-fields">清空字段</button>
+								<button type="button" class="btn btn-success btn-default btn-remove-fields">清空字段</button>
 							</div>
 							<div class="col-md-2 col-md-offset-1">
-								<button class="btn btn-primary btn-default btn-create-dataset">创建表格</button>
+								<button type="button" class="btn btn-primary btn-default btn-create-dataset">创建表格</button>
 							</div>
 						</div>
 					</form>

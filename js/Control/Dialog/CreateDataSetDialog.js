@@ -84,7 +84,7 @@ MapCloud.CreateDataSetDialog = MapCloud.Class(MapCloud.Dialog,{
 			+	'		<input class="form-control field-length" value="32" type="text" readonly="">'
 			+	'	</div>'			
 			+	'	<div class="col-md-2">'
-			+	'		<button class="btn-link btn-remove-field">删除</button>'
+			+	'		<button class="btn btn-link btn-remove-field">删除</button>'
 			+	'	</div>'
 			+	'</div>';
 

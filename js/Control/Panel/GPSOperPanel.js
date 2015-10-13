@@ -135,6 +135,10 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 				dialog = MapCloud.gps_feature_project_dialog;
 				break;
 			}
+			case "CsvImport":{
+				dialog = MapCloud.gps_csv_import_dialog;
+				break;
+			}
 			case "RasterEdgeDetect":{
 				dialog = MapCloud.gps_raster_edge_detect_dialog;
 				break;
