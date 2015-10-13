@@ -29,6 +29,15 @@ MapCloud.Account = MapCloud.Class({
 
 		});
 
+
+		// enter登录
+		this.loginPanel.find("input[name='password']").keypress(function(e){
+			if(e.which == 13){
+				that.login();
+			}
+		});
+
+
 		// 注册
 		this.registerPanel.find(".btn-account").click(function(){
 			that.register();
@@ -39,6 +48,9 @@ MapCloud.Account = MapCloud.Class({
 			that.hideRegisterPanel();
 			that.showLoginPanel();
 		});
+
+
+
 
 	},
 

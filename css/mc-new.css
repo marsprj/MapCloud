@@ -3068,14 +3068,12 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* GPS Oper Dialog Begin  												   */
 /***************************************************************************/
-#gps_kmean_dialog .log-li{
+#gps_kmean_dialog .oper-li{
 	margin-top: 117px;
-	margin-bottom: 0px;
 }
 
-#gps_feature_project_dialog .log-li{
+#gps_feature_project_dialog .oper-li{
 	margin-top: 153px;
-	margin-bottom: 0px;
 }
 
 .gps-oper-dialog{
@@ -3115,9 +3113,15 @@ ul.layers_row li:before {
 	margin: 0px;
 }
 .gps-oper-dialog .gps-oper-tool-div ul li{
-	/*margin-left: 10px;*/
 	margin-bottom: 10px;
 }
+.gps-oper-dialog .gps-oper-tool-div ul li:last-child{
+	margin-bottom: 0px;
+}
+.gps-oper-dialog .fa-arrow-right{
+	color: #5CB85C;
+}
+
 .gps-oper-dialog .gps-oper-log-wrapper{
 	height: 200px;
 	margin-bottom: 0px;
@@ -3136,6 +3140,10 @@ ul.layers_row li:before {
   /*padding: 6px 2px 6px 2px;*/
 }
 
+#gps_csv_import_dialog .oper-li{
+	margin-top: 44px;
+}
+
 /***************************************************************************/
 /* GPS Oper Dialog End  	 												*/
 /***************************************************************************/
@@ -3143,11 +3151,9 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* GPS Feature Import Dialog Begin  	 										*/
 /***************************************************************************/
-#gps_feature_import_dialog .log-li{
-	margin-bottom: 0px;
-	margin-top: 159px;
+#gps_feature_import_dialog .oper-li{
+	margin-top: 158px;
 }
-
 #gps_feature_import_dialog .import-list-wrapper{
 	height: 300px;
 	border: 1px solid #ddd;
@@ -3188,33 +3194,30 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* GPS Raster  Dialog Begin	 										*/
 /***************************************************************************/
-#gps_raster_reverse_dialog .log-li,#gps_raster_graylize_dialog .log-li,
-#gps_raster_stretch_dialog .log-li,#gps_raster_his_equal_dialog .log-li,
-#gps_raster_smooth_dialog .log-li,#gps_raster_threshold_dialog .log-li,
-#gps_dem_slope_dialog .log-li,#gps_dem_aspect_dialog .log-li,
-#gps_dem_stretch_dialog .log-li,#gps_raster_edge_detect_dialog .log-li,
-#gps_raster_sepia_tone_dialog .log-li{
+#gps_raster_reverse_dialog .oper-li,#gps_raster_graylize_dialog .oper-li,
+#gps_raster_stretch_dialog .oper-li,#gps_raster_his_equal_dialog .oper-li,
+#gps_raster_smooth_dialog .oper-li,#gps_raster_threshold_dialog .oper-li,
+#gps_dem_slope_dialog .oper-li,#gps_dem_aspect_dialog .oper-li,
+#gps_dem_stretch_dialog .oper-li,#gps_raster_edge_detect_dialog .oper-li,
+#gps_raster_sepia_tone_dialog .oper-li{
 	margin-top: 153px;
-	margin-bottom: 0px;
 }
-#gps_raster_subtract_dialog .log-li{
+#gps_raster_subtract_dialog .oper-li{
 	margin-top: 313px;
-	margin-bottom: 0px;
 }
-#gps_dem_hillshade_dialog .log-li{
-	margin-bottom: 0px;
+#gps_raster_pixel_blend_dialog .oper-li{
+	margin-top: 313px;
+}
+#gps_dem_hillshade_dialog .oper-li{
     margin-top: 260px;
 }
-#gps_raster_smooth_dialog .log-li{
-	margin-bottom: 0px;
+#gps_raster_smooth_dialog .oper-li{
 	margin-top: 189px;
 }
-#gps_raster_extract_dialog .log-li{
+#gps_raster_extract_dialog .oper-li{
 	margin-top: 296px;
-	margin-bottom: 0px;
 }
-#gps_delaunay_dialog .log-li{
-	margin-bottom: 0px;
+#gps_delaunay_dialog .oper-li{
     margin-top: 117px;
 }
 /***************************************************************************/
@@ -3224,27 +3227,23 @@ ul.layers_row li:before {
 /* GPS Geometry  Dialog Begin	 											*/
 /***************************************************************************/
 
-#gps_get_area_dialog .log-li,#gps_get_length_dialog .log-li,
-#gps_centroid_dialog .log-li,#gps_convex_hull_dialog .log-li,
-#gps_line_to_points_dialog .log-li,#gps_polygon_to_points_dialog .log-li,
-#gps_polygon_to_line_dialog .log-li,#gps_multi_point_to_points_dialog .log-li{
+#gps_get_area_dialog .oper-li,#gps_get_length_dialog .oper-li,
+#gps_centroid_dialog .oper-li,#gps_convex_hull_dialog .oper-li,
+#gps_line_to_points_dialog .oper-li,#gps_polygon_to_points_dialog .oper-li,
+#gps_polygon_to_line_dialog .oper-li,#gps_multi_point_to_points_dialog .oper-li{
 	margin-top: 81px;
-	margin-bottom: 0px;
 }
 
-#gps_buffer_dialog .log-li{
+#gps_buffer_dialog .oper-li{
 	margin-top: 153px;
-	margin-bottom: 0px;
 }
 
-#gps_gen_random_points_dialog .log-li{
+#gps_gen_random_points_dialog .oper-li{
 	margin-top: 100px;
-	margin-bottom: 0px;
 }
 
-#gps_gen_random_points_in_polygon_dialog .log-li{
+#gps_gen_random_points_in_polygon_dialog .oper-li{
 	margin-top: 117px;
-	margin-bottom: 0px;	
 }
 /***************************************************************************/
 /* GPS Geometry  Dialog End	 												*/
@@ -3253,14 +3252,12 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* GPS Tile  Dialog Begin	 											*/
 /***************************************************************************/
-#gps_build_pyramid_dialog .log-li{
+#gps_build_pyramid_dialog .oper-li{
 	margin-top: 117px;
-	margin-bottom: 0px;
 }
 
-#gps_update_tile_dialog .log-li{
+#gps_update_tile_dialog .oper-li{
 	margin-top: 153px;
-	margin-bottom: 0px;
 }
 /***************************************************************************/
 /* GPS Tile  Dialog End	 											*/
@@ -3616,23 +3613,29 @@ ul.layers_row li:before {
 /* Import CSV  Dialog Begin				 								   */
 /***************************************************************************/
 #import_csv_dialog .modal-dialog{
-	width : 800px;
+	width : 680px;
 }
 
 #import_csv_dialog .modal-body{
-	height: 470px;
-	
+	padding-right: 0px;
 	-webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 }
+
+#import_csv_dialog .form-group{
+	margin-left: 0px;
+}
 #import_csv_dialog .row{
 	margin: 0px 0px;
 }
 #import_csv_dialog label {
-    margin-bottom: 0px;
-    margin-left: 2px;
+	text-align: center;
+    padding-left: 0px;
+    font-weight: normal;
+    width: 60px;
+    padding-right: 0px;
 }
 #import_csv_dialog .csv-file-div{
 	border: 1px solid #ddd;
@@ -3642,9 +3645,12 @@ ul.layers_row li:before {
     border-bottom: 1px solid #ddd;
     /*text-align: center;*/
 }
+
 #import_csv_dialog .csv-fields-wrapper{
 	border: 1px solid #ddd;
+	margin-right: -20px;
 }
+
 #import_csv_dialog .csv-fields-wrapper .row {
     padding: 0px 8px;
 }
@@ -3664,25 +3670,12 @@ ul.layers_row li:before {
 	padding-right: 20px;
 }
 
-#import_csv_dialog .import-tool-div ul li {
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-#import_csv_dialog .import-tool-div ul{
-	margin: 0px;
-}
-#import_csv_dialog .import-log-wrapper {
-    height: 120px;
-    display: none;
-    margin-top: 10px !important;
-}
-#import_csv_dialog .import-log-row {
-    height: calc( 100% - 18px);
-}
 #import_csv_dialog .import-log-div {
-    height: 100%;
+    height: 100px;
     border: 1px solid #ddd;
-    overflow-y : auto !important;
+    padding: 4px;
+    margin-right: -20px;
+    overflow-y: auto;
 }
 
 #import_csv_dialog .import-log-div  .row{
@@ -3699,7 +3692,7 @@ ul.layers_row li:before {
 	display: none;
 }
 .map-panel{
-	display: block;
+	display: none;
 }
 .register-panel{
 	display: none;

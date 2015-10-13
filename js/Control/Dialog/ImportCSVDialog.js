@@ -36,7 +36,7 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".import-btn-upload").click(function(){
 			var fields = dialog.getFields();
 			var path = dialog.csvPath;
-			var name = dialog.panel.find(".csv-table span").html();
+			var name = dialog.panel.find(".csv-typename").val();
 			if(name == null || name == ""){
 				MapCloud.notify.showInfo("请输入导入后的文件名称","Warning");
 				return;
@@ -67,34 +67,12 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 			dialog.closeDialog();
 		});
 
-		// 修改名称
-		this.panel.find(".csv-table").dblclick(function(){
-			var text = $(this).find("span").html();
-			if(text != undefined){
-				var width = $(this).css("width");
-				var widthValue = width.slice(0,width.lastIndexOf("px"));
-				widthValue -= 2;
-				var html = "<input type='text' value='" + text + "' style='width:" 
-				+ widthValue +"px;padding:0px'>";
-				$(this).html(html);
-				$(this).css("padding","4px 2px 4px 2px");
-				var that = this;
-				$(this).find("input").focus();
-				$(this).find("input").focusout(function(){
-					var value = $(this).val();
-					$(this).parent().html("<span>" + value + "</span>");
-					$(this).parent().css("padding","6px 2px 6px 2px");
-				});						
-			}
-		});
-
 	},
 
 	cleanup : function(){
 		this.panel.find(".csv-fields-div").empty();
-		this.panel.find(".import-db-name").html("");
-		this.panel.find(".csv-path").html("&nbsp;");
-		this.panel.find(".csv-table span").html(" ");
+		this.panel.find(".csv-path").val("");
+		this.panel.find(".csv-typename").val("");
 		this.panel.find(".import-log-div").empty();
 
 		this.dataSourceName = null;
@@ -111,7 +89,6 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 设置数据库名称
 	setDataSourceName : function(dataSourceName){
 		this.dataSourceName = dataSourceName;
-		this.panel.find(".import-db-name").html(this.dataSourceName);	
 	},
 
 	// 设置上传的CSV
@@ -120,10 +97,10 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		this.csvPath = csvPath;
-		this.panel.find(".csv-path").html(this.csvPath);
+		this.panel.find(".csv-path").val(this.csvPath);
 
 		var name = this.csvPath.slice(this.csvPath.lastIndexOf("/")+1,this.csvPath.length-4);
-		this.panel.find(".csv-table span").html(name);
+		this.panel.find(".csv-typename").val(name);
 
 		fileManager.describeCsv(this.csvPath,this.describeCsv_callback);
 	},
