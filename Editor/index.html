@@ -3,204 +3,200 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="css/webuploader/webuploader.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0-dist/css/bootstrap-multiselect.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/webuploader/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-multiselect.css"/>
 
-	<link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
-	<link rel="stylesheet" type="text/css" href="css/colpick/colpick.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui/ui.notify.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui.min.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/zTreeStyle/zTreeStyle.css">
+	<link rel="stylesheet" type="text/css" href="../css/colpick/colpick.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/jquery-ui.min.css" type="text/css">
 	
 
 	<!-- <link rel="stylesheet" type="text/css" href="css/mc.css"/> -->
-	<link rel="stylesheet" type="text/css" href="css/mc-new.css"/>
-	<link rel="stylesheet" type="text/css" href="../Map5/css/Map5.css"/>
-	<link rel="stylesheet" type="text/css" href="../Map5/css/custom_slider.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/mc-new.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
 
-	<script type="text/javascript" src="js/3rd/jquery-1.11.1.js"></script>
-
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/3rd/colpick/colpick.js"></script>
-
-	<script src="js/3rd/jquery.ztree.core-3.5.js" type="text/javascript" charset="utf-8"></script>
-	
+	<script  type="text/javascript" src="js/3rd/jquery.ztree.core-3.5.js" charset="utf-8"></script>
 
 	<script type="text/javascript">
-	var Msg = {}; //declare this or modify line 1 of core.js
-	var cookiedUserName = null;
-	var arr = document.cookie.match(new RegExp("(^| )"+ "username" +"=([^;]*)(;|$)"));
-    if(arr != null){
-    	cookiedUserName = unescape(arr[2])
-    }
-    if(cookiedUserName != null){
-		$(".login-panel").css("display","none");
-		$(".map-panel").css("display","block");
-	}else{
-		$(".login-panel").css("display","block");
-		$(".map-panel").css("display","none");
-	}
+		var Msg = {}; //declare this or modify line 1 of core.js
+		var cookiedUserName = null;
+		var arr = document.cookie.match(new RegExp("(^| )"+ "username" +"=([^;]*)(;|$)"));
+	    if(arr != null){
+	    	cookiedUserName = unescape(arr[2])
+	    }
+	    if(cookiedUserName != null){
+			$(".login-panel").css("display","none");
+			$(".map-panel").css("display","block");
+		}else{
+			$(".login-panel").css("display","block");
+			$(".map-panel").css("display","none");
+		}
 	</script>
 
 
 
 <!-- <script type="text/javascript" src="js/bootstrap-3.2.0-dist/bootstrap.min.js"></script> -->
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-multiselect.js"></script>
+<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
+<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-multiselect.js"></script>
 
 <script type="text/javascript" src="js/3rd/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="js/3rd/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/3rd/jquery-ui/jquery.notify.min.js"></script>
+<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
 
-<!-- <script type="text/javascript" src="js/3rd/echarts-plain.js"></script> -->
 <script type="text/javascript" src="js/3rd/jquery-sortable.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans.js"></script>
-<script type="text/javascript" src="../Map5/lib/echarts-all.js"></script>
-<script type="text/javascript" src="../Map5/lib/heatmap.min.js"></script>
-<script type="text/javascript" src="../Map5/lib/jquery.nouislider.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
+<script type="text/javascript" src="../../Map5/lib/heatmap.min.js"></script>
+<script type="text/javascript" src="../../Map5/lib/jquery.nouislider.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/User.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/User.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Point.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Field.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Feature.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/FeatureType.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Workspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/WMTS/WMTSWorkspace.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/WMTS/WMTSWorkspace.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Transformation.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Transformation.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Expression.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Literal.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Tile.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQIChartLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/Chart/AQITimelineLayer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
-
-
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/AQIChartLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/AQITimelineLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
 
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Renderer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Events.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/InfoWindow.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/MapManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Map.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIIndexChart.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQIStatCompChart.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/AQITimePointList.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/MapWorkspace.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Style.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Rule.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Font.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Stroke.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Fill.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Style/Symbol.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/FontManager.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Label.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Label/PointLabel.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/DBS/GField.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Renderer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Events.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/InfoWindow.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/AQIIndexChart.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/AQIStatCompChart.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/AQITimePointList.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapWorkspace.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Style.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Rule.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Font.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Stroke.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Fill.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Symbol.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/FontManager.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/File/File.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/File/FileManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/File/Folder.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Label.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Label/PointLabel.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/SpatialReference.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/GPS/Job.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
-<script type="text/javascript" src="../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
 
-<script type="text/javascript" src="../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/SpatialReference.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/Job.js"></script>
+
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
+
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
 
 
 <script type="text/javascript" src="js/MapCloud.js"></script>
@@ -697,7 +693,7 @@
 					</div>
 				</div>
 				<div class="" id="map_btn">
-					<img id="map_btn_img" src="images/arrow-left-8.png">
+					<img id="map_btn_img" src="../images/arrow-left-8.png">
 				</div>
 				<div class="row right-panel mc-panel-full">
 					<div class="col-md-12 col-xs-12 col-lg-12 mc-panel-full" id="center_panel">
@@ -1792,7 +1788,7 @@
 		<div class="container">
 			<div class="row" style="margin-top:60px;">
 				<div class="col-md-offset-1 col-md-5">
-					<img src="images/cloud3.png" class="logo-img">
+					<img src="../images/cloud3.png" class="logo-img">
 				</div>
 				<div class="col-md-4 col-md-offset-1">
 					<!-- <h1></h1> -->
@@ -2029,9 +2025,9 @@
 					<ul id="base_map_list">
 						<li class="base-map-thumb">
 							<a href="javascript:void(0)" class="thumbnail selected" bname="none">
-								<img src="images/map-none.png" alt="none">
+								<img src="../images/map-none.png" alt="none">
 								<div class="map-check">
-									<img src="images/check.png">
+									<img src="../images/check.png">
 								</div>
 							</a>
 							<div class="caption text-center">
@@ -2040,9 +2036,9 @@
 						</li>
 						<li class="base-map-thumb">
 							<a href="javascript:void(0)" class="thumbnail" bname="vector">
-								<img src="images/map-vector-thumb.png" alt="vector">
+								<img src="../images/map-vector-thumb.png" alt="vector">
 								<div class="map-check">
-									<img src="images/check.png">
+									<img src="../images/check.png">
 								</div>
 							</a>
 							<div class="caption text-center">
@@ -2051,9 +2047,9 @@
 						</li>
 						<li class="base-map-thumb">
 							<a href="javascript:void(0)" class="thumbnail" bname="image">
-								<img src="images/map-image-thumb.png" alt="image">
+								<img src="../images/map-image-thumb.png" alt="image">
 								<div class="map-check">
-									<img src="images/check.png">
+									<img src="../images/check.png">
 								</div>
 							</a>
 							<div class="caption text-center">
