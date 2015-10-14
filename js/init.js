@@ -15,8 +15,6 @@ var authManager = new GeoBeans.AuthManager(authServer);
 $().ready(function(){
 
 
-
-
 	MapCloud.account = new MapCloud.Account("login-panel","register-panel");
 
 	MapCloud.notify
@@ -94,6 +92,8 @@ $().ready(function(){
 		= new MapCloud.GPSRasterSepiaToneDialog("gps_raster_sepia_tone_dialog");
 	MapCloud.gps_feature_import_dialog
 		= new MapCloud.GPSFeatureImportDialog("gps_feature_import_dialog");
+	MapCloud.gps_csv_import_dialog
+		= new MapCloud.GPSCsvImportDialog("gps_csv_import_dialog");		
 	MapCloud.gps_raster_extract_dialog
 		= new MapCloud.GPSRasterExtractDialog("gps_raster_extract_dialog");
 	MapCloud.gps_raster_reverse_dialog
@@ -193,6 +193,7 @@ $().ready(function(){
 	MapCloud.symbol_dialog = new MapCloud.SymbolDialog("symbol_dialog");
 	MapCloud.layer_info_dialog = new MapCloud.LayerInfoDialog("layer_info_dialog");
 	MapCloud.query_dialog = new MapCloud.QueryDialog("query_dialog");
+	MapCloud.create_dataset_dialog = new MapCloud.CreateDataSetDialog("create_dataset_dialog");
 
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
@@ -203,6 +204,8 @@ $().ready(function(){
 	= new MapCloud.DataGrid("datagrid_wrapper","datagrid_control_wrapper");
 
 	MapCloud.tools = new MapCloud.Tools();
+
+	MapCloud.cookieObj = new GeoBeans.Cookie();
 	
 	// mapManager = new GeoBeans.MapManager(url);
 	// dbsManager = new GeoBeans.DBSManager(url);
@@ -221,25 +224,12 @@ $().ready(function(){
 		handle : ".panel-header"
 	});
 
-	$("#map_btn").click(function(){
-		if($(".left-panel").css("display") == "block"){
-			$("#map_btn").css("left","0px");
-			$(".left-panel").css("width","0px");
-			$(".left-panel").css("display","none");
-			$(".right-panel").css("width","100%");
-			mapObj.resize("width");
-		}else{
-			$("#map_btn").css("left","320px");
-			$(".left-panel").css("width","320px");
-			$(".left-panel").css("display","block");
-			$(".right-panel").css("width","calc(100% - 320px)");
-			mapObj.resize("width");
-		}
-	});
 
 	// // 加载地图
 	// MapCloud.notify.loading();
 	// mapManager.getMaps(ribbonObj.getMaps_callback);
+
+
 
 
 	$(window).resize(function(){
@@ -248,5 +238,17 @@ $().ready(function(){
 			// mapManager.getMaps(ribbonObj.getMaps_callback);
 		}
 	});
+
+
+	// 判断是否已经登录了
+	var username = MapCloud.cookieObj.getCookie("username");
+	if(username != null){
+		MapCloud.account.hideLoginPanel();
+		$(".map-panel").css("display","block");
+		MapCloud.account.initUser(username);
+	}else{
+		MapCloud.account.showLoginPanel();
+		$(".map-panel").css("display","none");
+	}
 
 });

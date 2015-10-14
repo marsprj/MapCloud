@@ -36,11 +36,19 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".import-btn-upload").click(function(){
 			var fields = dialog.getFields();
 			var path = dialog.csvPath;
-			var name = dialog.panel.find(".csv-table span").html();
+			var name = dialog.panel.find(".csv-typename").val();
 			if(name == null || name == ""){
 				MapCloud.notify.showInfo("请输入导入后的文件名称","Warning");
+				dialog.panel.find(".csv-typename").focus();
 				return;
 			}
+			var nameReg = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的文件名称","Warning");
+				dialog.panel.find(".csv-typename").focus();
+				return;
+			}
+
 			dialog.typeName = name;
 			var html = "<div class='row'>开始新建表格</div>"
 			dialog.panel.find(".import-log-div").append(html);
@@ -50,13 +58,11 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		// log
 		this.panel.find(".import-btn-log").click(function(){
 			if($(this).hasClass("log-col")){
-				// dialog.panel.find(".import-log-fieldset").css("display","block");
 				dialog.panel.find(".modal-body").css("height","600px");
 				dialog.panel.find(".import-log-wrapper").slideDown(500); 
 				$(this).find("i").removeClass("fa-chevron-down").addClass("fa-chevron-up");
 				$(this).removeClass("log-col").addClass("log-exp");
 			}else{
-				// dialog.panel.find(".import-log-fieldset").css("display","none");
 				dialog.panel.find(".modal-body").css("height","470px");
 				dialog.panel.find(".import-log-wrapper").slideUp(500);
 				$(this).find("i").removeClass("fa-chevron-up").addClass("fa-chevron-down");
@@ -65,44 +71,23 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 
 		// 关闭
-		this.panel.find("button.close").click(function(){
+		this.panel.on('hidden.bs.modal',function(){
 			dialog.closeDialog();
-		});
-
-		// 修改名称
-		this.panel.find(".csv-table").dblclick(function(){
-			var text = $(this).find("span").html();
-			if(text != undefined){
-				var width = $(this).css("width");
-				var widthValue = width.slice(0,width.lastIndexOf("px"));
-				widthValue -= 2;
-				var html = "<input type='text' value='" + text + "' style='width:" 
-				+ widthValue +"px;padding:0px'>";
-				$(this).html(html);
-				$(this).css("padding","4px 2px 4px 2px");
-				var that = this;
-				$(this).find("input").focus();
-				$(this).find("input").focusout(function(){
-					var value = $(this).val();
-					$(this).parent().html("<span>" + value + "</span>");
-					$(this).parent().css("padding","6px 2px 6px 2px");
-				});						
-			}
 		});
 
 	},
 
 	cleanup : function(){
 		this.panel.find(".csv-fields-div").empty();
-		this.panel.find(".import-db-name").html("");
-		this.panel.find(".csv-path").html("&nbsp;");
-		this.panel.find(".csv-table span").html(" ");
+		this.panel.find(".csv-path").val("");
+		this.panel.find(".csv-typename").val("");
 		this.panel.find(".import-log-div").empty();
 
 		this.dataSourceName = null;
 		this.csvPath = null;
 		this.typeName = null;
 	},
+
 
 	closeDialog : function(){
 		this.panel.modal("hide");
@@ -113,7 +98,6 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 设置数据库名称
 	setDataSourceName : function(dataSourceName){
 		this.dataSourceName = dataSourceName;
-		this.panel.find(".import-db-name").html(this.dataSourceName);	
 	},
 
 	// 设置上传的CSV
@@ -122,10 +106,10 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		this.csvPath = csvPath;
-		this.panel.find(".csv-path").html(this.csvPath);
+		this.panel.find(".csv-path").val(this.csvPath);
 
 		var name = this.csvPath.slice(this.csvPath.lastIndexOf("/")+1,this.csvPath.length-4);
-		this.panel.find(".csv-table span").html(name);
+		this.panel.find(".csv-typename").val(name);
 
 		fileManager.describeCsv(this.csvPath,this.describeCsv_callback);
 	},

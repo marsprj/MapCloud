@@ -35,13 +35,13 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".import-btn-log").click(function(){
 			if($(this).hasClass("log-col")){
 				// dialog.panel.find(".import-log-fieldset").css("display","block");
-				dialog.panel.find(".modal-body").css("height","590px");
+				dialog.panel.find(".modal-body").css("height","578px");
 				dialog.panel.find(".import-log-wrapper").slideDown(500); 
 				$(this).find("i").removeClass("fa-chevron-down").addClass("fa-chevron-up");
 				$(this).removeClass("log-col").addClass("log-exp");
 			}else{
 				// dialog.panel.find(".import-log-fieldset").css("display","none");
-				dialog.panel.find(".modal-body").css("height","380px");
+				dialog.panel.find(".modal-body").css("height","366px");
 				dialog.panel.find(".import-log-wrapper").slideUp(500);
 				$(this).find("i").removeClass("fa-chevron-up").addClass("fa-chevron-down");
 				$(this).removeClass("log-exp").addClass("log-col");

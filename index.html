@@ -30,6 +30,18 @@
 
 	<script type="text/javascript">
 	var Msg = {}; //declare this or modify line 1 of core.js
+	var cookiedUserName = null;
+	var arr = document.cookie.match(new RegExp("(^| )"+ "username" +"=([^;]*)(;|$)"));
+    if(arr != null){
+    	cookiedUserName = unescape(arr[2])
+    }
+    if(cookiedUserName != null){
+		$(".login-panel").css("display","none");
+		$(".map-panel").css("display","block");
+	}else{
+		$(".login-panel").css("display","block");
+		$(".map-panel").css("display","none");
+	}
 	</script>
 
 
@@ -204,6 +216,7 @@
 <script type="text/javascript" src="js/Control/Logo.js"></script>
 <script type="text/javascript" src="js/Control/Tools.js"></script>
 <script type="text/javascript" src="js/Control/Account.js"></script>
+<script type="text/javascript" src="js/Control/Cookie.js"></script>
 
 
 <script type="text/javascript" src="js/Control/Panel/MapBar.js"></script>
@@ -258,6 +271,7 @@
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSKMeanDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSOutputSourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSFeatureProjectDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/GPS/GPSCsvImportDialog.js"></script>
 
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterEdgeDetectDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/GPS/GPSRasterStretchDialog.js"></script>
@@ -297,10 +311,12 @@
 <script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/CreateDataSetDialog.js"></script>
 <title>MapEditor</title>
 </head>
 
 <body>
+	
 	<div class="jumbotron map-panel" style="padding:0px;height:100%;background: #fff;">
 		<div class="container mc-theme-color">
 			<div class="navbar-header">
@@ -1775,7 +1791,10 @@
 		</div>
 		<div class="container">
 			<div class="row" style="margin-top:60px;">
-				<div class="col-md-4 col-md-offset-4">
+				<div class="col-md-offset-1 col-md-5">
+					<img src="images/cloud3.png" class="logo-img">
+				</div>
+				<div class="col-md-4 col-md-offset-1">
 					<!-- <h1></h1> -->
 					<div class="account-panel">
 						<form class="form-horizontal">
@@ -2939,13 +2958,16 @@
 									<button type="button" class="btn btn-default btn-tool btn-import-csv" data-toggle="tooltip" data-placement="top" data-original-title="导入CSV">
 										<i class="fa fa-table"></i>
 									</button>
+									<button type="button" class="btn btn-default btn-tool btn-create-dataset" data-toggle="tooltip" data-placement="top" data-original-title="增加">
+										<i class="fa fa-plus"></i>
+									</button>
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-refresh-dataset" data-toggle="tooltip" data-placement="top" data-original-title="刷新" disabled>
 										<i class="fa fa-refresh"></i>
 									</button>
-									<button type="button" class="btn btn-default btn-tool btn-infos" data-toggle="tooltip" data-placement="top" data-original-title="详细信息" disabled>
+									<button type="button" class="btn btn-default btn-tool btn-infos" data-toggle="tooltip" data-placement="top" data-original-title="详细信息" disabled style="margin-left:40px;">
 										<i class="fa fa-list"></i>
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-thum" data-toggle="tooltip" data-placement="top" data-original-title="缩略图">
@@ -3002,13 +3024,16 @@
 									<button type="button" class="btn btn-default btn-tool btn-import-csv" data-toggle="tooltip" data-placement="top" data-original-title="导入CSV">
 										<i class="fa fa-table"></i>
 									</button>
+									<button type="button" class="btn btn-default btn-tool btn-create-dataset" data-toggle="tooltip" data-placement="top" data-original-title="增加">
+										<i class="fa fa-plus"></i>
+									</button>
 									<button type="button" class="btn btn-default btn-tool btn-remove-dataset" data-toggle="tooltip" data-placement="top" data-original-title="删除">
 										<i class="fa fa-remove"></i>
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-refresh-dataset" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
 										<i class="fa fa-refresh"></i>
 									</button>
-									<button type="button" class="btn btn-default btn-tool btn-infos" data-toggle="tooltip" data-placement="top" data-original-title="详细信息">
+									<button type="button" class="btn btn-default btn-tool btn-infos" data-toggle="tooltip" data-placement="top" data-original-title="详细信息" style="margin-left:40px;">
 										<i class="fa fa-list"></i>
 									</button>
 									<button type="button" class="btn btn-default btn-tool btn-thum" data-toggle="tooltip" data-placement="top" data-original-title="缩略图">
@@ -3541,13 +3566,12 @@
 					<div class="row import-db">
 						<h5 style=" margin-top: 0px;">
 							<span>
-								<i class="mc-db-icon mc-db-icon-server "></i>
 								<span>数据库:  </span>
 								<span class="import-db-name">Name</span>
 							</span>
 						</h5>
 					</div>
-					<label>输入图层</label>
+					<label>输入:</label>
 					<div class="row import-content-div">
 						<div class="col-md-11" style="height:100%">
 							<div class="import-list-wrapper">
@@ -3565,18 +3589,18 @@
 						<div class="col-md-1 import-tool-div">
 							<ul>
   							  	<li>
-  							  		<button class="btn btn-lg btn-default import-btn-add btn-green" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
   							  			<i class="fa fa-plus"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-remove btn-red" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
   							  			<i class="fa fa-remove"></i>
   									</button>
   								 </li>
   								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-upload btn-green" data-toggle="tooltip" data-placement="top" data-original-title="导入">
-  							  			<i class="fa fa-upload"></i>
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-arrow-right" style="color:green"></i>
   									</button>
   								 </li>
   								 <li style="margin-top:108px">
@@ -3589,10 +3613,9 @@
 					</div>
 						
 					<div class="import-log-wrapper">
-						<label>结果</label>
+						<label>结果:</label>
 						<div class="row import-log-row">
 							<div class="col-md-11 import-log-div">
-
 							</div>
 						</div>
 					</div>
@@ -3963,10 +3986,10 @@
   								</li>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="上传">
-										<i class="fa fa-upload"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
@@ -4070,15 +4093,95 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
+									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+										<i class="fa fa-chevron-down"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="gps-oper-log-wrapper row">
+						<div class="col-md-11 gps-oper-log-col">
+							<label>结果</label>
+							<div class="gps-oper-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GPS Csv import panel -->
+	<div class="modal fade gps-oper-dialog" id="gps_csv_import_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">CSV数据导入</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11">
+							<label>数据</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										CSV数据:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-csv-path" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-csv" type="button">选择</button>
+									</div>
+								</div>
+							</form>
+							<label>导入</label>
+							<form class="form-horizontal gps-oper-form" role="form">
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										数据库:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-sm btn-success btn-choose-input" type="button">选择</button>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-md-2 control-label">
+										表格:
+									</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control gps-input-source-name" disabled>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-1 gps-oper-tool-div">
+							<ul>
+								<li>
+									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+										<i class="fa fa-arrow-right"></i>
+									</button>
+								</li>
+								<li class="oper-li">
+									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</li>
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4181,15 +4284,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4356,15 +4459,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4467,15 +4570,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4579,15 +4682,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4703,15 +4806,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4810,15 +4913,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -4951,15 +5054,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5092,15 +5195,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5203,15 +5306,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5314,15 +5417,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5425,15 +5528,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5532,15 +5635,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5639,15 +5742,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5747,15 +5850,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5878,15 +5981,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -5975,15 +6078,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6063,15 +6166,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6151,15 +6254,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6257,15 +6360,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6345,15 +6448,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6433,15 +6536,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6523,15 +6626,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6611,15 +6714,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6699,15 +6802,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6787,15 +6890,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6903,15 +7006,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -6999,15 +7102,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -7092,15 +7195,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -7194,15 +7297,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -7290,15 +7393,15 @@
 							<ul>
 								<li>
 									<button class="btn btn-lg btn-default gps-btn-oper-btn" data-toggle="tooltip" data-placement="top" data-original-title="操作">
-										<i class="fa fa-wrench"></i>
+										<i class="fa fa-arrow-right"></i>
 									</button>
 								</li>
-								<li>
+								<li class="oper-li">
 									<button class="btn btn-lg btn-default gps-btn-reset" data-toggle="tooltip" data-placement="top" data-original-title="重置">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</li>
-								<li class="log-li">
+								<li>
 									<button class="btn btn-lg btn-default gps-oper-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
 										<i class="fa fa-chevron-down"></i>
 									</button>
@@ -7771,130 +7874,97 @@
 					<h5 class="modal-title">导入CSV</h5>
 				</div>
 				<div class="modal-body">
-					<div class="row import-db">
-						<h5 style=" margin-top: 0px;">
-							<span>
-								<i class="mc-db-icon mc-db-icon-server"></i>
-								<span>数据库:  </span>
-								<span class="import-db-name">ceshi</span>
-							</span>
-						</h5>
-					</div>
-					<label>输入CSV</label>
-					<div class="row">
-						<div class="col-md-11" style="height:100%">
-							
-							<div class="csv-file-div">
-								<div class="row header-row">
-									<div class="col-md-6">
-										路径
-									</div>
-									<div class="col-md-6">
-										名称
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6 csv-path">
-										/csv/60_people.csv
-									</div>
-									<div class="col-md-6 csv-table">
-										<span>60_people</span>
-									</div>
-								</div>
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">CSV:</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control csv-path" readonly="">
 							</div>
-							<label>字段编辑</label>
-							<div class="csv-fields-wrapper">
-								<div class="row header-row">
-									<div class="col-md-5">
-										字段名称
-									</div>
-									<div class="col-md-4">
-										字段类型
-									</div>
-									<div class="col-md-3">
-										字段长度
-									</div>
-								</div>
-								<div class="csv-fields-div">
-									<div class="row">
+							<div class="col-md-1">
+								<button class="btn btn-sm btn-success import-btn-add" type="button">选择</button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">表格:</label>
+							<div class="col-md-5">
+								<input type="text" class="form-control csv-typename">
+							</div>
+							<div class="col-md-1 col-md-offset-4">
+								<button class="btn btn-sm btn-success import-btn-upload" type="button">导入</button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">字段:</label>
+							<div class="col-md-10">
+								<div class="csv-fields-wrapper">
+									<div class="row header-row">
 										<div class="col-md-5">
-											<input class="form-control input-sm" type="text" value="地区" disabled="">
-										</div>
-										<div class="col-md-3">
-											<select class="form-control input-sm">
-												<option>int</option>
-												<option>string</option>
-												<option>double</option>
-											</select>
+											字段名称
 										</div>
 										<div class="col-md-4">
-											<input class="form-control input-sm" type="text" value="8" disabled="">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-5">
-											<input class="form-control input-sm" type="text" value="基本健康" disabled="">
+											字段类型
 										</div>
 										<div class="col-md-3">
-											<select class="form-control input-sm">
-												<option>int</option>
-												<option>string</option>
-												<option>double</option>
-											</select>
-										</div>
-										<div class="col-md-4">
-											<input class="form-control input-sm" type="text" value="8" disabled="">
+											字段长度
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-5">
-											<input class="form-control input-sm" type="text" value="合计" disabled="">
-										</div>
-										<div class="col-md-3">
-											<select class="form-control input-sm">
-												<option>int</option>
-												<option>string</option>
-												<option>double</option>
-											</select>
-										</div>
-										<div class="col-md-4">
-											<input class="form-control input-sm" type="text" value="8" disabled="">
-										</div>
+									<div class="csv-fields-div">
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-1 import-tool-div">
-							<ul>
-  							  	<li>
-  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
-  							  			<i class="fa fa-plus"></i>
-  									</button>
-  								 </li>
-  								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="清空">
-  							  			<i class="fa fa-remove"></i>
-  									</button>
-  								 </li>
-  								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
-  							  			<i class="fa fa-upload"></i>
-  									</button>
-  								 </li>
-  								 <li style="margin-top:200px;margin-bottom:0px;">
-  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
-  							  			<i class="fa fa-chevron-down"></i>
-  									</button>
-  								 </li>
-  							</ul>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">结果:</label>
+							<div class="col-md-10">
+								<div class="import-log-div">
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="import-log-wrapper">
-						<label>结果</label>
-						<div class="row import-log-row">
-							<div class="col-md-11 import-log-div"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- create dataset panel -->
+	<div class="modal fade" id="create_dataset_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建表格</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-md-3 control-label">数据库:</label>
+							<div class="col-md-7">
+								<input class="form-control db-name" type="text" disabled="">
+							</div>
 						</div>
-					</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">名称:</label>
+							<div class="col-md-7">
+								<input class="form-control dataset-name" type="text">
+							</div>
+						</div>
+						<div class="form-group"  style="margin:20px 0px">
+							<div class="col-md-2 col-md-offset-2">
+								<button type="button" class="btn btn-success btn-default btn-create-field">新建字段</button>
+							</div>
+							<div class="col-md-2 col-md-offset-1">
+								<button type="button" class="btn btn-success btn-default btn-remove-fields">清空字段</button>
+							</div>
+							<div class="col-md-2 col-md-offset-1">
+								<button type="button" class="btn btn-primary btn-default btn-create-dataset">创建表格</button>
+							</div>
+						</div>
+					</form>
+					<form class="form-horizontal fields-form" role="form">
+						<div class='text-center'>
+							<h2 class="text-muted fields-empty">空白字段</h2>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

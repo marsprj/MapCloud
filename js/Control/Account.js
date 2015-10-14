@@ -29,6 +29,15 @@ MapCloud.Account = MapCloud.Class({
 
 		});
 
+
+		// enter登录
+		this.loginPanel.find("input[name='password']").keypress(function(e){
+			if(e.which == 13){
+				that.login();
+			}
+		});
+
+
 		// 注册
 		this.registerPanel.find(".btn-account").click(function(){
 			that.register();
@@ -39,6 +48,15 @@ MapCloud.Account = MapCloud.Class({
 			that.hideRegisterPanel();
 			that.showLoginPanel();
 		});
+
+		// enter register
+		this.registerPanel.find("input[name='repassword']").keypress(function(e){
+			if(e.which == 13){
+				that.register();
+			}
+		});
+
+
 
 	},
 
@@ -58,9 +76,9 @@ MapCloud.Account = MapCloud.Class({
 
 	showRegisterPanel : function(){
 		this.registerName = null;
+		this.registerPanel.css("display","block");
 		this.registerPanel.find("input").val("");
 		this.registerPanel.find("input").first().focus();
-		this.registerPanel.css("display","block");
 	},
 
 	hideRegisterPanel : function(){
@@ -101,19 +119,43 @@ MapCloud.Account = MapCloud.Class({
 		MapCloud.notify.showInfo(result,"登录");
 		if(result == "success"){
 			var that = MapCloud.account;
-			that.initUser();
+
+			that.hideLoginPanel();
+			$(".map-panel").css("display","block");
+			that.initUser(that.loginName);
 		}else{
 
 		}
 			
 	},
 
-	initUser : function(){
-		var name = this.loginName;
-		if(name == null){
+	// initUser : function(){
+	// 	var name = this.loginName;
+	// 	if(name == null){
+	// 		return;
+	// 	}
+	// 	user = new GeoBeans.User(this.loginName);
+
+	// 	mapManager = user.getMapManager();
+	// 	styleManager = user.getStyleManager();
+	// 	fileManager = user.getFileManager();
+	// 	dbsManager = user.getDBSManager();
+	// 	rasterDBManager = user.getRasterDBManager();
+	// 	gpsManager = user.getGPSManager();
+
+	// 	MapCloud.userToolBar.showUser(this.loginName);
+	// 	this.hideLoginPanel();
+	// 	$(".map-panel").css("display","block");
+	// 	// 加载地图
+	// 	MapCloud.notify.loading();
+	// 	mapManager.getMaps(ribbonObj.getMaps_callback);
+	// },
+
+	initUser : function(username){
+		if(username == null){
 			return;
 		}
-		user = new GeoBeans.User(this.loginName);
+		user = new GeoBeans.User(username);
 
 		mapManager = user.getMapManager();
 		styleManager = user.getStyleManager();
@@ -122,12 +164,14 @@ MapCloud.Account = MapCloud.Class({
 		rasterDBManager = user.getRasterDBManager();
 		gpsManager = user.getGPSManager();
 
-		MapCloud.userToolBar.showUser(this.loginName);
-		this.hideLoginPanel();
-		$(".map-panel").css("display","block");
+		MapCloud.cookieObj.setCookie("username",username);
+
+		MapCloud.userToolBar.showUser(username);
+		// this.hideLoginPanel();
+		// $(".map-panel").css("display","block");
 		// 加载地图
 		MapCloud.notify.loading();
-		mapManager.getMaps(ribbonObj.getMaps_callback);
+		mapManager.getMaps(ribbonObj.getMaps_callback);		
 	},
 
 
@@ -204,7 +248,10 @@ MapCloud.Account = MapCloud.Class({
 		MapCloud.notify.showInfo(result,"注册");
 		if(result == "success"){
 			var that = MapCloud.account;
-			that.initRegisterUser();
+			// that.initRegisterUser();
+			that.hideLoginPanel();
+			$(".map-panel").css("display","block");
+			that.initUser(that.registerName);
 		}
 	},
 

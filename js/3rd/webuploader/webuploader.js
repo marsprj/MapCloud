@@ -6783,6 +6783,7 @@
                     formData.append( opts.fileVal, blob.getSource(),
                             opts.filename || owner._formData.name || '' );
                     formData.append( "path",opts.path);
+                    formData.append( "user",opts.user);
                 }
     
                 if ( opts.withCredentials && 'withCredentials' in xhr ) {

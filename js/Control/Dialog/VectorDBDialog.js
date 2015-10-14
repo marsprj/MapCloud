@@ -77,6 +77,15 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet);
 					break;
 				}
+				case "csvImport":{
+					if(dataSet.geometryType != null){
+						MapCloud.notify.showInfo("请选择一个属性数据","Warning");
+						return;
+					}
+					parentDialog = MapCloud.gps_csv_import_dialog;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet);
+					break;
+				}
 				case "getArea":{
 					parentDialog = MapCloud.gps_get_area_dialog;
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
@@ -180,6 +189,10 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.importCSV_dialog.setDataSourceName(dbName);
 		});
 
+		// 增加
+		this.panel.find(".btn-create-dataset").click(function(){
+			dialog.createDataSet();
+		});
 
 		// 删除
 		this.panel.find(".btn-remove-dataset").click(function(){
@@ -341,9 +354,11 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.getDataSources();
 		this.flag = flag;
 		if(this.flag == null){
-			this.panel.find(".btn-confirm").html("确定");
+			// this.panel.find(".btn-confirm").html("确定");
+			this.panel.find(".modal-footer").css("display","none");
 		}else{
 			this.panel.find(".btn-confirm").html("选择");
+			this.panel.find(".modal-footer").css("display","block");
 		}
 	},
 
@@ -1058,4 +1073,14 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 	},	
 
+	// 新建表
+	createDataSet : function(){
+		var dbName = this.panel.find(".db-list").val();
+		if(dbName == null){
+			MapCloud.notify.showInfo("请先选择一个数据源","Warning");
+			return;
+		}
+		MapCloud.create_dataset_dialog.showDialog();
+		MapCloud.create_dataset_dialog.setDataSourceName(dbName);
+	},
 });

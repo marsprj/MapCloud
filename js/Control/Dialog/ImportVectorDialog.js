@@ -85,13 +85,16 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	createUploader : function(){
 		var dialog = this;
+		var username = null;
+		if(user != null){
+			username = user.name;
+		}
 		this.uploader =  WebUploader.create({
 
 		    // 文件接收服务端。
 		    server: '/uploader/fileupload.php',
 
 		    // 选择文件的按钮。可选。
-		    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
 		    pick: '#picker',
 
 		    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
@@ -100,7 +103,10 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 	        chunked: true,
 
 	        // 上传的路径
-	        path : dialog.uploadPath
+	        path : dialog.uploadPath,
+
+	        // 用户
+	        user : username
 
 	        // accept :{
 	        // 	title : "zip",
@@ -153,7 +159,6 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 
 			var stateHtml = dialog.panel.find("#" + file.id).find(".state");
-			// stateHtml.html("上传完毕,开始导入");
 			stateHtml.html("上传完毕");
 
 			var infosRow = dialog.panel

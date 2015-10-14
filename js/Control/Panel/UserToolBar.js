@@ -8,7 +8,7 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 
 	showUser : function(username){
 		this.panel.find(".login-li").html('<a href="javascript:void(0)" id="logout_btn">退出</a>');
-		this.panel.find(".register-li").html('<a href="javascript:void(0)">' + username + '</a>');
+		this.panel.find(".register-li").html('<a href="MapUser" target="_blank">' + username + '</a>');
 
 		var that = this;
 		that.username = username;
@@ -29,6 +29,7 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.account.showLoginPanel();
 			$(".map-panel").css("display","none");
 			user.logout();
+			MapCloud.cookieObj.delCookie("username");
 			MapCloud.refresh_panel.cleanup();
 			if(mapObj != null){
 				mapObj.close();
