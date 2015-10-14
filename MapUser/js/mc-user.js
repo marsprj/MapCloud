@@ -1,5 +1,14 @@
 $().ready(function(){
 
+	var cookiedUserName = null;
+	var arr = document.cookie.match(new RegExp("(^| )"+ "username" +"=([^;]*)(;|$)"));
+    if(arr != null){
+    	cookiedUserName = unescape(arr[2])
+    }
+
+    if(cookiedUserName != null){
+    	$("#title_panel").html("[" + cookiedUserName + "]管理页面" );
+    }
 	loadCatalog();
 
 	$(".service_title").click(function(){

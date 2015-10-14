@@ -23,7 +23,7 @@ var g_catalog =
         "items": [
             {
                 "name": "地图管理",
-                "link": "wms_getcapabilities.html"
+                "link": "user_map.html"
             }
         ]
     },
