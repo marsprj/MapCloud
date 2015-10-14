@@ -39,8 +39,16 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 			var name = dialog.panel.find(".csv-typename").val();
 			if(name == null || name == ""){
 				MapCloud.notify.showInfo("请输入导入后的文件名称","Warning");
+				dialog.panel.find(".csv-typename").focus();
 				return;
 			}
+			var nameReg = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的文件名称","Warning");
+				dialog.panel.find(".csv-typename").focus();
+				return;
+			}
+
 			dialog.typeName = name;
 			var html = "<div class='row'>开始新建表格</div>"
 			dialog.panel.find(".import-log-div").append(html);
@@ -79,6 +87,7 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.csvPath = null;
 		this.typeName = null;
 	},
+
 
 	closeDialog : function(){
 		this.panel.modal("hide");

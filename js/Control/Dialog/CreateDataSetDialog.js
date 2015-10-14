@@ -33,6 +33,14 @@ MapCloud.CreateDataSetDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
+	showDialog : function(){
+		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
+		var dialog = this;
+		this.panel.on("shown.bs.modal",function(){
+			dialog.panel.find(".dataset-name").focus();
+		});
+	},
+
 	cleanup : function(){
 		this.panel.find(".db-name").val("");
 		this.panel.find(".dataset-name").val("");

@@ -8,23 +8,23 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
-				var name = dialog.panel.find("#wms_style_add_name").val();
-				if(name == ""){
-					MapCloud.notify.showInfo("请输入名称","Warning");
-					dialog.panel.find("#wms_style_add_name").focus();
-					return;
-				}
-
-				var nameReg = /^[0-9a-zA-Z_]+$/;
-				if(!nameReg.test(name)){
-					MapCloud.notify.showInfo("请输入有效的名称","Warning");
-					dialog.panel.find("#wms_style_add_name").focus();
-					return;
-				}
-
-				MapCloud.styleManager_dialog.setAddStyleName(name,dialog.flag);
-				dialog.closeDialog();
+				dialog.onSetStyleName();
 			});
+		});
+
+		// enter 
+		this.panel.find("#wms_style_add_name").keypress(function(e){
+			if(e.which == 13){
+				dialog.onSetStyleName();
+			}
+		});
+	},
+
+	showDialog : function(){
+		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
+		var dialog = this;
+		this.panel.on("shown.bs.modal",function(){
+			dialog.panel.find("#wms_style_add_name").focus();
 		});
 	},
 
@@ -41,5 +41,25 @@ MapCloud.StyleNameDialog = MapCloud.Class(MapCloud.Dialog,{
 		}else if(this.flag == "add"){
 			this.panel.find(".modal-title").text("新建样式");
 		}
-	}
+	},
+
+	onSetStyleName : function(){
+		var dialog = this;
+		var name = dialog.panel.find("#wms_style_add_name").val();
+		if(name == ""){
+			MapCloud.notify.showInfo("请输入名称","Warning");
+			dialog.panel.find("#wms_style_add_name").focus();
+			return;
+		}
+
+		var nameReg = /^[0-9a-zA-Z_]+$/;
+		if(!nameReg.test(name)){
+			MapCloud.notify.showInfo("请输入有效的名称","Warning");
+			dialog.panel.find("#wms_style_add_name").focus();
+			return;
+		}
+
+		MapCloud.styleManager_dialog.setAddStyleName(name,dialog.flag);
+		dialog.closeDialog();		
+	},
 });

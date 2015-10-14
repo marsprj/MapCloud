@@ -35,6 +35,8 @@ html,body{
 }
 .modal-header{
 	cursor: move;
+	background-color: #f8f8f8;
+    border-radius: 6px 6px 0px 0px;
 }
 /*dialog modal style*/
 .modal.fade .modal-dialog {

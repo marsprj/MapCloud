@@ -31,62 +31,73 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 		});
 
+		// enter create_map_name
+		this.panel.find("#create_map_name").keypress(function(e){
+			if(e.which == 13){
+				dialog.onCreateMap();
+			}
+		});
+
 		///确定
 		this.panel.find(".btn-confirm").each(function(){
 			$(this).click(function(){
-				//获得各个输入参数
-				var mapName = dialog.panel.find("#create_map_name").val();
-				if(mapName == null || mapName == ""){
-					MapCloud.notify.showInfo("请输入地图名称！","Warning");
-					dialog.panel.find("#create_map_name").focus();
-					return;
-				}
-				var nameReg = /^[0-9a-zA-Z_]+$/;
-				if(!nameReg.test(mapName)){
-					MapCloud.notify.showInfo("请输入有效的地图名称","Warning");
-					dialog.panel.find("#create_map_name").focus();
-					return;
-				}
-
-				var srid = dialog.panel.find("#create_map_srid").val();
-				if(srid == null || srid == ""){
-					MapCloud.notify.showInfo("请输入空间参考","Warning");
-					dialog.panel.find("#create_map_srid").focus();
-					return;
-				}
-
-				if(!$.isNumeric(srid)){
-					MapCloud.notify.showInfo("请输入有效的空间参考","Warning");
-					dialog.panel.find("#create_map_srid").focus();
-					return;
-				}
-
-
-
-				var xmin = dialog.panel
-					.find("#create_map_xmin").val();
-				var ymin = dialog.panel
-					.find("#create_map_ymin").val();
-				var xmax = dialog.panel
-					.find("#create_map_xmax").val();
-				var ymax = dialog.panel
-					.find("#create_map_ymax").val();
-				var extent = new GeoBeans.Envelope(
-							parseFloat(xmin),
-							parseFloat(ymin),
-							parseFloat(xmax),
-							parseFloat(ymax));
-				if(extent == null){
-					MapCloud.notify.showInfo("请输入有效的范围！","Warning");
-					return;
-				}
-				MapCloud.notify.loading();
-				//新建地图
-				mapManager.createMap("mapCanvas_wrapper",
-					mapName,extent,srid,dialog.createMap_callback);
-				ribbonObj.showMapTab();
+				dialog.onCreateMap();
 			});
 		});
+	},
+
+	onCreateMap : function(){
+		var dialog = this;
+
+		//获得各个输入参数
+		var mapName = dialog.panel.find("#create_map_name").val();
+		if(mapName == null || mapName == ""){
+			MapCloud.notify.showInfo("请输入地图名称！","Warning");
+			dialog.panel.find("#create_map_name").focus();
+			return;
+		}
+		var nameReg = /^[0-9a-zA-Z_]+$/;
+		if(!nameReg.test(mapName)){
+			MapCloud.notify.showInfo("请输入有效的地图名称","Warning");
+			dialog.panel.find("#create_map_name").focus();
+			return;
+		}
+
+		var srid = dialog.panel.find("#create_map_srid").val();
+		if(srid == null || srid == ""){
+			MapCloud.notify.showInfo("请输入空间参考","Warning");
+			dialog.panel.find("#create_map_srid").focus();
+			return;
+		}
+
+		if(!$.isNumeric(srid)){
+			MapCloud.notify.showInfo("请输入有效的空间参考","Warning");
+			dialog.panel.find("#create_map_srid").focus();
+			return;
+		}
+
+		var xmin = dialog.panel
+			.find("#create_map_xmin").val();
+		var ymin = dialog.panel
+			.find("#create_map_ymin").val();
+		var xmax = dialog.panel
+			.find("#create_map_xmax").val();
+		var ymax = dialog.panel
+			.find("#create_map_ymax").val();
+		var extent = new GeoBeans.Envelope(
+					parseFloat(xmin),
+					parseFloat(ymin),
+					parseFloat(xmax),
+					parseFloat(ymax));
+		if(extent == null){
+			MapCloud.notify.showInfo("请输入有效的范围！","Warning");
+			return;
+		}
+		MapCloud.notify.loading();
+		//新建地图
+		mapManager.createMap("mapCanvas_wrapper",
+			mapName,extent,srid,dialog.createMap_callback);
+		ribbonObj.showMapTab();
 	},
 
 	//新建地图结果
@@ -120,6 +131,15 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		// 绘制地图
 		dialog.drawMap(map,url);
 		dialog.cleanupPage();
+	},
+
+	showDialog : function(){
+		this.cleanup();
+		this.panel.modal();
+		var dialog = this;
+		this.panel.on('shown.bs.modal',function(){
+			dialog.panel.find("#create_map_name").focus();
+		});
 	},
 	
 	cleanup : function(){

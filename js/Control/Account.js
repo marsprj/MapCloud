@@ -49,6 +49,12 @@ MapCloud.Account = MapCloud.Class({
 			that.showLoginPanel();
 		});
 
+		// enter register
+		this.registerPanel.find("input[name='repassword']").keypress(function(e){
+			if(e.which == 13){
+				that.register();
+			}
+		});
 
 
 
@@ -70,9 +76,9 @@ MapCloud.Account = MapCloud.Class({
 
 	showRegisterPanel : function(){
 		this.registerName = null;
+		this.registerPanel.css("display","block");
 		this.registerPanel.find("input").val("");
 		this.registerPanel.find("input").first().focus();
-		this.registerPanel.css("display","block");
 	},
 
 	hideRegisterPanel : function(){
