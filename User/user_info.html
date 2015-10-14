@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="css/buttons.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+
+	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="css/mc-user-info.css"/>
+
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+
+	<script type="text/javascript" src="js/mc-user-info.js"></script>
+	
+	<title>用户信息</title>
+</head>
+	
+<body>
+	<div id="title_wrapper">
+		<div class="title_box">用户信息</div>
+		<div class="title_bar_warpper">
+			<a href="javascript:void(0)">用户信息</a>
+			<a href="javascript:void(0)">修改密码</a>
+			<a href="javascript:void(0)">用户权限</a>
+		</div>
+	</div>
+	<div id="main_wrapper">
+		<!-- User Panel -->
+		<div id="user_info_panel" class="user_info_panel_border">
+			<table>
+				<tr><td class="td_column">用户名：</td><td><input type="text" id="user_name" value="user1"></td></tr>
+				<tr><td class="td_column">密&nbsp&nbsp&nbsp码：</td><td><input type="passwd" id="user_pswd" value="qwer1234"></td></tr>
+				<tr><td class="td_column">邮&nbsp&nbsp&nbsp件：</td><td><input type="text" id="user_mail" value="user1@mapcloud.org"></td></tr>
+			</table>
+		</div>
+		<div id="user_paswd_panel" class="user_info_panel_border">
+			<table>
+				<tr><td class="td_column">用户名：</td><td><input type="text" id="user_pswd_name" value="user1"></td></tr>
+				<tr><td class="td_column">密&nbsp&nbsp&nbsp码：</td><td><input type="passwd" id="user_pswd_pswd" value="qwer1234"></td></tr>
+				<tr><td class="td_column"></td><td><input type="passwd" id="user_pswd_pswd_2" value="qwer1234">(再次输入密码)</td></tr>
+			</table>
+			<div style="width:300px;height:30px"><a href="javascript:void(0)" id="btn_change_paswd">确定</a></div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var editor = null;
+	$().ready(function(){
+
+	});
+
+	window.onresize = function(){
+		changeEditorSize();
+	};
+
+	function onGet(){
+		var url = $("#request_parameters input[name='service_url']").val();
+		var params = "";
+		$("#request_parameters input").each(function(){
+			var name = $(this).attr("name");
+			var value = $(this).val();
+			if(name != 'service_url'){
+				if(params.length > 0){
+					params += "&";
+				}
+				params += name + "=" + value;
+			}
+		})
+		$.ajax({
+			type	:"get",
+			url		: url,
+			 data	: encodeURI(params),
+			contentType: "text/xml",
+			dataType: "text",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(xml, textStatus){
+				document.getElementById('text_area').innerHTML = xml;
+				
+				if(editor == null){
+					editor = CodeMirror.fromTextArea(document.getElementById("text_area"), {
+				        mode: "text/html",
+				        lineNumbers: true,
+				         gutter: true,
+	   					 lineWrapping: true
+				    });
+			    }else{
+			    	editor.setValue(xml);
+			    }
+				var height = $("#response_container").height();
+				var width = $("#response_container").width();
+				editor.setSize(width,height);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
+		});	
+	}
+
+
+	function changeEditorSize(){
+		var requestHeight = $(".servcie_request").height().toString();
+		var nameHeight = $(".service_name").height().toString();
+		var height = parseInt(requestHeight) + parseInt(nameHeight);
+		var responseHeight = "calc(100% - " + height + "px)";
+		$(".servcie_response").css("height",responseHeight);
+		if(editor != null){
+			var height = $("#response_container").height();
+			var width = $("#response_container").width();
+			editor.setSize(width,height);
+			editor.refresh();
+		}
+	}
+</script>
