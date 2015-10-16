@@ -29,7 +29,7 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.account.showLoginPanel();
 			$(".map-panel").css("display","none");
 			user.logout();
-			MapCloud.cookieObj.delCookie("username");
+			MapCloud.cookieObj.delCookie("username","/MapCloud");
 			MapCloud.refresh_panel.cleanup();
 			if(mapObj != null){
 				mapObj.close();

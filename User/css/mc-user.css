@@ -49,7 +49,7 @@ div{
 #main_panel{
 	position: absolute;
 	top:60px;
-	height: 100%;
+	height: calc(100% - 60px);
 	margin-top: 1px;
 	z-index: 3
 }
@@ -222,3 +222,392 @@ width: 100%-10px; */
 	width: 100%;
 	height: 100%;
 }
+
+
+/*  user panel*/
+.user-page-panel{
+	width: 100%;
+	height: calc(100% - 60px);
+
+}
+#title_wrapper{
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid #DEDEDE;
+	background: #FCFCFC;
+}
+
+.title_box{
+	float: left;
+	min-width: 150px;
+	height: 40px;
+	margin-left: 10px;
+	line-height: 40px;
+	/* background: #F00; */
+	font-size: 16px;
+	font-weight: bold;
+}
+.main-panel{
+	height: calc(100% - 40px);
+	width: 100%;
+}
+.left-panel{
+	width: 200px;
+	float: left;
+	height: 100%;
+    border-right: 1px solid #DEDEDE;	
+}
+.right-panel{
+	height: 100%;
+}
+.left-title-bar{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: #FCFCFC;
+	border-bottom: 1px solid #DEDEDE;
+	padding-left: 5px;
+}
+.left-panel-content{
+	width: 100%;
+	height: calc(100% - 30px);
+}
+
+.left-title-icon{
+	float: left;
+    width: 30px;
+    height: 30px;
+    background: url("../images/catalog_16.png") no-repeat center center;
+}
+
+.right-panel-bar{
+    float: left;
+    width: 100%;
+    height: 30px;
+    padding-left: 5px;
+    line-height: 30px;
+    background: #FCFCFC;
+    border-bottom: 1px solid #DEDEDE;	
+}
+.right-panel-bar .btn-group {
+	margin-top: 2px;
+	margin-right: 10px;
+}
+
+.right-panel-bar .btn-group .btn{
+	padding: 3px 28px;
+	font-weight: bold;
+}
+
+.right-panel-tab{
+	height: 100%;
+	width: 100%;
+}
+.right-panel-content{
+	width: 100%;
+	height: calc(100% - 30px);
+}
+.right-panel-content-tab{
+	width: 100%;
+	height: 100%;
+}
+.screen-alert {
+    position: fixed;
+    top: 0px;
+    width: 260px;
+    background-color: rgba(249, 223, 94, 0.71);
+    padding: 5px;
+    left: 50%;
+    margin-left: -130px;
+    z-index: 1080;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.67);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    display: none;
+}
+
+#container{
+	z-index: 1080; 
+}
+#container span{
+	color: #fff;
+	font-size: 14px;
+	display: inline-block;
+	line-height: 26px;
+}
+.list-icon{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	margin-top: 2px;
+}
+.list-tree{
+	overflow-y : auto;
+	height: 100%;
+}
+.list-tree .row{
+    padding: 6px;
+    margin-left: 0px;
+    margin-right: 0px;
+    cursor: pointer;
+    border-bottom: 1px solid #DEDEDE;	
+}
+.header-row{
+	border-bottom: 2px solid #ddd
+}
+.list-tree .row.selected{
+	background-color: #DFF1F8;
+}
+.list-tree .row:hover{
+	background-color: #DFF1F8;
+}
+.mc-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+.mc-icon-rotate{
+	transition-property: all;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+}
+.right-panel-content .row:nth-child(odd){
+	background-color: #f9f9f9;
+}
+
+.right-panel-content .row{
+	padding: 4px;
+	margin: 0px;
+}
+.right-panel-content .row:not(.header-row):hover{
+	background-color: #DFF1F8;
+	cursor: pointer;
+}
+
+.right-panel-content  [class*='col-md']{
+	padding: 4px;
+}
+.right-panel-content .row .oper{
+	margin-right: 20px;
+}
+.text-ellipsis{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;	
+}
+.pages-form{
+	margin:6px;
+}
+.pages-form .form-group{
+	padding: 4px;
+	background-color: #f1f1f1;
+	margin: 0px;
+	border-radius: 4px;
+}
+.pages-form .form-group  [class*='col-md']{
+	padding: 0px 15px;
+}
+.pages-form .form-group input{
+	/*height: 30px;*/
+	text-align: center;
+	margin-left: 10px;
+}
+.pages-form .form-group label{
+	padding-top: 10px !important;
+}
+
+.pages-form .form-group .query_count{
+	text-align: left;
+}
+.pages-form .form-group .query_count span{
+	margin-left: 6px;
+}
+.pages-form .form-group div a{
+	color: #333;
+}
+.pages-form .form-group div a.btn.btn-primary{
+	color: #fff;
+}
+/***************************************************************************/
+/* User Map Begin		                                                    */
+/***************************************************************************/
+
+.map-tree .map-icon{
+	background: url("../images/map.png") no-repeat center center;
+}
+.map-tree .map-tree-name{
+	padding-left: 10px;
+}
+
+
+.map-list{
+	height: calc(100% - 35px);
+    overflow-y: auto;
+}
+#maps_thumb_ul{
+	margin: 0px;
+}
+.map-thumb{
+    position: relative;
+    float: left;
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 10px;	
+}
+
+.map-thumb-a{
+    display: block;
+    width: 200px;
+    height: 160px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;	
+}
+.map-thumb-a:hover{
+	border: 1px solid #428bca;
+}
+#map_thumb_list{
+	overflow-y:auto; 
+}
+
+.page-heading {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #428bca;
+    padding-bottom: 6px;
+    color: #428bca;
+}
+
+.map-info-row {
+    padding: 0px 10px;
+    color: #767676;
+    margin: 12px;
+}
+.map-info-row span {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.map-info-item {
+    width: 60px;
+    text-align: right;
+    margin-right: 6px;
+}
+#map_info_tab{
+	overflow-y : auto;
+	padding: 20px 40px 0 20px;
+}
+.map-info-name{
+	width: 120px;
+}
+.map-info-layer-heading{
+	color: #767676;
+}
+.map-info-layer-name{
+	width: 180px;
+}
+
+/***************************************************************************/
+/* User Map End 		                                                   */
+/***************************************************************************/
+
+/***************************************************************************/
+/* User Vector DB Begin 		                                               */
+/***************************************************************************/
+.col-md-20px{
+	/*width: 20px;*/
+	padding-left: 6px;
+}
+.db-icon{
+	background: url("../../images/server-16.png") no-repeat center center;
+}
+
+.mc-db-icon-dataset {
+    background-image: url(../../images/table_16.png);
+}
+.mc-db-icon-dataset-point{
+	background-image: url(../../images/marker_16.png);	
+}
+
+.mc-db-icon-dataset-line{
+	background-image: url(../../images/polyline_16.png);	
+}
+
+.mc-db-icon-dataset-polygon{
+	background-image: url(../../images/polygon-16.png);	
+}
+.vector-db-tree .nav{
+	margin: 0px;
+}
+.vector-db-tree .nav>li{
+	border-bottom: 1px solid #DEDEDE;
+}
+.vector-db-tree .nav>li.selected{
+	background-color:#E7F1F5
+}
+.vector-db-tree .nav>li>a{
+	padding: 4px 6px 4px 34px;
+}
+.vector-db-tree li a span{
+    word-break: break-all;
+    display: inline-block;
+    max-width: 120px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 8px;
+}
+.datasets-list,#datasets_thumb_tab{
+	width: 100%;
+	height: 100%;
+	overflow-y:auto;
+}
+.dataset-thumb{
+    position: relative;
+    float: left;
+    display: block;
+    width: 128px;
+    height: 140px;
+    margin: 10px;
+}
+
+.dataset-thumb-a{
+    display: block;
+    width: 128px;
+    height: 128px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.dataset-thumb-a:hover{
+	border: 1px solid #428bca;
+}
+
+#dataset_infos_tab,#dataset_fields_tab,#dataset_features_tab{
+	width: 100%;
+	height: 100%;
+	overflow:auto;
+}
+/***************************************************************************/
+/* User Vector DB End 		                                               */
+/***************************************************************************/

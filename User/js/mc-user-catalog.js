@@ -37,6 +37,15 @@ var g_catalog =
         ]
     },
     {
+        "name": "数据库管理",
+        "items": [
+            {
+                "name": "数据库",
+                "link": "user_vector.html"
+            }
+        ]
+    },    
+    {
         "name": "影像数据",
         "items": [
             {

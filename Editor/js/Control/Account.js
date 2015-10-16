@@ -164,7 +164,7 @@ MapCloud.Account = MapCloud.Class({
 		rasterDBManager = user.getRasterDBManager();
 		gpsManager = user.getGPSManager();
 
-		MapCloud.cookieObj.setCookie("username",username);
+		MapCloud.cookieObj.setCookie("username",username,"/MapCloud");
 
 		MapCloud.userToolBar.showUser(username);
 		// this.hideLoginPanel();
@@ -176,7 +176,6 @@ MapCloud.Account = MapCloud.Class({
 
 
 	register : function(){
-		
 
 		// 名称
 		var name = this.registerPanel.find("input[name='username']").val();

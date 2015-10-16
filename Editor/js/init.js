@@ -205,7 +205,7 @@ $().ready(function(){
 
 	MapCloud.tools = new MapCloud.Tools();
 
-	MapCloud.cookieObj = new GeoBeans.Cookie();
+	MapCloud.cookieObj = new MapCloud.Cookie();
 	
 	// mapManager = new GeoBeans.MapManager(url);
 	// dbsManager = new GeoBeans.DBSManager(url);

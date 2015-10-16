@@ -1,14 +1,15 @@
+var user = null;
+var cookieObj = null;
 $().ready(function(){
 
-	var cookiedUserName = null;
-	var arr = document.cookie.match(new RegExp("(^| )"+ "username" +"=([^;]*)(;|$)"));
-    if(arr != null){
-    	cookiedUserName = unescape(arr[2])
-    }
 
+ 	cookieObj = new MapCloud.Cookie();
+ 	var cookiedUserName = cookieObj.getCookie("username");
     if(cookiedUserName != null){
     	$("#title_panel").html("[" + cookiedUserName + "]管理页面" );
+    	user = new GeoBeans.User(cookiedUserName);
     }
+
 	loadCatalog();
 
 	$(".service_title").click(function(){
