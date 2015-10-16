@@ -1,0 +1,4911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCollection xmlns:fme="http://www.safe.com/gml/fme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xsi:schemaLocation="http://www.safe.com/gml/fme 5南海诸岛.xsd">
+<boundedBy>
+<Envelope srsName="EPSG:4326" srsDimension="2">
+<lowerCorner>3.96121249000009 109.775</lowerCorner>
+<upperCorner>21.082827077 117.8</upperCorner>
+</Envelope>
+</boundedBy>
+<featureMember>
+<南海诸岛 id="id3a9caadc-f1eb-4089-81b1-ac2d0adcc554">
+<FID>0</FID>
+<OBJECTID>1</OBJECTID>
+<序号>3</序号>
+<群岛>东沙</群岛>
+<标准名称>东沙礁</标准名称>
+<汉语拼音>Dōngshā Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Dongsha Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.7117396090001 116.904349021</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7e40d1eb-62bb-48de-a069-a8e1e034c79d">
+<FID>1</FID>
+<OBJECTID>2</OBJECTID>
+<序号>4</序号>
+<群岛>东沙</群岛>
+<标准名称>东沙岛</标准名称>
+<汉语拼音>Dōngshā Dǎo</汉语拼音>
+<渔民名称>月牙岛</渔民名称>
+<英文名称>Dongsha Island or Pratas Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.7142031380001 116.737971373</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd685672a-aef5-44be-a548-bab9e8e3cfc4">
+<FID>2</FID>
+<OBJECTID>3</OBJECTID>
+<序号>5</序号>
+<群岛>东沙</群岛>
+<标准名称>北卫滩</标准名称>
+<汉语拼音>Běiwèi Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>North Vereker Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>21.082827077 115.990959946</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id859dc0e9-ea1f-44cf-8ea2-94b6212c520c">
+<FID>3</FID>
+<OBJECTID>4</OBJECTID>
+<序号>6</序号>
+<群岛>东沙</群岛>
+<标准名称>南卫滩</标准名称>
+<汉语拼音>Nánwèi Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>South Vereker Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.9666666670001 115.935604183</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id45eca770-a482-45c7-b80d-4c9877b3ba78">
+<FID>4</FID>
+<OBJECTID>5</OBJECTID>
+<序号>11</序号>
+<群岛>西沙</群岛>
+<标准名称>北礁</标准名称>
+<汉语拼音>Běi Jiāo</汉语拼音>
+<渔民名称>干豆 (dry bean)</渔民名称>
+<英文名称>Bei Jiao, North Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>17.091969303 111.5</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idcbc51ebd-4208-4c12-86d0-823ebf875496">
+<FID>5</FID>
+<OBJECTID>6</OBJECTID>
+<序号>12</序号>
+<群岛>西沙</群岛>
+<标准名称>金银岛</标准名称>
+<汉语拼音>Jīnyín Dǎo</汉语拼音>
+<渔民名称>尾峙 尾岛 (tail standing features, tail island)</渔民名称>
+<英文名称>Jinyin Dao, Money Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.4460782210001 111.505835086</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idbad71d79-962e-4db9-ba8e-41306ac0be3f">
+<FID>6</FID>
+<OBJECTID>7</OBJECTID>
+<序号>13</序号>
+<群岛>西沙</群岛>
+<标准名称>羚羊礁</标准名称>
+<汉语拼音>Língyáng Jiāo</汉语拼音>
+<渔民名称>筐仔 筐仔峙</渔民名称>
+<英文名称>Lingyang Jiao, Lin-yang Chiao, Antelope Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.4582628540001 111.590243134</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id371adcc3-4457-4625-a0a1-f64f76ad935a">
+<FID>7</FID>
+<OBJECTID>8</OBJECTID>
+<序号>14</序号>
+<群岛>西沙</群岛>
+<标准名称>筐仔沙洲</标准名称>
+<汉语拼音>Kuāngzǎi Shāzhōu</汉语拼音>
+<渔民名称>筐仔峙</渔民名称>
+<英文名称>Kuangzai Shazhou</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.464193105 111.675074056</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id184b9463-5508-4d1c-9080-cceef8f265fa">
+<FID>8</FID>
+<OBJECTID>9</OBJECTID>
+<序号>15</序号>
+<群岛>西沙</群岛>
+<标准名称>甘泉岛</标准名称>
+<汉语拼音>Gānquán Dǎo</汉语拼音>
+<渔民名称>圆峙 圆岛 (round island)</渔民名称>
+<英文名称>Ganquan Dao, Robert Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5000000000001 111.583333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idfab7b649-3fce-413d-acd0-7e2a3d9a8c48">
+<FID>9</FID>
+<OBJECTID>10</OBJECTID>
+<序号>16</序号>
+<群岛>西沙</群岛>
+<标准名称>珊瑚岛</标准名称>
+<汉语拼音>Shānhú Dǎo</汉语拼音>
+<渔民名称>老粗岛 老粗峙</渔民名称>
+<英文名称>Shanhu Dao, Shan-hu Tao, Pattle Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.539776256 111.602801271</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id655ead52-3c22-4e9c-8b8a-d06e0c2da04c">
+<FID>10</FID>
+<OBJECTID>11</OBJECTID>
+<序号>17</序号>
+<群岛>西沙</群岛>
+<标准名称>全富岛</标准名称>
+<汉语拼音>Quánfù Dǎo</汉语拼音>
+<渔民名称>全富峙 全富 曲手</渔民名称>
+<英文名称>Quanfu Dao</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5701673610001 111.664565714</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5b217b3c-f41a-4794-aede-00dd62920109">
+<FID>11</FID>
+<OBJECTID>12</OBJECTID>
+<序号>18</序号>
+<群岛>西沙</群岛>
+<标准名称>鸭公岛</标准名称>
+<汉语拼音>Yāgōng Dǎo</汉语拼音>
+<渔民名称>鸭公屿 鸭公岛</渔民名称>
+<英文名称>Yagong Dao</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5644256500001 111.683893587</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc2738ebb-47af-4c78-9e93-c62bd5dab30b">
+<FID>12</FID>
+<OBJECTID>13</OBJECTID>
+<序号>19</序号>
+<群岛>西沙</群岛>
+<标准名称>银屿</标准名称>
+<汉语拼音>Yín Yǔ</汉语拼音>
+<渔民名称>银峙</渔民名称>
+<英文名称>Yin Yu (Silver islet), Observation Bank</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5820727610001 111.700140064</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id507add21-5fab-4ed3-a0e8-52c1683782c1">
+<FID>13</FID>
+<OBJECTID>14</OBJECTID>
+<序号>20</序号>
+<群岛>西沙</群岛>
+<标准名称>银屿仔</标准名称>
+<汉语拼音>Yínǚzǎi</汉语拼音>
+<渔民名称>银峙仔</渔民名称>
+<英文名称>Yinyuzai (Silver islet small?or junior)</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5768904110001 111.705322414</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb84c314f-dd92-4842-88d5-be2d8282a3bd">
+<FID>14</FID>
+<OBJECTID>15</OBJECTID>
+<序号>21</序号>
+<群岛>西沙</群岛>
+<标准名称>咸舍屿</标准名称>
+<汉语拼音>Xiánshě Yǔ</汉语拼音>
+<渔民名称>咸舍 咸且岛</渔民名称>
+<英文名称>Xianshe Yu</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.544817649 111.710643935</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1c246cad-536e-4866-8770-f414565f4f8e">
+<FID>15</FID>
+<OBJECTID>16</OBJECTID>
+<序号>22</序号>
+<群岛>西沙</群岛>
+<标准名称>石屿</标准名称>
+<汉语拼音>Shí Yǔ</汉语拼音>
+<渔民名称>石屿</渔民名称>
+<英文名称>Shi Yu (Stone islet)</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5397753620001 111.74523784</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id13211805-8dd9-458d-9b20-244373ac6096">
+<FID>16</FID>
+<OBJECTID>17</OBJECTID>
+<序号>23</序号>
+<群岛>西沙</群岛>
+<标准名称>晋卿岛</标准名称>
+<汉语拼音>Jìnqīng Dǎo</汉语拼音>
+<渔民名称>四江门 四江岛 世江峙</渔民名称>
+<英文名称>Jinqing Dao, Drummond Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.46573291 111.743791411</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idcae3380b-44a8-4219-9833-886708611571">
+<FID>17</FID>
+<OBJECTID>18</OBJECTID>
+<序号>24</序号>
+<群岛>西沙</群岛>
+<标准名称>琛航岛</标准名称>
+<汉语拼音>Chēnháng Dǎo</汉语拼音>
+<渔民名称>三脚 大三脚岛 三脚岛 (tripod, tripod island big, tripod island)</渔民名称>
+<英文名称>Chenhang Dao, Duncan Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.4563495470001 111.709943617</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ida51cc909-c471-486d-9b53-71db38065ce0">
+<FID>18</FID>
+<OBJECTID>19</OBJECTID>
+<序号>25</序号>
+<群岛>西沙</群岛>
+<标准名称>广金岛</标准名称>
+<汉语拼音>Guǎngjīn Dǎo</汉语拼音>
+<渔民名称>三脚屿 小三脚屿 (tripod islet, tripod islet small)</渔民名称>
+<英文名称>Guangjin Dao</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.4567230500001 111.702427768</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idab2bcb8c-c7b2-4463-8c4a-bf71806cd596">
+<FID>19</FID>
+<OBJECTID>20</OBJECTID>
+<序号>26</序号>
+<群岛>西沙</群岛>
+<标准名称>玉琢礁</标准名称>
+<汉语拼音>Yùzhuó Jiāo</汉语拼音>
+<渔民名称>而筐 二塘 二圈 (2nd basket/pond/circle)</渔民名称>
+<英文名称>Yuzhuo Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.346093366 111.986704752</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id39c3f138-d2a1-43c7-8dcb-425d5c1de27a">
+<FID>20</FID>
+<OBJECTID>21</OBJECTID>
+<序号>27</序号>
+<群岛>西沙</群岛>
+<标准名称>华光礁</标准名称>
+<汉语拼音>Huáguāng Jiāo</汉语拼音>
+<渔民名称>大筐 大塘 大圈 (big basket, big pond, big circle)</渔民名称>
+<英文名称>Huaguang Jiao, Discovery Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.2306107700001 111.69216467</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ida5cb7824-0e99-4fca-b1ad-d6b1330d3bf1">
+<FID>21</FID>
+<OBJECTID>22</OBJECTID>
+<序号>28</序号>
+<群岛>西沙</群岛>
+<标准名称>盘石屿</标准名称>
+<汉语拼音>Pánshí Yǔ</汉语拼音>
+<渔民名称>白树仔 白峙仔 白礁</渔民名称>
+<英文名称>Panshi Yu, Passu Keah</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0470452500001 111.765438472</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf8d9d78f-2da5-48a4-ab6b-cb167d50d976">
+<FID>22</FID>
+<OBJECTID>23</OBJECTID>
+<序号>29</序号>
+<群岛>西沙</群岛>
+<标准名称>中建岛</标准名称>
+<汉语拼音>Zhōngjiàn Dǎo</汉语拼音>
+<渔民名称>半路 半路峙 螺岛</渔民名称>
+<英文名称>Zhongjian Dao, Triton Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.7899131200001 111.183221544</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9ebd552b-5230-480f-846a-0458b70ec096">
+<FID>23</FID>
+<OBJECTID>24</OBJECTID>
+<序号>31</序号>
+<群岛>西沙</群岛>
+<标准名称>永兴岛</标准名称>
+<汉语拼音>Yǒngxīng Dǎo</汉语拼音>
+<渔民名称>猫注 吧注 猫岛</渔民名称>
+<英文名称>Yongxing Dao, Yung-hsing Tao, Woody Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.833333333 112.333333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9b44e273-501f-4f3b-9d77-7cf95d8cafbf">
+<FID>24</FID>
+<OBJECTID>25</OBJECTID>
+<序号>32</序号>
+<群岛>西沙</群岛>
+<标准名称>石岛</标准名称>
+<汉语拼音>Shí Dǎo</汉语拼音>
+<渔民名称>小巴岛</渔民名称>
+<英文名称>Shi Dao, Shih Tao, Rocky Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.8425299450001 112.345517967</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc8976bab-5fb1-4bdd-a573-f40f8dbf1cf9">
+<FID>25</FID>
+<OBJECTID>26</OBJECTID>
+<序号>34</序号>
+<群岛>西沙</群岛>
+<标准名称>东新沙洲</标准名称>
+<汉语拼音>Dōngxīn Shāzhōu</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Dongxin Shazhou</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.92549067 112.342016378</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0f95b19c-8873-44b4-aaf5-babe8bc6ccbd">
+<FID>26</FID>
+<OBJECTID>27</OBJECTID>
+<序号>35</序号>
+<群岛>西沙</群岛>
+<标准名称>西新沙洲</标准名称>
+<汉语拼音>Xīxīn Shāzhōu</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xinxin Shazhou</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9253506060001 112.334733074</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="iddc6a2c77-a89a-4bb9-907a-35ea96ede61c">
+<FID>27</FID>
+<OBJECTID>28</OBJECTID>
+<序号>36</序号>
+<群岛>西沙</群岛>
+<标准名称>南沙洲</标准名称>
+<汉语拼音>Nán Shāzhōu</汉语拼音>
+<渔民名称>红草一 红草岛</渔民名称>
+<英文名称>Nan Shazhou (South shoal), South Sand</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9328197670001 112.339815014</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idefd051f1-279d-48cb-84e4-ef14c33267fc">
+<FID>28</FID>
+<OBJECTID>29</OBJECTID>
+<序号>37</序号>
+<群岛>西沙</群岛>
+<标准名称>中沙洲</标准名称>
+<汉语拼音>Zhōng Shāzhōu</汉语拼音>
+<渔民名称>红草二</渔民名称>
+<英文名称>Zhong Shazhou (Middle shoal)</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9379489070001 112.336566691</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id8bb86e42-ffb5-4ec3-831e-06a47da9859f">
+<FID>29</FID>
+<OBJECTID>30</OBJECTID>
+<序号>38</序号>
+<群岛>西沙</群岛>
+<标准名称>北沙洲</标准名称>
+<汉语拼音>Běi Shāzhōu</汉语拼音>
+<渔民名称>红草三</渔民名称>
+<英文名称>Bei Shazhou (North shoal)</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9438581810001 112.33379292</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id43997a67-e1b1-455c-b80a-ca151a2fdfdd">
+<FID>30</FID>
+<OBJECTID>31</OBJECTID>
+<序号>39</序号>
+<群岛>西沙</群岛>
+<标准名称>南岛</标准名称>
+<汉语拼音>Nán Dǎo</汉语拼音>
+<渔民名称>三峙 三岛</渔民名称>
+<英文名称>Nan Dao, Nan Tao, South Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.950147099 112.329631178</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id30b9f01d-3807-459c-a910-52a872f45e5a">
+<FID>31</FID>
+<OBJECTID>32</OBJECTID>
+<序号>40</序号>
+<群岛>西沙</群岛>
+<标准名称>中岛</标准名称>
+<汉语拼音>Zhōng Dǎo</汉语拼音>
+<渔民名称>石峙 石岛</渔民名称>
+<英文名称>Zhong Dao (Middle island)</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9587653350001 112.320597015</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1d9c4138-498a-452d-879e-aab211640bfa">
+<FID>32</FID>
+<OBJECTID>33</OBJECTID>
+<序号>41</序号>
+<群岛>西沙</群岛>
+<标准名称>北岛</标准名称>
+<汉语拼音>Běi Dǎo</汉语拼音>
+<渔民名称>长峙 长岛</渔民名称>
+<英文名称>Bei Dao, (North island)</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9687676200001 112.307562537</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id998a4d24-b4c2-4247-afac-7d8127c89192">
+<FID>33</FID>
+<OBJECTID>34</OBJECTID>
+<序号>42</序号>
+<群岛>西沙</群岛>
+<标准名称>赵述岛</标准名称>
+<汉语拼音>Zhàoshù Dǎo</汉语拼音>
+<渔民名称>船暗岛 船晚岛</渔民名称>
+<英文名称>Zhaoshu Dao</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9824929520001 112.268907683</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc6bcc602-55fd-4917-a2a9-7bfc2c8e68fb">
+<FID>34</FID>
+<OBJECTID>35</OBJECTID>
+<序号>43</序号>
+<群岛>西沙</群岛>
+<标准名称>西沙洲</标准名称>
+<汉语拼音>Xī Shāzhōu</汉语拼音>
+<渔民名称>船暗尾 船晚尾</渔民名称>
+<英文名称>Xi Shazhou (West shoal)</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9682743610001 112.176798558</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0e2b40e3-13a9-4c26-8a4b-8f09765d5cc4">
+<FID>35</FID>
+<OBJECTID>36</OBJECTID>
+<序号>44</序号>
+<群岛>西沙</群岛>
+<标准名称>银砾滩</标准名称>
+<汉语拼音>Yínlì Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yinli Tan, Iltis Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.7685259520001 112.227241017</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id2af753bf-195c-469c-8fe4-ff5a77a15373">
+<FID>36</FID>
+<OBJECTID>37</OBJECTID>
+<序号>45</序号>
+<群岛>西沙</群岛>
+<标准名称>东岛</标准名称>
+<汉语拼音>Dōng Dǎo</汉语拼音>
+<渔民名称>猫兴岛 巴兴 吧兴岛</渔民名称>
+<英文名称>Dong Dao, Lincoln Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.6666666670001 112.733333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1d321457-2675-433f-9401-5f40cf9aace6">
+<FID>37</FID>
+<OBJECTID>38</OBJECTID>
+<序号>46</序号>
+<群岛>西沙</群岛>
+<标准名称>西渡滩</标准名称>
+<汉语拼音>Xīdù Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xidu Tan, Dido Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.8166666670001 112.9</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ideda30e9f-3f26-4937-b12d-47b23ccea501">
+<FID>38</FID>
+<OBJECTID>39</OBJECTID>
+<序号>47</序号>
+<群岛>西沙</群岛>
+<标准名称>高尖石</标准名称>
+<汉语拼音>Gāojiānshí</汉语拼音>
+<渔民名称>尖石(sharp stone) 双帆(double sail/jib)</渔民名称>
+<英文名称>Gaojianshi (Tall sharp stone)</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5906373870001 112.644621417</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9e618241-d111-4d76-8d68-dbfe02a26db6">
+<FID>39</FID>
+<OBJECTID>40</OBJECTID>
+<序号>48</序号>
+<群岛>西沙</群岛>
+<标准名称>北边廊</标准名称>
+<汉语拼音>Běibiānláng</汉语拼音>
+<渔民名称>北边廊 北边郎</渔民名称>
+<英文名称>Beibianlang (North side corridor)</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5237052620001 112.550996007</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6e1bd539-522f-4935-8515-2bb25bae6653">
+<FID>40</FID>
+<OBJECTID>41</OBJECTID>
+<序号>49</序号>
+<群岛>西沙</群岛>
+<标准名称>滨湄滩</标准名称>
+<汉语拼音>Bīnméi Tān</汉语拼音>
+<渔民名称>三筐大榔 三筐大郎</渔民名称>
+<英文名称>Binmei Tan, Bremen Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.3416666670001 112.441666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id20c6abd5-c09c-4597-89be-83e71d3966d3">
+<FID>41</FID>
+<OBJECTID>42</OBJECTID>
+<序号>50</序号>
+<群岛>西沙</群岛>
+<标准名称>湛涵滩</标准名称>
+<汉语拼音>Zhànhán Tān</汉语拼音>
+<渔民名称>仙桌 八辛郎</渔民名称>
+<英文名称>Zhanhan Tan, Jehangire Reefs</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.430527769 112.623334383</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id126cc09f-85fe-44af-a286-f703b46be3ab">
+<FID>42</FID>
+<OBJECTID>43</OBJECTID>
+<序号>51</序号>
+<群岛>西沙</群岛>
+<标准名称>浪花礁</标准名称>
+<汉语拼音>Lànghuā Jiāo</汉语拼音>
+<渔民名称>三匡 三筐</渔民名称>
+<英文名称>Langhua Jiao, Bombay Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0500000000001 112.516666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc845ca6d-9ecc-4764-b326-049310e27fb5">
+<FID>43</FID>
+<OBJECTID>44</OBJECTID>
+<序号>52</序号>
+<群岛>西沙</群岛>
+<标准名称>嵩焘滩</标准名称>
+<汉语拼音>Sōngtāo Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Songtao Tan</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.7166666670001 112.216666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb5072ca0-5d81-42d0-957b-d45aed8cabc8">
+<FID>44</FID>
+<OBJECTID>45</OBJECTID>
+<序号>62</序号>
+<群岛>中沙</群岛>
+<标准名称>西门暗沙</标准名称>
+<汉语拼音>Xīmén ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Ximen Ansha, Siamese Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.9757313910001 114.051599657</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb81de18d-ccb9-4bac-8956-6058f531fe83">
+<FID>45</FID>
+<OBJECTID>46</OBJECTID>
+<序号>63</序号>
+<群岛>中沙</群岛>
+<标准名称>本固暗沙</标准名称>
+<汉语拼音>Běngù ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bengu Ansha, Bankok Shoal, Bankok, Banc</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0000000000001 114.1</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf517b1c4-0799-47be-96eb-a290e0d1fe21">
+<FID>46</FID>
+<OBJECTID>47</OBJECTID>
+<序号>64</序号>
+<群岛>中沙</群岛>
+<标准名称>美滨暗沙</标准名称>
+<汉语拼音>Měibīn ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Meibin Ansha, Mei-pin An-sha, Magpie Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0563986290001 114.224131734</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide63b05e4-4181-4937-b182-d8b991f0631e">
+<FID>47</FID>
+<OBJECTID>48</OBJECTID>
+<序号>65</序号>
+<群岛>中沙</群岛>
+<标准名称>鲁班暗沙</标准名称>
+<汉语拼音>Lǔbān ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Luban Ansha, Carpenter Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0666666670001 114.287202742</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4ee5e41b-f9a3-4296-89ce-27cd760fe3b9">
+<FID>48</FID>
+<OBJECTID>49</OBJECTID>
+<序号>66</序号>
+<群岛>中沙</群岛>
+<标准名称>中北暗沙</标准名称>
+<汉语拼音>Zhōngběi ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhongbei Ansha, Oliver Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.092001714 114.410801257</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="iddc653950-e8e7-4ad4-9b38-22a8a85898c3">
+<FID>49</FID>
+<OBJECTID>50</OBJECTID>
+<序号>67</序号>
+<群岛>中沙</群岛>
+<标准名称>比微暗沙</标准名称>
+<汉语拼音>Bǐwēi ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Biwei Ansha, Pygmy Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.2166666670001 114.721602514</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id2abc1221-255d-4c60-9753-cc2aeb7d8e1c">
+<FID>50</FID>
+<OBJECTID>51</OBJECTID>
+<序号>68</序号>
+<群岛>中沙</群岛>
+<标准名称>隐矶滩</标准名称>
+<汉语拼音>Yǐnjī Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yinji Tan, Egeria Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0638636960001 114.915203885</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id568eb644-9680-4ce3-a767-34319a90f8da">
+<FID>51</FID>
+<OBJECTID>52</OBJECTID>
+<序号>69</序号>
+<群岛>中沙</群岛>
+<标准名称>武勇暗沙</标准名称>
+<汉语拼音>Wǔyǒng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wuyong Ansha, Howard Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.8730652950001 114.781733676</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idad68177a-1a7b-4530-90db-a96ec399ebf7">
+<FID>52</FID>
+<OBJECTID>53</OBJECTID>
+<序号>70</序号>
+<群岛>中沙</群岛>
+<标准名称>济猛暗沙</标准名称>
+<汉语拼音>Jìměng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Jimeng Ansha, Learmonth Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.6941345900001 114.676934705</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide365876d-16d7-4eb8-8ab0-3fdd57ebc18f">
+<FID>53</FID>
+<OBJECTID>54</OBJECTID>
+<序号>71</序号>
+<群岛>中沙</群岛>
+<标准名称>海鸠暗沙</标准名称>
+<汉语拼音>Hǎijiū ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Haijiu Ansha, Hai-chiu An-sha, Plover Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.598400343 114.454402628</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7a56d019-db76-48bf-973b-2559ca4cba2c">
+<FID>54</FID>
+<OBJECTID>55</OBJECTID>
+<序号>72</序号>
+<群岛>中沙</群岛>
+<标准名称>安定连礁</标准名称>
+<汉语拼音>āndìng Liánjiū</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Anding Lianjiao, Addington Patch</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.6081351620001 114.404265753</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id3f0cecd7-5049-4827-ae76-c60c07d9ed3e">
+<FID>55</FID>
+<OBJECTID>56</OBJECTID>
+<序号>73</序号>
+<群岛>中沙</群岛>
+<标准名称>美溪暗沙</标准名称>
+<汉语拼音>Měixī ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Meixi Ansha, Smith Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.4329369900001 114.209953423</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd679da51-1e43-46ad-a24c-d2e4a92a034e">
+<FID>56</FID>
+<OBJECTID>57</OBJECTID>
+<序号>74</序号>
+<群岛>中沙</群岛>
+<标准名称>布德暗沙</标准名称>
+<汉语拼音>Bùdé ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bude Ansha, Bassett Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.4393356190001 114.172354337</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id493edb25-d7de-4641-8c03-5656a2c26284">
+<FID>57</FID>
+<OBJECTID>58</OBJECTID>
+<序号>75</序号>
+<群岛>中沙</群岛>
+<标准名称>波洑暗沙</标准名称>
+<汉语拼音>Bōfú ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bofu Ansha, Balfour Shoal, Balfour, Banc</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.4357808250001 114.001421918</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id95305ca7-f2a3-4ba4-9f66-31a86fde36e2">
+<FID>58</FID>
+<OBJECTID>59</OBJECTID>
+<序号>76</序号>
+<群岛>中沙</群岛>
+<标准名称>排波暗沙</标准名称>
+<汉语拼音>Páibō ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Paibo Ansha, P'ai-po An-sha, Parry Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.4897319620001 113.859242464</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="iddfd0e656-6d7b-46fc-a18d-51947ccb5626">
+<FID>59</FID>
+<OBJECTID>60</OBJECTID>
+<序号>77</序号>
+<群岛>中沙</群岛>
+<标准名称>过淀暗沙</标准名称>
+<汉语拼音>Guǒdiàn ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Guodian Ansha, Cawston Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.5333333330001 113.766666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idad6ab450-69cb-4a84-93fb-6f4d764caff5">
+<FID>60</FID>
+<OBJECTID>61</OBJECTID>
+<序号>78</序号>
+<群岛>中沙</群岛>
+<标准名称>排洪滩</标准名称>
+<汉语拼音>Páihóng Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Paihong Tan, P'ai-hung T'an, Penguin Reef</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.624801828 113.715955708</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id92a52788-8607-41c1-8a1c-e21c6c509c0b">
+<FID>61</FID>
+<OBJECTID>62</OBJECTID>
+<序号>79</序号>
+<群岛>中沙</群岛>
+<标准名称>涛静暗沙</标准名称>
+<汉语拼音>Tāojìng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Taojing Ansha, Tancred Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.684932991 113.890935276</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idce7c029c-585e-41ff-bfe8-0667bb8d6524">
+<FID>62</FID>
+<OBJECTID>63</OBJECTID>
+<序号>80</序号>
+<群岛>中沙</群岛>
+<标准名称>控湃暗沙</标准名称>
+<汉语拼音>Kòngpài ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Kongpai Ansha, Combe Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.7850698660001 113.901599657</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idca3354f4-0234-499e-876e-c18061f4d2d0">
+<FID>63</FID>
+<OBJECTID>64</OBJECTID>
+<序号>81</序号>
+<群岛>中沙</群岛>
+<标准名称>华夏暗沙</标准名称>
+<汉语拼音>Huáxià ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Huaxia Ansha, Hua-hsia An-sha, Cathay Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.889868838 113.964000571</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id06c54882-6bd4-48e6-9529-2642328fbdc6">
+<FID>64</FID>
+<OBJECTID>65</OBJECTID>
+<序号>82</序号>
+<群岛>中沙</群岛>
+<标准名称>石塘连礁</标准名称>
+<汉语拼音>Shítáng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Shitang Lianjiao, Shih-t'ang Lien-chiao, Hardy Patches</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0599942870001 114.7703992</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id83329d96-65ae-48f9-9725-51c134889a6f">
+<FID>65</FID>
+<OBJECTID>66</OBJECTID>
+<序号>83</序号>
+<群岛>中沙</群岛>
+<标准名称>指掌暗沙</标准名称>
+<汉语拼音>Zhǐzhǎng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhizhang Ansha (Finger palm shoal)</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.9952010280001 114.645734247</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4bded509-94da-48e5-ac62-ace1fd1a2c37">
+<FID>66</FID>
+<OBJECTID>67</OBJECTID>
+<序号>84</序号>
+<群岛>中沙</群岛>
+<标准名称>南扉暗沙</标准名称>
+<汉语拼音>Nánfēi ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Nanfei Ansha, Nan-fei An-sha, Margesson Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.911334476 114.638132305</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb0cb3a87-5107-4f76-847a-5cdb9654b67a">
+<FID>67</FID>
+<OBJECTID>68</OBJECTID>
+<序号>85</序号>
+<群岛>中沙</群岛>
+<标准名称>漫步暗沙</标准名称>
+<汉语拼音>Mànbù ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Manbu Ansha, Man-pu An-sha, Walker Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.9209324190001 114.476934705</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id3d33c203-d7e4-489b-b6bd-0bc9d2380e7e">
+<FID>68</FID>
+<OBJECTID>69</OBJECTID>
+<序号>86</序号>
+<群岛>中沙</群岛>
+<标准名称>乐西暗沙</标准名称>
+<汉语拼音>Lèxī ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Lexi Ansha, Lo-hsi An-sha, Phillips Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.8624009140001 114.419332762</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb781372f-72d3-4d65-9166-3b560afd08c5">
+<FID>69</FID>
+<OBJECTID>70</OBJECTID>
+<序号>87</序号>
+<群岛>中沙</群岛>
+<标准名称>屏南暗沙</标准名称>
+<汉语拼音>Píngnán ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Pingnan Ansha, Payne Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.8602680380001 114.567199886</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id29ec3044-8dea-4005-b35b-62cdbd5ba1fa">
+<FID>70</FID>
+<OBJECTID>71</OBJECTID>
+<序号>88</序号>
+<群岛>中沙</群岛>
+<标准名称>黄岩岛（民主礁）</标准名称>
+<汉语拼音>Huángyán Dǎo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Huangyan Dao, Minzhu Jiao, Scarborough Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.1833333330001 117.766666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb380828d-b6d2-434f-a949-661cce65e671">
+<FID>71</FID>
+<OBJECTID>72</OBJECTID>
+<序号>89</序号>
+<群岛>中沙</群岛>
+<标准名称>南岩</标准名称>
+<汉语拼音>Nányán</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Nanyan (South rock)</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.1333333330001 117.8</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0086b8c0-d289-4a57-9a67-4952a9326afc">
+<FID>72</FID>
+<OBJECTID>73</OBJECTID>
+<序号>90</序号>
+<群岛>中沙</群岛>
+<标准名称>北岩</标准名称>
+<汉语拼音>Běiyán</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Beiyan (North rock)</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.2333333330001 117.733333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0c5444a0-4e92-4515-86cf-a56854f32a01">
+<FID>73</FID>
+<OBJECTID>74</OBJECTID>
+<序号>91</序号>
+<群岛>中沙</群岛>
+<标准名称>宪法暗沙</标准名称>
+<汉语拼音>Xiànfǎ ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xianfa Ansha (Constitution shoal)</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.3433494750001 116.706672864</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id29a4db1b-8638-4b69-b61b-6f36ab56725e">
+<FID>74</FID>
+<OBJECTID>75</OBJECTID>
+<序号>92</序号>
+<群岛>中沙</群岛>
+<标准名称>一统暗沙</标准名称>
+<汉语拼音>Yītǒng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yitong Ansha</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>19.2 113.883333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id758d9a3e-ba2c-4e0a-8869-6e24ce6d816b">
+<FID>75</FID>
+<OBJECTID>76</OBJECTID>
+<序号>93</序号>
+<群岛>中沙</群岛>
+<标准名称>神狐暗沙</标准名称>
+<汉语拼音>Shénhú ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Shenhu Ansha</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>19.5215937250001 113.012028627</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide85c23e2-1dfc-40bd-8bf4-6e93461ac2e7">
+<FID>76</FID>
+<OBJECTID>77</OBJECTID>
+<序号>94</序号>
+<群岛>中沙</群岛>
+<标准名称>中南暗沙</标准名称>
+<汉语拼音>Zhōngnán ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhongnan Ansha (Middle south shoal)</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.95 115.4</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id97d28eac-c19d-4810-a43f-83af15584f1a">
+<FID>77</FID>
+<OBJECTID>78</OBJECTID>
+<序号>97</序号>
+<群岛>南沙</群岛>
+<标准名称>贡士礁</标准名称>
+<汉语拼音>Gòngshì Jiāo</汉语拼音>
+<渔民名称>贡士沙 贡士线</渔民名称>
+<英文名称>Gongshi Jiao, North Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4622450140001 114.387755424</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idfe268dd2-c007-488a-8646-696c4fd93f73">
+<FID>78</FID>
+<OBJECTID>79</OBJECTID>
+<序号>98</序号>
+<群岛>南沙</群岛>
+<标准名称>北子岛</标准名称>
+<汉语拼音>Běizǐ Dǎo</汉语拼音>
+<渔民名称>奈罗上峙 奈罗线仔</渔民名称>
+<英文名称>Beizi Dao, North East Cay</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4524871790001 114.358631164</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id741f47ca-c535-45ed-81dc-6da386a779ef">
+<FID>79</FID>
+<OBJECTID>80</OBJECTID>
+<序号>99</序号>
+<群岛>南沙</群岛>
+<标准名称>北外沙洲</标准名称>
+<汉语拼音>Běiwài Shāzhōu</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Beiwai Shazhou, Shira Reef</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4589921100001 114.349617357</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id698bf43c-3333-465f-8f6f-f29ef06f4c01">
+<FID>80</FID>
+<OBJECTID>81</OBJECTID>
+<序号>100</序号>
+<群岛>南沙</群岛>
+<标准名称>南子岛</标准名称>
+<汉语拼音>Nánzǐ Dǎo</汉语拼音>
+<渔民名称>奈罗下峙 奈罗峙仔</渔民名称>
+<英文名称>Nanzi Dao, South-west cay</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4304635110001 114.336394477</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id2609c720-dc4b-4369-80ff-4a1b4d958fb1">
+<FID>81</FID>
+<OBJECTID>82</OBJECTID>
+<序号>101</序号>
+<群岛>南沙</群岛>
+<标准名称>奈罗礁</标准名称>
+<汉语拼音>Nàiluó Jiāo</汉语拼音>
+<渔民名称>奈罗线仔</渔民名称>
+<英文名称>Nailuo Jiao, South Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.3891154940001 114.296939295</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id92ae8b0f-2d84-45f5-a4e6-1a6683d46d21">
+<FID>82</FID>
+<OBJECTID>83</OBJECTID>
+<序号>102</序号>
+<群岛>南沙</群岛>
+<标准名称>东南暗沙</标准名称>
+<汉语拼音>Dōngnán ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Dongnan Ansha, Sabine Patches</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4068875740001 114.364370809</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id13118e9d-cdfe-4913-923c-3566a66d339d">
+<FID>83</FID>
+<OBJECTID>84</OBJECTID>
+<序号>103</序号>
+<群岛>南沙</群岛>
+<标准名称>东北暗沙</标准名称>
+<汉语拼音>Dōngběi ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Dongbei Ansha, Day Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4409861930001 114.386735043</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id40ce9b6a-dad7-4af3-b87f-b1af38f20f61">
+<FID>84</FID>
+<OBJECTID>85</OBJECTID>
+<序号>104</序号>
+<群岛>南沙</群岛>
+<标准名称>北子暗沙</标准名称>
+<汉语拼音>Běizǐ ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Beizi Ansha, Iroquois Ridge</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4637959670001 114.372704361</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd649d205-c735-4664-9a8c-ee22989e85b8">
+<FID>85</FID>
+<OBJECTID>86</OBJECTID>
+<序号>105</序号>
+<群岛>南沙</群岛>
+<标准名称>永登暗沙</标准名称>
+<汉语拼音>Yǒngdēng ànshā</汉语拼音>
+<渔民名称>奈罗角 奈罗谷</渔民名称>
+<英文名称>Yongdeng Ansha, Trident Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.471428007 114.703400832</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id536e7439-f933-4000-88be-eb116644fdc1">
+<FID>86</FID>
+<OBJECTID>87</OBJECTID>
+<序号>106</序号>
+<群岛>南沙</群岛>
+<标准名称>乐斯暗沙</标准名称>
+<汉语拼音>Lèsī ànshā</汉语拼音>
+<渔民名称>红草线 南奈罗角</渔民名称>
+<英文名称>Lesi Ansha, Lys Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.3437074290001 114.60340171</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id96542ba9-7045-412c-8fd2-984c9d3e7f21">
+<FID>87</FID>
+<OBJECTID>88</OBJECTID>
+<序号>108</序号>
+<群岛>南沙</群岛>
+<标准名称>铁峙礁</标准名称>
+<汉语拼音>Tiězhì Jiāo</汉语拼音>
+<渔民名称>铁峙线排 铁峙铲排</渔民名称>
+<英文名称>Tiezhi Jiao (Thitu reef)</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.0706792060001 114.37672096</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id122e949b-d09d-44d2-a68b-adb21bb1d518">
+<FID>88</FID>
+<OBJECTID>89</OBJECTID>
+<序号>110</序号>
+<群岛>南沙</群岛>
+<标准名称>梅九礁</标准名称>
+<汉语拼音>Méijiǔ Jiāo</汉语拼音>
+<渔民名称>梅九</渔民名称>
+<英文名称>Meijiu Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.048185989 114.326190225</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd4df6701-4f1a-436c-a059-edfdd9a50314">
+<FID>89</FID>
+<OBJECTID>90</OBJECTID>
+<序号>111</序号>
+<群岛>南沙</群岛>
+<标准名称>中业岛</标准名称>
+<汉语拼音>Zhōngyè Dǎo</汉语拼音>
+<渔民名称>铁峙</渔民名称>
+<英文名称>Zhongye Dao, Thitu Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.043765653 114.295124406</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id99d05e89-1736-45a8-95a1-22c8d468f423">
+<FID>90</FID>
+<OBJECTID>91</OBJECTID>
+<序号>112</序号>
+<群岛>南沙</群岛>
+<标准名称>铁线礁</标准名称>
+<汉语拼音>Tiěxiàn Jiāo</汉语拼音>
+<渔民名称>铁线</渔民名称>
+<英文名称>Tiexian Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.0515074670001 114.230684434</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5939cbee-cc17-47d3-b4a2-d985c8a549c4">
+<FID>91</FID>
+<OBJECTID>92</OBJECTID>
+<序号>113</序号>
+<群岛>南沙</群岛>
+<标准名称>渚碧礁</标准名称>
+<汉语拼音>Zhǔbì Jiāo</汉语拼音>
+<渔民名称>丑未 (reads as "subi" )</渔民名称>
+<英文名称>Zhuibi Jiao, Subi Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.9166666670001 114.091666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc7685fb9-df7f-448f-8b63-a59fdcbec668">
+<FID>92</FID>
+<OBJECTID>93</OBJECTID>
+<序号>115</序号>
+<群岛>南沙</群岛>
+<标准名称>双黄沙洲</标准名称>
+<汉语拼音>Shuānghuáng Shāzhōu</汉语拼音>
+<渔民名称>双黄 (meaning double egg yolk)</渔民名称>
+<英文名称>Shuanghuang Shazhou, (double egg yolk shoal)</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.708333333 114.325</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb27edcfe-504b-49eb-8ee5-b6aeeec6f36a">
+<FID>93</FID>
+<OBJECTID>94</OBJECTID>
+<序号>116</序号>
+<群岛>南沙</群岛>
+<标准名称>南钥岛</标准名称>
+<汉语拼音>Nányuè Dǎo</汉语拼音>
+<渔民名称>第三峙</渔民名称>
+<英文名称>Nanyue Dao, Loaita Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.6666666670001 114.416666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf7307472-69cb-4e81-9853-68905bdebb1e">
+<FID>94</FID>
+<OBJECTID>95</OBJECTID>
+<序号>117</序号>
+<群岛>南沙</群岛>
+<标准名称>杨信沙洲</标准名称>
+<汉语拼音>Yángxìn Shāzhōu</汉语拼音>
+<渔民名称>铜锅 铜金 (reads as Dangim)</渔民名称>
+<英文名称>Yangxin Shazhou, Lankiam Cay</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.7166666670001 114.533333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9910199c-c8f0-46a0-b3c1-069e8982d038">
+<FID>95</FID>
+<OBJECTID>96</OBJECTID>
+<序号>118</序号>
+<群岛>南沙</群岛>
+<标准名称>库归礁</标准名称>
+<汉语拼音>Kùguī Jiāo</汉语拼音>
+<渔民名称>裤归</渔民名称>
+<英文名称>Kuigui Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.7836218900001 114.574643092</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5e3d4390-c6ad-4790-bc35-8b80108c5a83">
+<FID>96</FID>
+<OBJECTID>97</OBJECTID>
+<序号>119</序号>
+<群岛>南沙</群岛>
+<标准名称>长滩</标准名称>
+<汉语拼音>Cháng Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Chang Tan (long shoal)</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.054509055 114.73451515</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id8927d18d-3573-4a05-8a49-8f122498451f">
+<FID>97</FID>
+<OBJECTID>98</OBJECTID>
+<序号>120</序号>
+<群岛>南沙</群岛>
+<标准名称>蒙自礁</标准名称>
+<汉语拼音>Méngzì Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Mengzi Jiao, Menzies Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.1413834470001 114.802267514</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0ac38327-e718-4b44-808a-7ddc6e7729e0">
+<FID>98</FID>
+<OBJECTID>99</OBJECTID>
+<序号>122</序号>
+<群岛>南沙</群岛>
+<标准名称>太平岛</标准名称>
+<汉语拼音>Tàipíng Dǎo</汉语拼音>
+<渔民名称>黄山马 黄山马峙 (reads as Widuaba)</渔民名称>
+<英文名称>Taiping Dao, Itu Aba Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.3816514790001 114.364984813</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0e0619cd-d35e-4854-92a5-8534466314f6">
+<FID>99</FID>
+<OBJECTID>100</OBJECTID>
+<序号>123</序号>
+<群岛>南沙</群岛>
+<标准名称>敦谦沙洲</标准名称>
+<汉语拼音>Dūnqiān Shāzhōu</汉语拼音>
+<渔民名称>马东 黄山马东</渔民名称>
+<英文名称>Dunqian Shazhou, Sandy Cay</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.3816514790001 114.481242735</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb79ad2da-ed66-4378-bc5f-bc9500243c11">
+<FID>100</FID>
+<OBJECTID>101</OBJECTID>
+<序号>124</序号>
+<群岛>南沙</群岛>
+<标准名称>舶兰礁</标准名称>
+<汉语拼音>Bólán Jiāo</汉语拼音>
+<渔民名称>高佛</渔民名称>
+<英文名称>Bolan Jiao, Petley Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.4127423410001 114.579969625</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd8bdf6ae-6c6d-4c7b-8ff9-316e7cae42d0">
+<FID>101</FID>
+<OBJECTID>102</OBJECTID>
+<序号>125</序号>
+<群岛>南沙</群岛>
+<标准名称>安达礁</标准名称>
+<汉语拼音>āndá Jiāo</汉语拼音>
+<渔民名称>银饼 银锅</渔民名称>
+<英文名称>Anda Jiao, Eldad Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.3460756740001 114.707848652</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id3c5999fc-a79b-42eb-a2e4-e971d84cd1a6">
+<FID>102</FID>
+<OBJECTID>103</OBJECTID>
+<序号>126</序号>
+<群岛>南沙</群岛>
+<标准名称>鸿庥岛</标准名称>
+<汉语拼音>Hóngxiū Dǎo</汉语拼音>
+<渔民名称>南乙 南密</渔民名称>
+<英文名称>Hongxiu Dao, Namyit Island</英文名称>
+<Type>5</Type>
+<标注名称>()</标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.189500131 114.366666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9c46683e-db2c-43b4-ac5a-d0395135e0ab">
+<FID>103</FID>
+<OBJECTID>104</OBJECTID>
+<序号>127</序号>
+<群岛>南沙</群岛>
+<标准名称>南薰礁</标准名称>
+<汉语拼音>Nánxūn Jiāo</汉语拼音>
+<渔民名称>南乙峙仔 沙仔</渔民名称>
+<英文名称>Nanxun Jiao, Gaven Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.2152126230001 114.228287771</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id61584267-c3bf-42e3-8991-729269cc96c9">
+<FID>104</FID>
+<OBJECTID>105</OBJECTID>
+<序号>128</序号>
+<群岛>南沙</群岛>
+<标准名称>小现礁</标准名称>
+<汉语拼音>Xiǎoxiàn Jiāo</汉语拼音>
+<渔民名称>东南角</渔民名称>
+<英文名称>Xiaoxian Jiao, Discovery Small Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.0154432400001 114.034004779</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idcdbfa3d3-77d3-4d0d-bee7-c592c8db90e3">
+<FID>105</FID>
+<OBJECTID>106</OBJECTID>
+<序号>129</序号>
+<群岛>南沙</群岛>
+<标准名称>大现礁</标准名称>
+<汉语拼音>Dàxiàn Jiāo</汉语拼音>
+<渔民名称>劳牛劳</渔民名称>
+<英文名称>Daxian Jiao, Discovery Great Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.0666666670001 113.875</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9fc72360-4c0e-4221-8cd7-af03c40cffa1">
+<FID>106</FID>
+<OBJECTID>107</OBJECTID>
+<序号>130</序号>
+<群岛>南沙</群岛>
+<标准名称>福禄寺礁</标准名称>
+<汉语拼音>Fúlúsì Jiāo</汉语拼音>
+<渔民名称>西北角</渔民名称>
+<英文名称>Fulusi Jiao, Western or Flora Temple Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.2333333330001 113.633333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd2db6289-099d-4036-bf48-af228774d537">
+<FID>107</FID>
+<OBJECTID>108</OBJECTID>
+<序号>131</序号>
+<群岛>南沙</群岛>
+<标准名称>康乐礁</标准名称>
+<汉语拼音>Kānglè Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Kangle Jiao, Corn Wallis Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.99194265700004 114.386690559</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf8fbf0b7-4135-40e4-85ae-5c7f597bb645">
+<FID>108</FID>
+<OBJECTID>109</OBJECTID>
+<序号>133</序号>
+<群岛>南沙</群岛>
+<标准名称>景宏岛</标准名称>
+<汉语拼音>Jǐnghóng Dǎo</汉语拼音>
+<渔民名称>秤钩 (reads as Singao in Hainanese)</渔民名称>
+<英文名称>Jinghong Dao, Sin Cowe Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.88333333300005 114.333333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idfd29b2dc-c824-40d8-8faa-40b74b8b5d2b">
+<FID>109</FID>
+<OBJECTID>110</OBJECTID>
+<序号>134</序号>
+<群岛>南沙</群岛>
+<标准名称>南门礁</标准名称>
+<汉语拼音>Nánmén Jiāo</汉语拼音>
+<渔民名称>南门</渔民名称>
+<英文名称>Nanmen Jiao, Edmund Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.87045641000009 114.378513753</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6c4a2a13-3cdb-4cc0-8e67-34e38e8af199">
+<FID>110</FID>
+<OBJECTID>111</OBJECTID>
+<序号>135</序号>
+<群岛>南沙</群岛>
+<标准名称>西门礁</标准名称>
+<汉语拼音>Xīmén Jiāo</汉语拼音>
+<渔民名称>西门</渔民名称>
+<英文名称>Ximen Jiao, McKennan Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.87851375300005 114.445180419</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id78509fca-95f8-4e7e-bc09-a674273cc822">
+<FID>111</FID>
+<OBJECTID>112</OBJECTID>
+<序号>136</序号>
+<群岛>南沙</群岛>
+<标准名称>东门礁</标准名称>
+<汉语拼音>Dōngmén Jiāo</汉语拼音>
+<渔民名称>东门</渔民名称>
+<英文名称>Dongmen Jiao, Hugh Reef or Hughes Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.89607568000008 114.483885314</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id049b375e-3956-4b27-ac6c-9f3e618c2d76">
+<FID>112</FID>
+<OBJECTID>113</OBJECTID>
+<序号>137</序号>
+<群岛>南沙</群岛>
+<标准名称>安乐礁</标准名称>
+<汉语拼音>ānlè Jiáo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Anle Jiao, Hallet Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.91363760700006 114.512190365</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4c4ca3de-8a08-4a74-a29d-ca3ae06c395b">
+<FID>113</FID>
+<OBJECTID>114</OBJECTID>
+<序号>138</序号>
+<群岛>南沙</群岛>
+<标准名称>长线礁</标准名称>
+<汉语拼音>Chángxiàn Jiāo</汉语拼音>
+<渔民名称>长线</渔民名称>
+<英文名称>Changxian Jiao, Holiday Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.93712307700008 114.557266433</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id44e77c85-44fa-47e7-aa76-90113494cdf6">
+<FID>114</FID>
+<OBJECTID>115</OBJECTID>
+<序号>139</序号>
+<群岛>南沙</群岛>
+<标准名称>主权礁</标准名称>
+<汉语拼音>Zhǔquán Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhuquan Jiao, Empire Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.95256631700005 114.581990443</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id75278b0d-253f-4dd0-a1eb-7221b51d16d3">
+<FID>115</FID>
+<OBJECTID>116</OBJECTID>
+<序号>140</序号>
+<群岛>南沙</群岛>
+<标准名称>牛轭礁</标准名称>
+<汉语拼音>Niú'è Jiāo</汉语拼音>
+<渔民名称>牛轭 (meaning bull yoke)</渔民名称>
+<英文名称>Niu'e Jiao, Whitsum Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.97116897200004 114.644921144</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ida6981e26-d5c4-4571-8feb-d33dd08199de">
+<FID>116</FID>
+<OBJECTID>117</OBJECTID>
+<序号>141</序号>
+<群岛>南沙</群岛>
+<标准名称>染青东礁</标准名称>
+<汉语拼音>Rǎnqīng Dōngjiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Ranqing Dongjiao, Ross Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.87672323200007 114.586571095</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide63cec3f-898b-40cf-88ab-7eecbc47c1e7">
+<FID>117</FID>
+<OBJECTID>118</OBJECTID>
+<序号>142</序号>
+<群岛>南沙</群岛>
+<标准名称>染青沙洲</标准名称>
+<汉语拼音>Rǎnqīng Shāzhōu</汉语拼音>
+<渔民名称>染青峙</渔民名称>
+<英文名称>Ranqing Shazhou, Grierson Reef</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.88299005400006 114.550551981</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id301dd61e-3a2f-49a1-af18-e59c201728f7">
+<FID>118</FID>
+<OBJECTID>119</OBJECTID>
+<序号>143</序号>
+<群岛>南沙</群岛>
+<标准名称>龙虾礁</标准名称>
+<汉语拼音>Lóngxiā Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Longxia Jiao, Bamford Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.86363760700004 114.529752292</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id8d8a1378-c0e6-4129-b1c0-1181c3471edb">
+<FID>119</FID>
+<OBJECTID>120</OBJECTID>
+<序号>144</序号>
+<群岛>南沙</群岛>
+<标准名称>扁参礁</标准名称>
+<汉语拼音>Biǎnshēn Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bianshen Jiao, Tetley Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.83801833700005 114.4978662</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd5f5c450-65f8-49e9-a7b7-910eabdd7710">
+<FID>120</FID>
+<OBJECTID>121</OBJECTID>
+<序号>145</序号>
+<群岛>南沙</群岛>
+<标准名称>漳溪礁</标准名称>
+<汉语拼音>Zhāngxī Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhangxi Jiao, Jones Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.80580407900004 114.454580653</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9b96bfbf-ff34-4a85-96df-3e9a2ed6a976">
+<FID>121</FID>
+<OBJECTID>122</OBJECTID>
+<序号>146</序号>
+<群岛>南沙</群岛>
+<标准名称>屈原礁</标准名称>
+<汉语拼音>Qūyuán Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Quyuan Jiao, Higgen Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.77112785500009 114.388585431</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idda863227-351a-4e62-a6cf-b64c87249620">
+<FID>122</FID>
+<OBJECTID>123</OBJECTID>
+<序号>147</序号>
+<群岛>南沙</群岛>
+<标准名称>琼礁</标准名称>
+<汉语拼音>Qióng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Qiong Jiao, Lansdowne Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.74920909100007 114.351223426</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd6fa673b-9fe6-414a-92e0-2d79ce286d32">
+<FID>123</FID>
+<OBJECTID>124</OBJECTID>
+<序号>148</序号>
+<群岛>南沙</群岛>
+<标准名称>赤瓜礁</标准名称>
+<汉语拼音>Chìguā Jiāo</汉语拼音>
+<渔民名称>赤瓜线</渔民名称>
+<英文名称>Chigua Jiao, Johnson Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.67985664300005 114.276618881</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idae1e258e-1497-44e5-9c2f-a57c4d428b84">
+<FID>124</FID>
+<OBJECTID>125</OBJECTID>
+<序号>149</序号>
+<群岛>南沙</群岛>
+<标准名称>鬼喊礁</标准名称>
+<汉语拼音>Guǐhǎn Jiāo</汉语拼音>
+<渔民名称>鬼喊线</渔民名称>
+<英文名称>Guihan Jiao, Collins Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.73187097900006 114.25</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc06ed3c0-054d-49cb-84ab-c75a390aee43">
+<FID>125</FID>
+<OBJECTID>126</OBJECTID>
+<序号>150</序号>
+<群岛>南沙</群岛>
+<标准名称>华礁</标准名称>
+<汉语拼音>Huá Jiāo</汉语拼音>
+<渔民名称>秤钩线</渔民名称>
+<英文名称>Hua Jiao, Loveless Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.82448508100009 114.264652331</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id514f2943-d7c1-40ce-8ae1-181c1d3c8d40">
+<FID>126</FID>
+<OBJECTID>127</OBJECTID>
+<序号>151</序号>
+<群岛>南沙</群岛>
+<标准名称>吉阳礁</标准名称>
+<汉语拼音>Jíyáng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Jiyang Jiao, Gent Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.85928076900007 114.294747902</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide46c1294-4bee-41b5-ba6e-275072013508">
+<FID>127</FID>
+<OBJECTID>128</OBJECTID>
+<序号>152</序号>
+<群岛>南沙</群岛>
+<标准名称>泛爱暗沙</标准名称>
+<汉语拼音>Fàn'ài ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Fan'ai Ansha, Fancy Wreck Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.71666666700008 114.666666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idcd7cbe02-c5bb-4e3a-9ff5-22e7a239b7d1">
+<FID>128</FID>
+<OBJECTID>129</OBJECTID>
+<序号>153</序号>
+<群岛>南沙</群岛>
+<标准名称>伏波礁</标准名称>
+<汉语拼音>Fúbō Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Fubo Jiao, Genges South Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.38333333300005 114.183333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5e0a2485-e9b7-459e-8c0f-4739310c1d57">
+<FID>129</FID>
+<OBJECTID>130</OBJECTID>
+<序号>154</序号>
+<群岛>南沙</群岛>
+<标准名称>永暑礁</标准名称>
+<汉语拼音>Yǒngshǔ Jiāo</汉语拼音>
+<渔民名称>上[土戊]</渔民名称>
+<英文名称>Yongshu Jiao, Fiery Cross Reef or N.W. (Northwestern) Investigator Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.59148461600006 112.957963503</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb184bbd5-86e3-49db-b196-e32fb1af83da">
+<FID>130</FID>
+<OBJECTID>131</OBJECTID>
+<序号>155</序号>
+<群岛>南沙</群岛>
+<标准名称>逍遥暗沙</标准名称>
+<汉语拼音>Xiāoyáo ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xiaoyao Ansha, Daulle Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.43840511400009 112.445278373</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id59f85b78-ccd4-4d56-b983-aeb8bf9ba681">
+<FID>131</FID>
+<OBJECTID>132</OBJECTID>
+<序号>156</序号>
+<群岛>南沙</群岛>
+<标准名称>火艾礁</标准名称>
+<汉语拼音>Huǒ'ài Jiāo</汉语拼音>
+<渔民名称>火哀</渔民名称>
+<英文名称>Huo'ai Jiao, Irving Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8833333330001 114.933333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idcc7bd853-9494-4ca2-9d8d-4c813caadbbf">
+<FID>132</FID>
+<OBJECTID>133</OBJECTID>
+<序号>157</序号>
+<群岛>南沙</群岛>
+<标准名称>西月岛</标准名称>
+<汉语拼音>Xīyuè Dǎo</汉语拼音>
+<渔民名称>红草峙</渔民名称>
+<英文名称>Xiyue Dao, West York Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.083333333 115.033333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5f5d7fe0-f9b4-4610-91fd-efbc9ae18e0a">
+<FID>133</FID>
+<OBJECTID>134</OBJECTID>
+<序号>158</序号>
+<群岛>南沙</群岛>
+<标准名称>马欢岛</标准名称>
+<汉语拼音>Mǎhuān Dǎo</汉语拼音>
+<渔民名称>大罗孔 罗孔</渔民名称>
+<英文名称>Mahuan Dao, Nanshan Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.7287769440001 115.810251876</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id2d83ad47-0fe3-4c1e-bc69-dee0b45e072b">
+<FID>134</FID>
+<OBJECTID>135</OBJECTID>
+<序号>159</序号>
+<群岛>南沙</群岛>
+<标准名称>费信岛</标准名称>
+<汉语拼音>Fèixìn Dǎo</汉语拼音>
+<渔民名称>罗孔仔</渔民名称>
+<英文名称>Feixin Dao, Flat Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8166666670001 115.833333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4865c17d-2402-472f-a727-57200f82b09e">
+<FID>135</FID>
+<OBJECTID>136</OBJECTID>
+<序号>160</序号>
+<群岛>南沙</群岛>
+<标准名称>和平暗沙</标准名称>
+<汉语拼音>Hépíng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Heping Ansha, Third Thomas Reef</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8859912270001 115.922362153</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id841f49fb-4107-4b95-8ef8-f297a2eae829">
+<FID>136</FID>
+<OBJECTID>137</OBJECTID>
+<序号>161</序号>
+<群岛>南沙</群岛>
+<标准名称>火星礁</标准名称>
+<汉语拼音>Huǒxīng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Huoxing Jiao, Hopkins Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8400764250001 116.091229841</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id24593a86-16b6-4fc2-afaf-065680a00809">
+<FID>137</FID>
+<OBJECTID>138</OBJECTID>
+<序号>162</序号>
+<群岛>南沙</群岛>
+<标准名称>大渊滩</标准名称>
+<汉语拼音>Dàyuān Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Dayuan Tan, Nares Reef</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.4000000000001 116.183333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id70b50ccd-a025-42e3-9647-5c6dae209109">
+<FID>138</FID>
+<OBJECTID>139</OBJECTID>
+<序号>163</序号>
+<群岛>南沙</群岛>
+<标准名称>五方礁</标准名称>
+<汉语拼音>Wǔfāng Jiāo</汉语拼音>
+<渔民名称>五孔 五风</渔民名称>
+<英文名称>Wufang Jiao, Jackson Atoll</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.4916666670001 115.75</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9e10e8c9-39fb-412f-b738-52697c2f1a5d">
+<FID>139</FID>
+<OBJECTID>140</OBJECTID>
+<序号>164</序号>
+<群岛>南沙</群岛>
+<标准名称>五方尾</标准名称>
+<汉语拼音>Wǔfāngwěi</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wufangwi, Hamspoon Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.4651642330001 115.73226543</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id808db4de-eefb-4438-b484-088acdb9593e">
+<FID>140</FID>
+<OBJECTID>141</OBJECTID>
+<序号>165</序号>
+<群岛>南沙</群岛>
+<标准名称>五方南</标准名称>
+<汉语拼音>Wǔfāngnán</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wufangnan, Petch Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.4615333600001 115.778848138</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5a3ee579-3fba-490f-853f-a35a8c80e59d">
+<FID>141</FID>
+<OBJECTID>142</OBJECTID>
+<序号>166</序号>
+<群岛>南沙</群岛>
+<标准名称>五方西</标准名称>
+<汉语拼音>Wǔfāngxī</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wufangxi, Deane Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.5000000000001 115.710045664</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idca12a2c1-51f8-4ffc-a145-4250f1d1c246">
+<FID>142</FID>
+<OBJECTID>143</OBJECTID>
+<序号>167</序号>
+<群岛>南沙</群岛>
+<标准名称>五方北</标准名称>
+<汉语拼音>Wǔfāngběi</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wufangbei, Hoare Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.5333333330001 115.72671233</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6165087e-37fe-4279-9633-a059f390ed7d">
+<FID>143</FID>
+<OBJECTID>144</OBJECTID>
+<序号>168</序号>
+<群岛>南沙</群岛>
+<标准名称>五方头</标准名称>
+<汉语拼音>Wǔfāngtóu</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wufangtou, Dickinson Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.540808659 115.793378997</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id41073654-94c8-441c-b1ca-3dac660d498f">
+<FID>144</FID>
+<OBJECTID>145</OBJECTID>
+<序号>169</序号>
+<群岛>南沙</群岛>
+<标准名称>浔江暗沙</标准名称>
+<汉语拼音>Xúnjiāng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xunjiang Ansha, Shinko Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.4666666670001 116</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id455bf02f-4817-4710-bfed-e563486feaa8">
+<FID>145</FID>
+<OBJECTID>146</OBJECTID>
+<序号>170</序号>
+<群岛>南沙</群岛>
+<标准名称>半路礁</标准名称>
+<汉语拼音>Bànlù Jiāo</汉语拼音>
+<渔民名称>半路 半路线</渔民名称>
+<英文名称>Banlu Jiao, Hardy Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.1333333330001 116.133333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb6e773e3-c212-4ff1-aaf4-7e5929100e6e">
+<FID>146</FID>
+<OBJECTID>147</OBJECTID>
+<序号>171</序号>
+<群岛>南沙</群岛>
+<标准名称>南方浅滩</标准名称>
+<汉语拼音>Nánfāng Qiǎntān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Nanfang Qiantan, Southern Bank or Souther Shoal</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.483767189 116.843104373</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4b9cfe59-7e5b-46ef-8317-ce840d0d9b69">
+<FID>147</FID>
+<OBJECTID>148</OBJECTID>
+<序号>172</序号>
+<群岛>南沙</群岛>
+<标准名称>东坡礁</标准名称>
+<汉语拼音>Dōngpō Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Dongpo Jiao, Pennsyvania S. Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.3225314750001 116.502664711</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idae9bada3-0246-462e-abc3-7d170c4efefa">
+<FID>148</FID>
+<OBJECTID>149</OBJECTID>
+<序号>173</序号>
+<群岛>南沙</群岛>
+<标准名称>棕滩</标准名称>
+<汉语拼音>Zōng Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zong Tan, Brown Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.7356917160001 117.320303282</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4b89af59-0ccf-4f2e-b08f-996bc9671e6a">
+<FID>149</FID>
+<OBJECTID>150</OBJECTID>
+<序号>174</序号>
+<群岛>南沙</群岛>
+<标准名称>宝滩</标准名称>
+<汉语拼音>Bǎo Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bao Tan (treasure bank)</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.5000000000001 116.666666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9bd29d3d-33e4-4456-abf4-01cf0825144a">
+<FID>150</FID>
+<OBJECTID>151</OBJECTID>
+<序号>175</序号>
+<群岛>南沙</群岛>
+<标准名称>东华礁</标准名称>
+<汉语拼音>Dōnghuá Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Donghua Jiao, Foulerton Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.552025062 116.94008354</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id568be7a5-df0c-47ce-84b6-15e2da21acbf">
+<FID>151</FID>
+<OBJECTID>152</OBJECTID>
+<序号>176</序号>
+<群岛>南沙</群岛>
+<标准名称>彬礁</标准名称>
+<汉语拼音>Bīn Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bin Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.5808421 117.004258973</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idcb36259f-f907-4aa3-83c4-ca878dd3bea1">
+<FID>152</FID>
+<OBJECTID>153</OBJECTID>
+<序号>177</序号>
+<群岛>南沙</群岛>
+<标准名称>安塘滩</标准名称>
+<汉语拼音>āntáng Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Antang Tan, Amy Douglas Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8264160860001 116.290798191</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1f414558-d68a-4497-89fe-34e71e8d1c00">
+<FID>153</FID>
+<OBJECTID>154</OBJECTID>
+<序号>178</序号>
+<群岛>南沙</群岛>
+<标准名称>安塘礁</标准名称>
+<汉语拼音>āntáng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Antang Jiao, Amy Douglas Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.9368709070001 116.454596483</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id670e34dd-9b38-43fc-ae64-cf6e4075799f">
+<FID>154</FID>
+<OBJECTID>155</OBJECTID>
+<序号>179</序号>
+<群岛>南沙</群岛>
+<标准名称>鲎藤礁</标准名称>
+<汉语拼音>Hòuténg Jiāo</汉语拼音>
+<渔民名称>鲎藤</渔民名称>
+<英文名称>Houteng Jiao, Iroquois Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.6429370980001 116.172006185</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1edd4505-3e9e-446d-a01e-64412408abfd">
+<FID>155</FID>
+<OBJECTID>156</OBJECTID>
+<序号>180</序号>
+<群岛>南沙</群岛>
+<标准名称>巩珍礁</标准名称>
+<汉语拼音>Gǒngzhēn Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Gongzhen Jiao, Baker Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.7421065070001 116.180335834</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id10b69367-ba86-4bb1-a45f-2fc78cc9b0e7">
+<FID>156</FID>
+<OBJECTID>157</OBJECTID>
+<序号>181</序号>
+<群岛>南沙</群岛>
+<标准名称>礼乐滩</标准名称>
+<汉语拼音>Lǐyuè Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Liyue Tan, Reed Bank, Reed Tablemount</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.3301945570001 116.62414171</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd6a58e12-516d-4061-ad7d-793fb81adf7f">
+<FID>157</FID>
+<OBJECTID>158</OBJECTID>
+<序号>182</序号>
+<群岛>南沙</群岛>
+<标准名称>雄南礁</标准名称>
+<汉语拼音>Xióngnán Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xiongnan Jiao, Marie Louise Bank</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.9024912340001 116.80088387</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9c8f5b1c-efc1-4daf-ac39-3e3977b3bdb5">
+<FID>158</FID>
+<OBJECTID>159</OBJECTID>
+<序号>183</序号>
+<群岛>南沙</群岛>
+<标准名称>阳明礁</标准名称>
+<汉语拼音>Yángmíng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yangming Jiao, Pennsylvania N. Reef., Pennsylvania North Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8096002930001 116.84639989</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id21c77945-0365-4805-af2a-1a20873115a1">
+<FID>159</FID>
+<OBJECTID>160</OBJECTID>
+<序号>184</序号>
+<群岛>南沙</群岛>
+<标准名称>礼乐南礁</标准名称>
+<汉语拼音>Lǐyuè Nánjiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Liyue Nanjiao, North Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.9073017510001 116.757269435</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idb73f3b5b-fb0e-4278-b7fa-8e3e7a9a1f84">
+<FID>160</FID>
+<OBJECTID>161</OBJECTID>
+<序号>185</序号>
+<群岛>南沙</群岛>
+<标准名称>紫滩</标准名称>
+<汉语拼音>Zǐ Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zi Tan, Wood Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.64680143 117.150932343</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd359a632-3bdf-4f53-88cb-d7ec9b0c2663">
+<FID>161</FID>
+<OBJECTID>162</OBJECTID>
+<序号>186</序号>
+<群岛>南沙</群岛>
+<标准名称>莪兰暗沙</标准名称>
+<汉语拼音>élán ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Elan Ansha, Lord Auckland Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.333333333 117.283333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1055266c-8f24-43f3-9062-32c311654352">
+<FID>162</FID>
+<OBJECTID>163</OBJECTID>
+<序号>187</序号>
+<群岛>南沙</群岛>
+<标准名称>红石暗沙</标准名称>
+<汉语拼音>Hóngshí ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Hongshi Ansha, Carnatic Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.1000000000001 117.35</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idae23ae00-c38c-4e9b-905e-3038dff456aa">
+<FID>163</FID>
+<OBJECTID>164</OBJECTID>
+<序号>188</序号>
+<群岛>南沙</群岛>
+<标准名称>仙后滩</标准名称>
+<汉语拼音>Xiānhòu Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xianhou Tan, Fairie Queen</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.6333333330001 117.633333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc2302520-4395-4f9f-a2eb-1f5c8e7bd660">
+<FID>164</FID>
+<OBJECTID>165</OBJECTID>
+<序号>189</序号>
+<群岛>南沙</群岛>
+<标准名称>忠孝滩</标准名称>
+<汉语拼音>Zhōngxiào Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhongxiao Tan, Templier Bank or Templer Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.072862134 117.244983724</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4eb7a1e8-35e8-4757-a178-e66d11da1cc8">
+<FID>165</FID>
+<OBJECTID>166</OBJECTID>
+<序号>190</序号>
+<群岛>南沙</群岛>
+<标准名称>勇士滩</标准名称>
+<汉语拼音>Yǒngshì Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yongshi Tan, Leslie Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.083713032 117.454136596</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="iddc8b89ab-ac9d-4f43-a6d6-e003f1207030">
+<FID>166</FID>
+<OBJECTID>167</OBJECTID>
+<序号>191</序号>
+<群岛>南沙</群岛>
+<标准名称>神仙暗沙</标准名称>
+<汉语拼音>Shénxiān ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Shenxian Ansha, Sandy Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.0333333330001 117.633333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id8ee4707f-6de7-43c9-88be-2b392d0fd33d">
+<FID>167</FID>
+<OBJECTID>168</OBJECTID>
+<序号>192</序号>
+<群岛>南沙</群岛>
+<标准名称>海马滩</标准名称>
+<汉语拼音>Hǎimǎ Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Haima Tan, Seahorse Shoal or Routh Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8471227830001 117.792446112</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf141ec07-afea-4e0f-af25-360e8da9d41f">
+<FID>168</FID>
+<OBJECTID>169</OBJECTID>
+<序号>193</序号>
+<群岛>南沙</群岛>
+<标准名称>北恒礁</标准名称>
+<汉语拼音>Běihéng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Beiheng Jiao, Ganges N. Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.5533751030001 115.165525474</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ida35809b6-81dc-4d29-a6e9-f967e67b1150">
+<FID>169</FID>
+<OBJECTID>170</OBJECTID>
+<序号>194</序号>
+<群岛>南沙</群岛>
+<标准名称>恒礁</标准名称>
+<汉语拼音>Héng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Heng Jiao, Ganges Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.3434586430001 115.078142017</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idabc99fcf-1f1d-469c-8876-c3e751b10673">
+<FID>170</FID>
+<OBJECTID>171</OBJECTID>
+<序号>195</序号>
+<群岛>南沙</群岛>
+<标准名称>孔明礁</标准名称>
+<汉语拼音>Kǒngmíng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Kongming Jiao, Pennsylvania South Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.0157343230001 115.196367574</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id41e20866-1956-4e60-853a-993c6cdf875c">
+<FID>171</FID>
+<OBJECTID>172</OBJECTID>
+<序号>196</序号>
+<群岛>南沙</群岛>
+<标准名称>三角礁</标准名称>
+<汉语拼音>Sānjiǎo Jiāo</汉语拼音>
+<渔民名称>三角 三角线</渔民名称>
+<英文名称>Sanjiao Jiao, Livock Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.1809876290001 115.319005002</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id54aaaa3d-e92d-4b88-a948-0152c68a8242">
+<FID>172</FID>
+<OBJECTID>173</OBJECTID>
+<序号>197</序号>
+<群岛>南沙</群岛>
+<标准名称>禄沙礁</标准名称>
+<汉语拼音>Lùshā Jiāo</汉语拼音>
+<渔民名称>禄沙 一线</渔民名称>
+<英文名称>Lusha Jiao, Hopps Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.2448666940001 115.382258061</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id244b88b9-a2b4-488d-a472-57c554bcd47a">
+<FID>173</FID>
+<OBJECTID>174</OBJECTID>
+<序号>198</序号>
+<群岛>南沙</群岛>
+<标准名称>美济礁</标准名称>
+<汉语拼音>Měijì Jiāo</汉语拼音>
+<渔民名称>双门 双沙</渔民名称>
+<英文名称>Meiji Jiao, South Mischief Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.87319040000006 115.52532774</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd78f50e1-ccc9-41e7-8bc4-8d721d083eb2">
+<FID>174</FID>
+<OBJECTID>175</OBJECTID>
+<序号>199</序号>
+<群岛>南沙</群岛>
+<标准名称>仙娥礁</标准名称>
+<汉语拼音>Xiān'é Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xian'e Jiao, Alicia Annie Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.37260826900007 115.453363897</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc844235c-e5a3-4a2b-b634-7144e998a2c1">
+<FID>175</FID>
+<OBJECTID>176</OBJECTID>
+<序号>200</序号>
+<群岛>南沙</群岛>
+<标准名称>信义礁</标准名称>
+<汉语拼音>Xìnyì Jiāo</汉语拼音>
+<渔民名称>双挑 双担</渔民名称>
+<英文名称>Xinyi Jiao, First Thomas Shoal</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.32040351700005 115.942446112</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0cea63f7-386f-4e89-92fd-e2951217f369">
+<FID>176</FID>
+<OBJECTID>177</OBJECTID>
+<序号>201</序号>
+<群岛>南沙</群岛>
+<标准名称>海口礁</标准名称>
+<汉语拼音>Hǎikǒu Jiāo</汉语拼音>
+<渔民名称>脚跋 (meaning feet washing basin)</渔民名称>
+<英文名称>Haikou Jiao, Investigator N. E. Shoal, Investigator Northeast Shoal</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.16773285700009 116.46440044</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc0efbda7-14bf-41b7-9be8-0d1480398e93">
+<FID>177</FID>
+<OBJECTID>178</OBJECTID>
+<序号>202</序号>
+<群岛>南沙</群岛>
+<标准名称>半月礁</标准名称>
+<汉语拼音>Bànüè Jiāo</汉语拼音>
+<渔民名称>海公</渔民名称>
+<英文名称>Banyue Jiao, Half Moon Shoal</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.86368793600008 116.273061434</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1375fce6-6c8a-46d9-ae9e-6edcf9d7821f">
+<FID>178</FID>
+<OBJECTID>179</OBJECTID>
+<序号>203</序号>
+<群岛>南沙</群岛>
+<标准名称>舰长礁</标准名称>
+<汉语拼音>Jiànzhǎng Jiāo</汉语拼音>
+<渔民名称>石龙</渔民名称>
+<英文名称>Jianzhang Jiao, Royal Captain Shoal</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.04683374600006 116.703117781</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id238b50e6-117c-4d32-87d8-db3cd946ddf1">
+<FID>179</FID>
+<OBJECTID>180</OBJECTID>
+<序号>204</序号>
+<群岛>南沙</群岛>
+<标准名称>仁爱礁</标准名称>
+<汉语拼音>Rén'ài Jiāo</汉语拼音>
+<渔民名称>断节</渔民名称>
+<英文名称>Ren'ai Jiao, Second Thomas Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.74165929800006 115.871796289</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf76d3c53-cee6-4678-9c5f-715890eb22a0">
+<FID>180</FID>
+<OBJECTID>181</OBJECTID>
+<序号>205</序号>
+<群岛>南沙</群岛>
+<标准名称>仙宾礁</标准名称>
+<汉语拼音>Xiānbīn Jiāo</汉语拼音>
+<渔民名称>鱼鳞</渔民名称>
+<英文名称>Xianbin Jiao, Sabina Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.76756669400004 116.493265952</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6e7799cd-4c60-4d16-ada0-7db86e79a2f0">
+<FID>181</FID>
+<OBJECTID>182</OBJECTID>
+<序号>206</序号>
+<群岛>南沙</群岛>
+<标准名称>钟山礁</标准名称>
+<汉语拼音>Zhōngshān Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhongshan Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.77146681300007 116.717732857</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idfe7e9997-daef-42dc-b691-a9405c5631ef">
+<FID>182</FID>
+<OBJECTID>183</OBJECTID>
+<序号>207</序号>
+<群岛>南沙</群岛>
+<标准名称>立新礁</标准名称>
+<汉语拼音>Lìxīn Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Lixin Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.84257477300008 116.582658313</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="iddb2ea51d-10b1-4ff5-bf39-db4f4e63f586">
+<FID>183</FID>
+<OBJECTID>184</OBJECTID>
+<序号>208</序号>
+<群岛>南沙</群岛>
+<标准名称>牛车轮礁</标准名称>
+<汉语拼音>Niúchēlún Jiāo</汉语拼音>
+<渔民名称>牛车英</渔民名称>
+<英文名称>Niuchelun Jiao, Boxall Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.59519985300005 116.165992849</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id596032fb-5ad2-41c7-9081-a290ffd44bc1">
+<FID>184</FID>
+<OBJECTID>185</OBJECTID>
+<序号>209</序号>
+<群岛>南沙</群岛>
+<标准名称>片礁</标准名称>
+<汉语拼音>Piàn Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Pian Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.50693252700006 116.405317198</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7a85c774-c895-414a-9384-1ca3b99bc7a2">
+<FID>185</FID>
+<OBJECTID>186</OBJECTID>
+<序号>210</序号>
+<群岛>南沙</群岛>
+<标准名称>蓬勃暗沙</标准名称>
+<汉语拼音>Péngbó ànshā</汉语拼音>
+<渔民名称>东头乙辛</渔民名称>
+<英文名称>Bombay Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.44359980400009 116.925097482</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id532594e9-a9ef-47bf-bc97-646e35d43e89">
+<FID>186</FID>
+<OBJECTID>187</OBJECTID>
+<序号>211</序号>
+<群岛>南沙</群岛>
+<标准名称>指向礁</标准名称>
+<汉语拼音>Zhǐxiàng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhixiang Jiao, Director Reef, Director Rock 或 Director</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.46346656900005 115.942267449</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9abef2d3-0266-45d9-b325-04472013ce34">
+<FID>187</FID>
+<OBJECTID>188</OBJECTID>
+<序号>212</序号>
+<群岛>南沙</群岛>
+<标准名称>南乐暗沙</标准名称>
+<汉语拼音>Nánlè ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Nanle Ansha, Glasgow Shoal or Glasgow</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.48333333300008 115.516666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ida5f5a8c9-60e6-42c4-a0b2-22f6836e3a8f">
+<FID>188</FID>
+<OBJECTID>189</OBJECTID>
+<序号>213</序号>
+<群岛>南沙</群岛>
+<标准名称>校尉暗沙</标准名称>
+<汉语拼音>Xiàowèi ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xiaowei Ansha, North East Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.50270008300009 115.249533828</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="iddf039407-37a3-43af-b582-29f3ec27f2b3">
+<FID>189</FID>
+<OBJECTID>190</OBJECTID>
+<序号>214</序号>
+<群岛>南沙</群岛>
+<标准名称>都护暗沙</标准名称>
+<汉语拼音>Dūhù ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Duhu Ansha, North Viper Shoal or Seahorse</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.02693313800006 115.367332844</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id617031bd-32bb-442b-a9ba-76c9ff0f5cd4">
+<FID>190</FID>
+<OBJECTID>191</OBJECTID>
+<序号>215</序号>
+<群岛>南沙</群岛>
+<标准名称>保卫暗沙</标准名称>
+<汉语拼音>Bǎowèi ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Baowei Ansha, South Viper Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.51427223500008 114.997145553</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1da24faf-6273-4372-a9a8-b75ee1374493">
+<FID>191</FID>
+<OBJECTID>192</OBJECTID>
+<序号>216</序号>
+<群岛>南沙</群岛>
+<标准名称>司令礁</标准名称>
+<汉语拼音>Sīlìng Jiāo</汉语拼音>
+<渔民名称>眼镜</渔民名称>
+<英文名称>Siling Jiao, Commodore Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.37023845200008 115.212695506</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id403d395b-f88e-495d-89fe-d0f937421872">
+<FID>192</FID>
+<OBJECTID>193</OBJECTID>
+<序号>217</序号>
+<群岛>南沙</群岛>
+<标准名称>双礁</标准名称>
+<汉语拼音>Shuāng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Shuang Jiao, Galsgow Bank</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.34206641300005 115.406454885</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4c056e54-d13a-4aff-90e0-a5bd2e36aada">
+<FID>193</FID>
+<OBJECTID>194</OBJECTID>
+<序号>218</序号>
+<群岛>南沙</群岛>
+<标准名称>石龙岩</标准名称>
+<汉语拼音>Shílóngyán</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Shilongyan, Observation Rock</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.02995823000009 116.635824567</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4a9c13fe-9d88-4db0-9728-c3f68fb21e82">
+<FID>194</FID>
+<OBJECTID>195</OBJECTID>
+<序号>219</序号>
+<群岛>南沙</群岛>
+<标准名称>乙辛石</标准名称>
+<汉语拼音>Yǐxīnshí</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yixinshi, Madagascar Rock</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.54510290600007 116.957934085</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7172603f-c5b6-41b5-9382-d37feb7b409a">
+<FID>195</FID>
+<OBJECTID>196</OBJECTID>
+<序号>220</序号>
+<群岛>南沙</群岛>
+<标准名称>无乜礁</标准名称>
+<汉语拼音>Wúmiē Jiāo</汉语拼音>
+<渔民名称>无乜线</渔民名称>
+<英文名称>Wumie Jiao, Tennent Reef or Pigeon Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.86404222700008 114.638352204</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id19474d9d-09ad-4e57-b90f-16e4c27045b3">
+<FID>196</FID>
+<OBJECTID>197</OBJECTID>
+<序号>221</序号>
+<群岛>南沙</群岛>
+<标准名称>玉诺礁</标准名称>
+<汉语拼音>Yùnuò Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yunuo Jiao, Cay Marino</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.51284501200007 114.328591647</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id68792886-351a-4ebe-a046-fdccf5a77e5a">
+<FID>197</FID>
+<OBJECTID>198</OBJECTID>
+<序号>222</序号>
+<群岛>南沙</群岛>
+<标准名称>南华礁</标准名称>
+<汉语拼音>Nánhuá Jiāo</汉语拼音>
+<渔民名称>恶落门</渔民名称>
+<英文名称>Nanhua Jiao, Cornwallis South Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.73950224300006 114.224722816</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id342afc58-23b0-417a-94ae-884f0e4c485e">
+<FID>198</FID>
+<OBJECTID>199</OBJECTID>
+<序号>223</序号>
+<群岛>南沙</群岛>
+<标准名称>六门礁</标准名称>
+<汉语拼音>Liùmén Jiāo</汉语拼音>
+<渔民名称>六门 六门沙</渔民名称>
+<英文名称>Liumen Jiao, Alison Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.84424392900007 113.994509365</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1d80a07d-2794-4964-9407-cf3df39b9eed">
+<FID>199</FID>
+<OBJECTID>200</OBJECTID>
+<序号>224</序号>
+<群岛>南沙</群岛>
+<标准名称>石盘仔</标准名称>
+<汉语拼音>Shípánzǎi</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Shipanzai, Maralie Reef or Bittern Shoal</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.21569945900006 113.629558855</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1b63ed4f-2eea-4b96-a35c-6d4959a82d89">
+<FID>200</FID>
+<OBJECTID>201</OBJECTID>
+<序号>225</序号>
+<群岛>南沙</群岛>
+<标准名称>毕生礁</标准名称>
+<汉语拼音>Bìshēng Jiāo</汉语拼音>
+<渔民名称>石盘</渔民名称>
+<英文名称>Bisheng Jiao, Pearson Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.99115947500007 113.671685537</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id50e5b8b4-e30f-4b1b-9ab1-66c1f7b3e0c5">
+<FID>201</FID>
+<OBJECTID>202</OBJECTID>
+<序号>226</序号>
+<群岛>南沙</群岛>
+<标准名称>榆亚暗沙</标准名称>
+<汉语拼音>Yúyà ànshā</汉语拼音>
+<渔民名称>深匡</渔民名称>
+<英文名称>Yuya Ansha, Investigator Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.15644609400005 114.689502243</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide6fac6a4-75b1-435a-bd85-38081d418d78">
+<FID>202</FID>
+<OBJECTID>203</OBJECTID>
+<序号>227</序号>
+<群岛>南沙</群岛>
+<标准名称>二角礁</标准名称>
+<汉语拼音>èrjiǎo Jiāo</汉语拼音>
+<渔民名称>二角</渔民名称>
+<英文名称>Erjiao Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.21141778800006 114.7</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1d1c00aa-15bb-4338-b1c0-51ac2101dcbb">
+<FID>203</FID>
+<OBJECTID>204</OBJECTID>
+<序号>228</序号>
+<群岛>南沙</群岛>
+<标准名称>浪口礁</标准名称>
+<汉语拼音>Làngkǒu Jiāo</汉语拼音>
+<渔民名称>浪口</渔民名称>
+<英文名称>Langkou Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.14189667500006 114.545718329</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id395389da-841e-4cd1-965a-c9bd5d2b3a8e">
+<FID>204</FID>
+<OBJECTID>205</OBJECTID>
+<序号>229</序号>
+<群岛>南沙</群岛>
+<标准名称>线头礁</标准名称>
+<汉语拼音>Xiàntóu Jiāo</汉语拼音>
+<渔民名称>线排头</渔民名称>
+<英文名称>Xiantou Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.13333333300005 114.8</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id148ba84e-4467-46bc-8800-59da597389b0">
+<FID>205</FID>
+<OBJECTID>206</OBJECTID>
+<序号>230</序号>
+<群岛>南沙</群岛>
+<标准名称>金吾暗沙</标准名称>
+<汉语拼音>Jīnwǔ ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Jinwu Ansha, South West Shoa or Southwest Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.98333333300008 114.866666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5cea0d79-326a-45f6-9bc2-320f834c3b84">
+<FID>206</FID>
+<OBJECTID>207</OBJECTID>
+<序号>231</序号>
+<群岛>南沙</群岛>
+<标准名称>普宁暗沙</标准名称>
+<汉语拼音>Pǔníng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Puning Ansha, U.S.S. Plymouth</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.58333333300004 114.65</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id79174c13-e2c8-43a0-b3f3-71910c257571">
+<FID>207</FID>
+<OBJECTID>208</OBJECTID>
+<序号>232</序号>
+<群岛>南沙</群岛>
+<标准名称>簸箕礁</标准名称>
+<汉语拼音>Bòjī Jiāo</汉语拼音>
+<渔民名称>簸箕</渔民名称>
+<英文名称>Boji Jiao, Erica Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.11855390600005 114.117633875</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id840c5f28-3f5e-432b-a973-7e9675299051">
+<FID>208</FID>
+<OBJECTID>209</OBJECTID>
+<序号>233</序号>
+<群岛>南沙</群岛>
+<标准名称>安渡礁</标准名称>
+<汉语拼音>āndù Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Andu Tan, Asdasier Bank</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.76666666700004 113.708333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id40f3c307-26e5-4747-a146-4d2b21c56691">
+<FID>209</FID>
+<OBJECTID>210</OBJECTID>
+<序号>234</序号>
+<群岛>南沙</群岛>
+<标准名称>破浪礁</标准名称>
+<汉语拼音>Pòlàng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Polang Jiao, Gloucester Breakers</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.83807502000008 114.257596133</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idbef474f7-5eab-4b3d-b60a-db007a827e85">
+<FID>210</FID>
+<OBJECTID>211</OBJECTID>
+<序号>235</序号>
+<群岛>南沙</群岛>
+<标准名称>光星礁</标准名称>
+<汉语拼音>Guāngxīng Jiāo</汉语拼音>
+<渔民名称>大光星</渔民名称>
+<英文名称>Guangxing Jiao, Dallas Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.64092946700009 113.79309389</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id4daa9c3f-68c0-4a76-957b-dfd1c058f756">
+<FID>211</FID>
+<OBJECTID>212</OBJECTID>
+<序号>236</序号>
+<群岛>南沙</群岛>
+<标准名称>光星仔礁</标准名称>
+<汉语拼音>Guāngxīngzǎi Jiāo</汉语拼音>
+<渔民名称>光星仔</渔民名称>
+<英文名称>Guangxingzai Jiao, Ardasier Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.63236612500009 113.929051663</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6ce54354-ee3e-455c-8dd6-4f9e3b198119">
+<FID>212</FID>
+<OBJECTID>213</OBJECTID>
+<序号>237</序号>
+<群岛>南沙</群岛>
+<标准名称>息波礁</标准名称>
+<汉语拼音>Xībō Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xibo Jiao, Ardasier Breakers</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.93572776500008 114.033333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id53552c24-c0b0-4b05-802b-b3ad5d038a31">
+<FID>213</FID>
+<OBJECTID>214</OBJECTID>
+<序号>238</序号>
+<群岛>南沙</群岛>
+<标准名称>南海礁</标准名称>
+<汉语拼音>Nánhǎi Jiāo</汉语拼音>
+<渔民名称>铜钟</渔民名称>
+<英文名称>Nanhai Jiao, Mariveles Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.46666666700008 113.925</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id363fbd59-5b7e-4fec-bd4d-061a4fc7559d">
+<FID>214</FID>
+<OBJECTID>215</OBJECTID>
+<序号>239</序号>
+<群岛>南沙</群岛>
+<标准名称>柏礁</标准名称>
+<汉语拼音>Bǎi Jiāo</汉语拼音>
+<渔民名称>海口线</渔民名称>
+<英文名称>Bai Jiao, Barque Canada Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.17500000000007 113.316666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ided14ba7f-1e42-4f8b-886d-95ed5a180950">
+<FID>215</FID>
+<OBJECTID>216</OBJECTID>
+<序号>240</序号>
+<群岛>南沙</群岛>
+<标准名称>单柱石</标准名称>
+<汉语拼音>Dānzhùshí</汉语拼音>
+<渔民名称>单柱</渔民名称>
+<英文名称>Danzhushi, Lizzie Webber Reef</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.09378391400008 113.224309976</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5919eec8-1b3a-429f-9224-8912b5b2be2e">
+<FID>216</FID>
+<OBJECTID>217</OBJECTID>
+<序号>241</序号>
+<群岛>南沙</群岛>
+<标准名称>鸟鱼锭石</标准名称>
+<汉语拼音>Niǎoyúdìngshí</汉语拼音>
+<渔民名称>鸟鱼锭</渔民名称>
+<英文名称>Niaoyudingshi</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.24953998400008 113.352394431</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6f6f910e-f58e-4431-9d96-9c9be900ebf6">
+<FID>217</FID>
+<OBJECTID>218</OBJECTID>
+<序号>242</序号>
+<群岛>南沙</群岛>
+<标准名称>安波沙洲</标准名称>
+<汉语拼音>ānbō Shāzhōu</汉语拼音>
+<渔民名称>锅盖峙</渔民名称>
+<英文名称>Anbo Shazhou, Amboyne or Amboyna Cay</英文名称>
+<Type>4</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.85887948500005 112.914992947</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id80411698-2f2d-4f9e-836a-5d8c773ad536">
+<FID>218</FID>
+<OBJECTID>219</OBJECTID>
+<序号>243</序号>
+<群岛>南沙</群岛>
+<标准名称>隐遁暗沙</标准名称>
+<汉语拼音>Yǐndùn ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yindun Ansha, Stag Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.45203782100009 112.960189103</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id9da14e66-6457-41ac-a8d1-ea4c7449250d">
+<FID>219</FID>
+<OBJECTID>220</OBJECTID>
+<序号>245</序号>
+<群岛>南沙</群岛>
+<标准名称>华阳礁</标准名称>
+<汉语拼音>Huáyáng Jiāo</汉语拼音>
+<渔民名称>铜铳仔</渔民名称>
+<英文名称>Huayang Jiao, Cuarteron Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.90112756800005 112.850182051</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id94655c97-da10-40c7-a5eb-0722e4781f34">
+<FID>220</FID>
+<OBJECTID>221</OBJECTID>
+<序号>246</序号>
+<群岛>南沙</群岛>
+<标准名称>东礁</标准名称>
+<汉语拼音>Dōng Jiāo</汉语拼音>
+<渔民名称>大铜铳</渔民名称>
+<英文名称>Dong Jiao, East Reef or East London Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.82685577000007 112.573872432</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id002556e5-0610-4b76-942b-0e82c444e42e">
+<FID>221</FID>
+<OBJECTID>222</OBJECTID>
+<序号>247</序号>
+<群岛>南沙</群岛>
+<标准名称>中礁</标准名称>
+<汉语拼音>Zhōng Jiāo</汉语拼音>
+<渔民名称>弄鼻仔</渔民名称>
+<英文名称>Zhong Jiao, Central Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.92685577000009 112.366666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id637b29e6-ee79-472c-89a5-826aa8fc6904">
+<FID>222</FID>
+<OBJECTID>223</OBJECTID>
+<序号>248</序号>
+<群岛>南沙</群岛>
+<标准名称>西礁</标准名称>
+<汉语拼音>Xī Jiāo</汉语拼音>
+<渔民名称>大弄鼻</渔民名称>
+<英文名称>Xi Jiao, West Reef or West London Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.86834038600006 112.225364101</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id67db358f-9c46-46e8-9bb8-2ed4eebb912f">
+<FID>223</FID>
+<OBJECTID>224</OBJECTID>
+<序号>249</序号>
+<群岛>南沙</群岛>
+<标准名称>南威岛</标准名称>
+<汉语拼音>Nánwēi Dǎo</汉语拼音>
+<渔民名称>鸟仔峙</渔民名称>
+<英文名称>Nanwei Dao, Spratly Island, Storm Island</英文名称>
+<Type>5</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.62962179300007 111.918704487</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id23c78487-e141-4737-bbb6-d608e7868207">
+<FID>224</FID>
+<OBJECTID>225</OBJECTID>
+<序号>250</序号>
+<群岛>南沙</群岛>
+<标准名称>日积礁</标准名称>
+<汉语拼音>Rìjī Jiāo</汉语拼音>
+<渔民名称>西头乙辛</渔民名称>
+<英文名称>Riji Jiao, Ladd Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.65833333300009 111.675</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5d0339ef-f3fa-4ac3-a36e-36a1e28f8873">
+<FID>225</FID>
+<OBJECTID>226</OBJECTID>
+<序号>251</序号>
+<群岛>南沙</群岛>
+<标准名称>康泰滩</标准名称>
+<汉语拼音>Kāngtài Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Kangtai Tan, Coronation Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.29497884100005 111.549929471</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0c63ffe9-fa62-4c08-aea6-76007269c5ae">
+<FID>226</FID>
+<OBJECTID>227</OBJECTID>
+<序号>252</序号>
+<群岛>南沙</群岛>
+<标准名称>朱应滩</标准名称>
+<汉语拼音>Zhūyìng Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Zhuying Tan, Jubilee Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.53333333300009 111.497233977</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id12b3c080-48b8-4718-92e6-98317ed6b59c">
+<FID>227</FID>
+<OBJECTID>228</OBJECTID>
+<序号>253</序号>
+<群岛>南沙</群岛>
+<标准名称>奥援暗沙</标准名称>
+<汉语拼音>àoyuán ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Aoyuan Ansha, Owen Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.13777307600009 111.989082694</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id6b96f784-74fb-451f-bb0e-f0fbc43e781c">
+<FID>228</FID>
+<OBJECTID>229</OBJECTID>
+<序号>254</序号>
+<群岛>南沙</群岛>
+<标准名称>碎浪暗沙</标准名称>
+<汉语拼音>Suìlàng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Suilang Ansha</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.20331446300008 114.829511678</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id595c1382-4a53-4b50-a843-9040c35f3b32">
+<FID>229</FID>
+<OBJECTID>230</OBJECTID>
+<序号>255</序号>
+<群岛>南沙</群岛>
+<标准名称>南薇滩</标准名称>
+<汉语拼音>Nánwēi Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Nanwei Tan, Rifleman Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.73333333300008 111.65</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idde176950-631a-438f-a68c-2b86d047800d">
+<FID>230</FID>
+<OBJECTID>231</OBJECTID>
+<序号>256</序号>
+<群岛>南沙</群岛>
+<标准名称>蓬勃堡</标准名称>
+<汉语拼音>Péngbóbǎo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Pengbobao, Bombay Castle</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.93129551300007 111.666085251</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idfb924938-1ca6-4dbb-8058-985a14f32112">
+<FID>231</FID>
+<OBJECTID>232</OBJECTID>
+<序号>257</序号>
+<群岛>南沙</群岛>
+<标准名称>常骏暗沙</标准名称>
+<汉语拼音>Chángjùn ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Johnson Patch</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.83595257000007 111.580931411</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0ae593ea-ebc9-49ae-ba46-b7fcded52ba6">
+<FID>232</FID>
+<OBJECTID>233</OBJECTID>
+<序号>258</序号>
+<群岛>南沙</群岛>
+<标准名称>金盾暗沙</标准名称>
+<汉语拼音>Jīndùn ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Kingston Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.54963589900007 111.576806841</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7195c89d-94a5-42ca-98ec-a3e3651f134c">
+<FID>233</FID>
+<OBJECTID>234</OBJECTID>
+<序号>259</序号>
+<群岛>南沙</群岛>
+<标准名称>奥南暗沙</标准名称>
+<汉语拼音>àonán ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Aonan Ansha, Orleana Shoal.</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.70000000000005 111.722829057</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idda0dee68-46b5-4ae3-a466-e2ce3a927ee8">
+<FID>234</FID>
+<OBJECTID>235</OBJECTID>
+<序号>260</序号>
+<群岛>南沙</群岛>
+<标准名称>广雅滩</标准名称>
+<汉语拼音>Guǎngyǎ Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Guangya Tan, Prince of Wales Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.13333333300005 110.516666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide55e1eda-47be-42e7-a1f9-3cd896b726cb">
+<FID>235</FID>
+<OBJECTID>236</OBJECTID>
+<序号>261</序号>
+<群岛>南沙</群岛>
+<标准名称>人骏滩</标准名称>
+<汉语拼音>Rénjùn Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Renjun Tan, Alexandra Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.98839280700008 110.594820489</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="ide896189c-04f8-4fff-b641-b16f33b635d5">
+<FID>236</FID>
+<OBJECTID>237</OBJECTID>
+<序号>262</序号>
+<群岛>南沙</群岛>
+<标准名称>李准滩</标准名称>
+<汉语拼音>Lǐzhǔn Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Lizhun Tan, Grainger Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.77104390500006 110.465347968</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id2bb23417-d4db-4a21-8765-81cc635dcd36">
+<FID>237</FID>
+<OBJECTID>238</OBJECTID>
+<序号>263</序号>
+<群岛>南沙</群岛>
+<标准名称>西卫滩</标准名称>
+<汉语拼音>Xīwèi Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Xiwei Tan, Prince Consort Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.86666666700006 109.966666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idc2a3b910-3df2-485d-b18f-4ed5796590cd">
+<FID>238</FID>
+<OBJECTID>239</OBJECTID>
+<序号>264</序号>
+<群岛>南沙</群岛>
+<标准名称>万安滩</标准名称>
+<汉语拼音>Wàn'ān Tān</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Wan'an Tan, Vanguard Bank</英文名称>
+<Type>1</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.50833333300005 109.775</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf884b21b-ca00-4951-9626-b6fd61f42f46">
+<FID>239</FID>
+<OBJECTID>240</OBJECTID>
+<序号>265</序号>
+<群岛>南沙</群岛>
+<标准名称>弹丸礁</标准名称>
+<汉语拼音>Dànwán Jiāo</汉语拼音>
+<渔民名称>石公厘</渔民名称>
+<英文名称>Danwan Jiao, Swallow Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.38333333300005 113.833333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id439164ce-c044-407d-b9f1-dc8fa57f6add">
+<FID>240</FID>
+<OBJECTID>241</OBJECTID>
+<序号>266</序号>
+<群岛>南沙</群岛>
+<标准名称>皇路礁</标准名称>
+<汉语拼音>Huánglù Jiāo</汉语拼音>
+<渔民名称>五百二</渔民名称>
+<英文名称>Royal Charlotte Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>6.95000000000005 113.583333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id90848176-d083-44b1-a7cb-54955c104979">
+<FID>241</FID>
+<OBJECTID>242</OBJECTID>
+<序号>267</序号>
+<群岛>南沙</群岛>
+<标准名称>南通礁</标准名称>
+<汉语拼音>Nántóng Jiāo</汉语拼音>
+<渔民名称>丹积 丹节</渔民名称>
+<英文名称>Nantong Jiao, Louisa Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>6.33333333300004 113.233333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idaaefdcfe-9b76-4ca4-99f1-ab6256beb8f2">
+<FID>242</FID>
+<OBJECTID>243</OBJECTID>
+<序号>269</序号>
+<群岛>南沙</群岛>
+<标准名称>盟谊暗沙</标准名称>
+<汉语拼音>Méngyì ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Friendship Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.95000000000005 112.533333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id161ee55d-ff05-48a3-9e63-168cd0e7fe94">
+<FID>243</FID>
+<OBJECTID>244</OBJECTID>
+<序号>270</序号>
+<群岛>南沙</群岛>
+<标准名称>义净礁</标准名称>
+<汉语拼音>Yìjìng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yijing Jiao, Aitken Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.90000000000009 112.55</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf9459fa4-957e-4840-ba8a-134299840c11">
+<FID>244</FID>
+<OBJECTID>245</OBJECTID>
+<序号>271</序号>
+<群岛>南沙</群岛>
+<标准名称>海康暗沙</标准名称>
+<汉语拼音>Hǎikāng ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Haikang Ansha, Hardie Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.93333333300006 112.516666667</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idf76fbef7-0836-482e-881e-b912f910ba02">
+<FID>245</FID>
+<OBJECTID>246</OBJECTID>
+<序号>272</序号>
+<群岛>南沙</群岛>
+<标准名称>法显暗沙</标准名称>
+<汉语拼音>Fǎxián ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Faxian Ansha, Buck Reef</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.77607778100008 112.53926209</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="idd0fc7d8e-9214-44b9-b187-f34bc80dbf82">
+<FID>246</FID>
+<OBJECTID>247</OBJECTID>
+<序号>273</序号>
+<群岛>南沙</群岛>
+<标准名称>康西暗沙</标准名称>
+<汉语拼音>Kāngxī ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Mordy Reef</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.61492548800004 112.357462744</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id890f5143-73a0-4dbf-a26d-c5ad33a122f0">
+<FID>247</FID>
+<OBJECTID>248</OBJECTID>
+<序号>274</序号>
+<群岛>南沙</群岛>
+<标准名称>北安礁</标准名称>
+<汉语拼音>Běi'ān Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Bei'an Jiao</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.65000000000009 112.533333333</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7a76637c-c8f6-421a-a8f0-f2074109ff4e">
+<FID>248</FID>
+<OBJECTID>249</OBJECTID>
+<序号>275</序号>
+<群岛>南沙</群岛>
+<标准名称>南安礁</标准名称>
+<汉语拼音>Nán'ān Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Nan'an Jiao, Sea-horse Breakers</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.52719738500008 112.603275166</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7b998f1c-32db-439d-8f0d-7548790bb919">
+<FID>249</FID>
+<OBJECTID>250</OBJECTID>
+<序号>276</序号>
+<群岛>南沙</群岛>
+<标准名称>南屏礁</标准名称>
+<汉语拼音>Nánpíng Jiāo</汉语拼音>
+<渔民名称>墨瓜线</渔民名称>
+<英文名称>Nanping Jiao, Hayes Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.36053071800006 112.624129411</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id5631f176-f796-4844-be1b-3aa85e216c68">
+<FID>250</FID>
+<OBJECTID>251</OBJECTID>
+<序号>278</序号>
+<群岛>南沙</群岛>
+<标准名称>隐波暗沙</标准名称>
+<汉语拼音>Yǐnbō ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Yinbo Ansha, Connel Reef</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.09386405200007 112.583540525</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id7aa2d893-8fa2-46d4-9134-8920b686f6bf">
+<FID>251</FID>
+<OBJECTID>252</OBJECTID>
+<序号>279</序号>
+<群岛>南沙</群岛>
+<标准名称>海安礁</标准名称>
+<汉语拼音>Hǎi'ān Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Hai'an Jiao, Stigant Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.02106143700007 112.501533987</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1bd11ce9-e781-4a9f-99d8-6d081fcea7d8">
+<FID>252</FID>
+<OBJECTID>253</OBJECTID>
+<序号>280</序号>
+<群岛>南沙</群岛>
+<标准名称>琼台礁</标准名称>
+<汉语拼音>Qióngtái Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Qiongtai Jiao, Luconia Breakers</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.00941111400005 112.642744447</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id0dafa44f-0064-4090-9acd-544906861a28">
+<FID>253</FID>
+<OBJECTID>254</OBJECTID>
+<序号>281</序号>
+<群岛>南沙</群岛>
+<标准名称>潭门礁</标准名称>
+<汉语拼音>Tánmén Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Tanmen Jiao, Richmond Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.06973464100008 112.685986925</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id1662b90e-0a30-4aab-b689-e4c4efcb265b">
+<FID>254</FID>
+<OBJECTID>255</OBJECTID>
+<序号>282</序号>
+<群岛>南沙</群岛>
+<标准名称>海宁礁</标准名称>
+<汉语拼音>Hǎiníng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Haining Jiao, Herald Reef</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.96533987100008 112.590588886</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id25fee5e6-3e34-4c87-aa18-3ee3a32df22e">
+<FID>255</FID>
+<OBJECTID>256</OBJECTID>
+<序号>283</序号>
+<群岛>南沙</群岛>
+<标准名称>澄平礁</标准名称>
+<汉语拼音>Chéngpíng Jiāo</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Chengping Jiao, Sterra Balanca</英文名称>
+<Type>3</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.90982549700004 112.531799346</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id3d565bea-c09d-4b21-9933-72e81cb02095">
+<FID>256</FID>
+<OBJECTID>257</OBJECTID>
+<序号>284</序号>
+<群岛>南沙</群岛>
+<标准名称>欢乐暗沙</标准名称>
+<汉语拼音>Huānlè ànshā</汉语拼音>
+<渔民名称> </渔民名称>
+<英文名称>Huanle Ansha, Comus Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.02126862800009 112.924129411</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+<featureMember>
+<南海诸岛 id="id63322ae5-d7f3-4f55-b204-72c6e37acd8b">
+<FID>257</FID>
+<OBJECTID>258</OBJECTID>
+<序号>285</序号>
+<群岛>南沙</群岛>
+<标准名称>曾母暗沙</标准名称>
+<汉语拼音>Zēngmǔ ànshā</汉语拼音>
+<渔民名称>沙排</渔民名称>
+<英文名称>Zengmu Ansha, James Shoal</英文名称>
+<Type>2</Type>
+<标注名称> </标注名称>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>3.96121249000009 112.272424981</pos>
+</Point>
+</pointProperty>
+</南海诸岛>
+</featureMember>
+</FeatureCollection>

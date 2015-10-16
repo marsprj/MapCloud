@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCollection xmlns:fme="http://www.safe.com/gml/fme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xsi:schemaLocation="http://www.safe.com/gml/fme 4航线.xsd">
+<boundedBy>
+<Envelope srsName="EPSG:4326" srsDimension="2">
+<lowerCorner>-9.693527 92.670292</lowerCorner>
+<upperCorner>26.841772 134.700739</upperCorner>
+</Envelope>
+</boundedBy>
+<featureMember>
+<航线 id="id388f3074-d14d-4877-b996-56bd95c3e1d9">
+<FID>0</FID>
+<OBJECTID>1</OBJECTID>
+<航线名称>马尼拉-香港</航线名称>
+<航线里程>637海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>22.181789 114.211326 14.36166 120.43734</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idebe73700-5082-4c81-94cb-d3f6cda885a0">
+<FID>1</FID>
+<OBJECTID>2</OBJECTID>
+<航线名称>胡志明-香港</航线名称>
+<航线里程>935海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>22.216743 114.206847 15.879612 115.529887 11.752142 109.708548 10.604541 108.443028 10.292111 106.793245</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id5b3ffe65-4842-48b6-8db9-3459deba5653">
+<FID>2</FID>
+<OBJECTID>3</OBJECTID>
+<航线名称>曼谷-马尼拉</航线名称>
+<航线里程>1435海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.383045 120.349887 9.116574 108.508038 8.267038 104.67134 12.387262 100.481848 13.449182 100.878748</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id49788d5d-8862-42d1-86b4-d1d79fb801ac">
+<FID>3</FID>
+<OBJECTID>4</OBJECTID>
+<航线名称>泗水(苏腊巴亚)-三马林达</航线名称>
+<航线里程>1540海里</航线里程>
+<航线重要性>三级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>-6.890712 112.541291 -4.54055 116.867508 -3.76725 116.999772 -1.646197 116.580947</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id60c1efc7-ac5f-4b4b-a077-abfead041ba5">
+<FID>4</FID>
+<OBJECTID>5</OBJECTID>
+<航线名称>加尔各答—新加坡</航线名称>
+<航线里程>1649海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>12.446044 92.670292 6.143329 97.834766 2.823489 100.768398 1.204033 103.294606 1.204033 103.742798</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id7bc2700e-3601-4182-84c7-63ad1878144a">
+<FID>5</FID>
+<OBJECTID>6</OBJECTID>
+<航线名称>曼谷-新加坡</航线名称>
+<航线里程>842海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>12.373442 100.503564 3.083714 104.292876 1.77989 104.455852 1.331706 104.333612</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idc83b16ef-01e4-4335-91cd-c0d908b2f7f1">
+<FID>6</FID>
+<OBJECTID>7</OBJECTID>
+<航线名称>新加坡-胡志明</航线名称>
+<航线里程>649海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.294902 106.792401 9.900606 106.826209 8.70645 106.7987 1.352074 104.394732</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idff345b76-639d-455b-b90c-dc17815955fd">
+<FID>7</FID>
+<OBJECTID>8</OBJECTID>
+<航线名称>新加坡-旧金山</航线名称>
+<航线里程>7347海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>1.392818 104.4151 3.267066 105.474476 8.849058 109.42678 12.475314 112.869756 14.981092 117.16838 19.768564 121.079905 22.722539 124.461777</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id496350be-8311-4164-ad06-c7b2de60216b">
+<FID>8</FID>
+<OBJECTID>9</OBJECTID>
+<航线名称>新加坡-马尼拉</航线名称>
+<航线里程>1330海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>1.377785 104.403084 2.994329 105.322636 4.190528 106.253451 7.382249 108.937829 10.662185 113.684645 11.375211 115.212613 14.383045 120.363407</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idb150da4f-de10-4932-ba15-1f7a672ae1c2">
+<FID>9</FID>
+<OBJECTID>10</OBJECTID>
+<航线名称>仰光—新加坡</航线名称>
+<航线里程>1109海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>16.488638 96.408668 5.87471 98.038484</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="ide64d5554-9c00-4174-8383-497347e7a605">
+<FID>10</FID>
+<OBJECTID>11</OBJECTID>
+<航线名称>0</航线名称>
+<航线里程> </航线里程>
+<航线重要性> </航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.132503 106.839449 4.041207 109.345273</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id6ef98754-fcbf-4f7f-ba32-d7be0498143d">
+<FID>11</FID>
+<OBJECTID>12</OBJECTID>
+<航线名称>高雄-香港</航线名称>
+<航线里程>370海里</航线里程>
+<航线重要性>三级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>22.184724 114.204141 22.538148 120.295565</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id0cbaa8a4-5748-454b-848e-7a0e4ce3685e">
+<FID>12</FID>
+<OBJECTID>13</OBJECTID>
+<航线名称>马尼拉-胡志明市</航线名称>
+<航线里程>907海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.293358 106.796625 10.326628 107.185407 10.639626 108.601678 12.805485 113.155735 14.463949 119.984767 14.356077 120.444543 14.612269 120.917839</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idd90e2da8-b7dc-49c5-9e01-d04734e6c1c5">
+<FID>13</FID>
+<OBJECTID>14</OBJECTID>
+<航线名称>新加坡-泗水（苏腊巴亚）</航线名称>
+<航线里程>763海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>0.812856 104.246774 -2.6952 109.276927 -3.824504 110.304727 -6.887593 112.559887</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id98ef5b3e-a17c-4b12-823d-99cd86981866">
+<FID>14</FID>
+<OBJECTID>15</OBJECTID>
+<航线名称>雅加达-马尼拉</航线名称>
+<航线里程>1578海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.612269 120.904319 13.762805 119.930671 10.568556 118.092362 6.805348 115.204202 3.552404 111.695658 2.510612 109.599114 1.702692 108.572202 -2.282516 107.746606 -3.45558 107.138078 -4.682572 107.016374 -5.653632 106.839338 -6.100116 106.882122</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id1cad2ed6-1ea3-402f-ac1a-4d69bc0034f3">
+<FID>15</FID>
+<OBJECTID>16</OBJECTID>
+<航线名称>新加坡-雅加达</航线名称>
+<航线里程>525海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>-6.098337 106.867617 -3.698281 106.732393 -3.509513 106.732393 -3.172425 106.380801 -2.943209 106.083297 -2.821857 105.893977 -2.498257 105.839889 -2.363417 105.650569 -2.201617 105.271929 -1.878017 104.866241 -0.826305 104.731013 -0.327417 105.028513 0.117535 104.852721 0.832159 104.230669</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id16a3bc9f-f838-4951-adcd-4769ba052063">
+<FID>16</FID>
+<OBJECTID>17</OBJECTID>
+<航线名称>巽他海峡-上海</航线名称>
+<航线里程>2536海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>-9.371014 115.778324 -8.25435 115.778324 -7.729654 115.075124 -7.151138 114.236708 -6.440485 113.89351 -3.538773 110.067462 -2.622725 109.202006 -2.097341 108.80983 -0.979221 108.512342 2.045669 108.23343 4.283931 109.491054 7.695243 110.35651 9.057083 110.843342 14.126865 113.656094 15.879713 115.562814 20.302289 117.09091 22.068617 117.685918 23.673161 118.943504 24.886668 119.781928 25.358588 119.984776 26.841772 120.539208</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="ida8ba63fc-2a7c-4091-b69d-3b7f7cf98b64">
+<FID>17</FID>
+<OBJECTID>18</OBJECTID>
+<航线名称>新加坡-巴厘巴板</航线名称>
+<航线里程>1053海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>0.790092 104.270395 -2.390508 108.800547 -2.713956 109.300883 -3.495628 110.017587 -4.398596 112.492275 -4.5738 113.898643 -4.533368 115.670131 -4.021236 116.968339</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id0445d7f6-a00c-4449-b6ec-526027f42aa4">
+<FID>18</FID>
+<OBJECTID>19</OBJECTID>
+<航线名称>胡志明市-香港</航线名称>
+<航线里程>917海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>22.176162 114.209482 17.35501 110.720586 11.476842 109.368298 10.60027 108.39465 10.299613 106.752465</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="ide831604d-5a8d-4f4e-a4b4-8932abdb82bd">
+<FID>19</FID>
+<OBJECTID>20</OBJECTID>
+<航线名称>马尼拉-龙目海峡</航线名称>
+<航线里程>1578海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.24116 120.535835 13.76244 120.644027 13.52308 121.103803 13.124136 121.806971 12.93796 121.861083 12.326248 121.861083 5.996472 120.049019 4.347528 119.426971 -0.519496 118.994235 -2.487592 118.615579 -8.764198 115.748747</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idf16131d5-9488-4993-ba6d-bd458d72584d">
+<FID>20</FID>
+<OBJECTID>21</OBJECTID>
+<航线名称>泗水(苏腊巴亚)-旧金山</航线名称>
+<航线里程>7343海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>-1.607881 116.566467 -2.350505 116.729603 2.186263 121.229187 6.142435 126.979443 8.896899 131.057574</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idd0fff134-dbd4-4134-8089-6537e700d8e7">
+<FID>21</FID>
+<OBJECTID>22</OBJECTID>
+<航线名称>泗水(苏腊巴亚)-三宝颜</航线名称>
+<航线里程>982海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>-1.607876 116.552877 -2.377508 116.743193 4.711192 122.031221 5.702221 122.364275 6.472493 122.377875 6.893205 122.070304</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id86367e75-eba1-4878-aeec-f389923691e9">
+<FID>22</FID>
+<OBJECTID>23</OBJECTID>
+<航线名称>马尼拉-托雷斯海峡</航线名称>
+<航线里程>2193海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.283166 120.491731 13.773742 120.654835 13.130254 121.796723 12.45995 121.878291 10.020062 121.769555 7.09755 121.878291 6.078702 122.775507 1.654716 125.385523 0.212095 127.166331 -1.385865 128.498523 -3.024449 129.572443 -6.315169 130.551211 -9.633132 134.520691</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id81195d3b-1199-45aa-aa5c-f0a164c69c42">
+<FID>23</FID>
+<OBJECTID>24</OBJECTID>
+<航线名称>马尼拉-达尔文港</航线名称>
+<航线里程>1834海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.268737 120.491716 13.767689 120.654836 13.131217 121.796724 12.914545 121.878292 10.598849 121.796724 7.213341 121.878292 6.983125 121.905476 6.468527 122.408452 6.089349 122.789092 2.094443 125.113652 1.674639 125.371924 -1.859836 126.377876 -3.606761 127.465387 -7.980843 128.240244 -8.996496 128.675243</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id93a7a024-dc00-4db6-aa67-acee57bf90b5">
+<FID>24</FID>
+<OBJECTID>25</OBJECTID>
+<航线名称>龙目海峡-横滨</航线名称>
+<航线里程>3037海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>-8.701322 115.774634 -4.702968 117.596218 -2.493704 118.615754 -0.609736 118.996394 0.000184 119.050762 1.409768 120.464538 2.14168 121.185002 3.727472 123.44161 5.841856 126.554597 8.877888 128.172293 10.748315 129.055909</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id1f650aab-2885-4d96-a88b-3ce0c66232ed">
+<FID>25</FID>
+<OBJECTID>26</OBJECTID>
+<航线名称>马尼拉-上海</航线名称>
+<航线里程>1156海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.375429 120.403357 15.469229 119.546941 16.536669 119.682877 19.646741 119.682877 23.152187 119.818813 26.749859 120.851949</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id2ce648d1-8ad0-4c53-ba90-a08c257aa019">
+<FID>26</FID>
+<OBJECTID>27</OBJECTID>
+<航线名称>马尼拉-上海</航线名称>
+<航线里程>1156海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.349077 120.430543 15.495587 119.560527 16.628923 119.696479 21.201795 120.906335 23.890173 122.224943 25.866917 122.809471 26.407229 122.809471</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idd5cc69ce-8c85-4337-9e75-26748ee5bb80">
+<FID>27</FID>
+<OBJECTID>28</OBJECTID>
+<航线名称>马尼拉-旧金山</航线名称>
+<航线里程>7343海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.272976 120.508701 13.76096 120.671837 13.380232 121.365117 13.065152 121.868093 12.946992 122.588573 13.235824 122.846861 13.537776 122.860461 15.231368 123.621709 17.541992 125.375325</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id4d762655-a112-469a-b962-8e726086b5cd">
+<FID>28</FID>
+<OBJECTID>29</OBJECTID>
+<航线名称>马尼拉-巴拿马</航线名称>
+<航线里程>9370海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.259848 120.522301 13.747832 120.658237 13.380232 121.365117 13.117664 121.813725 13.052016 121.881693 12.933864 122.574989 13.222688 122.846861 13.564032 122.887645 17.029976 126.585197</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id04441e95-72de-4e82-b776-a9d0b726450f">
+<FID>29</FID>
+<OBJECTID>30</OBJECTID>
+<航线名称>马尼拉-火奴鲁鲁</航线名称>
+<航线里程>4767海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.259848 120.481517 13.747832 120.671837 13.314592 121.473869 13.091408 121.840909 12.986376 122.180765 12.933864 122.561389 13.235824 122.846861 13.472136 122.874045 14.863768 127.985389</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id53e42ad0-a0e8-444a-a7a9-f7860b1bcc76">
+<FID>30</FID>
+<OBJECTID>31</OBJECTID>
+<航线名称>泗水(苏腊巴亚)-新加坡</航线名称>
+<航线里程>2782海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>22.169705 114.214736 15.872065 115.546928 10.901665 112.569864 1.800546 109.035448 0.364954 108.38294 -0.867486 108.532476 -2.099934 108.79076 -3.345914 109.86468 -6.325446 112.52908 -6.880722 112.54268</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idecbcdb5f-e030-4825-86f8-1c7a1d3896f4">
+<FID>31</FID>
+<OBJECTID>32</OBJECTID>
+<航线名称>巽他群岛-科伦坡</航线名称>
+<航线里程>1781海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>0.991952 93.837463 -4.873424 102.184125 -6.312616 105.147597 -5.6066 106.316669 -5.79668 107.050749 -4.085944 116.947101</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id2e4f4d21-2722-4ae7-a906-76d61200769d">
+<FID>32</FID>
+<OBJECTID>33</OBJECTID>
+<航线名称>新加坡-托雷斯海峡</航线名称>
+<航线里程>2468海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>0.765555 104.318366 -1.676253 107.82559 -2.680109 109.293734 -3.616133 110.15015 -6.003681 113.317542 -6.492045 113.929286 -7.197457 114.255526 -8.106351 117.151008 -7.753645 122.928432 -7.373809 127.31928 -9.693527 134.700739</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id3e7c8cdf-adfd-4503-b3e3-248d56f305b0">
+<FID>33</FID>
+<OBJECTID>34</OBJECTID>
+<航线名称>马尼拉-横滨</航线名称>
+<航线里程>1758海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.35025 120.427152 15.54125 119.516352 16.639622 119.693072 18.73049 120.264016 19.828858 121.120432 23.229826 124.450944</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id109499cc-5b78-4521-87ab-30a5cf176338">
+<FID>34</FID>
+<OBJECTID>35</OBJECTID>
+<航线名称>马尼拉-旧金山</航线名称>
+<航线里程>6221海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.363482 120.413552 15.528018 119.502752 16.652854 119.706672 18.73049 120.250432 19.789162 121.106848 22.740194 125.633632</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="id61307d12-249b-468b-8ad1-4528768edc0d">
+<FID>35</FID>
+<OBJECTID>36</OBJECTID>
+<航线名称>马尼拉-巴拿马</航线名称>
+<航线里程>9347海里</航线里程>
+<航线重要性>一级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>14.31055 120.427152 15.514786 119.529952 16.679322 119.706672 18.717258 120.264016 19.789162 121.093248 22.038834 126.625984</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idfcb1e79a-7371-419d-9a27-bf4f5fc1b836">
+<FID>36</FID>
+<OBJECTID>37</OBJECTID>
+<航线名称>基隆-香港</航线名称>
+<航线里程>497海里</航线里程>
+<航线重要性>二级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>22.171162 114.228319 23.507738 118.483219 25.400106 121.487475 25.241306 121.582627</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+<featureMember>
+<航线 id="idb4be556c-f8cb-4dd5-a5db-cce25339ab55">
+<FID>37</FID>
+<OBJECTID>38</OBJECTID>
+<航线名称>新加坡-香港</航线名称>
+<航线里程>1454海里</航线里程>
+<航线重要性>三级</航线重要性>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>1.420474 104.42712 3.113938 105.405872 9.081378 110.000608 12.979026 113.806912 15.935858 115.546944 22.172127 114.214752</posList>
+</LineString>
+</curveProperty>
+</航线>
+</featureMember>
+</FeatureCollection>

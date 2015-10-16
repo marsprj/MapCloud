@@ -3,11 +3,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="css/earth.css">
+	<link rel="stylesheet" type="text/css" href="css/radi_earth.css">
 	<script type="text/javascript" src="Cesium/Cesium.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 
-	<script type="text/javascript" src="js/init.js"></script>
+	<script type="text/javascript" src="js/RadiEarth.js"></script>
 
 	<style>
       @import url(Cesium/Widgets/widgets.css);
@@ -16,13 +16,21 @@
 	<title>数字地球</title>
 </head>
 <body>
+	<div id="radi_tool_bar">
+		<div class="tool_item" id="radi_earth_flyto" onclick="onFlyTo()">飞行到</div>
+		<div class="tool_item" id="radi_earth_pos"	onclick="onCamera()">位置</div>
+		<div class="tool_item" id="radi_earth_pin"	onclick="onPin()">添加pin</div>
+		<div class="tool_item" id="radi_earth_point" onclick="onAddPoint()">添加点</div>
+		<div class="tool_item" id="radi_earth_line" onclick="onAddLine()">添加线</div>
+		<div class="tool_item" id="radi_earth_polygon" onclick="onAddPolygon()">添加面</div>
+		<div class="tool_item" id="radi_earth_billboard" onclick="onAddBillboard()">广告牌</div>
+		<div class="tool_item" id="radi_earth_cleanup" onclick="onEntityCleanup()">清空</div>
+		<div class="tool_item" onclick="onNanhaiAirport()">南海机场</div>
+		<div class="tool_item" onclick="onNanhaiIsland()">南海岛礁</div>
+		<div class="tool_item" onclick="onNanhaiRoute()">南海航线</div>
+		<div class="tool_item" onclick="onNanhaiOilBasin()">油气盆地</div>
+	</div>
 	<div id='main_container'>
 		<div id='earth_container'></div>
 	</div>
-	<div id='search_bar'>
-		<ul>
-			<li><input type='text' size='20' placeholder='检索关键词'></li>
-			<li><div id='search_btn'><div></li>
-		</ul>
-	</div> 
 </body>

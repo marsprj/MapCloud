@@ -1,0 +1,3249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCollection xmlns:fme="http://www.safe.com/gml/fme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xsi:schemaLocation="http://www.safe.com/gml/fme 3更路簿.xsd">
+<boundedBy>
+<Envelope srsName="EPSG:4326" srsDimension="2">
+<lowerCorner>3.96290405183663 111.910442019534</lowerCorner>
+<upperCorner>11.4696360040001 116.92258944</upperCorner>
+</Envelope>
+</boundedBy>
+<featureMember>
+<水路簿陈永芹版 id="idc3fb136c-4adb-4e6f-a937-c18d601ff2af">
+<FID>0</FID>
+<OBJECTID>1</OBJECTID>
+<SHAPE_Leng>0.375460559658</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.4255726750001 114.365985503 11.0574323150001 114.292206731</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id950dbe70-2c85-46db-a3a9-c2c04513aca2">
+<FID>1</FID>
+<OBJECTID>2</OBJECTID>
+<SHAPE_Leng>0.34134257048</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.42483409 114.366864754 11.083848189 114.382464938</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idf772fc91-4b89-4981-8568-9f334dc6f2e0">
+<FID>2</FID>
+<OBJECTID>3</OBJECTID>
+<SHAPE_Leng>0.427805267324</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.063180419 114.289689241 10.7515190110001 114.582749838</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idaaaaa1b5-65b2-4a81-bfa6-fcf3e6fa8ae0">
+<FID>3</FID>
+<OBJECTID>4</OBJECTID>
+<SHAPE_Leng>0.901846147387</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7515190110001 114.582749838 10.1923612990001 115.290329605</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idc7d18745-4049-4d72-a9df-c2353b86e729">
+<FID>4</FID>
+<OBJECTID>5</OBJECTID>
+<SHAPE_Leng>0.37680859339</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.89834946300005 115.541150021 9.72446690700008 115.875439675</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idfb62b411-c8aa-4f13-ab05-ec5ad062e1f9">
+<FID>5</FID>
+<OBJECTID>6</OBJECTID>
+<SHAPE_Leng>0.315074411227</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72446690700008 115.875439675 9.60063016400005 116.165157375</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id15e09647-c515-48f2-a4b3-0283732d48de">
+<FID>6</FID>
+<OBJECTID>7</OBJECTID>
+<SHAPE_Leng>0.502411647304</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.59915564000005 116.166643107 9.18456024500006 116.45041788</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id65088f2e-0b70-4cba-afe9-d6ca2023b276">
+<FID>7</FID>
+<OBJECTID>8</OBJECTID>
+<SHAPE_Leng>0.263654172798</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.18336595200009 116.450170741 9.03312446600006 116.666829502</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id0bfe72b2-4b05-4d54-84ef-543669a84675">
+<FID>8</FID>
+<OBJECTID>9</OBJECTID>
+<SHAPE_Leng>0.748398038488</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.03472749500008 116.663794503 9.76785111900006 116.513363868</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idffadae8a-8c69-4cfa-8204-8c63bacf51f4">
+<FID>9</FID>
+<OBJECTID>10</OBJECTID>
+<SHAPE_Leng>0.919775664029</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.75227228900008 116.491349511 10.6021197690001 116.139573257</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id3b588cac-8d1a-4e75-876d-0c6cf864bdd4">
+<FID>10</FID>
+<OBJECTID>11</OBJECTID>
+<SHAPE_Leng>0.755575532807</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1907481490001 115.284847016 9.72576066400006 115.880398042</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idf4bc1dcb-66ed-4fed-ba0e-3275f10c6875">
+<FID>11</FID>
+<OBJECTID>12</OBJECTID>
+<SHAPE_Leng>0.776469954691</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.73654339700005 115.873149056 10.5028634500001 115.748012463</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id51d5cd51-863e-4625-81db-1967c9b5b013">
+<FID>12</FID>
+<OBJECTID>13</OBJECTID>
+<SHAPE_Leng>1.0604687395</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1920553150001 115.292597322 9.34214616500009 115.926827867</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idc9623baf-5aee-4ec7-90eb-c29ea821ced0">
+<FID>13</FID>
+<OBJECTID>14</OBJECTID>
+<SHAPE_Leng>0.644431144799</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.76839300700004 116.514901473 9.72226514300007 115.872123346</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id7f36a497-c3fe-4aaf-8997-bf8ba2747c7f">
+<FID>14</FID>
+<OBJECTID>15</OBJECTID>
+<SHAPE_Leng>1.04594189999</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.489296418 115.749038173 9.77110621000008 116.509431021</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idd32efe52-d5d5-43fe-baf3-af8b3fa47496">
+<FID>15</FID>
+<OBJECTID>16</OBJECTID>
+<SHAPE_Leng>0.516210279479</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.77110621000008 116.509431021 9.45079524100004 116.914244479</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idda4865d5-b4a0-4b4f-b7db-eca2a656f054">
+<FID>16</FID>
+<OBJECTID>17</OBJECTID>
+<SHAPE_Leng>0.246372470362</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7328324060001 115.798272242 10.492003449 115.746302947</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="ida9976f60-edce-41d6-a270-ccd1703087ce">
+<FID>17</FID>
+<OBJECTID>18</OBJECTID>
+<SHAPE_Leng>0.756812868539</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.4865893630001 115.713350421 9.73854630300008 115.828229916</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id7a3ed801-0cb7-45b1-a2fd-fb9d558fa1dd">
+<FID>18</FID>
+<OBJECTID>19</OBJECTID>
+<SHAPE_Leng>0.931411086157</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.492003449 115.746302947 11.0869565200001 115.029673716</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id26014d27-92c6-476f-81ca-90ec3f3102f2">
+<FID>19</FID>
+<OBJECTID>20</OBJECTID>
+<SHAPE_Leng>0.84178883491</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7355372540001 115.801007468 11.0788516120001 115.032408942</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id8b94518e-206c-4c8a-b846-560d279addfc">
+<FID>20</FID>
+<OBJECTID>21</OBJECTID>
+<SHAPE_Leng>0.92837951928</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0734482130001 114.985747832 10.4865893630001 115.705112289</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="ida004992b-9a36-4f44-92fc-7ce1f5b6377e">
+<FID>21</FID>
+<OBJECTID>22</OBJECTID>
+<SHAPE_Leng>0.289640137508</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.6715159570001 114.418350689 10.3864115280001 114.367293135</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="ida0d98643-b3da-4113-821b-0a49bf676f33">
+<FID>22</FID>
+<OBJECTID>23</OBJECTID>
+<SHAPE_Leng>0.488428947259</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3791902440001 114.359999199 9.97453209200006 114.633521806</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idf526570e-6647-4156-8951-5d37147a351e">
+<FID>23</FID>
+<OBJECTID>24</OBJECTID>
+<SHAPE_Leng>1.70499716276</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.97159135700008 114.62929421 8.37574228100004 115.229528374</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idb3e7d542-f439-472b-9976-2f49e3c849fa">
+<FID>24</FID>
+<OBJECTID>25</OBJECTID>
+<SHAPE_Leng>0.377512109998</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3506535690001 114.696791822 9.97776791200005 114.637870858</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id863262cc-74e9-4082-a12c-fd6d44d4056b">
+<FID>25</FID>
+<OBJECTID>26</OBJECTID>
+<SHAPE_Leng>0.348003775421</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1835486210001 114.365073065 9.85031927600005 114.264749432</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id98642c80-06c7-410e-b4b6-4d4c6cfd6534">
+<FID>26</FID>
+<OBJECTID>27</OBJECTID>
+<SHAPE_Leng>1.08572761413</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.84313240500006 114.267088209 8.79781646800006 113.973627745</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idb49e0834-a531-4bca-8e24-a31620664d40">
+<FID>27</FID>
+<OBJECTID>28</OBJECTID>
+<SHAPE_Leng>0.392617140992</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72602950500004 115.872687984 9.33762248000005 115.930030833</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id8670e5fd-3295-4470-a810-ca07979cb0c6">
+<FID>28</FID>
+<OBJECTID>29</OBJECTID>
+<SHAPE_Leng>0.560553133863</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.33799473000005 115.928719068 8.90442678400007 116.284019859</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id64766760-5e6c-4ea2-914f-24677cbfee8c">
+<FID>29</FID>
+<OBJECTID>30</OBJECTID>
+<SHAPE_Leng>0.485275878738</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.34246170200004 115.928719068 9.40499320200007 115.447488884</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idc3011b25-a15f-4c5e-8707-93aa70b50207">
+<FID>30</FID>
+<OBJECTID>31</OBJECTID>
+<SHAPE_Leng>0.418342402123</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0589029240001 114.291514237 10.717687868 114.533552769</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id1826a711-0135-4756-8038-88b31782834d">
+<FID>31</FID>
+<OBJECTID>32</OBJECTID>
+<SHAPE_Leng>0.40299811861</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.717687868 114.532794028 10.3505409200001 114.698958411</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id22b03e54-53ab-4bd6-8c7b-afcc5df25f9b">
+<FID>32</FID>
+<OBJECTID>33</OBJECTID>
+<SHAPE_Leng>0.37904422159</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.84773008100007 112.233800583 8.64414887300006 111.914067548</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idb64c37dc-f7f3-4cc6-b306-bfc7910dd438">
+<FID>33</FID>
+<OBJECTID>34</OBJECTID>
+<SHAPE_Leng>5.06779358238</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.64947670100008 111.9119817 9.45066140200004 116.916043537</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idf53f5bbd-b99a-4785-aa9b-69d1ccd91adc">
+<FID>34</FID>
+<OBJECTID>35</OBJECTID>
+<SHAPE_Leng>0.337835495203</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.79378269500006 113.976511328 8.96614664000009 113.685954118</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id958166c2-9bdd-4581-a64f-b40c2d6fad13">
+<FID>35</FID>
+<OBJECTID>36</OBJECTID>
+<SHAPE_Leng>0.952958658889</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.95795869500006 113.691562107 9.58450573600004 112.973530763</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id367721a1-c502-4fcf-a74b-944080ed1781">
+<FID>36</FID>
+<OBJECTID>37</OBJECTID>
+<SHAPE_Leng>0.841047861621</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.58759034800005 112.969740687 8.82583630500005 112.61324064</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idfe725e54-79ad-4032-aed3-9ca04da71d47">
+<FID>37</FID>
+<OBJECTID>38</OBJECTID>
+<SHAPE_Leng>2.50219409652</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.18124613700007 116.446077566 8.80521796800008 113.972299461</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id0ee97642-8444-45ff-9789-0f743d4e4e10">
+<FID>38</FID>
+<OBJECTID>39</OBJECTID>
+<SHAPE_Leng>0.497297617006</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.068372196 113.872579197 9.88551090800007 114.335036405</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idc1390e8e-3c53-4aac-bcca-884e1a841368">
+<FID>39</FID>
+<OBJECTID>40</OBJECTID>
+<SHAPE_Leng>0.623357445019</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.72153441300009 114.176342718 8.10012693900006 114.127075533</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idc2cd3114-9a31-4d6d-98f6-6be744b3a2fd">
+<FID>40</FID>
+<OBJECTID>41</OBJECTID>
+<SHAPE_Leng>0.851599283465</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.81002876100007 113.970378515 7.95962781400004 113.925216928</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idea70de18-4905-4c68-a881-c9636a2c0e75">
+<FID>41</FID>
+<OBJECTID>42</OBJECTID>
+<SHAPE_Leng>0.714936194126</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.95566968600008 113.576241035 6.33169085000009 113.227265142</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id190c99de-ac92-4bc3-990a-a434bee6056d">
+<FID>42</FID>
+<OBJECTID>43</OBJECTID>
+<SHAPE_Leng>0.237878636463</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.61977455400006 113.78973217 7.38622225400007 113.834893756</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id8b855fd2-dc1e-4b53-866d-421a666e45dc">
+<FID>43</FID>
+<OBJECTID>44</OBJECTID>
+<SHAPE_Leng>2.8034136278</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.97190639600007 113.92111133 9.18146830400008 116.450160155</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id8f70dc4c-ecf0-4f93-8281-35c51d31507a">
+<FID>44</FID>
+<OBJECTID>45</OBJECTID>
+<SHAPE_Leng>3.86035861239</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.18690775100009 116.455634287 8.81955764600008 112.612793864</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id277b1569-28db-4e63-bfc8-9d224bd02827">
+<FID>45</FID>
+<OBJECTID>46</OBJECTID>
+<SHAPE_Leng>0.374701426855</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.81955764600008 112.612793864 8.84814280400008 112.239184378</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id03e1091e-66bf-4eb4-b76c-28700c38f963">
+<FID>46</FID>
+<OBJECTID>47</OBJECTID>
+<SHAPE_Leng>1.01481942279</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0659298570001 113.872699478 9.58952838000005 112.976652552</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idd4adb359-8850-4ec0-b20b-276d496f6e1a">
+<FID>47</FID>
+<OBJECTID>48</OBJECTID>
+<SHAPE_Leng>1.26794877857</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0670957720001 113.871865153 8.80329192100004 113.974305044</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id984ab300-bbca-4b83-8b92-02b4ac3081d9">
+<FID>48</FID>
+<OBJECTID>49</OBJECTID>
+<SHAPE_Leng>0.991222181848</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.88423351100005 112.929844992 8.82735070500007 112.624801762</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id94701bda-e993-4519-99ba-2c56632e8e9f">
+<FID>49</FID>
+<OBJECTID>50</OBJECTID>
+<SHAPE_Leng>0.799010098453</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.72317892100006 114.177335216 7.96593935000004 113.92237371</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id8ef3d925-749a-4e95-8483-bf60146b45c0">
+<FID>50</FID>
+<OBJECTID>51</OBJECTID>
+<SHAPE_Leng>0.918528205211</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.6240240450001 116.190770973 9.78294325400009 116.559928347</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idd21786e0-1547-4ef7-9f1b-338d55a58ac5">
+<FID>51</FID>
+<OBJECTID>52</OBJECTID>
+<SHAPE_Leng>0.382321174107</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7335272770001 115.796899205 10.6199320710001 116.16195483</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id7ad9588b-6fb7-4208-961b-a922ab1604be">
+<FID>52</FID>
+<OBJECTID>54</OBJECTID>
+<SHAPE_Leng>0.597874969436</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.916509949 114.091110014 10.3850344080001 114.3649498</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="ida82ab414-c928-4586-8726-3c3ffb8124ec">
+<FID>53</FID>
+<OBJECTID>55</OBJECTID>
+<SHAPE_Leng>0.409978492215</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.9152273320001 114.089812195 10.666294318 114.415564737</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idf7fc7417-d8ca-4312-9557-82e881d14327">
+<FID>54</FID>
+<OBJECTID>56</OBJECTID>
+<SHAPE_Leng>1.29031622555</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.89983024600008 115.541662961 11.0851645390001 115.031860474</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idc547c916-74d1-40eb-85f8-bc88843efa89">
+<FID>55</FID>
+<OBJECTID>57</OBJECTID>
+<SHAPE_Leng>2.03989834275</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0624732020001 113.871065622 8.84479785400009 112.234467933</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id09af367b-afc3-4ecc-83ca-a2eff852effc">
+<FID>56</FID>
+<OBJECTID>58</OBJECTID>
+<SHAPE_Leng>0.505212103202</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1829962930001 114.365716875 10.0662960650001 113.87416797</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idb0b9735e-d1d7-4fb0-b171-4c3c42986040">
+<FID>57</FID>
+<OBJECTID>59</OBJECTID>
+<SHAPE_Leng>0.373217787123</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1823296250001 114.365440487 10.347179607 114.700277761</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="ideaf5a417-7635-4305-9055-11d5f2fe90b2">
+<FID>58</FID>
+<OBJECTID>60</OBJECTID>
+<SHAPE_Leng>0.743567844745</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0819183020001 115.034038026 11.0574012040001 114.290874483</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="idf7f6287c-41b2-4cbd-a0a2-aa16a6530393">
+<FID>59</FID>
+<OBJECTID>61</OBJECTID>
+<SHAPE_Leng>0.745326160406</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.86233909300006 114.655587127 8.38473549900004 115.227781056</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id8fa0ced5-f035-4ea3-b29b-d21883f97c53">
+<FID>60</FID>
+<OBJECTID>62</OBJECTID>
+<SHAPE_Leng>1.04816500962</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.89992954100006 114.566836744 8.85483745800008 114.647039147</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id3da4915f-0cdc-4050-8250-dc8bec0cd601">
+<FID>61</FID>
+<OBJECTID>63</OBJECTID>
+<SHAPE_Leng>0.355841226011</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.97394530900004 113.931245039 7.61811295400008 113.93375766</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿陈永芹版 id="id33eaea6c-b520-423a-8a84-56787571661e">
+<FID>62</FID>
+<OBJECTID>64</OBJECTID>
+<SHAPE_Leng>0.143241327302</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.61811295400008 113.931245039 7.61560601400009 113.788025651</posList>
+</LineString>
+</curveProperty>
+</水路簿陈永芹版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id7c2538e5-e3b5-4e58-b673-bc5e1ce35ca1">
+<FID>0</FID>
+<OBJECTID>1</OBJECTID>
+<SHAPE_Leng>0.26384558674</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.4243094710106 114.365487471426 11.3416226822605 114.616041634449</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id5c9de6b5-5cd3-488e-a76d-9193c6d15b00">
+<FID>1</FID>
+<OBJECTID>3</OBJECTID>
+<SHAPE_Leng>0.375881269564</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.4256106539744 114.367015850238 11.0577779898846 114.289647510218</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id93259e14-9090-424d-a250-678fde80196b">
+<FID>2</FID>
+<OBJECTID>5</OBJECTID>
+<SHAPE_Leng>7.64400578165</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.090568695476 115.036045601953 3.96290405183663 112.274303195837</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idd4115217-dc20-4a8b-91f4-fec661288068">
+<FID>3</FID>
+<OBJECTID>6</OBJECTID>
+<SHAPE_Leng>0.748134086664</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.086015939106 115.036491800963 10.6664443027987 114.417085428995</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id4eac21d8-3868-495f-a9ea-72a42cd69f6a">
+<FID>4</FID>
+<OBJECTID>7</OBJECTID>
+<SHAPE_Leng>0.839793412162</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0856756166556 115.032332920641 10.8220546002575 115.829676594864</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id9b0e6a0f-a1a9-48e7-92d1-dcef6c8b1e81">
+<FID>5</FID>
+<OBJECTID>8</OBJECTID>
+<SHAPE_Leng>0.844751287455</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0797541700962 115.029335388031 10.7331403396496 115.799701268765</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id2631a216-9488-47e1-885e-cdb95eb4b56b">
+<FID>6</FID>
+<OBJECTID>9</OBJECTID>
+<SHAPE_Leng>0.563006028123</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.3490561346908 114.61267835526 10.8842787031482 114.930416811905</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id5a56d504-d5e6-44f4-b1d5-8eaa8e6b2cfa">
+<FID>7</FID>
+<OBJECTID>10</OBJECTID>
+<SHAPE_Leng>0.378107249336</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.8902041230144 114.933414344515 10.7502595456828 114.582158586874</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id9efa270e-37bf-46cf-95be-194d8d1bde7d">
+<FID>8</FID>
+<OBJECTID>11</OBJECTID>
+<SHAPE_Leng>0.781914645698</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.8772689068174 114.921769194836 10.1894116326995 115.293579473877</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idf10e9f32-d0ed-4aec-b4dc-1b80b6638206">
+<FID>9</FID>
+<OBJECTID>12</OBJECTID>
+<SHAPE_Leng>0.377482245068</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1947497804104 115.298968028646 9.9010183762494 115.536064438469</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id78063a25-8273-4651-8f1a-7a27c07b2c8d">
+<FID>10</FID>
+<OBJECTID>13</OBJECTID>
+<SHAPE_Leng>0.929076112117</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.086300587039 115.031286552083 10.4938814492749 115.746983406425</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id809e15e3-7a88-47cf-a5e6-93b78512d32c">
+<FID>11</FID>
+<OBJECTID>14</OBJECTID>
+<SHAPE_Leng>0.376515683551</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.90614252510574 115.542213537959 9.73495332055688 115.877561590295</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="ide6958940-c6f0-4e94-9956-c365e88a7daa">
+<FID>12</FID>
+<OBJECTID>15</OBJECTID>
+<SHAPE_Leng>0.487724764896</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.88837158009471 115.539086107435 9.40879303431052 115.450317505346</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id866c8671-9e91-4a13-9068-8d0badfd5e1a">
+<FID>13</FID>
+<OBJECTID>16</OBJECTID>
+<SHAPE_Leng>0.673651136183</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.89815163938124 115.539086107435 9.34512405895811 115.923750049821</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id9461de1c-7f47-4f9b-9937-214a2391778c">
+<FID>14</FID>
+<OBJECTID>17</OBJECTID>
+<SHAPE_Leng>0.313052441655</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72695824888768 115.874434159772 9.59972840425974 116.160466322059</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc3491be6-363c-46e1-87a5-5797f5d76f5f">
+<FID>15</FID>
+<OBJECTID>18</OBJECTID>
+<SHAPE_Leng>0.761808058841</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.73053795802281 115.85386541815 10.4830955107256 115.735507282031</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id2ab0c8cc-9830-486b-9d5d-108d50cb8754">
+<FID>16</FID>
+<OBJECTID>19</OBJECTID>
+<SHAPE_Leng>0.501039088175</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.60593602818307 116.173456930592 9.19456542882398 116.459489092879</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idaab8ecc4-e31c-436b-a840-b04ebb878878">
+<FID>17</FID>
+<OBJECTID>20</OBJECTID>
+<SHAPE_Leng>0.297548002997</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.61441125401745 116.165397911064 9.73674313658864 115.894160515792</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id37ad2497-0009-4973-ad6d-5e8f3514e223">
+<FID>18</FID>
+<OBJECTID>22</OBJECTID>
+<SHAPE_Leng>0.263706800129</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.16504593732282 116.446846961396 9.01468512114712 116.663486988614</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id420fde87-7ed5-41cb-9110-635947826431">
+<FID>19</FID>
+<OBJECTID>23</OBJECTID>
+<SHAPE_Leng>0.749460159747</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.0343793449299 116.666971968203 9.7681552903569 116.514448550458</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id2d5c35f8-61a2-408c-88d9-88175975b3a8">
+<FID>20</FID>
+<OBJECTID>24</OBJECTID>
+<SHAPE_Leng>0.499168632615</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.18302540822424 116.449292915693 9.59331070148147 116.164977418536</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id15ae4009-421f-4a19-b90b-d058a6ef6368">
+<FID>21</FID>
+<OBJECTID>25</OBJECTID>
+<SHAPE_Leng>0.255318853519</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.02979832785257 116.674873449892 9.1828606474599 116.470521686311</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id121316a2-c141-4162-b0d5-a2148dc8cc1b">
+<FID>22</FID>
+<OBJECTID>26</OBJECTID>
+<SHAPE_Leng>0.50985038625</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.766686393339 116.515929360339 9.4521929188262 116.917228838096</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idea8c5648-08f0-49b5-8446-35691581e1d9">
+<FID>23</FID>
+<OBJECTID>27</OBJECTID>
+<SHAPE_Leng>0.925936172826</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.76820969382408 116.517794083892 10.62359007473 116.163277229413</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id4986538a-acea-4cb9-9884-dd0e42fed932">
+<FID>24</FID>
+<OBJECTID>28</OBJECTID>
+<SHAPE_Leng>0.643285489033</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.76820969382408 116.514284016027 9.73338963482223 115.871941596525</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id12beb564-b54e-4c09-b044-bec278530e93">
+<FID>25</FID>
+<OBJECTID>29</OBJECTID>
+<SHAPE_Leng>0.560312886611</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.34315667026277 115.935122818115 8.9036153623494 116.282619536862</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id6061fab2-9788-4879-baeb-0fc9faa83cec">
+<FID>26</FID>
+<OBJECTID>30</OBJECTID>
+<SHAPE_Leng>0.484103051655</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.34315667026277 115.924592614517 9.39893180543845 115.443713316857</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc62596cb-6955-47ca-9243-0d70d16e15e6">
+<FID>27</FID>
+<OBJECTID>31</OBJECTID>
+<SHAPE_Leng>1.21398677768</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.39893180543845 115.447223384723 10.3526250362116 114.696068861372</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idd27ad5ad-395c-47de-bcac-84f52976e172">
+<FID>28</FID>
+<OBJECTID>32</OBJECTID>
+<SHAPE_Leng>0.379255462706</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7346851847875 115.801740239203 10.6201176907001 116.163277229413</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id2ca5b8af-e0e7-40ce-9b21-f82be611d0e9">
+<FID>29</FID>
+<OBJECTID>33</OBJECTID>
+<SHAPE_Leng>0.247991240589</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7346851847875 115.801740239203 10.4916114872601 115.752599289076</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idd851e85e-adea-4ab8-803f-5988cbafb35c">
+<FID>30</FID>
+<OBJECTID>34</OBJECTID>
+<SHAPE_Leng>0.760134861856</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.4916114872601 115.759619424809 9.74035394122012 115.875451664391</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id2d2f9192-406e-4e75-80e9-e54f8c39505e">
+<FID>31</FID>
+<OBJECTID>35</OBJECTID>
+<SHAPE_Leng>1.05540650493</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.4916114872601 115.733452068593 9.7647278537674 116.498646863409</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id8429f5ce-e403-424c-ab2d-c6b3c31d5dee">
+<FID>32</FID>
+<OBJECTID>36</OBJECTID>
+<SHAPE_Leng>0.522055177282</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.4974599176342 115.752065412317 10.1462228011239 116.138296037867</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id8e6cfbd9-83d4-4117-ac30-4520ede95ae7">
+<FID>33</FID>
+<OBJECTID>37</OBJECTID>
+<SHAPE_Leng>0.423674944753</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0580874327835 114.29180736305 10.7499404100051 114.582575090222</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc6737c9c-69d5-4a55-95d7-f1c1ee39143c">
+<FID>34</FID>
+<OBJECTID>38</OBJECTID>
+<SHAPE_Leng>0.418277513916</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0587603072379 114.291418115758 10.7171255508324 114.532751436838</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id638395bc-d95f-4968-be54-acda9e108a85">
+<FID>35</FID>
+<OBJECTID>39</OBJECTID>
+<SHAPE_Leng>0.245707458162</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0587603072379 114.291418115758 10.9172301384136 114.090566513053</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id289d80e6-8917-4e7d-97d2-5060b6267c94">
+<FID>36</FID>
+<OBJECTID>40</OBJECTID>
+<SHAPE_Leng>0.338105069425</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0833672118127 114.383280476685 10.9141526336413 114.090566513053</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc3ab6eb4-d14a-4217-a0c3-e5d94529fb46">
+<FID>37</FID>
+<OBJECTID>41</OBJECTID>
+<SHAPE_Leng>0.347797653818</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0560688000346 114.290639621174 10.7098114837689 114.323336393707</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id539658bc-6b67-452b-bfcd-976b0f9a79f2">
+<FID>38</FID>
+<OBJECTID>42</OBJECTID>
+<SHAPE_Leng>0.388571775921</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0825982777588 114.380555745641 10.7513837959805 114.583742832098</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="iddd9e3e32-976b-4228-8dee-fb86e7a41340">
+<FID>39</FID>
+<OBJECTID>43</OBJECTID>
+<SHAPE_Leng>0.310102123058</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.9164607652478 114.090955760346 10.7098114837689 114.322168651831</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idac782a60-0808-4d2f-aeb9-308db5810d25">
+<FID>40</FID>
+<OBJECTID>44</OBJECTID>
+<SHAPE_Leng>0.598609060547</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.9153067017149 114.084474207025 10.384010763022 114.360259327902</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idfad95feb-a258-4056-bffa-2d3c5fe90997">
+<FID>41</FID>
+<OBJECTID>45</OBJECTID>
+<SHAPE_Leng>0.410589693512</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.057953832072 114.291812674417 10.666546502524 114.415845729666</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id00661f67-d8b5-440c-8971-37fe5b6aef29">
+<FID>42</FID>
+<OBJECTID>46</OBJECTID>
+<SHAPE_Leng>0.285708429532</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.6657459583857 114.417464431855 10.3846242472833 114.366475312894</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="ide555c432-5f1f-4332-a36b-50edaf9fd59a">
+<FID>43</FID>
+<OBJECTID>47</OBJECTID>
+<SHAPE_Leng>0.424123872686</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.6673470445282 114.41665508076 10.3509684541307 114.699118612779</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id33ae31e7-67dd-48f4-921a-840af3160ed4">
+<FID>44</FID>
+<OBJECTID>48</OBJECTID>
+<SHAPE_Leng>0.903805621904</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7490800162234 114.580863425066 10.190830957155 115.291653541932</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id3d3d9924-b984-4e34-94d7-d69c210df056">
+<FID>45</FID>
+<OBJECTID>49</OBJECTID>
+<SHAPE_Leng>0.399595501494</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7177768820757 114.531942647792 10.3547081675578 114.698848829081</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idd0214589-0540-4389-9e41-262d3617d85e">
+<FID>46</FID>
+<OBJECTID>50</OBJECTID>
+<SHAPE_Leng>0.128074821566</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7172166826168 114.53280319241 10.6664937918644 114.415200691276</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id82a632cd-a19e-41e8-8656-9e2b1614041a">
+<FID>47</FID>
+<OBJECTID>51</OBJECTID>
+<SHAPE_Leng>1.19905248293</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3528662505904 114.710369541936 9.4092995094008 115.450240248039</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="ida0148eac-a7c5-491a-8c9d-28742b371018">
+<FID>48</FID>
+<OBJECTID>52</OBJECTID>
+<SHAPE_Leng>0.589900808033</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3805353475889 114.32952895783 10.9030080033562 114.055658026015</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc11cb1fd-42b8-4765-aa1f-cbd6263f0ba6">
+<FID>49</FID>
+<OBJECTID>53</OBJECTID>
+<SHAPE_Leng>0.207589662514</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3916022925758 114.363838975149 10.1840314415733 114.366633576494</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc2c426f7-f6a5-4c38-884d-7e03c7dd5171">
+<FID>50</FID>
+<OBJECTID>54</OBJECTID>
+<SHAPE_Leng>0.590579460132</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3860688696907 114.363838975149 10.0677317829544 113.86639993573</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc26e3212-1060-4afa-b10b-2681a5e85827">
+<FID>51</FID>
+<OBJECTID>55</OBJECTID>
+<SHAPE_Leng>0.3029564032</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1837346204628 114.366655366758 9.88275582888986 114.332096008214</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id8838be3e-3cd2-4f86-8cde-45a7eb9aedd4">
+<FID>52</FID>
+<OBJECTID>56</OBJECTID>
+<SHAPE_Leng>0.346534877418</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.183173357962 114.365522273035 9.85129402907063 114.265810025433</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id5b20c9d1-ba68-4409-b860-b888975e91a0">
+<FID>53</FID>
+<OBJECTID>57</OBJECTID>
+<SHAPE_Leng>1.69729548834</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.97195137345796 114.626051709764 8.38729011568068 115.234048973606</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idb108aa13-f860-417f-9bf8-d35ada2bcb58">
+<FID>54</FID>
+<OBJECTID>58</OBJECTID>
+<SHAPE_Leng>0.603281395175</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.38174264812955 115.230865741858 8.17246579924273 114.665046298676</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id56ad55b1-8a15-4a07-acbc-1c69b5157d2b">
+<FID>55</FID>
+<OBJECTID>59</OBJECTID>
+<SHAPE_Leng>0.746846612254</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.38332764704211 115.228478318048 8.85852636002204 114.652313371684</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id72d3c114-1cae-494d-8b59-dd9ba2bafae1">
+<FID>56</FID>
+<OBJECTID>60</OBJECTID>
+<SHAPE_Leng>1.03659691341</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.90018568538949 114.566749435592 8.86724735518504 114.653764186534</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idc188048c-b1a0-46ab-905e-2ab565280129">
+<FID>57</FID>
+<OBJECTID>62</OBJECTID>
+<SHAPE_Leng>0.683064726371</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.86013401930666 114.655426014985 8.17707894085277 114.659056470987</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idfb795aa2-78e1-4d84-b5f7-cd3ba87a01e5">
+<FID>58</FID>
+<OBJECTID>63</OBJECTID>
+<SHAPE_Leng>0.541111345668</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.17888757402648 114.664502154988 8.10110886432062 114.129009894795</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id2b8ce8e8-11c1-46ce-8b26-2d0d17cc898c">
+<FID>59</FID>
+<OBJECTID>64</OBJECTID>
+<SHAPE_Leng>0.24494933622</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.10291784503886 114.129009894795 7.96903114121585 113.923889130722</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idb574fed1-d709-49e7-89d5-4092456e0bd1">
+<FID>60</FID>
+<OBJECTID>65</OBJECTID>
+<SHAPE_Leng>0.642752959436</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.96239595519785 113.918040062719 8.17466741702572 113.311350526501</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id6ffb0007-e07e-4a01-a984-3ee5ab984410">
+<FID>61</FID>
+<OBJECTID>66</OBJECTID>
+<SHAPE_Leng>0.354550192754</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.97526409547845 113.918040062719 7.62124300089681 113.937402494726</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id5040d89b-6fa1-4531-9827-d8725a35173b">
+<FID>62</FID>
+<OBJECTID>67</OBJECTID>
+<SHAPE_Leng>0.256041586948</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.62446273164551 113.950393010688 7.38613706046317 113.856807922654</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id1002d362-c452-4026-b4ad-c2d359faa080">
+<FID>63</FID>
+<OBJECTID>68</OBJECTID>
+<SHAPE_Leng>0.497108244955</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.38291554193245 113.834136190689 6.95424565784066 113.582424574599</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id313e37d5-e2e8-474b-8ef2-8c0889b5b55e">
+<FID>64</FID>
+<OBJECTID>69</OBJECTID>
+<SHAPE_Leng>0.706439105436</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.9510210433383 113.579197502597 6.33472047071928 113.233900798473</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id4a464659-1aaf-4348-aea6-3f02f6a82017">
+<FID>65</FID>
+<OBJECTID>70</OBJECTID>
+<SHAPE_Leng>1.13203226667</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.32826298724228 113.227446654471 5.36846377557504 112.627211262254</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idb8b5fa30-95da-4fe6-8083-21bb35630d49">
+<FID>66</FID>
+<OBJECTID>71</OBJECTID>
+<SHAPE_Leng>1.17746395568</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.88521682110508 114.331776100257 8.71713940151415 114.183396489908</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id8aaab25f-3e95-476e-99c9-dc181527eeaf">
+<FID>67</FID>
+<OBJECTID>72</OBJECTID>
+<SHAPE_Leng>1.14014177092</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.88246666295174 114.331776100257 8.79991402663046 113.974000965023</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id7e162979-98c2-4f82-aad6-0c1542469139">
+<FID>68</FID>
+<OBJECTID>73</OBJECTID>
+<SHAPE_Leng>0.617586954902</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.72141484376414 114.179664315562 8.10607133009137 114.127071473403</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="ide895c3e1-22cb-4eff-8f45-0089ab347281">
+<FID>69</FID>
+<OBJECTID>74</OBJECTID>
+<SHAPE_Leng>0.709639276613</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.80425662345124 113.973675683772 8.11043891467511 114.122688736556</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idf48194d5-eb85-4379-8fb5-110af5fbd7d7">
+<FID>70</FID>
+<OBJECTID>75</OBJECTID>
+<SHAPE_Leng>0.798177852786</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.72141484376414 114.184047052409 7.96628339427423 113.92546557846</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id7b0b63ec-1b95-46e0-9d16-4413716a0e41">
+<FID>71</FID>
+<OBJECTID>76</OBJECTID>
+<SHAPE_Leng>0.724895946017</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.71586323677172 114.17995114389 8.17598881674479 114.663696679427</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idca1772a7-0c17-4bb6-a3ab-62460fe88bc4">
+<FID>72</FID>
+<OBJECTID>77</OBJECTID>
+<SHAPE_Leng>0.82999945592</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.80047904415142 113.969973686157 7.97201736419038 113.9194727786</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idea8e4244-985f-4562-944f-e333018b3cb6">
+<FID>73</FID>
+<OBJECTID>78</OBJECTID>
+<SHAPE_Leng>0.329569875962</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.79519112836545 113.97263162866 8.96172349670235 113.688231780844</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id09f607ef-b9b5-4a1f-8753-e5b4e40e0ecd">
+<FID>74</FID>
+<OBJECTID>79</OBJECTID>
+<SHAPE_Leng>1.27649747389</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0698973378111 113.868971871044 8.79783509582336 113.975289571162</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id49620175-cdb8-4ed8-8e6f-8b752097a03b">
+<FID>75</FID>
+<OBJECTID>80</OBJECTID>
+<SHAPE_Leng>1.38553673803</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0672632315088 113.876945698553 8.71586323677172 114.182609086393</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id4a12161b-6572-45c9-8ed8-71016980cebb">
+<FID>76</FID>
+<OBJECTID>81</OBJECTID>
+<SHAPE_Leng>1.12584594241</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0725314223291 113.868971871044 8.96172349670235 113.685573838341</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="iddab8773c-f210-409c-8e74-750f1b794207">
+<FID>77</FID>
+<OBJECTID>82</OBJECTID>
+<SHAPE_Leng>0.493113770006</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0666458596936 113.872585011634 9.88545759882192 114.331204684448</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id0afe11f7-d897-41bc-b412-0d0515254f85">
+<FID>78</FID>
+<OBJECTID>83</OBJECTID>
+<SHAPE_Leng>0.222224089593</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.71817720923315 114.182069191822 8.80072691332617 113.97574640503</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idcc7e23c1-7237-4ca0-ac14-961fd60e2f7b">
+<FID>79</FID>
+<OBJECTID>84</OBJECTID>
+<SHAPE_Leng>1.01611994281</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0675924959878 113.872003586712 9.58782843508186 112.976276963217</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id202e893d-744b-467b-b077-58dcc8d999ad">
+<FID>80</FID>
+<OBJECTID>85</OBJECTID>
+<SHAPE_Leng>0.942294452067</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.17896814236798 113.311177718589 8.81667280990979 112.617454725319</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id39c9948d-d3b8-429d-bbed-4562c46bbaae">
+<FID>81</FID>
+<OBJECTID>86</OBJECTID>
+<SHAPE_Leng>0.373948076066</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.81667280990979 112.612138840313 8.85368442907196 112.2400268899</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id8a72b0e2-0edb-4b97-a8a0-c4d908db2b8c">
+<FID>82</FID>
+<OBJECTID>87</OBJECTID>
+<SHAPE_Leng>0.386022262583</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.85368442907196 112.2400268899 8.6527192568762 111.910442019534</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id0ac258e4-8b2d-40dd-be04-e4aa334acb01">
+<FID>83</FID>
+<OBJECTID>88</OBJECTID>
+<SHAPE_Leng>0.139408435183</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1829395432444 114.366212078505 10.2022734574786 114.228150818332</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id7413df7e-fc6f-4935-bc20-6856d9b6644a">
+<FID>84</FID>
+<OBJECTID>89</OBJECTID>
+<SHAPE_Leng>0.382210678805</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.2049815097419 114.227064397224 10.0676264879966 113.870387230876</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id3bbea72a-e40c-4819-96f3-60a3b265bfaf">
+<FID>85</FID>
+<OBJECTID>90</OBJECTID>
+<SHAPE_Leng>0.375676414101</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7158254597342 114.530870789193 10.3786088171377 114.365287867163</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idca85ccca-5771-4ce3-981b-e241b62a02a8">
+<FID>86</FID>
+<OBJECTID>92</OBJECTID>
+<SHAPE_Leng>0.922563320957</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7168074237071 114.533201073628 10.1910363271812 115.291282754737</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id5e9183d2-986e-444e-bf82-7eba84864c54">
+<FID>87</FID>
+<OBJECTID>93</OBJECTID>
+<SHAPE_Leng>0.371207799506</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.71767249932958 115.871209819616 9.89088517753322 115.542891988051</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id33251364-f262-40ec-9de0-55a4e447ac59">
+<FID>88</FID>
+<OBJECTID>94</OBJECTID>
+<SHAPE_Leng>0.904100342291</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.19691520519962 113.28333513712 8.81231723486746 113.945662677549</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id7f7d586c-8854-491c-bd84-b21bef07474b">
+<FID>89</FID>
+<OBJECTID>95</OBJECTID>
+<SHAPE_Leng>2.00286256335</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.79297513667041 113.977108287004 10.2394234546659 115.362476725736</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id898d55f8-090c-44ee-8643-f0f58f4d7c07">
+<FID>90</FID>
+<OBJECTID>96</OBJECTID>
+<SHAPE_Leng>0.60910410078</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1792813455446 115.285205179352 10.3487431094265 114.700149185306</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id406d8ecd-086b-4534-8dec-9a083e6e02df">
+<FID>91</FID>
+<OBJECTID>97</OBJECTID>
+<SHAPE_Leng>1.84815606139</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.32574149834193 113.22647040785 8.17204225582691 113.309261350404</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id9ca0765f-9cc6-4437-bc0e-3dd85b8dade7">
+<FID>92</FID>
+<OBJECTID>98</OBJECTID>
+<SHAPE_Leng>0.611287654972</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.3471781230781 114.611838846582 10.7365137277106 114.584241865731</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id3024d880-5d5a-4dc9-b166-688ab1dcb031">
+<FID>93</FID>
+<OBJECTID>99</OBJECTID>
+<SHAPE_Leng>0.246729844625</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.61621707992566 113.902469665338 7.39037340304833 113.803120534274</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id610d243e-50a4-4ea9-af3a-73be54f4cfd4">
+<FID>94</FID>
+<OBJECTID>100</OBJECTID>
+<SHAPE_Leng>0.931910600685</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.96862638616574 113.67906089381 9.58271742227208 112.978097580189</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="idd8db067d-b0c5-43d5-8b1a-88d6f39ea2e2">
+<FID>95</FID>
+<OBJECTID>101</OBJECTID>
+<SHAPE_Leng>0.907470867425</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.79846552462817 113.971588890834 8.1665427905553 113.320300142744</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id824e1c89-7935-4a38-b0f1-49aceb9d41a4">
+<FID>96</FID>
+<OBJECTID>102</OBJECTID>
+<SHAPE_Leng>1.25464233789</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.95488420100014 113.585231158916 8.17754164430221 113.303741954234</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id4b20603b-2964-4447-a740-d735739b13a9">
+<FID>97</FID>
+<OBJECTID>103</OBJECTID>
+<SHAPE_Leng>0.521751072443</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3875508687049 114.365589692838 9.86843686417819 114.417980836173</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿苏德柳版 id="id1747d194-0348-4ef3-a845-4836ff6a6b61">
+<FID>98</FID>
+<OBJECTID>104</OBJECTID>
+<SHAPE_Leng>0.247734529092</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.85902588127323 112.858471136241 8.81907518978363 112.613979134012</posList>
+</LineString>
+</curveProperty>
+</水路簿苏德柳版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id3d9f5077-b450-467a-bd47-cab8a0be0c7d">
+<FID>0</FID>
+<OBJECTID>1</OBJECTID>
+<SHAPE_Leng>0.376247955732</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.8893498930001 114.927407158 10.7562632570001 114.575483201</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idbcb913c8-57ec-4029-89d0-0d9401ea2921">
+<FID>1</FID>
+<OBJECTID>2</OBJECTID>
+<SHAPE_Leng>0.743369233499</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0845333190001 115.033320094 11.0578920500001 114.290428406</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd4b501dd-90cd-4a1d-a5b1-67158f55a468">
+<FID>2</FID>
+<OBJECTID>3</OBJECTID>
+<SHAPE_Leng>0.927815092893</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0840679900001 115.033320094 10.4929718990001 115.748474803</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id6b1e26ba-7138-40f1-8796-867499e81276">
+<FID>3</FID>
+<OBJECTID>4</OBJECTID>
+<SHAPE_Leng>0.683172158108</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.90005478500007 115.539744061 9.33818317100008 115.928362752</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb86780e4-db57-472d-bbdb-f71f6eca10bb">
+<FID>4</FID>
+<OBJECTID>5</OBJECTID>
+<SHAPE_Leng>0.773528094504</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72394870000005 115.874760174 10.487480384 115.750804212</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb4551a9b-7dbc-4800-9f7e-26094cc2fb03">
+<FID>5</FID>
+<OBJECTID>6</OBJECTID>
+<SHAPE_Leng>0.246897560198</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7339306810001 115.799041298 10.4920393850001 115.749574075</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id06af7579-3131-4bfe-a55f-e97d0b02bda1">
+<FID>6</FID>
+<OBJECTID>7</OBJECTID>
+<SHAPE_Leng>0.778753363534</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.49281648 115.776504069 9.72597404200008 115.912185595</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id76659b3d-8c9c-475e-b369-3b12a0d16dab">
+<FID>7</FID>
+<OBJECTID>8</OBJECTID>
+<SHAPE_Leng>1.05981645029</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.5048758950001 115.754457117 9.77544998100007 116.523319097</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id72e1a1f1-aaab-48e8-a51e-729e5f361ff1">
+<FID>8</FID>
+<OBJECTID>9</OBJECTID>
+<SHAPE_Leng>0.72438841716</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.71742919500008 114.181934223 8.17705300000006 114.664357426</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id8bda55e7-3e87-4ec5-955d-5e3ff0698ab4">
+<FID>9</FID>
+<OBJECTID>10</OBJECTID>
+<SHAPE_Leng>0.128386753139</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.717943801 114.53375567 10.6665728830001 114.416094346</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idaaf89edb-8908-409d-901c-33688164cb0a">
+<FID>10</FID>
+<OBJECTID>11</OBJECTID>
+<SHAPE_Leng>0.561346941341</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.8835284670001 114.933380164 10.665524405 114.416094346</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id0d11dc6b-5ae2-4661-9489-f3165f36499c">
+<FID>11</FID>
+<OBJECTID>12</OBJECTID>
+<SHAPE_Leng>0.780326195447</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.234994106 115.36415723 10.883877704 114.930730134</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf39788b2-2177-4993-9f2e-a472ea70604c">
+<FID>12</FID>
+<OBJECTID>13</OBJECTID>
+<SHAPE_Leng>0.368578547273</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.90388297500004 115.535678501 10.2321942200001 115.36816172</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb6523e24-75de-4be8-998f-6ec92ea30171">
+<FID>13</FID>
+<OBJECTID>14</OBJECTID>
+<SHAPE_Leng>0.324443617667</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7062915260001 114.324638874 10.3846304300001 114.36703935</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id34ae3a94-7456-4693-9b2b-56d884b5cdfd">
+<FID>14</FID>
+<OBJECTID>15</OBJECTID>
+<SHAPE_Leng>1.14180071333</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.33289228000007 113.231463957 5.36332284500008 112.628434953</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ida3c40534-3527-424f-bde9-91311c908af4">
+<FID>15</FID>
+<OBJECTID>16</OBJECTID>
+<SHAPE_Leng>0.714250050662</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.94925402300004 113.583230875 6.32954038400004 113.228113795</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf71970c6-c42e-4ddc-8336-bcb18ab1216b">
+<FID>16</FID>
+<OBJECTID>17</OBJECTID>
+<SHAPE_Leng>0.905571684036</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7506286480001 114.582564747 10.1896826450001 115.293479409</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id52a4ec1e-bad4-4025-b7fb-cefef4cf4680">
+<FID>17</FID>
+<OBJECTID>18</OBJECTID>
+<SHAPE_Leng>0.381683438728</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1910827810001 115.28806157 9.90159020500005 115.536811034</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idee5de1e6-7092-44e4-aafb-ab185fac4431">
+<FID>18</FID>
+<OBJECTID>19</OBJECTID>
+<SHAPE_Leng>1.44183049047</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.89930642900009 115.541312813 9.45054865200007 116.911528716</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="iddd4f2017-b5be-4000-8be1-a949ba26c46a">
+<FID>19</FID>
+<OBJECTID>20</OBJECTID>
+<SHAPE_Leng>0.316353441928</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72652358000005 115.876328926 9.60352672700009 116.167792945</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idcb40091d-872f-4274-8644-c43e22e905ea">
+<FID>20</FID>
+<OBJECTID>21</OBJECTID>
+<SHAPE_Leng>0.500263303296</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.60020185700006 116.167792945 9.18433633400008 116.445856318</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id0989f006-fb30-40fb-8f1d-6f7ee4271113">
+<FID>21</FID>
+<OBJECTID>22</OBJECTID>
+<SHAPE_Leng>0.246033683476</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.18433633400008 116.44920648 9.03783277400004 116.646865986</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id3937b162-0b9f-4c0d-9392-dc44b7180dcd">
+<FID>22</FID>
+<OBJECTID>23</OBJECTID>
+<SHAPE_Leng>1.05480872554</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.76013285600004 116.501700613 10.48047589 115.731163553</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id806837db-3a90-4893-924a-d35fb25afa32">
+<FID>23</FID>
+<OBJECTID>24</OBJECTID>
+<SHAPE_Leng>0.252146752142</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.468257125 114.399047423 11.3385759960001 114.615289855</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id2d16f019-06b4-4079-b500-0ccd559611f8">
+<FID>24</FID>
+<OBJECTID>25</OBJECTID>
+<SHAPE_Leng>7.62335736189</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>3.97460273500008 112.27145373 10.7313251290001 115.801649186</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id85e8a2fe-05de-494f-96ec-b58b8f5847a2">
+<FID>25</FID>
+<OBJECTID>26</OBJECTID>
+<SHAPE_Leng>0.377034947441</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.7280121260001 115.801649186 10.621976664 116.163466588</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id5ee26f0a-6067-4360-9bc3-df39c191c709">
+<FID>26</FID>
+<OBJECTID>27</OBJECTID>
+<SHAPE_Leng>0.383489787554</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72419101100007 115.87325888 9.34508060400009 115.93104916</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ide5bcd0f3-b5b7-4483-80bf-76482b7026aa">
+<FID>27</FID>
+<OBJECTID>28</OBJECTID>
+<SHAPE_Leng>0.557469421575</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.33759389500005 115.93104916 8.90309005000006 116.280303458</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id745be775-1489-432d-a897-5aadf4a9a372">
+<FID>28</FID>
+<OBJECTID>30</OBJECTID>
+<SHAPE_Leng>1.20605679174</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.39767056000005 115.432023017 10.344473388 114.684937085</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd991823d-7218-470d-9622-d24a29f51096">
+<FID>29</FID>
+<OBJECTID>31</OBJECTID>
+<SHAPE_Leng>0.419264531352</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0587925900001 114.29107331 10.71619631 114.532756028</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf581cec2-5b4b-436d-b577-23f71a310d3d">
+<FID>30</FID>
+<OBJECTID>32</OBJECTID>
+<SHAPE_Leng>0.399782286183</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.71619631 114.532756028 10.3522164590001 114.698117887</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf18cb325-b707-43d9-aef2-8ffaf78f1587">
+<FID>31</FID>
+<OBJECTID>33</OBJECTID>
+<SHAPE_Leng>0.335695114882</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3501173370001 114.699177899 10.384751028 114.365274144</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf4ae06df-f39a-4fcf-9b2e-e65911801d92">
+<FID>32</FID>
+<OBJECTID>34</OBJECTID>
+<SHAPE_Leng>0.201699404841</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3858004730001 114.360975207 10.1842419690001 114.36851307</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idbb059c4b-6587-4690-9dd9-0f892be6a79d">
+<FID>33</FID>
+<OBJECTID>35</OBJECTID>
+<SHAPE_Leng>0.745864374255</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.37320925900008 115.207730594 8.85083356000007 114.63485304</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id425b1424-be3a-4cc2-9da1-ba57be72166e">
+<FID>34</FID>
+<OBJECTID>36</OBJECTID>
+<SHAPE_Leng>0.680364151739</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.85795488700006 114.656522234 8.17760929400009 114.661547476</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id33dfe1da-6444-4968-a67a-7c658b373173">
+<FID>35</FID>
+<OBJECTID>37</OBJECTID>
+<SHAPE_Leng>0.493389753558</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.86045386600006 114.656522234 8.71798470000005 114.184149515</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id4323fe2e-608e-46e3-aae2-5c9ed94f784f">
+<FID>36</FID>
+<OBJECTID>38</OBJECTID>
+<SHAPE_Leng>0.545410386143</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.17510579200007 114.669085339 8.09999332900009 114.128871856</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id2715fe7b-b744-47df-9f75-23f3519c3c7b">
+<FID>37</FID>
+<OBJECTID>39</OBJECTID>
+<SHAPE_Leng>0.248770847485</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.10333196300007 114.125940465 7.96642508000008 113.918230475</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id5f181947-e404-448c-9109-83068559329d">
+<FID>38</FID>
+<OBJECTID>40</OBJECTID>
+<SHAPE_Leng>0.357504375</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.97310454700005 113.928280959 7.61560017200009 113.928280959</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id9fce2d8b-89b3-4ba8-9122-4615cdd7ba4c">
+<FID>39</FID>
+<OBJECTID>41</OBJECTID>
+<SHAPE_Leng>0.508143622375</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.38824308100004 113.831126286 6.94656751500008 113.579864201</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf1328155-fd9a-45b9-9c17-184ae9ef3ae1">
+<FID>40</FID>
+<OBJECTID>42</OBJECTID>
+<SHAPE_Leng>2.78924654473</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.98651162700008 113.929237611 9.18355679100006 116.448558782</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id170ce0f3-6566-4bf2-99d3-f80ab19f5094">
+<FID>41</FID>
+<OBJECTID>43</OBJECTID>
+<SHAPE_Leng>3.8533905791</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.18808713400006 116.445208621 8.82171915300006 112.609274125</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id4a3860d8-7cca-4d35-9e8c-340df0309806">
+<FID>42</FID>
+<OBJECTID>44</OBJECTID>
+<SHAPE_Leng>0.383673282266</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.81385178600004 112.626024931 8.85050621200008 112.244106562</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc7d76b11-5060-4d6f-a591-5a8c61b40b4a">
+<FID>43</FID>
+<OBJECTID>45</OBJECTID>
+<SHAPE_Leng>0.383324331582</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.85383824900009 112.240756401 8.65052843000007 111.915790771</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc857fdae-c53c-4bf4-93e2-5004b0cfd1d4">
+<FID>44</FID>
+<OBJECTID>46</OBJECTID>
+<SHAPE_Leng>0.300298513521</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1821250720001 114.366710637 9.88374845600009 114.332790256</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc12f236b-d0f7-4514-9cab-39e636042034">
+<FID>45</FID>
+<OBJECTID>47</OBJECTID>
+<SHAPE_Leng>1.18133027076</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.88437133500008 114.332495808 8.71262952000006 114.182288193</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb3a6bb30-8460-4f78-a5a5-f9456829fa2c">
+<FID>46</FID>
+<OBJECTID>48</OBJECTID>
+<SHAPE_Leng>0.2151305106</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.71929607500005 114.175587871 8.79595277700008 113.974578203</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id0a71218a-f317-4c3c-b6a3-1a5b86a18515">
+<FID>47</FID>
+<OBJECTID>49</OBJECTID>
+<SHAPE_Leng>0.832034368422</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.79928531300004 113.971228042 7.96857395000006 113.924325786</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id8cdc4514-109f-455c-8f73-f1887e0de6af">
+<FID>48</FID>
+<OBJECTID>50</OBJECTID>
+<SHAPE_Leng>0.328242525319</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.79928531300004 113.971228042 8.96254214400005 113.686464346</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ide9960c73-68b5-4166-b921-f64d2a937e63">
+<FID>49</FID>
+<OBJECTID>51</OBJECTID>
+<SHAPE_Leng>0.953750684241</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.95921111100006 113.689814507 9.58821454200006 112.972880025</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id0be2654f-5298-4de2-8a7a-959e323a6f41">
+<FID>50</FID>
+<OBJECTID>52</OBJECTID>
+<SHAPE_Leng>0.857457587894</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.58821454200006 112.976230186 8.80928274000007 112.617762945</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id4fc46d19-8dcf-4ff4-9835-c68dfb360c40">
+<FID>51</FID>
+<OBJECTID>53</OBJECTID>
+<SHAPE_Leng>1.0811450296</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.96587314700008 113.696514829 8.82594451000006 112.624463267</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ida7132ef9-79bc-4619-8882-4f178172b9c6">
+<FID>52</FID>
+<OBJECTID>54</OBJECTID>
+<SHAPE_Leng>0.594634216379</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.398485022 114.369143628 10.0702363350001 113.873318406</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc548dff9-9828-41c0-9a37-a14b37244b15">
+<FID>53</FID>
+<OBJECTID>55</OBJECTID>
+<SHAPE_Leng>1.39311538416</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0677293040001 113.873318406 8.70865770900008 114.179414589</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id35bd7e90-c653-4d28-ac17-d88a01ee3448">
+<FID>54</FID>
+<OBJECTID>56</OBJECTID>
+<SHAPE_Leng>1.12402720613</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.88090033000009 114.333411325 8.95775798100004 113.692127173</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id434eb406-b779-468a-9635-bb65fec2121d">
+<FID>55</FID>
+<OBJECTID>57</OBJECTID>
+<SHAPE_Leng>1.02109339787</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0671025430001 113.87236976 9.58350860400009 112.973054115</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id974ff748-8b15-418c-8abb-d00a0cb9c69a">
+<FID>56</FID>
+<OBJECTID>58</OBJECTID>
+<SHAPE_Leng>1.04803761351</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.90062357900007 114.565931991 8.85657834300008 114.657323372</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idbef10e1f-351a-4f10-8c2a-8f0bfb944f20">
+<FID>57</FID>
+<OBJECTID>59</OBJECTID>
+<SHAPE_Leng>0.0684789169732</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0586098360001 114.290887805 11.0415580150001 114.224565882</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id4c4365ee-8fa4-4f13-ae1d-e04b574d198c">
+<FID>58</FID>
+<OBJECTID>60</OBJECTID>
+<SHAPE_Leng>0.24679671332</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0577123960001 114.293613363 10.9167800700001 114.091013518</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id012f5f0b-24d8-4c62-a42a-06526dc76186">
+<FID>59</FID>
+<OBJECTID>61</OBJECTID>
+<SHAPE_Leng>0.598672281195</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.9174451620001 114.089347899 10.3848971950001 114.362845912</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc9ef3660-4335-4e6b-89d0-56a3d68961dc">
+<FID>60</FID>
+<OBJECTID>62</OBJECTID>
+<SHAPE_Leng>0.509347965786</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.77481979200007 116.520418149 9.46226003300006 116.92258944</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id43130c37-da60-43a8-925d-22ed380e29fa">
+<FID>61</FID>
+<OBJECTID>63</OBJECTID>
+<SHAPE_Leng>5.06408076303</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.65116943500004 111.91411381 9.45415593200005 116.914126476</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb69cd0b6-b794-4204-a1ab-c642657fbc1c">
+<FID>62</FID>
+<OBJECTID>64</OBJECTID>
+<SHAPE_Leng>0.409776490732</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0585604390001 114.290678053 10.6683475390001 114.415780671</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ida687c5cf-b1a7-4f9c-8b38-659c2cf4a2bc">
+<FID>63</FID>
+<OBJECTID>65</OBJECTID>
+<SHAPE_Leng>0.280230698838</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.6655468170001 114.416321238 10.3916639650001 114.35701333</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id4ec3b3b8-ff11-41e6-b4ec-2f549642a31a">
+<FID>64</FID>
+<OBJECTID>66</OBJECTID>
+<SHAPE_Leng>7.62974927241</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0838755080001 115.032520116 3.97105792900004 112.271922346</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id26bb0958-856b-45fb-b569-8e45458fa5af">
+<FID>65</FID>
+<OBJECTID>68</OBJECTID>
+<SHAPE_Leng>0.644632130795</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.76904485000006 116.516921026 9.72491902000007 115.873800901</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb29d11bf-c798-47e5-aa45-bcefcb759ff9">
+<FID>66</FID>
+<OBJECTID>69</OBJECTID>
+<SHAPE_Leng>1.20628638309</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.354977825 114.713589955 9.40483188900009 115.456792174</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id05ff71e1-2fa9-4546-ae86-2b4187d4af3f">
+<FID>67</FID>
+<OBJECTID>70</OBJECTID>
+<SHAPE_Leng>0.741635322572</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.083237055 115.032369959 10.669226413 114.417050416</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idae080ae5-3326-48f4-8339-7767db978731">
+<FID>68</FID>
+<OBJECTID>71</OBJECTID>
+<SHAPE_Leng>0.309676413651</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.9147720930001 114.089003551 10.7113867240001 114.322528438</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id5024c34e-0f35-4e6d-a1c0-07ea2137091b">
+<FID>69</FID>
+<OBJECTID>72</OBJECTID>
+<SHAPE_Leng>0.426821091078</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.667393222 114.415892058 10.3496254720001 114.700848021</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id52841334-5ae1-4d28-b836-f7bc6f266767">
+<FID>70</FID>
+<OBJECTID>73</OBJECTID>
+<SHAPE_Leng>0.376542393405</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.348249137 114.698762978 9.97733632600006 114.633894953</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd493789b-6cb4-4238-b2f4-a6ed5bf5aab1">
+<FID>71</FID>
+<OBJECTID>74</OBJECTID>
+<SHAPE_Leng>0.605885318574</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.38170813500005 115.23577346 8.17863106300007 114.664934847</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd1e038ce-38a7-4278-8689-4fe6eb1c04f9">
+<FID>72</FID>
+<OBJECTID>75</OBJECTID>
+<SHAPE_Leng>0.620418803373</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.72300338400004 114.188618213 8.10475872300009 114.136723794</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id27dba76f-a025-4660-8b27-157ae80c893e">
+<FID>73</FID>
+<OBJECTID>76</OBJECTID>
+<SHAPE_Leng>0.140868418709</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.61501310800008 113.932852861 7.61686229500009 113.79199658</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idae090b0e-4165-4148-8be8-295ec0d865a6">
+<FID>74</FID>
+<OBJECTID>77</OBJECTID>
+<SHAPE_Leng>0.741197113305</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.61145169000008 113.78537249 8.18088805500008 113.310909228</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd29f23f6-b1f3-4b09-9220-b8ac9ac9bf98">
+<FID>75</FID>
+<OBJECTID>79</OBJECTID>
+<SHAPE_Leng>0.236492096585</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.61583497000004 113.78537249 7.38345917500004 113.829304274</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc403154d-69d7-4b53-81c1-6d6bc2236da5">
+<FID>76</FID>
+<OBJECTID>80</OBJECTID>
+<SHAPE_Leng>1.84173331309</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>6.33341824200005 113.232221354 8.17319664800004 113.317056567</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id5556ef8c-31ea-40a6-bf66-e212cae638e9">
+<FID>77</FID>
+<OBJECTID>81</OBJECTID>
+<SHAPE_Leng>0.589846551222</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.3407422210001 114.615630108 10.7516709930001 114.585396975</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id11a5ce77-4b2a-40cf-b058-cf1119cb06f6">
+<FID>78</FID>
+<OBJECTID>82</OBJECTID>
+<SHAPE_Leng>0.11738514136</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.3835914830001 114.315826354 11.466030688 114.399390993</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ide31d7923-cad8-49d7-abf0-52d83f7b5bb9">
+<FID>79</FID>
+<OBJECTID>83</OBJECTID>
+<SHAPE_Leng>3.24105045924</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.3838164970001 114.315117765 9.44992273100007 116.915975889</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idbff53d68-4fc7-4a56-88fe-2df6013208ce">
+<FID>80</FID>
+<OBJECTID>84</OBJECTID>
+<SHAPE_Leng>0.914925298679</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.77683020600006 116.533167651 10.6238237400001 116.187204856</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id7d6911d1-6c5f-47a0-863c-4d97c3682225">
+<FID>81</FID>
+<OBJECTID>85</OBJECTID>
+<SHAPE_Leng>0.223386486885</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0832087630001 115.033513837 10.8838899760001 114.932649851</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idb5bf7e40-66bf-4722-b11e-11332e027c35">
+<FID>82</FID>
+<OBJECTID>86</OBJECTID>
+<SHAPE_Leng>0.780206777671</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.8831654590001 114.933228634 10.1889231430001 115.289248609</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idda0a0feb-cd8e-48c0-aa0f-f29d61338ccb">
+<FID>83</FID>
+<OBJECTID>87</OBJECTID>
+<SHAPE_Leng>0.486705840749</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.34156716400008 115.933387124 9.39980607800004 115.450178262</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id125a2d65-9e11-487a-816b-d0f1ce4f9629">
+<FID>84</FID>
+<OBJECTID>88</OBJECTID>
+<SHAPE_Leng>0.527612677604</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.72452351300007 115.872471995 9.39891459300009 115.45731664</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id532b9654-e9a0-4ceb-aa00-739455038ac0">
+<FID>85</FID>
+<OBJECTID>89</OBJECTID>
+<SHAPE_Leng>0.894052183064</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.6136276920001 116.154905313 9.78785047700006 116.497573224</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id3e891646-0cd2-4274-9375-08e84706dbed">
+<FID>86</FID>
+<OBJECTID>90</OBJECTID>
+<SHAPE_Leng>1.20489885958</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.76497343400007 116.516485935 10.7334462050001 115.799658373</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id9773fa4c-4231-4e8e-b4fb-d0c4dcdedfa5">
+<FID>87</FID>
+<OBJECTID>91</OBJECTID>
+<SHAPE_Leng>0.411014437972</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.919207805 114.091103359 10.6680580250001 114.416459558</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idc3159421-336f-4064-9744-e4ae164f586f">
+<FID>88</FID>
+<OBJECTID>92</OBJECTID>
+<SHAPE_Leng>0.351285895811</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.0582496980001 114.292517596 10.7084900470001 114.325227948</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id2c1db571-d564-4cd8-8194-ef76c0a2e759">
+<FID>89</FID>
+<OBJECTID>93</OBJECTID>
+<SHAPE_Leng>0.749407971252</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.86629792800005 114.661156114 8.38929021800004 115.239149152</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id52e24a90-f5d3-4ccd-af87-e70f1bf0b0ea">
+<FID>90</FID>
+<OBJECTID>94</OBJECTID>
+<SHAPE_Leng>1.13927952985</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.87947897800007 114.333239483 8.79921797100008 113.971308545</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id59b625a0-31ab-4104-88fd-1620888c226b">
+<FID>91</FID>
+<OBJECTID>95</OBJECTID>
+<SHAPE_Leng>0.911137237413</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.80233421600008 113.977574052 8.17856813100008 113.31343029</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id8a7d6e87-104f-4b32-bd4a-b27315f2bcd9">
+<FID>92</FID>
+<OBJECTID>96</OBJECTID>
+<SHAPE_Leng>0.800479882915</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.71353518100005 114.191837265 7.96003667100007 113.921637268</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id17a92ed8-231d-4970-b7fd-c4192c89429a">
+<FID>93</FID>
+<OBJECTID>98</OBJECTID>
+<SHAPE_Leng>0.481503067255</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.17469078900007 113.31658988 7.88456896600007 112.932305439</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id849f3e6b-df1f-4c0e-844a-556982e8bd69">
+<FID>94</FID>
+<OBJECTID>99</OBJECTID>
+<SHAPE_Leng>0.637986522199</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>7.96961125700005 113.922475417 8.17469078900007 113.318348619</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf78c13eb-0713-4982-94e4-3f45de0c1a54">
+<FID>95</FID>
+<OBJECTID>100</OBJECTID>
+<SHAPE_Leng>3.60945776582</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.16156685300007 116.457733275 8.84024086900007 112.862606716</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id8369d44b-04ef-47a7-8568-93019177e1c2">
+<FID>96</FID>
+<OBJECTID>101</OBJECTID>
+<SHAPE_Leng>0.245912177007</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.85894848700008 112.857234141 8.81734857900005 112.614866143</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idf5827354-9be9-4773-a460-12ba3d773f7e">
+<FID>97</FID>
+<OBJECTID>102</OBJECTID>
+<SHAPE_Leng>2.01727003898</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.81730692200006 112.615826926 9.88219703700008 114.329124172</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="ide169df9f-1047-458c-8533-4bcc89903aae">
+<FID>98</FID>
+<OBJECTID>103</OBJECTID>
+<SHAPE_Leng>0.492947590481</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0661562370001 113.872827293 9.88597807600007 114.331666216</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd7867799-9149-42fe-8745-97293322527c">
+<FID>99</FID>
+<OBJECTID>104</OBJECTID>
+<SHAPE_Leng>0.137483401232</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.1832805010001 114.364712787 10.2034265350001 114.228713438</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id612d3b8e-328b-4949-9318-4c2310df2c83">
+<FID>100</FID>
+<OBJECTID>105</OBJECTID>
+<SHAPE_Leng>0.335108120308</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.88294407400008 114.33370835 10.1985282400001 114.220995944</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd110354d-e0be-49c6-8ab8-974e1ff5458d">
+<FID>101</FID>
+<OBJECTID>106</OBJECTID>
+<SHAPE_Leng>0.227527692311</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.3830884240001 114.366447181 10.2020585510001 114.228617446</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id9ead755b-dba2-42b0-a264-0f4f2e7d9983">
+<FID>102</FID>
+<OBJECTID>107</OBJECTID>
+<SHAPE_Leng>0.249343362364</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>11.3413881380001 114.616334132 11.4696360040001 114.402501026</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id3e5d0f23-5f19-4321-8b27-224929301c25">
+<FID>103</FID>
+<OBJECTID>108</OBJECTID>
+<SHAPE_Leng>0.586219346423</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.8824342700001 114.932832228 11.0845090000001 114.382542372</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id0622ab29-766a-47ca-b2f8-822fa373090e">
+<FID>104</FID>
+<OBJECTID>109</OBJECTID>
+<SHAPE_Leng>0.718964627502</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>8.81698185700009 112.615852223 8.65155967100009 111.916176844</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idd6758695-51dc-46da-8c3b-76c57ada71ec">
+<FID>105</FID>
+<OBJECTID>110</OBJECTID>
+<SHAPE_Leng>1.25925489837</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0670220600001 113.875259486 8.81125687200006 113.968943485</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="id5483fc0c-abcc-4e32-a857-7d0c83e7c72f">
+<FID>106</FID>
+<OBJECTID>111</OBJECTID>
+<SHAPE_Leng>0.511720561831</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>9.90192299000006 115.538150454 9.39837352500007 115.447068789</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+<featureMember>
+<水路簿王国昌版 id="idaa8aaf06-b102-46d8-9cd9-3a52fa22fcd1">
+<FID>107</FID>
+<OBJECTID>112</OBJECTID>
+<SHAPE_Leng>1.12186185824</SHAPE_Leng>
+<curveProperty>
+<LineString srsName="EPSG:4326" srsDimension="2">
+<posList>10.0670220600001 113.87786182 8.96136148700009 113.68789149</posList>
+</LineString>
+</curveProperty>
+</水路簿王国昌版>
+</featureMember>
+</FeatureCollection>
