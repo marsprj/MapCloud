@@ -1,0 +1,1896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCollection xmlns:fme="http://www.safe.com/gml/fme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xsi:schemaLocation="http://www.safe.com/gml/fme 4机场港口.xsd">
+<boundedBy>
+<Envelope srsName="EPSG:4326" srsDimension="2">
+<lowerCorner>1.22006029800002 105.129999871</lowerCorner>
+<upperCorner>23.3924349490001 122.583333335</upperCorner>
+</Envelope>
+</boundedBy>
+<featureMember>
+<机场港口 id="idb7085be7-7f19-47cc-91a0-a35ec14d065a">
+<FID>0</FID>
+<OBJECTID>1</OBJECTID>
+<Id>0</Id>
+<名称>内排国际机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>21.2090363190001 105.800963682</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idc241a1ea-1513-4a6c-86bc-e8b5d0453535">
+<FID>1</FID>
+<OBJECTID>2</OBJECTID>
+<Id>0</Id>
+<名称>金瓯机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.18000000000006 105.17</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id81ed05a5-ca13-42aa-8676-befa82346ca3">
+<FID>2</FID>
+<OBJECTID>3</OBJECTID>
+<Id>0</Id>
+<名称>芹苴机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.50304571 105.75695429</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ideae46d82-2f32-4f29-91a9-6c60d2fb934b">
+<FID>3</FID>
+<OBJECTID>4</OBJECTID>
+<Id>0</Id>
+<名称>嘉临机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>21.03 105.91512852</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf11613ce-c0a3-432f-bedc-ab3b7b18da14">
+<FID>4</FID>
+<OBJECTID>5</OBJECTID>
+<Id>0</Id>
+<名称>岘港机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.020128636 108.25</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id574eaac5-aebc-466f-b8dc-dbca331c9d2d">
+<FID>5</FID>
+<OBJECTID>6</OBJECTID>
+<Id>0</Id>
+<名称>岘港国际机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.03 108.2</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9db460ca-5058-4e54-a167-701d13c1d920">
+<FID>6</FID>
+<OBJECTID>7</OBJECTID>
+<Id>0</Id>
+<名称>新山国际机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8497501850001 106.640891192</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ida93c53b2-5d65-44f5-806b-7e7e48d026d8">
+<FID>7</FID>
+<OBJECTID>8</OBJECTID>
+<Id>0</Id>
+<名称>隆城国际机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.9691075100001 106.863244966</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idc2159874-36c9-46a3-8e33-d94d646b9d05">
+<FID>8</FID>
+<OBJECTID>9</OBJECTID>
+<Id>0</Id>
+<名称>金兰国际机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.9900000000001 109.219990341</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id319d680f-65c0-48ba-9b4a-ab691bf7693a">
+<FID>9</FID>
+<OBJECTID>10</OBJECTID>
+<Id>0</Id>
+<名称>头顿机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.3462155030001 107.095134497</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id0efcdd43-ffd5-43d4-9a56-3d73d71f87ad">
+<FID>10</FID>
+<OBJECTID>11</OBJECTID>
+<Id>0</Id>
+<名称>潘穰机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.6300000000001 108.95</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8f8839a6-726a-4d57-9758-ea28d01113c1">
+<FID>11</FID>
+<OBJECTID>12</OBJECTID>
+<Id>0</Id>
+<名称>漫珠机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.9690595660001 105.83</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id39285616-da88-4d0f-bbe3-04405f18bf39">
+<FID>12</FID>
+<OBJECTID>13</OBJECTID>
+<Id>0</Id>
+<名称>吉牌机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.7906833930001 106.7</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8af7834b-18bf-45c8-b29a-cb3aa9740073">
+<FID>13</FID>
+<OBJECTID>14</OBJECTID>
+<Id>0</Id>
+<名称>建安机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.8000000000001 106.6</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf6bfa53a-34b6-41ba-a444-b181b334cbc6">
+<FID>14</FID>
+<OBJECTID>15</OBJECTID>
+<Id>0</Id>
+<名称>富牌机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.400005433 107.7</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id4fddf774-0bbb-4f68-a99d-e728e43700f2">
+<FID>15</FID>
+<OBJECTID>16</OBJECTID>
+<Id>0</Id>
+<名称>昆特机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.35 108.02</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id0cbae3e4-21cd-4404-9983-e0e77b9ef07d">
+<FID>16</FID>
+<OBJECTID>17</OBJECTID>
+<Id>0</Id>
+<名称>波古来机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.0000000000001 108.010005433</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idcb77d0e6-fd81-41ed-80d7-2ec28685add2">
+<FID>17</FID>
+<OBJECTID>18</OBJECTID>
+<Id>0</Id>
+<名称>东索机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.040005433 109.329994567</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9c2eb621-b234-487e-ace4-5f86a49627e1">
+<FID>18</FID>
+<OBJECTID>19</OBJECTID>
+<Id>0</Id>
+<名称>联姜机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.7500054330001 108.36</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idbe0af590-0208-44a5-bbda-34052ad072d7">
+<FID>19</FID>
+<OBJECTID>20</OBJECTID>
+<Id>0</Id>
+<名称>芽庄机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>12.22 109.19</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id2d61d391-c5bd-494b-81a2-55d1f44e066e">
+<FID>20</FID>
+<OBJECTID>21</OBJECTID>
+<Id>0</Id>
+<名称>富吉机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.9500054330001 109.039994567</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id4bb592d7-8be3-4f1e-9551-eb1684020f79">
+<FID>21</FID>
+<OBJECTID>22</OBJECTID>
+<Id>0</Id>
+<名称>富吉机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.58000543300005 105.959994567</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id1f316f03-7c72-4d06-9846-32d26fe1621e">
+<FID>22</FID>
+<OBJECTID>23</OBJECTID>
+<Id>0</Id>
+<名称>龙川机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.0800108660001 105.71</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8afed89c-ff15-4c28-a70b-3bd3208004f4">
+<FID>23</FID>
+<OBJECTID>24</OBJECTID>
+<Id>0</Id>
+<名称>朱莱机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.399999742 108.7</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idc09df9cc-0790-44be-a54a-1f282095fcac">
+<FID>24</FID>
+<OBJECTID>25</OBJECTID>
+<Id>0</Id>
+<名称>荣机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.400000258 105.629999871</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf8c259af-f89d-438a-99ce-daf20698d51e">
+<FID>25</FID>
+<OBJECTID>26</OBJECTID>
+<Id>0</Id>
+<名称>迪石机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.95000013000003 105.129999871</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idfa6c45d8-cbce-4c83-8f66-9f521a504fa4">
+<FID>26</FID>
+<OBJECTID>27</OBJECTID>
+<Id>0</Id>
+<名称>永隆机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.2500000000001 105.94</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idfdf06b5a-8796-4103-9fee-f672b6460af3">
+<FID>27</FID>
+<OBJECTID>28</OBJECTID>
+<Id>0</Id>
+<名称>邦美属机场</名称>
+<类型>民用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>12.66 108.110000129</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id94de6be3-2631-4d23-b15d-28bf9746785e">
+<FID>28</FID>
+<OBJECTID>29</OBJECTID>
+<Id>0</Id>
+<名称>昆山机场</名称>
+<类型>军用</类型>
+<归属国别>越南</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>8.73000000000008 106.629999871</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idfeaa4f4d-d71c-4c3d-9433-5002b7131896">
+<FID>29</FID>
+<OBJECTID>30</OBJECTID>
+<Id>0</Id>
+<名称>海防港</名称>
+<类型>海湾河口港</类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.8077910700001 106.780065221</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ida052880b-8f0c-4983-ba1a-4557aea3319e">
+<FID>30</FID>
+<OBJECTID>31</OBJECTID>
+<Id>0</Id>
+<名称>岘港</名称>
+<类型>军商合用</类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.080000129 108.19</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ideef99db7-70c1-4dbb-87ee-fd9fd48f82e9">
+<FID>31</FID>
+<OBJECTID>32</OBJECTID>
+<Id>0</Id>
+<名称>胡志明港</名称>
+<类型>海湾河口港</类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.593722354 106.776935733</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf865da0d-937c-49e1-85b3-c0ffcab9043b">
+<FID>32</FID>
+<OBJECTID>33</OBJECTID>
+<Id>0</Id>
+<名称>鸿基港</名称>
+<类型> </类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.9400000000001 107.000000129</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id43fc8b14-d5ad-464f-bdbb-d568256d9148">
+<FID>33</FID>
+<OBJECTID>34</OBJECTID>
+<Id>0</Id>
+<名称>盖邻港</名称>
+<类型> </类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>21.090000129 107.370000129</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idc0681185-ac57-42fa-bea7-9f50a3adf772">
+<FID>34</FID>
+<OBJECTID>35</OBJECTID>
+<Id>0</Id>
+<名称>鸿罗港</名称>
+<类型> </类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>17.51000013 106.60999987</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="iddb73d255-7f10-425c-8769-875afb806947">
+<FID>35</FID>
+<OBJECTID>36</OBJECTID>
+<Id>0</Id>
+<名称>归仁港</名称>
+<类型> </类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.7416492580001 109.270012508</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8ec39163-7064-412c-975d-8e37c1538730">
+<FID>36</FID>
+<OBJECTID>37</OBJECTID>
+<Id>0</Id>
+<名称>头顿港</名称>
+<类型> </类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.4122755010001 107.094449545</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id3ca60f58-91f3-412a-ac29-99b3bbede31b">
+<FID>37</FID>
+<OBJECTID>38</OBJECTID>
+<Id>0</Id>
+<名称>金兰湾港</名称>
+<类型>军港</类型>
+<归属国别>越南</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.8700000000001 109.16</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id79aa1c40-9d7b-4037-9c37-a93f7267ffda">
+<FID>38</FID>
+<OBJECTID>39</OBJECTID>
+<Id>0</Id>
+<名称>文莱国际机场</名称>
+<类型>民用兼军用</类型>
+<归属国别>文莱</归属国别>
+<大类别>机场</大类别>
+<用途>民用兼军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.95783535000004 114.914761257</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idfb0ed6a1-3c6b-4bfa-8e07-4b62bd48e729">
+<FID>39</FID>
+<OBJECTID>40</OBJECTID>
+<Id>0</Id>
+<名称>哥打基纳巴鲁国际机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.90399582400005 116.069646062</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id390499ef-8ba1-4ae5-9f17-32d23605a71b">
+<FID>40</FID>
+<OBJECTID>41</OBJECTID>
+<Id>0</Id>
+<名称>古晋国际机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>1.48019057200003 110.35</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idd4ac32a0-c112-44d2-8773-f57037f540d7">
+<FID>41</FID>
+<OBJECTID>42</OBJECTID>
+<Id>0</Id>
+<名称>库达特机场</名称>
+<类型>军用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>6.92019057200002 116.83</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idbefc2153-6784-496f-915d-4ce02f189bf1">
+<FID>42</FID>
+<OBJECTID>43</OBJECTID>
+<Id>0</Id>
+<名称>仙本那机场</名称>
+<类型>军用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.45006029800004 118.589939702</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id7f3c18ca-9b9f-4ba3-adee-2fd797237dd7">
+<FID>43</FID>
+<OBJECTID>44</OBJECTID>
+<Id>0</Id>
+<名称>诗里阿曼机场</名称>
+<类型>军用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>1.22006029800002 111.460060298</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idb2753b73-0f11-4c00-9189-f6f46b708938">
+<FID>44</FID>
+<OBJECTID>45</OBJECTID>
+<Id>0</Id>
+<名称>斗湖国际机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.31000000000006 118.12</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id5f2ae8e2-339b-4559-9b27-038f4844dbb5">
+<FID>45</FID>
+<OBJECTID>46</OBJECTID>
+<Id>0</Id>
+<名称>丹绒马尼斯机场</名称>
+<类型>军用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>2.17000000000007 111.2</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ide23b321e-1e3a-4c02-9fef-d02f5606c0d4">
+<FID>46</FID>
+<OBJECTID>47</OBJECTID>
+<Id>0</Id>
+<名称>民都鲁机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>3.17000000000007 113.04</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8c995304-dcb8-42c6-a103-16989eecfac9">
+<FID>47</FID>
+<OBJECTID>48</OBJECTID>
+<Id>0</Id>
+<名称>拉布安机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.30019057200008 115.24</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id81615ca3-a0a2-4184-a0a8-b6292916a464">
+<FID>48</FID>
+<OBJECTID>49</OBJECTID>
+<Id>0</Id>
+<名称>美里机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.32000000000005 113.979809428</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idd81e0417-793c-4de7-b777-3e4dc3ac4edd">
+<FID>49</FID>
+<OBJECTID>50</OBJECTID>
+<Id>0</Id>
+<名称>拉哈达图机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.03000000000003 118.32</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id68396e67-99c8-48c5-bd12-a0c307ee9fac">
+<FID>50</FID>
+<OBJECTID>51</OBJECTID>
+<Id>0</Id>
+<名称>拉瓦斯机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.84038114400005 115.4</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idabc32546-bb67-40ad-9cc4-cd6b203b25da">
+<FID>51</FID>
+<OBJECTID>52</OBJECTID>
+<Id>0</Id>
+<名称>马鲁迪机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.17019057200002 114.33</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8907fe24-e6a1-4a26-a28a-6b45c2fbf7c3">
+<FID>52</FID>
+<OBJECTID>53</OBJECTID>
+<Id>0</Id>
+<名称>米里机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.45000000000005 113.999939702</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idc859a27a-9a44-4474-9bd2-569518de6f98">
+<FID>53</FID>
+<OBJECTID>54</OBJECTID>
+<Id>0</Id>
+<名称>穆卡机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>2.90006029800003 112.07</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id537908f0-0ad1-4e60-91cb-0e1dd2f3818f">
+<FID>54</FID>
+<OBJECTID>55</OBJECTID>
+<Id>0</Id>
+<名称>山打根国际机场</名称>
+<类型>民用</类型>
+<归属国别>马来西亚</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.96006029800003 118.600060298</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id0807131b-c65b-480d-a3af-3d0e89176f70">
+<FID>55</FID>
+<OBJECTID>56</OBJECTID>
+<Id>0</Id>
+<名称>布山加机场</名称>
+<类型>军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>12.1429311630001 120.069616744</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id43b3931d-5d18-44cb-844c-03b663532f65">
+<FID>56</FID>
+<OBJECTID>57</OBJECTID>
+<Id>0</Id>
+<名称>土格加劳机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>17.64000034 121.73</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id4c932c5d-ecd0-4dda-a3d5-8b75e1290376">
+<FID>57</FID>
+<OBJECTID>58</OBJECTID>
+<Id>0</Id>
+<名称>圣费尔南多机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.5900003400001 120.3</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id2dfcd722-c324-4828-9324-282eec28f76e">
+<FID>58</FID>
+<OBJECTID>59</OBJECTID>
+<Id>0</Id>
+<名称>马林杜克机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.3600003400001 121.82</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9ddc4202-1ea3-4d49-8f06-ef5f155ba028">
+<FID>59</FID>
+<OBJECTID>60</OBJECTID>
+<Id>0</Id>
+<名称>卡瓦延机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.9200003400001 121.75</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idb688bfde-a93a-4198-a870-da2c16a5b55b">
+<FID>60</FID>
+<OBJECTID>61</OBJECTID>
+<Id>0</Id>
+<名称>库页机场</名称>
+<类型>军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.8500003400001 121.07</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idcb3b95d2-690d-4d7f-8f67-51a9fa032491">
+<FID>61</FID>
+<OBJECTID>62</OBJECTID>
+<Id>0</Id>
+<名称>费尔南多空军基地</名称>
+<类型>军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.95000034 121.11999966</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf0ecfd63-9481-42a0-8353-93db79018819">
+<FID>62</FID>
+<OBJECTID>63</OBJECTID>
+<Id>0</Id>
+<名称>桑莱岬美国海军基地</名称>
+<类型>军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.490001433 120.9</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idd4f98646-232f-4be6-99ba-44674ae916b5">
+<FID>63</FID>
+<OBJECTID>64</OBJECTID>
+<Id>0</Id>
+<名称>麦格赛赛机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.430001433 120.09</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9e10725b-11bd-430d-b4fd-d23de4980542">
+<FID>64</FID>
+<OBJECTID>65</OBJECTID>
+<Id>0</Id>
+<名称>巴萨空军基地</名称>
+<类型>军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.980001433 120.490001432</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf254eb52-00b0-45db-8b61-c48d0c6de80b">
+<FID>65</FID>
+<OBJECTID>66</OBJECTID>
+<Id>0</Id>
+<名称>三宝颜机场</名称>
+<类型>军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>6.92000286500007 120.050001433</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id68a8a517-43bc-4f50-91a3-85874cab7561">
+<FID>66</FID>
+<OBJECTID>67</OBJECTID>
+<Id>0</Id>
+<名称>因湾机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.0300014330001 120.240001433</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id5adeaa13-a51c-4932-95c9-db3493562c87">
+<FID>67</FID>
+<OBJECTID>68</OBJECTID>
+<Id>0</Id>
+<名称>普林塞萨国际机场</名称>
+<类型>民用兼军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用兼军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.76548193600007 118.757645154</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idde24f865-4503-4cd7-944e-48a27aab4da4">
+<FID>68</FID>
+<OBJECTID>69</OBJECTID>
+<Id>0</Id>
+<名称>利奥机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.2000014330001 119.41</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ida70a681b-b8eb-4a18-99ca-adac92a16763">
+<FID>69</FID>
+<OBJECTID>70</OBJECTID>
+<Id>0</Id>
+<名称>速录机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>7.01000000000005 118.49</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id0bb0d8d7-cd8f-419d-b27b-1a2e7f2e6a8e">
+<FID>70</FID>
+<OBJECTID>71</OBJECTID>
+<Id>0</Id>
+<名称>巴士戈机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>20.450001432 121.97</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id4abb398c-a999-41f0-8f19-66013fd2f73e">
+<FID>71</FID>
+<OBJECTID>72</OBJECTID>
+<Id>0</Id>
+<名称>卡提克兰机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>11.9200000000001 121.95</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8077ace5-931d-46fa-9822-455645466510">
+<FID>72</FID>
+<OBJECTID>73</OBJECTID>
+<Id>0</Id>
+<名称>佬沃国际机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>18.1700003400001 120.53</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id576f3943-cc32-4320-a807-176593b48fa8">
+<FID>73</FID>
+<OBJECTID>74</OBJECTID>
+<Id>0</Id>
+<名称>碧瑶机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>16.370000061 120.61</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id03258a36-ee40-414c-9e29-59c55ae4f868">
+<FID>74</FID>
+<OBJECTID>75</OBJECTID>
+<Id>0</Id>
+<名称>马尼拉艾奎诺国际机场</名称>
+<类型>民用兼军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用兼军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.5055846670001 121.021169335</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id142c8d87-e327-4e87-8265-09454d694de7">
+<FID>75</FID>
+<OBJECTID>76</OBJECTID>
+<Id>0</Id>
+<名称>克拉克国际机场</名称>
+<类型>民用兼军用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用兼军用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.1800000600001 120.55</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id6f9075c8-6107-411e-8f7f-7d962eaa9f04">
+<FID>76</FID>
+<OBJECTID>77</OBJECTID>
+<Id>0</Id>
+<名称>苏比克海湾国际机场</名称>
+<类型>民用</类型>
+<归属国别>菲律宾</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.781626692 120.274189519</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idd770d9f8-d408-499b-9003-9605b07ced8b">
+<FID>77</FID>
+<OBJECTID>78</OBJECTID>
+<Id>0</Id>
+<名称>斯里巴加湾港</名称>
+<类型> </类型>
+<归属国别>文莱</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.86471301100005 114.942547907</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9c05e73a-6d31-4238-95c9-08b449d12923">
+<FID>78</FID>
+<OBJECTID>79</OBJECTID>
+<Id>0</Id>
+<名称>白拉奕港</名称>
+<类型> </类型>
+<归属国别>文莱</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.58000045400007 114.22</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="ida4d994d7-337c-4f20-95bf-55378bf584f8">
+<FID>79</FID>
+<OBJECTID>80</OBJECTID>
+<Id>0</Id>
+<名称>穆阿拉港</名称>
+<类型> </类型>
+<归属国别>文莱</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.03000000000003 115.069999547</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id68e9dd1b-ddff-48ac-b25c-928ce58afe3a">
+<FID>80</FID>
+<OBJECTID>81</OBJECTID>
+<Id>0</Id>
+<名称>诗里亚港</名称>
+<类型> </类型>
+<归属国别>文莱</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.61000000000007 114.32000191</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id1d2ccca7-3766-445f-b9f9-c3c10a555c1b">
+<FID>81</FID>
+<OBJECTID>82</OBJECTID>
+<Id>0</Id>
+<名称>普林塞萨港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>9.70275853000004 118.731954109</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id258c7733-538b-48c7-a136-71689576dadb">
+<FID>82</FID>
+<OBJECTID>83</OBJECTID>
+<Id>0</Id>
+<名称>罗萨瑞奥港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.396133519 120.824024183</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id1397b01f-fc5d-4e25-a72f-bbf0b6ce5e95">
+<FID>83</FID>
+<OBJECTID>84</OBJECTID>
+<Id>0</Id>
+<名称>马尼拉港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.563787157 120.966666586</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id609ba457-a1bf-46ea-95b5-7bf79a6f70cc">
+<FID>84</FID>
+<OBJECTID>85</OBJECTID>
+<Id>0</Id>
+<名称>安提莫南港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.000000034 121.916666599</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idefb2d87b-ec4c-4ae2-936b-64fce4b0e8bc">
+<FID>85</FID>
+<OBJECTID>86</OBJECTID>
+<Id>0</Id>
+<名称>阿帕里港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>18.3666666660001 121.6333333</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9cfee00a-181d-4702-a492-3735533aeb8c">
+<FID>86</FID>
+<OBJECTID>87</OBJECTID>
+<Id>0</Id>
+<名称>巴丹港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.612264768 120.589980551</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id5ea520af-6091-4ef2-97a6-fdfc2c31751b">
+<FID>87</FID>
+<OBJECTID>88</OBJECTID>
+<Id>0</Id>
+<名称>八打雁港（海湾河口港）</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.750000034 121.049999966</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idaf4c64cb-7201-40dc-aa69-a650a6c0ccdc">
+<FID>88</FID>
+<OBJECTID>89</OBJECTID>
+<Id>0</Id>
+<名称>伊莎贝拉港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>6.71666663300005 121.933333265</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9ab208b1-63c3-4d91-8848-5cd94487d2d6">
+<FID>89</FID>
+<OBJECTID>90</OBJECTID>
+<Id>0</Id>
+<名称>利迈港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.5394282880001 120.606845151</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id29bd95ff-e7c7-48ed-8513-5f55d1f959ad">
+<FID>90</FID>
+<OBJECTID>91</OBJECTID>
+<Id>0</Id>
+<名称>麦纳格港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>13.666666692 121.05</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id332cb133-6fde-43a6-805d-d870c089d516">
+<FID>91</FID>
+<OBJECTID>92</OBJECTID>
+<Id>0</Id>
+<名称>马瑞夫利斯港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.424494343 120.498557022</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idc0804d8b-c6dc-4483-a627-93bbf0d9cd9a">
+<FID>92</FID>
+<OBJECTID>93</OBJECTID>
+<Id>0</Id>
+<名称>马辛洛克港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>15.5062087420001 119.950019024</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id25f4523e-8505-44ad-bd0b-3c83551d432a">
+<FID>93</FID>
+<OBJECTID>94</OBJECTID>
+<Id>0</Id>
+<名称>苏比克港（自由港）</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>14.844590005 120.294415332</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idb61c2e1c-a665-492a-a3b3-edfe3bc3c609">
+<FID>94</FID>
+<OBJECTID>95</OBJECTID>
+<Id>0</Id>
+<名称>帕鲁潘丹港</名称>
+<类型> </类型>
+<归属国别>菲律宾</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>10.6833333340001 122.583333335</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idcf1fd0a7-4234-47ca-80e9-569df3efbc04">
+<FID>95</FID>
+<OBJECTID>96</OBJECTID>
+<Id>0</Id>
+<名称>泗务港</名称>
+<类型> </类型>
+<归属国别>马来西亚</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>2.33333401300007 111.933333333</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id6e61ed4e-4b23-4c31-b83e-741ba9311738">
+<FID>96</FID>
+<OBJECTID>97</OBJECTID>
+<Id>0</Id>
+<名称>斯皮唐港</名称>
+<类型> </类型>
+<归属国别>马来西亚</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.05000034000005 115.516666326</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id1a3eacb5-1857-4dbb-b0d6-824906d1a924">
+<FID>97</FID>
+<OBJECTID>98</OBJECTID>
+<Id>0</Id>
+<名称>宾土卢港</名称>
+<类型> </类型>
+<归属国别>马来西亚</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>3.26666672700003 112.983333394</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id608541aa-b76e-4510-ae23-e631a5700af3">
+<FID>98</FID>
+<OBJECTID>99</OBJECTID>
+<Id>0</Id>
+<名称>拉瓦斯港</名称>
+<类型> </类型>
+<归属国别>马来西亚</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>4.80000010200007 115.083333368</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf1afb849-a352-4cc4-a0ac-b0236b353a53">
+<FID>99</FID>
+<OBJECTID>100</OBJECTID>
+<Id>0</Id>
+<名称>萨庞格湾港</名称>
+<类型> </类型>
+<归属国别>马来西亚</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.98502966700005 116.011874337</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idcc3a9d86-f5f1-498a-9687-a8c684458ce0">
+<FID>100</FID>
+<OBJECTID>101</OBJECTID>
+<Id>0</Id>
+<名称>拉哈达图港</名称>
+<类型> </类型>
+<归属国别>马来西亚</归属国别>
+<大类别>港口</大类别>
+<用途> </用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>5.33333335800006 118.333333333</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idb4e3f1c5-53c1-47b3-82e3-ca0413b0ca9c">
+<FID>101</FID>
+<OBJECTID>102</OBJECTID>
+<Id>0</Id>
+<名称>凤凰国际机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>18.3028989490001 109.412275023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id95e03779-9e20-40e4-a383-a7ac23f5c702">
+<FID>102</FID>
+<OBJECTID>103</OBJECTID>
+<Id>0</Id>
+<名称>澳门国际机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>22.1495529490001 113.591560023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id0e6030b8-ee8d-4546-a2a0-2693f01bc996">
+<FID>103</FID>
+<OBJECTID>104</OBJECTID>
+<Id>0</Id>
+<名称>香港国际机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>22.308915949 113.914606023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id108864f1-50db-4096-9e5d-b9f80cf6af17">
+<FID>104</FID>
+<OBJECTID>105</OBJECTID>
+<Id>0</Id>
+<名称>宝安机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>22.6394679490001 113.812411023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id8d6b802c-9a77-4302-9c88-af4aaa54e82a">
+<FID>105</FID>
+<OBJECTID>106</OBJECTID>
+<Id>0</Id>
+<名称>白云国际机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>23.3924349490001 113.298790023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id5ab9a93f-8985-43e4-b1c2-3073db52249b">
+<FID>106</FID>
+<OBJECTID>107</OBJECTID>
+<Id>0</Id>
+<名称>美兰机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>19.934859949 110.458957023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id399041d8-5207-4d75-8b65-22521462664b">
+<FID>107</FID>
+<OBJECTID>108</OBJECTID>
+<Id>0</Id>
+<名称>吴圩机场</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>机场</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>22.608264949 108.172444023</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="id9a3ab480-b731-4df4-a0a6-b26db5db8cdc">
+<FID>108</FID>
+<OBJECTID>109</OBJECTID>
+<Id>0</Id>
+<名称>防城港港</名称>
+<类型> </类型>
+<归属国别>中国</归属国别>
+<大类别>港口</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>21.625854492 108.356140137</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idab1457ff-589f-4d5d-b1f2-6cb461847ddb">
+<FID>109</FID>
+<OBJECTID>110</OBJECTID>
+<Id>0</Id>
+<名称>湛江港</名称>
+<类型>民用</类型>
+<归属国别>中国</归属国别>
+<大类别>港口</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>21.12501373 110.47214287</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+<featureMember>
+<机场港口 id="idf3cda6f6-33ee-43a9-ae9d-7292a8f41e82">
+<FID>110</FID>
+<OBJECTID>111</OBJECTID>
+<Id>0</Id>
+<名称>香港港</名称>
+<类型> </类型>
+<归属国别>中国</归属国别>
+<大类别>港口</大类别>
+<用途>民用</用途>
+<pointProperty>
+<Point srsName="EPSG:4326" srsDimension="2">
+<pos>22.1914728670001 114.056717546</pos>
+</Point>
+</pointProperty>
+</机场港口>
+</featureMember>
+</FeatureCollection>
