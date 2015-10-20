@@ -249,7 +249,7 @@ Radi.Earth.Nanhai  = {
             var x = pts[1];
             var y = pts[0];
 
-            var airport = self.addAirport(x, y, icon);
+            var airport = self.addAirport(x, y, name, icon);
             if(airport!=undefined){
                 pins.push(airport);
             }
@@ -260,13 +260,20 @@ Radi.Earth.Nanhai  = {
         });
     },
 
-    addAirport : function(x, y, icon_url){
+    addAirport : function(x, y, caption, icon_url){
         var airport = g_earth_view.entities.add({
             position : Cesium.Cartesian3.fromDegrees(x, y),
             billboard :{
                 image : icon_url
+            },
+            label : {
+                text : caption,
+                font : "16px Microsoft YaHei",
+                horizontalOrigin : Cesium.HorizontalOrigin.LEFT,
+                verticalOrigin   : Cesium.VerticalOrigin.MIDDLE
             }
         });
+        airport.label.pixelOffset = new Cesium.Cartesian2(10,0);
         return airport;
     },
 
@@ -316,7 +323,7 @@ Radi.Earth.Nanhai  = {
             var x = pts[1];
             var y = pts[0];
 
-            island = self.addIsland(x, y, radius, Cesium.Color.YELLOW);
+            island = self.addIsland(name, x, y, radius, Cesium.Color.YELLOW);
             if(island!=undefined){
                 pins.push(island);
             }
@@ -327,14 +334,21 @@ Radi.Earth.Nanhai  = {
         });
     },
 
-    addIsland : function(x, y, size, c){
+    addIsland : function(caption, x, y, size, c){
         var island = g_earth_view.entities.add({
             position : Cesium.Cartesian3.fromDegrees(x, y),
             point : {
                 pixelSize : size,
                 color : c
+            },
+            label : {
+                text : caption,
+                font : "16px Microsoft YaHei",
+                horizontalOrigin : Cesium.HorizontalOrigin.LEFT,
+                verticalOrigin   : Cesium.VerticalOrigin.MIDDLE
             }
         });
+        island.label.pixelOffset = new Cesium.Cartesian2(size/2+2,0);
         return island;
     },
 
@@ -452,6 +466,28 @@ Radi.Earth.Nanhai  = {
                 material : color
             }
         });
+        this.addBasinLabel(name, pts);
         return basin;
+    },
+
+    addBasinLabel : function(caption, pts){
+        var cx=0.0;
+        var cy=0.0;
+        for(var i=0; i<pts.length; i+=2){
+            cx += parseFloat(pts[i]);
+            cy += parseFloat(pts[i+1]);
+        }
+        cx = 2 * cx / pts.length;
+        cy = 2 * cy / pts.length ;
+
+        g_earth_view.entities.add({
+            position : Cesium.Cartesian3.fromDegrees(cx, cy),
+            label : {
+                text : caption,
+                font : "16px Microsoft YaHei",
+                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+                verticalOrigin   : Cesium.VerticalOrigin.BOTTOM
+            }
+        });
     }
 };
