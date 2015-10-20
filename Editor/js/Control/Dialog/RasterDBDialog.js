@@ -114,7 +114,7 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			var path = dialog.panel.find(".current-path").val();
-			MapCloud.import_raster_dialog.showDialog();
+			MapCloud.import_raster_dialog.showDialog("raster");
 			MapCloud.import_raster_dialog.setRasterPath(sourceName,path);
 		});
 

@@ -11,6 +11,9 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 要上传的影像路径
 	path : null,
 
+	// 来源
+	source : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
@@ -49,7 +52,7 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 添加
 		this.panel.find(".import-btn-add").click(function(){
-			MapCloud.file_dialog.showDialog("image")
+			MapCloud.file_dialog.showDialog("image");
 		});;
 
 
@@ -73,6 +76,7 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.rasterPath = null;
 		this.rasters = null;
 		this.paths = null;
+		this.source = null;
 
 		this.panel.find(".import-list-div").empty();
 		this.panel.find(".import-db-name").empty();
@@ -80,10 +84,24 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".import-log-div").empty();
 	},
 
+	showDialog : function(source){
+		this.cleanup();
+		this.panel.modal();
+		this.source = source;
+	},
+
 	closeDialog : function(){
 		this.panel.modal("hide");
-		var parentDialog = MapCloud.raster_db_dialog;
-		parentDialog.getListRefresh(this.sourceName,this.rasterPath);
+		if(this.source == "raster"){
+			var parentDialog = MapCloud.raster_db_dialog;
+			parentDialog.getListRefresh(this.sourceName,this.rasterPath);
+		}else if(this.source == "raster-user"){
+			var parent = MapCloud.rasterPanel;
+			if(parent != null){
+				parent.getListRefresh(this.sourceName,this.rasterPath);
+			}
+		}
+		
 	},
 
 	// 设置初始化的数据库和raster上传后的路径

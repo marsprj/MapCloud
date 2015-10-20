@@ -678,6 +678,9 @@ width: 100%-10px; */
 .file-list-content-div .row .row .col-md-6{
 	padding: 0px;
 }
+#raster_panel .file-list-content-div .row .row .col-md-6 i{
+	margin-top: 4px;
+}
 /***************************************************************************/
 /* User File End			                                               */
 /***************************************************************************/
@@ -686,6 +689,24 @@ width: 100%-10px; */
 /***************************************************************************/
 #raster_panel .list-tree-ul-div .folder-tree{
 	border-bottom: 1px solid #DEDEDE;
+}
+#raster_panel .raster-folder-list .row .row .col-md-6{
+	padding: 0px;
+}
+#raster_panel .folder-tree{
+	display: none;
+}
+#raster_panel .row .row .col-md-6 i{
+	margin-top: 4px;
+}
+#raster_preview_tab{
+	height: 100%;
+	width:100%;
+}
+#raster_infos_tab{
+	height: 100%;
+	width: 100%;
+	overflow-y: auto; 
 }
 /***************************************************************************/
 /* User Raster End			                                               */

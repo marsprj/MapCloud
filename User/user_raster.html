@@ -40,6 +40,7 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
@@ -92,6 +93,9 @@
 
 	<script type="text/javascript" src="../js/Control/Dialog/Dialog.js"></script>
 	<script type="text/javascript" src="../js/Control/Dialog/PGISConnectDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/CreateFolderDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/ImportRasterDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/FileDialog.js"></script>
 
 	<title>用户信息</title>
 </head>
@@ -165,15 +169,11 @@
 							<input type="text" class="form-control current-path" disabled=""value="/">
 						</div>
 						<div class="data_title_bar">
-							<a href="javascript:void(0)">新建目录</a>
-							<a href="javascript:void(0)">删除目录</a>
-							<a href="javascript:void(0)">上传影像</a>
+							<a href="javascript:void(0)" class="add-folder">新建目录</a>
+							<a href="javascript:void(0)" class="remove-file">删除目录</a>
+							<a href="javascript:void(0)" class="refresh-folder">刷新目录</a>
+							<a href="javascript:void(0)" class="upload-raster">上传影像</a>
 						</div>
-						<div class="btn-group btn-group-xs pull-right" role="group">
-							<button type="button" class="btn btn-default" id="show_datasets_list" disabled="">列表</button>
-							<button type="button" class="btn btn-default" id="show_datasets_thumb">预览</button>
-						</div>
-
 					</div>
 					<div class="right-panel-content">
 						<div class="row header-row">
@@ -188,90 +188,26 @@
 					</div>
 				</div>
 
-				<!-- 图层面板 -->
-				<div class="right-panel-tab" id="dataset_tab">
+				<!-- 影像面板 -->
+				<div class="right-panel-tab" id="raster_tab">
 					<div class="right-panel-bar">
-						<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
-						>>
-						<a href="javascript:void(0)" class="return-datasource"></a>
-						>>
-						<span class="current-dataset"></span>
+						<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
+						<span class="float-left">>></span>
+						<span class="current-db float-left"></span>
+						<div class="path-div float-left">
+							<input type="text" class="form-control current-raster-path" disabled="" value="/">
+						</div>
 						<div class="btn-group btn-group-xs pull-right" role="group">
-							<button type="button" class="btn btn-default" id="show_dataset_infos" disabled="disabled">元数据</button>
-							<button type="button" class="btn btn-default" id="show_dataset_fields">字段</button>
-							<button type="button" class="btn btn-default" id="show_dataset_features">列表</button>
-							<button type="button" class="btn btn-default" id="show_dataset_preview">预览</button>
+							<button type="button" class="btn btn-default" id="show_raster_infos" disabled="disabled">信息</button>
+							<button type="button" class="btn btn-default" id="show_raster_preview">预览</button>
 						</div>
 					</div>
 					<div class="right-panel-content">
-						<div class="right-panel-content-tab" id="dataset_infos_tab">
-							<div class="row header-row">
-								<div class="col-md-3">
-									Key
-								</div>
-								<div class="col-md-6">
-									Value
-								</div>
-							</div>
-							<div class="dataset-infos">
-							</div>
+						<div class="right-panel-content-tab" id="raster_infos_tab">
+							
 						</div>
-						<div class="right-panel-content-tab" id="dataset_fields_tab">
-							<div class="row header-row">
-								<div class="col-md-4">
-									名称
-								</div>
-								<div class="col-md-3">
-									类型
-								</div>
-								<div class="col-md-3">
-									长度
-								</div>
-							</div>
-							<div class="dataset-fields">
-							</div>
-						</div>
-						<div class="right-panel-content-tab" id="dataset_features_tab">
-							<form class="form-horizontal pages-form" role="form">
-								<div class="form-group">
-									<label class="col-md-3 control-label query_count">
-										总条数 : 
-										<span>0</span>
-									</label>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-step-backward btn" href="javascript:void(0)"></a>
-									</div>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-chevron-left btn"></a>
-									</div>
-									<div class="col-md-2" style="padding:0px 15px">
-										<input class="form-control pages-form-page" type="text" value="1">
-									</div>
-									<label class="col-md-1 control-label">
-										/
-									</label>
-									<label class="col-md-1 control-label pages-form-pages">
-										60
-									</label>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="javascript:void(0)"></a>
-									</div>
-									<div class="col-md-1">
-										<a class="glyphicon glyphicon-step-forward btn" href="javascript:void(0)"></a>
-									</div>
-								</div>
-							</form>
-							<div id="dataset_features_list">
-								<table class="table table-hover borderless table-striped">
-									<thead>
-										<tr></tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="right-panel-content-tab" id="dataset_preview_tab">
+						<div class="right-panel-content-tab" id="raster_preview_tab">
+							<span></span><img src="" alt="">
 						</div>
 					</div>
 				</div>
@@ -361,5 +297,166 @@
 			</div>
 		</div> 
 	</div>
+
+
+	<!-- Create Folder panel -->
+	<div class="modal fade" id="create_folder_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建文件夹</h5>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control" placeHolder="请输入名称" id="create_folder_name">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div> 
+	</div>
+
+	<!-- Import Raster Panel -->
+	<div class="modal fade" id="import_raster_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">影像数据库上传</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row import-db">
+						<h5 style=" margin-top: 0px;">
+							<span>
+								<i class="mc-db-icon mc-db-icon-server "></i>
+								<span>数据库:  </span>
+								<span class="import-db-name">rsdb</span>
+								<i class="mc-db-icon mc-db-icon-folder "></i>
+								<span>路径:  </span>
+								<span class="import-raster-path">/a</span>
+							</span>
+						</h5>
+					</div>
+					<div class="row import-content-div">
+						<div class="col-md-11" style="height:100%">
+							<div class="import-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-6">文件路径</div>
+									<div class="col-md-6">影像名称</div>
+								</div>
+								<div class="import-list-div"></div>
+							</div>
+						</div>
+						<div class="col-md-1 import-tool-div">
+							<ul>
+  							  	<li>
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-upload"></i>
+  									</button>
+  								 </li>
+  								 <li style="margin-top:108px">
+  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+  							  			<i class="fa fa-chevron-down"></i>
+  									</button>
+  								 </li>
+  							</ul>
+						</div>
+					</div>
+					<div class="import-log-wrapper" style="display: none;">
+						<label>结果</label>
+						<div class="row import-log-row">
+							<div class="col-md-11 import-log-div"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- File Dialog -->
+	<div class="modal fade" id="fileDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
+		 <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h5 class="modal-title">文件管理</h5>
+	            </div>
+	            <div class="modal-body row">
+					<div class="col-md-3 file-tree-div">
+						<ul class="nav" style="padding-left:8px">
+							<li>
+								<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">
+									<i class="fa fa-folder-o"></i>
+									<span>/</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-9 file-list-div">
+						<div class="inner-div">
+							<div class="row tool-row">
+								<div class="col-md-8">
+									<input type="text" class="form-control" disabled="" id="current_path" value="/">
+								</div>
+								<div class="col-md-4 btn-group-tool">
+									<div class=" btn-group btn-group-justified"  role="group">
+										<a class="btn btn-default btn-add-folder" data-toggle="tooltip" data-placement="top" data-original-title="新建文件夹">
+											<i class='fa fa-folder-o'></i>
+										</a>
+										<a class="btn btn-default btn-remove-file" data-toggle="tooltip" data-placement="top" data-original-title="删除">
+											<i class="fa fa-trash-o"></i>
+										</a>
+										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="上传">
+											<i class="fa fa-upload"></i>
+										</a>
+										<a class="btn btn-default btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+											<i class="fa fa-refresh"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="file-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-1"></div>
+									<div class="col-md-3">名称</div>
+									<div class="col-md-1">类型</div>
+									<div class="col-md-3">创建时间</div>
+									<div class="col-md-3">最后访问时间</div>
+									<div class="col-md-1">大小</div>
+								</div>
+								<div class="file-list-content-div">
+								</div>
+							</div>
+							<div class="row file-filter-row">
+								<div class="col-md-3 col-md-offset-9">
+									<select class="form-control" id="file_filter_select">
+										<option value="all">All Files(*.*)</option>
+										<option value="shp">Shape Files(*.shp)</option>
+										<option value="jpeg,jpg,png,tif">Image Files(*.jpeg,*.jpg,*.png,*.tif)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>	
 </body>
 

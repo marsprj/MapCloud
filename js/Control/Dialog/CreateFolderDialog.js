@@ -25,6 +25,8 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.raster_db_dialog.setCreateFolderName(name);
 			}else if(dialog.source == "file-user"){
 				MapCloud.filePanel.setCreateFolderName(name);
+			}else if(dialog.source == "raster-user"){
+				MapCloud.rasterPanel.setCreateFolderName(name);
 			}
 			
 			dialog.closeDialog();
