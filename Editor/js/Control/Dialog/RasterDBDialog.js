@@ -43,7 +43,7 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 新建数据库
 		this.panel.find(".btn-add-server").click(function(){
-			MapCloud.pgis_connection_dialog.showDialog("raster");
+			MapCloud.pgis_connection_dialog.showDialog("raster","raster");
 		});
 
 		// 删除数据库

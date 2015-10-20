@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+
+	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/webuploader/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="css/mc-user-info.css"/>
+
+
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/webuploader/webuploader.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+
+
+	<script type="text/javascript" src="js/mc-user-file.js"></script>
+	
+
+	<script type="text/javascript" src="../js/MapCloud.js"></script>
+	<script type="text/javascript" src="../js/Class/Class.js"></script>
+	<script type="text/javascript" src="../js/Cookie.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
+	<script type="text/javascript" src="js/mc-file-panel.js"></script>
+
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/User.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Renderer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Events.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/InfoWindow.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapWorkspace.js"></script>	
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Transformation.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+
+	<script type="text/javascript" src="../js/Control/Dialog/Dialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/CreateFolderDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/ImportVectorDialog.js"></script>
+
+	
+
+	<title>文件管理</title>
+</head>
+	
+<body id="user_map_panel">
+	<div id="file_panel" class="common-panel">
+		<div id="title_wrapper">
+			<div class="title_box">
+				文件管理
+			</div>
+		</div>
+		<div class="main-panel">
+			<div class="left-panel">
+				<div class="left-title-bar">
+					<div class="left-title-icon"></div>
+					<div>数据目录</div>
+				</div>
+				<div class="left-panel-content">
+					<div class="file-tree-div list-tree list-tree-ul-div">
+						<ul class="nav" style="padding-left:8px">
+							<li>
+								<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">
+									<i class="fa fa-folder-o"></i>
+									<span>/</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="right-panel">
+				<div class="right-panel-bar">
+					
+					<div class="path-div float-left">
+						<input type="text" class="form-control" disabled="" id="current_path" value="/">
+					</div>
+					<div class="data_title_bar">
+						<a href="javascript:void(0)" class="add-folder">新建目录</a>
+						<a href="javascript:void(0)" class="remove-file">删除目录</a>
+						<a href="javascript:void(0)" class="refresh-folder">刷新目录</a>
+						<a href="javascript:void(0)" class="upload-file">上传文件</a>
+					</div>
+				</div>
+				<div class="right-panel-content ">
+					<div class="row header-row">
+						<div class="col-md-1"></div>
+						<div class="col-md-3">名称</div>
+						<div class="col-md-1">类型</div>
+						<div class="col-md-3">创建时间</div>
+						<div class="col-md-3">最后访问时间</div>
+						<div class="col-md-1">大小</div>
+					</div>
+					<div class="file-list-content-div">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Notify  -->
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
+	</div>
+
+
+	<!-- Create Folder panel -->
+	<div class="modal fade" id="create_folder_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建文件夹</h5>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control" placeHolder="请输入名称" id="create_folder_name">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div> 
+	</div>
+
+	<!-- Import Vector panel -->
+	<div class="modal" id="importVectorDialog" tabindex="-1" role="dialog" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h5 class="modal-title">上传文件</h5>
+	            </div>
+	            <div class="modal-body">
+	                <div class="row" style="margin-left:0px;margin-right:0px">
+	                	<div id="picker" class="btn">选择文件</div>
+	                	<a class="btn btn-success" id="vector_upload">导入文件</a>
+	                </div>
+	                <div id="vector_list_div">
+	                    <div class="inner_div">
+	                        <list-group id="vector_list">
+	                        </list-group>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+

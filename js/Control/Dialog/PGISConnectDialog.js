@@ -1,6 +1,9 @@
 // 新建数据库连接
 MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	
+	// 上级对话框的输入类型
+	type: null,
+
 	// 上级对话框
 	source : null,
 
@@ -46,10 +49,11 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 		MapCloud.Dialog.prototype.destory.apply(this, arguments);
 	},
 
-	showDialog : function(source){
+	showDialog : function(type,source){
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
+		this.type = type;
 		this.source = source;
-		if(this.source == "tile"){
+		if(this.type == "tile"){
 			this.panel.find("#data_source_conn_instance").val("27017");
 			this.panel.find("#data_source_conn_test").css("display","none");
 		}else{
@@ -194,13 +198,13 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 	registerDBS : function(name,str){
 		MapCloud.notify.loading();
 		var engine = null;
-		if(this.source == "tile"){
+		if(this.type == "tile"){
 			engine = "tilemgo";
 		}else{
 			engine = "Postgres";
 		}
 		dbsManager.registerDataSource(name,engine,
-			str,this.source,this.registerDBS_callback);
+			str,this.type,this.registerDBS_callback);
 	},
 
 	// 注册数据源结果
@@ -223,7 +227,13 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 			var parentDialog = MapCloud.tile_db_dialog;
 			parentDialog.getDataSources();
 			parentDialog.setRegisterDataSourceName(sourceName);
-
+		}else if(dialog.source == "user-feature"){
+			getDataSources();
+		}else if(dialog.source == "user-raster"){
+			var parent = MapCloud.rasterPanel;
+			if(parent != null){
+				parent.getDataSources();
+			}
 		}
 		dialog.closeDialog();
 	}

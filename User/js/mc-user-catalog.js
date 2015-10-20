@@ -32,7 +32,7 @@ var g_catalog =
         "items": [
             {
                 "name": "文件管理",
-                "link": "user_data_fs.html"
+                "link": "user_file.html"
             }
         ]
     },
@@ -50,7 +50,7 @@ var g_catalog =
         "items": [
             {
                 "name": "影像数据",
-                "link": "gps_getcapabilities.html"
+                "link": "user_raster.html"
             }
         ]
     },

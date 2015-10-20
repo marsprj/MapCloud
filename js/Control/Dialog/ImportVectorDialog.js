@@ -15,6 +15,9 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 上传的路径
 	uploadPath 		: null,
 
+	// 来源
+	source 			: null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
@@ -43,12 +46,13 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find("#vector_list").html("");
 	},
 
-	showDialog : function(uploadPath){
+	showDialog : function(uploadPath,source){
 		this.cleanup();
 		this.panel.modal();
 		this.uploadList = this.panel.find("#vector_list");
 		this.uploadState = "pending";
 		var dialog = this;
+		this.source = source;
 		if(uploadPath != null){
 			this.setUploadPath(uploadPath);
 		}
@@ -66,20 +70,14 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	closeDialog : function() {
-		// if(this.dataSourceName == "default"){
-		// 	var parentDialog = MapCloud.file_dialog;
-		// 	parentDialog.refreshCurrentPath();
-		// 	this.panel.modal("hide");
-		// 	return;
-		// }
-		// if(this.dataSourceName != null){
-		// 	// MapCloud.data_source_dialog.refreshDatasource();
-		// 	var parentDialog = MapCloud.db_admin_dialog;
-		// 	parentDialog.getDataSource(this.dataSourceName);
-		// }
-
-		var parentDialog = MapCloud.file_dialog;
-		parentDialog.refreshCurrentPath();
+		if(this.source == "file"){
+			var parentDialog = MapCloud.file_dialog;
+			parentDialog.refreshCurrentPath();
+		}else if(this.source == "file-user"){
+			var parentDialog = MapCloud.filePanel;
+			parentDialog.refreshCurrentPath();
+		}
+		
 		this.panel.modal("hide");
 	},
 

@@ -17,7 +17,8 @@
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
 
 
-	<script type="text/javascript" src="js/mc-user-vector.js"></script>
+	<script type="text/javascript" src="js/mc-user-raster.js"></script>
+
 
 	<script type="text/javascript" src="../js/MapCloud.js"></script>
 	<script type="text/javascript" src="../js/Class/Class.js"></script>
@@ -25,6 +26,7 @@
 	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
 
+	<script type="text/javascript" src="js/mc-raster-panel.js"></script>
 
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
@@ -44,6 +46,8 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
 
@@ -93,192 +97,182 @@
 </head>
 	
 <body id="user_map_panel">
-	<div id="title_wrapper">
-		<div class="title_box">
-			地图管理
-		</div>
-	</div>
-	<div class="main-panel">
-		<div class="left-panel">
-			<div class="left-title-bar">
-				<div class="left-title-icon"></div>
-				<div>数据库</div>
-			</div>
-			<div class="left-panel-content">
-				<div class="vector-db-tree list-tree">
-				</div>
+	<div id="raster_panel" class="common-panel">
+		<div id="title_wrapper">
+			<div class="title_box">
+				影像管理
 			</div>
 		</div>
-		<div class="right-panel">
-			<!-- 数据列表面板 -->
-			<div class="right-panel-tab" id="datasources_tab">
-				<div class="right-panel-bar">
-					<span class="float-left">数据库列表</span>
-					<div class="data_title_bar">
-						<a href="javascript:void(0)"class="add-db">新建数据源</a>
-					</div>
+		<div class="main-panel">
+			<div class="left-panel">
+				<div class="left-title-bar">
+					<div class="left-title-icon"></div>
+					<div>数据库</div>
 				</div>
-				<div class="right-panel-content">
-					<div class="row header-row">
-						<div class="col-md-1">
-							序号
-						</div>
-						<div class="col-md-2">
-							名称
-						</div>
-						<div class="col-md-2">
-							地址
-						</div>
-						<div class="col-md-1">
-							端口
-						</div>
-						<div class="col-md-1">
-							数据库
-						</div>
-						<div class="col-md-1">
-							用户
-						</div>
-						<div class="col-md-2">
-							密码
-						</div>	
-						<div class="col-md-2">
-							操作
-						</div>											
-					</div>
-					<div class="vector-db-list">
-
+				<div class="left-panel-content">
+					<div class="raster-db-tree list-tree list-tree-ul-div">
 					</div>
 				</div>
 			</div>
-			<!-- 数据库面板 -->
-			<div class="right-panel-tab" id="datasource_tab">
-				<div class="right-panel-bar">
-					
-					<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
-					<span class="float-left">>></span>
-					<span class="current-db float-left"></span>
-					<div class="data_title_bar">
-						<a href="javascript:void(0)">导入矢量</a>
-						<a href="javascript:void(0)">导入CSV</a>
-						<a href="javascript:void(0)">新建表格</a>
+			<div class="right-panel">
+				<!-- 数据列表面板 -->
+				<div class="right-panel-tab" id="datasources_tab">
+					<div class="right-panel-bar">
+						<span class="float-left">数据库列表</span>
+						<div class="data_title_bar">
+							<a href="javascript:void(0)"class="add-db">新建数据源</a>
+						</div>
 					</div>
-					<div class="btn-group btn-group-xs pull-right" role="group">
-						<button type="button" class="btn btn-default" id="show_datasets_list" disabled="">列表</button>
-						<button type="button" class="btn btn-default" id="show_datasets_thumb">预览</button>
-					</div>
-
-				</div>
-				<div class="right-panel-content">
-					<div class="right-panel-content-tab" id="datasets_list_tab">
+					<div class="right-panel-content">
 						<div class="row header-row">
 							<div class="col-md-1">
 								序号
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-2">
 								名称
 							</div>
-							<div class="col-md-3">
-								类型
+							<div class="col-md-2">
+								地址
+							</div>
+							<div class="col-md-1">
+								端口
+							</div>
+							<div class="col-md-1">
+								数据库
+							</div>
+							<div class="col-md-1">
+								用户
 							</div>
 							<div class="col-md-2">
-								空间参考
-							</div>
+								密码
+							</div>	
 							<div class="col-md-2">
 								操作
 							</div>											
 						</div>
-						<div class="datasets-list">
-						</div>
-					</div>
-					<div class="right-panel-content-tab" id="datasets_thumb_tab">
-					</div>
-				</div>
-			</div>
+						<div class="raster-db-list">
 
-			<!-- 图层面板 -->
-			<div class="right-panel-tab" id="dataset_tab">
-				<div class="right-panel-bar">
-					<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
-					>>
-					<a href="javascript:void(0)" class="return-datasource"></a>
-					>>
-					<span class="current-dataset"></span>
-					<div class="btn-group btn-group-xs pull-right" role="group">
-						<button type="button" class="btn btn-default" id="show_dataset_infos" disabled="disabled">元数据</button>
-						<button type="button" class="btn btn-default" id="show_dataset_fields">字段</button>
-						<button type="button" class="btn btn-default" id="show_dataset_features">列表</button>
-						<button type="button" class="btn btn-default" id="show_dataset_preview">预览</button>
+						</div>
 					</div>
 				</div>
-				<div class="right-panel-content">
-					<div class="right-panel-content-tab" id="dataset_infos_tab">
+				<!-- 数据库面板 -->
+				<div class="right-panel-tab" id="datasource_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
+						<span class="float-left">>></span>
+						<span class="current-db float-left"></span>
+						<div class="path-div float-left">
+							<input type="text" class="form-control current-path" disabled=""value="/">
+						</div>
+						<div class="data_title_bar">
+							<a href="javascript:void(0)">新建目录</a>
+							<a href="javascript:void(0)">删除目录</a>
+							<a href="javascript:void(0)">上传影像</a>
+						</div>
+						<div class="btn-group btn-group-xs pull-right" role="group">
+							<button type="button" class="btn btn-default" id="show_datasets_list" disabled="">列表</button>
+							<button type="button" class="btn btn-default" id="show_datasets_thumb">预览</button>
+						</div>
+
+					</div>
+					<div class="right-panel-content">
 						<div class="row header-row">
-							<div class="col-md-3">
-								Key
-							</div>
-							<div class="col-md-6">
-								Value
-							</div>
+							<div class="col-md-1"></div>
+							<div class="col-md-3">名称</div>
+							<div class="col-md-1">类型</div>
+							<div class="col-md-3">创建时间</div>
+							<div class="col-md-3">最后访问时间</div>
 						</div>
-						<div class="dataset-infos">
-						</div>
-					</div>
-					<div class="right-panel-content-tab" id="dataset_fields_tab">
-						<div class="row header-row">
-							<div class="col-md-4">
-								名称
-							</div>
-							<div class="col-md-3">
-								类型
-							</div>
-							<div class="col-md-3">
-								长度
-							</div>
-						</div>
-						<div class="dataset-fields">
+						<div class="raster-folder-list">
 						</div>
 					</div>
-					<div class="right-panel-content-tab" id="dataset_features_tab">
-						<form class="form-horizontal pages-form" role="form">
-							<div class="form-group">
-								<label class="col-md-3 control-label query_count">
-									总条数 : 
-									<span>0</span>
-								</label>
-								<div class="col-md-1">
-									<a class="glyphicon glyphicon-step-backward btn" href="javascript:void(0)"></a>
-								</div>
-								<div class="col-md-1">
-									<a class="glyphicon glyphicon-chevron-left btn"></a>
-								</div>
-								<div class="col-md-2" style="padding:0px 15px">
-									<input class="form-control pages-form-page" type="text" value="1">
-								</div>
-								<label class="col-md-1 control-label">
-									/
-								</label>
-								<label class="col-md-1 control-label pages-form-pages">
-									60
-								</label>
-								<div class="col-md-1">
-									<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="javascript:void(0)"></a>
-								</div>
-								<div class="col-md-1">
-									<a class="glyphicon glyphicon-step-forward btn" href="javascript:void(0)"></a>
-								</div>
-							</div>
-						</form>
-						<div id="dataset_features_list">
-							<table class="table table-hover borderless table-striped">
-								<thead>
-									<tr></tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+				</div>
+
+				<!-- 图层面板 -->
+				<div class="right-panel-tab" id="dataset_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
+						>>
+						<a href="javascript:void(0)" class="return-datasource"></a>
+						>>
+						<span class="current-dataset"></span>
+						<div class="btn-group btn-group-xs pull-right" role="group">
+							<button type="button" class="btn btn-default" id="show_dataset_infos" disabled="disabled">元数据</button>
+							<button type="button" class="btn btn-default" id="show_dataset_fields">字段</button>
+							<button type="button" class="btn btn-default" id="show_dataset_features">列表</button>
+							<button type="button" class="btn btn-default" id="show_dataset_preview">预览</button>
 						</div>
 					</div>
-					<div class="right-panel-content-tab" id="dataset_preview_tab">
+					<div class="right-panel-content">
+						<div class="right-panel-content-tab" id="dataset_infos_tab">
+							<div class="row header-row">
+								<div class="col-md-3">
+									Key
+								</div>
+								<div class="col-md-6">
+									Value
+								</div>
+							</div>
+							<div class="dataset-infos">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="dataset_fields_tab">
+							<div class="row header-row">
+								<div class="col-md-4">
+									名称
+								</div>
+								<div class="col-md-3">
+									类型
+								</div>
+								<div class="col-md-3">
+									长度
+								</div>
+							</div>
+							<div class="dataset-fields">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="dataset_features_tab">
+							<form class="form-horizontal pages-form" role="form">
+								<div class="form-group">
+									<label class="col-md-3 control-label query_count">
+										总条数 : 
+										<span>0</span>
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-backward btn" href="javascript:void(0)"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-chevron-left btn"></a>
+									</div>
+									<div class="col-md-2" style="padding:0px 15px">
+										<input class="form-control pages-form-page" type="text" value="1">
+									</div>
+									<label class="col-md-1 control-label">
+										/
+									</label>
+									<label class="col-md-1 control-label pages-form-pages">
+										60
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="javascript:void(0)"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-forward btn" href="javascript:void(0)"></a>
+									</div>
+								</div>
+							</form>
+							<div id="dataset_features_list">
+								<table class="table table-hover borderless table-striped">
+									<thead>
+										<tr></tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="dataset_preview_tab">
+						</div>
 					</div>
 				</div>
 			</div>

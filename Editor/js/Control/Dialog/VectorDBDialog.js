@@ -150,7 +150,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		// 新建数据库
 		this.panel.find(".btn-add-server").click(function(){
-			MapCloud.pgis_connection_dialog.showDialog("feature");
+			MapCloud.pgis_connection_dialog.showDialog("feature","feature");
 		});
 
 		// 删除数据库

@@ -8,39 +8,7 @@ html,body{
 	height:100%;
 }
 
-.modal {
-  text-align: center;
-}
 
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-}
-
-@media screen and (min-width: 768px) { 
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
-}
-
-.modal-dialog{
-	margin-top: 40px;
-}
-.modal-open .modal{
-	overflow-y: hidden !important;
-}
-.modal-header{
-	cursor: move;
-	background-color: #f8f8f8;
-    border-radius: 6px 6px 0px 0px;
-}
-.modal-content{
-	border-radius: 0px;
-}
 /*dialog modal style*/
 .modal.fade .modal-dialog {
     -webkit-transform: scale(0.1);
@@ -2030,18 +1998,7 @@ ul.layers_row li:before {
 /***************************************************************************/
 
 
-/***************************************************************************/
-/* DataSource Connect Dialog Begin   														*/
-/***************************************************************************/
-#pgisConnDialog{
-	z-index: 1060;
-}
-#pgisConnDialog .modal-dialog{
-	width: 400px;
-}
-/***************************************************************************/
-/* DataSource Connect Dialog End   														*/
-/***************************************************************************/
+
 /***************************************************************************/
 /* New Layer Dialog Begin   	  														*/
 /***************************************************************************/
@@ -2097,79 +2054,7 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* HeatMap Dialog End   														*/
 /***************************************************************************/
-/***************************************************************************/
-/* importVectorDialog Dialog Begin   														*/
-/***************************************************************************/
 
-#importVectorDialog{
-	z-index: 1070;
-}
-#importVectorDialog .modal-dialog{
-	width: 700px;
-}
-
-#vector_list_div{
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 2px;
-	max-height: 400px;
-	min-height: 59px;
-	background-color: #fff;
-	margin-top: 12px;
-}
-
-.inner_div{
-	height: 100%;
-	max-height: 390px;
-	min-height: 55px;
-	border-radius: 4px;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	overflow-y: auto;
-}
-
-#importVectorDialog .list-group-item {
-  border: 0px solid #ddd;
-  border-bottom: 1px solid #ddd !important;
-  margin-bottom: 0px;
-  border-radius: 0px !important;
-}
-
-#importVectorDialog .list-group-item:hover{
-    cursor: pointer;
-    background-color: rgba(169, 169, 169, 0.2);
-}
-
-#importVectorDialog .progress{
-	margin-bottom: 0px !important;
-}
-
-#vector_list .row{
-    margin-left:0px;
-    margin-right:0px;
-}
-
-#vector_list .list-group-item:last-child{
-	border-bottom: 0px !important;
-}
-
-#vector_list .row .info,#vector_list .row .state,
-#vector_list .row .progress-div{
-/*#vector_list .row .import-vector-infos{*/
-	padding-top: 8px;
-	word-break: break-all;
-}
-#vector_list .row .import-vector-infos{
-	padding-top: 2px;
-}
-.infos-row{
-	display: none;
-}
-
-
-/***************************************************************************/
-/* importVectorDialog Dialog End   														*/
-/***************************************************************************/
 
 
 /***************************************************************************/
@@ -2652,24 +2537,7 @@ ul.layers_row li:before {
 /***************************************************************************/
 /* File dialog End  														*/
 /***************************************************************************/
-/***************************************************************************/
-/* Create Folder dialog Begin  												*/
-/***************************************************************************/
 
-#create_folder_dialog {
-	z-index: 1070;
-}
-#create_folder_dialog .modal-dialog{
-	width: 300px;
-	margin: 100px auto;
-}
-
-#create_folder_dialog .modal-footer{
-	text-align: center;
-}
-/***************************************************************************/
-/* Create Folder dialog End  												*/
-/***************************************************************************/
 
 /***************************************************************************/
 /* Import dialog Begin  														*/

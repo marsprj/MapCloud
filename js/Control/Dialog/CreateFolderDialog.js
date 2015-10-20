@@ -23,6 +23,8 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.file_dialog.setCreateFolderName(name);
 			}else if(dialog.source == "raster"){
 				MapCloud.raster_db_dialog.setCreateFolderName(name);
+			}else if(dialog.source == "file-user"){
+				MapCloud.filePanel.setCreateFolderName(name);
 			}
 			
 			dialog.closeDialog();
@@ -36,6 +38,10 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 	showDialog : function(source){
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
 		this.source = source;
+		var dialog = this;
+		this.panel.on("shown.bs.modal",function(){
+			dialog.panel.find("#create_folder_name").focus();
+		});
 	},
 
 });
