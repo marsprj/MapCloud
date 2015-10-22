@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello World!</title>
+    <script src="../Cesium/Cesium.js"></script>
+    <style>
+      @import url(../Cesium/Widgets/widgets.css);
+      #cesiumContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+    </style>
+  </head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+  	//土地矿产资源
+  	//http://map863.chinaso.com//arcgis/services/CP0303020200_863/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.0&LAYERS=0&STYLES=&FORMAT=image%2Fpng&TRANSPARENT=true&HEIGHT=256&WIDTH=256&SRS=EPSG%3A3857&BBOX=15028131.257091932,5009377.085697313,16280475.52851626,6261721.35712164
+    var viewer = new Cesium.Viewer('cesiumContainer');
+
+/*    var provider = new Cesium.WebMapServiceImageryProvider({
+	    url: '//sampleserver1.arcgisonline.com/ArcGIS/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer',
+	    layers : '0'
+	});
+*/
+    var provider = new Cesium.WebMapServiceImageryProvider({
+	    //url: '//sampleserver1.arcgisonline.com/ArcGIS/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer',
+	    //url: '/arcgis/services/CP0303030100_863/MapServer/WMSServer',
+	    //url: '/arcgis/services/CP0303020200_863/MapServer/WMSServer',		/*土地矿产资源	*/
+	    url: '/arcgis/services/CP0803020300003_863/MapServer/WMSServer',	/*2010分县人口性别比*/
+	    layers : '0',
+	    format : 'image/png'
+	});
+	
+	viewer.imageryLayers.addImageryProvider(provider);
+  </script>
+</body>
+</html>
