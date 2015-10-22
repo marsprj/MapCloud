@@ -185,7 +185,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请先选择一个数据源","Warning");
 				return;
 			}
-			MapCloud.importCSV_dialog.showDialog();
+			MapCloud.importCSV_dialog.showDialog("vector");
 			MapCloud.importCSV_dialog.setDataSourceName(dbName);
 		});
 
@@ -1080,7 +1080,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.notify.showInfo("请先选择一个数据源","Warning");
 			return;
 		}
-		MapCloud.create_dataset_dialog.showDialog();
+		MapCloud.create_dataset_dialog.showDialog("vector");
 		MapCloud.create_dataset_dialog.setDataSourceName(dbName);
 	},
 });

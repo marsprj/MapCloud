@@ -17,8 +17,9 @@ ul {
 }
 
 div{
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
+
 
 .align_center{
 	margin-left: auto;
@@ -79,14 +80,16 @@ div{
 
 #login_panel{
 	float: right;
-	width: 50px;
+	/*width: 50px;*/
 	height: 20px;
 	margin-top: 5px;
+	margin-right: 20px;
 	/* background: #F00; */
 }
 
 #login_panel a{
 	color: #FFF;
+	margin-left: 12px;
 }
 
 .title_font{
@@ -104,12 +107,14 @@ div{
 	/* box-shadow: 1px 2px 3px 0 #828e9a; */
 	box-shadow: 0px 0px 6px 3px #828e9a;
 	z-index: 5;
+	overflow: hidden;
 }
 
 #content_panel{
 	position: relative;
 	height: 100%;
 	z-index: 2;
+	overflow: hidden;
 }
 
 #catalog_container{
@@ -121,10 +126,12 @@ width: 100%-10px; */
 	overflow-y: scroll; 
 	border-right: 1px solid #000000;
 	box-shadow: 1px 0px 4px 0px #828e9a;
+	overflow: hidden;
 }
 
 .service_container{
 	/* background-color: #00FF00; */
+	overflow: hidden;
 }
 
 .service_title{
@@ -262,6 +269,7 @@ width: 100%-10px; */
 }
 .right-panel{
 	height: 100%;
+	overflow: hidden;
 }
 .left-title-bar{
 	width: 100%;
@@ -305,10 +313,12 @@ width: 100%-10px; */
 .right-panel-tab{
 	height: 100%;
 	width: 100%;
+	overflow: hidden;
 }
 .right-panel-content{
 	width: 100%;
 	height: calc(100% - 30px);
+	overflow: hidden;
 }
 .right-panel-content-tab{
 	width: 100%;
@@ -469,6 +479,7 @@ width: 100%-10px; */
 	height: 100%;
 	width: 100%;
 }
+
 /***************************************************************************/
 /* User Map Begin		                                                    */
 /***************************************************************************/
@@ -702,6 +713,7 @@ width: 100%-10px; */
 #raster_preview_tab{
 	height: 100%;
 	width:100%;
+	overflow: hidden;
 }
 #raster_infos_tab{
 	height: 100%;
@@ -710,4 +722,64 @@ width: 100%-10px; */
 }
 /***************************************************************************/
 /* User Raster End			                                               */
+/***************************************************************************/
+
+/***************************************************************************/
+/* User Tile Begin			                                               */
+/***************************************************************************/
+#tile_panel{
+
+}
+.tile-db-tree .nav{
+	margin: 0px;
+}
+.tile-db-tree .nav>li{
+	border-bottom: 1px solid #DEDEDE;
+}
+.tile-db-tree .nav>li.selected{
+	background-color:#E7F1F5
+}
+.tile-db-tree .nav>li>a{
+	padding: 4px 6px 4px 34px;
+}
+.tile-db-tree li a span{
+    word-break: break-all;
+    display: inline-block;
+    max-width: 120px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 8px;
+}
+.mc-icon-tilestore{
+	background-image: url(../images/tile.png);
+}
+/***************************************************************************/
+/* User Tile End			                                               */
+/***************************************************************************/
+
+/***************************************************************************/
+/* User Info Begin			                                               */
+/***************************************************************************/
+#user_info_panel{
+	/*padding: 20px;*/
+}
+#user_info_panel .form-group-sm{
+	margin-bottom: 6px;
+}
+
+#user_info_panel .form-group-sm label{
+	font-weight: normal;
+}
+#user_info_panel input{
+	width: 200px;
+}
+#user_paswd_panel{
+	display: none;
+}
+.user_info_panel_border{
+	padding: 20px;
+}
+/***************************************************************************/
+/* User Info End			                                               */
 /***************************************************************************/

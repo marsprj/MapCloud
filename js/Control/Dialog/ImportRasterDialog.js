@@ -79,8 +79,8 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.source = null;
 
 		this.panel.find(".import-list-div").empty();
-		this.panel.find(".import-db-name").empty();
-		this.panel.find(".import-raster-path").empty();
+		this.panel.find(".import-db-name").val("");
+		this.panel.find(".import-raster-path").val("");
 		this.panel.find(".import-log-div").empty();
 	},
 
@@ -109,8 +109,8 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.sourceName = sourceName;
 		this.rasterPath = rasterPath;
 
-		this.panel.find(".import-db-name").html(this.sourceName);
-		this.panel.find(".import-raster-path").html(this.rasterPath);
+		this.panel.find(".import-db-name").val(this.sourceName);
+		this.panel.find(".import-raster-path").val(this.rasterPath);
 	},
 
 	// 新增要导入的文件

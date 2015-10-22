@@ -54,6 +54,31 @@ MapCloud.VectorPanel = MapCloud.Class({
 			that.panel.find("#datasets_thumb_tab").css("display","block");		
 		});
 
+		// 导入矢量
+		this.panel.find(".import-vector").click(function(){
+			if(that.dataSourceCur == null){
+				MapCloud.notify.showInfo("请选择一个数据库","Warning");
+				return;
+			}
+			MapCloud.import_dialog.showDialog("vector-user");
+			MapCloud.import_dialog.setDataSourceName(that.dataSourceCur.name);
+		});
+
+		// 导入csv
+		this.panel.find(".import-csv").click(function(){
+			if(that.dataSourceCur == null){
+				MapCloud.notify.showInfo("请选择一个数据库","Warning");
+				return;
+			}
+			MapCloud.importCSV_dialog.showDialog("vector-user");
+			MapCloud.importCSV_dialog.setDataSourceName(that.dataSourceCur.name);
+		});
+
+		// 新建表格
+		this.panel.find(".create-dataset").click(function(){
+			that.createDataSet();
+		});
+
 		//dataset 面板
 		this.panel.find("#show_dataset_infos").click(function(){
 			 that.panel.find("#dataset_tab .btn-group .btn").attr("disabled",false);
@@ -316,6 +341,7 @@ MapCloud.VectorPanel = MapCloud.Class({
 		this.panel.find("#show_datasets_thumb").css("disabled",true);
 		this.panel.find(".vector-db-tree .row").removeClass("selected");
 		this.panel.find(".vector-db-tree .row[dname='" + name + "']").addClass("selected");
+		this.panel.find(".vector-db-tree .nav[dname='" + name + "']").remove();
 		this.panel.find(".current-db").html(name);
 		this.panel.find(".datasets-list").empty();
 		this.panel.find(".datasets_thumb_tab").empty();
@@ -338,6 +364,12 @@ MapCloud.VectorPanel = MapCloud.Class({
 	},
 
 	getDataSets : function(dataSource){
+		this.panel.find(".vector-db-tree .row").removeClass("selected");
+		this.panel.find(".vector-db-tree .row[dname='" + dataSource.name + "']").addClass("selected");
+		this.panel.find(".vector-db-tree .nav[dname='" + dataSource.name + "']").remove();
+		this.panel.find(".current-db").html(dataSource.name);
+		this.panel.find(".datasets-list").empty();
+		this.panel.find(".datasets_thumb_tab").empty();
 		if(dataSource == null){
 			return;
 		}
@@ -480,7 +512,7 @@ MapCloud.VectorPanel = MapCloud.Class({
 	removeDataSet_callback :function(result){
 		MapCloud.notify.showInfo(result,"删除图层");
 		var that = MapCloud.vectorPanel;
-		that.getDataSets(that.dataSourceCur);
+		that.getDataSource(that.dataSourceCur.name);
 	},
 
 	// 展示数据库图层缩略图
@@ -658,19 +690,19 @@ MapCloud.VectorPanel = MapCloud.Class({
 		if(extent != null){
 			html+=	"<div class='row'>"
 				+	"	<div class='col-md-3'>范围</div>"			
-				+	"	<div class='col-md-6'>东 :" + extent.xmax + + "</div>"
+				+	"	<div class='col-md-6'>东 :" + extent.xmax + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
 				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>西 :" + extent.xmin + + "</div>"
+				+	"	<div class='col-md-6'>西 :" + extent.xmin + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
 				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>南 :" + extent.ymin + + "</div>"
+				+	"	<div class='col-md-6'>南 :" + extent.ymin + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
 				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>北 :" + extent.ymax + + "</div>"
+				+	"	<div class='col-md-6'>北 :" + extent.ymax + "</div>"
 				+	"</div>";		
 		}
 
@@ -869,5 +901,15 @@ MapCloud.VectorPanel = MapCloud.Class({
 		if(marginWidth != null){
 			this.panel.find("#dataset_preview_tab img").css("margin-left",marginWidth);
 		}
-	}
+	},
+
+	// 新建表格
+	createDataSet : function(){
+		if(this.dataSourceCur == null){
+			MapCloud.notify.showInfo("请选择一个数据库","Warning");
+			return;
+		}
+		MapCloud.create_dataset_dialog.showDialog("vector-user");
+		MapCloud.create_dataset_dialog.setDataSourceName(this.dataSourceCur.name);
+	},
 });

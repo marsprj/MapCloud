@@ -17,16 +17,15 @@
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
 
 
-	<script type="text/javascript" src="js/mc-user-raster.js"></script>
-
+	<script type="text/javascript" src="js/mc-user-tile.js"></script>
 
 	<script type="text/javascript" src="../js/MapCloud.js"></script>
 	<script type="text/javascript" src="../js/Class/Class.js"></script>
 	<script type="text/javascript" src="../js/Cookie.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
+	<script type="text/javascript" src="js/mc-tile-panel.js"></script>
 
-	<script type="text/javascript" src="js/mc-raster-panel.js"></script>
 
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
@@ -39,9 +38,10 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
-	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/Raster.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
@@ -68,6 +68,7 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Renderer.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Events.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/InfoWindow.js"></script>
@@ -93,18 +94,16 @@
 
 	<script type="text/javascript" src="../js/Control/Dialog/Dialog.js"></script>
 	<script type="text/javascript" src="../js/Control/Dialog/PGISConnectDialog.js"></script>
-	<script type="text/javascript" src="../js/Control/Dialog/CreateFolderDialog.js"></script>
-	<script type="text/javascript" src="../js/Control/Dialog/ImportRasterDialog.js"></script>
-	<script type="text/javascript" src="../js/Control/Dialog/FileDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/CreateTileStoreDialog.js"></script>
 
-	<title>用户信息</title>
+	<title>瓦片管理</title>
 </head>
 	
 <body id="user_map_panel">
-	<div id="raster_panel" class="common-panel">
+	<div id="tile_panel" class="common-panel">
 		<div id="title_wrapper">
 			<div class="title_box">
-				影像管理
+				瓦片管理
 			</div>
 		</div>
 		<div class="main-panel">
@@ -114,7 +113,7 @@
 					<div>数据库</div>
 				</div>
 				<div class="left-panel-content">
-					<div class="raster-db-tree list-tree list-tree-ul-div">
+					<div class="tile-db-tree list-tree">
 					</div>
 				</div>
 			</div>
@@ -154,7 +153,7 @@
 								操作
 							</div>											
 						</div>
-						<div class="raster-db-list">
+						<div class="tile-db-list">
 
 						</div>
 					</div>
@@ -162,65 +161,77 @@
 				<!-- 数据库面板 -->
 				<div class="right-panel-tab" id="datasource_tab">
 					<div class="right-panel-bar">
+						
 						<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
 						<span class="float-left">>></span>
 						<span class="current-db float-left"></span>
-						<div class="path-div float-left">
-							<input type="text" class="form-control current-path" disabled=""value="/">
-						</div>
 						<div class="data_title_bar">
-							<a href="javascript:void(0)" class="add-folder">新建目录</a>
-							<a href="javascript:void(0)" class="remove-file">删除目录</a>
-							<a href="javascript:void(0)" class="refresh-folder">刷新目录</a>
-							<a href="javascript:void(0)" class="upload-raster">上传影像</a>
+							<a href="javascript:void(0)" class="create-tilestroe">新建瓦片库</a>
 						</div>
+
 					</div>
 					<div class="right-panel-content">
-						<div class="row header-row">
-							<div class="col-md-1"></div>
-							<div class="col-md-3">名称</div>
-							<div class="col-md-1">类型</div>
-							<div class="col-md-3">创建时间</div>
-							<div class="col-md-3">最后访问时间</div>
+						<div class="right-panel-content-tab" id="datasets_list_tab">
+							<div class="row header-row">
+								<div class="col-md-1">
+									序号
+								</div>
+								<div class="col-md-2">
+									名称
+								</div>
+								<div class="col-md-2">
+									格式
+								</div>
+								<div class="col-md-2">
+									切图标准
+								</div>
+								<div class="col-md-3">
+									范围
+								</div>	
+								<div class="col-md-2">
+									操作
+								</div>											
+							</div>
+							<div class="tilestore-list">
+							</div>
 						</div>
-						<div class="raster-folder-list">
+						<div class="right-panel-content-tab" id="datasets_thumb_tab">
 						</div>
 					</div>
 				</div>
 
-				<!-- 影像面板 -->
-				<div class="right-panel-tab" id="raster_tab">
+				<!-- 图层面板 -->
+				<div class="right-panel-tab" id="tilestore_tab">
 					<div class="right-panel-bar">
-						<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
-						<span class="float-left">>></span>
-						<span class="current-db float-left"></span>
-						<div class="path-div float-left">
-							<input type="text" class="form-control current-raster-path" disabled="" value="/">
-						</div>
+						<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
+						>>
+						<a href="javascript:void(0)" class="return-datasource"></a>
+						>>
+						<span class="current-tilestore"></span>
 						<div class="btn-group btn-group-xs pull-right" role="group">
-							<button type="button" class="btn btn-default" id="show_raster_infos" disabled="disabled">信息</button>
-							<button type="button" class="btn btn-default" id="show_raster_preview">预览</button>
+							<button type="button" class="btn btn-default" id="show_tilestore_infos" disabled="disabled">信息</button>
+							<button type="button" class="btn btn-default" id="show_tilestore_preview">预览</button>
 						</div>
 					</div>
 					<div class="right-panel-content">
-						<div class="right-panel-content-tab" id="raster_infos_tab">
+						<div class="right-panel-content-tab" id="tilestore_infos_tab">
 							
 						</div>
-						<div class="right-panel-content-tab" id="raster_preview_tab">
-							<span></span><img src="" alt="">
+						<div class="right-panel-content-tab" id="tilestore_preview_tab">
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Notify  -->
-	<div id="container" style="display:none">
-		<div id="default">
-			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
-			<span>#{title}</span>
-			<span>:</span>
-			<span>#{text}</span>
+		<!-- Notify  -->
+		<div id="container" style="display:none">
+			<div id="default">
+				<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+				<span>#{title}</span>
+				<span>:</span>
+				<span>#{text}</span>
+			</div>
 		</div>
 	</div>
 
@@ -298,173 +309,39 @@
 		</div> 
 	</div>
 
-
-	<!-- Create Folder panel -->
-	<div class="modal fade" id="create_folder_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+	<!-- create tile store -->
+	<div class="modal fade" id="create_tile_store_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">新建文件夹</h5>
+					<h5 class="modal-title">新增瓦片库</h5>
 				</div>
 				<div class="modal-body">
-					<input type="text" class="form-control" placeHolder="请输入名称" id="create_folder_name">
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">名称</label>
+							<div class="col-md-7">
+								<input type="text" class="form-control tile-store-name">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">切图方式</label>
+							<div class="col-md-7">
+								<select class="form-control tile-store-type">
+									<option value="PGIS">PGIS</option>
+									<option value="GoogleCRS84Quad">GoogleCRS84Quad</option>
+								</select>
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary btn-confirm">确定</button>
 				</div>
 			</div>
-		</div> 
-	</div>
-
-	<!-- Import Raster Panel -->
-	<div class="modal fade" id="import_raster_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h5 class="modal-title">影像数据库上传</h5>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group form-group-sm">
-							<label class="control-label col-md-2 label-item">
-								数据库:
-							</label>
-							<div class="col-md-4">
-								<input class="form-control import-db-name" type="text" disabled="">
-							</div>
-							<label class="control-label col-md-2 label-item" style="margin-left:40px;">
-								路径:
-							</label>
-							<div class="col-md-4">
-								<input class="form-control import-raster-path" type="text" disabled="" >
-							</div>
-						</div>
-						<div class="form-group form-group-sm">
-							
-						</div>
-					</form>
-					<div class="row import-content-div">
-						<div class="col-md-11" style="height:100%">
-							<div class="import-list-wrapper">
-								<div class="row header-row">
-									<div class="col-md-6">文件路径</div>
-									<div class="col-md-6">影像名称</div>
-								</div>
-								<div class="import-list-div"></div>
-							</div>
-						</div>
-						<div class="col-md-1 import-tool-div">
-							<ul>
-  							  	<li>
-  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
-  							  			<i class="fa fa-plus"></i>
-  									</button>
-  								 </li>
-  								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
-  							  			<i class="fa fa-remove"></i>
-  									</button>
-  								 </li>
-  								 <li>
-  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
-  							  			<i class="fa fa-arrow-right" style="color:green"></i>
-  									</button>
-  								 </li>
-  								 <li style="margin-top:108px">
-  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
-  							  			<i class="fa fa-chevron-down"></i>
-  									</button>
-  								 </li>
-  							</ul>
-						</div>
-					</div>
-					<div class="import-log-wrapper" style="display: none;">
-						<label>结果</label>
-						<div class="row import-log-row">
-							<div class="col-md-11 import-log-div"></div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
-	</div>
-
-
-	<!-- File Dialog -->
-	<div class="modal fade" id="fileDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
-		 <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-	                <h5 class="modal-title">文件管理</h5>
-	            </div>
-	            <div class="modal-body row">
-					<div class="col-md-3 file-tree-div">
-						<ul class="nav" style="padding-left:8px">
-							<li>
-								<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">
-									<i class="fa fa-folder-o"></i>
-									<span>/</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-9 file-list-div">
-						<div class="inner-div">
-							<div class="row tool-row">
-								<div class="col-md-8">
-									<input type="text" class="form-control" disabled="" id="current_path" value="/">
-								</div>
-								<div class="col-md-4 btn-group-tool">
-									<div class=" btn-group btn-group-justified"  role="group">
-										<a class="btn btn-default btn-add-folder" data-toggle="tooltip" data-placement="top" data-original-title="新建文件夹">
-											<i class='fa fa-folder-o'></i>
-										</a>
-										<a class="btn btn-default btn-remove-file" data-toggle="tooltip" data-placement="top" data-original-title="删除">
-											<i class="fa fa-trash-o"></i>
-										</a>
-										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="上传">
-											<i class="fa fa-upload"></i>
-										</a>
-										<a class="btn btn-default btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
-											<i class="fa fa-refresh"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="file-list-wrapper">
-								<div class="row header-row">
-									<div class="col-md-1"></div>
-									<div class="col-md-3">名称</div>
-									<div class="col-md-1">类型</div>
-									<div class="col-md-3">创建时间</div>
-									<div class="col-md-3">最后访问时间</div>
-									<div class="col-md-1">大小</div>
-								</div>
-								<div class="file-list-content-div">
-								</div>
-							</div>
-							<div class="row file-filter-row">
-								<div class="col-md-3 col-md-offset-9">
-									<select class="form-control" id="file_filter_select">
-										<option value="all">All Files(*.*)</option>
-										<option value="shp">Shape Files(*.shp)</option>
-										<option value="jpeg,jpg,png,tif">Image Files(*.jpeg,*.jpg,*.png,*.tif)</option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
-	            </div>
-	        </div>
-	    </div>
 	</div>	
 </body>
 

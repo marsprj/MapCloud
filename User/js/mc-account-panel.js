@@ -1,4 +1,4 @@
-MapCloud.Account = MapCloud.Class({
+MapCloud.AccountPanel = MapCloud.Class({
 	// 登录页面
 	loginPanel : null,
 
@@ -9,8 +9,7 @@ MapCloud.Account = MapCloud.Class({
 	registerPanel : null,
 
 	// 注册账户名
-	registerName : null,
-
+	registerName : null,	
 
 	initialize : function(loginId,registerId){
 		this.loginPanel = $("." + loginId);
@@ -25,6 +24,7 @@ MapCloud.Account = MapCloud.Class({
 		// 登录页面跳转至注册
 		this.loginPanel.find(".btn-register").click(function(){
 			that.hideLoginPanel();
+			that.hideUserpPanel();
 			that.showRegisterPanel();
 
 		});
@@ -46,6 +46,7 @@ MapCloud.Account = MapCloud.Class({
 		// 注册页面跳转至登录
 		this.registerPanel.find(".btn-login").click(function(){
 			that.hideRegisterPanel();
+			that.hideUserpPanel();
 			that.showLoginPanel();
 		});
 
@@ -56,6 +57,7 @@ MapCloud.Account = MapCloud.Class({
 			}
 		});
 	},
+
 
 	showLoginPanel : function(){
 
@@ -83,12 +85,12 @@ MapCloud.Account = MapCloud.Class({
 	},
 
 
-	hideMapPanel : function(){
-		$(".map-panel").css("display","none");
+	hideUserpPanel : function(){
+		$(".user-panel").css("display","none");
 	},
 
-	showMapPanel : function(){
-		$(".map-panel").css("display","block");
+	showUserPanel : function(){
+		$(".user-panel").css("display","block");
 	},
 
 
@@ -115,10 +117,11 @@ MapCloud.Account = MapCloud.Class({
 	login_callback : function(result){
 		MapCloud.notify.showInfo(result,"登录");
 		if(result == "success"){
-			var that = MapCloud.account;
+			var that = MapCloud.accountPanel;
 
 			that.hideLoginPanel();
-			$(".map-panel").css("display","block");
+			that.hideRegisterPanel();
+			that.showUserPanel();
 			that.initUser(that.loginName);
 		}else{
 
@@ -141,13 +144,9 @@ MapCloud.Account = MapCloud.Class({
 		gpsManager = user.getGPSManager();
 
 		MapCloud.cookieObj.setCookie("username",username,"/MapCloud");
+		loadCatalog();
+		$("#title_panel").html("[" + username + "]管理页面" );
 
-		MapCloud.userToolBar.showUser(username);
-		// this.hideLoginPanel();
-		// $(".map-panel").css("display","block");
-		// 加载地图
-		MapCloud.notify.loading();
-		mapManager.getMaps(ribbonObj.getMaps_callback);		
 	},
 
 
@@ -222,12 +221,11 @@ MapCloud.Account = MapCloud.Class({
 	register_callback : function(result){
 		MapCloud.notify.showInfo(result,"注册");
 		if(result == "success"){
-			var that = MapCloud.account;
+			var that = MapCloud.accountPanel;
 			// that.initRegisterUser();
 			that.hideLoginPanel();
 			$(".map-panel").css("display","block");
 			that.initUser(that.registerName);
 		}
-	},
-
+	},	
 });

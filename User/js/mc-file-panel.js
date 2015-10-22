@@ -11,7 +11,7 @@ MapCloud.FilePanel = MapCloud.Class({
 		var that = this;
 		// 新建目录
 		this.panel.find(".add-folder").click(function(){
-			MapCloud.create_folder_that.showDialog("file-user");
+			MapCloud.create_folder_dialog.showDialog("file-user");
 		});
 
 		// 删除目录

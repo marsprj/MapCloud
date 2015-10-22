@@ -38,6 +38,7 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
@@ -45,6 +46,8 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
 
@@ -89,6 +92,10 @@
 
 	<script type="text/javascript" src="../js/Control/Dialog/Dialog.js"></script>
 	<script type="text/javascript" src="../js/Control/Dialog/PGISConnectDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/ImportDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/FileDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/ImportCSVDialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/CreateDataSetDialog.js"></script>
 
 	<title>用户信息</title>
 </head>
@@ -97,7 +104,7 @@
 	<div id="vector_panel" class="common-panel">
 		<div id="title_wrapper">
 			<div class="title_box">
-				地图管理
+				数据库管理
 			</div>
 		</div>
 		<div class="main-panel">
@@ -370,5 +377,256 @@
 			</div>
 		</div> 
 	</div>
+
+	<!-- Import  panel -->
+	<div class="modal fade" id="import_dialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">导入数据库</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row import-db">
+						<h5 style=" margin-top: 0px;">
+							<span>
+								<span>数据库:  </span>
+								<span class="import-db-name">Name</span>
+							</span>
+						</h5>
+					</div>
+					<label>输入:</label>
+					<div class="row import-content-div">
+						<div class="col-md-11" style="height:100%">
+							<div class="import-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-4">文件路径</div>
+									<div class="col-md-2">模式</div>
+									<div class="col-md-3">表名称</div>
+									<div class="col-md-2">空间列</div>
+									<div class="col-md-1">空间参考</div>
+								</div>
+								<div class="import-list-div">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1 import-tool-div">
+							<ul>
+  							  	<li>
+  							  		<button class="btn btn-lg btn-default import-btn-add" data-toggle="tooltip" data-placement="top" data-original-title="选择文件">
+  							  			<i class="fa fa-plus"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-remove" data-toggle="tooltip" data-placement="top" data-original-title="删除文件">
+  							  			<i class="fa fa-remove"></i>
+  									</button>
+  								 </li>
+  								 <li>
+  							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
+  							  			<i class="fa fa-arrow-right" style="color:green"></i>
+  									</button>
+  								 </li>
+  								 <li style="margin-top:108px">
+  							  		<button class="btn btn-lg btn-default import-btn-log log-col" data-toggle="tooltip" data-placement="top" data-original-title="查看日志">
+  							  			<i class="fa fa-chevron-down"></i>
+  									</button>
+  								 </li>
+  							</ul>
+						</div>
+					</div>
+						
+					<div class="import-log-wrapper">
+						<label>结果:</label>
+						<div class="row import-log-row">
+							<div class="col-md-11 import-log-div">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- File Dialog -->
+	<div class="modal fade" id="fileDialog" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
+		 <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h5 class="modal-title">文件管理</h5>
+	            </div>
+	            <div class="modal-body row">
+					<div class="col-md-3 file-tree-div">
+						<ul class="nav" style="padding-left:8px">
+							<li>
+								<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">
+									<i class="fa fa-folder-o"></i>
+									<span>/</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-9 file-list-div">
+						<div class="inner-div">
+							<div class="row tool-row">
+								<div class="col-md-8">
+									<input type="text" class="form-control" disabled="" id="current_path" value="/">
+								</div>
+								<div class="col-md-4 btn-group-tool">
+									<div class=" btn-group btn-group-justified"  role="group">
+										<a class="btn btn-default btn-add-folder" data-toggle="tooltip" data-placement="top" data-original-title="新建文件夹">
+											<i class='fa fa-folder-o'></i>
+										</a>
+										<a class="btn btn-default btn-remove-file" data-toggle="tooltip" data-placement="top" data-original-title="删除">
+											<i class="fa fa-trash-o"></i>
+										</a>
+										<a class="btn btn-default btn-upload-file" data-toggle="tooltip" data-placement="top" data-original-title="上传">
+											<i class="fa fa-upload"></i>
+										</a>
+										<a class="btn btn-default btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新">
+											<i class="fa fa-refresh"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="file-list-wrapper">
+								<div class="row header-row">
+									<div class="col-md-1"></div>
+									<div class="col-md-3">名称</div>
+									<div class="col-md-1">类型</div>
+									<div class="col-md-3">创建时间</div>
+									<div class="col-md-3">最后访问时间</div>
+									<div class="col-md-1">大小</div>
+								</div>
+								<div class="file-list-content-div">
+								</div>
+							</div>
+							<div class="row file-filter-row">
+								<div class="col-md-3 col-md-offset-9">
+									<select class="form-control" id="file_filter_select">
+										<option value="all">All Files(*.*)</option>
+										<option value="shp">Shape Files(*.shp)</option>
+										<option value="jpeg,jpg,png,tif">Image Files(*.jpeg,*.jpg,*.png,*.tif)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>	
+
+	<!-- import csv panel -->
+	<div class="modal fade" id="import_csv_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">导入CSV</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">CSV:</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control csv-path" readonly="">
+							</div>
+							<div class="col-md-1">
+								<button class="btn btn-sm btn-success import-btn-add" type="button">选择</button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">表格:</label>
+							<div class="col-md-5">
+								<input type="text" class="form-control csv-typename">
+							</div>
+							<div class="col-md-1 col-md-offset-4">
+								<button class="btn btn-sm btn-success import-btn-upload" type="button">导入</button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">字段:</label>
+							<div class="col-md-10">
+								<div class="csv-fields-wrapper">
+									<div class="row header-row">
+										<div class="col-md-5">
+											字段名称
+										</div>
+										<div class="col-md-4">
+											字段类型
+										</div>
+										<div class="col-md-3">
+											字段长度
+										</div>
+									</div>
+									<div class="csv-fields-div">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">结果:</label>
+							<div class="col-md-10">
+								<div class="import-log-div">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- create dataset panel -->
+	<div class="modal fade" id="create_dataset_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新建表格</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-md-3 control-label">数据库:</label>
+							<div class="col-md-7">
+								<input class="form-control db-name" type="text" disabled="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">名称:</label>
+							<div class="col-md-7">
+								<input class="form-control dataset-name" type="text">
+							</div>
+						</div>
+						<div class="form-group"  style="margin:20px 0px">
+							<div class="col-md-2 col-md-offset-2">
+								<button type="button" class="btn btn-success btn-default btn-create-field">新建字段</button>
+							</div>
+							<div class="col-md-2 col-md-offset-1">
+								<button type="button" class="btn btn-success btn-default btn-remove-fields">清空字段</button>
+							</div>
+							<div class="col-md-2 col-md-offset-1">
+								<button type="button" class="btn btn-primary btn-default btn-create-dataset">创建表格</button>
+							</div>
+						</div>
+					</form>
+					<form class="form-horizontal fields-form" role="form">
+						<div class='text-center'>
+							<h2 class="text-muted fields-empty">空白字段</h2>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 

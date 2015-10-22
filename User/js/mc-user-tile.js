@@ -2,7 +2,7 @@ $().ready(function(){
 	
 	cookieObj = new MapCloud.Cookie();
  	var cookiedUserName = cookieObj.getCookie("username");
-    user = null;
+ 	user = null;
     if(cookiedUserName != null){
     	user = new GeoBeans.User(cookiedUserName);
     }
@@ -11,21 +11,15 @@ $().ready(function(){
     }
 
     dbsManager = user.getDBSManager();
-    fileManager = user.getFileManager();
-    gpsManager = user.getGPSManager();
+
     MapCloud.notify	= new MapCloud.Notify("container","alert_loading");
 	MapCloud.pgis_connection_dialog = new MapCloud.PGISConnectDialog("pgisConnDialog");
-	MapCloud.import_dialog = new MapCloud.ImportDialog("import_dialog");
-	MapCloud.file_dialog = new MapCloud.FileDialog("fileDialog");
-	MapCloud.importCSV_dialog = new MapCloud.ImportCSVDialog("import_csv_dialog");
-	MapCloud.create_dataset_dialog = new MapCloud.CreateDataSetDialog("create_dataset_dialog");
+	MapCloud.create_tile_store_dialog = new MapCloud.CreateTileStoreDialog("create_tile_store_dialog");
 
-	MapCloud.vectorPanel = new MapCloud.VectorPanel("vector_panel");
+	MapCloud.tilePanel = new MapCloud.TilePanel("tile_panel");
 
+	
     $(".modal").draggable({
         handle: ".modal-header"
     }); 
-	
-	
 });
-

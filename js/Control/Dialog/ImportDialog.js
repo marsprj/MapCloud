@@ -78,6 +78,11 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		}else if(this.source == "dataPanel"){
 			var parent = MapCloud.data_source_panel;
 			parent.refresh();
+		}else if(this.source == "vector-user"){
+			var parent = MapCloud.vectorPanel;
+			if(parent != null){
+				parent.getDataSets(parent.dataSourceCur);
+			}
 		}
 		
 	},

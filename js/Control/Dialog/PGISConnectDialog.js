@@ -228,9 +228,17 @@ MapCloud.PGISConnectDialog = MapCloud.Class(MapCloud.Dialog, {
 			parentDialog.getDataSources();
 			parentDialog.setRegisterDataSourceName(sourceName);
 		}else if(dialog.source == "user-feature"){
-			getDataSources();
+			var parent = MapCloud.vectorPanel;
+			if(parent != null){
+				parent.getDataSources();
+			}
 		}else if(dialog.source == "user-raster"){
 			var parent = MapCloud.rasterPanel;
+			if(parent != null){
+				parent.getDataSources();
+			}
+		}else if(dialog.source == "user-tile"){
+			var parent = MapCloud.tilePanel;
 			if(parent != null){
 				parent.getDataSources();
 			}

@@ -1,5 +1,9 @@
 MapCloud.CreateDataSetDialog = MapCloud.Class(MapCloud.Dialog,{
+	// 来源
+	source : null,
 
+	// 数据源
+	dataSourceName : null,
 
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
@@ -33,12 +37,13 @@ MapCloud.CreateDataSetDialog = MapCloud.Class(MapCloud.Dialog,{
 		});
 	},
 
-	showDialog : function(){
+	showDialog : function(source){
 		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
 		var dialog = this;
 		this.panel.on("shown.bs.modal",function(){
 			dialog.panel.find(".dataset-name").focus();
 		});
+		this.source = source;
 	},
 
 	cleanup : function(){
@@ -50,12 +55,18 @@ MapCloud.CreateDataSetDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".fields-form").html(html);
 
 		this.dataSourceName = null;
+		this.source = null;
 	},
 
 	closeDialog : function(){
 		this.panel.modal("hide");
-		var parent = MapCloud.vector_db_dialog;
-		parent.getDataSets(parent.dataSourceCur);
+		if(this.source == "vector"){
+			var parent = MapCloud.vector_db_dialog;
+			parent.getDataSets(parent.dataSourceCur);
+		}else if(this.source == "vector-user"){
+			var parent = MapCloud.vectorPanel;
+			parent.getDataSets(parent.dataSourceCur);
+		}
 	},
 
 	// 设置数据库名称

@@ -213,6 +213,10 @@
 <script type="text/javascript" src="../js/Control/Dialog/ImportVectorDialog.js"></script>
 <script type="text/javascript" src="../js/Control/Dialog/ImportRasterDialog.js"></script>
 <script type="text/javascript" src="../js/Control/Dialog/FileDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportCSVDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/CreateDataSetDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/CreateTileStoreDialog.js"></script>
 
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -256,8 +260,8 @@
 
 <script type="text/javascript" src="js/Control/Dialog/RasterDBDialog.js"></script>
 
-<script type="text/javascript" src="js/Control/Dialog/ImportDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/ImportCSVDialog.js"></script>
+
+
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMSDialog.js"></script>
@@ -314,11 +318,11 @@
 
 <script type="text/javascript" src="js/Control/Dialog/CutMapDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/TileDBDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/CreateTileStoreDialog.js"></script>
+
 <script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/CreateDataSetDialog.js"></script>
+
 <title>MapEditor</title>
 </head>
 
@@ -1912,6 +1916,7 @@
 			</div>
 		</div>
 	</div>	
+	
 	<!-- alert info  panel -->
 	<div class="alert alert-result alert-dismissible" role="alert" id="alert_info" style="display:none;">
 	    <button type="button" class="close" aria-label="Close">
@@ -3751,18 +3756,25 @@
 					<h5 class="modal-title">影像数据库上传</h5>
 				</div>
 				<div class="modal-body">
-					<div class="row import-db">
-						<h5 style=" margin-top: 0px;">
-							<span>
-								<i class="mc-db-icon mc-db-icon-server "></i>
-								<span>数据库:  </span>
-								<span class="import-db-name">rsdb</span>
-								<i class="mc-db-icon mc-db-icon-folder "></i>
-								<span>路径:  </span>
-								<span class="import-raster-path">/a</span>
-							</span>
-						</h5>
-					</div>
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-md-2 label-item">
+								数据库:
+							</label>
+							<div class="col-md-4">
+								<input class="form-control import-db-name" type="text" disabled="">
+							</div>
+							<label class="control-label col-md-2 label-item" style="margin-left:40px;">
+								路径:
+							</label>
+							<div class="col-md-4">
+								<input class="form-control import-raster-path" type="text" disabled="" >
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							
+						</div>
+					</form>
 					<div class="row import-content-div">
 						<div class="col-md-11" style="height:100%">
 							<div class="import-list-wrapper">
@@ -3787,7 +3799,7 @@
   								 </li>
   								 <li>
   							  		<button class="btn btn-lg btn-default import-btn-upload" data-toggle="tooltip" data-placement="top" data-original-title="导入">
-  							  			<i class="fa fa-upload"></i>
+  							  			<i class="fa fa-arrow-right" style="color:green"></i>
   									</button>
   								 </li>
   								 <li style="margin-top:108px">

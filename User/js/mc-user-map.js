@@ -40,12 +40,20 @@ $().ready(function(){
 	// 返回地图列表
 	$(".return-map-list").click(function(){
 		$(".right-panel-tab").css("display","none");
-		$("#map_list_tab").css("display","block");
 		$("#maps_tab").css("display","block");
+		if($("#show-map-thumb").attr("disabled") == "disabled"){
+			$("#map_thumb_list").css("display","block");
+			$("#map_list_tab").css("display","none");
+		}else if($("#show-map-list").attr("disabled") == "disabled"){
+			$("#map_list_tab").css("display","block");
+			$("#map_thumb_list").css("display","none");
+		}
+		
 	});
 
  	cookieObj = new MapCloud.Cookie();
  	var cookiedUserName = cookieObj.getCookie("username");
+ 	user = null;
     if(cookiedUserName != null){
     	user = new GeoBeans.User(cookiedUserName);
     }

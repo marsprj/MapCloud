@@ -6,7 +6,7 @@ MapCloud.Cookie = MapCloud.Class({
 
 	setCookie : function(name,value,path){
 	    var exp  = new Date();  
-	    exp.setTime(exp.getTime() + 30*24*60*60*1000);
+	    exp.setTime(exp.getTime() + 1*24*60*60*1000);
 	    var cookieStr = name + "="+ escape (value) + ";expires=" + exp.toGMTString() 
 	    if(path != null){
 	    	cookieStr+= ";path=" + path;

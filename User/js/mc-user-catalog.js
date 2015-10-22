@@ -14,7 +14,7 @@ var g_catalog =
         "items": [
             {
                 "name": "服务管理",
-                "link": "wms_getcapabilities.html"
+                "link": "user_service.html"
             }
         ]
     },
@@ -59,7 +59,7 @@ var g_catalog =
         "items": [
             {
                 "name": "瓦片数据",
-                "link": "ims_getcapabilities.html"
+                "link": "user_tile.html"
             }
 		]
 	}

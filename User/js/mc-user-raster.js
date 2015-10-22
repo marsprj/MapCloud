@@ -2,6 +2,7 @@ $().ready(function(){
 	
 	cookieObj = new MapCloud.Cookie();
  	var cookiedUserName = cookieObj.getCookie("username");
+    user = null;
     if(cookiedUserName != null){
     	user = new GeoBeans.User(cookiedUserName);
     }
@@ -19,5 +20,9 @@ $().ready(function(){
     MapCloud.file_dialog = new MapCloud.FileDialog("fileDialog");
 
     MapCloud.rasterPanel = new MapCloud.RasterPanel("raster_panel");
+
+    $(".modal").draggable({
+        handle: ".modal-header"
+    }); 
 	
 });

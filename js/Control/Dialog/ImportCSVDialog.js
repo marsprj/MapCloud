@@ -9,6 +9,9 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 	// dataSet name
 	typeName : null,
 
+	// 来源
+	source : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 
@@ -86,13 +89,28 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.dataSourceName = null;
 		this.csvPath = null;
 		this.typeName = null;
+		this.source = null;
+	},
+
+	showDialog : function(source){
+		this.cleanup();
+		this.panel.modal();
+		this.source = source;
 	},
 
 
 	closeDialog : function(){
 		this.panel.modal("hide");
-		var parent = MapCloud.vector_db_dialog;
-		parent.getDataSets(parent.dataSourceCur);
+		if(this.source == "vector"){
+			var parent = MapCloud.vector_db_dialog;
+			parent.getDataSets(parent.dataSourceCur);
+		}else if(this.source == "vector-user"){
+			var parent = MapCloud.vectorPanel;
+			if(parent != null){
+				parent.getDataSets(parent.dataSourceCur);
+			}
+		}
+		
 	},
 
 	// 设置数据库名称
