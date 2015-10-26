@@ -60,14 +60,9 @@
 				<!-- <a href="javascript:void(0)">用户权限</a> -->
 			</div>
 		</div>
-		<div id="main_wrapper">
+		<div id="user_main_wrapper">
 			<!-- User Panel -->
 			<div id="user_info_panel" class="user_info_panel_border">
-				<!-- <table>
-					<tr><td class="td_column">用户名：</td><td><input type="text" id="user_name" value="user1"></td></tr>
-					<tr><td class="td_column">密&nbsp&nbsp&nbsp码：</td><td><input type="passwd" id="user_pswd" value="qwer1234"></td></tr>
-					<tr><td class="td_column">邮&nbsp&nbsp&nbsp件：</td><td><input type="text" id="user_mail" value="user1@mapcloud.org"></td></tr>
-				</table> -->
 				<form class="form-horizontal" style="width:600px;">
 					<div class="form-group form-group-sm">
 						<label class="col-md-2 control-label">用户名:</label>
@@ -102,32 +97,46 @@
 					<tr><td class="td_column"></td><td><input type="passwd" id="user_pswd_pswd_2" value="qwer1234">(再次输入密码)</td></tr>
 				</table> -->
 <!-- 				<div style="width:300px;height:30px"><a href="javascript:void(0)" id="btn_change_paswd">确定</a></div> -->
-				<form class="form-horizontal">
+				<form class="form-horizontal" style="width:600px;">
 					<div class="form-group form-group-sm">
-						<div class="form-group form-group-sm">
 						<label class="col-md-2 control-label">用户名:</label>
 						<div class="col-md-8">
 							<input class="form-control user-passwd-name" type="text" disabled="">
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
-						<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">用户名:</label>
+						<label class="col-md-2 control-label">密码:</label>
 						<div class="col-md-8">
-							<input class="form-control user-passwd" type="text" disabled="">
+							<input class="form-control user-passwd" type="text">
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
-						<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">用户名:</label>
+						<label class="col-md-2 control-label">再次输入密码:</label>
 						<div class="col-md-8">
-							<input class="form-control user-passwd" type="text" disabled="">
+							<input class="form-control user-repasswd" type="text" >
 						</div>
 					</div>
+					<div class="form-group form-group-sm">
+						<button class="btn btn-success btn-change-password" type="button" style="margin:10px 0px 0px 120px;">修改密码</button>
 					</div>
 				</form>
 			</div>
 		</div>
+	</div>
+
+	<!-- Notify  -->
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
 	</div>
 </body>
 

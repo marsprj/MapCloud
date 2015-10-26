@@ -590,11 +590,7 @@
 .register-panel{
   display: none;
 }
-.logo-img{
-  width: 100%;
-  border-radius: 6px;
-  box-shadow: 1px 1px 1px 2px rgba(0,0,0,0.3)
-}
+
 .account-panel{
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); 
@@ -604,7 +600,7 @@
 }
 
 .btn-account{
-  letter-spacing: 2em;
+    letter-spacing: 2em;
     text-indent: 2em;
     font-family: "Microsoft YaHei";
 }
@@ -613,6 +609,117 @@
   padding: 0px 6px;
   display: inline-block;
 }
+
+
 /***************************************************************************/
 /* Login  Panel End                             */
+/***************************************************************************/
+
+/***************************************************************************/
+/* Login Panel Begin                                                 */
+/***************************************************************************/
+.login-panel{
+  background-image: url(../images/bg.png);
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 120px;
+  background-color: #E1EAF3;
+  min-width: 1200px;
+}
+.grid {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+.fluid {
+    flex: 1;
+}
+.login-center-panel{
+  width: 1200px;
+  
+  margin: 0 auto;
+}
+.login-grid-right{
+    background-image: url(../images/bg-r.png);
+    background-repeat: repeat-x;
+    background-position: 0 110px;
+}
+.login-left-panel{
+  float: left;
+  width: 460px;
+  height: 652px;
+}
+.login-left-panel img{
+  float: right;
+  margin-right: -60px;
+  margin-top: 70px;
+}
+.login-right-panel{
+  float: left;
+  height: 100%;
+  width: 730px;
+}
+.login-title{
+  margin-left: 135px;
+}
+.login-form-wrapper{
+  height: 345px;
+  width: 100%;
+  position: relative;
+  margin-top: 60px;
+}
+.login-right-panel .login-form{
+  background-image: url(../images/login.png);
+  background-repeat: no-repeat;
+  height: 100%;
+  float: left;
+  width: 741px;
+  padding-top: 110px;
+  padding-left: 166px;
+}
+.login-form-label{
+  color: #626262;
+  width: 38px;
+    margin-right: 20px;
+    font-weight: normal;
+}
+.login-form-input{
+  line-height: 30px;
+  height: 30px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.btn-login-group{
+  margin-left: 60px;
+}
+.btn-login-group a{
+  display: block;
+  width: 80px;
+  height: 32px;
+  float: left;
+  cursor: pointer;
+  margin-right: 40px;
+}
+.login-btn{
+  background-image: url(../images/login-btn.png);
+}
+.register-btn{
+  background-image: url(../images/register-btn.png);
+}
+.copyright{
+  width: 100%;
+  position: absolute;
+  bottom: 80px;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+}
+/***************************************************************************/
+/* Login Panel End                                                     */
 /***************************************************************************/

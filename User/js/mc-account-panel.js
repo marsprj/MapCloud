@@ -147,6 +147,12 @@ MapCloud.AccountPanel = MapCloud.Class({
 		loadCatalog();
 		$("#title_panel").html("[" + username + "]管理页面" );
 
+		// MapCloud.userPanel.getUserInfo(username);
+		MapCloud.userPanel = new MapCloud.UserPanel("user_panel");
+		MapCloud.userPanel.panel =  $("#iframeId").contents().find("#user_panel");
+		MapCloud.userPanel.registerPanelEvent();
+		MapCloud.userPanel.getUserInfo(username);
+
 	},
 
 

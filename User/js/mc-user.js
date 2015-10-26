@@ -9,6 +9,8 @@ $().ready(function(){
     	$("#title_panel").html("[" + cookiedUserName + "]管理页面" );
     	user = new GeoBeans.User(cookiedUserName);
     }
+    var authServer = "/ows/admin/mgr";
+	authManager = new GeoBeans.AuthManager(authServer);
     MapCloud.notify	= new MapCloud.Notify("container","alert_loading");
     MapCloud.accountPanel = new MapCloud.AccountPanel("login-panel","register-panel");
 

@@ -26,6 +26,12 @@ MapCloud.UserPanel = MapCloud.Class({
 			that.showUserPasswordPanel();
 		});
 
+		// 修改密码
+		this.panel.find(".btn-change-password").click(function(){
+			that.changePassword();
+		});
+
+		that.showUserInfoPanel();
 	},
 
 
@@ -64,5 +70,33 @@ MapCloud.UserPanel = MapCloud.Class({
 		this.panel.find(".user-info-alias").val(alias);
 		this.panel.find(".user-info-email").val(email);
 		this.panel.find(".user-info-role").val(role);
+
+		this.panel.find(".user-passwd-name").val(name);
+	},
+
+
+	// 修改密码
+	changePassword : function(){
+		var username = this.panel.find(".user-passwd-name").val();
+
+		var password = this.panel.find(".user-passwd").val();
+		if(password == ""){
+			MapCloud.notify.showInfo("请输入密码","Warning");
+			this.panel.find(".user-passwd").focus();
+			return;
+		}
+
+
+		var repassword = this.panel.find(".user-repasswd").val();
+		if(repassword == ""){
+			MapCloud.notify.showInfo("请再次输入密码","Warning");
+			this.panel.find(".user-repasswd").focus();
+			return;
+		}
+		if(password != repassword){
+			MapCloud.notify.showInfo("两次输入的密码不一致","Warning");
+			return;
+		}
+
 	},
 });

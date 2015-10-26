@@ -761,17 +761,17 @@ width: 100%-10px; */
 /***************************************************************************/
 /* User Info Begin			                                               */
 /***************************************************************************/
-#user_info_panel{
+#user_main_wrapper{
 	/*padding: 20px;*/
 }
-#user_info_panel .form-group-sm{
+#user_main_wrapper .form-group-sm{
 	margin-bottom: 6px;
 }
 
-#user_info_panel .form-group-sm label{
+#user_main_wrapper .form-group-sm label{
 	font-weight: normal;
 }
-#user_info_panel input{
+#user_main_wrapper input{
 	width: 200px;
 }
 #user_paswd_panel{
@@ -783,3 +783,4 @@ width: 100%-10px; */
 /***************************************************************************/
 /* User Info End			                                               */
 /***************************************************************************/
+
