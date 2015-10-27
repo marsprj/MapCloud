@@ -230,7 +230,12 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var result = confirm("确认删除" + name + "样式？");
 				if(result){
 					MapCloud.notify.loading();
-					styleManager.removeStyle(name,dialog.removeStyle_callback)
+					dialog.currentStyle = null;
+					dialog.singleStyle = null;
+					dialog.quantitiesStyle = null;
+					dialog.uniqueStyle = null;
+					dialog.dotDensityStyle = null;
+					styleManager.removeStyle(name,dialog.removeStyle_callback);
 				}
 			});
 		});
@@ -562,6 +567,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 	getStyleXML_callback : function(style){
 		if(style == null){
 			return;
+			this.panel.find(".style-pane").css("display","none");
 		}
 		var dialog = MapCloud.styleManager_dialog;
 		var panel = dialog.panel;
@@ -657,15 +663,15 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			}else{
 				switch(symbolizer.type){
 					case GeoBeans.Symbolizer.Type.Point:{
-						icon = "images/Circle.png";
+						icon = "../images/Circle.png";
 						break;
 					}
 					case GeoBeans.Symbolizer.Type.Line:{
-						icon = "images/SimpleLine.png";
+						icon = "../images/SimpleLine.png";
 						break;
 					}
 					case GeoBeans.Symbolizer.Type.Polygon:{
-						icon = "images/SimpleRegion.png";
+						icon = "../images/SimpleRegion.png";
 						break;
 					}
 					default:
@@ -1232,15 +1238,15 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(icon == null){
 			switch(symbolizerType){
 				case GeoBeans.Symbolizer.Type.Point:{
-					icon = "images/circle.png";
+					icon = "../images/Circle.png";
 					break;
 				}
 				case GeoBeans.Symbolizer.Type.Line:{
-					icon = "images/SimpleLine.png";
+					icon = "../images/SimpleLine.png";
 					break;
 				}
 				case GeoBeans.Symbolizer.Type.Polygon:{
-					icon = "images/SimpleRegion.png";
+					icon = "../images/SimpleRegion.png";
 					break;
 				}
 				default:
@@ -1368,6 +1374,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var name = dialog.panel.find("#style_list option:selected").text();
 		var info = "删除样式 [ " + name + " ]";
 		MapCloud.notify.showInfo(result,info);
+		panel.find(".style-pane").css("display","none");
 
 		if(result.toUpperCase() == "SUCCESS"){
 			// 重新拿样式列表
@@ -1881,6 +1888,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 		var panel = dialog.panel;
 
 		// var defaultRule = dialog.defaultStyle.rules[0];
+		if(dialog.singleStyle == null){
+			MapCloud.notify.showInfo("请设置一个有效样式","Warning");
+			return;
+		}
 		var defaultRule = dialog.singleStyle.rules[0];
 		var field = dialog.panel.find(".unique-pane .layer-fields option:selected").val();
 		var values = dialog.uniqueValues;
@@ -1920,6 +1931,10 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		var dialog = MapCloud.styleManager_dialog;
+		if(dialog.singleStyle == null){
+			MapCloud.notify.showInfo("请设置一个有效样式","Warning");
+			return;
+		}
 		var defaultRule = dialog.singleStyle.rules[0];
 		var classes = dialog.panel.find(".quantities-pane .classes option:selected").val();
 		
