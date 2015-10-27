@@ -177,6 +177,34 @@
 		<div class="container" id="main_panel">
 			<div id="catalog_panel">
 				<div id="catalog_container">
+					<div class="catalog-item">
+						<img src="../images/user.png" alt="user">
+						<h5>用户管理</h5>
+					</div>
+					<div class="catalog-item">
+						<img src="../images/service.png" alt="user">
+						<h5>服务管理</h5>
+					</div>
+					<div class="catalog-item">
+						<img src="../images/map-mgr.png" alt="user">
+						<h5>地图管理</h5>
+					</div>
+					<div class="catalog-item">
+						<img src="../images/file.png" alt="user">
+						<h5>文件管理</h5>
+					</div>
+					<div class="catalog-item">
+						<img src="../images/db.png" alt="user">
+						<h5>数据库管理</h5>
+					</div>
+					<div class="catalog-item">
+						<img src="../images/raster.png" alt="user">
+						<h5>影像管理</h5>
+					</div>
+					<div class="catalog-item">
+						<img src="../images/tile.png" alt="user">
+						<h5>瓦片管理</h5>
+					</div>
 				</div>
 			</div>
 			<div id="content_panel">
@@ -321,6 +349,9 @@
 
 <script type="text/javascript">
 	function onItemClick(item_name, item_link){
+		
+		$(".catalog-item").removeClass("selected");
+		$(".catalog-item[iname='" + item_name + "']").addClass("selected");
 		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%' frameborder='no'></iframe>";
 	}
 </script>

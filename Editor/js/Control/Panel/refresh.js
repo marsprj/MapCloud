@@ -70,37 +70,6 @@ MapCloud.refresh = MapCloud.Class({
 				return;
 			}
 			mapManager.zoomToGlobeMap(mapObj,that.zoomToGlobeMap_callback);
-			// // 重新读取一遍范围
-			// var extent = null;
-			// var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
-			// if(map == null){
-			// 	MapCloud.notify.showInfo("failed","全图显示失败");
-			// }else{
-			// 	extent = map.extent;
-			// }
-			// var layers = map.getLayers();
-			// for(var i = 0; i < layers.length; ++i){
-			// 	var layer = layers[i];
-			// 	if(layer != null){
-			// 		var name = layer.name;
-			// 		var layer_n = mapObj.getLayer(name);
-			// 		if(layer_n != null){
-			// 			layer.visible = layer_n.visible;
-			// 		}
-			// 	}
-			// }
-			// mapObj = map;
-			// if(extent == null){
-			// 	return;
-			// }
-			// // mapObj.setViewer(extent);
-
-			// mapObj.draw(true);
-			// MapCloud.refresh_panel.refreshPanel();
-			// MapCloud.dataGrid.cleanup();
-			// mapObj.setViewer(extent);
-			// mapObj.setNavControl(false);
-			// mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
 		});
 
 		// 保存地图
@@ -120,32 +89,6 @@ MapCloud.refresh = MapCloud.Class({
 			}
 			mapManager.refreshMap(mapObj,that.refreshMap_callback);
 
-			// var extent = mapObj.viewer;
-			// var map = mapManager.getMap("mapCanvas_wrapper",mapObj.name);
-			// if(map == null){
-			// 	MapCloud.notify.showInfo("failed","刷新地图");
-			// }else{
-			// 	MapCloud.notify.showInfo("success","刷新地图");
-			// 	var layers = map.getLayers();
-			// 	for(var i = 0; i < layers.length; ++i){
-			// 		var layer = layers[i];
-			// 		if(layer != null){
-			// 			var name = layer.name;
-			// 			var layer_n = mapObj.getLayer(name);
-			// 			if(layer_n != null){
-			// 				layer.visible = layer_n.visible;
-			// 			}
-			// 		}
-			// 	}
-			// 	mapObj = map;
-			// 	MapCloud.refresh_panel.refreshPanel();
-			// 	MapCloud.dataGrid.cleanup();
-			// 	mapObj.setViewer(extent);
-			// 	mapObj.setNavControl(false);
-			// 	mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
-			// 	$(".mc-panel").css("display","none");
-			// 	mapObj.draw(true);
-			// }
 		});
 	},
 
@@ -1593,7 +1536,7 @@ MapCloud.refresh = MapCloud.Class({
 	// 刷新地图
 	refreshMap_callback : function(result){
 		MapCloud.notify.showInfo(result,"刷新地图");
-		mapObj.draw(true);
+		mapObj.draw();
 		MapCloud.refresh_panel.refreshPanel();
 	},
 

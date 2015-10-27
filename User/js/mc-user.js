@@ -69,26 +69,22 @@ function loadCatalog(){
 	$(".user-panel").css("display","block");
 	var html  = "";
 	var count = g_catalog.length;
+	var name = null;
+	var link = null;
+	var icon = null;
 	for(var i=0; i<count; i++){
-		html += "<div class='service_container' scroll='no'>";
+		
 
 		var catalog = g_catalog[i];
-		//html += "<div class='service_title'>" + catalog.name + "</div>";
-		html += "<div class='service_title'><div class='service_title_icon'></div><span>" + catalog.name + "</span></div>";
-		html += "<div class='item_container' id='item_" + i.toString() + "'>";
-		var items = catalog.items.length;
-		for(var j=0; j<items; j++){
-
-			var item = catalog.items[j];
-			//html += "<div class='item_block' onclick='onItemClick(\"" + item.name + "\",\"" + item.link + "\");'>" + item.name + "</div>";
-			html += "<div class='item_block' onclick='onItemClick(\"" + item.name + "\",\"" + item.link + "\");'>";
-			html += "<div class='item_block_icon'></div>";
-			html += "<span>" + item.name + "<span>";
-			html += "</div>";
-		}
-
-		html += "</div>";
+		name = catalog.name;
+		icon = catalog.icon;
+		link = catalog.link;
+		html += "<div class='catalog-item' onclick='onItemClick(\"" + name + "\",\"" + link + "\");' iname='"+ name + "'>"
+			+ 	"	<img src='../images/" + icon + "'>"
+			+ 	"	<h5>" + name + "</h5>"
+			+	"</div>";
 	}
 
 	document.getElementById("catalog_container").innerHTML = html;
+	$(".catalog-item").first().addClass("selected");
 }

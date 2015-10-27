@@ -1,66 +1,38 @@
 var g_catalog = 
 [
     {
-        "name": "用户信息",
-        "items": [
-            {
-                "name": "用户信息",
-                "link": "user_info.html"
-            }
-        ]
+        "name": "用户管理",
+        "icon": "user.png",
+        "link": "user_info.html"
     },
     {
         "name": "服务管理",
-        "items": [
-            {
-                "name": "服务管理",
-                "link": "user_service.html"
-            }
-        ]
+        "icon": "service.png",
+        "link": "user_service.html"
     },
     {
         "name": "地图管理",
-        "items": [
-            {
-                "name": "地图管理",
-                "link": "user_map.html"
-            }
-        ]
+        "icon": "map-mgr.png",
+        "link": "user_map.html"
     },
     {
         "name": "文件管理",
-        "items": [
-            {
-                "name": "文件管理",
-                "link": "user_file.html"
-            }
-        ]
+        "icon": "file.png",
+        "link": "user_file.html"
     },
     {
         "name": "数据库管理",
-        "items": [
-            {
-                "name": "数据库",
-                "link": "user_vector.html"
-            }
-        ]
+        "icon": "db.png",
+        "link": "user_vector.html"
     },    
     {
         "name": "影像数据",
-        "items": [
-            {
-                "name": "影像数据",
-                "link": "user_raster.html"
-            }
-        ]
+        "icon": "raster.png",
+        "link": "user_raster.html"
     },
     {
         "name": "瓦片数据",
-        "items": [
-            {
-                "name": "瓦片数据",
-                "link": "user_tile.html"
-            }
-		]
+        "icon": "tile.png",
+        "link": "user_tile.html"
 	}
 ];

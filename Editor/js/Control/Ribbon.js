@@ -859,7 +859,7 @@ MapCloud.Ribbon = MapCloud.Class({
 				}else{
 					mapObj.setNavControl(false);
 					$(".mc-panel").css("display","none");
-					mapObj.draw(true);
+					mapObj.draw();
 					mapObj.addEventListener(GeoBeans.Event.MOUSE_MOVE, MapCloud.tools.onMapMove);
 					MapCloud.refresh_panel.refreshPanel();
 					MapCloud.dataGrid.cleanup();
@@ -1000,7 +1000,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	refreshMap_callback : function(result){
-		mapObj.draw(true);
+		mapObj.draw();
 		MapCloud.refresh_panel.refreshPanel();
 	}
 
