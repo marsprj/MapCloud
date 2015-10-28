@@ -7,29 +7,14 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dialog = this;
 
 		this.panel.find(".btn-confirm").click(function(){
-			var name = dialog.panel.find("#create_folder_name").val();
-			if(name == ""){
-				MapCloud.notify.showInfo("请输入名称","Warning");
-				dialog.panel.find("#create_folder_name").focus();
-				return;
+			dialog.createFolder();
+		});
+
+		// enter
+		this.panel.find("#create_folder_name").keypress(function(e){
+			if(e.which == 13){
+				dialog.createFolder();
 			}
-			var nameReg = /^[0-9a-zA-Z_]+$/;
-			if(!nameReg.test(name)){
-				MapCloud.notify.showInfo("请输入有效的名称","Warning");
-				dialog.panel.find("#create_folder_name").focus();
-				return;
-			}
-			if(dialog.source == "file"){
-				MapCloud.file_dialog.setCreateFolderName(name);
-			}else if(dialog.source == "raster"){
-				MapCloud.raster_db_dialog.setCreateFolderName(name);
-			}else if(dialog.source == "file-user"){
-				MapCloud.filePanel.setCreateFolderName(name);
-			}else if(dialog.source == "raster-user"){
-				MapCloud.rasterPanel.setCreateFolderName(name);
-			}
-			
-			dialog.closeDialog();
 		});
 	},
 
@@ -45,5 +30,32 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 			dialog.panel.find("#create_folder_name").focus();
 		});
 	},
+
+	createFolder : function(){
+		var dialog = this;
+		var name = dialog.panel.find("#create_folder_name").val();
+		if(name == ""){
+			MapCloud.notify.showInfo("请输入名称","Warning");
+			dialog.panel.find("#create_folder_name").focus();
+			return;
+		}
+		var nameReg = /^[0-9a-zA-Z_]+$/;
+		if(!nameReg.test(name)){
+			MapCloud.notify.showInfo("请输入有效的名称","Warning");
+			dialog.panel.find("#create_folder_name").focus();
+			return;
+		}
+		if(dialog.source == "file"){
+			MapCloud.file_dialog.setCreateFolderName(name);
+		}else if(dialog.source == "raster"){
+			MapCloud.raster_db_dialog.setCreateFolderName(name);
+		}else if(dialog.source == "file-user"){
+			MapCloud.filePanel.setCreateFolderName(name);
+		}else if(dialog.source == "raster-user"){
+			MapCloud.rasterPanel.setCreateFolderName(name);
+		}
+		
+		dialog.closeDialog();		
+	}
 
 });
