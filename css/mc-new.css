@@ -1143,6 +1143,11 @@ ul#ribbon_tabs li{
     z-index: 2;
     border: 1px solid #ccc;
     background-color: #fff;
+
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 /*伸缩按钮*/
@@ -3169,6 +3174,47 @@ ul.layers_row li:before {
 /* Process  Dialog End				 								   		*/
 /***************************************************************************/
 
+/***************************************************************************/
+/* 弹窗 定制信息 Begin  													*/
+/***************************************************************************/
+#topic_panel{
+	position: absolute;
+	right: 10px;
+	width: 0px;
+	height: 210px;
+	bottom: 10px;
+	background-color: #fff;
+	box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+	overflow: hidden;
+	/*border: 1px solid #888;*/
+	/*display: none;*/
+	-webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+#topic_panel .panel-content{
+	overflow: auto;
+}
+#topic_panel .panel-content .row{
+	margin: 0px;
+}
 
+/***************************************************************************/
+/* 弹窗 定制信息 End  													*/
+/***************************************************************************/
+/***************************************************************************/
+/* Poi Dialog Begin  														*/
+/***************************************************************************/
+#poi_dialog .modal-dialog{
+	width: 800px;
+}
+#poi_dialog .modal-body{
+	height: 600px;
+	overflow-y: auto; 
+}
+/***************************************************************************/
+/* Poi Dialog End  															*/
+/***************************************************************************/
 
 

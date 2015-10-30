@@ -7,6 +7,7 @@ var styleManager = null;
 var gpsManager = null;
 var rasterDBManager = null;
 var tileDBManger = null;
+var poiManager = null;
 var url = "/ows/user1/mgr";
 var authServer = "/ows/admin/mgr";
 var authManager = new GeoBeans.AuthManager(authServer);
@@ -181,6 +182,9 @@ $().ready(function(){
 	MapCloud.data_source_panel
 		= new MapCloud.DataSourcePanel("data_source_wrapper");
 
+	MapCloud.topicPanel 
+		= new MapCloud.TopicPanel("topic_panel");
+
 	MapCloud.login_dialog
 		= new MapCloud.LoginDialog("loginDialog");
 	MapCloud.style_list_dialog
@@ -194,6 +198,7 @@ $().ready(function(){
 	MapCloud.layer_info_dialog = new MapCloud.LayerInfoDialog("layer_info_dialog");
 	MapCloud.query_dialog = new MapCloud.QueryDialog("query_dialog");
 	MapCloud.create_dataset_dialog = new MapCloud.CreateDataSetDialog("create_dataset_dialog");
+	MapCloud.poi_dialog = new MapCloud.PoiDialog("poi_dialog");
 
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();

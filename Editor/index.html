@@ -120,6 +120,7 @@
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/PanoramaLayer.js"></script>
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
@@ -198,6 +199,7 @@
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileStore.js"></script>
 
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Poi/PoiManager.js"></script>
 
 
 <script type="text/javascript" src="../js/MapCloud.js"></script>
@@ -243,6 +245,7 @@
 <script type="text/javascript" src="js/Control/Panel/DataSourcePanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
 <script type="text/javascript" src="js/Control/Panel/Table.js"></script>
+<script type="text/javascript" src="js/Control/Panel/TopicPanel.js"></script>
 
 <script type="text/javascript" src="js/Control/Panel/TrackOverlay.js"></script>
 <script type="text/javascript" src="js/Control/Panel/refresh.js"></script>
@@ -322,6 +325,7 @@
 <script type="text/javascript" src="js/Control/Dialog/SymbolDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/PoiDialog.js"></script>
 
 <title>MapEditor</title>
 </head>
@@ -444,6 +448,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-baselayer-vector"></div>
 								<div class="ribbon_label">矢量底图</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-baselayer-vector"></div>
+								<div class="ribbon_label">全景图</div>
 							</div>
 						</div>
 						
@@ -574,6 +582,10 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
 								<div class="ribbon_label">进程管理</div>
+							</div>
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
+								<div class="ribbon_label">定制</div>
 							</div>
 						</div>
 					</div>
@@ -1647,6 +1659,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- 工具栏 -->
 						<div id="map_bar_wrapper" class="mc-border" >
 							<div class="mc-icon control-icon">
 								<a class="btn btn-default btn-link btn-sm ">
@@ -1672,6 +1685,7 @@
 							<span>坐标:</span>
 							<span class='coor-value'>0, 0 </span>
 						</div>
+						<!-- 标注框 -->
 						<div id="map_overlay_wrapper" class="">
 							<div class="btn-group"><!-- btn-group-lg -->
 								<button type="button" class="btn btn-default" id="track_marker">点</button>
@@ -1693,6 +1707,29 @@
 								<a class="btn btn-link btn-sm btn-close">
 								关闭
 								</a>
+							</div>
+						</div>
+
+						<!-- 定制弹窗 -->
+						<div id="topic_panel">
+							<div class="panel-header">
+								<button type="button" class="close" data-toggle="tooltip" data-placement="top" data-original-title="关闭">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-bar-chart fa-2"></i>&nbsp;定制信息
+									</h5>
+								</div>
+
+							</div>
+							<div class="panel-content">
+								<div class="row">
+									<i class="fa fa-clock-o"></i>
+									<span>2015年10月28日 10:00:00</span><br/><br/>
+									<span style="margin-left:15px">新增饭店信息<a href="javascript:void(0)" class="topic-count">15</a>条</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -7966,6 +8003,34 @@
 							<h2 class="text-muted fields-empty">空白字段</h2>
 						</div>
 					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- poi dialog -->
+	<div class="modal fade" id="poi_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新增订阅信息</h5>
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover borderless table-striped">
+						<thead>
+							<tr>
+								<th><nobr>序号</nobr></th>
+								<th><nobr>名称</nobr></th>
+								<th><nobr>地址</nobr></th>
+								<th><nobr>类型</nobr></th>
+								<th><nobr>经度</nobr></th>
+								<th><nobr>纬度</nobr></th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

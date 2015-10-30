@@ -139,6 +139,7 @@ MapCloud.Account = MapCloud.Class({
 		dbsManager = user.getDBSManager();
 		rasterDBManager = user.getRasterDBManager();
 		gpsManager = user.getGPSManager();
+		poiManager = user.getPoiManager();
 
 		MapCloud.cookieObj.setCookie("username",username,"/MapCloud");
 

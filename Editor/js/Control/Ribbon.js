@@ -218,104 +218,111 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onAddBaseLayer("vector");
 					break;
 				case 12:
+					// 全景图
+					that.onAddPanorama();
+					break;
+				case 13:
 					// 新建图层
 					that.onLayerNew();
 					break;
-				case 13:
+				case 14:
 					// 编辑图层
 					// that.onEditLayer();
 					break;
-				case 14:
+				case 15:
 					// 分享图层
 					that.onShareLayer();
 					break;
-				case 15:
+				case 16:
 					// that.onCreateLayer();
 					break;
-				case 16:
+				case 17:
 					//复制图层
 					that.onDuplicateLayer();
 					break;
-				case 17:
+				case 18:
 					//删除图层
 					that.onRemoveLayer();
 					break;
-				case 18:
+				case 19:
 					//图层定位
 					that.onZoomLayer();
 					break;
-				case 19:
+				case 20:
 					//选择所有
 					that.onSelectAllLayers();
 					break;
-				case 20:
+				case 21:
 					//导入图层
 					that.onImportLayer();
 					break;
-				case 21:
+				case 22:
 					//导出图层
 					that.onExportLayer();
 					break;
 				//Data Events
-				case 22:
+				case 23:
 					// 文件管理
 					that.onFile();
 					break;
-				case 23:
+				case 24:
 					// 地理库
 					that.onDataSource();
 					break;
-				case 24:
+				case 25:
 					// 	影像库
 					that.onImportImage();
 					break;
-				case 25:
+				case 26:
 					// 瓦片库
 					that.onTileDataSource();
 					break;
-				case 26:
+				case 27:
 					// 数据目录
 					that.onDataSourcePanel();
 					break;
 				// Chart Events
-				case 27:
+				case 28:
 					// 分级图
 					that.onAddRangeChart();
 					break;
-				case 28 :
+				case 29 :
 					// 柱状图
 					that.onAddBarChart();
 					break;
-				case 29:
+				case 30:
 					// 饼状图
 					that.onAddPieChart();
 					break;
-				case 30:
+				case 31:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 31:
+				case 32:
 					that.onAQI();
 					break;
-				case 32:
+				case 33:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 33:
+				case 34:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 34:
+				case 35:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 35:
+				case 36:
 					// 工具箱
 					that.onTools();
 					break;
-				case 36:
+				case 37:
 					// 进程管理
 					that.onProcess();
+					break;
+				case 38:
+					that.onTopic();
 					break
 				};
 			});
@@ -447,6 +454,86 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	onAddBaseLayer : function(type){
 		MapCloud.base_layer_dialog.showDialog(type);
+	},
+
+	// 全景图添加与显示
+	onAddPanorama : function(){
+		if(mapObj.panoramaLayer.overlays.length == 0){
+			this.addPanorama();
+		}else{
+			mapObj.clearPanoramas();
+			mapObj.draw();
+		}
+	},
+	// 添加全景图
+	addPanorama : function(){
+		var rootPath = "http://192.168.111.152:8088/panorama/";
+		var icon = "../images/360.png";
+
+		var point = new GeoBeans.Geometry.Point(109.2113,18.2910);
+		var name = "南海观音";
+		var html = rootPath + "nanshan12.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.3446,18.2887);
+		name = "天涯海角";
+		html = rootPath + "sanyawan7.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.4899,18.2611);
+		name = "三亚湾";
+		html = rootPath + "sanyawan2.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.6313,18.2300);
+		name = "美高梅";
+		html = rootPath + "GRANDjiudianshatan3.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.5156,18.2310);
+		name = "免税店";
+		html = rootPath + "sanyamianshuidian.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.311399,18.3131264);
+		name = "办公楼会议室";
+		html = rootPath + "bangonglouhuiyishi.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.311388,18.313209);
+		name = "办公楼走道";
+		html = rootPath + "bangonglouzoudao4.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.311384,18.313269);
+		name = "办公楼机房";
+		html = rootPath + "jieshouzhanjifang2.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+
+		point = new GeoBeans.Geometry.Point(109.311010,18.312646);
+		name = "财务楼报告厅";
+		html = rootPath + "caiwuloubaogaoting.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.311476,18.312623);
+		name = "财务楼大厅";
+		html = rootPath + "caiwuloudating.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.311561,18.313199);
+		name = "办公楼";
+		html = rootPath + "yaogansuojieshouzhan22.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		point = new GeoBeans.Geometry.Point(109.31156,18.312892);
+		name = "室外";
+		html = rootPath + "yaogansuojieshouzhan5.html";
+		mapObj.addPanorama(point,name,html,icon);
+
+		var viewer = new GeoBeans.Envelope(108.5077,17.8683,110.8703,19.3634);
+		mapObj.setViewer(viewer);
+		mapObj.draw();
 	},
 
 	// 分级图
@@ -610,6 +697,23 @@ MapCloud.Ribbon = MapCloud.Class({
 	// 进程管理
 	onProcess : function(){
 		MapCloud.process_dialog.showDialog();		
+	},
+
+	// 定制主题
+	onTopic : function(){
+		// MapCloud.topicPanel.showPanel();	
+		// var name = "烤串";
+		var time = new Date("2015-10-30 07:42:23");
+		var names = ["aqi",["hotel"]];
+		poiManager.beginSubscribe(names,time,this.poi_callback);
+	},
+
+	poi_callback : function(time,result,aqiFeatures,pois){
+		if(result != null){
+			MapCloud.notify.showInfo(result,"订阅");
+			return;
+		}
+		MapCloud.topicPanel.setResults(time,aqiFeatures,pois);
 	},
 
 	setMaps : function(maps){

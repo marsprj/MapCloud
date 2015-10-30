@@ -129,7 +129,8 @@ MapCloud.MapBar = MapCloud.Class({
 		if(values == null){
 			return;
 		}
-		var html = "<table class='table table-striped'>"
+		var html = "<div style='width:220px;max-height:280px'>"
+				+ "<table class='table table-striped' >"
 				+ 	"<thead>"
 				+ 	"<tr>"
 				+ 	"<th>Field</th>"
@@ -154,6 +155,7 @@ MapCloud.MapBar = MapCloud.Class({
 		}
 		html += "</tbody>";
 		html += "</table>";
+		html += "</div>";
 
 		var options = {
 			title : layer.name
