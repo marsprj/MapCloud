@@ -8,7 +8,13 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 
 	showUser : function(username){
 		this.panel.find(".login-li").html('<a href="javascript:void(0)" id="logout_btn">退出</a>');
-		this.panel.find(".register-li").html('<a href="../User" target="_blank">' + username + '</a>');
+		// 区别对待
+		if(username == "admin"){
+			this.panel.find(".register-li").html('<a href="../Admin" target="_blank">' + username + '</a>');
+		}else{
+			this.panel.find(".register-li").html('<a href="../User" target="_blank">' + username + '</a>');
+		}
+		// this.panel.find(".register-li").html('<a href="../User" target="_blank">' + username + '</a>');
 
 		var that = this;
 		that.username = username;
@@ -18,7 +24,6 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 				return;
 			}
 			authManager.logout(that.username,that.logout_callback);
-
 		});
 	},
 

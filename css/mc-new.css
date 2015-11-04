@@ -3217,4 +3217,36 @@ ul.layers_row li:before {
 /* Poi Dialog End  															*/
 /***************************************************************************/
 
+/***************************************************************************/
+/* AQI Dialog End  															*/
+/***************************************************************************/
+#aqi_features_dialog .modal-dialog{
+	width:800px;
+}
+#aqi_features_dialog .modal-body{
+	/*height: 600px;*/
+	/*overflow-y: auto; */
+}
 
+.poi-features{
+	height: 600px;
+	overflow: auto;
+}
+.aqi-features-page{
+	position: relative;
+	height: 44px;
+	width:100%;
+}
+.aqi-count{
+	position: absolute;
+	width: 200px;
+	display: inline-block;
+	left: 0px;
+}
+.pagination{
+	position: absolute;
+	right: 0px;
+}
+/***************************************************************************/
+/* AQI Dialog End  															*/
+/***************************************************************************/

@@ -199,6 +199,7 @@ $().ready(function(){
 	MapCloud.query_dialog = new MapCloud.QueryDialog("query_dialog");
 	MapCloud.create_dataset_dialog = new MapCloud.CreateDataSetDialog("create_dataset_dialog");
 	MapCloud.poi_dialog = new MapCloud.PoiDialog("poi_dialog");
+	MapCloud.aqi_features_dialog = new MapCloud.AQIFeaturesDialog("aqi_features_dialog");
 
 	var logo = new MapCloud.Logo();	
 	ribbonObj = new MapCloud.Ribbon();
@@ -248,9 +249,25 @@ $().ready(function(){
 	// 判断是否已经登录了
 	var username = MapCloud.cookieObj.getCookie("username");
 	if(username != null){
+		// 如果是管理员用户
+		var flag = false;
+		if(username == "admin"){
+			var url = window.location.href;
+			var index = url.lastIndexOf("?name=");
+			if(index != -1){
+				var name =  url.slice(index + 6,url.length);
+				if(name != null){
+					username = name;
+					flag = true;
+				}
+			}
+		}
 		MapCloud.account.hideLoginPanel();
 		$(".map-panel").css("display","block");
 		MapCloud.account.initUser(username);
+		if(flag){
+			MapCloud.cookieObj.setCookie("username","admin","/MapCloud");
+		}
 	}else{
 		MapCloud.account.showLoginPanel();
 		$(".map-panel").css("display","none");

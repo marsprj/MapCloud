@@ -64,7 +64,11 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 	setResults : function(time,aqiFeatures,pois){
 		if(time == null || !$.isArray(aqiFeatures) || !$.isArray(pois)){
 			return;
-		} 
+		}
+
+		console.log(time);
+		console.log(aqiFeatures == null ? "aqi null" : aqiFeatures.length);
+		console.log(pois == null ? "pois null" : pois.length); 
 		if(aqiFeatures.length == 0 && pois.length == 0){
 			return;
 		}
@@ -91,7 +95,8 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		// 弹出对话框
 		// aqi
 		this.panel.find(".aqi-count").click(function(){
-
+			MapCloud.aqi_features_dialog.showDialog();
+			MapCloud.aqi_features_dialog.setAqiFeatures(that.aqiFeatures);
 		});
 
 		// poi

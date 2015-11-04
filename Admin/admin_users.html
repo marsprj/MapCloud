@@ -5,14 +5,14 @@
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="css/mc-admin.css"/>
 
 	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
 
-	<script type="text/javascript" src="js/mc-user-info.js"></script>
+	<script type="text/javascript" src="js/mc-admin-user.js"></script>
 	
 
 	<script type="text/javascript" src="../js/MapCloud.js"></script>
@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="../js/Cookie.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
-	<script type="text/javascript" src="js/mc-info-panel.js"></script>
+	<script type="text/javascript" src="js/mc-user-panel.js"></script>
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
@@ -56,75 +56,115 @@
 </head>
 	
 <body>
-	<div class="common-panel" id="user_panel">
+	<div class="common-panel" id="users_panel">
 		<div id="title_wrapper">
-			<div class="title_box">用户信息</div>
-			<div class="title_bar_warpper">
-				<a href="javascript:void(0)" class="use-info-btn">用户信息</a>
-				<a href="javascript:void(0)" class="user-password-btn">修改密码</a>
-				<!-- <a href="javascript:void(0)">用户权限</a> -->
-			</div>
+			<div class="title_box">用户管理</div>
 		</div>
-		<div id="user_main_wrapper">
-			<!-- User Panel -->
-			<div id="user_info_panel" class="user_info_panel_border">
-				<form class="form-horizontal" style="width:600px;">
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">用户名:</label>
-						<div class="col-md-8">
-							<input class="form-control user-info-name" type="text" disabled="">
+		<div class="main-panel">
+			<div class="left-panel">
+				<div class="left-title-bar">
+					<div class="left-title-icon"></div>
+					<div>用户</div>
+				</div>
+				<div class="left-panel-content">
+					<div class="list-tree">
+						<div class="row selected">
+							<div class="col-md-1">
+								<i class="list-icon user-icon"></i>
+							</div>
+							<div class="col-md-7 user-list-btn">
+								用户列表
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1">
+							<i class="list-icon online-icon"></i>
+							</div>
+							<div class="col-md-7 online-user-btn">
+								在线用户
+							</div>
 						</div>
 					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">昵称:</label>
-						<div class="col-md-8">
-							<input class="form-control user-info-alias" type="text" disabled="">
-						</div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">邮件:</label>
-						<div class="col-md-8">
-							<input class="form-control user-info-email" type="text" disabled="">
-						</div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">权限:</label>
-						<div class="col-md-8">
-							<input class="form-control user-info-role" type="text" disabled="">
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
-			<div id="user_paswd_panel" class="user_info_panel_border">
-<!-- 				<table>
-					<tr><td class="td_column">用户名：</td><td><input type="text" id="user_pswd_name" value="user1"></td></tr>
-					<tr><td class="td_column">密&nbsp&nbsp&nbsp码：</td><td><input type="passwd" id="user_pswd_pswd" value="qwer1234"></td></tr>
-					<tr><td class="td_column"></td><td><input type="passwd" id="user_pswd_pswd_2" value="qwer1234">(再次输入密码)</td></tr>
-				</table> -->
-<!-- 				<div style="width:300px;height:30px"><a href="javascript:void(0)" id="btn_change_paswd">确定</a></div> -->
-				<form class="form-horizontal" style="width:600px;">
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">用户名:</label>
-						<div class="col-md-8">
-							<input class="form-control user-passwd-name" type="text" disabled="">
+			<div class="right-panel">
+				<!-- 用户列表 -->
+				<div class="right-panel-tab" id="user_list_tab">
+					<div class="right-panel-bar">
+						<span class="float-left">用户列表</span>
+						<span class="float-left">>></span>
+						<div class="float-left users-count">
+							当前用户数:<span>0</span>
+						</div>
+						<div class="data_title_bar">
+							<a href="javascript:void(0)" class="refresh-user-list">刷新</a>
 						</div>
 					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">密码:</label>
-						<div class="col-md-8">
-							<input class="form-control user-passwd" type="text">
+					<div class="right-panel-content">
+						<div class="row header-row">
+							<div class="col-md-1">
+								序号
+							</div>
+							<div class="col-md-2">
+								名称
+							</div>
+							<div class="col-md-2">
+								昵称
+							</div>
+							<div class="col-md-3">
+								邮箱
+							</div>
+							<div class="col-md-2">
+								角色
+							</div>
+							<div class="col-md-2">
+								操作
+							</div>											
+						</div>
+						<div class="user-list">
 						</div>
 					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-md-2 control-label">再次输入密码:</label>
-						<div class="col-md-8">
-							<input class="form-control user-repasswd" type="text" >
+				</div>
+				<div class="right-panel-tab" id="online_user_tab">
+					<div class="right-panel-bar">
+						<span class="float-left">在线用户</span>
+						<span class="float-left">>></span>
+						<div class="float-left online-users-count">
+							当前在线用户数:<span>0</span>
+						</div>
+						<div class="data_title_bar">
+							<a href="javascript:void(0)" class="refresh-online-user-list">刷新</a>
+						</div>
+						<div class="pagination-div">
+							<ul class="pagination" style="margin:1px 0px">
+							</ul>
 						</div>
 					</div>
-					<div class="form-group form-group-sm">
-						<button class="btn btn-success btn-change-password" type="button" style="margin:10px 0px 0px 120px;">修改密码</button>
+					<div class="right-panel-content">
+						<div class="row header-row">
+							<div class="col-md-1">
+								序号
+							</div>
+							<div class="col-md-2">
+								名称
+							</div>
+							<!-- <div class="col-md-2">
+								昵称
+							</div>
+							<div class="col-md-3">
+								邮箱
+							</div>
+							<div class="col-md-1">
+								角色
+							</div>
+							<div class="col-md-2">
+								操作
+							</div>		 -->									
+						</div>
+						<div class="online-user-list">
+						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -145,11 +185,3 @@
 	</div>
 </body>
 
-<script type="text/javascript">
-	var editor = null;
-	$().ready(function(){
-
-	});
-
-	
-</script>

@@ -1,31 +1,9 @@
-
-/***************************************************************************/
-/* Body Begin                                                    */
-/***************************************************************************/
-html,body{
-	font-size:12px;
-	font-family: Microsoft YaHei;
-	overflow: hidden;
-	height:100%;
+html, body {
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    overflow: hidden;
+    height: 100%;
 }
-
-ul {
-	display: block;
-	list-style-type: none;
-	padding-left: 0px;
-	margin: 5px;
-}
-
-div{
-	/*overflow: hidden;*/
-}
-
-
-.align_center{
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .float-left{
 	float: left;;
 }
@@ -33,13 +11,8 @@ div{
 	padding:0px;
 	width:100%;
 }
-
 .mc-theme-color{
 	background-color:#0097c3;
-}
-
-.btn-margin-top{
-	margin-top:5px;
 }
 
 #header_panel
@@ -77,7 +50,6 @@ div{
     background-position: center;
     float: left;
 }
-
 #login_panel{
 	float: right;
 	/*width: 50px;*/
@@ -86,17 +58,17 @@ div{
 	margin-right: 20px;
 	/* background: #F00; */
 }
-
 #login_panel a{
 	color: #FFF;
 	margin-left: 12px;
 }
 
-.title_font{
-	font-size: 24px;
-	color: white;
-	text-shadow: 2px 0px 0px #000;
+.title_font {
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 0px 0px #000;
 }
+
 
 #catalog_panel{
 	position: relative;
@@ -109,14 +81,12 @@ div{
 	z-index: 5;
 	overflow: hidden;
 }
-
 #content_panel{
 	position: relative;
 	height: 100%;
 	z-index: 2;
 	overflow: hidden;
 }
-
 #catalog_container{
 	margin-top:0px;
 	height: 100%;
@@ -124,18 +94,16 @@ div{
 	text-align: center;
 }
 
-.catalog-item{
-	cursor: pointer;
-	border:1px solid #cad2dd;
-	padding: 5px 0px 0px 0px;
-	
-	margin: 10px;
-
-	
-	webkit-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
+.catalog-item {
+    cursor: pointer;
+    border: 1px solid #cad2dd;
+    padding: 5px 0px 0px 0px;
+    margin: 10px;
+    webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
+
 .catalog-item h5{
 	font-size: 12px;
 }
@@ -151,21 +119,22 @@ div{
 	height: 38px;
 }
 
-
-#title_wrapper{
+.common-panel{
+	height: 100%;
 	width: 100%;
-	height: 40px;
-	border-bottom: 1px solid #DEDEDE;
-	background: #FCFCFC;
 }
-
+#title_wrapper {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #DEDEDE;
+    background: #FCFCFC;
+}
 .title_box{
 	float: left;
 	min-width: 150px;
 	height: 40px;
 	margin-left: 10px;
 	line-height: 40px;
-	/* background: #F00; */
 	font-size: 16px;
 	font-weight: bold;
 }
@@ -184,12 +153,10 @@ div{
 	border-radius: 5px; 
 	background: #0097c3;
 	text-decoration : none;
-	/* box-shadow: 0px 0px 16px 3px #828e9a; */
 }
 
 .title_bar_warpper a:hover{
 	box-shadow: 1px 1px 1px 1px #828e9a;
-	/* background: #F00; */
 }
 
 #main_wrapper{
@@ -197,30 +164,6 @@ div{
 	height: 100%;
 }
 
-
-/*  user panel*/
-.user-page-panel{
-	width: 100%;
-	height: calc(100% - 60px);
-
-}
-#title_wrapper{
-	width: 100%;
-	height: 40px;
-	border-bottom: 1px solid #DEDEDE;
-	background: #FCFCFC;
-}
-
-.title_box{
-	float: left;
-	min-width: 150px;
-	height: 40px;
-	margin-left: 10px;
-	line-height: 40px;
-	/* background: #F00; */
-	font-size: 16px;
-	font-weight: bold;
-}
 .main-panel{
 	height: calc(100% - 40px);
 	width: 100%;
@@ -320,7 +263,7 @@ div{
 	width: 16px;
 	height: 16px;
 	display: inline-block;
-	margin-top: 2px;
+	/*margin-top: 2px;*/
 }
 .list-tree{
 	overflow-y : auto;
@@ -332,6 +275,21 @@ div{
     margin-right: 0px;
     cursor: pointer;
     border-bottom: 1px solid #DEDEDE;	
+}
+.list-tree .nav>li{
+	border-bottom: 1px solid #DEDEDE;
+}
+.list-tree  .nav>li>a {
+	padding: 4px 6px 4px 34px;
+}
+.list-tree li a span {
+	word-break: break-all;
+	display: inline-block;
+	max-width: 120px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-left: 8px;
 }
 .header-row{
 	border-bottom: 2px solid #ddd
@@ -439,105 +397,38 @@ div{
 	box-shadow: 1px 1px 1px 1px #828e9a;
 	/* background: #F00; */
 }
-.common-panel{
-	height: 100%;
-	width: 100%;
-}
-
 /***************************************************************************/
-/* User Map Begin		                                                    */
+/* Admin user Begin 			                                            */
 /***************************************************************************/
-
-.map-tree .map-icon{
-	background: url("../images/map.png") no-repeat center center;
+.user-icon{
+	background: url(../images/user_1.png) no-repeat center center;
 }
-.map-tree .map-tree-name{
-	padding-left: 10px;
+.online-icon{
+	background: url(../images/world.png) no-repeat center center;
 }
-
-
-.map-list{
+.users-count,.online-users-count{
+	margin-left: 20px;
+	color: #428BCA;
+}
+.pagination>li>a{
+	padding: 4px 12px;
+}
+.pagination-div{
+	float: right;
+	margin-right: 20px;
+}
+.user-list{
 	height: calc(100% - 35px);
-    overflow-y: auto;
+	width: 100%;
+	overflow-y: auto;
 }
-#maps_thumb_ul{
-	margin: 0px;
-}
-.map-thumb{
-    position: relative;
-    float: left;
-    display: block;
-    width: 200px;
-    height: 200px;
-    margin: 10px;	
-}
-
-.map-thumb-a{
-    display: block;
-    width: 200px;
-    height: 160px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;	
-}
-.map-thumb-a:hover{
-	border: 1px solid #428bca;
-}
-#map_thumb_list{
-	overflow-y:auto; 
-}
-
-.page-heading {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #428bca;
-    padding-bottom: 6px;
-    color: #428bca;
-}
-
-.map-info-row {
-    padding: 0px 10px;
-    color: #767676;
-    margin: 12px;
-}
-.map-info-row span {
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.map-info-item {
-    width: 60px;
-    text-align: right;
-    margin-right: 6px;
-}
-#map_info_tab{
-	overflow-y : auto;
-	padding: 20px 40px 0 20px;
-}
-.map-info-name{
-	width: 120px;
-}
-.map-info-layer-heading{
-	color: #767676;
-}
-.map-info-layer-name{
-	width: 180px;
-}
-
 /***************************************************************************/
-/* User Map End 		                                                   */
+/* Admin user End 			                                           		*/
 /***************************************************************************/
-
 /***************************************************************************/
-/* User Vector DB Begin 		                                            */
+/* Admin data Begin 			                                           		*/
 /***************************************************************************/
 .col-md-20px{
-	/*width: 20px;*/
 	padding-left: 6px;
 }
 .db-icon{
@@ -558,32 +449,12 @@ div{
 .mc-db-icon-dataset-polygon{
 	background-image: url(../../images/polygon-16.png);	
 }
-.vector-db-tree .nav{
-	margin: 0px;
-}
-.vector-db-tree .nav>li{
-	border-bottom: 1px solid #DEDEDE;
-}
-.vector-db-tree .nav>li.selected{
-	background-color:#E7F1F5
-}
-.vector-db-tree .nav>li>a{
-	padding: 4px 6px 4px 34px;
-}
-.vector-db-tree li a span{
-    word-break: break-all;
-    display: inline-block;
-    max-width: 120px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-left: 8px;
-}
-.datasets-list,#datasets_thumb_tab{
+.datasets-list{
+	height: calc(100% - 35px);
 	width: 100%;
-	height: 100%;
-	overflow-y:auto;
+	overflow-y: auto;
 }
+
 .dataset-thumb{
     position: relative;
     float: left;
@@ -611,140 +482,17 @@ div{
 	border: 1px solid #428bca;
 }
 
+#datasets_thumb_tab{
+	overflow-y:auto; 
+}
 #dataset_infos_tab,#dataset_fields_tab,#dataset_features_tab{
 	width: 100%;
 	height: 100%;
 	overflow:auto;
 }
-/***************************************************************************/
-/* User Vector DB End 		                                               */
-/***************************************************************************/
-
-/***************************************************************************/
-/* User File Begin			                                               */
-/***************************************************************************/
-.list-tree-ul-div .nav{
-	margin: 0px;
-	padding-left: 10px;
-}
-.list-tree-ul-div .nav>li>a.selected {
-    color: #fff;
-    background-color: #53AFE6;
-}
-.list-tree-ul-div .nav>li>a {
-    padding: 4px 6px;
-    font-size: 14px;
-}
-.list-tree-ul-div .nav>li>a>i{
-	margin-right: 6px;
-}
-.path-div{
-	width: 300px;
-	padding-left: 20px;
-}
-.path-div input{
-	height: 26px;
-	margin-top: 2px;
-}
-.file-list-content-div{
-	height: calc(100% - 35px);
-	overflow-y : auto;
-}
-.file-list-content-div .row .row .col-md-6{
-	padding: 0px;
-}
-#raster_panel .file-list-content-div .row .row .col-md-6 i{
-	margin-top: 4px;
+.mc-base-layer-icon{
+	background-image: url(../images/map.png);
 }
 /***************************************************************************/
-/* User File End			                                               */
+/* Admin data End 			                                           		*/
 /***************************************************************************/
-/***************************************************************************/
-/* User Raster Begin			                                            */
-/***************************************************************************/
-#raster_panel .list-tree-ul-div .folder-tree{
-	border-bottom: 1px solid #DEDEDE;
-}
-#raster_panel .raster-folder-list .row .row .col-md-6{
-	padding: 0px;
-}
-#raster_panel .folder-tree{
-	display: none;
-}
-#raster_panel .row .row .col-md-6 i{
-	margin-top: 4px;
-}
-#raster_preview_tab{
-	height: 100%;
-	width:100%;
-	overflow: hidden;
-}
-#raster_infos_tab{
-	height: 100%;
-	width: 100%;
-	overflow-y: auto; 
-}
-/***************************************************************************/
-/* User Raster End			                                               */
-/***************************************************************************/
-
-/***************************************************************************/
-/* User Tile Begin			                                               */
-/***************************************************************************/
-#tile_panel{
-
-}
-.tile-db-tree .nav{
-	margin: 0px;
-}
-.tile-db-tree .nav>li{
-	border-bottom: 1px solid #DEDEDE;
-}
-.tile-db-tree .nav>li.selected{
-	background-color:#E7F1F5
-}
-.tile-db-tree .nav>li>a{
-	padding: 4px 6px 4px 34px;
-}
-.tile-db-tree li a span{
-    word-break: break-all;
-    display: inline-block;
-    max-width: 120px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-left: 8px;
-}
-.mc-icon-tilestore{
-	background-image: url(../images/tile.png);
-}
-/***************************************************************************/
-/* User Tile End			                                               */
-/***************************************************************************/
-
-/***************************************************************************/
-/* User Info Begin			                                               */
-/***************************************************************************/
-#user_main_wrapper{
-	/*padding: 20px;*/
-}
-#user_main_wrapper .form-group-sm{
-	margin-bottom: 6px;
-}
-
-#user_main_wrapper .form-group-sm label{
-	font-weight: normal;
-}
-#user_main_wrapper input{
-	width: 200px;
-}
-#user_paswd_panel{
-	display: none;
-}
-.user_info_panel_border{
-	padding: 20px;
-}
-/***************************************************************************/
-/* User Info End			                                               */
-/***************************************************************************/
-

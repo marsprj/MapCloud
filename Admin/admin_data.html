@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/mc-admin.css"/>
+
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/mc-admin-data.js"></script>
+	
+
+	<script type="text/javascript" src="../js/MapCloud.js"></script>
+	<script type="text/javascript" src="../js/Class/Class.js"></script>
+	<script type="text/javascript" src="../js/Cookie.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
+	<script type="text/javascript" src="js/mc-data-panel.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/User.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapWorkspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Transformation.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Renderer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Events.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/InfoWindow.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/PanoramaLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Poi/PoiManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+	<title>用户信息</title>
+</head>
+	
+<body>
+	<div class="common-panel" id="data_panel">
+		<div id="title_wrapper">
+			<div class="title_box">数据管理</div>
+		</div>
+		<div class="main-panel">
+			<div class="left-panel">
+				<div class="left-title-bar">
+					<div class="left-title-icon"></div>
+					<div>数据管理</div>
+				</div>
+				<div class="left-panel-content">
+					<div class="list-tree db-tree">
+						<div class="row" dname="base">
+							<div class="col-md-1 col-md-20px">
+								<div class="glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate"></div>
+							</div>
+							<div class="col-md-1 col-md-20px">
+								<i class="db-icon list-icon"></i>
+							</div>
+							<div class="col-md-7">
+								基础数据
+							</div>
+						</div>
+						<div class="row" dname="tile">
+							<div class="col-md-1 col-md-20px">
+								<div class="glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate"></div>
+							</div>
+							<div class="col-md-1 col-md-20px">
+								<i class="db-icon list-icon"></i>
+							</div>
+							<div class="col-md-7">
+								瓦片数据
+							</div>
+						</div>
+						
+						<div class="row" dname="poi">
+							<div class="col-md-1 col-md-20px">
+								<div class="glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate"></div>
+							</div>
+							<div class="col-md-1 col-md-20px">
+								<i class="db-icon list-icon"></i>
+							</div>
+							<div class="col-md-7">
+								POI数据
+							</div>
+						</div>
+						<div class="row" dname="aqi">
+							<div class="col-md-1 col-md-20px">
+								<div class="glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate"></div>
+							</div>
+							<div class="col-md-1 col-md-20px">
+								<i class="db-icon list-icon"></i>
+							</div>
+							<div class="col-md-7">
+								AQI数据
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-panel">
+				<!-- 数据列表面板 -->
+				<div class="right-panel-tab" id="datasources_tab">
+					<div class="right-panel-bar">
+						<span class="float-left">数据列表</span>
+					</div>
+					<div class="right-panel-content">
+						<div class="row header-row">
+							<div class="col-md-1">
+								序号
+							</div>
+							<div class="col-md-3">
+								名称
+							</div>
+							<div class="col-md-5">
+								描述
+							</div>
+							<div class="col-md-2">
+								操作
+							</div>
+						</div>
+						<div class="right-panel-content-tab">
+							<div class="row">
+								<div class="col-md-1">
+									1
+								</div>
+								<div class="col-md-3">
+									基础数据
+								</div>
+								<div class="col-md-5">
+									包括中国省、市、县等行政区划，以及一些道路、湖泊等数据
+								</div>
+								<div class="col-md-2">
+									<a href="javascript:void(0)" class="oper enter-base">进入</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1">
+									2
+								</div>
+								<div class="col-md-3">
+									瓦片数据
+								</div>
+								<div class="col-md-5">
+									包括影像和矢量瓦片数据
+								</div>
+								<div class="col-md-2">
+									<a href="javascript:void(0)" class="oper enter-tile">进入</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1">
+									3
+								</div>
+								<div class="col-md-3">
+									POI数据
+								</div>
+								<div class="col-md-5">
+									包括饭店、医院等兴趣点的数据
+								</div>
+								<div class="col-md-2">
+									<a href="javascript:void(0)" class="oper enter-poi">进入</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1">
+									4
+								</div>
+								<div class="col-md-3">
+									AQI数据
+								</div>
+								<div class="col-md-5">
+									空气质量排行榜及全国各个站点的空气质量指数
+								</div>
+								<div class="col-md-2">
+									<a href="javascript:void(0)" class="oper enter-aqi">进入</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 数据库列表 -->
+				<div class="right-panel-tab" id="datasource_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list float-left">数据列表</a>
+						<span class="float-left">>></span>
+						<span class="current-db float-left"></span>
+						<div class="data_title_bar">
+							<!-- <a href="javascript:void(0)" class="import-vector">导入矢量</a>
+							<a href="javascript:void(0)" class="import-csv">导入CSV</a>
+							<a href="javascript:void(0)" class="create-dataset">新建表格</a> -->
+						</div>
+						<div class="btn-group btn-group-xs pull-right" role="group">
+							<button type="button" class="btn btn-default" id="show_datasets_list" disabled="">列表</button>
+							<button type="button" class="btn btn-default" id="show_datasets_thumb">预览</button>
+						</div>
+					</div>
+					<div class="right-panel-content">
+						<div class="right-panel-content-tab" id="datasets_list_tab">
+							<div class="row header-row">
+								<div class="col-md-1">
+									序号
+								</div>
+								<div class="col-md-4">
+									名称
+								</div>
+								<div class="col-md-3">
+									类型
+								</div>
+								<div class="col-md-2">
+									空间参考
+								</div>
+								<div class="col-md-2">
+									操作
+								</div>											
+							</div>
+							<div class="datasets-list">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="datasets_thumb_tab">
+						</div>
+					</div>
+				</div>
+
+				<!-- 图层面板 -->
+				<div class="right-panel-tab" id="dataset_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
+						>>
+						<a href="javascript:void(0)" class="return-datasource"></a>
+						>>
+						<span class="current-dataset"></span>
+						<div class="btn-group btn-group-xs pull-right" role="group">
+							<button type="button" class="btn btn-default" id="show_dataset_infos" disabled="disabled">元数据</button>
+							<button type="button" class="btn btn-default" id="show_dataset_fields">字段</button>
+							<button type="button" class="btn btn-default" id="show_dataset_features">列表</button>
+							<button type="button" class="btn btn-default" id="show_dataset_preview">预览</button>
+						</div>
+					</div>
+					<div class="right-panel-content">
+						<div class="right-panel-content-tab" id="dataset_infos_tab">
+							<div class="row header-row">
+								<div class="col-md-3">
+									Key
+								</div>
+								<div class="col-md-6">
+									Value
+								</div>
+							</div>
+							<div class="dataset-infos">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="dataset_fields_tab">
+							<div class="row header-row">
+								<div class="col-md-4">
+									名称
+								</div>
+								<div class="col-md-3">
+									类型
+								</div>
+								<div class="col-md-3">
+									长度
+								</div>
+							</div>
+							<div class="dataset-fields">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="dataset_features_tab">
+							<form class="form-horizontal pages-form" role="form">
+								<div class="form-group">
+									<label class="col-md-3 control-label query_count">
+										总条数 : 
+										<span>0</span>
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-backward btn" href="javascript:void(0)"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-chevron-left btn"></a>
+									</div>
+									<div class="col-md-2" style="padding:0px 15px">
+										<input class="form-control pages-form-page" type="text" value="1">
+									</div>
+									<label class="col-md-1 control-label">
+										/
+									</label>
+									<label class="col-md-1 control-label pages-form-pages">
+										60
+									</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon glyphicon-chevron-right btn" href="javascript:void(0)"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-forward btn" href="javascript:void(0)"></a>
+									</div>
+								</div>
+							</form>
+							<div id="dataset_features_list">
+								<table class="table table-hover borderless table-striped">
+									<thead>
+										<tr></tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="dataset_preview_tab">
+						</div>
+					</div>
+				</div>
+
+				<!-- 底图列表面板 -->
+				<div class="right-panel-tab" id="qs_list_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list float-left">数据列表</a>
+						<span class="float-left">>></span>
+						<span class="current-db float-left">瓦片数据</span>
+					</div>
+					<div class="right-panel-content">
+						<div class="row header-row">
+							<div class="col-md-1">
+								序号
+							</div>
+							<div class="col-md-3">
+								名称
+							</div>
+							<div class="col-md-4">
+								描述
+							</div>
+							<div class="col-md-3">
+								操作
+							</div>
+						</div>
+						<div class="tiles-list">
+						</div>
+					</div>
+				</div>
+				<!-- 底图面板 -->
+				<div class="right-panel-tab" id="qs_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list  float-left">数据库列表</a>
+						<span class="float-left">>></span>
+						<a href="javascript:void(0)" class="return-datasource float-left">瓦片数据</a>
+						<span class="float-left">>></span>
+						<span class="float-left current-qs"></span>
+					</div>
+					<div class="right-panel-content" id="base_layer_canvas_wrapper">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Notify  -->
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
+	</div>
+</body>
+

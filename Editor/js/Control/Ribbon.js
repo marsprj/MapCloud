@@ -703,7 +703,7 @@ MapCloud.Ribbon = MapCloud.Class({
 	onTopic : function(){
 		// MapCloud.topicPanel.showPanel();	
 		// var name = "烤串";
-		var time = new Date("2015-10-30 07:42:23");
+		var time = new Date("2015-11-02 05:42:23");
 		var names = ["aqi",["hotel"]];
 		poiManager.beginSubscribe(names,time,this.poi_callback);
 	},

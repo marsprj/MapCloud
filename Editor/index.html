@@ -326,6 +326,7 @@
 <script type="text/javascript" src="js/Control/Dialog/QueryDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/PoiDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/AQIFeaturesDialog.js"></script>
 
 <title>MapEditor</title>
 </head>
@@ -585,7 +586,7 @@
 							</div>
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
-								<div class="ribbon_label">定制</div>
+								<div class="ribbon_label">订阅</div>
 							</div>
 						</div>
 					</div>
@@ -8035,4 +8036,65 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- AQI features dialog -->
+	<div class="modal fade" id="aqi_features_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新增订阅信息</h5>
+				</div>
+				<div class="modal-body">
+					<div class="aqi-features-page">
+						<div class="aqi-count">
+							<p class="text-primary">
+								新增AQI记录：
+								<span>0</span>
+							</p>
+						</div>
+						<ul class="pagination" style="margin:1px 0px">
+						</ul>
+					</div>
+					<div class="poi-features">
+						<table class="table table-hover borderless table-striped">
+							<thead>
+								<tr>
+									<th><nobr>gid</nobr></th>
+									<th><nobr>aqi</nobr></th>
+									<th><nobr>area</nobr></th>
+									<th><nobr>co</nobr></th>
+									<th><nobr>co_24h</nobr></th>
+									<th><nobr>no2</nobr></th>
+									<th><nobr>no2_24h</nobr></th>
+									<th><nobr>o3</nobr></th>
+									<th><nobr>o3_24h</nobr></th>
+									<th><nobr>o3_8h</nobr></th>
+									<th><nobr>o3_8h_24h</nobr></th>
+									<th><nobr>pm10</nobr></th>
+									<th><nobr>pm10_24h</nobr></th>
+									<th><nobr>pm2_5</nobr></th>
+									<th><nobr>pm2_5_24h</nobr></th>
+									<th><nobr>position_name</nobr></th>
+									<th><nobr>primary_pollutant</nobr></th>
+									<th><nobr>quality</nobr></th>
+									<th><nobr>so2</nobr></th>
+									<th><nobr>so2_24h</nobr></th>
+									<th><nobr>station_code</nobr></th>
+									<th><nobr>time_point</nobr></th>
+									<th><nobr>x</nobr></th>
+									<th><nobr>y</nobr></th>
+									
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+						
+				</div>
+			</div>
+		</div>
+	</div>	
+
 </body>

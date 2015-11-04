@@ -1,48 +1,32 @@
-var user = null;
+var admin = null;
 var cookieObj = null;
 $().ready(function(){
+	cookieObj = new MapCloud.Cookie();
+	var cookiedUserName = cookieObj.getCookie("username");
+	if(cookiedUserName != null  && cookiedUserName == "admin"){
+		admin = new GeoBeans.User(cookiedUserName);
+	}
 
-	user = null;
- 	cookieObj = new MapCloud.Cookie();
- 	var cookiedUserName = cookieObj.getCookie("username");
-    if(cookiedUserName != null){
-    	$("#title_panel").html("[" + cookiedUserName + "]管理页面" );
-    	user = new GeoBeans.User(cookiedUserName);
-    }
-
-    MapCloud.notify	= new MapCloud.Notify("container","alert_loading");
+	MapCloud.notify	= new MapCloud.Notify("container","alert_loading");
     MapCloud.accountPanel = new MapCloud.AccountPanel("login-panel","register-panel");
 
-    var authServer = "/ows/admin/mgr";
+	var authServer = "/ows/admin/mgr";
 	authManager = new GeoBeans.AuthManager(authServer);
+
 	MapCloud.cookieObj = new MapCloud.Cookie();
-    if(user == null){
+    if(admin == null){
     	loadLoginPanel();
     }else{
     	loadCatalog();
     }
-	
 
-	$(".service_title").click(function(){
-		var item_container = $(this).next();
-		if(item_container.css("height")=="0px")
-		{
-			var count = item_container.children().length;
-			item_container.css("height", (count*25).toString() + "px");
-		}
-		else
-		{
-			item_container.css("height","0px");
-		}
-	});
-
-	// 退出
+    // 退出
 	$("#user_logout").click(function(){
 		if(!confirm("确定要退出当前账户吗？")){
 			return;
 		}
 		MapCloud.notify.loading();
-		authManager.logout(user.name,logout_callback);
+		authManager.logout(admin.name,logout_callback);
 	});
 });
 
@@ -56,7 +40,7 @@ function logout_callback(result){
 		MapCloud.accountPanel.hideRegisterPanel();
 		MapCloud.accountPanel.hideUserpPanel();
 		MapCloud.accountPanel.showLoginPanel();
-		user.logout();
+		admin.logout();
 		MapCloud.cookieObj.delCookie("username","/MapCloud");
 
 	}

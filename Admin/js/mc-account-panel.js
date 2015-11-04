@@ -116,18 +116,19 @@ MapCloud.AccountPanel = MapCloud.Class({
 
 	login_callback : function(result){
 		MapCloud.notify.showInfo(result,"登录");
+		var that = MapCloud.accountPanel;
 		if(result == "success"){
-			var that = MapCloud.accountPanel;
-			if(that.loginName == "admin"){
+			if(that.loginName != "admin"){
 				MapCloud.cookieObj.setCookie("username",that.loginName,"/MapCloud");
-				window.location.href = "../Admin";
+				window.location.href = "../User";
 			}else{
 				that.hideLoginPanel();
 				that.hideRegisterPanel();
 				that.showUserPanel();
-				that.initUser(that.loginName);
+				that.initUser(that.loginName);	
 			}
 		}
+			
 	},
 
 
@@ -135,21 +136,21 @@ MapCloud.AccountPanel = MapCloud.Class({
 		if(username == null){
 			return;
 		}
-		user = new GeoBeans.User(username);
+		admin = new GeoBeans.User(username);
 
-		mapManager = user.getMapManager();
-		styleManager = user.getStyleManager();
-		fileManager = user.getFileManager();
-		dbsManager = user.getDBSManager();
-		rasterDBManager = user.getRasterDBManager();
-		gpsManager = user.getGPSManager();
+		// mapManager = admin.getMapManager();
+		// styleManager = admin.getStyleManager();
+		// fileManager = admin.getFileManager();
+		// dbsManager = admin.getDBSManager();
+		// rasterDBManager = admin.getRasterDBManager();
+		// gpsManager = admin.getGPSManager();
 
 		MapCloud.cookieObj.setCookie("username",username,"/MapCloud");
 		loadCatalog();
 		$("#title_panel").html("[" + username + "]管理页面" );
 
 		// MapCloud.userPanel.getUserInfo(username);
-		MapCloud.userPanel = new MapCloud.UserPanel("user_panel");
+		MapCloud.userPanel = new MapCloud.UsersPanel("user_panel");
 		MapCloud.userPanel.panel =  $("#iframeId").contents().find("#user_panel");
 		MapCloud.userPanel.registerPanelEvent();
 		MapCloud.userPanel.getUserInfo(username);
@@ -158,7 +159,6 @@ MapCloud.AccountPanel = MapCloud.Class({
 
 
 	register : function(){
-
 		// 名称
 		var name = this.registerPanel.find("input[name='username']").val();
 		if(name == null || name == "" ){
