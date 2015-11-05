@@ -3228,22 +3228,22 @@ ul.layers_row li:before {
 	/*overflow-y: auto; */
 }
 
-.poi-features{
+#aqi_features_dialog .poi-features{
 	height: 600px;
 	overflow: auto;
 }
-.aqi-features-page{
+#aqi_features_dialog .aqi-features-page{
 	position: relative;
 	height: 44px;
 	width:100%;
 }
-.aqi-count{
+#aqi_features_dialog .aqi-count{
 	position: absolute;
 	width: 200px;
 	display: inline-block;
 	left: 0px;
 }
-.pagination{
+#aqi_features_dialog .pagination{
 	position: absolute;
 	right: 0px;
 }

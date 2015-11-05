@@ -33,6 +33,8 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 		if(result == "success"){
 			MapCloud.account.showLoginPanel();
 			$(".map-panel").css("display","none");
+			$(".register-panel").css("display","none");
+			$(".login-panel").css("display","block");
 			user.logout();
 			MapCloud.cookieObj.delCookie("username","/MapCloud");
 			MapCloud.refresh_panel.cleanup();
@@ -40,11 +42,6 @@ MapCloud.UserToolBar = MapCloud.Class(MapCloud.Panel,{
 				mapObj.close();
 			}
 			mapObj = null;
-			
 		}
-
-		
 	}
-
-	
 });

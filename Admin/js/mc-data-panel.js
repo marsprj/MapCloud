@@ -224,34 +224,17 @@ MapCloud.DataPanel = MapCloud.Class({
 		}
 		var that = MapCloud.dataPanel;
 		that.dataSource = dataSource;
-	},
-
-
-	// 基础
-	showBaseDataSource : function(){
-		this.panel.find(".right-panel-tab").css("display","none");
-		this.panel.find("#datasource_tab").css("display","block");
-		this.panel.find(".db-tree .row").removeClass("selected");
-		this.panel.find(".db-tree .row[dname='base']").addClass("selected");
-		this.panel.find("#show_datasets_list").css("disabled",false);
-		this.panel.find("#show_datasets_thumb").css("disabled",true);
-		this.panel.find("#datasource_tab .current-db").html("基础数据");
-
-		MapCloud.notify.hideLoading();
-		dbsManager.getDataSource("base",this.getDataSource_callback);
-	},
-
-	getDataSource_callback: function(dataSource){
-		MapCloud.notify.hideLoading();
-		if(dataSource == null){
-			return;
+		if(that.flag != null){
+			that.getDataSets(that.flag);
 		}
-		var that = MapCloud.dataPanel;
-		that.dataSourceCur = dataSource;
-		that.getDataSets(that.dataSourceCur);
 	},
 
 	getDataSets : function(flag){
+		this.flag = flag;
+		if(this.dataSource == null){
+			this.getBaseDataSource();
+			return;
+		}
 		this.flag = flag;
 		MapCloud.notify.loading();
 		this.panel.find(".right-panel-tab").css("display","none");
@@ -269,7 +252,7 @@ MapCloud.DataPanel = MapCloud.Class({
 		var name = "";
 		switch(flag){
 			case "base":{
-				name = "基础数据";
+				name = "基础地理数据";
 				break;
 			}
 			case "aqi":{

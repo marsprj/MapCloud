@@ -46,7 +46,7 @@ MapCloud.MapInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			html += "<tr>"
 			+ "<td>" + map.baseLayer.name + "</td>"
 			+ "<td>" + "底图" + "</td>"
-			+ "<td>" + map.baseLayer.extent + "</td>"
+			+ "<td>" + "" + "</td>"
 			+ "</tr>";
 		}
 

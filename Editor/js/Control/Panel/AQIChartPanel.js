@@ -1,6 +1,6 @@
 MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 	// 数据库
-	dbName : "gisdb",
+	dbName : "base",
 
 	// 时间表名称
 	timeTableName : "gc_aqi_uptime",
@@ -241,6 +241,10 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 		this.chartLayer.setChartField(chartField);
 
 		var timePoint = this.panel.find(".aqi-time-points").val();
+		if(timePoint == null){
+			MapCloud.notify.showInfo("请选择一个时刻","Warning");
+			return;
+		}
 		this.chartLayer.setTimePoint(timePoint);
 
 		this.chartLayer.setChartOption(chartOption);

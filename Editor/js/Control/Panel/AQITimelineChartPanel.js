@@ -1,6 +1,6 @@
 MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 	// 数据库
-	dbName : "gisdb",
+	dbName : "base",
 
 	// 时间表名称
 	timeTableName : "gc_aqi_uptime",
@@ -21,7 +21,6 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 	// 样式管理器
 	styleMgr 	: null,
-
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);

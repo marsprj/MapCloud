@@ -479,6 +479,9 @@ MapCloud.refresh = MapCloud.Class({
 		// 删除底图
 		this.panel.find(".layer_row_quick_tool_remove_base").each(function(){
 			$(this).click(function(){
+				if(!confirm("确定要删除底图吗？")){
+					return;
+				}
 				mapObj.removeBaseLayer();
 				mapObj.draw();
 				that.refreshPanel();
