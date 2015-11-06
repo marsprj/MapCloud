@@ -203,6 +203,10 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
     		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	}  
+    	if(startTimePoint == endTimePoint){
+    		MapCloud.notify.showInfo("请至少选择两个时刻","Warning");
+    		return;
+    	}
     	var chartField = this.panel.find(".aqi-index").val();
 
     	var colorMapID = this.panel.find(".select-color-ramp li").attr("cid");
@@ -268,6 +272,11 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
     		MapCloud.notify.showInfo("请选择一个时刻","Warning");
     		return;
     	}  
+
+    	if(startTimePoint == endTimePoint){
+    		MapCloud.notify.showInfo("请至少选择两个时刻","Warning");
+    		return;
+    	}
 
     	var timePoints = this.chartLayer.getTimePoints();
     	if(timePoints != null && timePoints.length >= 2){
