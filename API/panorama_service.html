@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="js/codemirror.js"></script>
 	<script type="text/javascript" src="js/xml.js"></script>
 
-	<title>用户管理 >> GetUser服务接口</title>
+	<title>其它服务 >> 全景图</title>
 </head>
 
 <body>
@@ -30,31 +30,11 @@
 					<table>
 						<tr>
 							<td class="request_column"><span>请求地址</span></td>
-							<td><input type="text" value='http://127.0.0.1/ows/admin/mgr?' name='service_url'></td>
+							<td><input type="text" value='http://192.168.111.152:8088/panorama/' name='service_url'></td>
 						</tr>
 						<tr>
-							<td class="request_column"><span>服务</span></td>
-							<td><input type="text" value='was' name='service'></td>
-						</tr>
-						<tr>
-							<td class="request_column"><span>版本</span></td>
-							<td><input type="text" value='1.0.0' name='version'></td>
-						</tr>
-						<tr>
-							<td class="request_column"><span>请求</td>
-							<td><input type="text" value='GetUser' name='request'></td>
-						</tr>
-						<tr>
-							<td class="request_column"><span>用户名</td>
-							<td><input type="text" value='user_test' name='name'>(可为空)</td>
-						</tr>
-						<tr>
-							<td class="request_column"><span>个数</td>
-							<td><input type="text" value='10' name='count'></td>
-						</tr>
-						<tr>
-							<td class="request_column"><span>偏移</td>
-							<td><input type="text" value='0' name='offset'></td>
+							<td class="request_column"><span>地址</span></td>
+							<td><input type="text" value='GRANDjiudianshatan3.html' name='service'></td>
 						</tr>
 					</table>
 				</div>
@@ -66,7 +46,7 @@
 				<a href="javascript:void(0);" class="button button-primary button-rounded button-small btn-margin-top" onclick="javascript:onGet();">发送请求</a>
 			</div>
 			<div id="response_container">
-				<textarea id="text_area" style="height:100%;width:100%;display:none"></textarea>
+				<iframe src="" style="width:100%;height:100%;" id="response_iframe" frameborder="no"></iframe>
 			</div>
 		</div>
 	</div>
@@ -112,53 +92,14 @@
 	});
 
 	window.onresize = function(){
-		changeEditorSize();
+		// changeEditorSize();
 	};
 
 	function onGet(){
 		var url = $("#request_parameters input[name='service_url']").val();
-		var params = "";
-		$("#request_parameters input").each(function(){
-			var name = $(this).attr("name");
-			var value = $(this).val();
-			if(name != 'service_url'){
-				if(params.length > 0){
-					params += "&";
-				}
-				params += name + "=" + value;
-			}
-		})
-		$.ajax({
-			type	:"get",
-			url		: url,
-			 data	: encodeURI(params),
-			contentType: "text/xml",
-			dataType: "text",
-			async	: true,
-			beforeSend: function(XMLHttpRequest){
-			},
-			success	: function(xml, textStatus){
-				document.getElementById('text_area').innerHTML = xml;
-				
-				if(editor == null){
-					editor = CodeMirror.fromTextArea(document.getElementById("text_area"), {
-				        mode: "text/html",
-				        lineNumbers: true,
-				         gutter: true,
-	   					 lineWrapping: true
-				    });
-			    }else{
-			    	editor.setValue(xml);
-			    }
-				var height = $("#response_container").height();
-				var width = $("#response_container").width();
-				editor.setSize(width,height);
-			},
-			complete: function(XMLHttpRequest, textStatus){
-			},
-			error	: function(){
-			}
-		});	
+		var service = $("#request_parameters input[name='service']").val();
+		url += service;
+		$("#response_iframe").attr("src",url);
 	}
 
 

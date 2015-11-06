@@ -555,6 +555,21 @@ var g_catalog =
                 "name": "Logout",
                 "capation" : "注销用户登录",
                 "link": "auth_logout.html"
+            },
+            {
+                "name": "Logout",
+                "capation" : "获取用户个数",
+                "link": "auth_get_user_count.html"
+            },
+            {
+                "name": "GetLoginCount",
+                "capation" : "在线用户个数",
+                "link": "auth_get_login_count.html"
+            },
+            {
+                "name": "GetOnlineUser",
+                "capation" : "在线用户列表",
+                "link": "auth_get_online_user.html"
             }
         ]
     },
@@ -604,7 +619,7 @@ var g_catalog =
             {
                 "name": "Booking Service",
                 "capation" : "全景图服务",
-                "link": "data_collection_service.html"
+                "link": "panorama_service.html"
             }
         ]
     }
