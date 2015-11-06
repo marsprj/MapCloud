@@ -1022,12 +1022,19 @@ ul#ribbon_tabs li{
 	right: 10px;
 	top: 10px;
 	/*width: 326px;*/
+	height: auto;
 }
 #gps_oper_wrapper .panel-content{
-	height: calc( 100% - 45px);
+	height: 600px;
+	padding: 0px;
+	-webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 #gps_oper_wrapper .gps-oper-nav{
 	padding-left: 4px;
+	margin: 6px;
 }
 #gps_oper_wrapper ul{
 	margin: 0px;

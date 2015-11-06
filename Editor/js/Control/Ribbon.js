@@ -458,6 +458,10 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 全景图添加与显示
 	onAddPanorama : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		if(mapObj.panoramaLayer.overlays.length == 0){
 			this.addPanorama();
 		}else{
@@ -538,16 +542,28 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	// 分级图
 	onAddRangeChart : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		MapCloud.chart_panel.showPanel();
 	},
 
 	// 柱状图
 	onAddBarChart : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		MapCloud.bar_chart_panel.showPanel();
 	},
 
 	// 饼状图
 	onAddPieChart : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		MapCloud.pie_chart_panel.showPanel();
 	},
 
@@ -649,6 +665,10 @@ MapCloud.Ribbon = MapCloud.Class({
 	/**************************************************************/
 	// 热力图
 	onHeatMap : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		var layerName = $("#layers_row .layer_row_selected")
 			.attr("lname");
 		if(layerName == null || layerName == ""){
@@ -671,11 +691,18 @@ MapCloud.Ribbon = MapCloud.Class({
 	},
 
 	onAQI : function(){
-		// MapCloud.aqi_dialog.showDialog();
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		MapCloud.aqi_chart_panel.showPanel();
 	},
 
 	onAQITimeline : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
 		MapCloud.aqi_timeline_chart_panel.showPanel();
 	},
 

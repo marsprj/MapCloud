@@ -78,7 +78,7 @@ MapCloud.BaseLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		if(this.map == null){
 			var extent = new GeoBeans.Envelope(-180,-90,180,90);
-			this.map = new GeoBeans.Map(url,"base_layer_canvas_wrapper","tmp",extent,4326,extent);
+			this.map = new GeoBeans.Map(user.server,"base_layer_canvas_wrapper","tmp",extent,4326,extent);
 		}else{
 			this.map.removeBaseLayer();
 			this.map.draw();

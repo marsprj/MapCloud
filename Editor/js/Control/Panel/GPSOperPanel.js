@@ -19,12 +19,12 @@ MapCloud.GPSOperPanel = MapCloud.Class(MapCloud.Panel,{
 		var dialog = this;
 		this.panel.find(".btn-hide").click(function(){
 			var body = dialog.panel.find(".panel-content");
-			if(body.css("display") == "block"){
-				body.slideUp();
-				dialog.panel.css("height","44px");
+			if(body.css("height") == "600px"){
+				body.css("height","0px");
+				dialog.panel.css("border-bottom","none");
 			}else{
-				body.slideDown();
-				dialog.panel.css("height","600px");
+				body.css("height","600px");
+				dialog.panel.css("border-bottom","1px solid #d3d3d3");
 			}
 		});		
 	},

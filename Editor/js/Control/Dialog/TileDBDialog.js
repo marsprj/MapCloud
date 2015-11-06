@@ -375,7 +375,7 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}else{
 			var extent = layer.extent;
 			var srid = 4326;
-			this.map = new GeoBeans.Map(url,"tile_canvas_wrapper","tile",extent,srid,extent);
+			this.map = new GeoBeans.Map(user.server,"tile_canvas_wrapper","tile",extent,srid,extent);
 			this.map.insertLayer(layer);
 			this.map.draw();
 		}
