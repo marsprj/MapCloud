@@ -13,7 +13,7 @@ var g_catalog =
     {
         "name": "节点管理",
         "icon": "monitor.png",
-        "link": "user_map.html"
+        "link": "http://ourgis.digitalearth.cn/monitor/"
     },
     // {
     //     "name": "服务管理",
@@ -23,6 +23,6 @@ var g_catalog =
     {
         "name": "API",
         "icon": "note.png",
-        "link": "../API/index.html"
+        "link": "../API/index_admin.html"
     },    
 ];

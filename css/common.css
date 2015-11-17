@@ -290,6 +290,9 @@
   margin: 0px 0px;
   padding: 6px 8px;
 }
+#fileDialog .select-list-div{
+  padding-left: 4px !important;
+}
 #fileDialog .file-list-content-div .row:hover{
   background-color: #DFF1F8;
 }

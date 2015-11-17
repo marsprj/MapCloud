@@ -20,13 +20,12 @@
 
 <body scroll="no">
 	<div style="padding:0px;height:100%;background: #fff;">
-		<div id="header_panel" class="container mc-theme-color">
-			<div id="logo_panel"></div>
-			<div id="title_panel" class="title_font">MapCloud服务接口</div>
-		</div>
-		<div class="container" id="main_panel">
-			<div id="catalog_panel">
-				<div id="catalog_container">
+		<div class="container main-panel-admin" id="main_panel">
+			<div id="title_wrapper">
+				<div class="title_box">API</div>
+			</div>
+			<div id="catalog_panel" class="catalog-admin">
+				<div id="catalog_container" class="catalog-container-admin">
 <!-- 					<div class="service_container">
 	<div class="service_title">要素服务</div>
 	<div class="item_container" id="item_1">
@@ -46,7 +45,7 @@
 				</div>
 			</div>
 			<div id="content_panel">
-				<iframe src="wfs_getcapabilities.html" style="width:100%;height:calc(100% - 80px)" frameborder="no" id=iframeId></iframe>
+				<iframe src="wfs_getcapabilities.html" style="width:100%;height:100%" frameborder="no" id="iframeId"></iframe>
 			</div>
 		</div>
 	</div>
@@ -54,6 +53,6 @@
 
 <script type="text/javascript">
 	function onItemClick(item_name, item_link){
-		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:100%' frameborder='no'></iframe>";
+		document.getElementById('content_panel').innerHTML = "<iframe src='" + item_link + "' style='width:100%;height:calc(100% - 40px)' frameborder='no'></iframe>";
 	}
 </script>

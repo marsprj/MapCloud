@@ -155,6 +155,8 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 				dbName = dialog.panel.find("#" + file.id 
 				+ " .import-vector-db option:selected").val();
 			}
+			var li = dialog.panel.find("#" + file.id);
+			li.find(".progress").removeClass("active");
 
 			var stateHtml = dialog.panel.find("#" + file.id).find(".state");
 			stateHtml.html("上传完毕");

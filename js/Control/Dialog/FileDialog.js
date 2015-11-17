@@ -131,6 +131,16 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 			var list = dialog.getFilterList();
 			dialog.showListPanel(list);
 		});
+
+		// 全选或者全不选
+		this.panel.find(".select-list").click(function(){
+			var checkboxs = dialog.panel.find(".file-list-content-div>.row input");
+			if($(this).prop("checked")){
+				checkboxs.prop("checked",true);
+			}else{
+				checkboxs.prop("checked",false);
+			}
+		});
 	},
 
 
@@ -139,6 +149,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 		this.flag = null;
 		this.panel.find("#file_filter_select option[value='all']").attr("selected",true);
 		this.panel.find("#current_path").val("/");
+		this.panel.find(".select-list").prop("checked",false);
 	},
 
 	showDialog : function(flag){
@@ -297,6 +308,7 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 	showListPanel : function(list){
 		var l = null;
 		var html = "";
+		this.panel.find(".select-list").prop("checked",false);
 		for(var i = 0; i < list.length; ++i){
 			l = list[i];
 			if(l == null){
