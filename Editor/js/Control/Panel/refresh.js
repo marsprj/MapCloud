@@ -386,8 +386,8 @@ MapCloud.refresh = MapCloud.Class({
 			if(layer == null){
 				return;
 			}
-			MapCloud.search_panel.showPanel();
-			MapCloud.search_panel.setLayer(layer);
+			MapCloud.search_panel.showPanel(layer);
+			// MapCloud.search_panel.setLayer(layer);
 		});
 
 		// 图层编辑，内容未定

@@ -14,11 +14,15 @@ MapCloud.FeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	showDialog : function(){
-		this.panel.modal();
 		
-		this.showFields();
 		var layer = mapObj.getLayer(this.layerName);
 		var count = layer.getFeatureCount(null,null);
+		if(!$.isNumeric(count)){
+			MapCloud.notify.showInfo(count,"Warning");
+			return;
+		}
+		this.panel.modal();
+		this.showFields();
 		this.showPages(count);
 	},
 

@@ -25,6 +25,25 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.setFields(fields);
 	},
 
+	// 设置layer
+	showPanel : function(layer){
+		if(layer == null){
+			return;
+		}
+		var fields = layer.getFields();
+		if(!$.isArray(fields)){
+			MapCloud.notify.showInfo(fields,"Warning");
+			return;
+		}
+		
+
+		MapCloud.Panel.prototype.showPanel.apply(this,arguments);
+		this.setFields(fields);
+		this.layer = layer;
+
+	},
+
+
 	cleanup : function(){
 		this.layer = null;
 		this.filter = null;

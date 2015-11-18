@@ -235,6 +235,7 @@ MapCloud.GPSFeatureImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		shpName = shpName.slice(0,shpName.lastIndexOf(".shp"));
 		shpPath = shpPath.slice(0,index+1);
 
+		MapCloud.notify.loading();
 		gpsManager.featureImport(this.outputSourceName,typeName,shpPath,
 			shpName,srid,geom,this.importFeature_callback);
 	},
@@ -247,7 +248,7 @@ MapCloud.GPSFeatureImportDialog = MapCloud.Class(MapCloud.Dialog,{
 			dialog.features.splice(0,1);
 			dialog.panel.find(".gps-oper-log-div").append(html);
 		}
-
+		MapCloud.notify.hideLoading();
 		if(dialog.features != null){
 			var length = dialog.features.length;
 			if(length >= 1){
