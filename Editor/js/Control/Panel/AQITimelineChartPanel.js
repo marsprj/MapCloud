@@ -235,6 +235,10 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 
     	var interval = this.panel.find(".chart-interval").val();
     	interval = parseInt(interval);
+    	if(!($.isNumeric(interval) && interval > 0)){
+			MapCloud.notify.showInfo("请设置一个有效的时间间隔","Warning");
+			return;
+		}
 
     	var layer = new GeoBeans.Layer.AQITimelineLayer(name,this.dbName,
     		this.tableName,chartField,this.labelField,this.flagField,
@@ -301,6 +305,13 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
     		}
     	}
 		
+		var interval = this.panel.find(".chart-interval").val();
+		interval = parseInt(interval);
+		if(!($.isNumeric(interval) && interval > 0)){
+			MapCloud.notify.showInfo("请设置一个有效的时间间隔","Warning");
+			return;
+		}
+		this.chartLayer.setInterval(interval);
 
 		var colorMapID = this.panel.find(".select-color-ramp li").attr("cid");
     	if(this.chartLayer.getChartOption().colorMapID != colorMapID){
