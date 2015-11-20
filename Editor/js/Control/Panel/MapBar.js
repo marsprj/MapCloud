@@ -25,36 +25,43 @@ MapCloud.MapBar = MapCloud.Class({
 						break;
 					}
 					case 2:{
+						that.onPolygon();
 						break;
 					}
 					case 3:{
+						that.onLine();
 						break;
 					}
 					case 4:{
-						that.onFeatureInfo();
 						break;
 					}
 					case 5:{
-						that.endQuery();
 						break;
 					}
 					case 6:{
-						that.onMapGlobe();
+						that.onFeatureInfo();
 						break;
 					}
 					case 7:{
+						that.endQuery();
 						break;
 					}
 					case 8:{
+						that.onMapGlobe();
 						break;
 					}
 					case 9:{
 						break;
 					}
-					case 10 :{
+					case 10:{
 						break;
 					}
-					
+					case 11:{
+						break;
+					}
+					case 12 :{
+						break;
+					}
 					default:
 						break;
 				}
@@ -95,6 +102,75 @@ MapCloud.MapBar = MapCloud.Class({
 
 	output_function : function(){
 		var url = mapObj.queryByRectOutput(null,null);
+		return url;
+	},
+
+	// 多边形查询
+	onPolygon : function(){
+		var layerName = $("#layers_row .layer_row_selected")
+			.attr("lname");
+		if(layerName == null || layerName == ""){
+			MapCloud.notify.showInfo("请选择图层","Warning");
+			return;
+		}
+		var layer = mapObj.getLayer(layerName);
+		if(layer == null || layer.type != GeoBeans.Layer.DBLayer.Type.Feature){
+			MapCloud.notify.showInfo("请选择一个矢量图层","Warning");
+			return;
+		}
+		this.panel.find(".mc-icon").removeClass("active");
+		this.panel.find(".mc-icon-polygon").addClass("active");
+		mapObj.queryByPolygon(layerName,this.queryByPolygon_callback);
+	},
+
+	queryByPolygon_callback : function(layer,count){
+		var bar = MapCloud.mapBar;
+		MapCloud.dataGrid.setQuery(layer,count,bar.queryByPolygon_function);
+		MapCloud.dataGrid.setOutput(bar.queryByPolygonOutput_function);
+	},
+
+	queryByPolygon_function : function(maxFeatures,offset){
+		var features = mapObj.queryByPolygonPage(maxFeatures,offset);
+		return features;
+	},
+
+	queryByPolygonOutput_function : function(){
+		var url = mapObj.queryByPolygonOutput(null,null);
+		return url;
+	},
+
+
+	// 线查询
+	onLine : function(){
+		var layerName = $("#layers_row .layer_row_selected")
+			.attr("lname");
+		if(layerName == null || layerName == ""){
+			MapCloud.notify.showInfo("请选择图层","Warning");
+			return;
+		}
+		var layer = mapObj.getLayer(layerName);
+		if(layer == null || layer.type != GeoBeans.Layer.DBLayer.Type.Feature){
+			MapCloud.notify.showInfo("请选择一个矢量图层","Warning");
+			return;
+		}
+		this.panel.find(".mc-icon").removeClass("active");
+		this.panel.find(".mc-icon-polygon").addClass("active");
+		mapObj.queryByLine(layerName,this.queryByLine_callback);
+	},
+
+	queryByLine_callback : function(layer,count){
+		var bar = MapCloud.mapBar;
+		MapCloud.dataGrid.setQuery(layer,count,bar.queryByLine_function);
+		MapCloud.dataGrid.setOutput(bar.queryByLineOutput_function);
+	},
+
+	queryByLine_function : function(maxFeatures,offset){
+		var features = mapObj.queryByLinePage(maxFeatures,offset);
+		return features;
+	},
+
+	queryByLineOutput_function : function(){
+		var url = mapObj.queryByLineOutput(null,null);
 		return url;
 	},
 
@@ -195,7 +271,7 @@ MapCloud.MapBar = MapCloud.Class({
 			i.removeClass("fa-angle-double-right");
 			i.addClass("fa-angle-double-left");
 			this.panel.children().not(".control-icon").css("display","block");
-			this.panel.css("width","332px");
+			this.panel.css("width","392px");
 		}
 	},
 

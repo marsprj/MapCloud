@@ -45,7 +45,7 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find(".aqi-end-time-points").empty();
 		this.panel.find(".aqi-index option[value='aqi']").attr("selected",true);
 		this.panel.find(".date input").val("");
-		this.panel.find(".chart-interval").html("1500");
+		this.panel.find(".chart-interval").html("3000");
 	},
 
 	// 色阶地图 
