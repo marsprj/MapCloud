@@ -60,8 +60,13 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		});
 	},
 
+	getSub_callback : function(time,poiFeatures,aqiFeatures){
+		var that = MapCloud.topicPanel;
+		that.setResults(time,poiFeatures,aqiFeatures);
+	},	
 
-	setResults : function(time,aqiFeatures,pois){
+
+	setResults : function(time,pois,aqiFeatures){
 		if(time == null || !$.isArray(aqiFeatures) || !$.isArray(pois)){
 			return;
 		}

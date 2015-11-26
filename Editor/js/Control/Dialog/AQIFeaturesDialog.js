@@ -27,6 +27,7 @@ MapCloud.AQIFeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 	cleanup : function(){
 		this.panel.find("table tbody").empty();
 		this.panel.find(".aqi-count span").html("0");
+		this.panel.find(".pagination").empty();	
 	},
 
 	setAqiFeatures : function(aqiFeatures){
@@ -212,9 +213,8 @@ MapCloud.AQIFeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 				+	"	<td>" + values[18]  + "</td>"
 				+	"	<td>" + values[19]  + "</td>"
 				+	"	<td>" + values[20]  + "</td>"
-				+	"	<td>" + values[21]  + "</td>"
-				+	"	<td class='xvalue'>" + values[22]  + "</td>"
-				+	"	<td class='yvalue'>" + values[23]  + "</td>"
+				+	"	<td class='xvalue'>" + values[21]  + "</td>"
+				+	"	<td class='yvalue'>" + values[22]  + "</td>"
 				+	"</tr>";
 		}
 		this.panel.find("table tbody").html(html);

@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/mc-user-subscribe.js"></script>
+	
+
+	<script type="text/javascript" src="../js/MapCloud.js"></script>
+	<script type="text/javascript" src="../js/Class/Class.js"></script>
+	<script type="text/javascript" src="../js/Cookie.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
+	<script type="text/javascript" src="js/mc-sub-panel.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/User.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Poi/PoiManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Subscribe/SubManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+
+	<script type="text/javascript" src="../js/Control/Dialog/Dialog.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/AQICityDialog.js"></script>
+	<title>用户信息</title>
+</head>
+	
+<body>
+	<div class="common-panel" id="user_sub_panel">
+		<div id="title_wrapper">
+			<div class="title_box">用户订阅</div>
+			<div class="title_bar_warpper">
+<!-- 				<a href="javascript:void(0)" class="use-info-btn">用户信息</a>
+				<a href="javascript:void(0)" class="user-password-btn">修改密码</a> -->
+			</div>
+		</div>
+		<div id="user_sub_wrapper">
+			<!-- User Panel -->
+			<div class="">
+				<form class="form-horizontal" style="width:660px">
+					<!-- <div class="form-group form-group-sm">
+						<label class="col-md-2 control-label" style="margin-top:3px;">兴趣点:</label>
+						<div class="col-md-10">
+							<div class="checkbox poi-list">
+								<label class="topic-label">
+									<input type="checkbox"><span pname='银行'>银行</span>
+								</label>
+								<label class="topic-label">
+									<input type="checkbox"><span pname='医院'>医院</span>
+								</label>
+								<label class="topic-label">
+									<input type="checkbox"><span pname='学校'>学校</span>
+								</label>
+								<label class="topic-label">
+									<input type="checkbox"><span pname='宾馆'>宾馆</span>
+								</label>
+							</div>
+						</div>
+					</div> -->
+					<div class="form-group form-group-sm">
+						<label class="col-md-2 control-label" style="margin-top:3px">空气质量指数:</label>
+						<div class="col-md-8" style="margin-top:3px;padding-top:6px">
+							<label class="aqi-city">
+								
+							</label>
+							<a href="javascript:void(0)" class="oper select-city">编辑</a>
+						</div>
+					</div>
+					<!-- <div class="form-group form-group-sm">
+						<button class="btn btn-primary btn-subscribe" type="button" style="margin:10px 0px 0px 100px;width:100px;">订阅</button>
+					</div> -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Notify  -->
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
+	</div>
+
+
+	<!-- AQIcity panel -->
+	<div class="modal fade" id="aqi_city_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">AQI城市列表</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						选择的城市有：
+						<span class="selected-city-div"></span>
+					</div>
+					<div class="row">
+						<input type="text" class="query-city-name" style="padding-bottom:3px;">	
+						<button class="btn btn-default btn-sm query-city" type="button" style="padding:3px 10px;">查询</button>
+						<button class="btn btn-default btn-sm return-list" type="button" style="padding:3px 10px;">返回首页</button>
+					</div>
+					<div class="aqi-city-list-wrapper">
+						<div class="row header-row">
+							<div class="col-md-1">
+							</div>
+							<div class="col-md-2">
+								序号
+							</div>
+							<div class="col-md-3">
+								名称
+							</div>
+							<div class="col-md-4">
+								拼音
+							</div>
+							<div class="col-md-2">
+								类型
+							</div>
+						</div>
+						<div class="aqi-city-list-div">
+						</div>
+					</div>
+					<ul class="pagination" style="margin:1px 0px">
+					</ul>
+				</div>
+				<div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary btn-confirm">确定</button>
+	            </div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+<script type="text/javascript">
+	var editor = null;
+	$().ready(function(){
+
+	});
+
+	
+</script>

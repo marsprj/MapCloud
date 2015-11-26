@@ -2,7 +2,7 @@
 /* Dialog  Begin                                                           */
 /***************************************************************************/
 .modal {
-  text-align: center;
+    text-align: center;
 }
 
 .modal-dialog {
@@ -725,4 +725,34 @@
 }
 /***************************************************************************/
 /* Login Panel End                                                     */
+/***************************************************************************/
+/***************************************************************************/
+/* AQI city  Panel Begin                                                     */
+/***************************************************************************/
+#aqi_city_dialog .row{
+  margin: 0px;
+  padding: 6px 2px;
+}
+.aqi-city-list-div{
+  height: 300px;
+  overflow-y : auto;
+}
+
+.aqi-city-list-wrapper{
+    margin: 10px 0px;
+    border: 1px solid #ddd;
+}
+
+#aqi_city_dialog .aqi-city-list-div .row:hover{
+  background-color: #DFF1F8;
+  cursor: pointer;
+}
+
+.aqi-city-label{
+  margin: 0px 10px 0px 0px;
+  cursor: pointer;
+}
+
+/***************************************************************************/
+/*  AQI city  Panel End                                                     */
 /***************************************************************************/

@@ -6,6 +6,11 @@ var g_catalog =
         "link": "user_info.html"
     },
     {
+        "name": "用户订阅",
+        "icon": "rss.png",
+        "link": "user_subscribe.html"
+    },    
+    {
         "name": "服务管理",
         "icon": "service.png",
         "link": "user_service.html"

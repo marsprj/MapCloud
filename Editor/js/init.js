@@ -8,6 +8,7 @@ var gpsManager = null;
 var rasterDBManager = null;
 var tileDBManger = null;
 var poiManager = null;
+var subManager = null;
 // var url = "/ows/user1/mgr";
 var authServer = "/ows/admin/mgr";
 var authManager = new GeoBeans.AuthManager(authServer);

@@ -3204,7 +3204,11 @@ ul.layers_row li:before {
 	overflow: auto;
 }
 #topic_panel .panel-content .row{
-	margin: 0px;
+	margin: 10px;
+}
+#topic_panel .panel-content .row .fa{
+	margin-right: 4px;
+	font-size: 16px;
 }
 
 /***************************************************************************/
@@ -3238,6 +3242,7 @@ ul.layers_row li:before {
 #aqi_features_dialog .poi-features{
 	height: 600px;
 	overflow: auto;
+	border: 1px dashed #ccc;
 }
 #aqi_features_dialog .aqi-features-page{
 	position: relative;
@@ -3253,6 +3258,12 @@ ul.layers_row li:before {
 #aqi_features_dialog .pagination{
 	position: absolute;
 	right: 0px;
+}
+#aqi_features_dialog .text-primary{
+	margin-top: 8px;
+}
+#aqi_features_dialog table{
+	margin-bottom: 0px;
 }
 /***************************************************************************/
 /* AQI Dialog End  															*/

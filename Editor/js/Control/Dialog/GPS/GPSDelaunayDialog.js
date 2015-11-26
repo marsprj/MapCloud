@@ -55,6 +55,16 @@ MapCloud.GPSDelaunayDialog = MapCloud.Class(MapCloud.Dialog,{
 			MapCloud.gps_output_source_dialog.showDialog("delaunay","Feature");
 		});
 
+		// 选择高程字段
+		dialog.panel.find(".gps-z-field-checkbox").click(function(){
+			var checked = $(this).prop("checked");
+			if(checked){
+				dialog.panel.find(".gps-z-field").attr("disabled",false);
+			}else{
+				dialog.panel.find(".gps-z-field").attr("disabled",true);
+			}
+		});
+
 
 		// 操作
 		this.panel.find(".gps-btn-oper-btn").click(function(){
@@ -62,11 +72,12 @@ MapCloud.GPSDelaunayDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请选择输入的数据","Warning");
 				return;
 			}
-			var inputZField = dialog.panel.find(".gps-z-field").val();
-			if(inputZField == ""){
-				MapCloud.notify.showInfo("请选择高程字段","Warning");
-				return;
+
+			var inputZField = null;
+			if(dialog.panel.find(".gps-z-field-checkbox").prop("checked")){
+				inputZField = dialog.panel.find(".gps-z-field").val();
 			}
+			
 
 			if(dialog.outputSourceName == null){
 				MapCloud.notify.showInfo("请选择输出的数据库","Warning");
@@ -106,6 +117,9 @@ MapCloud.GPSDelaunayDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-output-typename").val("");
 		this.panel.find(".gps-oper-log-div").empty();
 		this.panel.find(".gps-z-field").empty();
+
+		this.panel.find(".gps-z-field").attr("disabled",true);
+		this.panel.find(".gps-z-field-checkbox").prop("checked",false);
 
 		this.inputSourceName = null;
 		this.inputTypeName = null;

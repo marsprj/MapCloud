@@ -182,6 +182,41 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.setImportPaths(this.paths);
 	},
 
+	// 检验编辑后的各行数据
+	getFeaturesValid : function(){
+		var rows = this.panel.find(".import-list-div .row");
+		var row = null;
+		var path = null;
+		var name = null;
+		var geom = null;
+		var srid = null;
+
+		var nameReg = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+		var sridReg = /^[0-9]+$/;
+		for(var i = 0; i < rows.length; ++i){
+			row = rows[i];
+			path = $(row).find(".fpath").html();
+			name = $(row).find(".fname span").html();
+			
+			if(!nameReg.test(name)){
+				MapCloud.notify.showInfo("请输入有效的表名称","Warning");
+				return false;
+			}
+			geom = $(row).find(".fgeom span").html();
+			if(!nameReg.test(geom)){
+				MapCloud.notify.showInfo("请输入有效的空间列","Warning");
+				return false;
+			}
+			srid = $(row).find(".fsrid span").html();
+			if(!sridReg.test(srid)){
+				MapCloud.notify.showInfo("请输入有效的空间参考","Warning");
+				return false;
+			}
+		}
+		return true;
+	},
+
+
 	// 获取编辑后的各行数据
 	getFeatures : function(){
 		var rows = this.panel.find(".import-list-div .row");
@@ -217,6 +252,10 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		if(this.dataSourceName == null){
 			MapCloud.notify.showInfo("请选择要导入的数据库","Warning");
+			return;
+		}
+		var flag = this.getFeaturesValid();
+		if(!flag){
 			return;
 		}
 		var features = this.getFeatures();

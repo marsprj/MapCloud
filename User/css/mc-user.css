@@ -747,4 +747,22 @@ div{
 /***************************************************************************/
 /* User Info End			                                               */
 /***************************************************************************/
+#user_sub_wrapper{
+
+}
+#user_sub_wrapper .form-group-sm{
+	margin-bottom: 6px;
+	margin: 0px;
+}
+#user_sub_wrapper .form-group-sm label{
+	font-weight: normal;
+}
+.topic-label span{
+	width: 50px;
+	display: inline-block;
+}
+
+/***************************************************************************/
+/* User Subscribe Begin			                                               */
+/***************************************************************************/
 

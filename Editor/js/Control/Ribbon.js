@@ -730,7 +730,8 @@ MapCloud.Ribbon = MapCloud.Class({
 	onTopic : function(){
 		// MapCloud.topicPanel.showPanel();	
 		// var name = "烤串";
-		var time = new Date("2015-11-02 05:42:23");
+		var time = new Date("2015-11-24 08:42:23");
+		// var time = new Date();
 		var names = ["aqi",["hotel"]];
 		poiManager.beginSubscribe(names,time,this.poi_callback);
 	},

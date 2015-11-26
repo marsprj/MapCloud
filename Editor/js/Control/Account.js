@@ -140,7 +140,13 @@ MapCloud.Account = MapCloud.Class({
 		rasterDBManager = user.getRasterDBManager();
 		gpsManager = user.getGPSManager();
 		poiManager = user.getPoiManager();
+		subManager = user.getSubManager();
 
+		// 设置参数
+		// subManager.setSubParams("base","gc_aqi_ranking","time_point","area",MapCloud.topicPanel.getSub_callback);
+		subManager.setSubParams("base","gc_aqi_ranking","time_point","area",
+		"gc_aqi_ranking_uptime","uptime","downtime",MapCloud.topicPanel.getSub_callback);
+		
 		MapCloud.cookieObj.setCookie("username",username,"/MapCloud");
 
 		MapCloud.userToolBar.showUser(username);

@@ -45,13 +45,27 @@ MapCloud.CutMapDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			var startLevel = dialog.panel.find(".map-start-level").val();
-			if(startLevel == null || startLevel == ""){
-				MapCloud.notify.showInfo("请输入起始级别","Warning");
+			startLevel = parseInt(startLevel);
+			if(!$.isNumeric(startLevel) || startLevel < 1){
+				MapCloud.notify.showInfo("请输入有效的起始级别","Warning");
+				dialog.panel.find(".map-start-level").focus();
 				return;
 			}
+			
 			var endLevel = dialog.panel.find(".map-end-level").val();
-			if(endLevel == null || endLevel == ""){
-				MapCloud.notify.showInfo("请输入终止级别","Warning");
+			endLevel = parseInt(endLevel);
+			if(!$.isNumeric(endLevel)){
+				MapCloud.notify.showInfo("请输入有效的终止级别","Warning");
+				dialog.panel.find(".map-end-level").focus();
+				return;
+			}
+			if(endLevel > 5){
+				MapCloud.notify.showInfo("最大级别为5","Warning");
+				dialog.panel.find(".map-end-level").focus();
+				return;
+			}
+			if(startLevel > endLevel){
+				MapCloud.notify.showInfo("请输入有效的起止和终止级别","Warning");
 				return;
 			}
 			MapCloud.notify.loading();
@@ -88,7 +102,7 @@ MapCloud.CutMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".cut-map-extent input").val("");
 		this.panel.find(".map-srid").val("");
 		this.panel.find(".map-start-level").val("1");
-		this.panel.find(".map-end-level").val("5");
+		this.panel.find(".map-end-level").val("4");
 		this.panel.find(".result-div").empty();
 
 		this.createTileStoreName = null;

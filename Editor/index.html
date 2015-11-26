@@ -200,6 +200,7 @@
 
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Auth/AuthManager.js"></script>
 <script type="text/javascript" src="../../Map5/lib/GeoBeans/Poi/PoiManager.js"></script>
+<script type="text/javascript" src="../../Map5/lib/GeoBeans/Subscribe/SubManager.js"></script>
 
 
 <script type="text/javascript" src="../js/MapCloud.js"></script>
@@ -584,10 +585,10 @@
 								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
 								<div class="ribbon_label">进程管理</div>
 							</div>
-							<div class="ribbon-item">
+							<!-- <div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
 								<div class="ribbon_label">订阅</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1722,7 +1723,7 @@
 								</button>
 								<div class="panel-header-content float_left">
 									<h5>
-										<i class="fa fa-bar-chart fa-2"></i>&nbsp;定制信息
+										<i class="fa fa-bar-chart fa-2"></i>&nbsp;订阅信息
 									</h5>
 								</div>
 
@@ -6085,11 +6086,12 @@
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
-									<label class="col-md-2 control-label">
+									<label class="col-md-2 control-label" style="padding-left:10px;">
+										<input type="checkbox" name="z-field" class="gps-z-field-checkbox">
 										高程字段:
 									</label>
 									<div class="col-md-8">
-										<select class="form-control gps-z-field">
+										<select class="form-control gps-z-field" disabled="disabled">
 										</select>
 									</div>
 								</div>
@@ -7546,7 +7548,7 @@
 						<div class="form-group form-group-sm">
 							<label class="col-md-2 control-label">终止级别:</label>
 							<div class="col-md-4">
-								<input type="text" class="form-control map-end-level" value="5">
+								<input type="text" class="form-control map-end-level" value="4">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -8053,8 +8055,9 @@
 					<div class="aqi-features-page">
 						<div class="aqi-count">
 							<p class="text-primary">
-								新增AQI记录：
+								新增AQI记录:
 								<span>0</span>
+								条
 							</p>
 						</div>
 						<ul class="pagination" style="margin:1px 0px">
@@ -8066,7 +8069,7 @@
 								<tr>
 									<th><nobr>gid</nobr></th>
 									<th><nobr>aqi</nobr></th>
-									<th><nobr>area</nobr></th>
+									<th style="width:60px;"><nobr>area</nobr></th>
 									<th><nobr>co</nobr></th>
 									<th><nobr>co_24h</nobr></th>
 									<th><nobr>no2</nobr></th>
@@ -8079,16 +8082,14 @@
 									<th><nobr>pm10_24h</nobr></th>
 									<th><nobr>pm2_5</nobr></th>
 									<th><nobr>pm2_5_24h</nobr></th>
-									<th><nobr>position_name</nobr></th>
-									<th><nobr>primary_pollutant</nobr></th>
 									<th><nobr>quality</nobr></th>
+									<th><nobr>level</nobr></th>
 									<th><nobr>so2</nobr></th>
 									<th><nobr>so2_24h</nobr></th>
-									<th><nobr>station_code</nobr></th>
+									<th><nobr>primary_pollutant</nobr></th>
 									<th><nobr>time_point</nobr></th>
 									<th><nobr>x</nobr></th>
 									<th><nobr>y</nobr></th>
-									
 								</tr>
 							</thead>
 							<tbody>
