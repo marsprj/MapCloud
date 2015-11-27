@@ -322,7 +322,7 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onProcess();
 					break;
 				case 38:
-					that.onTopic();
+					that.onVersion();
 					break
 				};
 			});
@@ -724,6 +724,11 @@ MapCloud.Ribbon = MapCloud.Class({
 	// 进程管理
 	onProcess : function(){
 		MapCloud.process_dialog.showDialog();		
+	},
+
+	// 关于
+	onVersion : function(){
+		MapCloud.version_dialog.showDialog();
 	},
 
 	// 定制主题

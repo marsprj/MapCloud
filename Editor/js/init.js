@@ -155,6 +155,9 @@ $().ready(function(){
 		= new MapCloud.CreateTileStoreDialog("create_tile_store_dialog");
 	MapCloud.process_dialog
 		= new MapCloud.ProcessDialog("process_dialog");
+
+	MapCloud.version_dialog
+		= new MapCloud.VersionDialog("version_dialog");
 		
 
 

@@ -328,6 +328,7 @@
 <script type="text/javascript" src="js/Control/Dialog/ProcessDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/PoiDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/AQIFeaturesDialog.js"></script>
+<script type="text/javascript" src="js/Control/Dialog/VersionDialog.js"></script>
 
 <title>MapEditor</title>
 </head>
@@ -585,10 +586,10 @@
 								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
 								<div class="ribbon_label">进程管理</div>
 							</div>
-							<!-- <div class="ribbon-item">
-								<div class="ribbon_image mc-icon-ribbon mc-icon-toolbox"></div>
-								<div class="ribbon_label">订阅</div>
-							</div> -->
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-version"></div>
+								<div class="ribbon_label">关于</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -8101,5 +8102,26 @@
 			</div>
 		</div>
 	</div>	
+
+	<!-- Version panel -->
+	<div class="modal fade" id="version_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="text-center">
+						<img src="../images/Web_Browser_50.png">
+					</div>
+					
+					<h3 class="text-center">
+						网络制图服务系统
+					</h3>
+					<p class="text-primary text-center">
+						MapCloud 1.0.0
+					</p>
+					<p class="text-center">版权所有:中国科学院遥感与数字地球所</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>

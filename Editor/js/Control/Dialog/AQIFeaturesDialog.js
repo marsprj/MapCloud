@@ -219,12 +219,6 @@ MapCloud.AQIFeaturesDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		this.panel.find("table tbody").html(html);
 
-		// click
-		this.panel.find("table tbody tr").click(function(){
-			var xValue = $(this).find(".xValue").html();
-			var yValue = $(this).find(".yValue").html();
-			alert(xValue + "," + yValue);
-		});
 	},
 
 

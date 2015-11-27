@@ -67,6 +67,8 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 
 
 	setResults : function(time,pois,aqiFeatures){
+		var date = new Date();
+		console.log(date);
 		if(time == null || !$.isArray(aqiFeatures) || !$.isArray(pois)){
 			return;
 		}
