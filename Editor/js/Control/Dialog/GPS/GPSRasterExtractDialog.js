@@ -123,7 +123,7 @@ MapCloud.GPSRasterExtractDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
-			if(xmax > dialog.rasterExtent.ymin){
+			if(xmax > dialog.rasterExtent.xmax){
 				MapCloud.notify.showInfo("请输入有效的范围","Warning");
 				dialog.panel.find(".gps-output-raster-xmax").focus();
 				return;
