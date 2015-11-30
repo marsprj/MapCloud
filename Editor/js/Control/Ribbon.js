@@ -190,138 +190,146 @@ MapCloud.Ribbon = MapCloud.Class({
 					break;
 				// Layer Events
 				case 5:
+				case 13:
 					// 添加矢量图层
 					that.onLayerNew();
 					break;
 				case 6:
+				case 14:
 					// 添加栅格图层
 					that.onAddRasterLayer();
 					break;
 				case 7:
+				case 15:
 					// WMS图层
 					that.onLayerAddWMS();
 					break;
 				case 8:
+				case 16:
 					// WFS图层
 					that.onLayerAddWFS();
 					break;
 				case 9:
+				case 17:
 					// WMTS图层
 					that.onLayerAddWMTS();
 					break;
 				case 10:
+				case 18:
 					// 影像底图
 					that.onAddBaseLayer("image");
 					break;
 				case 11:
+				case 19:
 					// 矢量底图
 					that.onAddBaseLayer("vector");
 					break;
 				case 12:
+				case 20:
 					// 全景图
 					that.onAddPanorama();
 					break;
-				case 13:
-					// 新建图层
-					that.onLayerNew();
-					break;
-				case 14:
-					// 编辑图层
-					// that.onEditLayer();
-					break;
-				case 15:
-					// 分享图层
-					that.onShareLayer();
-					break;
-				case 16:
-					// that.onCreateLayer();
-					break;
-				case 17:
-					//复制图层
-					that.onDuplicateLayer();
-					break;
-				case 18:
-					//删除图层
-					that.onRemoveLayer();
-					break;
-				case 19:
-					//图层定位
-					that.onZoomLayer();
-					break;
-				case 20:
-					//选择所有
-					that.onSelectAllLayers();
-					break;
-				case 21:
-					//导入图层
-					that.onImportLayer();
-					break;
-				case 22:
-					//导出图层
-					that.onExportLayer();
-					break;
+				// case 13:
+				// 	// 新建图层
+				// 	that.onLayerNew();
+				// 	break;
+				// case 14:
+				// 	// 编辑图层
+				// 	// that.onEditLayer();
+				// 	break;
+				// case 15:
+				// 	// 分享图层
+				// 	that.onShareLayer();
+				// 	break;
+				// case 16:
+				// 	// that.onCreateLayer();
+				// 	break;
+				// case 17:
+				// 	//复制图层
+				// 	that.onDuplicateLayer();
+				// 	break;
+				// case 18:
+				// 	//删除图层
+				// 	that.onRemoveLayer();
+				// 	break;
+				// case 19:
+				// 	//图层定位
+				// 	that.onZoomLayer();
+				// 	break;
+				// case 20:
+				// 	//选择所有
+				// 	that.onSelectAllLayers();
+				// 	break;
+				// case 21:
+				// 	//导入图层
+				// 	that.onImportLayer();
+				// 	break;
+				// case 22:
+				// 	//导出图层
+				// 	that.onExportLayer();
+				// 	break;
 				//Data Events
-				case 23:
+				case 21:
 					// 文件管理
 					that.onFile();
 					break;
-				case 24:
+				case 22:
 					// 地理库
 					that.onDataSource();
 					break;
-				case 25:
+				case 23:
 					// 	影像库
 					that.onImportImage();
 					break;
-				case 26:
+				case 24:
 					// 瓦片库
 					that.onTileDataSource();
 					break;
-				case 27:
+				case 25:
 					// 数据目录
 					that.onDataSourcePanel();
 					break;
 				// Chart Events
-				case 28:
+				case 26:
 					// 分级图
 					that.onAddRangeChart();
 					break;
-				case 29 :
+				case 27 :
 					// 柱状图
 					that.onAddBarChart();
 					break;
-				case 30:
+				case 28:
 					// 饼状图
 					that.onAddPieChart();
 					break;
-				case 31:
+				case 29:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 32:
+				case 30:
 					that.onAQI();
 					break;
-				case 33:
+				case 31:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 34:
+				case 32:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 35:
+				case 33:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 36:
+				case 34:
 					// 工具箱
 					that.onTools();
 					break;
-				case 37:
+				case 35:
 					// 进程管理
 					that.onProcess();
 					break;
-				case 38:
+				case 36:
 					that.onVersion();
 					break
 				};

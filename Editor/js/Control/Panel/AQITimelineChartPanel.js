@@ -110,8 +110,10 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 	    	var month = date.getUTCMonth();
 	    	var day = date.getUTCDate();
 	    	var startTime = new Date(year + "-" + (month+1) + "-" + day + " 00:00:00");
-	    	var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
+	    	// var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
 	    	var div = that.panel.find(".aqi-start-time-points");
+	    	var endTime = MapCloud.dateAdd(date,"day",1);
+	    	endTime.setHours(0);
 	    	that.displayTimeList(startTime,endTime,div);
 	    });		
 
@@ -133,8 +135,10 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 	    	var month = date.getUTCMonth();
 	    	var day = date.getUTCDate();
 	    	var startTime = new Date(year + "-" + (month+1) + "-" + day + " 00:00:00");
-	    	var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
+	    	// var endTime = new Date(year + "-" + (month+1) + "-" + (day+1) + " 00:00:00");
 	    	var div = that.panel.find(".aqi-end-time-points");
+	    	var endTime = MapCloud.dateAdd(startTime,"day",1);
+	    	endTime.setHours(0);
 	    	that.displayTimeList(startTime,endTime,div);
 	    });	
 
@@ -167,10 +171,12 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		var html = "";
-		var startTimeStr = startTime.getUTCFullYear() + "-" + (startTime.getUTCMonth()+1)
-			+ "-" + startTime.getDate() + " 00:00:00";
-		var endTimeStr = endTime.getUTCFullYear() + "-" + (endTime.getUTCMonth()+1)
-			+ "-" + endTime.getDate() + " 00:00:00"
+		// var startTimeStr = startTime.getUTCFullYear() + "-" + (startTime.getUTCMonth()+1)
+		// 	+ "-" + startTime.getDate() + " 00:00:00";
+		// var endTimeStr = endTime.getUTCFullYear() + "-" + (endTime.getUTCMonth()+1)
+		// 	+ "-" + endTime.getDate() + " 00:00:00";
+		var startTimeStr = MapCloud.dateFormat(startTime,"yyyy-MM-dd hh:mm:ss");
+		var endTimeStr = MapCloud.dateFormat(endTime,"yyyy-MM-dd hh:mm:ss");
 		var timeList = new GeoBeans.AQITimePointList("tmp",this.dbName,
 			this.timeTableName,this.timeTableTimeField,startTimeStr,endTimeStr);
 		timeList.setMap(mapObj);

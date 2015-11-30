@@ -14,6 +14,9 @@ MapCloud.GPSRasterExtractDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 输出影像路径
 	outputRasterPath : null,
 
+	// 输入影像的范围
+	rasterExtent : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
 		var dialog = this;
@@ -101,10 +104,41 @@ MapCloud.GPSRasterExtractDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 
+
+
 			xmin = parseFloat(xmin);
 			xmax = parseFloat(xmax);
 			ymin = parseFloat(ymin);
 			ymax = parseFloat(ymax);
+
+			if(xmin < dialog.rasterExtent.xmin){
+				MapCloud.notify.showInfo("请输入有效的范围","Warning");
+				dialog.panel.find(".gps-output-raster-xmin").focus();
+				return;
+			}
+
+			if(ymin < dialog.rasterExtent.ymin){
+				MapCloud.notify.showInfo("请输入有效的范围","Warning");
+				dialog.panel.find(".gps-output-raster-ymin").focus();
+				return;
+			}
+
+			if(xmax > dialog.rasterExtent.ymin){
+				MapCloud.notify.showInfo("请输入有效的范围","Warning");
+				dialog.panel.find(".gps-output-raster-xmax").focus();
+				return;
+			}		
+
+			if(ymax > dialog.rasterExtent.ymax){
+				MapCloud.notify.showInfo("请输入有效的范围","Warning");
+				dialog.panel.find(".gps-output-raster-ymax").focus();
+				return;
+			}		
+
+			if(xmin > xmax || ymin > ymax){
+				MapCloud.notify.showInfo("请输入有效的范围","Warning");
+				return;
+			}
 
 			var extent = new GeoBeans.Envelope(xmin,ymin,xmax,ymax);
 			MapCloud.notify.loading();
@@ -145,8 +179,8 @@ MapCloud.GPSRasterExtractDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.inputRasterPath = null;
 		this.outputSourceName = null;
 		this.outputRasterPath = null;
+		this.rasterExtent = null;
 	},
-
 
 	// 输入影像
 	setRaster : function(inputSourceName,inputRasterName,inputRasterPath,raster){
@@ -161,6 +195,7 @@ MapCloud.GPSRasterExtractDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(raster != null){
 			var extent = raster.extent;
 			if(extent != null){
+				this.rasterExtent = extent;
 				this.panel.find(".gps-input-raster-xmin").val(extent.xmin);
 				this.panel.find(".gps-input-raster-ymin").val(extent.ymin);
 				this.panel.find(".gps-input-raster-xmax").val(extent.xmax);

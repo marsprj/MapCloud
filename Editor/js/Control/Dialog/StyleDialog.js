@@ -122,6 +122,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 	cleanup : function(){
 		var first = this.panel.find("ul.nav-tabs li a").first();
 		first.tab("show");
+		this.panel.find(".text-text  input[type='text']").val("自定义文本");
 	},
 
 	setFontEnable : function(checked){
@@ -154,6 +155,26 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 					"'>" + face + "</option>";
 		}
 		this.panel.find(".font-family").html(html);
+
+		if(this.rule == null){
+			return;
+		}
+		var textSymbolizer = this.rule.textSymbolizer;
+		if(textSymbolizer == null){
+			return;
+		}
+		var font = textSymbolizer.font;
+		if(font == null){
+			return;
+		}
+		var family = font.family;
+		if(family == null){
+			return;
+		}
+		this.panel.find(".font-family option[value='" + family + "']")
+			.attr("selected",true);
+
+
 	},
 
 	// 设置样式，来源，字段

@@ -63,15 +63,17 @@ MapCloud.AQIChartPanel = MapCloud.Class(MapCloud.Panel,{
 	    	// that.displayTimeList(startTime,endTime);
 
 	    	var startTime = new Date(date);
-	    	var endTime = new Date(date);
+	    	// var endTime = new Date(date);
 	    	var day = date.getDate();
-	    	endTime.setDate(day + 1);
+	    	// endTime.setDate(day + 1);
 	    	startTime.setHours(0);
 	    	startTime.setMinutes(0);
 	    	startTime.setSeconds(0);
+	    	// endTime.setHours(0);
+	    	// endTime.setMinutes(0);
+	    	// endTime.setSeconds(0);
+	    	var endTime = MapCloud.dateAdd(startTime,"day",1);
 	    	endTime.setHours(0);
-	    	endTime.setMinutes(0);
-	    	endTime.setSeconds(0);
 
 	    	that.displayTimeList(startTime,endTime);
 
