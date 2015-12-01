@@ -400,7 +400,7 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dataSource = null;
 		var name = null;
 		var html = "";
-		for(var i = 0; i < dataSources.length; ++i){
+		for(var i = dataSources.length -1; i >= 0; --i){
 			dataSource = dataSources[i];
 			if(dataSource == null){
 				continue;

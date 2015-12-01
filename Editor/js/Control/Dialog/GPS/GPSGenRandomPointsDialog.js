@@ -86,6 +86,11 @@ MapCloud.GPSGenRandomPointsDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".gps-output-count").focus();
 				return;
 			}
+			if(count > 1000){
+				MapCloud.notify.showInfo("请输入小于1000的数","Warning");
+				dialog.panel.find(".gps-output-count").focus();
+				return;
+			}
 
 
 			if(dialog.outputSrid == null){

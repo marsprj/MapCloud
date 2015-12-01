@@ -6,9 +6,7 @@ MapCloud.GPSOutputSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
 		var dialog = this;
 
-
 		this.registerPanelEvent();
-
 	},
 
 	registerPanelEvent : function(){
@@ -115,7 +113,7 @@ MapCloud.GPSOutputSourceDialog = MapCloud.Class(MapCloud.Dialog,{
 		var dataSource = null;
 		var name = null;
 		var html = "";
-		for(var i = 0 ;i < dataSources.length; ++i){
+		for(var i = dataSources.length -1 ;i >= 0; --i){
 			dataSource = dataSources[i];
 			if(dataSource == null){
 				continue;

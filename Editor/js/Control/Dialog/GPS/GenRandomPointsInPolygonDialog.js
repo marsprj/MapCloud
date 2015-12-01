@@ -93,6 +93,12 @@ MapCloud.GenRandomPointsInPolygonDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".gps-output-count").focus();
 				return;
 			}
+			if(count > 1000){
+				MapCloud.notify.showInfo("请输入小于1000的数","Warning");
+				dialog.panel.find(".gps-output-count").focus();
+				return;
+			}
+
 			MapCloud.notify.loading();
 			gpsManager.generateRandomPointsInPolygon(dialog.inputSourceName,dialog.inputTypeName,
 				dialog.outputSourceName,outputTypeName,count,dialog.generateRandomPointsInPolygon_callback);

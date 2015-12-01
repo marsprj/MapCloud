@@ -45,11 +45,8 @@ MapCloud.WMTSDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			dialog.layer.name = name;
-			mapObj.insertLayer(dialog.layer);
-			mapObj.draw();
-			MapCloud.refresh_panel.refreshPanel();
+			mapObj.insertLayer(dialog.layer,dialog.insertLayer_callback);
 			
-			dialog.closeDialog();
 		});		
 	},
 
@@ -72,5 +69,17 @@ MapCloud.WMTSDialog = MapCloud.Class(MapCloud.Dialog,{
 			this.panel.find(".wmts-tile-store").val(this.layer.name);
 			this.panel.find("#wmts_layer_name").val(this.layer.name);
 		}
+	},
+
+	insertLayer_callback : function(result){
+		if(result != "success"){
+			MapCloud.notify.showInfo(result,"添加WMTS图层");
+		}else{
+			mapObj.draw();
+			MapCloud.refresh_panel.refreshPanel();
+			var dialog = MapCloud.wmts_dialog;	
+			dialog.closeDialog();
+		}
+		
 	},
 });

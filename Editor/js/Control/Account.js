@@ -183,7 +183,7 @@ MapCloud.Account = MapCloud.Class({
 		}
 		if(!nameReg.test(alias)){
 			MapCloud.notify.showInfo("请输入有效的昵称","Warning");
-			this.registerPanel.find("input[name='alias'").focus();
+			this.registerPanel.find("input[name='alias']").focus();
 			return;
 		}
 
