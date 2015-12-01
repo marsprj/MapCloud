@@ -2877,6 +2877,7 @@ ul.layers_row li:before {
 }
 #gps_srid_dialog .srid-list-div {
 	height: 290px;
+	overflow-y: auto; 
 }
 #gps_srid_dialog .srid-list-div .row:hover{
 	background-color: #DFF1F8;

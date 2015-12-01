@@ -46,7 +46,7 @@ MapCloud.CutMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 			var startLevel = dialog.panel.find(".map-start-level").val();
 			startLevel = parseInt(startLevel);
-			if(!$.isNumeric(startLevel) || startLevel < 1){
+			if(!$.isNumeric(startLevel) || startLevel < 1 || startLevel > 5){
 				MapCloud.notify.showInfo("请输入有效的起始级别","Warning");
 				dialog.panel.find(".map-start-level").focus();
 				return;

@@ -31,6 +31,13 @@ MapCloud.GPSSridDialog = MapCloud.Class(MapCloud.Dialog,{
 			var sridName = dialog.panel.find(".search-srid-name").val();
 			if(sridName == null || sridName == ""){
 				MapCloud.notify.showInfo("请输入查询Srid","Warning");
+				dialog.panel.find(".search-srid-name").focus();
+				return;
+			}
+			var sridReg = /^[0-9]+$/;
+			if(!sridReg.test(sridName)){
+				MapCloud.notify.showInfo("请输入一个有效的查询值","Warning");
+				dialog.panel.find(".search-srid-name").focus();
 				return;
 			}
 			MapCloud.notify.loading();
@@ -76,6 +83,7 @@ MapCloud.GPSSridDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".srid-list-div").empty();
 		this.panel.find(".search-srid-name").val();
 		this.panel.find(".pagination").empty();
+		this.panel.find(".search-srid-name").val("");
 	},
 
 	getSpatialReferenceList : function(count,offset){
@@ -262,24 +270,25 @@ MapCloud.GPSSridDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	getSpatialReferenceBySrid_callback : function(srid){
 		MapCloud.notify.hideLoading();
-		if(srid == null){
+		if(srid == null || srid.length == 0){
 			return;
 		}
 		var dialog = MapCloud.gps_srid_dialog;
 
-		var html = "<div class='row' sname='" + srid.srid + "'>"
-			+ "<div class='col-md-1'>" + srid.srid + "</div>"
-			+ "<div class='col-md-11 text-ellip'>" + srid.srtext + "</div>"
-			+ "</div>";
+		// var html = "<div class='row' sname='" + srid.srid + "'>"
+		// 	+ "<div class='col-md-1'>" + srid.srid + "</div>"
+		// 	+ "<div class='col-md-11 text-ellip'>" + srid.srtext + "</div>"
+		// 	+ "</div>";
 
-		dialog.panel.find(".srid-list-div").html(html);
+		// dialog.panel.find(".srid-list-div").html(html);
 
 		
-		dialog.panel.find(".srid-list-div .row").click(function(){
-			dialog.panel.find(".srid-list-div .row.selected").removeClass("selected");
-			$(this).addClass('selected');
+		// dialog.panel.find(".srid-list-div .row").click(function(){
+		// 	dialog.panel.find(".srid-list-div .row.selected").removeClass("selected");
+		// 	$(this).addClass('selected');
 
-		});	
+		// });	
+		dialog.showSridList(srid);
 
 	}
 

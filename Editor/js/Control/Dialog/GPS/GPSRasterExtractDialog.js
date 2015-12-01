@@ -202,6 +202,11 @@ MapCloud.GPSRasterExtractDialog = MapCloud.Class(MapCloud.Dialog,{
 				this.panel.find(".gps-input-raster-ymax").val(extent.ymax);
 			}
 		}
+
+		// 设置输出后缀
+		var index = this.inputRasterName.lastIndexOf(".");
+		var format = this.inputRasterName.slice(index,this.inputRasterName.length);
+		this.panel.find(".gps-output-raster-format").val(format);
 	},
 
 	// 输出参数

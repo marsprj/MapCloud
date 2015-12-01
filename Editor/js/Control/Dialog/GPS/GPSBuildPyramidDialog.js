@@ -70,14 +70,16 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".gps-start-level").focus();
 				return;
 			}
+
 			start = parseInt(start);
-			if(start <= 0){
+			if(start <= 0 || start >5){
 				MapCloud.notify.showInfo("请输入有效的起始级别","Warning");
 				dialog.panel.find(".gps-start-level").focus();
 				return;
 			}
 
 			var end = dialog.panel.find(".gps-end-level").val();
+
 			if(!$.isNumeric(end)){
 				MapCloud.notify.showInfo("请输入终止级别","Warning");
 				dialog.panel.find(".gps-end-level").focus();
@@ -87,6 +89,11 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 			if(end <= 0){
 				MapCloud.notify.showInfo("请输入有效的终止级别","Warning");
 				dialog.panel.find(".gps-end-level").focus();
+				return;
+			}
+			if(end > 5){
+				MapCloud.notify.showInfo("最大级别为5","Warning");
+				dialog.panel.find('.gps-end-level').focus();
 				return;
 			}
 			if(start > end){
@@ -118,8 +125,8 @@ MapCloud.GPSBuildPyramidDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".gps-map-name").val("");
 		this.panel.find(".gps-output-source-name").val("");
 		this.panel.find(".gps-tile-store").val("");
-		this.panel.find(".gps-start-level").val("");
-		this.panel.find(".gps-end-level").val("");
+		this.panel.find(".gps-start-level").val("1");
+		this.panel.find(".gps-end-level").val("4");
 		this.panel.find(".gps-oper-log-div").empty();
 	},
 
