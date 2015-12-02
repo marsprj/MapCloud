@@ -75,7 +75,8 @@ MapCloud.GPSMultiPointToPointsDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".gps-output-typename").focus();
 				return;
 			}
-			var nameReg = /^[0-9a-zA-Z_]+$/;
+			
+			var nameReg =  /^[a-zA-Z][a-zA-Z0-9_]*$/;
 			if(!nameReg.test(outputTypeName)){
 				MapCloud.notify.showInfo("请输入有效的输出数据名称","Warning");
 				dialog.panel.find(".gps-output-typename").focus();
