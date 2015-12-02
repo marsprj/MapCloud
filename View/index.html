@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- <link rel="stylesheet" type="text/css" href="css/mc.css"/> -->
+	<link rel="stylesheet" type="text/css" href="css/mv.css"/>
+	<link rel="stylesheet" type="text/css" href="../../Map5/css/Map5.css"/>
+	<link rel="stylesheet" type="text/css" href="../../Map5/css/custom_slider.css"/>
+	<script type="text/javascript" src="js/3rd/jquery-1.11.1.js"></script>
+<!-- 
+	<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+	<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
+	<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script type="text/javascript" src="js/3rd/bootstrap-3.2.0-dist/bootstrap-multiselect.js"></script>
+ -->
+
+ 	<!-- Map5 Library -->
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WMS/WMSWorkspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WMTS/WMTSWorkspace.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Transformation.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/AQIChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/AQITimelineLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Renderer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Events.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/InfoWindow.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/AQIIndexChart.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/AQIStatCompChart.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/AQITimePointList.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/AQI/TimeLineBar.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapWorkspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Style.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Rule.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Font.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Stroke.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Fill.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FontManager.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Label.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Label/PointLabel.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/File.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/Folder.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+	<!-- Map5 Library -->
+
+	<!-- MapView Library -->
+	<script type="text/javascript" src="js/MapView.js"></script>
+	<script type="text/javascript" src="js/Control/SearchControl.js"></script>
+	<script type="text/javascript" src="js/Control/ResultControl.js"></script>
+	<script type="text/javascript" src="js/Init.js"></script>
+	<!-- MapView Library -->
+
+	<title>MapView</title>
+</head>
+
+<body>
+	<div id="search_bar" class="mc-border-shadow">
+		<ul>
+			<li><div id="earth_logo"></div></li>
+			<li><input id="search_input" type="text" placeholder="查询关键字"></li>
+			<li><div id="search_btn"></div></li>
+		</ul>
+	</div>
+	<div id="result_wrapper">
+		<div id="result_container" class="mc-border-shadow">
+			<div id="map_menu">
+				<div id="map_menu_poi" class="map_menu_item">
+					<div class="mv_poi_icon"></div>	
+					<span>POI</span>
+				</div>
+				<div id="map_menu_gaze" class="map_menu_item">
+					<div class="mv_gaze_icon"></div>	
+					<span>地名</span>
+				</div>
+				<div id="map_menu_aqi" class="map_menu_item">
+					<div class="mv_gaze_icon"></div>	
+					<span>AQI</span>
+				</div>
+			</div>
+			<div id="content_container">
+				<div id="poi_container">
+ 					<div id="poi_hot_bar">
+  						<div id="poi_item_hospital" class="poi_hot_item">
+							<div class="mv_poi_icon_item mv_poi_icon_hotel"></div>
+							<span>酒店</span>
+						</div>
+ 						<div id="poi_item_restaurant" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_restaurant"></div>
+ 							<span>餐饮</span>
+ 						</div>
+ 						<div id="poi_item_restaurant" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_shop"></div>
+ 							<span>购物</span>
+ 						</div>
+ 						<div id="poi_item_restaurant" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_cinema"></div>
+ 							<span>电影院</span>
+ 						</div>
+ 						<div id="poi_item_restaurant" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_site"></div>
+ 							<span>景点</span>
+ 						</div>
+ 						<div id="poi_item_restaurant" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_bank"></div>
+ 							<span>银行</span>
+ 						</div>
+ 						<div id="poi_item_restaurant" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_supermarker"></div>
+ 							<span>超市</span>
+ 						</div>
+ 						<div id="poi_item_gas" class="poi_hot_item">
+ 							<div class="mv_poi_icon_item mv_poi_icon_subway"></div>
+ 							<span>地铁</span>
+ 						</div>
+					</div>
+					<div class="poi_hot_catetory">
+						<div>
+							<img src="images/poi/poi_traffic.png">
+							<span>出行</span>
+							<span>公交站</span>
+							<span>地铁站</span>
+							<span>加油站</span>
+							<span>停车场</span>
+						</div>
+						<div>
+							<img src="images/poi/poi_entertainment.png">
+							<span>休闲</span>
+							<span>景点</span>
+							<span>KTV</span>
+							<span>酒吧</span>
+							<span>电影院</span>
+						</div>
+						<div>
+							<img src="images/poi/poi_life.png">
+							<span>生活</span>
+							<span>医院</span>
+							<span>学校</span>
+							<span>药店</span>
+							<span>ATM</span>
+						</div>
+						<div>
+							<img src="images/poi/poi_coffee.png">
+							<span>餐饮</span>
+							<span>火锅</span>
+							<span>烧烤</span>
+							<span>快餐</span>
+							<span>川菜</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="result_panctl"></div>
+	</div>
+
+	<div id="map_switcher_wrapper">
+        <div id="map_switcher" src="image/mapDituImage.png" onclick="onMapViewSwicher();"></div>
+    </div>
+	<div class="wrapper">
+        <div id="map_bar_wrapper">
+			<div class="map_bar_item"><span title="城市选择" id="city_btn">北京</span></div>
+			<div class="map_bar_item"><span title="AQI">AQI:100</span></div>
+			<div class="map_bar_item"><span title="禽流感">禽流感</span></div>
+			<div class="map_bar_item"><div id="map_bar_measure"></div></div>
+        </div>
+		<div id="map_div"></div>
+	</div>
+</body>
