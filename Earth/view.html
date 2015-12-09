@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="css/radi_earth.css">
+	<script type="text/javascript" src="Cesium/Cesium.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/RadiEarth1.js"></script>
+
+	<script type="text/javascript" src="../js/MapCloud.js"></script>
+	<script type="text/javascript" src="../js/Class/Class.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
+	<script type="text/javascript" src="../js/Control/Dialog/Dialog.js"></script>
+
+	<script type="text/javascript" src="js/view_init.js"></script>
+	<script type="text/javascript" src="js/SearchPanel.js"></script>
+	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
+	<script type="text/javascript" src="js/CityPanel.js"></script>
+	<script type="text/javascript" src="js/AQIChartDialog.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Poi/PoiManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/OrderBy.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+
+	<style>
+      @import url(Cesium/Widgets/widgets.css);
+    </style>
+
+	<title>数字地球</title>
+</head>
+<body>
+	<!-- 查询面板 -->
+	<div id="search_container" class="float-panel">
+		<div id="search_header">
+			<div class="row">
+				<div class="col-md-1 logo">
+					<img src="images/earth_24.png">
+				</div>
+				<div class="col-md-2" style="width:64px;">
+					<button type="button" class="btn btn-default dropdown-toggle search-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">POI<span class="caret"></span></button>
+			        <ul class="dropdown-menu search-item-menu">
+			          <li><a href="#">POI</a></li>
+			          <li><a href="#">地名</a></li>
+			          <!-- <li><a href="#">AQI</a></li> -->
+			        </ul>
+				</div>
+				<div class="col-md-8">
+					<div class="input-group">
+			      		<input type="text" class="form-control search-keyword" placeholder="请输入查询关键词" value="银行">
+			      		<span class="input-group-btn">
+			        		<button class="btn btn-default search-btn" type="button">&nbsp;&nbsp;</button>
+			      		</span>
+		    		</div>
+				</div>
+			</div>
+		</div>
+		<div id="search_content_div">
+			<div class="search-content-tab-div search-list-div row">
+				<div class="col-md-2 search-menu-div">
+					<ul>
+						<li class="active" pname="poi">
+							<img src="../images/search_24_1.png">
+							POI
+						</li>
+						<li pname="place">
+							<img src="../images/flag.png">
+							地名
+						</li>
+						<li pname="aqi">
+							<img src="../images/chart_aqi_32.png" style="margin-left:8px">
+							AQI
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-10" style="height:100%">
+					<div class="search-tab-div poi-tab active">
+						<div class="row poi-icon-row">
+							<div class="col-md-3 poi-item" piname="hotel">
+								<div class="poi-item-icon poi-hotel-item">
+								</div>
+								<span>酒店</span>
+							</div>
+							<div class="col-md-3 poi-item" piname="restaurant">
+								<div class="poi-item-icon poi-restaurant-item">
+								</div>
+								<span>餐饮</span>
+							</div>
+							<div class="col-md-3 poi-item" piname="shop">
+								<div class="poi-item-icon poi-shop-item">
+								</div>
+								<span>购物</span>
+							</div>
+							<div class="col-md-3 poi-item" piname="cinema">
+								<div class="poi-item-icon poi-cinema-item">
+								</div>
+								<span>电影院</span>
+							</div>
+						</div>
+						<div class="row poi-icon-row">
+							<div class="col-md-3 poi-item" piname="site">
+								<div class="poi-item-icon poi-site-item">
+								</div>
+								<span>景点</span>
+							</div>
+							<div class="col-md-3 poi-item" piname="bank">
+								<div class="poi-item-icon poi-bank-item">
+								</div>
+								<span>银行</span>
+							</div>
+							<div class="col-md-3 poi-item" piname="supermarker">
+								<div class="poi-item-icon poi-supermarker-item">
+								</div>
+								<span>超市</span>
+							</div>
+							<div class="col-md-3 poi-item" piname="subway">
+								<div class="poi-item-icon poi-subway-item">
+								</div>
+								<span>地铁</span>
+							</div>
+						</div>
+					</div>
+					<div class="search-tab-div place-tab">
+					</div>
+					<div class="search-tab-div aqi-tab">
+						<div class="row aqi-time-row" style="margin-bottom:10px;">
+							<div class="col-md-7 current-time">
+								最后更新时间: <span>09:00:00</span>
+							</div>
+							<div class="col-md-offset-2 col-md-3">
+								<a href="javascript:void(0)" class="show-stat">站点信息</a>
+							</div>
+						</div>
+						<div class="aqi-info board">
+							<div class="board-title">
+								<span class='aqi-stat'>北京</span>
+								<span class='aqi-number label-aqi-level-2'>152</span>
+							</div>
+							<div class="board-content row">
+								<div class="col-md-8">
+								<div class="row">
+									<div class='col-md-4'>
+										空气质量:
+									</div>
+									<div class="col-md-6">
+										<span class="label aqi-quality-label">优</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class='col-md-4'>
+										空气等级:
+									</div>
+									<div class="col-md-6">
+										<span class="label aqi-level-label">一级</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class='col-md-4'>
+										PM2.5:
+									</div>
+									<div class="col-md-6">
+										<span class="label aqi-pm25-label">26</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class='col-md-4'>
+										PM10:
+									</div>
+									<div class="col-md-6">
+										<span class="label aqi-pm10-label">26</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="aqi-chart-btn" data-toggle="tooltip" data-placement="top" data-original-title="变化曲线">
+								</div>
+							</div>
+							</div>
+						</div>
+						<div class="aqi-ranking board">
+							<div class="board-title">
+								<span>空气质量排行榜</span>
+							</div>
+							<div class="board-content">
+								<div class="header-row row">
+									<div class="col-md-2">排名</div>
+									<div class="col-md-4">城市</div>
+									<div class="col-md-2">AQI</div>
+									<div class="col-md-4">质量</div>
+								</div>	
+								<div class="aqi-ranking-div loading">
+									
+								</div>
+								<div class="aqi-ranking-page">
+									<span class="current-page">1 / 1 页</span>
+									<ul class="pagination"> 
+										<li class="first-page">首页</li>
+										<li class="pre-page">上一页</li>
+										<li class="next-page">下一页</li>
+										<li class="last-page">末页</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-tab-div aqi-stat-tab">
+						<div class="row aqi-time-row" style="margin-bottom:10px;">
+							<div class="col-md-7 current-time">
+								最后更新时间: <span>16:00:00</span>
+							</div>
+							<div class="col-md-offset-3 col-md-2">
+								<a href="javascript:void(0)" class="return-aqi">返回</a>
+							</div>
+						</div>
+						<div class="aqi-stat-div">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="search-content-tab-div result-div">
+				<div class="result-div-header">
+					<a href="javascript:void(0)" class="btn btn-link btn-sm return-search-list-btn">返回</a>
+					<!-- <div class="glyphicon glyphicon-chevron-left return-search-list-btn mc-icon">
+					</div> -->
+				</div>
+				<div class="result-content-div">
+					<ul>
+						<li>
+							<div class="row">
+								<div class="col-md-2">
+									<img src="../images/marker.png">
+								</div>
+								<div class="col-md-10">
+									<div class="row poi-name">
+										台北旅乐序精品旅馆
+									</div>
+									<div class="row poi-address">
+										地址: 中正区馆前路8号11楼
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="row">
+								<div class="col-md-2">
+									<img src="../images/marker.png">
+								</div>
+								<div class="col-md-10">
+									<div class="row poi-name">
+										台北旅乐序精品旅馆
+									</div>
+									<div class="row poi-address">
+										地址: 中正区馆前路8号11楼
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="row">
+								<div class="col-md-2">
+									<img src="../images/marker.png">
+								</div>
+								<div class="col-md-10">
+									<div class="row poi-name">
+										台北旅乐序精品旅馆
+									</div>
+									<div class="row poi-address">
+										地址: 中正区馆前路8号11楼
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 伸缩按钮 -->
+		<!-- <div id="search_container_coll">
+		</div> -->
+	</div>
+
+	<!-- 当前城市面板 -->
+	<div id="city_container" class="float-panel">
+		<div class="current-city">
+			<span class="current-city-name">北京</span>
+			<span class="caret"></span>
+		</div>
+		<div class="current-city-aqi">
+			AQI : <span>102</span>
+		</div>
+	</div>
+	<!-- 城市列表 -->
+	<div id="city_list_container" class="float-panel">
+		<div class="row current-city-row">
+			<div class='col-md-3'>当前城市：</div>
+			<div class="col-md-2"><span>北京</span></div>
+		</div>
+		<div class="city-list-div">
+			<div class="row">
+				<div class="col-md-2">
+					安徽:
+				</div>
+				<div class="col-md-10">
+					<ul>
+						<!-- <li><a href="javascript:void(0)">合肥</a></li>
+						<li><a href="javascript:void(0)">安庆</a></li>
+						<li><a href="javascript:void(0)">蚌埠</a></li>
+						<li><a href="javascript:void(0)">亳州</a></li> -->
+						<li>合肥</li>
+						<li>安庆</li>
+						<li>蚌埠</li>
+						<li>亳州</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id='main_container'>
+		<div id='earth_container'
+		></div>
+	</div>
+
+
+	<!-- AQI chart dialog -->
+	<div class="modal fade" id="aqi_chart_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">空气质量指数曲线图</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="btn-group col-md-4 col-md-offset-1" role="group">
+							<button type="button" class="btn btn-default aqi-24h" disabled="disabled">24时</button>
+							<button type="button" class="btn btn-default aqi-7d">7天</button>
+							<button type="button" class="btn btn-default aqi-30d">30天</button>
+						</div>
+					</div>
+					<div id="aqi_chart_container">
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>

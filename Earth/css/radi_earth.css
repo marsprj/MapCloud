@@ -7,19 +7,29 @@ body {
   margin: 0;
   overflow: hidden;
   height: 100%;
+  font-size: 12px !important;
 }
 
 ul {
   display: block;
   list-style-type: none;
   padding-left: 0px;
-  margin: 5px;
+  margin: 0px;
 }
 
 li {
   display: list-item;
 }
 
+.mc-icon{
+  display: block;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 #main_container{
   height: 100%;
   width: 100%;
@@ -62,4 +72,427 @@ li {
 
 .tool_item:hover{
 	cursor: pointer;
+}
+
+#search_container{
+    left: 40px;
+    top: 30px;
+    /*height: 400px;*/
+    width: 350px;
+}
+.float-panel{
+  position: absolute;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3),0 4px 15px -5px rgba(0,0,0,0.0);
+  /*background-color: #fff;*/
+  border-radius: 4px;
+}
+#search_header{
+    background-color: #4D90FE;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 10px;
+}
+#search_header .row{
+  margin: 0px;
+}
+#search_header .row [class*="col-"]{
+  padding: 0px;
+}
+.logo{
+  margin-right: 8px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.logo img{
+  padding-top: 3px;
+}
+#search_header .dropdown-menu{
+  min-width: 100%;
+}
+.search-item{
+  /*padding-right: 0px !important;*/
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  width: 65px;
+  border-right: 0px;
+}
+.search-keyword{
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+.search-btn{
+  background-image: url(../images/search_24.png) !important;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.search-btn:hover{
+  background-color: none;
+}
+#search_content_div{
+  height: 580px;
+  background-color: #fff;
+  font-size: 12px;
+}
+.search-content-tab-div{
+  height: 100%;
+  display: none;
+}
+.search-list-div{
+  display: block;
+}
+.result-div{
+  padding: 12px;
+}
+.result-div-header{
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+
+#search_container_coll{
+    width: 100%;
+    height: 20px;
+    background: url(../../images/panctrl.png) no-repeat center;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out; 
+    cursor: pointer;
+}
+.result-content-div{
+  font-size: 12px;
+  width: 100%;
+  height: calc(100% - 31px);
+  overflow-y:auto;
+  overflow-x : hidden;
+}
+.result-content-div ul{
+  margin: 0px;
+}
+
+.result-content-div ul li{
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+.result-content-div ul li:hover{
+  background-color: #DFF1F8;
+}
+
+#search_content_div .row{
+  margin: 0px;
+}
+#search_content_div .row [class*="col-"]{
+  padding: 0px;
+}
+.poi-name{
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.poi-address{
+  color: #767676;
+}
+.search-menu-div{
+  height: 100%;
+  background-color: #efefef;
+}
+
+.search-menu-div li{
+  display: block;;
+  text-align: center; 
+  font-size: 12px; 
+  padding: 10px 4px;
+  cursor: pointer;
+}
+.search-menu-div li.active{
+  background-color: #fff;
+}
+.search-menu-div li:hover{
+  background-color: #fff;
+}
+.search-menu-div li img{
+  display: block;
+  margin-left: 12px;
+}
+.search-tab-div{
+  display: none;
+  padding: 20px 0px;
+  height: 100%;
+}
+.search-tab-div.active{
+  display: block;
+}
+.poi-item-icon{
+  width: 38px;
+  height: 38px;
+}
+.poi-icon-row .col-md-3{
+  padding: 4px 18px !important;
+  text-align: center;
+  cursor: pointer;
+}
+.poi-icon-row .col-md-3 span{
+  margin-top: 4px;
+  display: block;
+}
+.poi-hotel-item{
+  background: url(../../images/poi_type_icons.png) 0px;
+}
+.poi-restaurant-item{
+  background: url(../../images/poi_type_icons.png) -38px;
+}
+.poi-shop-item{
+  background: url(../../images/poi_type_icons.png) -76px;
+}
+.poi-cinema-item{
+  background: url(../../images/poi_type_icons.png) -114px;
+}
+.poi-site-item{
+  background: url(../../images/poi_type_icons.png) -152px;
+}
+.poi-bank-item{
+  background: url(../../images/poi_type_icons.png) -190px;
+}
+
+.poi-supermarker-item{
+  background: url(../../images/poi_type_icons.png) -228px;
+}
+.poi-subway-item{
+  background: url(../../images/poi_type_icons.png) -266px;
+}
+
+/*AQI panel*/
+.aqi-tab{
+  padding: 10px 10px;
+  overflow-y: auto; 
+
+}
+.aqi-info .row{
+  margin: 4px 0px !important;
+}
+.aqi-time-row{
+  /*border-bottom: 1px solid #ccc;*/
+  /*padding-bottom: 4px;*/
+}
+
+/*.label-aqi-level-1{
+  background-color: #00ff00
+}
+.label-aqi-level-2{
+  background-color: #61f400;
+}
+.label-aqi-level-3{
+  background-color: #bae900;
+}
+.label-aqi-level-4{
+  background-color: #deb100;
+}
+.label-aqi-level-5{
+  background-color: #d35400;
+}
+.label-aqi-level-6{
+  background-color: #c80000;
+}*/
+
+.label-aqi-level-1{
+  background-color: green
+}
+.label-aqi-level-2{
+  background-color: yellow;
+}
+.label-aqi-level-3{
+  background-color: orange;
+}
+.label-aqi-level-4{
+  background-color: red;
+}
+.label-aqi-level-5{
+  background-color: purple;
+}
+.label-aqi-level-6{
+  background-color: brown;
+}
+
+.aqi-ranking{
+  margin-top: 10px;
+}
+.aqi-ranking .header-row{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+.pagination{
+  margin: 4px 0px 4px 6px !important;
+}
+.pagination  li{
+  border: 1px solid #39414a;
+  border-radius: 3px;
+  margin-right: 2px;
+  cursor: pointer;
+  padding: 4px;
+}
+.pagination  li:hover{
+  color: #fff;
+  background-color: #428bca;
+}
+.pagination li.current-page{
+  border: none;
+}
+.aqi-ranking-div{
+  height: 300px;
+  /*overflow-y: auto; */
+}
+
+.aqi-ranking-div.loading{
+  background: url(../../images/loading.gif) no-repeat;
+  background-position: center;
+}
+.aqi-ranking-div .row{
+  padding: 4px;
+  cursor: pointer;
+}
+.aqi-ranking-div .row:hover{
+  background-color: #DFF1F8;
+}
+
+.board{
+  border: 1px solid #ccc;
+  /*border-radius: 4px;*/
+  margin-bottom: 10px;
+
+}
+.board .board-title{
+  background-color: #f7f7f7;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  /*border-radius: 4px;*/
+}
+.board .board-title span{
+  margin-left: 4px;
+}
+
+.aqi-stat{
+  /*margin-left: 20px;*/
+}
+.aqi-number{
+  float: right;
+  padding: 0px 6px;
+  border-radius: 4px;
+  line-height: 26px;
+  margin: 2px 20px 2px 0px;
+}
+.board-content{
+  min-height: 100px;
+  padding: 4px 8px;
+}
+
+.aqi-chart-btn{
+  width: 100%;
+  height: 68px;
+  background: url(../../images/graphs_64.png) no-repeat;
+  background-position: center;
+  cursor: pointer;
+  margin: 10px 0px;
+}
+.aqi-chart-btn:hover{
+  /*transform: scale(1.2); */
+}
+
+.aqi-stat-tab{
+  padding: 10px;
+  overflow-y: auto;
+}
+.aqi-stat-div .row{
+  margin: 4px 0px !important;
+}
+/*city panel*/
+#city_container{
+  left: 460px;
+  top: 30px;
+  /*width: 180px;*/
+  height: 41px;
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 1px 2px 10px 0px #828e9a;
+
+}
+#city_container .current-city{
+  display: inline-block;
+  /*width: 60px;*/
+  padding: 12px;
+  cursor: pointer;
+
+}
+.current-city-name{
+  /*width: 34px;*/
+/*  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;*/
+  color: #767676;
+
+}
+#city_container .current-city-aqi{
+  display: inline-block;
+  width: 60px;
+  cursor: pointer;
+}
+
+/*city list panel*/
+#city_list_container{
+  left: 460px;
+  top: 80px;
+  width: 400px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 0px;
+  padding: 10px;
+  display: none;
+}
+.current-city-row{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px !important;
+  font-size: 14px;
+  font-weight: bold;
+}
+#city_list_container .row{
+  margin: 0px;
+  padding: 0px;
+}
+#city_list_container .row [class*="col-"]{
+  padding: 0px;
+}
+.city-list-div{
+  padding-top: 10px;
+}
+.city-list-div li{
+  float: left;
+  margin-right: 6px;
+  cursor: pointer;
+}
+.city-list-div li:hover{
+  color: #61ACF9;
+
+}
+.city-list-div .col-md-2{
+  width: 50px;
+  font-weight: bold;
+}
+
+/*dialog */
+.modal-content {
+    border-radius: 0px !important;
+}
+
+
+/*AQI Chart Dialog */
+#aqi_chart_dialog .modal-dialog{
+  width: 830px;
+}
+#aqi_chart_container{
+  height: 600px;
+  width: 800px;
 }
