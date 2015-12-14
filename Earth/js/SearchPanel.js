@@ -13,6 +13,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	aqiUptimeLayer : "gc_aqi_ranking_uptime",
 
+	// 地名数据
+	placeLayer : "china_county_region",
+
 	aqiRankingFeatureType : null,
 
 	aqiStatFeatureType : null,
@@ -156,6 +159,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 					break;
 				}
 				case "地名":{
+					that.searchPlace(text);
 					break;
 				}
 				default:
@@ -926,7 +930,16 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 			MapCloud.aqiChartDialog.showDialog(that.timepoint,that.aqiStatFeatureType,stationName,statFilter);
 		});
-	}
+	},
+
+	// 查询地名
+	searchPlace : function(place){
+		if(palce == null){
+			return;
+		}
+
+
+	},
 
 
 

@@ -79,6 +79,7 @@ li {
     top: 30px;
     /*height: 400px;*/
     width: 350px;
+    opacity: 0.85;
 }
 .float-panel{
   position: absolute;
@@ -133,8 +134,10 @@ li {
 }
 #search_content_div{
   height: 580px;
-  background-color: #fff;
+  background-color: #000;
   font-size: 12px;
+  opacity: 0.9;
+  color: #fff;
 }
 .search-content-tab-div{
   height: 100%;
@@ -179,7 +182,8 @@ li {
   cursor: pointer;
 }
 .result-content-div ul li:hover{
-  background-color: #DFF1F8;
+  background-color: #fff;
+  color : #000;
 }
 
 #search_content_div .row{
@@ -197,7 +201,8 @@ li {
 }
 .search-menu-div{
   height: 100%;
-  background-color: #efefef;
+  background-color: #000;
+  border-right: 1px solid #1D1C1C;
 }
 
 .search-menu-div li{
@@ -208,10 +213,14 @@ li {
   cursor: pointer;
 }
 .search-menu-div li.active{
-  background-color: #fff;
+    color: #fff;
+    border: 1px solid #565656;
+    box-shadow: 0px 0px 2px 0px #828e9a;
+    border-left: none;
 }
 .search-menu-div li:hover{
-  background-color: #fff;
+  background-color: #000;
+  color: #fff;
 }
 .search-menu-div li img{
   display: block;
@@ -267,8 +276,7 @@ li {
 /*AQI panel*/
 .aqi-tab{
   padding: 10px 10px;
-  overflow-y: auto; 
-
+  /*overflow-y: auto; */
 }
 .aqi-info .row{
   margin: 4px 0px !important;
@@ -358,17 +366,19 @@ li {
   text-align: center;
 }
 .aqi-ranking-div .row:hover{
-  background-color: #DFF1F8;
+  background-color: #fff;
+  color: #000;
 }
 
 .board{
-  border: 1px solid #ccc;
+  border: 1px solid #1D1C1C;
   /*border-radius: 4px;*/
   margin-bottom: 10px;
 
 }
 .board .board-title{
-  background-color: #f7f7f7;
+  /*background-color: #f7f7f7;*/
+  background-color: #5A6169;
   height: 30px;
   line-height: 30px;
   font-size: 14px;
@@ -380,6 +390,9 @@ li {
 
 .aqi-stat{
   /*margin-left: 20px;*/
+}
+.aqi-stat-div .aqi-stat a{
+  color: #fff;
 }
 .aqi-number{
   float: right;
@@ -409,6 +422,7 @@ li {
   padding: 10px;
   overflow-y: auto;
 }
+.aqi-stat-tab::-webkit-scrollbar { width: 0 !important }
 .aqi-stat-div .row{
   margin: 4px 0px !important;
 }
@@ -417,16 +431,17 @@ li {
   right: 40px;
   top: 30px;
   /*width: 180px;*/
-  height: 41px;
-  background-color: #fff;
-  border-radius: 0px;
+  height: 33px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 4px;
   box-shadow: 1px 2px 10px 0px #828e9a;
-
+  opacity: 0.6;
 }
 #city_container .current-city{
   display: inline-block;
   /*width: 60px;*/
-  padding: 12px;
+  padding: 8px;
   cursor: pointer;
 
 }
@@ -435,7 +450,7 @@ li {
 /*  text-overflow:ellipsis;
   overflow: hidden;
   white-space: nowrap;*/
-  color: #767676;
+  color: #fff;
 
 }
 #city_container .current-city-aqi{
@@ -450,16 +465,31 @@ li {
   top: 80px;
   width: 400px;
   height: 300px;
-  background-color: #fff;
+  background-color: #000;
   border-radius: 0px;
   padding: 10px;
   display: none;
+  opacity: 0.6;
+  color: #fff;
 }
 .current-city-row{
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px !important;
   font-size: 14px;
   font-weight: bold;
+}
+.pop-city-row{
+
+}
+.pop-city-row ul li{
+  float: left;
+  cursor: pointer;
+  color :#fff;
+  margin: 2px 6px 2px 0px;
+   font-size: 14px;
+}
+.pop-city-row li:hover{
+  color: #61ACF9;
 }
 #city_list_container .row{
   margin: 0px;
@@ -469,12 +499,15 @@ li {
   padding: 0px;
 }
 .city-list-div{
-  padding-top: 10px;
+  padding-top: 4px;
+
 }
 .city-list-div li{
   float: left;
-  margin: 2px 6px 2px 0px;
+  margin: 2px 8px 2px 0px;
   cursor: pointer;
+  /*color:#767676;*/
+ 
 }
 .city-list-div li:hover{
   color: #61ACF9;
@@ -483,6 +516,12 @@ li {
 .city-list-div .col-md-2{
   width: 50px;
   font-weight: bold;
+}
+.city-list-content{
+  height: 248px;
+  overflow-y: auto; 
+  width: 450px;
+  padding-right: 30px; 
 }
 
 /*dialog */
@@ -503,13 +542,32 @@ li {
 
 /*position panel*/
 #position_container{
-  background-color: #fff;
-  right: 40px;
-  bottom: 40px;
+  /*right: 40px;*/
+  bottom: 0px;
+  left: 0px;
+  width: 0px;
   /*height: 34px;*/
   line-height: 26px;
-  padding: 2px 4px;
-  color: #428BCA;
+  /*padding: 2px 4px;*/
+  padding: 2px 0px;
+  color: #fff;
   border-radius: 0px;
-  /*width: 140px;*/
+  /*width: 330px;*/
+  /*min-width: 350px;*/
+  width: 100%;
+  background-color: rgba(0,0,0,0.2);
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: none;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: "Microsoft YaHei" ;
+  height: 28px;
+}
+#position_container span{
+  margin-right: 4px;
+}
+.postion-content{
+  min-width: 330px;
+  position: absolute;
+  bottom: 0px;
 }

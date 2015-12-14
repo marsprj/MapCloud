@@ -383,7 +383,7 @@ Radi.Earth = {
         var entity = g_earth_view.entities.add({
             position : Cesium.Cartesian3.fromDegrees(116, 39),
             model : {
-                uri : '../../SampleData/models/CesiumGround/Cesium_Ground.gltf'
+                uri : 'Model/duck/duck.gltf'
             }
         });
         g_earth_view.trackedEntity = entity;        
