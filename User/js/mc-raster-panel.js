@@ -116,6 +116,24 @@ MapCloud.RasterPanel = MapCloud.Class({
 			that.showRasterPreview(sourceName,that.rasterName,that.rasterPath);
 
 		});
+
+
+		// 影像列表
+		this.panel.find("#show-raster-list").click(function(){
+			that.panel.find("#show-raster-thumb").attr("disabled",false);
+			$(this).attr("disabled",true);
+			that.panel.find("#datasource_tab .right-panel-content-tab").hide();
+			that.panel.find("#raster_list_tab").show();
+
+		});
+
+		// 影像列表预览
+		this.panel.find("#show-raster-thumb").click(function(){
+			that.panel.find("#show-raster-list").attr("disabled",false);
+			$(this).attr("disabled",true);
+			that.panel.find("#datasource_tab .right-panel-content-tab").hide();
+			that.panel.find("#raster_thumb_tab").show();
+		});
 	},
 
 	getDataSources : function(){
@@ -382,7 +400,9 @@ MapCloud.RasterPanel = MapCloud.Class({
 				timer = setTimeout(function(){
 					var path = $(node).attr("fpath");
 					that.panel.find(".current-path").val(path);
-					var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					// var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					var sourceName = $(node).parents(".folder-tree").prev().attr("dname");
+					that.panel.find("#datasource_tab .current-db").html(sourceName);
 					that.getListTreeClick(sourceName,path);
 					that.panel.find(".tree-folder.selected").removeClass("selected");
 					$(node).addClass("selected");
@@ -398,17 +418,23 @@ MapCloud.RasterPanel = MapCloud.Class({
 					parent.find("ul.nav").first().css("display","block");
 					$(this).find("i").removeClass("fa-folder-o");
 					$(this).find("i").addClass("fa-folder-open-o");
-					var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					// var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					var sourceName = $(this).parents(".folder-tree").prev().attr("dname");
+					that.panel.find("#datasource_tab .current-db").html(sourceName);
 					that.getListTreeClick(sourceName,path);
 				}else if(parent.find("ul.nav").length != 0 && 
 					parent.find("ul.nav").first().css("display") == "block"){
 					parent.find("ul.nav").first().css("display","none");
 					$(this).find("i").addClass("fa-folder-o");
 					$(this).find("i").removeClass("fa-folder-open-o");
-					var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					// var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					var sourceName = $(this).parents(".folder-tree").prev().attr("dname");
+					that.panel.find("#datasource_tab .current-db").html(sourceName);
 					that.getListTreeClick(sourceName,path);
 				}else {
-					var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					// var sourceName = that.panel.find("#datasource_tab .current-db").html();
+					var sourceName = $(this).parents(".folder-tree").prev().attr("dname");
+					that.panel.find("#datasource_tab .current-db").html(sourceName);
 					that.getList(sourceName,path);
 				}
 				that.panel.find(".current-path").val(path);
@@ -441,6 +467,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 
 		var l = null;
 		var html = "";
+		var thumbHtml = "<ul id='maps_thumb_ul'>";
 		for(var i = 0; i < list.length;++i){
 			l = list[i];
 			if(l == null){
@@ -477,6 +504,15 @@ MapCloud.RasterPanel = MapCloud.Class({
 				+ "<div class='col-md-3'>" + lastTime + "</div>"
 				+ "<div class='col-md-1'>" + size + "</div>"
 				+ "</div>";
+				var sourceName = this.panel.find("#datasource_tab .current-db").html();
+				var imagePath = this.panel.find(".current-path").val();
+				var url = rasterDBManager.getRasterUrl(sourceName,name,imagePath);
+				var prevName = name.slice(0,name.lastIndexOf("."));
+				thumbHtml += "<li class='map-thumb'>"
+						+	 "<a href='javascript:void(0)' class='map-thumb-a' style='" 
+						+    "background-image:url(" + url + ")'></a>"
+						+	 "<div class='caption text-center'><h6 sname='" + name + "'>" + prevName + "</h6></div>"
+						+	"</li>";
 			}else if(l instanceof GeoBeans.Folder){
 				var name = l.name;
 				var accessTime = l.accessTime;
@@ -514,6 +550,10 @@ MapCloud.RasterPanel = MapCloud.Class({
 		this.panel.find("#datasource_tab").css("display","block");
 		this.panel.find(".raster-folder-list").html(html);
 
+		thumbHtml += "</ul>";
+		this.panel.find("#raster_thumb_tab").html(thumbHtml);
+
+
 		var that = this;
 		// 点击文件夹
 		this.panel.find(".raster-folder-list .row-folder .row-fname").click(function(){
@@ -528,9 +568,20 @@ MapCloud.RasterPanel = MapCloud.Class({
 			that.getList(sourceName,path);
 		});
 
+		// 点击文件
 		this.panel.find(".raster-folder-list .row-file .row-fname").click(function(){
 			var sourceName = that.panel.find("#datasource_tab .current-db").html();
 			var rasterName = $(this).find("span").html();
+			var rasterPath = that.panel.find(".current-path").val();
+			that.rasterName = rasterName;
+			that.rasterPath = rasterPath;
+			that.showRasterTab(sourceName,rasterName,rasterPath);
+		});
+
+		// 双击缩略图
+		this.panel.find("#raster_thumb_tab a").dblclick(function(){
+			var sourceName = that.panel.find("#datasource_tab .current-db").html();
+			var rasterName = $(this).parent().find("h6").html();
 			var rasterPath = that.panel.find(".current-path").val();
 			that.rasterName = rasterName;
 			that.rasterPath = rasterPath;

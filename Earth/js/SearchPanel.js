@@ -93,7 +93,27 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 获取该时刻的，当前城市的AQI
 		// 城市的具体信息
-		this.getAQIInfo(MapCloud.currentCity,this.timepoint,this.getAQIInfo_callback);
+		this.getAQICityInfo(MapCloud.currentCity);
+	},
+
+	// 获取一个城市的AQI信息
+	getAQICityInfo : function(city){
+		if(city == null){
+			return;
+		}
+		// 如果是站点页面
+		if(this.panel.find(".aqi-stat-tab").css("display") == "block"){
+			this.panel.find(".search-tab-div").removeClass("active");
+			this.panel.find(".aqi-tab").addClass("active");
+			Radi.Earth.cleanup();
+		}
+		
+		// 如果和当前城市一样，则不再发送请求
+		var currentCity = this.panel.find(".aqi-info .aqi-stat").html();
+		if(currentCity == city){
+			return;
+		}
+		this.getAQIInfo(city,this.timepoint,this.getAQIInfo_callback);
 	},
 
 	registerEvent : function(){
@@ -145,6 +165,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 切换搜索主题
 		this.panel.find(".search-menu-div li").click(function(){
+			Radi.Earth.cleanup();
 			var pname = $(this).attr("pname");
 			if(pname == "aqi"){
 				that.showAQIPanel();
@@ -252,6 +273,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 查看站点
 		this.panel.find(".show-stat").click(function(){
+			if(MapCloud.currentCity == null){
+				return;
+			}
 			that.panel.find(".search-tab-div").removeClass("active");
 			that.panel.find(".aqi-stat-tab").addClass("active");
 
@@ -262,6 +286,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find(".return-aqi").click(function(){
 			that.panel.find(".search-tab-div").removeClass("active");
 			that.panel.find(".aqi-tab").addClass("active");
+			Radi.Earth.cleanup();
 		});
 	},
 
@@ -305,6 +330,13 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			name = poi.name;
 			x = poi.x;
 			y = poi.y;
+			x = parseFloat(x);
+			y = parseFloat(y);
+			if(x > 180){
+				var obj = Radi.Earth.mercator2lonlat(x,y);
+				x = obj.x;
+				y = obj.y;
+			}
 			address = poi.address;
 			html += "<li px='" + x + "' py='" + y +"'>"
 				+	"	<div class='row'>" 
@@ -351,6 +383,13 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			name = poi.name;
 			x = poi.x;
 			y = poi.y;
+			x = parseFloat(x);
+			y = parseFloat(y);
+			if(x > 180){
+				var obj = Radi.Earth.mercator2lonlat(x,y);
+				x = obj.x;
+				y = obj.y;
+			}
 			address = poi.address;
 			type = poi.type;
 			poi3D = Radi.Earth.addBillboard(x,y,name,url);
@@ -373,14 +412,14 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// var city = "北京";
 		// var city = "邢台";
-		var timepoint = "2015-12-08 11:00:00";
-		this.timepoint = timepoint;
+		// var timepoint = "2015-12-08 11:00:00";
+		// this.timepoint = timepoint;
 
 		// // 城市的具体信息
 		// this.getAQIInfo(MapCloud.currentCity,timepoint,this.getAQIInfo_callback);
 
 		// 排行榜
-		this.getAQIRankingCount(timepoint,this.getAQIRankingCount_callback);
+		this.getAQIRankingCount(this.timepoint,this.getAQIRankingCount_callback);
 	},
 
 	// 获取一个城市的AQI信息
@@ -389,9 +428,10 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 
-		this.panel.find(".aqi-stat").html(city);
+		this.panel.find(".aqi-tab .aqi-stat").html(city);
 		// 清空
-		this.panel.find(".aqi-info .label").html("");
+		this.panel.find(".aqi-tab .aqi-info .label").html("");
+		this.panel.find(".aqi-tab .aqi-number").html("");
 
 		var cityFilter = new GeoBeans.BinaryComparisionFilter();
 		cityFilter.operator = GeoBeans.ComparisionFilter.OperatorType.ComOprEqual;
@@ -491,11 +531,11 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		var pm10 = values[pm10FieldIndex];
 
 
-		this.panel.find(".aqi-quality-label").html(quality);
-		this.panel.find(".aqi-level-label").html(level);
-		this.panel.find(".aqi-pm25-label").html(pm25);
-		this.panel.find(".aqi-pm10-label").html(pm10);
-		this.panel.find(".aqi-number").html(aqi);
+		this.panel.find(".aqi-tab .aqi-quality-label").html(quality);
+		this.panel.find(".aqi-tab .aqi-level-label").html(level);
+		this.panel.find(".aqi-tab .aqi-pm25-label").html(pm25);
+		this.panel.find(".aqi-tab .aqi-pm10-label").html(pm10);
+		this.panel.find(".aqi-tab .aqi-number").html(aqi);
 
 		// city panel
 		MapCloud.currentCityPanel.setAQI(aqi);
@@ -503,6 +543,8 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		var levelClass = MapCloud.getAQILevelClass(aqi);
 		// var levelClass = this.getAQILevelClass(level);
 		if(levelClass != null){
+			this.panel.find(".aqi-info .label,.aqi-number").removeClass("label-aqi-level-1 label-aqi-level-2")
+			.removeClass("label-aqi-level-3 label-aqi-level-4 label-aqi-level-5 label-aqi-level-6");
 			this.panel.find(".aqi-info .label").addClass(levelClass);
 			this.panel.find(".aqi-number").addClass(levelClass);
 		}
@@ -631,7 +673,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	
 		var aqiStat3D = null;
 		var aqiStat3DList = [];
-		Radi.Earth.cleanup()
+		// Radi.Earth.cleanup()
 		for(var i = 0; i < features.length; ++i){
 			feature = features[i];
 			if(feature == null){
@@ -659,9 +701,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			y = parseFloat(y);
 
 
-			html += "<div class='row'>"
+			html += "<div class='row' cx='" + x + "' cy='" + y + "'>"
 				+	"	<div class='col-md-2'>" + (id + i + 1) + "</div>"
-				+	"	<div class='col-md-4'><a href='javascript:void(0) aqi-city'>" + area + "</a></div>"
+				+	"	<div class='col-md-4'><a href='javascript:void(0)' class='aqi-city'>" + area + "</a></div>"
 				+	"	<div class='col-md-2'>" + aqi + "</div>"
 				+	"	<div class='col-md-4'>" + quality + "</div>"
 				+	"</div>";
@@ -689,13 +731,18 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// Radi.Earth.zoom(aqiStat3DList);	
 
+		var that = this;
 		// 切换城市
 		this.panel.find(".aqi-city").click(function(){
 			var city = $(this).html();
 			if(city == null || city == ""){
 				return;
 			}
-			
+			MapCloud.currentCity = city;
+			var x = $(this).parents(".row").attr("cx");
+			var y = $(this).parents(".row").attr("cy");
+			that.getAQICityInfo(city);
+			MapCloud.currentCityPanel.setCity(city,x,y);
 		});
 
 	},
@@ -801,18 +848,12 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			var levelClass = MapCloud.getAQILevelClass(aqi);
 
 			html += "<div class='aqi-stat-info board'>"
-				+	"	<div class='board-title'>"
-				+	"		<span class='aqi-stat'>" + positionName + "</span>"
+				+	"	<div class='board-title' sx='" + x+ "' sy='" + y + "'>"
+				+	"		<span class='aqi-stat'><a href='javascript:void(0)'>" + positionName + "</a></span>"
 				+	"		<span class='aqi-number " + levelClass + "'>" + aqi + "</span>"
 				+	"	</div>"
 				+	"	<div class='board-content row'>"
 				+	"		<div class='col-md-8'>"
-				// +	"			<div class='row'>"
-				// +	"				<div class='col-md-4'>空气质量:</div>"
-				// +	"				<div class='col-md-6'>" 
-				// +	"					<span class='label  " + levelClass + "'>" + quality + "</span>"
-				// + 	"				</div>"
-				// +	"			</div>"
 				+	"			<div class='row'>"
 				+	"				<div class='col-md-4'>PM2.5:</div>"
 				+	"				<div class='col-md-6'>" 
@@ -840,29 +881,39 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 			// aqiStat3D = Radi.Earth.addBillboard(x,y,positionName,url);
 			var color = MapCloud.getAQILevelColor(aqi);
-			var z = aqi *60;
-			aqiStat3D =  g_earth_view.entities.add({
-				name : 'Blue box',
-			    position: Cesium.Cartesian3.fromDegrees(x,y,1000),
-			     cylinder : {
-			        length : z,
-			        topRadius : 500.0,
-			        bottomRadius : 500.0,
-			       
-			        material : color
-			    }
-			});
-			aqiStat3DList.push(aqiStat3D);
+			var z = parseInt(aqi) *60;
+			x = parseFloat(x);
+			y = parseFloat(y);
+			if(x != 0 && y != 0 && z > 0){
+				aqiStat3D = Radi.Earth.addCylinder(x,y,z,500,color);
+				var labelText = positionName + " : " + aqi;
+				Radi.Earth.addLabel(x,y,z/2+400, labelText);
+				aqiStat3DList.push(aqiStat3D);
+			}
 		}
 
 		this.panel.find(".aqi-stat-div").html(html);
-		Radi.Earth.zoom(aqiStat3DList);	
+		// Radi.Earth.zoom(aqiStat3DList);	
+
+
+		// 定位
+		this.panel.find(".aqi-stat a").click(function(){
+			var x = $(this).parents(".board-title").attr("sx");
+			var y = $(this).parents(".board-title").attr("sy");
+			x = parseFloat(x);
+			y = parseFloat(y);
+			if(x != null && y != null && x != 0 && y != 0){
+				var h = 30000;
+				Radi.Earth.flyTo(x,y,h);
+			}
+
+		});
 
 		// 弹出chart对话框
 		var that = this;
 		this.panel.find(".aqi-stat-div .aqi-chart-btn").click(function(){
 			var stationCode = $(this).attr("scode");
-			var stationName = $(this).parents(".aqi-stat-info").find(".aqi-stat").html();
+			var stationName = $(this).parents(".aqi-stat-info").find(".aqi-stat a").html();
 			// MapCloud.aqiChartDialog.showDialog(that.timepoint,stationCode,stationName);
 			var statFilter = new GeoBeans.BinaryComparisionFilter();
 			statFilter.operator = GeoBeans.ComparisionFilter.OperatorType.ComOprEqual;

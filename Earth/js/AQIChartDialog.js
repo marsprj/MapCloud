@@ -72,7 +72,7 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
 		this.featureType = featureType;
 		this.time = time;
-		this.panel.find(".modal-title").html("[" + name + "]" + "空气质量指数变化曲线图");
+		this.panel.find(".modal-title").html("[ " + name + " ]" + " 空气质量指数变化曲线图");
 		this.postionFilter = postionFilter;
 		this.showAQI24hFeatures();
 	},
@@ -191,9 +191,6 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 
 
 		filter.addFilter(this.postionFilter);
-
-
-
 		filter.addFilter(timeFilter);
 
 		var fields = [this.aqiField,this.timeField];
@@ -201,7 +198,7 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 		var orderby = new GeoBeans.OrderBy();
 		orderby.setOrder(GeoBeans.OrderBy.OrderType.OrderAsc);
 		orderby.addField(this.timeField);
-		
+
 		this.featureType.getFeaturesFilterAsync(null,this.sourceName,filter,100,null,fields,
 			orderby,this.getFeatures_callback);	
 	},
@@ -219,7 +216,7 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.features = features;
 		if(this.chart == null){
 			var option = this.getOption();
-			var chart = echarts.init(this.container);
+			var chart = echarts.init(this.container,"macarons");
 			this.chart = chart;		
 			chart.setOption(option); 		
 		}else{
@@ -272,8 +269,8 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 			},
 			toolbox:{
 				show : true,
-				// x : 0,
-				// y : 'top',
+				x : '640',
+				y : 'top',
 				feature : {
 					dataView : {show: true, readOnly: true},
 					magicType : {show: true, type: ['line', 'bar']},
@@ -285,7 +282,7 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 				x : '40',
 				y : '40',
 				x2 : '40',
-				y2 : '20'
+				y2 : '40'
 			},
 		    tooltip : {
 		        trigger: 'axis'

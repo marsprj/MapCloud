@@ -684,6 +684,18 @@ div{
 	width: 100%;
 	overflow-y: auto; 
 }
+#raster_thumb_tab{
+	overflow-y:auto; 
+}
+#raster-folder-list{
+	height: calc( 100% - 35px);
+    overflow-y: auto;
+}
+.raster-folder-list{
+	height: calc( 100% - 35px);
+    overflow-y: auto;
+}
+
 /***************************************************************************/
 /* User Raster End			                                               */
 /***************************************************************************/

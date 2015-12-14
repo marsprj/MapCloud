@@ -1,18 +1,22 @@
 
 $().ready(function(){
-	MapCloud.currentCity = "上海";
-	
+	MapCloud.server = "/ows/user1/mgr";
+	MapCloud.currentCity = "北京";
+
 	Radi.Earth.initEarth('earth_container');
 	MapCloud.searchPanel = new MapCloud.SearchPanel("search_container");
 	MapCloud.currentCityPanel = new MapCloud.CurrentCityPanel("city_container");
 	MapCloud.cityPanel = new MapCloud.CityPanel("city_list_container");
 	MapCloud.aqiChartDialog = new MapCloud.AQIChartDialog("aqi_chart_dialog","aqi_chart_container");
+	MapCloud.positionControl = new MapCloud.PositionControl();
+	MapCloud.positionPanel = new MapCloud.PositionPanel("position_container");
+	MapCloud.cityPosition = new MapCloud.CityPosition();
 	
 	// MapCloud.currentCity = "北京";
 
 
 
-	// Radi.Earth.flyTo(116.39,39.90,30000);
+	Radi.Earth.flyTo(116.39,39.90,30000);
 
 
 	// 日期相加
@@ -108,4 +112,13 @@ $().ready(function(){
 			return Cesium.Color.fromAlpha(Cesium.Color.BROWN, alpha);
 		}		
 	}
+
+
+	// Radi.Earth.addEventListener(Cesium.ScreenSpaceEventType.MOUSE_MOVE,handler);
+
+	// function handler(obj){
+	// 	if(obj != null){
+	// 		console.log(obj.lon,obj.lat,obj.height);
+	// 	}
+	// }
 });

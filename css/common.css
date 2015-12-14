@@ -187,6 +187,10 @@
 #import_raster_dialog .header-row {
     border-bottom: 2px solid #ddd;
 }
+#import_raster_dialog .import-list-div{
+  height: calc( 100% - 31px);
+  overflow-y:auto; 
+}
 #import_raster_dialog .import-tool-div ul {
     margin: 0px;
 }
@@ -232,7 +236,7 @@
 }
 
 #fileDialog .modal-body{
-  height: 660px;
+  height: 500px;
   margin: 0px;
 }
 

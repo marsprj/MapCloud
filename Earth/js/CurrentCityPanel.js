@@ -13,9 +13,9 @@ MapCloud.CurrentCityPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find(".current-city").click(function(){
 			var flag = MapCloud.cityPanel.panel.css("display");
 			if(flag == "block"){
-				MapCloud.cityPanel.panel.slideUp();
+				MapCloud.cityPanel.hide();
 			}else{
-				MapCloud.cityPanel.panel.slideDown();
+				MapCloud.cityPanel.show();
 			}
 		});
 
@@ -35,5 +35,21 @@ MapCloud.CurrentCityPanel = MapCloud.Class(MapCloud.Panel,{
 
 	setAQI : function(aqi){
 		this.panel.find(".current-city-aqi span").html(aqi);	
-	}
+	},
+
+	setCity : function(city,x,y){
+		this.panel.find(".current-city-name").html(city);
+		MapCloud.cityPanel.setCity(city);
+		if(x != null && y != null){
+			var h = 50000;
+			Radi.Earth.flyTo(x,y,h);
+			var position = {
+				lon : x,
+				lat : y,
+				height : h
+			};
+			MapCloud.positionPanel.setPosition(position);
+		}
+
+	},
 });

@@ -181,17 +181,27 @@
 							<a href="javascript:void(0)" class="refresh-folder">刷新目录</a>
 							<a href="javascript:void(0)" class="upload-raster">上传影像</a>
 						</div>
+						<div class="btn-group btn-group-xs pull-right">
+							<button type="button" class="btn btn-default" id="show-raster-list" disabled="">列表</button>
+							<button type="button" class="btn btn-default" id="show-raster-thumb" >预览</button>
+						</div>
 					</div>
 					<div class="right-panel-content">
-						<div class="row header-row">
-							<div class="col-md-1"></div>
-							<div class="col-md-3">名称</div>
-							<div class="col-md-1">类型</div>
-							<div class="col-md-3">创建时间</div>
-							<div class="col-md-3">最后访问时间</div>
+						<div class="right-panel-content-tab" id="raster_list_tab">
+							<div class="row header-row">
+								<div class="col-md-1"></div>
+								<div class="col-md-3">名称</div>
+								<div class="col-md-1">类型</div>
+								<div class="col-md-3">创建时间</div>
+								<div class="col-md-3">最后访问时间</div>
+							</div>
+							<div class="raster-folder-list">
+							</div>
+							</div>
+						<div class="right-panel-content-tab" id="raster_thumb_tab">
+							
 						</div>
-						<div class="raster-folder-list">
-						</div>
+						
 					</div>
 				</div>
 

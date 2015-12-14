@@ -301,7 +301,8 @@ li {
   background-color: green
 }
 .label-aqi-level-2{
-  background-color: yellow;
+  /*background-color: yellow;*/
+  background-color: rgb(193, 193, 2);
 }
 .label-aqi-level-3{
   background-color: orange;
@@ -322,13 +323,14 @@ li {
 .aqi-ranking .header-row{
   border-bottom: 1px solid #ccc;
   padding-bottom: 4px;
+  text-align: center;
 }
 
 .pagination{
   margin: 4px 0px 4px 6px !important;
 }
 .pagination  li{
-  border: 1px solid #39414a;
+  border: 1px solid #C9D9EA;
   border-radius: 3px;
   margin-right: 2px;
   cursor: pointer;
@@ -351,8 +353,9 @@ li {
   background-position: center;
 }
 .aqi-ranking-div .row{
-  padding: 4px;
+  padding: 4px 0px;
   cursor: pointer;
+  text-align: center;
 }
 .aqi-ranking-div .row:hover{
   background-color: #DFF1F8;
@@ -411,7 +414,7 @@ li {
 }
 /*city panel*/
 #city_container{
-  left: 460px;
+  right: 40px;
   top: 30px;
   /*width: 180px;*/
   height: 41px;
@@ -443,7 +446,7 @@ li {
 
 /*city list panel*/
 #city_list_container{
-  left: 460px;
+  right: 40px;
   top: 80px;
   width: 400px;
   height: 300px;
@@ -470,7 +473,7 @@ li {
 }
 .city-list-div li{
   float: left;
-  margin-right: 6px;
+  margin: 2px 6px 2px 0px;
   cursor: pointer;
 }
 .city-list-div li:hover{
@@ -495,4 +498,18 @@ li {
 #aqi_chart_container{
   height: 600px;
   width: 800px;
+}
+
+
+/*position panel*/
+#position_container{
+  background-color: #fff;
+  right: 40px;
+  bottom: 40px;
+  /*height: 34px;*/
+  line-height: 26px;
+  padding: 2px 4px;
+  color: #428BCA;
+  border-radius: 0px;
+  /*width: 140px;*/
 }
