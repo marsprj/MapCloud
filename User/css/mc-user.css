@@ -226,7 +226,7 @@ div{
 	width: 100%;
 }
 .left-panel{
-	width: 200px;
+	width: 250px;
 	float: left;
 	height: 100%;
     border-right: 1px solid #DEDEDE;	
@@ -573,7 +573,7 @@ div{
 .vector-db-tree li a span{
     word-break: break-all;
     display: inline-block;
-    max-width: 120px;
+    max-width: 170px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

@@ -16,7 +16,7 @@ $().ready(function(){
 
 
 
-	Radi.Earth.flyTo(116.39,39.90,30000);
+	// Radi.Earth.flyTo(116.39,39.90,30000);
 
 
 	// 日期相加

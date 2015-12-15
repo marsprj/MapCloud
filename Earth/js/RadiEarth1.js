@@ -127,15 +127,19 @@ Radi.Earth = {
         });    
     },
 
-    addPolygon : function(coordinates, width){
+    addPolygon : function(coordinates, color,height,outline){
 
-        var redPolygon = g_earth_view.entities.add({
-            name : 'Red polygon on surface',
+        var polygon = g_earth_view.entities.add({
+            name : 'polygon',
             polygon : {
                 hierarchy : Cesium.Cartesian3.fromDegreesArray(coordinates),
-                material : Cesium.Color.RED
+                material : color,
+                extrudedHeight : height,
+                outline : (outline== null)?true : outline
+
             }
         });
+        return polygon;
     },
 
     addBillboard : function(x,y,caption,url){

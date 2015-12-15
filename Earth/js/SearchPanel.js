@@ -174,6 +174,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(pname == "aqi"){
 				that.showAQIPanel();
 				return;	
+			}else if(pname == "range"){
+				that.showRangeChart();
+				return;
 			}
 
 			that.panel.find(".search-menu-div li").removeClass("active");
@@ -941,6 +944,25 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	},
 
+
+	showRangeChart : function(){
+		var server =  "/ows/" + this.userName + "/mgr";
+		var baseLayerOption = {
+			sourceName : "base",
+			layerName : "prov_bount_4m",
+			positionField : "name",
+		};
+		var chartLayerOption = {
+			sourceName : "base",
+			layerName : "china_econmic_2014",
+			positionField : "省区市",
+			chartField : "人口_万人"
+		};
+
+		var colorMapID = 8;
+		var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
+		chart.show();
+	},
 
 
 

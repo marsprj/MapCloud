@@ -463,7 +463,10 @@ Radi.Earth.Nanhai  = {
             name : name, /*'Red polygon on surface',*/
             polygon : {
                 hierarchy : Cesium.Cartesian3.fromDegreesArray(pts),
-                material : color
+                material : color,
+                // height : 300000,
+                extrudedHeight : 300000,
+                // outline : true
             }
         });
         this.addBasinLabel(name, pts);
