@@ -172,6 +172,7 @@ li {
   overflow-y:auto;
   overflow-x : hidden;
 }
+.result-content-div::-webkit-scrollbar { width: 0 !important }
 .result-content-div ul{
   margin: 0px;
 }
@@ -426,6 +427,9 @@ li {
 .aqi-stat-div .row{
   margin: 4px 0px !important;
 }
+.topic-tab a{
+  color: #fff;
+}
 /*city panel*/
 #city_container{
   right: 40px;
@@ -570,4 +574,75 @@ li {
   min-width: 330px;
   position: absolute;
   bottom: 0px;
+}
+
+/*legend panel*/
+#legend_container{
+  left: 20px;
+  bottom: 10px;
+  color: #fff;
+  box-shadow: 1px 2px 10px 0px #828e9a;
+  opacity: 0.6;
+  border-radius: 4px;
+  background-color: #000;
+  padding: 4px;
+}
+.chart-legend-max {
+    min-width: 20px;
+    text-align: right;
+}
+.chart-legend-canvas{
+  float: left;
+  margin: 10px;
+}
+.chart-legend-title {
+    text-align: center;
+}
+.chart-legend-value{
+  float: right;
+}
+
+.chart-legend-min{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  left: 50px;
+}
+/*专题面板*/
+#topic_container{
+  right: 40px;
+  top:80px;
+  width: 40px;
+  height: 40px;
+  /*padding: 4px;*/
+  /*background-color: #000;*/
+  box-shadow: 1px 2px 10px 0px #828e9a;
+}
+
+#topic_container .mc-icon{
+  float: right;
+  /*margin: 4px;*/
+  height: 40px;
+  width: 40px;
+  border-left: 1px solid #1D1C1C;
+}
+
+
+.mc-icon{
+  height: 32px;
+  width: 32px;
+  margin: 0px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+}
+.mc-icon-left{
+  background-image: url(../../images/left_narrow.png);
+}
+.mc-icon-right{
+  background-image: url(../../images/right_narrow.png);
+}
+.mc-icon-enco{
+  background-image: url(../../images/poll.png);
 }

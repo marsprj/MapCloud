@@ -11,6 +11,7 @@ $().ready(function(){
 	MapCloud.positionControl = new MapCloud.PositionControl();
 	MapCloud.positionPanel = new MapCloud.PositionPanel("position_container");
 	MapCloud.cityPosition = new MapCloud.CityPosition();
+	MapCloud.topicPanel = new MapCloud.TopicPanel("topic_container");
 	
 	// MapCloud.currentCity = "北京";
 

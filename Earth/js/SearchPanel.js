@@ -40,6 +40,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	
 	uptimeFiled : "uptime",
 
+	// 地名字段
+	placeField : "name",
+
 	// 一页的个数
 	aqiRankingCount : 12,
 
@@ -67,7 +70,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.aqiRankingFeatureType = new GeoBeans.FeatureType(workspace, this.aqiRankingLayer);
 		this.aqiStatFeatureType = new GeoBeans.FeatureType(workspace,this.aqiStatLayer);
 		this.aqiUptimeFeatureType = new GeoBeans.FeatureType(workspace,this.aqiUptimeLayer);
-
+		this.placeFeatureType = new GeoBeans.FeatureType(workspace,this.placeLayer);
 		this.getCurrentTime();
 	},
 
@@ -174,8 +177,8 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(pname == "aqi"){
 				that.showAQIPanel();
 				return;	
-			}else if(pname == "range"){
-				that.showRangeChart();
+			}else if(pname == "topic"){
+				that.showTopicChart();
 				return;
 			}
 
@@ -295,6 +298,11 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			that.panel.find(".aqi-tab").addClass("active");
 			Radi.Earth.cleanup();
 		});
+
+		// 查看经济数据
+		this.panel.find(".show-econmic").click(function(){
+			that.showRangeChart();
+		});
 	},
 
 	// 查询poi
@@ -361,6 +369,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				+	"	</div>"
 				+	"</li>";
 		}
+		html += "</ul>";
 		this.panel.find(".result-content-div").html(html);
 		this.panel.find(".search-content-tab-div").css("display","none");
 		this.panel.find(".result-div").css("display","block");
@@ -937,33 +946,135 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	// 查询地名
 	searchPlace : function(place){
-		if(palce == null){
+		if(place == null){
 			return;
+		}
+
+		var filter = new GeoBeans.IsLikeFilter();
+		var prop = new GeoBeans.PropertyName();
+		prop.setName(this.placeField);
+		filter.properyName = prop;
+		var literal = new GeoBeans.Literal();
+		literal.setValue(place);
+		filter.literal = literal;
+		filter.operator = GeoBeans.ComparisionFilter.OperatorType.ComOprIsLike;
+
+		Radi.Earth.cleanup();
+		this.placeFeatureType.getFeaturesFilterAsync(null,this.sourceName,filter,30,null,
+			null,null,this.getPlace_callback);
+
+
+	},
+
+	getPlace_callback : function(features){
+		if(!$.isArray(features)){
+			return;
+		}
+		var that = MapCloud.searchPanel;
+		that.showPlaceResults(features);
+		that.showPlaceIn3D(features);
+	},
+
+	// 显示结果
+	showPlaceResults: function(features){
+		this.panel.find(".search-content-tab-div").hide();
+		this.panel.find(".result-div").show();
+		var feature = null,values = null;
+		var placeFieldIndex = this.placeFeatureType.getFieldIndex(this.placeField);
+		var html = "<ul>";
+		for(var i = 0; i < features.length; ++i){
+			feature = features[i];
+			if(feature == null){
+				continue;
+			}
+			values = feature.values;
+			if(values == null){
+				continue;
+			}
+			name = values[placeFieldIndex];
+			html += "<li>"
+				+	"	<div class='row'>" 
+				+	"		<div class='col-md-2'>"
+				+	"			<img src='../images/marker.png'>"
+				+	"		</div>"
+				+	"		<div class='col-md-10'>"
+				+	"			<div class='row poi-name'>"
+				+					name
+				+	"			</div>"
+				// +	"			<div class='row poi-address'>"
+				// +	"				地址:"	+ address
+				// +	"			</div>"
+				+	"		</div>"
+				+	"	</div>"
+				+	"</li>";
+		}
+		html += "</ul>";
+		this.panel.find(".result-content-div").html(html);
+		this.panel.find(".search-content-tab-div").css("display","none");
+		this.panel.find(".result-div").css("display","block");
+	},
+
+	// 绘制地名
+	showPlaceIn3D : function(features){
+
+		var feature = null,values = null;
+		var geomField = this.placeFeatureType.geomFieldName;
+		var geomFieldIndex = this.placeFeatureType.getFieldIndex(geomField);
+		var polgyons = [];
+		for(var i = 0; i < features.length; ++i){
+			feature = features[i];
+			if(feature == null){
+				return;
+			}
+			values = feature.values;
+			if(values == null){
+				continue;
+			}
+			var color = Cesium.Color.fromRandom({alpha : 1.0});
+
+			var geometry = values[geomFieldIndex];
+			var points = geometry.toPointsArray();
+			var polgyon = Radi.Earth.addPolygon(points,color,0,true);
+			polgyons.push(polgyon);
+		}
+		Radi.Earth.zoom(polgyons);
+	},
+
+	// 展示经济数据
+	showRangeChart : function(){
+		if(this.chart == null){
+			var server =  "/ows/" + this.userName + "/mgr";
+			var baseLayerOption = {
+				sourceName : "base",
+				layerName : "prov_bount_4m",
+				positionField : "name",
+			};
+			var chartLayerOption = {
+				sourceName : "base",
+				layerName : "china_econmic_2014",
+				positionField : "省区市",
+				chartField : "人口_万人"
+			};
+
+			var colorMapID = 12;
+			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
+			chart.show();
+			this.chart = chart;
+		}else{
+			this.chart.cleanup();
+			this.chart = null;
 		}
 
 
 	},
 
-
-	showRangeChart : function(){
-		var server =  "/ows/" + this.userName + "/mgr";
-		var baseLayerOption = {
-			sourceName : "base",
-			layerName : "prov_bount_4m",
-			positionField : "name",
-		};
-		var chartLayerOption = {
-			sourceName : "base",
-			layerName : "china_econmic_2014",
-			positionField : "省区市",
-			chartField : "人口_万人"
-		};
-
-		var colorMapID = 8;
-		var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
-		chart.show();
+	// 设置主题
+	showTopicChart : function(){
+		this.panel.find(".search-menu-div li").removeClass("active");
+		this.panel.find(".search-menu-div li[pname='topic']").addClass("active");
+		this.panel.find(".search-tab-div").removeClass("active");
+		this.panel.find(".topic-tab").addClass("active");
 	},
-
 
 
 

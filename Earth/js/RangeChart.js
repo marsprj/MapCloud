@@ -61,6 +61,7 @@ MapCloud.RangeChart = MapCloud.Class({
 	},
 
 	show : function(){
+		Radi.Earth.cleanup();
 		if(this.baseLayerFeatureType == null || this.chartLayerFeatureType == null){
 			return;
 		}
@@ -173,20 +174,23 @@ MapCloud.RangeChart = MapCloud.Class({
 			}
 			geometry = values[geomFieldIndex];
 			chartValue = feature.chartValue;
+			var labelText = chartValue;
 			var color = colorRangeMap.getValue(chartValue);
 			color = Cesium.Color.fromCssColorString(color.getHex());
-			chartValue = parseFloat(chartValue) * 100;
-			console.log(values[1] + "," + chartValue  + "," + color);
+			chartValue = parseFloat(chartValue) * 30;
+			// console.log(values[1] + "," + chartValue  + "," + color);
             if(!$.isNumeric(chartValue)){
             	chartValue = 0;
             }
 
 			var points = geometry.toPointsArray();
 			var polgyon = Radi.Earth.addPolygon(points,color,chartValue,false);
-			// Radi.Earth.addPolygon(points,null,60000);
+			var center = geometry.getCentroid();
+			// Radi.Earth.addLabel(center.x,center.y,chartValue/2+1000, labelText);
 			polygons.push(polgyon);
 		}
 		Radi.Earth.zoom(polygons);
+		this.addLegend();
 	},
 
 
@@ -198,6 +202,7 @@ MapCloud.RangeChart = MapCloud.Class({
 		var uerServer = this.server.slice(0,this.server.lastIndexOf("/mgr"));;
 		var styleMgr = new GeoBeans.StyleManager(uerServer);
 		var colorMap = styleMgr.getColorMapByID(this.colorMapID);
+		this.colorMap = colorMap;
 
 		var colorRangeMap = new GeoBeans.ColorRangeMap(colorMap.startColor,
 			colorMap.endColor,minMaxValue.min,minMaxValue.max);
@@ -236,5 +241,52 @@ MapCloud.RangeChart = MapCloud.Class({
 			max : max
 		};
 	},
+
+	// 添加图例
+	addLegend : function(){
+		var minMaxValue = this.getMinMaxValue();
+		var html = "<div class='chart-legend chart-legend-range' id='" + this.chartLayerChartField + "'>";
+		html += "<div class='chart-legend-title'>"
+		+	"<h5>" + this.chartLayerChartField + "</h5>"
+		 +	"</div>";
+		html +=	"<div class='chart-legend-canvas'>"
+		+ 	"	<canvas width='20' height='200'></canvas>"
+		+	"</div>"
+		+ 	"<div class='chart-legend-value'>"
+		+	"<div class='chart-legend-max'>"
+		+ 	minMaxValue.max
+		+ 	"</div>"
+		+	"<div class='chart-legend-min'>"
+		+	minMaxValue.min
+		+	"</div>"		
+		+	"</div>"
+		
+		html += "</div>";
+		$("#legend_container").html(html);
+
+		var canvas = $("#legend_container .chart-legend-canvas canvas");
+		var context = canvas[0].getContext('2d');
+
+		var image = new Image();
+		image.src = this.colorMap.url;
+		image.onload = function(){
+			var x = canvas.width() / 2;
+			var y = canvas.height() / 2;
+			var width = image.width;
+			var height = image.height;
+			
+			context.clearRect(0,0,width,height);
+			context.translate(x, y);
+			context.rotate(270*Math.PI/180);
+			context.drawImage(image, -width / 2, -height / 2, width, height);
+			context.rotate(-270*Math.PI/180);
+			context.translate(-x, -y);
+		};		
+	},
+
+	cleanup : function(){
+		Radi.Earth.cleanup();
+		$("#legend_container").empty();
+	}
 
 });
