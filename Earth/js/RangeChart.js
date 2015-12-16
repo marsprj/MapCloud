@@ -177,7 +177,7 @@ MapCloud.RangeChart = MapCloud.Class({
 			var labelText = chartValue;
 			var color = colorRangeMap.getValue(chartValue);
 			color = Cesium.Color.fromCssColorString(color.getHex());
-			chartValue = parseFloat(chartValue) * 30;
+			chartValue = parseFloat(chartValue) * 20;
 			// console.log(values[1] + "," + chartValue  + "," + color);
             if(!$.isNumeric(chartValue)){
             	chartValue = 0;
@@ -186,7 +186,7 @@ MapCloud.RangeChart = MapCloud.Class({
 			var points = geometry.toPointsArray();
 			var polgyon = Radi.Earth.addPolygon(points,color,chartValue,false);
 			var center = geometry.getCentroid();
-			// Radi.Earth.addLabel(center.x,center.y,chartValue/2+1000, labelText);
+			Radi.Earth.addLabel(center.x,center.y,chartValue + 40000, labelText);
 			polygons.push(polgyon);
 		}
 		Radi.Earth.zoom(polygons);

@@ -59,6 +59,14 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	// 时间
 	timepoint : null,
 
+	// 显示全国AQI分布图
+	showAQIChartFlag : false,
+
+	// poi搜索的当前页
+	poiCurrentPage : null,
+
+	poiPageCount : 20,
+
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		
@@ -177,9 +185,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(pname == "aqi"){
 				that.showAQIPanel();
 				return;	
-			}else if(pname == "topic"){
-				that.showTopicChart();
-				return;
 			}
 
 			that.panel.find(".search-menu-div li").removeClass("active");
@@ -196,7 +201,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		});	
 
 		// 搜索关键词
-		this.panel.find(".poi-item").click(function(){
+		this.panel.find(".poi-item,.poi-list-row span").click(function(){
 			var poiName = $(this).attr("piname");
 			var poiList = [];
 			switch(poiName){
@@ -234,10 +239,74 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				}
 				case "subway":{
 					poiList.push("地铁");
+					break;
 				}
+				case "bus":{
+					poiList.push("公交站");
+					break;
+				}
+				case "gas":{
+					poiList.push("加油站");
+					break;
+				}
+				case "park":{
+					poiList.push("停车场");
+					break;
+				}
+				case "ktv":{
+					poiList.push("ktv");
+					break;
+				}
+				case "bar":{
+					poiList.push("酒吧");
+					break;
+				}
+				case "hospital":{
+					poiList.push("医院");
+					break;
+				}
+				case "school":{
+					poiList.push("学校");
+					poiList.push("小学");
+					poiList.push("中学");
+					poiList.push("大学");
+					break;
+				}
+				case "harmacy":{
+					poiList.push("药店");
+					break;
+				}
+				case "atm":{
+					poiList.push("atm");
+					break;
+				}
+				case "chafing_dish":{
+					poiList.push("火锅");
+					break;
+				}
+				case "barbecue":{
+					poiList.push("烧烤");
+					poiList.push("烤串");
+					break;
+				}
+				case "snack":{
+					poiList.push("快餐");
+					poiList.push("麦当劳");
+					poiList.push("肯德基");
+					break;
+				}
+				case "sichuan":{
+					poiList.push("川菜");
+					break;
+				}
+				default:
+					break;
+			}
+			if(poiList.length != 0){
+				that.searchPoi(poiList);
 			}
 
-			that.searchPoi(poiList);
+			
 		});
 
 
@@ -299,10 +368,27 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			Radi.Earth.cleanup();
 		});
 
-		// 查看经济数据
-		this.panel.find(".show-econmic").click(function(){
-			that.showRangeChart();
+		// poi翻页
+		// 上一页
+		this.panel.find(".result-content-div .pre-page").click(function(){
+			var page = that.poiCurrentPage;
+			if(page <= 0){
+				return;
+			}
+			that.poiCurrentPage = page - 1;
+			that.searchPoiByPage(that.keyword,that.poiCurrentPage);
 		});
+
+		this.panel.find(".result-content-div .next-page").click(function(){
+			var count = that.panel.find(".result-main-div li").length;
+			if(count < that.poiPageCount){
+				return;
+			}
+			var page = that.poiCurrentPage;
+			that.poiCurrentPage = page + 1;
+			that.searchPoiByPage(that.keyword,that.poiCurrentPage);
+		});
+
 	},
 
 	// 查询poi
@@ -310,11 +396,26 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		if(keyword == null){
 			return;
 		}
+		this.keyword = keyword;
+		// Radi.Earth.cleanup();
+		// this.panel.find(".result-main-div").empty();
+
+		this.poiCurrentPage = 0;
+		this.searchPoiByPage(this.keyword,this.poiCurrentPage);
+
+		// this.poiManager.getPoi(keyword,this.poiPageCount,0,null,this.searchPoi_callback);
+
+	},
+
+	searchPoiByPage : function(keyword,page){
+		if(page < 0 || keyword == null){
+			return;
+		}
+
 		Radi.Earth.cleanup();
-		// var extent = new GeoBeans.Envelope(115.78,39.43,117.26,40.27);
-		var extent = null;
-		this.panel.find(".result-content-div").empty();
-		this.poiManager.getPoi(keyword,20,0,extent,this.searchPoi_callback);
+		this.panel.find(".result-main-div").empty();
+		var offset = page * this.poiPageCount;
+		this.poiManager.getPoi(keyword,this.poiPageCount,offset,null,this.searchPoi_callback);
 
 	},
 
@@ -370,7 +471,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				+	"</li>";
 		}
 		html += "</ul>";
-		this.panel.find(".result-content-div").html(html);
+		this.panel.find(".result-main-div").html(html);
 		this.panel.find(".search-content-tab-div").css("display","none");
 		this.panel.find(".result-div").css("display","block");
 
@@ -685,8 +786,11 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		var feature = null, area = null,aqi = null, quality = null,values = null;
 		var html = "";
 		var id =  (this.aqiRankingCurrentPage - 1) * this.aqiRankingCount;
-		var areaFieldIndex = -1, aqiFieldIndex = -1, qualityFieldIndex = -1;
-	
+		var areaFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.areaField);
+		var aqiFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.aqiField);
+		var qualityFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.qualityField);
+		var statXFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.statXField);
+		var statYFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.statYField);
 		var aqiStat3D = null;
 		var aqiStat3DList = [];
 		// Radi.Earth.cleanup()
@@ -699,23 +803,14 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(values == null){
 				continue;
 			}
-			areaFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.areaField);
+			
 			area = values[areaFieldIndex];
-
-			aqiFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.aqiField);
 			aqi = values[aqiFieldIndex];
-
-			qualityFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.qualityField);
 			quality = values[qualityFieldIndex];
-
-			var statXFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.statXField);
 			var x = values[statXFieldIndex];
 			x = parseFloat(x);
-
-			var statYFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.statYField);
 			var y = values[statYFieldIndex];
 			y = parseFloat(y);
-
 
 			html += "<div class='row' cx='" + x + "' cy='" + y + "'>"
 				+	"	<div class='col-md-2'>" + (id + i + 1) + "</div>"
@@ -1068,13 +1163,95 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	},
 
-	// 设置主题
-	showTopicChart : function(){
-		this.panel.find(".search-menu-div li").removeClass("active");
-		this.panel.find(".search-menu-div li[pname='topic']").addClass("active");
-		this.panel.find(".search-tab-div").removeClass("active");
-		this.panel.find(".topic-tab").addClass("active");
+	// 展示全国的AQI图
+	showAQIChart : function(){
+		if(this.showAQIChartFlag){
+			Radi.Earth.cleanup();
+			this.showAQIChartFlag = false;
+		}else{
+			Radi.Earth.cleanup();
+			var timepoint = this.timepoint;
+			var timeFilter = new GeoBeans.BinaryComparisionFilter();
+			timeFilter.operator = GeoBeans.ComparisionFilter.OperatorType.ComOprEqual;
+			var prop = new GeoBeans.PropertyName();
+			prop.setName(this.aqiTimeField);
+			var literal = new GeoBeans.Literal();
+			literal.setValue(timepoint);
+			timeFilter.expression1 = prop;
+			timeFilter.expression2 = literal;
+
+			var fileds = ["aqi","area","x","y"];
+			
+			this.aqiRankingFeatureType.getFeaturesFilterAsync(null,this.sourceName,timeFilter,
+				400,0,fileds,null,this.getAQIFeatures_callback);
+		}
 	},
+
+	getAQIFeatures_callback : function(features){
+		if(!$.isArray(features)){
+			return;
+		}
+		var that = MapCloud.searchPanel;
+		that.showAQIChartin3D(features);
+	},
+
+	// 在球上展示AQI
+	showAQIChartin3D : function(features){
+		if(features == null){
+			return;
+		}
+		var feature = null, values = null;
+		var areaFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.areaField);
+		var aqiFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.aqiField);
+		var statXFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.statXField);
+		var statYFieldIndex = this.aqiRankingFeatureType.getFieldIndex(this.statYField);
+		var area = null, aqi = null, x = null, y = null;
+		var aqi3D = null, aqi3DList = [];
+		for(var i = 0; i < features.length; ++i){
+			feature = features[i];
+			if(feature == null){
+				continue;
+			}
+			values = feature.values;
+			if(values == null){
+				continue;
+			}
+			area = values[areaFieldIndex];
+			aqi = values[aqiFieldIndex];
+			x = values[statXFieldIndex];
+			x = parseFloat(x);
+			y = values[statYFieldIndex];
+			y = parseFloat(y);
+
+			var color = MapCloud.getAQILevelColor(aqi);
+			var z = parseInt(aqi) *1000;
+			if(x != 0 && y != 0 && z != 0){
+				// aqi3D =  g_earth_view.entities.add({
+				// 	name : '',
+				//     position: Cesium.Cartesian3.fromDegrees(x,y,1000),
+				//     // box : {
+				//     //     dimensions : new Cesium.Cartesian3(25000, 25000, z),
+				//     //     material : color
+				//     // },
+				//     cylinder : {
+				//         length : z,
+				//         topRadius : 12000.0,
+				//         bottomRadius : 12000.0,
+				       
+				//         material : color
+				//     }
+				// });
+				aqi3D = Radi.Earth.addCylinder(x,y,z,12000,color);
+				// var labelText = area + " : " + aqi;
+				var labelText = aqi;
+				Radi.Earth.addLabel(x,y,z/2+3000, labelText);
+				aqi3DList.push(aqi3D);	
+			}
+					
+		}
+		Radi.Earth.zoom(aqi3DList);	
+		this.showAQIChartFlag = true;
+	}
 
 
 

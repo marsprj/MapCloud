@@ -159,6 +159,9 @@ Radi.Earth = {
             label : {
                 text : caption,
                 font : "16px Microsoft YaHei",
+                outlineColor : Cesium.Color.BLACK ,
+                style : Cesium.LabelStyle.FILL_AND_OUTLINE ,
+                outlineWidth : 2,
                 horizontalOrigin : Cesium.HorizontalOrigin.LEFT,
                 verticalOrigin   : Cesium.VerticalOrigin.MIDDLE,
                 pixelOffset : new Cesium.Cartesian2(10,0)
@@ -195,6 +198,7 @@ Radi.Earth = {
 
     cleanup : function(){
         g_earth_view.entities.removeAll();
+        $("#legend_container").empty();
     },
 
     addCylinder : function(x,y,z,radius,color){
@@ -217,6 +221,10 @@ Radi.Earth = {
             label : {
                 text : text,
                 font : "16px Microsoft YaHei",
+                outlineColor : Cesium.Color.BLACK ,
+                style : Cesium.LabelStyle.FILL_AND_OUTLINE ,
+                outlineWidth : 2,
+                // fillColor : Cesium.Color.WI,
                 // heightReference : Cesium.HeightReference.CLAMP_TO_GROUND ,
                 pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 3.0, 1.5e7, 0.5)
             }

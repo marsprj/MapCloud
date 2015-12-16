@@ -13,11 +13,11 @@ $().ready(function(){
 	MapCloud.cityPosition = new MapCloud.CityPosition();
 	MapCloud.topicPanel = new MapCloud.TopicPanel("topic_container");
 	
-	// MapCloud.currentCity = "北京";
+	MapCloud.currentCity = "北京";
 
 
 
-	// Radi.Earth.flyTo(116.39,39.90,30000);
+	Radi.Earth.flyTo(116.39,39.90,50000);
 
 
 	// 日期相加

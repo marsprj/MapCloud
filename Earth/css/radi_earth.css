@@ -151,7 +151,7 @@ li {
 }
 .result-div-header{
   width: 100%;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #1D1C1C;
 }
 
 
@@ -172,19 +172,33 @@ li {
   overflow-y:auto;
   overflow-x : hidden;
 }
+
 .result-content-div::-webkit-scrollbar { width: 0 !important }
-.result-content-div ul{
+.result-main-div{
+  min-height: 498px;
+}
+.rresult-main-div ul{
   margin: 0px;
 }
-
-.result-content-div ul li{
+.result-main-div ul li{
   padding: 8px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #1D1C1C;
   cursor: pointer;
 }
-.result-content-div ul li:hover{
+.result-main-div ul li:hover{
   background-color: #fff;
   color : #000;
+}
+.result-content-div .pagination{
+  margin: 0px !important;
+  width: 100%;
+}
+.result-content-div .pagination .pre-page{
+  float: left;
+}
+.result-content-div .pagination .next-page{
+  float: right;
+  margin-right: 6px;
 }
 
 #search_content_div .row{
@@ -247,6 +261,22 @@ li {
 .poi-icon-row .col-md-3 span{
   margin-top: 4px;
   display: block;
+}
+.poi-icon-row .col-md-3 span:hover{
+  color: #428bca;
+}
+.poi-list-row{
+  margin: 0px 16px !important;
+}
+.poi-list-row span{
+  cursor: pointer;
+  width: 42px;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+}
+.poi-list-row span:hover{
+  color: #428bca;
 }
 .poi-hotel-item{
   background: url(../../images/poi_type_icons.png) 0px;
@@ -330,7 +360,7 @@ li {
   margin-top: 10px;
 }
 .aqi-ranking .header-row{
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #1D1C1C;
   padding-bottom: 4px;
   text-align: center;
 }
@@ -477,7 +507,7 @@ li {
   color: #fff;
 }
 .current-city-row{
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #1D1C1C;
   padding-bottom: 10px !important;
   font-size: 14px;
   font-weight: bold;
@@ -617,17 +647,19 @@ li {
   /*padding: 4px;*/
   /*background-color: #000;*/
   box-shadow: 1px 2px 10px 0px #828e9a;
+  border: 1px solid rgba(29,28,28,0.6);
 }
 
 #topic_container .mc-icon{
   float: right;
   /*margin: 4px;*/
-  height: 40px;
+  height: 39px;
   width: 40px;
-  border-left: 1px solid #1D1C1C;
+  border-right: 1px solid rgba(29,28,28,0.6);
 }
-
-
+#topic_container .mc-icon:first-child{
+  border-right: none;
+}
 .mc-icon{
   height: 32px;
   width: 32px;
@@ -644,5 +676,15 @@ li {
   background-image: url(../../images/right_narrow.png);
 }
 .mc-icon-enco{
-  background-image: url(../../images/poll.png);
+  /*background-image: url(../../images/poll.png);*/
+  background-image: url(../../images/chart_b.png);
+}
+.mc-icon-pop{
+  background-image: url(../../images/graph.png);
+}
+.mc-icon-per{
+  background-image: url(../../images/per.png);
+}
+.mc-icon-aqi{
+  background-image: url(../../images/chart_aqi_32.png);
 }
