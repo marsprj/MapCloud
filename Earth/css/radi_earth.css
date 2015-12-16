@@ -268,6 +268,9 @@ li {
 .poi-list-row{
   margin: 0px 16px !important;
 }
+.poi-list-first-row{
+  margin-top: 16px !important;
+}
 .poi-list-row span{
   cursor: pointer;
   width: 42px;
@@ -656,6 +659,7 @@ li {
   height: 39px;
   width: 40px;
   border-right: 1px solid rgba(29,28,28,0.6);
+  background-color: rgba(0,0,0,0.6);
 }
 #topic_container .mc-icon:first-child{
   border-right: none;
@@ -680,10 +684,10 @@ li {
   background-image: url(../../images/chart_b.png);
 }
 .mc-icon-pop{
-  background-image: url(../../images/graph.png);
+  background-image: url(../../images/per.png);
 }
 .mc-icon-per{
-  background-image: url(../../images/per.png);
+  background-image: url(../../images/graph.png);
 }
 .mc-icon-aqi{
   background-image: url(../../images/chart_aqi_32.png);

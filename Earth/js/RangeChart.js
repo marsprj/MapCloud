@@ -189,7 +189,7 @@ MapCloud.RangeChart = MapCloud.Class({
 			Radi.Earth.addLabel(center.x,center.y,chartValue + 40000, labelText);
 			polygons.push(polgyon);
 		}
-		Radi.Earth.zoom(polygons);
+		// Radi.Earth.zoom(polygons);
 		this.addLegend();
 	},
 

@@ -48,10 +48,15 @@ Radi.Earth = {
         this.handler = new Cesium.ScreenSpaceEventHandler(g_earth_view.scene.canvas);
     },
 
-    flyTo : function(x, y, h){
+    flyTo : function(x, y, h,heading,pitch,roll){
         g_earth_view.camera.flyTo({
-                destination : Cesium.Cartesian3.fromDegrees(x, y, h)
-            });
+            destination : Cesium.Cartesian3.fromDegrees(x, y, h),
+            orientation :{
+                heading : (heading == null)? Cesium.Math.toRadians(360): (Cesium.Math.toRadians(heading)),
+                pitch : (pitch == null)?Cesium.Math.toRadians(-90) : Cesium.Math.toRadians(pitch),
+                roll : (roll == null) ? 0 : Cesium.Math.toRadians(roll)  
+            }            
+        });
     },
 
     camera : function(){

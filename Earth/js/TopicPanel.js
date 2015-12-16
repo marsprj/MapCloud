@@ -44,7 +44,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			$(item).removeClass("mc-icon-left");
 			$(item).addClass("mc-icon-right");
 			// this.panel.css("width","203px");
-			this.panel.animate({'width':'203px'},300);
+			this.panel.animate({'width':'202px'},300);
 		}else{
 			this.panel.children().not(".mc-stretch").css("display","none");
 			$(item).removeClass("mc-icon-right");
@@ -74,7 +74,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
 			chart.show();
 			this.popRangeChart = chart;
-
+			this.setCameraPosition();
 		}else{
 			this.popRangeChart.cleanup();
 			this.popRangeChart = null;
@@ -103,6 +103,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
 			chart.show();
 			this.encoRangeChart = chart;
+			this.setCameraPosition();
 		}else{
 			this.encoRangeChart.cleanup();
 			this.encoRangeChart = null;
@@ -130,6 +131,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
 			chart.show();
 			this.perRangeChart = chart;
+			this.setCameraPosition();
 		}else{
 			this.perRangeChart.cleanup();
 			this.perRangeChart = null;
@@ -150,5 +152,15 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			this.perRangeChart.cleanup();
 			this.perRangeChart = null;
 		}		
+	},
+
+	setCameraPosition : function(){
+		var x = 97.92627;
+		var y = 15.730198;
+		var z =  5543911;
+		var heading = 8.9819126;
+		var pitch = -70.75989;
+		var roll = 359.990288;
+		Radi.Earth.flyTo(x,y,z,heading,pitch,roll);
 	},
 });
