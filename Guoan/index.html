@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/guoan.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.css"/>
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+
+	
+
+	<script type="text/javascript" src="../js/MapCloud.js"></script>
+	<script type="text/javascript" src="../js/Class/Class.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
+
+	<script type="text/javascript" src="js/init.js"></script>
+	<script type="text/javascript" src="js/SearchPanel.js"></script>
+	<script type="text/javascript" src="js/BaseLayerPanel.js"></script>
+	<script type="text/javascript" src="js/MapBar.js"></script>
+	<script type="text/javascript" src="js/QueryResultPanel.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/User.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DBSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/RasterDB/RasterDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/TileDB/TileDBManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/File/FileManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/GPS/GPSManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Envelope.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Poi/PoiManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Subscribe/SubManager.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Field.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Feature.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/FeatureType.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Workspace.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/WFS/WFSWorkspace.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Tile.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileCache.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/TileLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WFSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMSLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/MapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/HeatMapLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/OverlayLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/QueryLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/GroupLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/DBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/FeatureDBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/RasterDBLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/PanoramaLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Renderer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Events.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/InfoWindow.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapWorkspace.js"></script>	
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Transformation.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GeometryCollection.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/LinearRing.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Polygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPoint.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiLineString.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/MultiPolygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/GML.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Geometry/Point.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Style.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Rule.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/FeatureStyle.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Symbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/PointSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/LineSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/PolygonSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/TextSymbolizer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Font.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Stroke.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Fill.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/StyleWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Symbol.js"></script>
+
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Marker.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Polyline.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Overlay/Polygon.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/OrderBy.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterReader.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/FilterWriter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/LogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/ComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsBetweenFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BinaryComparisionFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IsLikeFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/IDFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/UnaryLogicFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/SpatialFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/BBoxFilter.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Expression.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+
+	<title>国安综合应用平台</title>
+</head>
+<body>
+	<div class="jumbotron">
+
+		<div id="title">
+			<span>国安综合应用平台</span>
+		</div>
+		<div id="main_panel" class="container">
+			<div id="left_panel">
+				<div class="menu float-panel">
+					<ul>
+						<li class="poi-search-menu active" data-toggle="tooltip" data-placement="right" data-original-title="查询" sname="poi"></li>
+						<li class="address-search-menu" data-toggle="tooltip" data-placement="right" data-original-title="地址匹配" sname="address"></li>
+						<li class="overlay-menu" data-toggle="tooltip" data-placement="right" data-original-title="标绘" sname="overlay"></li>
+						<li class="chart-menu" data-toggle="tooltip" data-placement="right" data-original-title="专题图" sname="chart"></li>
+						
+					</ul>
+				</div>
+				<div class="search-panel float-panel">
+					<div class="search-tab-panel poi-search-panel" sname="poi">
+						<div class="row" style="margin:15px 0px;">
+							<div class="input-group col-md-10 col-md-offset-1">
+					      		<input type="text" class="form-control search-keyword" placeholder="请输入查询关键词">
+					      		<span class="remove-poi-search"></span>
+					      		<span class="input-group-btn">
+					        		<button class="btn btn-default search-btn" type="button">&nbsp;&nbsp;</button>
+					      		</span>
+				    		</div>
+						</div>
+						<div class="result-content-div">
+							<div class="result-main-div">
+							</div>
+						</div>
+						
+					</div>
+					<div class="search-tab-panel address-search-panel"sname="address">
+						<!-- 地址 -->
+					</div>
+					<div class="search-tab-panel overlay-panel" sname="overlay">
+						<!-- 标绘 -->
+					</div>
+					<div class="search-tab-panel chart-panel" sname="chart">
+						<!-- 专题图 -->
+					</div>
+				</div>
+			</div>
+			<div id="right_panel">
+				<div id="map_container">
+
+				</div>
+				<div id="query_results_container">
+					<div class="panel-header" style="">
+						<button type="button" class="close" data-toggle="tooltip" data-placement="top" data-original-title="关闭">
+							<span aria-hidden="true">×</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<button type="button" class="btn-hide" style="font-size: 20px;margin-right: 10px;margin-top: 6px;" data-toggle="tooltip" data-placement="top" data-original-title="隐藏">
+                     		<i class="fa fa-chevron-down"></i>
+							</button>
+						<div class="panel-header-content">
+							<form class="form-horizontal pages-form" role="form">
+							<div class="form-group row">
+								<div class="col-md-8">
+									<label class="col-md-2 control-label panel-header-content-name" >
+										<!-- <i class="fa fa-table fa-2"></i> -->
+										查询结果 ：
+									</label>
+									<label class="col-md-1 control-label query_count">12</label>
+									<label class="col-md-1 control-label">条</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-backward btn disabled" href="javascript:void(0)"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-chevron-left btn disabled"></a>
+									</div>
+									<div class="col-md-2">
+										<input class="form-control pages-form-page" type="text" value="0">
+									</div>
+									<label class="col-md-1 control-label">
+										/
+									</label>
+									<label class="col-md-1 control-label pages-form-pages">1</label>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon glyphicon-chevron-right btn disabled" href="javascript:void(0)"></a>
+									</div>
+									<div class="col-md-1">
+										<a class="glyphicon glyphicon-step-forward btn disabled" href="javascript:void(0)"></a>
+									</div>
+								</div>
+								<div class="col-md-3 row" style="">
+									<div class="col-md-6">
+										<a class="btn btn-default  btn-group-justified download-features btn-primary" style="margin-top:2px;">
+ 											<i class="fa fa-download"></i>
+											导出
+										</a>
+									</div>
+									<div class="col-md-6">
+										<a class="btn btn-default btn-primary btn-group-justified clear-features" style="margin-top:2px;">
+ 											<i class="fa fa-trash-o"></i>
+											清空
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="form-group">
+								<div class="col-md-2">
+									<a class="btn btn-default  btn-group-justified download-features" style="margin-top:2px;">
+											<i class="fa fa-download"></i>
+										导出
+									</a>
+								</div>
+							</div> -->
+						</form>
+						</div>
+					</div>
+					<div id="datagrid_content" class="table-responsive">
+						<table class="table table-hover table-striped borderless">
+							<thead><tr></tr></thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+				<!-- 工具栏 -->
+				<div id="map_bar_wrapper" class="mc-border">
+					<div class="mc-icon control-icon">
+						<a class="btn btn-default btn-link btn-sm ">
+					  		<i class="fa fa-angle-double-left"></i>
+						</a>
+					</div>	
+					<div class="mc-icon mc-icon-area" data-toggle="tooltip" data-placement="top" data-original-title="区域查询"></div>
+					<div class="mc-icon mc-icon-polygon" data-toggle="tooltip" data-placement="top" data-original-title="多边形查询"></div>
+					<div class="mc-icon mc-icon-line" data-toggle="tooltip" data-placement="top" data-original-title="线查询"></div>
+					<div class="mc-icon mc-icon-plus"></div>
+					<div class="mc-icon mc-icon-minus"></div>
+					<div class="mc-icon mc-icon-info" data-toggle="tooltip" data-placement="top" data-original-title="点击查询"></div>
+					<div class="mc-icon mc-icon-mouse active" data-toggle="tooltip" data-placement="top" data-original-title="鼠标状态"></div>
+					<div class="mc-icon mc-icon-world" data-toggle="tooltip" data-placement="top" data-original-title="全图显示"></div>
+					<div class="mc-icon mc-icon-hand-up"></div>
+					<div class="mc-icon mc-icon-full-screen"></div>
+					<div class="mc-icon mc-icon-zoom-in"></div>
+					<div class="mc-icon mc-icon-pin"></div>					
+				</div>
+
+				<!-- 底图 -->
+				<div id="base_layer_wrapper" class="">
+					<div class="vector-base base-layer-icon active">
+						<img src="../images/vector_base.png">
+						<div class="text-center">
+							矢量
+						</div>
+					</div>
+					<div class="image-base base-layer-icon ">
+						<img src="../images/image_base.png">
+						<div class="text-center">
+							影像
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+
+</body>
