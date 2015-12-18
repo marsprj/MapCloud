@@ -20,7 +20,6 @@ MapCloud.QueryResultPanel = MapCloud.Class(MapCloud.Panel,{
 		
 		this.registerEvent();
 		this.registerPageEvent();
-
 	},	
 
 	registerEvent : function(){

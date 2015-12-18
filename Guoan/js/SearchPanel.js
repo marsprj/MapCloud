@@ -4,13 +4,27 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	poiCurrentPage : null,
 
+	// 标绘工具栏
+	overlayControlPanel : null,
+
+	trackOverlayControl : null,
+
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		
-		this.registerEvent();
+		
 
 		this.poiManager = user.getPoiManager();
 
+		this.overlayControlPanel = $("#map_overlay_wrapper");
+
+		this.trackOverlayControl = new GeoBeans.Control.TrackOverlayControl();
+		if(mapObj != null){
+			mapObj.controls.add(this.trackOverlayControl);	
+		}
+
+		this.registerEvent();
+		mapObj.registerOverlayEvent();
 	},
 
 	registerEvent : function(){
@@ -21,9 +35,16 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			var sname = $(this).attr("sname");
 			that.panel.find(".menu li").removeClass("active");
 			$(this).addClass("active");
+			that.overlayControlPanel.hide();
 
 			that.panel.find(".search-tab-panel").hide();
 			that.panel.find(".search-tab-panel[sname='" + sname + "']").show();
+
+			if(sname == "overlay"){
+				that.showOverlayPanel();
+			}else{
+				mapObj.unregisterOverlayEvent();
+			}
 		});
 
 		// 查看poi
@@ -49,6 +70,79 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find(".remove-poi-search").click(function(){
 			$(this).hide();
 			that.clearPoiSearch();
+		});
+
+
+		// 绘制点
+		this.overlayControlPanel.find("#track_marker").each(function(){
+			$(this).click(function(e){
+				e.preventDefault();
+				that.trackMarker();
+			});
+		});
+
+		// 绘制线
+		this.overlayControlPanel.find("#track_polyline").each(function(){
+			$(this).click(function(e){
+				e.preventDefault();
+				that.trackPolyline();
+			});
+		});
+
+		// 绘制面
+		this.overlayControlPanel.find("#track_polygon").each(function(){
+			$(this).click(function(e){
+				e.preventDefault();
+				that.trackPolygon();
+			});
+		});
+
+		// 清空overlays
+		this.panel.find(".remove-overlays").click(function(){
+			if(!confirm("确定删除所有标注吗?")){
+				return;
+			}
+
+			mapObj.clearOverlays();
+			var overlays = mapObj.getOverlays();
+			that.showOverlaysList(overlays);
+		});
+
+		// 删除overlay
+		this.panel.find('.remove-overlay').click(function(){
+			that.editOverlay.endEdit();
+			mapObj.removeOverlayObj(that.editOverlay);
+			that.editOverlay = null;
+			that.panel.find(".overlay-tab-panel").hide();
+			that.panel.find(".overlay-list-tab").show();
+			var overlays = mapObj.getOverlays();
+			that.showOverlaysList(overlays);		
+		});
+
+		// 返回overlay list
+		this.panel.find(".return-overlay-list").click(function(){
+			that.editOverlay.endEdit();
+			that.editOverlay = null;
+			that.panel.find(".overlay-tab-panel").hide();
+			that.panel.find(".overlay-list-tab").show();
+			var overlays = mapObj.getOverlays();
+			that.showOverlaysList(overlays);		
+		});
+
+		// 保存overlay
+		this.panel.find(".save-overlay").click(function(){
+			that.editOverlay.removeKeys();
+			var name = that.panel.find("#overlay_edit_name").val();
+			that.panel.find("#overlay_edit_values_row li").each(function(){
+				var key = $(this).find(".overlay_key input").val();
+				var value = $(this).find(".overlay_value input").val();
+				that.editOverlay.addKeyValue(key,value);
+			});
+			that.editOverlay.name = name;
+			that.editOverlay.endEdit();
+			that.editOverlay = null;
+			var overlays = mapObj.getOverlays();
+			that.showOverlaysList(overlays);			
 		});
 	},
 
@@ -105,7 +199,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				y = obj.y;
 			}
 			address = poi.address;
-			html += "<li px='" + x + "' py='" + y +"'>"
+			html += "<li pindex='" + i +"'>"
 				+	"	<div class='row'>" 
 				+	"		<div class='col-md-2'>"
 				+	"			<img src='../images/marker.png'>"
@@ -123,6 +217,13 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		}
 		html += "</ul>";
 		this.panel.find(".result-main-div").html(html);
+
+		// 定位
+		this.panel.find(".result-main-div li").click(function(){
+			var index = $(this).attr("pindex");
+			var overlay = mapObj.getOverlay(index);
+			mapObj.setFitView(overlay);
+		});
 
 		var pageHtml = '<ul class="pagination">'
 					+	'	<li class="pre-page">上一页</li>'
@@ -211,5 +312,200 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find(".search-keyword").val("");
     },
 
+    // 标绘面板
+    showOverlayPanel : function(){
+    	mapObj.clearOverlays();
+    	this.overlayControlPanel.show();
+    	this.trackMarker();
+    	this.panel.find(".overlay-tab-panel").hide();
+    	this.panel.find(".overlay-list-tab").show();
+    },
+
+	// 点
+	trackMarker : function(){
+		this.trackOverlayControl.trackMarker(this.callbackTrackOverlay);
+	},
+
+	// 线
+	trackPolyline : function(){
+		this.trackOverlayControl.trackLine(this.callbackTrackOverlay);
+	},
+
+	// 面
+	trackPolygon : function(){
+		this.trackOverlayControl.trackPolygon(this.callbackTrackOverlay);
+	},
+
+	callbackTrackOverlay : function(overlay){
+		if(overlay == null){
+			return;
+		}
+		var that = MapCloud.searchPanel;
+		var overlays = mapObj.getOverlays();
+		that.showOverlaysList(overlays);
+	},
+
+	showOverlaysList : function(overlays){
+		if(overlays == null){
+			return;
+		}
+		this.panel.find(".overlay-tab-panel").hide();
+		this.panel.find(".overlay-list-tab").show();
+		var overlay = null,name = null,type = null;
+		var html = "";
+		for(var i = 0; i < overlays.length; ++i){
+			overlay = overlays[i];
+			if(overlay == null){
+				continue;
+			}
+			name = overlay.name;
+			type = overlay.type;
+			var typeHtml = this.getOverlayTypeSpanHtml(type);
+			html += "<div class='row' oindex='" + i + "'>"
+				+	"	<div class='col-md-2'>"
+				+	typeHtml
+				+	"	</div>"
+				+	"	<div class='col-md-6'>"
+				+	"		<span class='overlay-name'>" + name + "</span>"
+				+	"	</div>"
+				+	"	<div class='col-md-4'>"
+				+	"		<a class='oper oper-edit-overlay' href='javascript:void(0)'>编辑</a>"
+				+	"		<a class='oper oper-remove-overlay' href='javascript:void(0)'>删除</a>"
+				+	"	</div>"
+				+	"</div>";
+		}
+		this.panel.find(".overlay-list-div").html(html);
+
+		// 删除overlay
+		var that = this;
+		this.panel.find(".overlay-list-div .oper-remove-overlay").click(function(){
+			var name = $(this).parents(".row").find(".overlay-name").html();
+			if(!confirm("确定要删除[" + name + "]吗?")){
+				return;
+			}
+			var index = $(this).parents(".row").attr("oindex");
+			mapObj.removeOverlay(parseInt(index));
+			mapObj.draw();
+			var overlays = mapObj.getOverlays();
+			that.showOverlaysList(overlays);
+		});
+
+		// 编辑overlay
+		this.panel.find(".overlay-list-div .oper-edit-overlay").click(function(){
+			var index = $(this).parents(".row").attr("oindex");
+			var overlay = mapObj.getOverlay(index);
+			if(overlay == null){
+				return;
+			}
+			that.editOverlay = overlay;
+			that.showEditOverlayPanel(overlay);
+			overlay.beginEdit();
+			mapObj.setFitView(overlay);
+		});
+	},
+
+	// 根据类型获取图标
+	getOverlayTypeSpanHtml : function(type){
+		var html = "";
+		switch(type){
+			case GeoBeans.Overlay.Type.MARKER:
+				html = "<span class=' glyphicon "
+					+   "glyphicon-map-marker span-overlay-marker'></span>";
+				break;
+			case GeoBeans.Overlay.Type.PLOYLINE:
+				html = "<span class=' mc-icon "
+					+	"mc-icon-line span-overlay-marker'></span>";
+				break;
+			case GeoBeans.Overlay.Type.POLYGON:
+				html = "<span class=' glyphicon "
+					+	"glyphicon-unchecked span-overlay-marker'></span>";
+				break;
+			default:
+				html = "<span class=' glyphicon "
+					+	"glyphicon-globe span-overlay-marker'></span>";
+				break;
+		}
+		return html;
+	},	
+
+	showEditOverlayPanel : function(overlay){
+		if(overlay == null){
+			return;
+		}
+
+    	this.panel.find(".overlay-tab-panel").hide();
+    	this.panel.find(".overlay-edit-tab").show();	
+
+		// this.editOverlay = overlay.clone();
+		this.editOverlay = overlay;
+		var html = "";
+		var name = overlay.name;
+		var type = overlay.type;
+		var typeHtml = this.getOverlayTypeSpanHtml(type);
+		var kvMap = overlay.kvMap;
+		var valuesHtml = this.getEditOverlayValuesHtml(kvMap);
+
+		html = 	"<div class='row overlay-edit-name-row'>"
+			+	"	<div class='input-group'>"
+			+ 			"<span class='input-group-addon'>名称</span>"
+			+	"	  <input type='text' class='form-control input-overlay-read' id='overlay_edit_name'"
+			+	"		 value='" + name  + "'>"
+			+	"	</div>"						
+			+	"</div>	" 
+			+ 	valuesHtml;
+		this.panel.find(".overlay-edit-div").html(html);
+
+		this.panel.find("[data-toggle='tooltip']").tooltip({container:'body'});
+
+		//添加key/value
+		var that = this;
+		this.panel.find(".glyphicon-plus").each(function(){
+			$(this).click(function(){
+				var html = "<li class='row left_row'>"
+					+	"	<div class='col-md-4 overlay_key'>"
+					+	"		<input type='text' class='form-control' placeholder='key' value=''>"
+					+	"	</div>"
+					+	"	<div class='input-group col-md-8 overlay_value'>"
+					+	"		<input type='text' class='form-control' placeholder='Value' value=''>"
+					+	"		<span class='input-group-addon glyphicon glyphicon-trash span-overlay-marker'></span>"
+					+	"	</div>"
+					+	"</li>";
+				that.panel.find("#overlay_edit_values_row").append(html);
+				that.panel.find(".glyphicon-trash").each(function(){
+					$(this).click(function(){
+						$(this).parents("li").remove();
+					});
+				});				
+			});
+		});	 
+
+		// 删除一行
+		this.panel.find(".glyphicon-trash").each(function(){
+			$(this).click(function(){
+				$(this).parents("li").remove();
+			});
+		});   		
+	},
+	getEditOverlayValuesHtml : function(kvMap){
+		var html =  "<div class='row left_row_wrapper' id='overlay_add_value_row'>"
+				+	"	 <button type='button' class='btn glyphicon glyphicon-plus "
+				+	"		col-md-4 col-md-offset-4' data-toggle='tooltip' data-placement='top' data-original-title='添加属性'></button>"
+				+	"</div>"
+				+	"<ul class='row left_row_wrapper' id='overlay_edit_values_row'>";
+		for(var key in kvMap){
+			var value = kvMap[key];
+			html += "<li class='row left_row'>"
+				+	"	<div class='col-md-4 overlay_key'>"
+				+	"		<input type='text' class='form-control' value='" + key + "'>"
+				+	"	</div>"
+				+	"	<div class='input-group col-md-8 overlay_value'>"
+				+	"		<input type='text' class='form-control' value='" + value + "'>"
+				+	"		<span class='input-group-addon glyphicon glyphicon-trash span-overlay-marker'></span>"
+				+	"	</div>"
+				+	"</li>";
+		}
+		html += "</ul>";
+		return html;
+	},
 
 });

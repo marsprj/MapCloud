@@ -22,6 +22,8 @@
 	<script type="text/javascript" src="js/BaseLayerPanel.js"></script>
 	<script type="text/javascript" src="js/MapBar.js"></script>
 	<script type="text/javascript" src="js/QueryResultPanel.js"></script>
+	<script type="text/javascript" src="js/MapLayersPanel.js"></script>
+	<script type="text/javascript" src="js/MapLayersControl.js"></script>
 
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
@@ -93,6 +95,7 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/DragMapControl.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/SrollMapControl.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/MapNavControl.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Control/TrackOverlayControl.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/ColorMap.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Style.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Style/Rule.js"></script>
@@ -132,6 +135,10 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Expression.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/PropertyName.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Filter/Literal.js"></script>
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSource.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
 
 	<title>国安综合应用平台</title>
 </head>
@@ -174,6 +181,26 @@
 					</div>
 					<div class="search-tab-panel overlay-panel" sname="overlay">
 						<!-- 标绘 -->
+						<div class="overlay-tab-panel overlay-list-tab">
+							<div class="row header-row">
+								<span>标绘列表</span>
+								<div class="pull-right mc-icon mc-icon-empty remove-overlays" data-toggle="tooltip" data-placement="top" data-original-title="清空"></div>
+							</div>
+							<div class="overlay-list-div">
+							</div>
+						</div>
+
+						<div class="overlay-tab-panel overlay-edit-tab">
+							<div class="row header-row">
+								<span>编辑</span>
+								<div class="pull-right mc-icon mc-icon-back return-overlay-list" data-toggle="tooltip" data-placement="top" data-original-title="返回"></div>
+								<div class="pull-right mc-icon mc-icon-empty remove-overlay"data-toggle="tooltip" data-placement="top" data-original-title="删除"></div>
+								<div class="pull-right mc-icon mc-icon-save save-overlay" data-toggle="tooltip" data-placement="top" data-original-title="保存"></div>
+							</div>
+							<div class="overlay-edit-div">
+							</div>
+						</div>
+							
 					</div>
 					<div class="search-tab-panel chart-panel" sname="chart">
 						<!-- 专题图 -->
@@ -277,19 +304,43 @@
 					<div class="mc-icon mc-icon-pin"></div>					
 				</div>
 
+				<div id="map_overlay_wrapper">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" id="track_marker">点</button>
+						<button type="button" class="btn btn-default" id="track_polyline">线</button>
+						<button type="button" class="btn btn-default" id="track_polygon">面</button>
+					</div>
+				</div>
+
 				<!-- 底图 -->
-				<div id="base_layer_wrapper" class="">
-					<div class="vector-base base-layer-icon active">
+				<div id="base_layer_wrapper" class="" data-toggle="tooltip" data-placement="left" data-original-title="切换底图">
+					<div class="vector-base base-layer-icon ">
 						<img src="../images/vector_base.png">
 						<div class="text-center">
 							矢量
 						</div>
 					</div>
-					<div class="image-base base-layer-icon ">
+					<div class="image-base base-layer-icon active">
 						<img src="../images/image_base.png">
 						<div class="text-center">
 							影像
 						</div>
+					</div>
+				</div>
+
+				<!-- 图层按钮 -->
+				<div id="map_layers_icon" data-toggle="tooltip" data-placement="left" data-original-title="图层列表">
+					<img src="../images/layers_32.png">
+				</div>
+
+				<!-- 图层列表 -->
+				<div id="map_layers_wrapper">
+					<div id="current-layer" class="row">
+						<span>选中的图层: </span>
+						<span class="current-layer-name label label-success"></span>
+					</div>
+					<div class="map-layers-list">
+					
 					</div>
 				</div>
 

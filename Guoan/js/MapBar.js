@@ -77,14 +77,14 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		if(mapObj == null){
 			return;
 		}
-		var layer = mapObj.getLayer(this.layerName);
+		var layer = mapObj.getLayer(MapCloud.currentLayer);
 		if(layer == null){
 			return;
 		}
 
 		this.panel.find(".mc-icon").removeClass("active");
 		this.panel.find(".mc-icon-area").addClass("active");
-		mapObj.queryByRect(this.layerName,this.query_callback);
+		mapObj.queryByRect(MapCloud.currentLayer,this.query_callback);
 	},
 
 
@@ -109,13 +109,13 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		if(mapObj == null){
 			return;
 		}
-		var layer = mapObj.getLayer(this.layerName);
+		var layer = mapObj.getLayer(MapCloud.currentLayer);
 		if(layer == null){
 			return;
 		}
 		this.panel.find(".mc-icon").removeClass("active");
 		this.panel.find(".mc-icon-polygon").addClass("active");
-		mapObj.queryByPolygon(this.layerName,this.queryByPolygon_callback);
+		mapObj.queryByPolygon(MapCloud.currentLayer,this.queryByPolygon_callback);
 	},
 
 	queryByPolygon_callback : function(layer,count){
@@ -139,13 +139,13 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		if(mapObj == null){
 			return;
 		}
-		var layer = mapObj.getLayer(this.layerName);
+		var layer = mapObj.getLayer(MapCloud.currentLayer);
 		if(layer == null){
 			return;
 		}
 		this.panel.find(".mc-icon").removeClass("active");
 		this.panel.find(".mc-icon-polygon").addClass("active");
-		mapObj.queryByLine(this.layerName,this.queryByLine_callback);
+		mapObj.queryByLine(MapCloud.currentLayer,this.queryByLine_callback);
 	},
 
 	queryByLine_callback : function(layer,count){
@@ -169,14 +169,14 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		if(mapObj == null){
 			return;
 		}
-		var layer = mapObj.getLayer(this.layerName);
+		var layer = mapObj.getLayer(MapCloud.currentLayer);
 		if(layer == null){
 			return;
 		}
 		
 		this.panel.find(".mc-icon").removeClass("active");
 		this.panel.find(".mc-icon-info").addClass("active");
-		mapObj.queryByClick(this.layerName,this.onFeatureInfo_callback);
+		mapObj.queryByClick(MapCloud.currentLayer,this.onFeatureInfo_callback);
 	},
 
 	onFeatureInfo_callback : function(layer,feature,point){

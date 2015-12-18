@@ -30,25 +30,26 @@ ul{
 }
 
 #title{
-	height: 100px;
+	height: 60px;
 	/*border-bottom: 1px solid #ccc;*/
-	/*background-color: #0097c3;*/
+	background-color: #0097c3;
 	/*box-shadow: 1px 2px 10px 0px #828e9a;*/
 	/*background: linear-gradient(to right, #2C7FA2 20%, #25497E 100%);*/
-	background: linear-gradient(to right, #00AEEF,#00AEEF 60%, #E7F7FD 100%);
+	/*background: linear-gradient(to right, #00AEEF,#00AEEF 60%, #E7F7FD 100%);*/
+	background: linear-gradient(to bottom,#086ed5,#055db5);
 }
 #title span{
 	font-family: "Microsoft YaHei";
-	font-size: 38px;
+	font-size: 28px;
 	margin-left: 40px;
 	display: block;
-    padding-top: 16px;
+    padding-top: 6px;
     color: #fff;
-    text-shadow: 1px 1px;
+    /*text-shadow: 1px 1px;*/
 }
 
 #main_panel{
-	height: calc( 100% - 100px);
+	height: calc( 100% - 60px);
 	width: 100%;
 
 }
@@ -63,11 +64,10 @@ ul{
 	width: 60px;
 	border-right: 1px solid #f7f7f7;
 	height: 100%;
-	background-color: #C7EDFB;
+	background-color: #8EDCF3;
 }
 
 #left_panel .menu li{
-	/*padding: 4px;*/
 	display: block;
 	height: 48px;
 	width: 100%;
@@ -156,9 +156,12 @@ ul{
     color: #000;
 }
 .result-main-div ul li {
-    padding: 8px;
+    padding: 4px 2px;
     border-bottom: 1px solid #C9ECEC;
     cursor: pointer;
+}
+.result-main-div ul li .row{
+	margin: 0px;
 }
 .poi-name {
     font-size: 14px;
@@ -271,6 +274,19 @@ ul{
 .mc-icon-pin {
     background-image: url(../../images/pin-16.png);
 }
+.mc-icon-empty{
+	background-image: url(../../images/free.png);	
+}
+.mc-icon-globe{
+	background-image: url(../../images/globe.png);		
+}
+.mc-icon-back{
+	background-image: url(../../images/back.png);	
+}
+.mc-icon-save{
+	background-image: url(../../images/save_24.png);		
+}
+
 .control-icon .btn i {
     font-size: 14px;
     color: #000;
@@ -394,4 +410,158 @@ ul{
 }
 #datagrid_content tr.selected td{
 	background-color: rgba(169, 169, 169,0.8);
+}
+
+#map_layers_icon{
+	position: absolute;
+	right: 40px;
+	top: 100px;
+/*	width: 34px;
+	height: 34px;*/
+	/*border: 1px solid #ccc;*/
+	/*background-color: rgba(0,0,0,0.4);*/
+	cursor: pointer;
+}
+
+#map_layers_wrapper{
+	position: absolute;
+	right: 40px;
+	top: 150px;
+	height: 300px;
+	width: 180px;
+	border: 1px solid #ccc;
+	background-color:#fff; 
+	display: none;
+	box-shadow: 1px 2px 10px 0px #828e9a;
+}
+
+/*#map_layers_wrapper .row{
+	margin: 0px;
+}*/
+
+#current-layer{
+	border-bottom: 1px solid #ccc;
+	padding: 4px 2px 4px 10px;
+	/*font-size: 14px;*/
+	margin: 0px;
+}
+
+.map-layers-list{
+	height: calc( 100% - 30px);
+	overflow-y :auto;
+}
+.map-layers-list::-webkit-scrollbar{
+	width: 0 !important;
+}
+#map_layers_wrapper .map-layers-list .row{
+    padding: 4px 0px;
+    border-bottom: 1px solid #dedede;
+    /* cursor: pointer; */
+    margin: 0px;
+}
+#map_layers_wrapper .map-layers-list .row:hover,
+#map_layers_wrapper .map-layers-list .row.active{
+	background-color: #DFF1F8;
+
+}
+#map_layers_wrapper .map-layers-list .row input{
+	margin-top: 2px;
+}
+
+#map_layers_wrapper .map-layers-list .row .layer-name{
+	cursor: pointer;
+}
+#map_layers_wrapper .map-layers-list .row .glyphicon-ok{
+	color: #fff;
+}
+#map_layers_wrapper .map-layers-list .row:hover .glyphicon-ok{
+	color: #EC9494;
+}
+#map_layers_wrapper .map-layers-list .row.active .glyphicon-ok{
+	color: #D42525;
+}
+
+#map_overlay_wrapper{
+	position: absolute;
+	top: 80px;
+	left: 40px;
+	z-index: 2;
+	display: none;
+	box-shadow: 1px 2px 10px 0px #4E5961;
+}
+#map_overlay_wrapper .btn{
+	border-radius: 0px;
+}
+.map-nav-wrapper{
+	top: 130px !important;
+}
+
+.overlay-tab-panel{
+	height: 100%;
+	width: 100%;
+}
+.overlay-list-div{
+	overflow-y: auto;
+	height: calc( 100% - 40px);
+}
+.overlay-panel .header-row{
+    padding: 6px;
+    margin: 4px 0 0 0;
+    border-bottom: 2px solid #6BB1DE;
+}
+.overlay-panel .header-row span{
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    display: inline-block;
+    padding: 2px;
+}
+.overlay-panel .header-row .mc-icon{
+	width: 24px;
+	height: 24px;
+	margin-right: 3px;
+}
+.overlay-list-div::-webkit-scrollbar{
+	width: 0 !important;
+}
+.overlay-list-div .row{
+	margin: 0px;
+	padding: 6px 4px;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.overlay-list-div .row:hover{
+	background-color: #DFF1F8;
+}
+.overlay-list-div [class*='col-md'] {
+    padding: 0px 6px;
+}
+
+.overlay-list-div .oper{
+	margin-right: 3px;
+}
+.overlay-edit-div .row{
+	margin: 6px;
+}
+/*.overlay-panel .header-row .mc-icon-globe{
+	height: 24px;
+	width: 24px;
+}*/
+
+.overlay_key {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.overlay_key input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.overlay_value input{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.span-overlay-marker{
+	top: 0px;
+}
+.overlay-edit-name-row{
+	margin-top: 10px !important;
 }
