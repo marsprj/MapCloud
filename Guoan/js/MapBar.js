@@ -60,13 +60,10 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 			i.removeClass("fa-angle-double-left");
 			i.addClass("fa-angle-double-right");
 			this.panel.children().not(".control-icon").css("display","none");
-			// this.panel.css("width","30px");
 			this.panel.animate({"width":"30px"},300);
 		}else if(i.hasClass("fa-angle-double-right")){
 			i.removeClass("fa-angle-double-right");
 			i.addClass("fa-angle-double-left");
-			
-			// this.panel.css("width","392px");
 			this.panel.animate({"width":"392px"},300);
 			this.panel.children().not(".control-icon").css("display","block");
 		}
@@ -75,6 +72,10 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 	// 拉框查询
 	onArea : function(){
 		if(mapObj == null){
+			return;
+		}
+		if(MapCloud.currentLayer == null){
+			MapCloud.notify.showInfo("请在图层列表中选择一个图层","Warning");
 			return;
 		}
 		var layer = mapObj.getLayer(MapCloud.currentLayer);
@@ -86,7 +87,6 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find(".mc-icon-area").addClass("active");
 		mapObj.queryByRect(MapCloud.currentLayer,this.query_callback);
 	},
-
 
 	query_callback : function(layer,count){
 		MapCloud.queryResultPanel.showPanel();
@@ -103,10 +103,13 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		return url;
 	},	
 
-
 	// 多边形查询
 	onPolygon : function(){
 		if(mapObj == null){
+			return;
+		}
+		if(MapCloud.currentLayer == null){
+			MapCloud.notify.showInfo("请在图层列表中选择一个图层","Warning");
 			return;
 		}
 		var layer = mapObj.getLayer(MapCloud.currentLayer);
@@ -139,6 +142,10 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		if(mapObj == null){
 			return;
 		}
+		if(MapCloud.currentLayer == null){
+			MapCloud.notify.showInfo("请在图层列表中选择一个图层","Warning");
+			return;
+		}
 		var layer = mapObj.getLayer(MapCloud.currentLayer);
 		if(layer == null){
 			return;
@@ -167,6 +174,10 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 	//信息查询
 	onFeatureInfo : function(){
 		if(mapObj == null){
+			return;
+		}
+		if(MapCloud.currentLayer == null){
+			MapCloud.notify.showInfo("请在图层列表中选择一个图层","Warning");
 			return;
 		}
 		var layer = mapObj.getLayer(MapCloud.currentLayer);
@@ -246,6 +257,6 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		mapManager.zoomToGlobeMap(mapObj,this.zoomToGlobeMap_callback);
 	},	
 	zoomToGlobeMap_callback : function(result){
-
+		
 	},
 });

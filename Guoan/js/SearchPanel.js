@@ -9,10 +9,29 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	trackOverlayControl : null,
 
+	// 专题图底图
+	baseLayer : "prov_bount_4m",
+
+	// 专题图底图字段
+	baseLayerField : "name",
+
+	// 专题图所在数据库
+	chartSourceName : "gisdb",
+
+	// 专题图的空间字段
+	chartPositionField : "地区",
+
+	// 专题图配置
+	chartOption : {
+		colorMapID : 12,
+		opacity : 0.9,
+		border : "#cccccc",
+		borderOpacity : 0.9
+	},
+
+
 	initialize : function(id){
-		MapCloud.Panel.prototype.initialize.apply(this,arguments);
-		
-		
+		MapCloud.Panel.prototype.initialize.apply(this,arguments);	
 
 		this.poiManager = user.getPoiManager();
 
@@ -30,9 +49,17 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	registerEvent : function(){
 		var that = this;
 
+		this.panel.find(".menu li").mouseenter(function(){
+			
+		});
+
 		// 切换面板
 		this.panel.find(".menu li").click(function(){
+			var preName = that.panel.find(".menu li.active").attr("sname");
 			var sname = $(this).attr("sname");
+			if(preName == sname){
+				return;
+			}
 			that.panel.find(".menu li").removeClass("active");
 			$(this).addClass("active");
 			that.overlayControlPanel.hide();
@@ -45,12 +72,20 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}else{
 				mapObj.unregisterOverlayEvent();
 			}
+
+			if(sname != "chart"){
+				mapObj.removeLayer("chart");
+				mapObj.draw();
+			}
+
+			
 		});
 
 		// 查看poi
 		this.panel.find(".search-panel .search-btn").click(function(){
 			var text = that.panel.find(".search-keyword").val();
 			if(text == ""){
+				MapCloud.notify.showInfo("请输入查询关键词","Warning");
 				return;
 			}
 			that.searchPoi([text]);
@@ -110,6 +145,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 删除overlay
 		this.panel.find('.remove-overlay').click(function(){
+			if(!confirm("确定删除该标注吗?")){
+				return;
+			}
 			that.editOverlay.endEdit();
 			mapObj.removeOverlayObj(that.editOverlay);
 			that.editOverlay = null;
@@ -144,10 +182,127 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			var overlays = mapObj.getOverlays();
 			that.showOverlaysList(overlays);			
 		});
+
+		// 专题图
+		var that = this;
+		this.panel.find(".chart-item").click(function(){
+			var cname = $(this).attr('cname');
+			var listDiv = that.panel.find(".chart-item-list[cname='" + cname + "']");
+			if(listDiv.css("display") == "block"){
+				listDiv.slideUp();
+			}else{
+				listDiv.slideDown();
+			}
+		});
+
+
+		this.panel.find(".chart-item-list .row").click(function(){
+			var cname = $(this).parents(".chart-item-list").attr("cname");
+			var index = $(this).attr("findex");
+			var chartName = null,chartField = null;
+			that.panel.find(".chart-item-list .row").removeClass("active");
+			$(this).addClass("active");
+			switch(cname){
+				case "jumin":{
+					chartName = "jumin";
+					switch(index){
+						case "1":{
+							chartField = "居民人均可支配收入_元";
+							break;
+						}
+						case "2":{
+							chartField = "居民人均可支配收入_同比增长";
+							break;
+						}
+						case "3":{
+							chartField = "城镇居民人均可支配收入_元";
+							break;
+						}
+						case "4":{
+							chartField = "城镇居民人均可支配收入_同比增长";
+							break;
+						}
+						case "5":{
+							chartField = "农村居民人均可支配收入_元";
+							break;
+						}
+						case "6":{
+							chartField = "农村居民人均可支配收入_同比增长";
+							break;
+						}
+						case "7":{
+							chartField = "居民人均消费支出_元";
+							break;
+						}
+						case "8":{
+							chartField = "居民人均消费支出_同比增长";
+							break;
+						}
+						default:
+							break;
+					}
+					break;
+				}
+				case "nongye":{
+					chartName = "nongye";
+					switch(index){
+						case "1":{
+							chartField = "粮食产量_万吨";
+							break;
+						}
+						case "2":{
+							chartField = "蔬菜产量_万吨";
+							break;
+						}
+						case "3":{
+							chartField = "糖料产量_万吨";
+							break;
+						}
+					}
+					break;
+				}
+				case "gongye":{
+					chartName = "gongye";
+					switch(index){
+						case "1":{
+							chartField = "钢材产量_万吨";
+							break;
+						}
+						case "2":{
+							chartField = "水泥产量_万吨";
+							break;
+						}
+						case "3":{
+							chartField = "发电量_亿千瓦小时";
+							break;
+						}
+						default:
+							break;
+					}
+				}
+				default:
+					break;
+			}
+			if(chartName != null && chartField != null){
+				mapObj.removeLayer("chart");
+				var layer = new GeoBeans.Layer.RangeChartLayer("chart",that.baseLayer,
+					that.baseLayerField,that.chartSourceName,chartName,that.chartPositionField,
+					[chartField],that.chartOption);
+				mapObj.addLayer(layer,null);
+				mapObj.zoomToLayer(that.baseLayer);
+			}
+		});
+
+		// 清空chart
+		this.panel.find(".remove-chart").click(function(){
+			mapObj.removeLayer("chart");
+			mapObj.draw();
+		});
 	},
 
 	searchPoi : function(keyword){
 		if(keyword == null){
+
 			return;
 		}
 		this.keyword = keyword;
@@ -316,9 +471,10 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
     showOverlayPanel : function(){
     	mapObj.clearOverlays();
     	this.overlayControlPanel.show();
-    	this.trackMarker();
+    	// this.trackMarker();
     	this.panel.find(".overlay-tab-panel").hide();
     	this.panel.find(".overlay-list-tab").show();
+    	this.panel.find(".overlay-list-div").empty();
     },
 
 	// 点

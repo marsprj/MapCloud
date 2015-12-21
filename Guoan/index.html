@@ -6,16 +6,21 @@
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/jquery-ui.min.css" type="text/css">
+
 	<link rel="stylesheet" type="text/css" href="css/guoan.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.css"/>
 	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
-
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
 	
 
 	<script type="text/javascript" src="../js/MapCloud.js"></script>
 	<script type="text/javascript" src="../js/Class/Class.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
+	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
 
 	<script type="text/javascript" src="js/init.js"></script>
 	<script type="text/javascript" src="js/SearchPanel.js"></script>
@@ -29,6 +34,8 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRangeMap.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/User.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Map.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/MapManager.js"></script>
@@ -140,6 +147,12 @@
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/DataSet.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/DBS/GField.js"></script>
 
+
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/ChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/RangeChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/BarChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/Chart/PieChartLayer.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/GeoBeans/Layer/WMTSLayer.js"></script>
 	<title>国安综合应用平台</title>
 </head>
 <body>
@@ -152,11 +165,14 @@
 			<div id="left_panel">
 				<div class="menu float-panel">
 					<ul>
-						<li class="poi-search-menu active" data-toggle="tooltip" data-placement="right" data-original-title="查询" sname="poi"></li>
+						<!-- <li class="poi-search-menu active" data-toggle="tooltip" data-placement="right" data-original-title="查询" sname="poi"></li>
 						<li class="address-search-menu" data-toggle="tooltip" data-placement="right" data-original-title="地址匹配" sname="address"></li>
 						<li class="overlay-menu" data-toggle="tooltip" data-placement="right" data-original-title="标绘" sname="overlay"></li>
-						<li class="chart-menu" data-toggle="tooltip" data-placement="right" data-original-title="专题图" sname="chart"></li>
-						
+						<li class="chart-menu" data-toggle="tooltip" data-placement="right" data-original-title="专题图" sname="chart"></li> -->
+						<li class="fa fa-search active" data-toggle="tooltip" data-placement="right" data-original-title="查询" sname="poi"></li>
+						<li class="fa fa-map-marker" data-toggle="tooltip" data-placement="right" data-original-title="地址匹配" sname="address"></li>
+						<li class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="right" data-original-title="标绘" sname="overlay"></li>
+						<li class="fa fa-bar-chart" data-toggle="tooltip" data-placement="right" data-original-title="专题图" sname="chart"></li>
 					</ul>
 				</div>
 				<div class="search-panel float-panel">
@@ -203,13 +219,82 @@
 							
 					</div>
 					<div class="search-tab-panel chart-panel" sname="chart">
-						<!-- 专题图 -->
+						<div class="row header-row">
+							<span>专题图列表</span>
+							<div class="pull-right mc-icon mc-icon-empty remove-chart" data-toggle="tooltip" data-placement="top" data-original-title="清空"></div>
+						</div>
+						<ul>
+							<li class="chart-item" cname="jumin">
+								<img src="../images/Label.png">
+								居民生活
+							</li>
+							<div class="chart-item-list" cname="jumin">
+								<div class="row" findex="1">
+									<div class="col-md-11 col-md-offset-1">居民人均可支配收入</div>
+								</div>
+								<div class="row" findex="2">
+									<div class="col-md-11 col-md-offset-1">居民人均可支配收入_同比增长</div>
+								</div>
+								<div class="row" findex="3">
+									<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_元</div>
+								</div>
+								<div class="row" findex="4">
+									<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_同比增长
+									</div>
+								</div>
+								<div class="row" findex="5">
+									<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_元
+									</div>
+								</div>
+								<div class="row" findex="6">
+									<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_同比增长
+									</div>
+								</div>
+								<div class="row" findex="7">
+									<div class="col-md-11 col-md-offset-1">居民人均消费支出_元
+									</div>
+								</div>
+								<div class="row" findex="8">
+									<div class="col-md-11 col-md-offset-1">居民人均消费支出_同比增长
+									</div>
+								</div>
+							</div>
+							<li class="chart-item" cname="nongye">
+								<img src="../images/Label.png">
+								农业
+							</li>
+							<div class="chart-item-list" cname="nongye">
+								<div class="row" findex="1">
+									<div class="col-md-10 col-md-offset-1">粮食产量</div>
+								</div>
+								<div class="row" findex="2">
+									<div class="col-md-10 col-md-offset-1">蔬菜产量</div>
+								</div>
+								<div class="row" findex="3">
+									<div class="col-md-10 col-md-offset-1">糖科产量</div>
+								</div>
+							</div>
+							<li class="chart-item" cname="gongye">
+								<img src="../images/Label.png">
+								工业
+							</li>
+							<div class="chart-item-list" cname="gongye">
+								<div class="row" findex="1">
+									<div class="col-md-10 col-md-offset-1">钢材产量</div>
+								</div>
+								<div class="row" findex="1">
+									<div class="col-md-10 col-md-offset-1">水泥产量</div>
+								</div>
+								<div class="row"  findex="1">
+									<div class="col-md-10 col-md-offset-1">发电量</div>
+								</div>
+							</div>
+						</ul>
 					</div>
 				</div>
 			</div>
 			<div id="right_panel">
 				<div id="map_container">
-
 				</div>
 				<div id="query_results_container">
 					<div class="panel-header" style="">
@@ -265,14 +350,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- <div class="form-group">
-								<div class="col-md-2">
-									<a class="btn btn-default  btn-group-justified download-features" style="margin-top:2px;">
-											<i class="fa fa-download"></i>
-										导出
-									</a>
-								</div>
-							</div> -->
 						</form>
 						</div>
 					</div>
@@ -343,10 +420,23 @@
 					
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
 	
 
+	<!-- Notify  -->
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
+	</div>
 </body>
