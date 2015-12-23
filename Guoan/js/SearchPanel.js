@@ -49,15 +49,40 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	registerEvent : function(){
 		var that = this;
 
+		// 伸缩left panel
+		this.panel.find("#map_btn").click(function(){
+			var searchPanel = that.panel.find(".search-panel");
+			if(searchPanel.css("width") == "0px"){
+				searchPanel.css("width","299px");
+				that.panel.css("width","360px");
+				$(this).css("left","359px");
+				$("#right_panel").css("width","calc( 100% - 360px)");
+				$(this).find(".fa-angle-right").removeClass(".fa-angle-right").addClass("fa-angle-left");
+			}else{
+				searchPanel.css("width","0px");
+				that.panel.css("width","60px");
+				$(this).css("left","59px");
+				$("#right_panel").css("width","calc( 100% - 60px)");
+				$(this).find(".fa-angle-left").removeClass(".fa-angle-left").addClass("fa-angle-right");
+			}
+
+			searchPanel.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+			function(){ 
+				if(mapObj != null){
+					mapObj.resize("width");
+				}
+			});		
+		});
+
 		this.panel.find(".menu li").mouseenter(function(){
-			
+
 		});
 
 		// 切换面板
 		this.panel.find(".menu li").click(function(){
 			var preName = that.panel.find(".menu li.active").attr("sname");
 			var sname = $(this).attr("sname");
-			if(preName == sname){
+			if(preName == sname && preName != "poi"){
 				return;
 			}
 			that.panel.find(".menu li").removeClass("active");
@@ -77,8 +102,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				mapObj.removeLayer("chart");
 				mapObj.draw();
 			}
-
-			
+			if(sname == "poi"){
+				that.showPoiPanel();
+			}		
 		});
 
 		// 查看poi
@@ -91,6 +117,114 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			that.searchPoi([text]);
 		});
 
+		// 搜索关键词
+		this.panel.find(".poi-item,.poi-list-row span").click(function(){
+			var poiName = $(this).attr("piname");
+			var poiList = [];
+			switch(poiName){
+				case "hotel":{
+					poiList.push("hotel");
+					poiList.push("酒店");
+					break;
+				}
+				case "restaurant":{
+					poiList.push("饭店");
+					poiList.push("饭馆");
+					break
+				}
+				case "shop":{
+					poiList.push("商场");
+					poiList.push("商店");
+					break;
+				}
+				case "cinema":{
+					poiList.push("电影院");
+					break;
+				}
+				case "site":{
+					poiList.push("公园");
+					break;
+				}
+				case "bank":{
+					poiList.push("银行");
+					poiList.push("ATM");
+					break;
+				}
+				case "supermarker":{
+					poiList.push("超市");
+					break;
+				}
+				case "subway":{
+					poiList.push("地铁");
+					break;
+				}
+				case "bus":{
+					poiList.push("公交站");
+					break;
+				}
+				case "gas":{
+					poiList.push("加油站");
+					break;
+				}
+				case "park":{
+					poiList.push("停车场");
+					break;
+				}
+				case "ktv":{
+					poiList.push("ktv");
+					break;
+				}
+				case "bar":{
+					poiList.push("酒吧");
+					break;
+				}
+				case "hospital":{
+					poiList.push("医院");
+					break;
+				}
+				case "school":{
+					poiList.push("学校");
+					poiList.push("小学");
+					poiList.push("中学");
+					poiList.push("大学");
+					break;
+				}
+				case "harmacy":{
+					poiList.push("药店");
+					break;
+				}
+				case "atm":{
+					poiList.push("atm");
+					break;
+				}
+				case "chafing_dish":{
+					poiList.push("火锅");
+					break;
+				}
+				case "barbecue":{
+					poiList.push("烧烤");
+					poiList.push("烤串");
+					break;
+				}
+				case "snack":{
+					poiList.push("快餐");
+					poiList.push("麦当劳");
+					poiList.push("肯德基");
+					break;
+				}
+				case "sichuan":{
+					poiList.push("川菜");
+					break;
+				}
+				default:
+					break;
+			}
+			if(poiList.length != 0){
+				that.searchPoi(poiList);
+			}
+
+			
+		});		
 		// 显示删除按钮
 		this.panel.find(".search-keyword").on("input",function(e){
 			var keyword = $(this).val();
@@ -300,11 +434,21 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		});
 	},
 
+	// 显示查询面板
+	showPoiPanel : function(){
+		this.panel.find(".result-tab-div").hide();
+		this.panel.find(".poi-tab").show();
+		this.panel.find(".result-main-div").empty();
+		mapObj.clearOverlays();
+	},
+
 	searchPoi : function(keyword){
 		if(keyword == null){
 
 			return;
 		}
+		this.panel.find(".result-tab-div").hide();
+		this.panel.find(".result-main-div").show();
 		this.keyword = keyword;
 		this.poiCurrentPage = 0;
 		this.searchPoiByPage(keyword,this.poiCurrentPage);
@@ -384,7 +528,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 					+	'	<li class="pre-page">上一页</li>'
 					+	'	<li class="next-page">下一页</li>'
 					+	'</ul>';
-		this.panel.find(".result-main-div").after(pageHtml);
+		this.panel.find(".result-main-div").append(pageHtml);
 
 		var that = this;
 		// 上一页

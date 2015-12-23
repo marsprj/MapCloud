@@ -1,11 +1,10 @@
 MapCloud.CityPanel = MapCloud.Class(MapCloud.Panel,{
-
-
+	
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		
-		this.registerEvent();
-	},
+		this.registerPanelEvent();
+	},	
 
 	show : function(){
 		this.panel.slideDown();
@@ -14,7 +13,7 @@ MapCloud.CityPanel = MapCloud.Class(MapCloud.Panel,{
 	hide : function(){
 		this.panel.slideUp();
 	},
-	registerEvent : function(){
+	registerPanelEvent : function(){
 		var that = this;
 		this.panel.find("li").click(function(){
 			var name = $(this).html();
@@ -27,18 +26,19 @@ MapCloud.CityPanel = MapCloud.Class(MapCloud.Panel,{
 				MapCloud.currentCityPanel.setCity(name,x,y);
 				that.hide();
 			}
-		});
+		});	
 
 		// 离开
 		this.panel.mouseleave(function(){
-			that.hide();
-		});
+			// that.hide();
+		})	
 	},
+
 
 	setCity : function(city){
 		if(city == null){
 			return;
 		}
 		this.panel.find(".city-list-current span").html(city);
-	}
+	}	
 });

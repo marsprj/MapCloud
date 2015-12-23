@@ -19,6 +19,7 @@
 
 	<script type="text/javascript" src="../js/MapCloud.js"></script>
 	<script type="text/javascript" src="../js/Class/Class.js"></script>
+	<script type="text/javascript" src="../js/CityPosition.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Panel.js"></script>
 	<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
 
@@ -29,6 +30,8 @@
 	<script type="text/javascript" src="js/QueryResultPanel.js"></script>
 	<script type="text/javascript" src="js/MapLayersPanel.js"></script>
 	<script type="text/javascript" src="js/MapLayersControl.js"></script>
+	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
+	<script type="text/javascript" src="js/CityPanel.js"></script>
 
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
@@ -157,9 +160,9 @@
 </head>
 <body>
 	<div class="jumbotron">
-
 		<div id="title">
-			<span>国安综合应用平台</span>
+			<span class="logo-pic"></span>
+			<span class="logo"></span>
 		</div>
 		<div id="main_panel" class="container">
 			<div id="left_panel">
@@ -169,10 +172,22 @@
 						<li class="address-search-menu" data-toggle="tooltip" data-placement="right" data-original-title="地址匹配" sname="address"></li>
 						<li class="overlay-menu" data-toggle="tooltip" data-placement="right" data-original-title="标绘" sname="overlay"></li>
 						<li class="chart-menu" data-toggle="tooltip" data-placement="right" data-original-title="专题图" sname="chart"></li> -->
-						<li class="fa fa-search active" data-toggle="tooltip" data-placement="right" data-original-title="查询" sname="poi"></li>
-						<li class="fa fa-map-marker" data-toggle="tooltip" data-placement="right" data-original-title="地址匹配" sname="address"></li>
-						<li class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="right" data-original-title="标绘" sname="overlay"></li>
-						<li class="fa fa-bar-chart" data-toggle="tooltip" data-placement="right" data-original-title="专题图" sname="chart"></li>
+						<li class="active" sname="poi">
+							<div class="fa fa-search"></div>
+							<span>查询</span>
+						</li>
+						<li class="" sname="address">
+							<div class="fa fa-map-marker"></div>
+							<span>地址匹配</span>
+						</li>
+						<li class="" sname="overlay">
+							<div class="fa fa-pencil-square-o"></div>
+							<span>标绘</span>
+						</li>
+						<li class="" sname="chart">
+							<div class="fa fa-bar-chart"></div>
+							<span>专题图</span>
+						</li>
 					</ul>
 				</div>
 				<div class="search-panel float-panel">
@@ -187,7 +202,44 @@
 				    		</div>
 						</div>
 						<div class="result-content-div">
-							<div class="result-main-div">
+							<div class="result-tab-div poi-tab active">
+								<div class="row poi-icon-row">
+									<div class="col-md-4 poi-item" piname="hotel">
+										<div class="poi-item-icon poi-hotel-item">
+										</div>
+										<span>酒店</span>
+									</div>
+									<div class="col-md-4 poi-item" piname="restaurant">
+										<div class="poi-item-icon poi-restaurant-item">
+										</div>
+										<span>使馆</span>
+									</div>
+									<div class="col-md-4 poi-item" piname="shop">
+										<div class="poi-item-icon poi-shop-item">
+										</div>
+										<span>加油站</span>
+									</div>
+								</div>
+								<div class="row poi-icon-row">
+									<div class="col-md-4 poi-item" piname="site">
+										<div class="poi-item-icon poi-site-item">
+										</div>
+										<span>火车站</span>
+									</div>
+									<div class="col-md-4 poi-item" piname="bank">
+										<div class="poi-item-icon poi-bank-item">
+										</div>
+										<span>汽车站</span>
+									</div>
+									<div class="col-md-4 poi-item" piname="supermarker">
+										<div class="poi-item-icon poi-supermarker-item">
+										</div>
+										<span>工厂</span>
+									</div>
+								</div>
+							</div>
+							<div class="result-tab-div result-main-div">
+								
 							</div>
 						</div>
 						
@@ -211,7 +263,7 @@
 								<span>编辑</span>
 								<div class="pull-right mc-icon mc-icon-back return-overlay-list" data-toggle="tooltip" data-placement="top" data-original-title="返回"></div>
 								<div class="pull-right mc-icon mc-icon-empty remove-overlay"data-toggle="tooltip" data-placement="top" data-original-title="删除"></div>
-								<div class="pull-right mc-icon mc-icon-save save-overlay" data-toggle="tooltip" data-placement="top" data-original-title="保存"></div>
+								<div class="pull-right mc-icon fa fa-save save-overlay" data-toggle="tooltip" data-placement="top" data-original-title="保存"></div>
 							</div>
 							<div class="overlay-edit-div">
 							</div>
@@ -292,6 +344,9 @@
 						</ul>
 					</div>
 				</div>
+				<div id="map_btn">
+					<span class="fa fa-angle-left"></span>
+				</div>
 			</div>
 			<div id="right_panel">
 				<div id="map_container">
@@ -362,23 +417,51 @@
 				</div>
 				<!-- 工具栏 -->
 				<div id="map_bar_wrapper" class="mc-border">
-					<div class="mc-icon control-icon">
+					<!-- <div class="mc-icon control-icon bar-icon-div">
 						<a class="btn btn-default btn-link btn-sm ">
 					  		<i class="fa fa-angle-double-left"></i>
 						</a>
-					</div>	
-					<div class="mc-icon mc-icon-area" data-toggle="tooltip" data-placement="top" data-original-title="区域查询"></div>
-					<div class="mc-icon mc-icon-polygon" data-toggle="tooltip" data-placement="top" data-original-title="多边形查询"></div>
-					<div class="mc-icon mc-icon-line" data-toggle="tooltip" data-placement="top" data-original-title="线查询"></div>
-					<div class="mc-icon mc-icon-plus"></div>
-					<div class="mc-icon mc-icon-minus"></div>
-					<div class="mc-icon mc-icon-info" data-toggle="tooltip" data-placement="top" data-original-title="点击查询"></div>
-					<div class="mc-icon mc-icon-mouse active" data-toggle="tooltip" data-placement="top" data-original-title="鼠标状态"></div>
-					<div class="mc-icon mc-icon-world" data-toggle="tooltip" data-placement="top" data-original-title="全图显示"></div>
-					<div class="mc-icon mc-icon-hand-up"></div>
-					<div class="mc-icon mc-icon-full-screen"></div>
-					<div class="mc-icon mc-icon-zoom-in"></div>
-					<div class="mc-icon mc-icon-pin"></div>					
+					</div> -->
+					<div class="current-layer bar-icon-div" data-toggle="tooltip" data-placement="top" data-original-title="当前图层"></div>	
+					<div class="layer-query-tool row" data-toggle="tooltip" data-placement="top" data-original-title="查询工具"><div class="query-label">查询工具</div></div>	
+					<!-- <div class="mc-icon mc-icon-area bar-icon-div" data-toggle="tooltip" data-placement="top" data-original-title="区域查询"></div>
+					<div class="mc-icon mc-icon-polygon bar-icon-div" data-toggle="tooltip" data-placement="top" data-original-title="多边形查询"></div>
+					<div class="mc-icon mc-icon-line bar-icon-div" data-toggle="tooltip" data-placement="top" data-original-title="线查询"></div>
+					<div class="mc-icon mc-icon-plus bar-icon-div"></div>
+					<div class="mc-icon mc-icon-minus bar-icon-div"></div> -->
+					<div class="mc-icon mc-icon-info bar-icon-div"  data-toggle="tooltip" data-placement="top" data-original-title="点击查询"></div>
+					<div class="mc-icon mc-icon-mouse active bar-icon-div" data-toggle="tooltip" data-placement="top" data-original-title="鼠标状态"></div>
+					<div class="mc-icon mc-icon-world bar-icon-div" data-toggle="tooltip" data-placement="top" data-original-title="全图显示"></div>
+<!-- 					<div class="mc-icon mc-icon-hand-up bar-icon-div"></div>
+					<div class="mc-icon mc-icon-full-screen bar-icon-div"></div>
+					<div class="mc-icon mc-icon-zoom-in bar-icon-div"></div>
+					<div class="mc-icon mc-icon-pin bar-icon-div"></div>	 -->
+					<div class="query-tools">
+						<ul>
+							<li class="row">
+								<div class="col-md-3">
+									<i class="mc-icon mc-icon-area"></i>
+								</div>
+								<div class="col-md-8 col-md-offset-1"><span>区域查询</span>
+								</div>
+							</li>
+							<li class="row">
+								<div class="col-md-3">
+									<i class="mc-icon mc-icon-polygon"></i>
+								</div>
+								<div class="col-md-8 col-md-offset-1"><span>多边形查询</span>
+								</div>
+							</li>
+							<li class="row">
+								<div class="col-md-3">
+									<i class="mc-icon mc-icon-line"></i>
+								</div>
+								<div class="col-md-8 col-md-offset-1"><span>线查询</span>
+								</div>
+							</li>
+							
+						</ul>
+					</div>				
 				</div>
 
 				<div id="map_overlay_wrapper">
@@ -392,35 +475,195 @@
 				<!-- 底图 -->
 				<div id="base_layer_wrapper" class="" data-toggle="tooltip" data-placement="left" data-original-title="切换底图">
 					<div class="vector-base base-layer-icon ">
-						<img src="../images/vector_base.png">
+						<!-- <img src="../images/maptype.png"> -->
 						<div class="text-center">
 							矢量
 						</div>
 					</div>
 					<div class="image-base base-layer-icon active">
-						<img src="../images/image_base.png">
+						<!-- <img src="../images/maptype.png"> -->
 						<div class="text-center">
 							影像
 						</div>
 					</div>
 				</div>
 
-				<!-- 图层按钮 -->
-				<div id="map_layers_icon" data-toggle="tooltip" data-placement="left" data-original-title="图层列表">
-					<img src="../images/layers_32.png">
-				</div>
+
 
 				<!-- 图层列表 -->
 				<div id="map_layers_wrapper">
-					<div id="current-layer" class="row">
-						<span>选中的图层: </span>
-						<span class="current-layer-name label label-success"></span>
-					</div>
 					<div class="map-layers-list">
 					
 					</div>
 				</div>
+
+				<!-- 当前城市列表 -->
+				<div id="city_container">
+					<div class="current-city">
+						<span class="current-city-name">北京</span>
+						<span class="caret"></span>
+					</div>
+				</div>
+				<!-- 城市列表 -->
+				<div id="city_list_container" class="float-panel">
+					<div class="row current-city-row">
+						<div class="col-md-3">当前城市：</div>
+						<div class="col-md-2 city-list-current"><span>北京</span></div>
+					</div>
+					<div class="city-list-content">
+						<div class="row pop-city-row">
+							<ul>
+								<li>北京</li>
+								<li>天津</li>
+								<li>上海</li>
+								<li>重庆</li>
+								<li>南京</li>
+								<li>武汉</li>
+							</ul>
+						</div>
+						<div class="city-list-div">
+							<div class="row">
+								<div class="col-md-2">
+									安徽:
+								</div>
+								<div class="col-md-10">
+									<ul>
+										<li>合肥</li>
+										<li>安庆</li>
+										<li>蚌埠</li>
+										<li>亳州</li>
+										<li>池州</li>
+										<li>滁州</li>
+										<li>阜阳</li>
+										<li>淮北</li>
+										<li>淮南</li>
+										<li>黄山</li>
+										<li>六安</li>
+										<li>马鞍山</li>
+										<li>宿州</li>
+										<li>铜陵</li>
+										<li>芜湖</li>
+										<li>宣城</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									福建:
+								</div>
+								<div class="col-md-10">
+									<ul>
+										<li>福州</li>
+										<li>龙岩</li>
+										<li>南平</li>
+										<li>宁德</li>
+										<li>莆田</li>
+										<li>泉州</li>
+										<li>三明</li>
+										<li>厦门</li>
+										<li>漳州</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									广东:
+								</div>
+								<div class="col-md-10">
+									<ul>
+										<li>广州</li>
+										<li>潮州</li>
+										<li>东莞</li>
+										<li>佛山</li>
+										<li>河源</li>
+										<li>惠州</li>
+										<li>江门</li>
+										<li>揭阳</li>
+										<li>茂名</li>
+										<li>梅州</li>
+										<li>清远</li>
+										<li>汕头</li>
+										<li>汕尾</li>
+										<li>韶关</li>
+										<li>深圳</li>
+										<li>阳江</li>
+										<li>云浮</li>
+										<li>湛江</li>
+										<li>肇庆</li>
+										<li>中山</li>
+										<li>珠海</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									广西:
+								</div>
+								<div class="col-md-10">
+									<ul>
+										<li>南宁</li>
+										<li>百色</li>
+										<li>北海</li>
+										<li>崇左</li>
+										<li>防城港</li>
+										<li>贵港</li>
+										<li>桂林</li>
+										<li>河池</li>
+										<li>贺州</li>
+										<li>来宾</li>
+										<li>柳州</li>
+										<li>钦州</li>
+										<li>梧州</li>
+										<li>玉林</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									贵州:
+								</div>
+								<div class="col-md-10">
+									<ul>
+										<li>贵阳</li>
+										<li>安顺</li>
+										<li>毕节</li>
+										<li>六盘水</li>
+										<li>黔东南州</li>
+										<li>黔南州</li>
+										<li>黔西南州</li>
+										<li>铜仁地区</li>
+										<li>遵义</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									甘肃:
+								</div>
+								<div class="col-md-10">
+									<ul>
+										<li>兰州</li>
+										<li>白银</li>
+										<li>定西</li>
+										<li>甘南州</li>
+										<li>嘉峪关</li>
+										<li>金昌</li>
+										<li>酒泉</li>
+										<li>临夏州</li>
+										<li>陇南</li>
+										<li>平凉</li>
+										<li>庆阳</li>
+										<li>天水</li>
+										<li>武威</li>
+										<li>张掖</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			
 		</div>
 	</div>
 	

@@ -50,6 +50,7 @@ MapCloud.BaseLayerPanel = MapCloud.Class(MapCloud.Panel,{
 		if(layer == null){
 			return;
 		}
+		layer.MAX_ZOOM_LEVEL = 17;
 		mapObj.setBaseLayer(layer);
 		mapObj.setCenter(center);
 		mapObj.setLevel(level);	

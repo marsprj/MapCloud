@@ -12,43 +12,105 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 			$(this).click(function(){
 				switch(index){
 					case 0:{
-						that.onStretch(this);
-						break;
-					}
-					//area
-					case 1:{
-						that.onArea();
-						break;
-					}
-					case 2:{
-						that.onPolygon();
-						break;
-					}
-					case 3:{
-						that.onLine();
-						break;
-					}
-					case 4:{
-						break;
-					}
-					case 5:{
-						break;
-					}
-					case 6:{
 						that.onFeatureInfo();
 						break;
 					}
-					case 7:{
+					case 1:{
 						that.endQuery();
 						break;
 					}
-					case 8:{
+					case 2:{
 						that.onMapGlobe();
+						break;
+					}
+					// case 0:{
+					// 	that.onStretch(this);
+					// 	break;
+					// }
+					//area
+					// case 1:{
+					// 	that.onArea();
+					// 	break;
+					// }
+					// case 2:{
+					// 	that.onPolygon();
+					// 	break;
+					// }
+					// case 3:{
+					// 	that.onLine();
+					// 	break;
+					// }
+					// case 4:{
+					// 	break;
+					// }
+					// case 5:{
+					// 	break;
+					// }
+					// case 6:{
+					// 	that.onFeatureInfo();
+					// 	break;
+					// }
+					// case 7:{
+					// 	that.endQuery();
+					// 	break;
+					// }
+					// case 8:{
+					// 	that.onMapGlobe();
+					// 	break;
+					// }
+					default:
+						break;
+				}
+			});
+		});
+
+		// 当前图层选择
+		this.panel.find(".current-layer").click(function(){
+			var listPanel = MapCloud.mapLayersPanel;
+			if(listPanel.panel.css("display") == "none"){
+				listPanel.show();
+			}else{
+				listPanel.hide();
+			}
+		});
+
+		// 查询工具列表
+		this.panel.find(".layer-query-tool").click(function(){
+			var queryPanel = that.panel.find(".query-tools");
+			if(queryPanel.css("display") == "none"){
+				queryPanel.slideDown();
+			}else{
+				queryPanel.slideUp();
+			}
+		});
+		// 查询工具选择
+		this.panel.find(".query-tools li").each(function(index,element){
+			$(this).click(function(){
+				// 是否有选定图层
+				if(MapCloud.currentLayer == null){
+					MapCloud.notify.showInfo("请在图层列表中选择一个图层","Warning");
+					return;
+				}
+				switch(index){
+					case 0:{
+						that.onArea();
+						break;
+					}
+					case 1:{
+						that.onPolygon();
+						break;
+					}
+					case 2:{
+						that.onLine();
 						break;
 					}
 					default:
 						break;
 				}
+				var html = $(this).html();
+				// var span = $(this).find("span").html();
+				that.panel.find(".layer-query-tool").html(html);
+				that.panel.find(".query-tools").slideUp();
 			});
 		});
 	},
@@ -89,9 +151,17 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	query_callback : function(layer,count){
+		if(layer == null && count == null){
+			return;
+		}
+		count = parseInt(count);
+		if(!$.isNumeric(count)){
+			return;
+		}
 		MapCloud.queryResultPanel.showPanel();
 		MapCloud.queryResultPanel.setQuery(layer,count,MapCloud.mapBar.query_function);
 		MapCloud.queryResultPanel.setOutput(MapCloud.mapBar.output_function);
+		MapCloud.mapBar.cancelQueryTool();
 	},
 
 	query_function : function(maxFeatures,offset){
@@ -125,6 +195,7 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		var bar = MapCloud.mapBar;
 		MapCloud.queryResultPanel.setQuery(layer,count,MapCloud.mapBar.queryByPolygon_function);
 		MapCloud.queryResultPanel.setOutput(MapCloud.mapBar.queryByPolygonOutput_function);
+		bar.cancelQueryTool();
 	},
 
 	queryByPolygon_function : function(maxFeatures,offset){
@@ -159,6 +230,7 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		var bar = MapCloud.mapBar;
 		MapCloud.queryResultPanel.setQuery(layer,count,bar.queryByLine_function);
 		MapCloud.queryResultPanel.setOutput(bar.queryByLineOutput_function);
+		bar.cancelQueryTool();
 	},
 
 	queryByLine_function : function(maxFeatures,offset){
@@ -257,6 +329,22 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 		mapManager.zoomToGlobeMap(mapObj,this.zoomToGlobeMap_callback);
 	},	
 	zoomToGlobeMap_callback : function(result){
-		
+
+	},
+
+	// 设置当前图层
+	setCurrentLayer : function(dataSetName,layerName){
+		if(dataSetName == null || layerName == null){
+			this.panel.find(".current-layer").html("空");
+			MapCloud.currentLayer = null;
+		}else{
+			this.panel.find(".current-layer").html(dataSetName);
+			MapCloud.currentLayer = layerName;
+		}
+	},
+
+	cancelQueryTool : function(){
+		var html = '<div class="query-label">查询工具</div>';
+		this.panel.find(".layer-query-tool").html(html);
 	},
 });
