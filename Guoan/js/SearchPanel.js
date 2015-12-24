@@ -29,6 +29,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		borderOpacity : 0.9
 	},
 
+	// 热力图底图
+	heatLayerName : null,
+
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);	
@@ -44,6 +47,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		this.registerEvent();
 		mapObj.registerOverlayEvent();
+		this.showHeatMapLayers();
 	},
 
 	registerEvent : function(){
@@ -53,9 +57,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.find("#map_btn").click(function(){
 			var searchPanel = that.panel.find(".search-panel");
 			if(searchPanel.css("width") == "0px"){
-				searchPanel.css("width","299px");
-				that.panel.css("width","360px");
-				$(this).css("left","359px");
+				searchPanel.css("width","269px");
+				that.panel.css("width","330px");
+				$(this).css("left","329px");
 				$("#right_panel").css("width","calc( 100% - 360px)");
 				$(this).find(".fa-angle-right").removeClass(".fa-angle-right").addClass("fa-angle-left");
 			}else{
@@ -99,8 +103,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 
 			if(sname != "chart"){
-				mapObj.removeLayer("chart");
-				mapObj.draw();
+				that.removeChart();
 			}
 			if(sname == "poi"){
 				that.showPoiPanel();
@@ -158,10 +161,10 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 					poiList.push("地铁");
 					break;
 				}
-				case "bus":{
-					poiList.push("公交站");
-					break;
-				}
+				// case "bus":{
+				// 	poiList.push("公交站");
+				// 	break;
+				// }
 				case "gas":{
 					poiList.push("加油站");
 					break;
@@ -214,6 +217,26 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				}
 				case "sichuan":{
 					poiList.push("川菜");
+					break;
+				}
+				case "embassy":{
+					poiList.push("使馆");
+					break;
+				}
+				case "gas":{
+					poiList.push("加油站");
+					break;
+				}
+				case "train":{
+					poiList.push("火车站");
+					break;
+				}
+				case "bus":{
+					poiList.push("汽车站");
+					break;
+				}
+				case "factory":{
+					poiList.push("工厂");
 					break;
 				}
 				default:
@@ -429,9 +452,67 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 清空chart
 		this.panel.find(".remove-chart").click(function(){
-			mapObj.removeLayer("chart");
-			mapObj.draw();
+			that.removeChart();
 		});
+
+		// 专题图伸缩
+		this.panel.find(".chart-panel .link").click(function(){
+			var submenu = $(this).next();
+			var li = $(this).parent();
+			if(submenu.css("display") == "none"){
+				that.panel.find(".chart-panel li.open").removeClass("open");
+				li.addClass("open");
+				that.panel.find(".chart-panel .submenu").slideUp();
+				submenu.slideDown();
+			}else{
+				that.panel.find(".chart-panel li.open").removeClass("open");
+				that.panel.find(".chart-panel .submenu").slideUp();
+
+			}
+		});
+
+		// 增加热力图
+		this.panel.find(".heatmap-submenu button").click(function(){
+			that.removeChart();
+			var layerName = $(this).parent().find("select").val();
+			if(layerName == null || layerName == ""){
+				return;
+			}
+			that.heatLayerName = layerName;
+			var layer = mapObj.getLayer(layerName);
+			if(!layer.visible){
+				layer.setVisiable(true);
+			}
+			mapObj.addHeatMap(layerName,null,"1");
+			mapObj.draw();
+			MapCloud.mapLayersPanel.showLayers();
+			// mapObj.zoomToLayer(layerName);
+		});
+
+		// 透明度
+		this.panel.find(".slider").each(function(){
+			$(this).slider({
+				tooltip : 'hide'
+			});
+			$(this).on("slide",function(slideEvt){
+				var opacity = slideEvt.value;
+				that.panel.find(".chart-opacity").html(opacity/100);
+				// that.changeOpacity(opacity/100);
+				// that.changeDisplayOpacity();
+				// that.displayChartFields();
+			});
+		});
+
+		// 天津定制第一个面板
+		this.panel.find(".panel-collapse:not(:eq(0))").each(function(){
+			if($(this).hasClass("in")){
+				$(this).collapse("hide");
+			}
+		});
+		var firstPanel = this.panel.find(".panel-collapse").first();
+		if(!firstPanel.hasClass("in")){
+			firstPanel.collapse("show");
+		}
 	},
 
 	// 显示查询面板
@@ -806,6 +887,41 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		}
 		html += "</ul>";
 		return html;
+	},
+
+	// 显示图层
+	showHeatMapLayers : function(){
+		if(mapObj == null){
+			return;
+		}
+		var layers = mapObj.getLayers();
+		var layer = null,layerName = null,dataSetName = null,geomType = null;
+		var html = "";
+		for(var i = 0; i < layers.length;++i){
+			layer = layers[i];
+			if(layer == null){
+				continue;
+			}
+			layerName = layer.name;
+			geomType = layer.geomType;
+			dataSetName = MapCloud.mapLayersPanel.getDataSetName(layerName);
+			if(geomType == GeoBeans.Geometry.Type.POINT || geomType == GeoBeans.Geometry.Type.MULTIPOINT){
+				html += "<option value='" + layerName + "'>" + dataSetName + "</option>";
+			}
+		}
+		this.panel.find("#heatmap_layers").html(html);
+	},
+
+
+
+	// 删除地图中专题图
+	removeChart : function(){
+		if(this.heatLayerName != null){
+			mapObj.removeHeatMap(this.heatLayerName);
+			mapObj.draw();
+		}
+		mapObj.removeLayer("chart");
+		mapObj.draw();
 	},
 
 });

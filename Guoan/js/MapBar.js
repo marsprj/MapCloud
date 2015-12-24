@@ -335,10 +335,10 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 	// 设置当前图层
 	setCurrentLayer : function(dataSetName,layerName){
 		if(dataSetName == null || layerName == null){
-			this.panel.find(".current-layer").html("空");
+			this.panel.find(".current-layer").html("当前图层: 空");
 			MapCloud.currentLayer = null;
 		}else{
-			this.panel.find(".current-layer").html(dataSetName);
+			this.panel.find(".current-layer").html("当前图层: "+ dataSetName);
 			MapCloud.currentLayer = layerName;
 		}
 	},

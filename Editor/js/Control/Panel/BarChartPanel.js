@@ -22,7 +22,7 @@ MapCloud.BarChartPanel = MapCloud.Class(MapCloud.Panel,{
 		if(this.panel.css("display") == "none"){
 			this.cleanup();
 			this.panel.css("display","block");
-			this.panel.find(".panel-collapse").each(function(){
+			this.panel.find(".panel-collapse:not(:eq(0))").each(function(){
 				if($(this).hasClass("in")){
 					$(this).collapse("hide");
 				}

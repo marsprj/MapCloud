@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-slider.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/jquery-ui.min.css" type="text/css">
 
@@ -13,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.css"/>
 	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-slider.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
 	
@@ -29,12 +31,12 @@
 	<script type="text/javascript" src="js/MapBar.js"></script>
 	<script type="text/javascript" src="js/QueryResultPanel.js"></script>
 	<script type="text/javascript" src="js/MapLayersPanel.js"></script>
-	<script type="text/javascript" src="js/MapLayersControl.js"></script>
 	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
 	<script type="text/javascript" src="js/CityPanel.js"></script>
 
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/heatmap.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Class.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/Color.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans/BaseTypes/ColorRamp.js"></script>
@@ -209,30 +211,30 @@
 										</div>
 										<span>酒店</span>
 									</div>
-									<div class="col-md-4 poi-item" piname="restaurant">
-										<div class="poi-item-icon poi-restaurant-item">
+									<div class="col-md-4 poi-item" piname="embassy">
+										<div class="poi-item-icon poi-embassy-item">
 										</div>
 										<span>使馆</span>
 									</div>
-									<div class="col-md-4 poi-item" piname="shop">
-										<div class="poi-item-icon poi-shop-item">
+									<div class="col-md-4 poi-item" piname="gas">
+										<div class="poi-item-icon poi-gas-item">
 										</div>
 										<span>加油站</span>
 									</div>
 								</div>
 								<div class="row poi-icon-row">
-									<div class="col-md-4 poi-item" piname="site">
-										<div class="poi-item-icon poi-site-item">
+									<div class="col-md-4 poi-item" piname="train">
+										<div class="poi-item-icon poi-train-item">
 										</div>
 										<span>火车站</span>
 									</div>
-									<div class="col-md-4 poi-item" piname="bank">
-										<div class="poi-item-icon poi-bank-item">
+									<div class="col-md-4 poi-item" piname="bus">
+										<div class="poi-item-icon poi-bus-item">
 										</div>
 										<span>汽车站</span>
 									</div>
-									<div class="col-md-4 poi-item" piname="supermarker">
-										<div class="poi-item-icon poi-supermarker-item">
+									<div class="col-md-4 poi-item" piname="factory">
+										<div class="poi-item-icon poi-factory-item">
 										</div>
 										<span>工厂</span>
 									</div>
@@ -275,73 +277,320 @@
 							<span>专题图列表</span>
 							<div class="pull-right mc-icon mc-icon-empty remove-chart" data-toggle="tooltip" data-placement="top" data-original-title="清空"></div>
 						</div>
-						<ul>
-							<li class="chart-item" cname="jumin">
-								<img src="../images/Label.png">
-								居民生活
+						<ul class="accordion">
+							<li>
+								<div class="link">
+									<i class="fa fa-database"></i>
+									全国2014年统计数据
+									<i class="fa fa-chevron-down"></i>
+								</div>
+								<ul class="submenu ">
+									<ul class="chart-2014">
+										<li class="chart-item" cname="jumin">
+											<img src="../images/Label.png">
+											居民生活
+										</li>
+										<div class="chart-item-list" cname="jumin">
+											<div class="row" findex="1">
+												<div class="col-md-11 col-md-offset-1">居民人均可支配收入</div>
+											</div>
+											<div class="row" findex="2">
+												<div class="col-md-11 col-md-offset-1">居民人均可支配收入_同比增长</div>
+											</div>
+											<div class="row" findex="3">
+												<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_元</div>
+											</div>
+											<div class="row" findex="4">
+												<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_同比增长
+												</div>
+											</div>
+											<div class="row" findex="5">
+												<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_元
+												</div>
+											</div>
+											<div class="row" findex="6">
+												<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_同比增长
+												</div>
+											</div>
+											<div class="row" findex="7">
+												<div class="col-md-11 col-md-offset-1">居民人均消费支出_元
+												</div>
+											</div>
+											<div class="row" findex="8">
+												<div class="col-md-11 col-md-offset-1">居民人均消费支出_同比增长
+												</div>
+											</div>
+										</div>
+										<li class="chart-item" cname="nongye">
+											<img src="../images/Label.png">
+											农业
+										</li>
+										<div class="chart-item-list" cname="nongye">
+											<div class="row" findex="1">
+												<div class="col-md-10 col-md-offset-1">粮食产量</div>
+											</div>
+											<div class="row" findex="2">
+												<div class="col-md-10 col-md-offset-1">蔬菜产量</div>
+											</div>
+											<div class="row" findex="3">
+												<div class="col-md-10 col-md-offset-1">糖科产量</div>
+											</div>
+										</div>
+										<li class="chart-item" cname="gongye" style="border:none">
+											<img src="../images/Label.png">
+											工业
+										</li>
+										<div class="chart-item-list" cname="gongye">
+											<div class="row" findex="1">
+												<div class="col-md-10 col-md-offset-1">钢材产量</div>
+											</div>
+											<div class="row" findex="1">
+												<div class="col-md-10 col-md-offset-1">水泥产量</div>
+											</div>
+											<div class="row"  findex="1">
+												<div class="col-md-10 col-md-offset-1">发电量</div>
+											</div>
+										</div>
+									</ul>
+								</ul>
 							</li>
-							<div class="chart-item-list" cname="jumin">
-								<div class="row" findex="1">
-									<div class="col-md-11 col-md-offset-1">居民人均可支配收入</div>
+							<li>
+								<div class="link">
+									<i class="fa fa-paint-brush"></i>
+									热力图
+									<i class="fa fa-chevron-down"></i>
 								</div>
-								<div class="row" findex="2">
-									<div class="col-md-11 col-md-offset-1">居民人均可支配收入_同比增长</div>
-								</div>
-								<div class="row" findex="3">
-									<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_元</div>
-								</div>
-								<div class="row" findex="4">
-									<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_同比增长
+								<ul class="submenu heatmap-submenu">
+									<div class="row" style="margin-bottom:10px">
+										<label class="control-label col-md-2" style="margin-top:8px;padding:0px 6px;">图层:</label>
+										<div class="col-md-10" style="padding:0px 4px;">
+											<select id="heatmap_layers" class="form-control col-md-8">
+											</select>
+										</div>
 									</div>
-								</div>
-								<div class="row" findex="5">
-									<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_元
-									</div>
-								</div>
-								<div class="row" findex="6">
-									<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_同比增长
-									</div>
-								</div>
-								<div class="row" findex="7">
-									<div class="col-md-11 col-md-offset-1">居民人均消费支出_元
-									</div>
-								</div>
-								<div class="row" findex="8">
-									<div class="col-md-11 col-md-offset-1">居民人均消费支出_同比增长
-									</div>
-								</div>
-							</div>
-							<li class="chart-item" cname="nongye">
-								<img src="../images/Label.png">
-								农业
+									<button  class="btn btn-sm btn-primary">添加</a>
+								</ul>
 							</li>
-							<div class="chart-item-list" cname="nongye">
-								<div class="row" findex="1">
-									<div class="col-md-10 col-md-offset-1">粮食产量</div>
+							<li>
+								<div class="link">
+									<i class="fa fa-bar-chart"></i>
+									天津市定制图表
+									<i class="fa fa-chevron-down"></i>
 								</div>
-								<div class="row" findex="2">
-									<div class="col-md-10 col-md-offset-1">蔬菜产量</div>
-								</div>
-								<div class="row" findex="3">
-									<div class="col-md-10 col-md-offset-1">糖科产量</div>
-								</div>
-							</div>
-							<li class="chart-item" cname="gongye">
-								<img src="../images/Label.png">
-								工业
+								<ul class="submenu tianjin-chart">
+									<div class="panel-group" id="bar_chart_accordion" role="tablist">
+										<div class="panel panel-default">
+										    <div class="panel-heading" role="tab" id="chart_base_layer_head">
+										      	<h4 class="panel-title">
+										        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_base_layer_coll" aria-expanded="true" aria-controls="bar_chart_base_layer_coll">
+										          		<i class="fa fa-globe"></i>&nbsp;底图设置
+										        	</a>
+										      	</h4>
+										    </div>
+										    <div id="bar_chart_base_layer_coll" class="panel-collapse collapse" role="tabpanel">
+										      	<div class="panel-body">
+										      		<form class="form-horizontal" role="form">
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">表:
+										      				</label>
+															<div class="col-md-8">
+															 	<select class="tianjin-chart-laer form-control ">
+															 	<option value="wwjz">文物旧址</option><option value="jdlp">街道楼盘</option><option value="jrfw">金融服务</option><option value="jtss">交通设施</option><option value="jzw">建筑物</option><option value="whjy">文化剧院</option><option value="xx">学校</option><option value="zscs">住宿场所</option><option value="yy">医院</option><option value="ylfw">医疗服务机构</option><option value="xzdz">乡镇地址</option><option value="life">生活服务</option><option value="sd">商店</option><option value="rmzf">人民政府</option><option value="spot">旅游景点</option><option value="jb">酒吧</option><option value="gc">工厂</option><option value="ggss">公共设施</option><option value="police">公安局</option><option value="subway">地铁站</option><option value="dmdz">地名地址</option><option value="db">地标</option><option value="clfw">车辆服务</option><option value="cymscs">餐饮场所</option><option value="qx">区县行政区</option></select>
+															</div>
+														</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">底图:
+										      				</label>
+										      				<div class="col-md-8">
+										      					<select class="form-control chart-base-layer">
+										      						<option>行政区</option>
+										      					</select>
+										      				</div>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">空间字段:
+										      				</label>
+										      				<div class="col-md-8">
+										      					<select class="form-control chart-base-layer-fields" >
+										      						<option>gid</option>
+										      						<option>name</option>
+										      						<option>cname</option>
+										      					</select>
+										      				</div>
+										      			</div>
+										      		</form>
+										      	</div>
+										    </div>
+										</div>
+										<div class="panel panel-default">
+										    <div class="panel-heading" role="tab" id="bar_chart_table_set_head">
+										      	<h4 class="panel-title">
+										        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_table_set_coll" aria-expanded="false">
+										          		<i class="fa fa-info"></i>&nbsp;基本设置
+										        	</a>
+										      	</h4>
+										    </div>
+										    <div id="bar_chart_table_set_coll" class="panel-collapse collapse" role="tabpanel">
+										      	<div class="panel-body">
+										      		<form class="form-horizontal" role="form">
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">大小:
+										      				</label>
+										      				<div class="col-md-4">
+										      					<input class="form-control chart-table-height" type="text" value="200" data-toggle="tooltip" data-placement="top" data-original-title="高度">
+										      				</div>
+										      				<div class="col-md-4">
+										      					<input class="form-control chart-table-width" type="text" value="80" data-toggle="tooltip" data-placement="top" data-original-title="宽度">
+										      				</div>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">偏移:
+										      				</label>
+										      				<div class="col-md-4">
+										      					<input class="form-control chart-table-offset-x" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="X向,向右为正">
+										      				</div>
+										      				<div class="col-md-4">
+										      					<input class="form-control chart-table-offset-y" type="text" value="0" data-toggle="tooltip" data-placement="top" data-original-title="Y向,向上为正">
+										      				</div>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">X轴:
+										      				</label>
+										      				<div class="col-md-4 checkbox">
+										      					<label><input type="checkbox" class="chart-table-x-axisLine">axisLine</label>
+										      				</div>
+										      				<div class="col-md-4 checkbox">
+										      					<label><input type="checkbox" class="chart-table-x-splitLine">splitLine</label>
+										      				</div>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">Y轴:
+										      				</label>
+										      				<div class="col-md-4 checkbox">
+										      					<label><input type="checkbox" class="chart-table-y-axisLine">axisLine</label>
+										      				</div>
+										      				<div class="col-md-4 checkbox">
+										      					<label><input type="checkbox" class="chart-table-y-splitLine">splitLine</label>
+										      				</div>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">标签</label>
+										      				<div class="col-md-4 checkbox">
+										      					<label><input type="checkbox" class="chart-table-show-label"></label>
+										      				</div>
+										      			</div>
+										      		</form>
+										      	</div>
+										    </div>
+										</div>
+										<div class="panel panel-default">
+										    <div class="panel-heading" role="tab" id="bar_chart_table_style_head">
+										      	<h4 class="panel-title">
+										        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_table_style_coll" aria-expanded="false">
+										          		<i class="fa fa-cog"></i>&nbsp;样式设置
+										        	</a>
+										      	</h4>
+										    </div>
+										    <div id="bar_chart_table_style_coll" class="panel-collapse collapse" role="tabpanel">
+										    	<div class="panel-body">
+										    		<form class="form-horizontal" role="form">
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">字段:</label>
+										      				<div class="col-md-9 chart-fields">
+										      				</div>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">透明度:
+										      				</label>
+														    <div class="col-md-6 control-label">
+																<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+															</div>
+															<label class="control-label col-md-1 chart-opacity">1</label>
+										      			</div>
+										      			<div class="form-group form-group-sm">
+										      				<label class="control-label col-md-3">属性:
+										      				</label>
+										      			</div>
+										      		</form>
+										    	</div>
+										    </div>
+										</div>
+									</div>
+									<div class="row">
+										<button class="btn btn-primary btn-sm col-md-3 col-md-offset-2">添加</button>
+										<button class="btn btn-primary btn-sm col-md-3 col-md-offset-2">删除</button>
+									</div>
+								</ul>
 							</li>
-							<div class="chart-item-list" cname="gongye">
-								<div class="row" findex="1">
-									<div class="col-md-10 col-md-offset-1">钢材产量</div>
-								</div>
-								<div class="row" findex="1">
-									<div class="col-md-10 col-md-offset-1">水泥产量</div>
-								</div>
-								<div class="row"  findex="1">
-									<div class="col-md-10 col-md-offset-1">发电量</div>
-								</div>
-							</div>
 						</ul>
+						
+								<!-- <ul>
+									<li class="chart-item" cname="jumin">
+										<img src="../images/Label.png">
+										居民生活
+									</li>
+									<div class="chart-item-list" cname="jumin">
+										<div class="row" findex="1">
+											<div class="col-md-11 col-md-offset-1">居民人均可支配收入</div>
+										</div>
+										<div class="row" findex="2">
+											<div class="col-md-11 col-md-offset-1">居民人均可支配收入_同比增长</div>
+										</div>
+										<div class="row" findex="3">
+											<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_元</div>
+										</div>
+										<div class="row" findex="4">
+											<div class="col-md-11 col-md-offset-1">城镇居民人均可支配收入_同比增长
+											</div>
+										</div>
+										<div class="row" findex="5">
+											<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_元
+											</div>
+										</div>
+										<div class="row" findex="6">
+											<div class="col-md-11 col-md-offset-1">农村居民人均可支配收入_同比增长
+											</div>
+										</div>
+										<div class="row" findex="7">
+											<div class="col-md-11 col-md-offset-1">居民人均消费支出_元
+											</div>
+										</div>
+										<div class="row" findex="8">
+											<div class="col-md-11 col-md-offset-1">居民人均消费支出_同比增长
+											</div>
+										</div>
+									</div>
+									<li class="chart-item" cname="nongye">
+										<img src="../images/Label.png">
+										农业
+									</li>
+									<div class="chart-item-list" cname="nongye">
+										<div class="row" findex="1">
+											<div class="col-md-10 col-md-offset-1">粮食产量</div>
+										</div>
+										<div class="row" findex="2">
+											<div class="col-md-10 col-md-offset-1">蔬菜产量</div>
+										</div>
+										<div class="row" findex="3">
+											<div class="col-md-10 col-md-offset-1">糖科产量</div>
+										</div>
+									</div>
+									<li class="chart-item" cname="gongye">
+										<img src="../images/Label.png">
+										工业
+									</li>
+									<div class="chart-item-list" cname="gongye">
+										<div class="row" findex="1">
+											<div class="col-md-10 col-md-offset-1">钢材产量</div>
+										</div>
+										<div class="row" findex="1">
+											<div class="col-md-10 col-md-offset-1">水泥产量</div>
+										</div>
+										<div class="row"  findex="1">
+											<div class="col-md-10 col-md-offset-1">发电量</div>
+										</div>
+									</div>
+								</ul> -->
 					</div>
 				</div>
 				<div id="map_btn">

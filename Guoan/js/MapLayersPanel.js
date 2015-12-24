@@ -9,7 +9,8 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 		
 		this.dbsManager = user.getDBSManager();
 		this.registerPanelEvent();
-		this.getDataSource();
+		// this.getDataSource();
+		this.showLayers();
 	},	
 
 	showPanel : function(){
@@ -17,6 +18,7 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	show : function(){
+		this.showLayers();
 		this.panel.slideDown();
 	},	
 
@@ -49,6 +51,96 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 	getDataSets_callback : function(dataSets){
 		var panel = MapCloud.mapLayersPanel;
 		panel.showDataSets(dataSets);
+	},
+
+	showLayers : function(){
+		if(mapObj == null){
+			return;
+		}
+		var layers = mapObj.getLayers();
+		var layer = null,layerName = null,dataSetName = null;
+		var html = "";
+		for(var i = 0; i < layers.length;++i){
+			var layer = layers[i];
+			if(layer == null){
+				continue;
+			}
+			layerName = layer.name;
+			var checkboxHtml = "<input type='checkbox'>";
+			if(layer.visible){
+				checkboxHtml = "<input type='checkbox' checked>";
+			}
+			var dataSetName = this.getDataSetName(layerName);
+			if(dataSetName == null){
+				console.log(layerName);
+				continue;
+			}
+			html += "<div class='row' lname='" + layerName + "'>"
+				+	"	<div class='col-md-2'>"
+				+	checkboxHtml
+				+	"	</div>"
+				+	"	<div class='col-md-9'>"
+				+	"		<span class='layer-name'>" + dataSetName + "</span>"
+				+	"	</div>"
+				// +	"	<div class='col-md-2'>"
+				// +	"		<div class='mc-icon glyphicon glyphicon-ok ' data-toggle='tooltip' "
+				// +	"		data-placement='top' data-original-title='选中该图层'></div>"
+				// +	"	</div>"
+				+	"</div>";
+			// dataSetName = this.
+
+		}
+		this.panel.find(".map-layers-list").html(html);
+
+		var that = this;
+		// 控制显示
+		this.panel.find("input[type='checkbox']").change(function(){
+			// var name = $(this).parents(".row").find(".layer-name").html();
+			var name = $(this).parents(".row").attr("lname");
+			var layer = mapObj.getLayer(name);
+			if(layer == null){
+				return;
+			}
+			if($(this).prop("checked")){
+				layer.setVisiable(true);
+				mapObj.draw();
+			}else{
+				layer.setVisiable(false);
+				mapObj.draw();			
+			}
+		});
+
+		// 选中图层
+		this.panel.find(".layer-name").click(function(){
+			// var activeRow = that.panel.find(".row.active");
+			// var preName = activeRow.attr("lname");
+			var layerRow = $(this).parents(".row");
+			var checkbox = layerRow.find("input[type='checkbox']");
+			var name = layerRow.attr("lname");
+			if(checkbox.prop("checked")){
+
+			}else{
+				checkbox.prop("checked",true);
+				var layer = mapObj.getLayer(name);
+				if(layer != null){
+					layer.setVisiable(true);
+					mapObj.draw();
+				}
+			}
+			that.panel.find(".row").removeClass("active");
+			layerRow.addClass("active");
+
+			// if(name == preName){
+			// 	return;
+			// }
+			// activeRow.removeClass("active");
+			var dataSetName = that.getDataSetName(name);
+			MapCloud.mapBar.setCurrentLayer(dataSetName,name);
+		});
+
+		// 设置一个默认选中的
+		var layerRow = this.panel.find(".row[lname='wwjz']").addClass("active");
+		MapCloud.mapBar.setCurrentLayer("文物旧址","wwjz");
 	},
 
 	showDataSets : function(dataSets){
@@ -85,55 +177,30 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 		// this.panel.find("[data-toggle='tooltip']").tooltip({container:'body'});
 
 		var that = this;
-		// 添加当前图层
-		this.panel.find("input[type='checkbox']").change(function(){
-			var name = $(this).parents(".row").find(".layer-name").html();
-			if($(this).prop("checked")){
-				// 选中
-				var layerName = that.getLayerName(name);
-				if(layerName == null){
-					return;
-				}
-				var layer = new GeoBeans.Layer.FeatureDBLayer(layerName,null,that.sourceName,name,null,null);
-				mapObj.insertLayer(layer,that.addLayer_callback);
-			}else{
-				// 去掉选中
-				var layerName = that.getLayerName(name);
-				mapObj.removeLayer(layerName,that.removeLayer_callback);
-				if($(this).parents(".row").hasClass("active")){
-					// MapCloud.currentLayer = null;
-					MapCloud.mapBar.setCurrentLayer(null,null);
-					$(this).parents(".row").removeClass("active");
-					that.panel.find(".current-layer-name").empty();
-				}
-			}
-		});
+		// // 添加当前图层
+		// this.panel.find("input[type='checkbox']").change(function(){
+		// 	var name = $(this).parents(".row").find(".layer-name").html();
+		// 	if($(this).prop("checked")){
+		// 		// 选中
+		// 		var layerName = that.getLayerName(name);
+		// 		if(layerName == null){
+		// 			return;
+		// 		}
+		// 		var layer = new GeoBeans.Layer.FeatureDBLayer(layerName,null,that.sourceName,name,null,null);
+		// 		mapObj.insertLayer(layer,that.addLayer_callback);
+		// 	}else{
+		// 		// 去掉选中
+		// 		var layerName = that.getLayerName(name);
+		// 		mapObj.removeLayer(layerName,that.removeLayer_callback);
+		// 		if($(this).parents(".row").hasClass("active")){
+		// 			// MapCloud.currentLayer = null;
+		// 			MapCloud.mapBar.setCurrentLayer(null,null);
+		// 			$(this).parents(".row").removeClass("active");
+		// 			that.panel.find(".current-layer-name").empty();
+		// 		}
+		// 	}
+		// });
 
-		// 选中当前图层
-		this.panel.find(".glyphicon-ok").click(function(){
-			var name = $(this).parents(".row").find(".layer-name").html();
-			if(name == MapCloud.currentLayer){
-				MapCloud.currentLayer = null;
-				that.panel.find(".current-layer-name").empty();
-				$(this).parents(".row").removeClass("active");
-				return;
-			}
-			var layer = mapObj.getLayer(name);
-			if(layer == null){
-				// 添加该图层
-				var layer = new GeoBeans.Layer.FeatureDBLayer(name,null,that.sourceName,name,null,null);
-				mapObj.insertLayer(layer,that.addLayer_callback);
-				$(this).parents(".row").find("input[type='checkbox']").prop("checked",true);
-			}else{
-				mapObj.zoomToLayer(name);
-			}
-
-			that.panel.find(".map-layers-list .row").removeClass("active");
-			$(this).parents(".row").addClass("active");
-			that.panel.find(".current-layer-name").html(name);
-			MapCloud.currentLayer = name;
-
-		});
 
 		// 选中图层
 		this.panel.find(".layer-name").click(function(){
@@ -572,6 +639,168 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 				break;
 		}
 		return layerName;
-	}
+	},
+
+	// 获得数据名称
+	getDataSetName : function(layerName){
+		var dataSetName = null;
+		switch(layerName){
+			case "cymscs":{
+				dataSetName = "餐饮场所";
+				break;
+			}
+			case "clfw":{
+				dataSetName = "车辆服务";
+				break;
+			}
+			case "cydl":{
+				dataSetName = "次要道路";
+				break;
+			}
+			case "db":{
+				dataSetName = "地标";
+				break;
+			}
+			case "dmdz":{
+				dataSetName = "地名地址";
+				break;
+			}
+			case "subway":{
+				dataSetName = "地铁站";
+				break;
+			}
+			case "police":{
+				dataSetName = "公安局";
+				break;
+			}
+			case "ggss":{
+				dataSetName = "公共设施";
+				break;
+			}
+			case "zb":{
+				dataSetName = "公园";
+				break;
+			}
+			case "gc":{
+				dataSetName = "工厂";
+				break;
+			}
+			case "gdhx":{
+				dataSetName = "国道环线";
+				break;
+			}
+			case "xzq":{
+				dataSetName = "行政区";
+				break;
+			}
+			case "hyda":{
+				dataSetName = "河流";
+				break;
+			}
+			case "jzw":{
+				dataSetName = "建筑物";
+				break;
+			}
+			case "jtss":{
+				dataSetName = "交通设施";
+				break;
+			}
+			case "jdlp":{
+				dataSetName = "街道楼盘";
+				break;
+			}
+			case "jrfw":{
+				dataSetName = "金融服务";
+				break;
+			}
+			case "jb":{
+				dataSetName = "酒吧";
+				break;
+			}
+			case "lijiaoqiao":{
+				dataSetName = "立交桥";
+				break;
+			}
+			case "spot":{
+				dataSetName = "旅游景点";
+				break;
+			}
+			case "other":{
+				dataSetName = "其他";
+				break;
+			}
+			case "qx":{
+				dataSetName = "区县行政区";
+				break;
+			}
+			case "rmzf":{
+				dataSetName = "人民政府";
+				break;
+			}
+			case "sd":{
+				dataSetName = "商店";
+				break;
+			}
+			case "life":{
+				dataSetName = "生活服务";
+				break;
+			}
+			case "xz_shijie":{
+				dataSetName = "市界线";
+				break;
+			}
+			case "sx":{
+				dataSetName = "水系";
+				break;
+			}
+			case "railway":{
+				dataSetName = "铁路";
+				break;
+			}
+			case "whjy":{
+				dataSetName = "文化剧院";
+				break;
+			}
+			case "wwjz":{
+				dataSetName = "文物旧址";
+				break;
+			}
+			case "xjxzq":{
+				dataSetName = "县级行政区";
+				break;
+			}
+			case "xz_xianjie":{
+				dataSetName = "县界";
+				break;
+			}
+			case "xzdz":{
+				dataSetName = "乡镇地址";
+				break;
+			}
+			case "xx":{
+				dataSetName = "学校";
+				break;
+			}
+			case "ylfw":{
+				dataSetName = "医疗服务机构";
+				break;
+			}
+			case "yy":{
+				dataSetName = "医院";
+				break;
+			}
+			case "zydl":{
+				dataSetName = "主要道路";
+				break;
+			}
+			case "zscs":{
+				dataSetName = "住宿场所";
+				break;
+			}
+			default:
+				break;
+		}
+		return dataSetName;
+	},
 
 });

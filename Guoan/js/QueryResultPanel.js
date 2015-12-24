@@ -31,17 +31,17 @@ MapCloud.QueryResultPanel = MapCloud.Class(MapCloud.Panel,{
 
 	showPanel : function(){
 		this.panel.animate({"height":"250px"},300);
-		$("#map_container").animate({"bottom":"250px"},300,null,function(){
-			mapObj.resize("height");
-		});
+		// $("#map_container").animate({"bottom":"250px"},300,null,function(){
+		// 	mapObj.resize("height");
+		// });
 		
 	},	
 
 	hidePanel : function(){
 		this.panel.animate({"height":"0px"},300);
-		$("#map_container").animate({"bottom":"0px"},300,null,function(){
-			mapObj.resize("height");
-		});
+		// $("#map_container").animate({"bottom":"0px"},300,null,function(){
+		// 	mapObj.resize("height");
+		// });
 	},
 
 
