@@ -8,12 +8,24 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 	// 人均数据
 	perRangeChart : null,
 
-	
+	// 海洋浮标地图
+	agroMapName : "agro",
 
+	// 海洋浮标图层
+	agroLayerName : "agro",
+
+	agroFields : ["ppt","x","y"],
+
+	agroFeatureType : null,
+
+	agroChartFlag : false,
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		this.registerEvent();
+
+		var workspace = new GeoBeans.WFSWorkspace("tmp",MapCloud.server,"1.0.0");
+		this.agroFeatureType = new GeoBeans.FeatureType(workspace, this.agroLayerName);
 	},
 
 
@@ -33,6 +45,14 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 				that.showPopRangeChart();
 			}else if($(this).hasClass("mc-icon-per")){
 				that.showPerRangeChart();
+			}else if($(this).hasClass("mc-icon-agro")){
+				if(that.agroChartFlag){
+					Radi.Earth.cleanup();
+					that.agroChartFlag = false;
+				}else{
+					that.getAgroData();
+				}
+				
 			}
 		});
 
@@ -43,13 +63,11 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			this.panel.children().not(".mc-stretch").css("display","block");
 			$(item).removeClass("mc-icon-left");
 			$(item).addClass("mc-icon-right");
-			// this.panel.css("width","203px");
-			this.panel.animate({'width':'202px'},300);
+			this.panel.animate({'width':'242px'},300);
 		}else{
 			this.panel.children().not(".mc-stretch").css("display","none");
 			$(item).removeClass("mc-icon-right");
 			$(item).addClass("mc-icon-left");
-			// this.panel.css("width","40px");
 			this.panel.animate({'width':'40px'},300);
 		}
 	},
@@ -162,5 +180,58 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		var pitch = -70.75989;
 		var roll = 359.990288;
 		Radi.Earth.flyTo(x,y,z,heading,pitch,roll);
+	},
+
+	getAgroData : function(){
+		this.agroFeatureType.fields = this.agroFeatureType.getFields(this.agroMapName,null);
+		this.agroFeatureType.getFeaturesFilterAsync(this.agroMapName,null,null,333,0,
+			this.agroFields,null,this.getAgroData_callback);
+	},
+
+
+	getAgroData_callback : function(features){
+		if(!$.isArray(features)){
+			return;
+		}
+		var that = MapCloud.topicPanel;
+		that.showArgoData(features);
+	},
+
+	showArgoData : function(features){
+		if(features == null){
+			return;
+		}
+		Radi.Earth.cleanup();
+		var url = "../images/agro_marker.png";
+		var pptFieldIndex = this.agroFeatureType.getFieldIndex("ppt");
+		var xFieldIndex = this.agroFeatureType.getFieldIndex("x");
+		var yFieldIndex = this.agroFeatureType.getFieldIndex("y");
+		var feature = null,values = null,ppt = null,x = null,y= null;
+		var agro3D = null, agro3DList = [];
+		for(var i = 0; i < features.length; ++i){
+			feature = features[i];
+			if(feature == null){
+				continue;
+			}
+			values = feature.values;
+			if(values == null){
+				continue;
+			}
+			ppt = values[pptFieldIndex];
+			x = values[xFieldIndex];
+			y = values[yFieldIndex];
+			if(x != null && y != null){
+				agro3D = Radi.Earth.addBillboard(x,y,"",url);
+				agro3DList.push(agro3D);
+			}
+		}
+		var cx = 107.18924;
+		var cy = 25.566601;
+		var cz = 11677693;
+		var heading = 358.15;
+		var pitch = -89.76141;
+		var roll = 0;
+		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
+		this.agroChartFlag = true;
 	},
 });

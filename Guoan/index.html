@@ -33,6 +33,7 @@
 	<script type="text/javascript" src="js/MapLayersPanel.js"></script>
 	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
 	<script type="text/javascript" src="js/CityPanel.js"></script>
+	<script type="text/javascript" src="js/PositionControl.js"></script>
 
 
 	<script type="text/javascript" src="../../Map5/lib/GeoBeans.js"></script>
@@ -247,7 +248,15 @@
 						
 					</div>
 					<div class="search-tab-panel address-search-panel"sname="address">
-						<!-- 地址 -->
+						<div class="row" style="margin:15px 0px;">
+							<div class="input-group col-md-10 col-md-offset-1">
+					      		<input type="text" class="form-control search-keyword" placeholder="请输入查询关键词">
+					      		<span class="remove-poi-search"></span>
+					      		<span class="input-group-btn">
+					        		<button class="btn btn-default search-btn" type="button">&nbsp;&nbsp;</button>
+					      		</span>
+				    		</div>
+						</div>
 					</div>
 					<div class="search-tab-panel overlay-panel" sname="overlay">
 						<!-- 标绘 -->
@@ -255,6 +264,10 @@
 							<div class="row header-row">
 								<span>标绘列表</span>
 								<div class="pull-right mc-icon mc-icon-empty remove-overlays" data-toggle="tooltip" data-placement="top" data-original-title="清空"></div>
+							</div>
+							<div class="row current-layer-row">
+								<div class="col-md-8 current-layer-div">当前图层:<span></span></div>
+								<button class="col-md-3 btn btn-primary btn-sm">标注</button>
 							</div>
 							<div class="overlay-list-div">
 							</div>
@@ -374,7 +387,7 @@
 							<li>
 								<div class="link">
 									<i class="fa fa-bar-chart"></i>
-									天津市定制图表
+									专题图
 									<i class="fa fa-chevron-down"></i>
 								</div>
 								<ul class="submenu tianjin-chart">
@@ -737,8 +750,6 @@
 					</div>
 				</div>
 
-
-
 				<!-- 图层列表 -->
 				<div id="map_layers_wrapper">
 					<div class="map-layers-list">
@@ -749,7 +760,7 @@
 				<!-- 当前城市列表 -->
 				<div id="city_container">
 					<div class="current-city">
-						<span class="current-city-name">北京</span>
+						<span class="current-city-name">天津</span>
 						<span class="caret"></span>
 					</div>
 				</div>
@@ -757,7 +768,7 @@
 				<div id="city_list_container" class="float-panel">
 					<div class="row current-city-row">
 						<div class="col-md-3">当前城市：</div>
-						<div class="col-md-2 city-list-current"><span>北京</span></div>
+						<div class="col-md-2 city-list-current"><span>天津</span></div>
 					</div>
 					<div class="city-list-content">
 						<div class="row pop-city-row">
@@ -910,6 +921,11 @@
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<div class="float-coordinates">
+					<span>坐标:</span>
+					<span class='coor-value'>0, 0 </span>
 				</div>
 			</div>
 			

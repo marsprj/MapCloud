@@ -339,6 +339,10 @@ MapCloud.MapBar = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.currentLayer = null;
 		}else{
 			this.panel.find(".current-layer").html("当前图层: "+ dataSetName);
+			if(MapCloud.searchPanel != null){
+				MapCloud.searchPanel.setOverlayLayer(dataSetName,layerName);
+			}
+			
 			MapCloud.currentLayer = layerName;
 		}
 	},

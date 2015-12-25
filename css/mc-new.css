@@ -644,7 +644,7 @@ ul#ribbon_tabs li{
 	padding : 0px !important;
 	/*height : calc(100% - 80px);*/
 	/*height: 587px;*/
-	overflow-y: auto;
+	/*overflow-y: auto;*/
 	margin: 0px;
 }
 

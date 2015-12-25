@@ -222,6 +222,7 @@ MapCloud.PositionControl = MapCloud.Class({
 			}else{
 				// 具体是哪一个城市
 				var distance = Math.sqrt((this.lat - lat)*(this.lat - lat) + (this.lon - lon)*(this.lon - lon));
+				console.log("distance:" + distance);
 				if(distance > this.tolerance){
 					// 获取位置
 					var point = new GeoBeans.Geometry.Point(lon,lat);

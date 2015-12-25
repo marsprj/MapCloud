@@ -91,7 +91,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			that.panel.find(".menu li").removeClass("active");
 			$(this).addClass("active");
-			that.overlayControlPanel.hide();
+			// that.overlayControlPanel.hide();
 
 			that.panel.find(".search-tab-panel").hide();
 			that.panel.find(".search-tab-panel[sname='" + sname + "']").show();
@@ -220,7 +220,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 					break;
 				}
 				case "embassy":{
-					poiList.push("使馆");
+					poiList.push("大使馆");
 					break;
 				}
 				case "gas":{
@@ -264,6 +264,10 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			that.clearPoiSearch();
 		});
 
+		// 开始标注
+		this.panel.find(".overlay-panel .current-layer-row").click(function(){
+			that.startDrawOverlay();
+		});
 
 		// 绘制点
 		this.overlayControlPanel.find("#track_marker").each(function(){
@@ -695,11 +699,35 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
     // 标绘面板
     showOverlayPanel : function(){
     	mapObj.clearOverlays();
-    	this.overlayControlPanel.show();
+    	// this.overlayControlPanel.show();
     	// this.trackMarker();
     	this.panel.find(".overlay-tab-panel").hide();
     	this.panel.find(".overlay-list-tab").show();
     	this.panel.find(".overlay-list-div").empty();
+    	// 显示当前图层
+    	if(MapCloud.currentLayer != null){
+    		var dataSetName = MapCloud.mapLayersPanel.getDataSetName(MapCloud.currentLayer)
+    		this.panel.find(".overlay-panel .current-layer-row span").html(dataSetName);
+    	}
+    	
+    },
+    // 开始标注
+    startDrawOverlay : function(){
+    	if(MapCloud.currentLayer == null){
+    		return;
+    	}
+    	var layer = mapObj.getLayer(MapCloud.currentLayer);
+    	if(layer == null){
+    		return;
+    	}
+    	var geomType = layer.geomType;
+    	if(geomType == GeoBeans.Geometry.Type.POINT || geomType == GeoBeans.Geometry.Type.MULTIPOINT){
+    		this.trackMarker();
+    	}else if(geomType == GeoBeans.Geometry.Type.LINESTRING || geomType == GeoBeans.Geometry.Type.MULTILINESTRING){
+    		this.trackPolyline();
+    	}else if(geomType == GeoBeans.Geometry.Type.POLYGON || geomType == GeoBeans.Geometry.Type.MULTIPOLYGON){
+    		this.trackPolygon();
+    	}
     },
 
 	// 点
@@ -904,6 +932,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			layerName = layer.name;
 			geomType = layer.geomType;
+			if(MapCloud.mapLayersPanel == null){
+				MapCloud.mapLayersPanel = new MapCloud.MapLayersPanel("map_layers_wrapper");
+			}
 			dataSetName = MapCloud.mapLayersPanel.getDataSetName(layerName);
 			if(geomType == GeoBeans.Geometry.Type.POINT || geomType == GeoBeans.Geometry.Type.MULTIPOINT){
 				html += "<option value='" + layerName + "'>" + dataSetName + "</option>";
@@ -924,4 +955,10 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		mapObj.draw();
 	},
 
+	setOverlayLayer:function(dataSetName,layerName){
+		if(dataSetName == null || layerName == null){
+			return;
+		}
+		this.panel.find(".current-layer-div span").html(dataSetName);
+	},
 });

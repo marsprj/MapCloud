@@ -26,7 +26,11 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 		this.panel.slideUp();
 	},
 	registerPanelEvent : function(){
-
+		var that = this;
+		// 离开
+		this.panel.mouseleave(function(){
+			that.hide();
+		});
 	},
 
 	getDataSource : function(){
@@ -140,7 +144,10 @@ MapCloud.MapLayersPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 设置一个默认选中的
 		var layerRow = this.panel.find(".row[lname='wwjz']").addClass("active");
-		MapCloud.mapBar.setCurrentLayer("文物旧址","wwjz");
+		if(MapCloud.mapBar != null){
+			MapCloud.mapBar.setCurrentLayer("文物旧址","wwjz");
+		}
+		
 	},
 
 	showDataSets : function(dataSets){

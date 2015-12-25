@@ -24,6 +24,7 @@ MapCloud.CityPanel = MapCloud.Class(MapCloud.Panel,{
 				var y = position.lat;
 
 				MapCloud.currentCity = name;
+				MapCloud.searchPanel.getAQICityInfo(name);
 				MapCloud.currentCityPanel.setCity(name,x,y);
 				that.hide();
 			}

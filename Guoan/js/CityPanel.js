@@ -30,8 +30,8 @@ MapCloud.CityPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 离开
 		this.panel.mouseleave(function(){
-			// that.hide();
-		})	
+			that.hide();
+		});	
 	},
 
 
