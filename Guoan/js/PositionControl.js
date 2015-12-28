@@ -102,8 +102,8 @@ MapCloud.PositionControl = MapCloud.Class({
 					this.getPositionWithinCity(point);
 				}
 			}
-			this.x = position.x;
-			this.y = position.y;
+			this.x = this.position.x;
+			this.y = this.position.y;
 		}
 	},	
 
