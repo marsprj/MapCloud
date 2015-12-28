@@ -370,7 +370,7 @@ ul{
 }
 #map_bar_wrapper .query-tools{
 	position: absolute;
-	left: 80px;
+	left: 140px;
 	top: 40px;
 	width: 100px;
 	background-color: #fff;
@@ -594,7 +594,7 @@ ul{
 #map_layers_wrapper{
 	position: absolute;
 	right: 292px;
-	top: 80px;
+	top: 60px;
 	height: 300px;
 	width: 140px;
 	border: 1px solid #ccc;
@@ -944,8 +944,8 @@ ul{
 
 #city_list_container{
 	position: absolute;
-  	left: 40px;
-  	top: 80px;
+  	left: 20px;
+  	top: 60px;
  	width: 390px;
   	height: 300px;
   	background-color: #fff;
