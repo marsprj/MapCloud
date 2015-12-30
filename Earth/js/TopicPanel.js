@@ -202,7 +202,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		Radi.Earth.cleanup();
-		var url = "../images/agro_32_1.png";
+		var url = "../images/agro_marker.png";
 		var pptFieldIndex = this.agroFeatureType.getFieldIndex("ppt");
 		var xFieldIndex = this.agroFeatureType.getFieldIndex("x");
 		var yFieldIndex = this.agroFeatureType.getFieldIndex("y");
