@@ -145,6 +145,12 @@ if(platform == "win32"){
 			'MapCloud/Earth/js/CityPosition.js',
 			'MapCloud/Earth/js/RangeChart.js',
 			'MapCloud/Earth/js/TopicPanel.js',
+			'MapCloud/Earth/js/AQIChart.js',
+			'MapCloud/Earth/js/AQIChart.js',
+			'MapCloud/Earth/js/AQITimeLineBar.js',
+			'MapCloud/Earth/js/AQITimeLineChart.js',
+			'MapCloud/Earth/js/AQITimeList.js',
+			'MapCloud/Earth/js/AQITimeLinePanel.js',
 			];
 	var earthDest = 'MapCloud/Earth/js/';
 	if(platform == "linux"){
@@ -511,6 +517,6 @@ if(platform == "win32"){
 			.pipe(concat('guoan.min.js'))
 			.pipe(gulp.dest(guoanJsDest));
 	});		
-	gulp.task('default',['common-task'],function(){
+	gulp.task('default',['earth-task'],function(){
 
 	});

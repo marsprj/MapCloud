@@ -1,4 +1,6 @@
 MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
+	// AQI
+	aqiChart : null,
 	// 人口数据
 	popRangeChart : null,
 
@@ -37,10 +39,10 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			if($(this).hasClass("mc-stretch")){
 				that.onStretch(this);
 			}else if($(this).hasClass("mc-icon-enco")){
-				// MapCloud.searchPanel.showRangeChart();
 				that.showEncoRangeChart();
 			}else if($(this).hasClass("mc-icon-aqi")){
-				MapCloud.searchPanel.showAQIChart();
+				// MapCloud.searchPanel.showAQIChart();
+				that.showAQIChart();
 			}else if($(this).hasClass("mc-icon-pop")){
 				that.showPopRangeChart();
 			}else if($(this).hasClass("mc-icon-per")){
@@ -53,6 +55,8 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 					that.getAgroData();
 				}
 				
+			}else if($(this).hasClass("mc-icon-aqi-timeline")){
+				that.showAQITimeLineChart();
 			}
 		});
 
@@ -63,13 +67,29 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			this.panel.children().not(".mc-stretch").css("display","block");
 			$(item).removeClass("mc-icon-left");
 			$(item).addClass("mc-icon-right");
-			this.panel.animate({'width':'242px'},300);
+			this.panel.animate({'width':'282px'},300);
 		}else{
 			this.panel.children().not(".mc-stretch").css("display","none");
 			$(item).removeClass("mc-icon-right");
 			$(item).addClass("mc-icon-left");
 			this.panel.animate({'width':'40px'},300);
 		}
+	},
+
+	// AQI 
+	showAQIChart : function(){
+		if(this.aqiChart == null){
+			var server =  MapCloud.server;
+			var chartField = "aqi";
+			var timepoint = MapCloud.searchPanel.timepoint;
+			var aqiChart = new MapCloud.AQIChart(server,chartField,timepoint);
+			aqiChart.show();
+			this.aqiChart = aqiChart;
+		}else{
+			this.aqiChart = null;
+			Radi.Earth.cleanup();
+		}
+
 	},
 
 	// 人口数据
@@ -233,5 +253,55 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		var roll = 0;
 		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
 		this.agroChartFlag = true;
+	},
+
+
+	showAQITimeLineChart : function(){
+		if(MapCloud.aqiTimelinePanel.panel.css("display") == "none"){
+			MapCloud.aqiTimelinePanel.show();
+		}else{
+			MapCloud.aqiTimelinePanel.hide();
+		}
+	},
+
+
+	// // AQI序列
+	// showAQITimeLineChart : function(){
+	// 	if(this.aqiTimeLineChart == null){
+	// 		var timepoint = MapCloud.searchPanel.timepoint;
+	// 		MapCloud.aqiTimeList.get24hTimeList(timepoint,this.get24hTimeList_callback);
+	// 	}else{
+	// 		this.aqiTimeLineChart.cleanup();
+	// 		this.aqiTimeLineChart = null;
+	// 		Radi.Earth.cleanup();
+	// 	}
+	// },
+
+	// 某一个时刻序列
+	showAQITimeLineChart2 : function(){
+		if(this.aqiTimeLineChart == null){
+			var timepoint = MapCloud.searchPanel.timepoint;
+			var startTime = "2015-12-28 04:00:00";
+			var endTime = "2015-12-31 04:00:00";
+			MapCloud.aqiTimeList.getDayHourTimeList(startTime,endTime,this.get24hTimeList_callback);
+		}else{
+			this.aqiTimeLineChart.cleanup();
+			this.aqiTimeLineChart = null;
+			Radi.Earth.cleanup();
+		}
+	},
+
+
+
+	get24hTimeList_callback : function(timepoints){
+		var panel = MapCloud.topicPanel;
+		// panel.show24AQITimeLineChart()
+		var server = MapCloud.server;
+		var chartField = "aqi";
+		var interval = "3000";
+		// var timepoints = ["2015-12-31 04:00:00","2015-12-31 06:00:00","2015-12-31 08:00:00"];
+		var aqiTimeLineChart = new MapCloud.AQITimeLineChart(server,chartField,timepoints,interval);
+		aqiTimeLineChart.show();
+		panel.aqiTimeLineChart = aqiTimeLineChart;
 	},
 });

@@ -1249,7 +1249,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 					
 		}
-		Radi.Earth.zoom(aqi3DList);	
+		// Radi.Earth.zoom(aqi3DList);	
 		this.showAQIChartFlag = true;
 	}
 

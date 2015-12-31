@@ -695,3 +695,35 @@ li {
 .mc-icon-agro{
   background-image: url(../../images/agro_32.png);
 }
+.mc-icon-aqi-timeline{
+  background-image: url(../../images/chart_aqi_32.png);
+}
+.slider-wrap .label-div .time-label{
+  color: #fff;
+}
+.slider-wrap{
+  width: 780px !important;
+  margin-left: -390px !important;
+}
+.timeline{
+  width: 740px !important;
+}
+#aqi_timeline_container{
+  width: 300px;
+  top: 140px;
+  right: 40px;
+  height: 250px;
+  background-color: #000;
+  opacity: 0.9;
+  display: none;
+  color: #fff;
+  box-shadow: 1px 2px 10px 0px #828e9a;
+}
+.aqi-24h{
+  margin: 20px 20px 20px 90px;
+}
+#aqi_timeline_container label {
+    font-weight: 400;
+    padding-left: 6px;
+    padding-right: 6px;
+}

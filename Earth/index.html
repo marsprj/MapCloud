@@ -4,17 +4,41 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<link rel="stylesheet" type="text/css" href="css/radi_earth.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.css"> -->
+	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
 	<script type="text/javascript" src="Cesium/Cesium.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css"/>
 	
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 
 	<script type="text/javascript" src="js/earth.min.js"></script>
+<!-- 	// <script type="text/javascript" src="js/RadiEarth1.js"></script>
+	// <script type="text/javascript" src="js/view_init.js"></script>
+	// <script type="text/javascript" src="js/SearchPanel.js"></script>
+	// <script type="text/javascript" src="js/CurrentCityPanel.js"></script>
+	// <script type="text/javascript" src="js/CityPanel.js"></script>
+	// <script type="text/javascript" src="js/AQIChartDialog.js"></script>
+	// <script type="text/javascript" src="js/PositionControl.js"></script>
+	// <script type="text/javascript" src="js/PositionPanel.js"></script>
+	// <script type="text/javascript" src="js/CityPosition.js"></script>
+	// <script type="text/javascript" src="js/RangeChart.js"></script>
+	// <script type="text/javascript" src="js/TopicPanel.js"></script>
+	// <script type="text/javascript" src="js/AQIChart.js"></script>
+	// <script type="text/javascript" src="js/AQITimeLineBar.js"></script>
+	// <script type="text/javascript" src="js/AQITimeLineChart.js"></script>
+	// <script type="text/javascript" src="js/AQITimeList.js"></script>
+	// <script type="text/javascript" src="js/AQITimeLinePanel.js"></script> -->
 
 	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/jquery.nouislider.js"></script>
 	<style>
       @import url(Cesium/Widgets/widgets.css);
     </style>
@@ -464,8 +488,80 @@
 		<div class="mc-icon mc-icon-pop" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="人口数据"></div>
 		<div class="mc-icon mc-icon-agro" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="海洋浮标"></div>
 		<div class="mc-icon mc-icon-aqi" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI分布"></div>
+		<div class="mc-icon mc-icon-aqi-timeline" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI序列"></div>
 	</div>
 
+	<!-- AQI timline  -->
+	<div class="float-panel" id="aqi_timeline_container">
+		<button class="btn btn-default aqi-24h">24小时变化趋势</button>
+		<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+			<div class="form-group form-group-sm">
+				<label class="col-md-3 control-label">时刻</label>
+				<div class="col-md-9">
+					<select class="form-control timepoint">
+						<option>00:00:00</option>
+						<option>01:00:00</option>
+						<option>02:00:00</option>
+						<option>03:00:00</option>
+						<option>04:00:00</option>
+						<option>05:00:00</option>
+						<option>06:00:00</option>
+						<option>07:00:00</option>
+						<option>08:00:00</option>
+						<option>09:00:00</option>
+						<option>10:00:00</option>
+						<option>11:00:00</option>
+						<option>12:00:00</option>
+						<option>13:00:00</option>
+						<option>14:00:00</option>
+						<option>15:00:00</option>
+						<option>16:00:00</option>
+						<option>17:00:00</option>
+						<option>18:00:00</option>
+						<option>18:00:00</option>
+						<option>19:00:00</option>
+						<option>20:00:00</option>
+						<option>21:00:00</option>
+						<option>22:00:00</option>
+						<option>23:00:00</option>
+					</select>
+				</div>
+
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="control-label col-md-3">
+				起始日期:
+				</label>
+				<div class="col-md-9">
+					<div class="input-group date start_form_datetime">
+						<input class="form-control" size="16" type="text" value="" readonly="">
+						<span class="input-group-addon" style='background-color:#5CB85C'>
+							<span class="fa fa-calendar" style='color:#fff'></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="control-label col-md-3">
+				终止日期:
+				</label>
+				<div class="col-md-9">
+					<div class="input-group date end_form_datetime">
+						<input class="form-control" size="16" type="text" value="" readonly="">
+						<span class="input-group-addon" style='background-color:#5CB85C'>
+							<span class="fa fa-calendar" style='color:#fff'></span>
+						</span>
+					</div>
+				</div>
+			</div>	
+			<div class="form-group form-group-sm">
+				<div class="col-md-8 col-md-offset-3">
+					<button type="button" class="btn btn-default btn-primary  btn-chart" style="margin-right:20px">添加</button>
+					<button type="button" class="btn btn-default btn-remove">清空</button>
+				</div>
+			</div>
+		</form>
+	</div>
 	<!-- AQI chart dialog -->
 	<div class="modal fade" id="aqi_chart_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog">

@@ -3,7 +3,7 @@ MapCloud.PositionControl = MapCloud.Class({
 	tolerance : 0.01,
 
 	// 高度限差
-	heightTolerance : 100000,
+	heightTolerance : 150000,
 
 	cityRegionLayer : "china_city_region",
 
