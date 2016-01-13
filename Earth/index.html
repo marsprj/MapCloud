@@ -3,8 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="css/radi_earth.min.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/radi_earth.css">
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
 	<script type="text/javascript" src="Cesium/Cesium.js"></script>
@@ -18,28 +18,31 @@
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 
-	<script type="text/javascript" src="js/earth.min.js"></script>
-<!-- 	// <script type="text/javascript" src="js/RadiEarth1.js"></script>
-	// <script type="text/javascript" src="js/view_init.js"></script>
-	// <script type="text/javascript" src="js/SearchPanel.js"></script>
-	// <script type="text/javascript" src="js/CurrentCityPanel.js"></script>
-	// <script type="text/javascript" src="js/CityPanel.js"></script>
-	// <script type="text/javascript" src="js/AQIChartDialog.js"></script>
-	// <script type="text/javascript" src="js/PositionControl.js"></script>
-	// <script type="text/javascript" src="js/PositionPanel.js"></script>
-	// <script type="text/javascript" src="js/CityPosition.js"></script>
-	// <script type="text/javascript" src="js/RangeChart.js"></script>
-	// <script type="text/javascript" src="js/TopicPanel.js"></script>
-	// <script type="text/javascript" src="js/AQIChart.js"></script>
-	// <script type="text/javascript" src="js/AQITimeLineBar.js"></script>
-	// <script type="text/javascript" src="js/AQITimeLineChart.js"></script>
-	// <script type="text/javascript" src="js/AQITimeList.js"></script>
-	// <script type="text/javascript" src="js/AQITimeLinePanel.js"></script> -->
+<!--	<script type="text/javascript" src="js/earth.min.js"></script>-->
+	<script type="text/javascript" src="js/RadiEarth1.js"></script>
+	<script type="text/javascript" src="js/view_init.js"></script>
+	<script type="text/javascript" src="js/SearchPanel.js"></script>
+	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
+	<script type="text/javascript" src="js/CityPanel.js"></script>
+	<script type="text/javascript" src="js/AQIChartDialog.js"></script>
+	<script type="text/javascript" src="js/PositionControl.js"></script>
+	<script type="text/javascript" src="js/PositionPanel.js"></script>
+	<script type="text/javascript" src="js/CityPosition.js"></script>
+	<script type="text/javascript" src="js/RangeChart.js"></script>
+	<script type="text/javascript" src="js/TopicPanel.js"></script>
+	<script type="text/javascript" src="js/AQIChart.js"></script>
+	<script type="text/javascript" src="js/AQITimeLineBar.js"></script>
+	<script type="text/javascript" src="js/AQITimeLineChart.js"></script>
+	<script type="text/javascript" src="js/AQITimeList.js"></script>
+	<script type="text/javascript" src="js/AQITimeLinePanel.js"></script>
+	<script type="text/javascript" src="js/AQI24TimeLinePanel.js"></script>
+	<script type="text/javascript" src="js/ChartPanel.js"></script>
 
 	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/jquery.nouislider.js"></script>
 	<style>
+      /*@import url(Cesium/Widgets/widgets.css);*/
       @import url(Cesium/Widgets/widgets.css);
     </style>
 
@@ -310,6 +313,7 @@
 			<div class="row pop-city-row">
 				<ul>
 					<li>北京</li>
+					<li>天津</li>
 					<li>上海</li>
 					<li>重庆</li>
 					<li>南京</li>
@@ -488,15 +492,16 @@
 		<div class="mc-icon mc-icon-pop" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="人口数据"></div>
 		<div class="mc-icon mc-icon-agro" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="海洋浮标"></div>
 		<div class="mc-icon mc-icon-aqi" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI分布"></div>
-		<div class="mc-icon mc-icon-aqi-timeline" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI序列"></div>
+		<div class="mc-icon mc-icon-aqi-timeline-24" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI24小时序列"></div>
+		<div class="mc-icon mc-icon-aqi-timeline" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI定制序列"></div>
 	</div>
 
 	<!-- AQI timline  -->
 	<div class="float-panel" id="aqi_timeline_container">
-		<button class="btn btn-default aqi-24h">24小时变化趋势</button>
+		<!-- <button class="btn btn-default aqi-24h">24小时变化趋势</button> -->
 		<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
 			<div class="form-group form-group-sm">
-				<label class="col-md-3 control-label">时刻</label>
+				<label class="col-md-3 control-label">时刻:</label>
 				<div class="col-md-9">
 					<select class="form-control timepoint">
 						<option>00:00:00</option>
@@ -526,7 +531,6 @@
 						<option>23:00:00</option>
 					</select>
 				</div>
-
 			</div>
 			<div class="form-group form-group-sm">
 				<label class="control-label col-md-3">
@@ -561,6 +565,77 @@
 				</div>
 			</div>
 		</form>
+	</div>
+
+	<!-- AQI 24h -->
+	<div class="float-panel" id="aqi_24_timeline_container">
+		<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
+			<div class="form-group form-group-sm">
+				<label class="control-label col-md-6" style="margin-top:6px">最后更新时刻: <span>12:00:00</span></label>
+				<div class="col-md-6">
+					<button class="btn btn-default aqi-24h" type="button">24小时变化趋势</button>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="control-label col-md-3">
+				选择日期:
+				</label>
+				<div class="col-md-9">
+					<div class="input-group date start_form_datetime">
+						<input class="form-control" size="16" type="text" value="" readonly="">
+						<span class="input-group-addon" style='background-color:#5CB85C'>
+							<span class="fa fa-calendar" style='color:#fff'></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-md-3 control-label">时刻:</label>
+				<div class="col-md-9">
+					<select class="form-control timepoint">
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<div class="col-md-8 col-md-offset-3">
+					<button type="button" class="btn btn-default btn-primary  btn-chart" style="margin-right:20px">添加</button>
+					<button type="button" class="btn btn-default btn-remove">清空</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<!-- 专题数据 -->
+	<div class="float-panel" id="chart_container">
+		<div class="mc-icon mc-icon-left mc-stretch" data-toggle="tooltip" data-placement="top" data-original-title="模型数据"></div>
+		<div class="chart-content-div">
+			<ul>
+				<li mname='tj' =>
+					<img src="../images/chart_1.png">
+					<span>植被FPAR平均值</span>
+				</li>
+				<li mname='tj'>
+					<img src="../images/chart_2.png">
+					<span>全国十大湖泊水色</span>
+				</li>
+				<li mname='tj'>
+					<img src="../images/chart_3.png">
+					<span>城镇地面沉降</span>
+				</li>
+				<li mname='tj'>
+					<img src="../images/chart_4.png">
+					<span>京津典型大气</span>
+				</li>
+				<li mname='tj'>
+					<img src="../images/chart_5.png">
+					<span>南海海表盐度</span>
+				</li>
+				<li mname='tj'>
+					<img src="../images/chart_6.png">
+					<span>南极冰盖冻融遥感</span>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<!-- AQI chart dialog -->
 	<div class="modal fade" id="aqi_chart_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">

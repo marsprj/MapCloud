@@ -476,10 +476,10 @@ ul{
 }
 
 .vector-base{
-	background-position: 0 -46px;
+	background-position: 0 0px;
 }
 .image-base{
-	background-position: 0px 0px;
+	background-position: 0px -46px;
 }
 .base-layer-icon.active{
 	display: block;

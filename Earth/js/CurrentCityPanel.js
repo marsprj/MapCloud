@@ -49,6 +49,7 @@ MapCloud.CurrentCityPanel = MapCloud.Class(MapCloud.Panel,{
 				height : h
 			};
 			MapCloud.positionPanel.setPosition(position);
+			MapCloud.positionControl.setPosition(position);
 		}
 
 	},

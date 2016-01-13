@@ -21,18 +21,21 @@ Radi.Earth = {
             navigationHelpButton:false,
             navigationInstructionsInitiallyVisible:false,
             scene3DOnly:true,
-            imageryProvider : new Cesium.WebMapTileServiceImageryProvider({
-                                          url : '/QuadServer/services/maps/wmts100',
-                                          layer : 'world_image',
-                                          style : 'default',
-                                          format : 'image/jpeg',
-                                          tileMatrixSetID : 'PGIS_TILE_STORE',
-                                          // tileMatrixLabels : ['default028mm:0', 'default028mm:1', 'default028mm:2' ...],
-                                          minimumLevel: 0,
-                                          maximumLevel: 19,
-                                          credit : new Cesium.Credit('world_country'),
-                                          tilingScheme : new Cesium.GeographicTilingScheme({rectangle : extent})
-                                })
+            // imageryProvider : new Cesium.WebMapTileServiceImageryProvider({
+            //                               url : '/QuadServer/services/maps/wmts100',
+            //                               layer : 'world_image',
+            //                               style : 'default',
+            //                               format : 'image/jpeg',
+            //                               tileMatrixSetID : 'PGIS_TILE_STORE',
+            //                               // tileMatrixLabels : ['default028mm:0', 'default028mm:1', 'default028mm:2' ...],
+            //                               minimumLevel: 0,
+            //                               maximumLevel: 19,
+            //                               credit : new Cesium.Credit('world_country'),
+            //                               tilingScheme : new Cesium.GeographicTilingScheme({rectangle : extent})
+            //                     })
+            //  imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
+            //     url : 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
+            // }),            
         });
         var terrainProvider = new Cesium.CesiumTerrainProvider({
                                       url : '//assets.agi.com/stk-terrain/world',
@@ -43,7 +46,7 @@ Radi.Earth = {
 
 
         // 添加要素图层
-        this.addWorldTrans();
+        // this.addWorldTrans();
          // 定义当前场景的画布元素的事件处理
         this.handler = new Cesium.ScreenSpaceEventHandler(g_earth_view.scene.canvas);
     },
@@ -397,13 +400,81 @@ Radi.Earth = {
 
 
     addModel : function(){
-        var entity = g_earth_view.entities.add({
+        // var entity = g_earth_view.entities.add({
+        //     position : Cesium.Cartesian3.fromDegrees(116, 39),
+        //     model : {
+        //         uri : 'data/CesiumGround/Cesium_Ground.gltf'
+        //     }
+        // });
+        // g_earth_view.trackedEntity = entity;    
+
+
+        // var scene = g_earth_view.scene;
+        // var modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
+        //     Cesium.Cartesian3.fromDegrees(-75.62898254394531, 40.02804946899414, 0.0));
+        // var model = scene.primitives.add(Cesium.Model.fromGltf({
+        //     url : './data/CesiumAir/Cesium_Air.glb',
+        //     // url : 'http://192.168.111.82/MapCloud/Earth/data/CesiumAir/Cesium_Air.glb',
+        //     modelMatrix : modelMatrix,
+        //     scale : 200.0
+        // }));
+
+        var model = g_earth_view.scene.primitives.add(Cesium.Model.fromGltf({
             position : Cesium.Cartesian3.fromDegrees(116, 39),
-            model : {
-                uri : 'Model/duck/duck.gltf'
-            }
-        });
-        g_earth_view.trackedEntity = entity;        
+          url : 'data/CesiumGround/Cesium_Ground.gltf'
+            // url : 'data/duck.gltf'
+        }));
     },
 
+
+    createModel : function(url, height) {
+        if(height == null){
+            height = 0;
+        }
+        var position = Cesium.Cartesian3.fromDegrees(109.482, 18.255, height);
+        var heading = Cesium.Math.toRadians(0);
+        var pitch = 0;
+        var roll = 0;
+        var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, heading, pitch, roll);
+
+        var entity = g_earth_view.entities.add({
+            name : url,
+            position : position,
+            orientation : orientation,
+            model : {
+                uri : url,
+                scale : 1
+                // minimumPixelSize : 128,
+                // maximumScale : 20000
+            }
+        });
+        g_earth_view.trackedEntity = entity;
+    },
+
+    addModel : function(url,x,y,height,scale){
+        if(url == null || x == null || y == null || height == null){
+            return;
+        }
+        var position = Cesium.Cartesian3.fromDegrees(x, y, height);
+        var heading = Cesium.Math.toRadians(0);
+        var pitch = 0;
+        var roll = 0;
+        var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, heading, pitch, roll);
+
+        if(scale == null){
+            scale = 1;
+        }
+        var entity = g_earth_view.entities.add({
+            name : url,
+            position : position,
+            orientation : orientation,
+            model : {
+                uri : url,
+                scale : scale,
+                // minimumPixelSize : 128,
+                // maximumScale : 20000
+            }
+        });
+        // g_earth_view.trackedEntity = entity;
+    }
 };

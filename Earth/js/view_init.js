@@ -2,6 +2,7 @@
 $().ready(function(){
 	MapCloud.server = "/ows/user1/mgr";
 	MapCloud.currentCity = "北京";
+	MapCloud.aqiTimeLineChart = null;
 
 	Radi.Earth.initEarth('earth_container');
 	MapCloud.searchPanel = new MapCloud.SearchPanel("search_container");
@@ -14,6 +15,9 @@ $().ready(function(){
 	MapCloud.topicPanel = new MapCloud.TopicPanel("topic_container");
 	MapCloud.aqiTimeList = new MapCloud.AQITimeList(MapCloud.server);
 	MapCloud.aqiTimelinePanel = new MapCloud.AQITimeLinePanel("aqi_timeline_container");
+	MapCloud.aqi24TimelinePanel = new MapCloud.AQI24TimeLinePanel("aqi_24_timeline_container");
+	MapCloud.chartPanel = new MapCloud.ChartPanel("chart_container");
+
 	
 	MapCloud.currentCity = "北京";
 

@@ -8,6 +8,11 @@ MapCloud.AQITimeLineBar = MapCloud.Class({
 
 	layer : null,
 
+	intervalShort : 1000,
+
+	// 第一次循环
+	firstLoop : false,
+
 	initialize : function(layer){
 		if(layer == null){
 			return;
@@ -61,7 +66,6 @@ MapCloud.AQITimeLineBar = MapCloud.Class({
             this.slider.on('set',function(){
             	var id = parseInt($(this).val());
             	that.layer.currentLayerID = id;
-            	// that.layer.map.drawLayersAll();
             	that.layer.drawAQIChart(id);
             });
 
@@ -80,12 +84,41 @@ MapCloud.AQITimeLineBar = MapCloud.Class({
 			this.broadcastIntervalId = setInterval(function() {
                 var curVal = that.slider.val();
                 curVal = parseInt(curVal);
+                if(curVal == 0){
+                	if(!that.firstLoop){
+                		that.firstLoop = true;
+                	}else{
+                		clearInterval(that.broadcastIntervalId);
+                		that.broadcastIntervalId = null;
+                		that.broadcastShort();
+                	}
+                }
                 if (curVal === that.timepoints.length - 1) {
-                    that.slider.val(0);
+                	that.slider.val(0);
                 } else {
                     that.slider.val(curVal+1);
                 }
+                console.log(curVal);
             },this.layer.interval);
+		}
+	},
+
+	broadcastShort : function(){
+		var that = this;
+		if(this.broadcastIntervalId != null){
+			clearInterval(this.broadcastIntervalId);
+            this.broadcastIntervalId = null;
+		}else{
+			this.broadcastIntervalId = setInterval(function() {
+                var curVal = that.slider.val();
+                curVal = parseInt(curVal);
+                if (curVal === that.timepoints.length - 1) {
+                	that.slider.val(0);
+                } else {
+                    that.slider.val(curVal+1);
+                }
+                console.log(curVal);
+            },this.intervalShort);
 		}
 	},
 

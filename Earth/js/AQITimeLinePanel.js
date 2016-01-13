@@ -1,5 +1,4 @@
 MapCloud.AQITimeLinePanel = MapCloud.Class(MapCloud.Panel,{
-	aqiTimeLineChart  : null,
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
@@ -59,10 +58,18 @@ MapCloud.AQITimeLinePanel = MapCloud.Class(MapCloud.Panel,{
 	    		alert("请选择终止日期");
 	    		return;
 	    	}
+	    	
 	    	var startTimeStr = startTime + " " + timepoint;
 	    	var endTimeStr = endTime + " " + timepoint;
+	    	var startTimeDate = new Date(startTimeStr);
+	    	var endTimeDate = new Date(endTimeStr);
+	    	if(startTimeDate >= endTimeDate){
+	    		alert("请选择有效的时间段");
+	    		return;
+	    	}
 	    	that.cleanupChart();
 	    	
+
 	    	MapCloud.aqiTimeList.getDayHourTimeList(startTimeStr,endTimeStr,that.get24hTimeList_callback);
 	    });
 
@@ -80,19 +87,26 @@ MapCloud.AQITimeLinePanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	get24hTimeList_callback : function(timepoints){
+		if(!$.isArray(timepoints)){
+			return;
+		}
+		if(timepoints.length <= 1){
+			alert("请选择有效的时间段");
+			return;
+		}
 		var panel = MapCloud.aqiTimelinePanel;
 		var server = MapCloud.server;
 		var chartField = "aqi";
 		var interval = "3000";
 		var aqiTimeLineChart = new MapCloud.AQITimeLineChart(server,chartField,timepoints,interval);
 		aqiTimeLineChart.show();
-		panel.aqiTimeLineChart = aqiTimeLineChart;
+		MapCloud.aqiTimeLineChart = aqiTimeLineChart;
 	},	
 
 	cleanupChart : function(){
-		if(this.aqiTimeLineChart != null){
-			this.aqiTimeLineChart.cleanup();
-			this.aqiTimeLineChart = null;
+		if(MapCloud.aqiTimeLineChart != null){
+			MapCloud.aqiTimeLineChart.cleanup();
+			MapCloud.aqiTimeLineChart = null;
 		}
 		Radi.Earth.cleanup();
 	}

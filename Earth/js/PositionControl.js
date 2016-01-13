@@ -1,6 +1,6 @@
 MapCloud.PositionControl = MapCloud.Class({
 	// 距离限差
-	tolerance : 0.01,
+	tolerance : 0.03,
 
 	// 高度限差
 	heightTolerance : 150000,
@@ -35,10 +35,9 @@ MapCloud.PositionControl = MapCloud.Class({
 		this.lon = null;
 		this.height = null;
 
-		Radi.Earth.addClickListener(this.getPositionHandler);
-		// Radi.Earth.addEventListener(Cesium.ScreenSpaceEventType.WHEEL,this.getPositionHandler);
-		Radi.Earth.addMoveListener(this.getMousePositionHandler);
-		Radi.Earth.addScrollEventListener(this.getHeightHandler);
+		// Radi.Earth.addClickListener(this.getPositionHandler);
+		// Radi.Earth.addMoveListener(this.getMousePositionHandler);
+		// Radi.Earth.addScrollEventListener(this.getHeightHandler);
 		var workspace = new GeoBeans.WFSWorkspace("tmp",MapCloud.server,"1.0.0");
 		this.featureType = new GeoBeans.FeatureType(workspace, this.cityRegionLayer);
 		this.chinaFeatureType = new GeoBeans.FeatureType(workspace,this.chinaLayer);
@@ -229,6 +228,22 @@ MapCloud.PositionControl = MapCloud.Class({
 					this.getPositionWithinCity(point);
 				}
 			}
+		}
+		this.lat = this.position.lat;
+		this.lon = this.position.lon;
+	},
+
+	// 设置位置
+	setPosition : function(position){
+		if(position == null){
+			return;
+		}
+		var lat = position.lat;
+		var lon = position.lon;
+		var height = position.height;
+		if(lon != null && lat != null){
+			this.lat = lat;
+			this.lon = lon;
 		}
 	},
 

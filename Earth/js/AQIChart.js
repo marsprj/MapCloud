@@ -100,8 +100,10 @@ MapCloud.AQIChart = MapCloud.Class({
 
 			var color = MapCloud.getAQILevelColor(chartValue);
 			var z = parseInt(chartValue) *1000;
+			// var z = parseInt(chartValue)*100;
 			if(x != 0 && y != 0 && z != 0){
 				aqi3D = Radi.Earth.addCylinder(x,y,z,12000,color);
+				// aqi3D = Radi.Earth.addCylinder(x,y,1000,z,color);
 				var labelText = chartValue;
 				// Radi.Earth.addLabel(x,y,z/2+3000, labelText);
 				aqi3DList.push(aqi3D);	

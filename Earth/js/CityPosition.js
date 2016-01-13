@@ -15,6 +15,11 @@ MapCloud.CityPosition = MapCloud.Class({
 				"lat" 	: 31.238176
 			},
 			{
+				"name" 	: "天津",
+				"lon" 	: 117.203499,
+				"lat" 	: 39.131119
+			},
+			{
 				"name" 	: "南京",
 				"lon" 	: 118.772781,
 				"lat" 	: 32.047615
