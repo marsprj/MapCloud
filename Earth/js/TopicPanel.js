@@ -22,6 +22,13 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 
 	agroChartFlag : false,
 
+	// 上一次点击的序号
+	preIndex : null,
+	showFlag : false,
+
+	// 浮标数据
+	argoFeatures : null,
+
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
 		this.registerEvent();
@@ -35,32 +42,105 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		var that = this;
 
 		this.panel.find("[data-toggle='tooltip']").tooltip({container:'body'});
-		this.panel.find(".mc-icon").click(function(){
-			if($(this).hasClass("mc-stretch")){
-				that.onStretch(this);
-			}else if($(this).hasClass("mc-icon-enco")){
-				that.showEncoRangeChart();
-			}else if($(this).hasClass("mc-icon-aqi")){
-				// MapCloud.searchPanel.showAQIChart();
-				that.showAQIChart();
-			}else if($(this).hasClass("mc-icon-pop")){
-				that.showPopRangeChart();
-			}else if($(this).hasClass("mc-icon-per")){
-				that.showPerRangeChart();
-			}else if($(this).hasClass("mc-icon-agro")){
-				if(that.agroChartFlag){
-					Radi.Earth.cleanup();
-					that.agroChartFlag = false;
-				}else{
-					that.getAgroData();
-				}
+		// this.panel.find(".mc-icon").click(function(){
+		// 	if($(this).hasClass("mc-stretch")){
+		// 		that.onStretch(this);
+		// 	}else if($(this).hasClass("mc-icon-enco")){
+		// 		that.showEncoRangeChart();
+		// 	}else if($(this).hasClass("mc-icon-aqi")){
+		// 		// MapCloud.searchPanel.showAQIChart();
+		// 		that.showAQIChart();
+		// 	}else if($(this).hasClass("mc-icon-pop")){
+		// 		that.showPopRangeChart();
+		// 	}else if($(this).hasClass("mc-icon-per")){
+		// 		that.showPerRangeChart();
+		// 	}else if($(this).hasClass("mc-icon-agro")){
+		// 		if(that.agroChartFlag){
+		// 			Radi.Earth.cleanup();
+		// 			that.agroChartFlag = false;
+		// 		}else{
+		// 			that.getAgroData();
+		// 		}
 				
-			}else if($(this).hasClass("mc-icon-aqi-timeline")){
-				that.showAQITimeLineChart();
-			}else if($(this).hasClass("mc-icon-aqi-timeline-24")){
-				that.show24AQITimeLineChart();
-			}
-		});
+		// 	}else if($(this).hasClass("mc-icon-aqi-timeline")){
+		// 		that.showAQITimeLineChart();
+		// 	}else if($(this).hasClass("mc-icon-aqi-timeline-24")){
+		// 		that.show24AQITimeLineChart();
+		// 	}
+		// });
+
+		
+		this.panel.find(".mc-icon").each(function(i,element){
+			$(this).click(function(){
+				switch(i){
+					case 0:{
+						that.onStretch(this);
+						break;
+					}
+					case 1:{
+						if(that.preIndex == 1 && that.showFlag){
+							Radi.Earth.cleanup();
+							that.showFlag = false;
+						}else{
+							that.showPerRangeChart();
+							that.showFlag = true;
+						}
+						break;
+					}
+					case 2:{
+						if(that.preIndex == 2 && that.showFlag){
+							Radi.Earth.cleanup();
+							that.showFlag = false;
+						}else{
+							that.showEncoRangeChart();
+							that.showFlag = true;
+						}
+						break;
+					}
+					case 3:{
+						if(that.preIndex == 3 && that.showFlag){
+							Radi.Earth.cleanup();
+							that.showFlag = false;
+						}else{
+							that.showPopRangeChart();
+							that.showFlag = true;
+						}
+						break;
+					}
+					case 4:{
+						if(that.preIndex == 4 && that.showFlag){
+							Radi.Earth.cleanup();
+							that.showFlag = false;
+						}else{
+							that.getAgroData();
+							that.showFlag = true;
+						}
+						break;
+					}
+					case 5:{
+						if(that.preIndex == 5 && that.showFlag){
+							Radi.Earth.cleanup();
+							that.showFlag = false;
+						}else{
+							that.showAQIChart();
+							that.showFlag = true;
+						}
+						break;
+					}
+					case 6:{
+						that.show24AQITimeLineChart();
+						break;
+					}
+					case 7:{
+						that.showAQITimeLineChart();
+						break;
+					}
+					default:
+						break;
+				}
+				that.preIndex = i;
+			});
+		})
 
 	},
 
@@ -75,6 +155,8 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			$(item).removeClass("mc-icon-right");
 			$(item).addClass("mc-icon-left");
 			this.panel.animate({'width':'40px'},300);
+			MapCloud.aqiTimelinePanel.hide();
+			MapCloud.aqi24TimelinePanel.hide();
 		}
 	},
 
@@ -87,9 +169,13 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			var aqiChart = new MapCloud.AQIChart(server,chartField,timepoint);
 			aqiChart.show();
 			this.aqiChart = aqiChart;
+		// }else{
+		// 	this.aqiChart = null;
+		// 	Radi.Earth.cleanup();
+		// }
 		}else{
-			this.aqiChart = null;
 			Radi.Earth.cleanup();
+			this.aqiChart.show();
 		}
 
 	},
@@ -115,10 +201,16 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			chart.show();
 			this.popRangeChart = chart;
 			this.setCameraPosition();
+		// }else{
+		// 	this.popRangeChart.cleanup();
+		// 	this.popRangeChart = null;
+		// }
 		}else{
-			this.popRangeChart.cleanup();
-			this.popRangeChart = null;
+			Radi.Earth.cleanup();
+			this.popRangeChart.show();
+			this.setCameraPosition();
 		}
+
 	},
 
 	// 经济数据
@@ -144,9 +236,14 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			chart.show();
 			this.encoRangeChart = chart;
 			this.setCameraPosition();
+		// }else{
+		// 	this.encoRangeChart.cleanup();
+		// 	this.encoRangeChart = null;
+		// }
 		}else{
-			this.encoRangeChart.cleanup();
-			this.encoRangeChart = null;
+			Radi.Earth.cleanup();
+			this.encoRangeChart.show();
+			this.setCameraPosition();
 		}
 	},
 
@@ -172,9 +269,14 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			chart.show();
 			this.perRangeChart = chart;
 			this.setCameraPosition();
+		// }else{
+		// 	this.perRangeChart.cleanup();
+		// 	this.perRangeChart = null;
+		// }
 		}else{
-			this.perRangeChart.cleanup();
-			this.perRangeChart = null;
+			Radi.Earth.cleanup();
+			this.perRangeChart.show();
+			this.setCameraPosition();
 		}
 	},
 
@@ -205,6 +307,10 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	getAgroData : function(){
+		if(this.argoFeatures != null){
+			this.showArgoData(this.argoFeatures);
+			return;
+		}
 		this.agroFeatureType.fields = this.agroFeatureType.getFields(this.agroMapName,null);
 		this.agroFeatureType.getFeaturesFilterAsync(this.agroMapName,null,null,333,0,
 			this.agroFields,null,this.getAgroData_callback);
@@ -216,8 +322,10 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		var that = MapCloud.topicPanel;
+		that.argoFeatures = features;
 		that.showArgoData(features);
 	},
+
 
 	showArgoData : function(features){
 		if(features == null){
@@ -269,53 +377,8 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		}else{
 			aqiPanel.hide();
 		}
-		// if(MapCloud.aqiTimelinePanel.panel.css("display") == "none"){
-		// 	MapCloud.aqiTimelinePanel.show();
-		// }else{
-		// 	MapCloud.aqiTimelinePanel.hide();
-		// }
 	},
 
-
-	// // AQI序列
-	// showAQITimeLineChart : function(){
-	// 	if(this.aqiTimeLineChart == null){
-	// 		var timepoint = MapCloud.searchPanel.timepoint;
-	// 		MapCloud.aqiTimeList.get24hTimeList(timepoint,this.get24hTimeList_callback);
-	// 	}else{
-	// 		this.aqiTimeLineChart.cleanup();
-	// 		this.aqiTimeLineChart = null;
-	// 		Radi.Earth.cleanup();
-	// 	}
-	// },
-
-	// // 某一个时刻序列
-	// showAQITimeLineChart2 : function(){
-	// 	if(this.aqiTimeLineChart == null){
-	// 		var timepoint = MapCloud.searchPanel.timepoint;
-	// 		var startTime = "2015-12-28 04:00:00";
-	// 		var endTime = "2015-12-31 04:00:00";
-	// 		MapCloud.aqiTimeList.getDayHourTimeList(startTime,endTime,this.get24hTimeList_callback);
-	// 	}else{
-	// 		this.aqiTimeLineChart.cleanup();
-	// 		this.aqiTimeLineChart = null;
-	// 		Radi.Earth.cleanup();
-	// 	}
-	// },
-
-
-
-	// get24hTimeList_callback : function(timepoints){
-	// 	var panel = MapCloud.topicPanel;
-	// 	// panel.show24AQITimeLineChart()
-	// 	var server = MapCloud.server;
-	// 	var chartField = "aqi";
-	// 	var interval = "3000";
-	// 	// var timepoints = ["2015-12-31 04:00:00","2015-12-31 06:00:00","2015-12-31 08:00:00"];
-	// 	var aqiTimeLineChart = new MapCloud.AQITimeLineChart(server,chartField,timepoints,interval);
-	// 	aqiTimeLineChart.show();
-	// 	panel.aqiTimeLineChart = aqiTimeLineChart;
-	// },
 
 	show24AQITimeLineChart : function(){
 		var aqi24Panel = MapCloud.aqi24TimelinePanel;

@@ -1,6 +1,6 @@
 MapCloud.PositionControl = MapCloud.Class({
 	// 距离限差
-	tolerance : 0.03,
+	tolerance : 0.1,
 
 	// 高度限差
 	heightTolerance : 150000,
@@ -35,9 +35,9 @@ MapCloud.PositionControl = MapCloud.Class({
 		this.lon = null;
 		this.height = null;
 
-		// Radi.Earth.addClickListener(this.getPositionHandler);
-		// Radi.Earth.addMoveListener(this.getMousePositionHandler);
-		// Radi.Earth.addScrollEventListener(this.getHeightHandler);
+		Radi.Earth.addClickListener(this.getPositionHandler);
+		Radi.Earth.addMoveListener(this.getMousePositionHandler);
+		Radi.Earth.addScrollEventListener(this.getHeightHandler);
 		var workspace = new GeoBeans.WFSWorkspace("tmp",MapCloud.server,"1.0.0");
 		this.featureType = new GeoBeans.FeatureType(workspace, this.cityRegionLayer);
 		this.chinaFeatureType = new GeoBeans.FeatureType(workspace,this.chinaLayer);

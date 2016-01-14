@@ -151,6 +151,8 @@ if(platform == "win32"){
 			'MapCloud/Earth/js/AQITimeLineChart.js',
 			'MapCloud/Earth/js/AQITimeList.js',
 			'MapCloud/Earth/js/AQITimeLinePanel.js',
+			'MapCloud/Earth/js/AQI24TimeLinePanel.js',
+			'MapCloud/Earth/js/ChartPanel.js',
 			];
 	var earthDest = 'MapCloud/Earth/js/';
 	if(platform == "linux"){

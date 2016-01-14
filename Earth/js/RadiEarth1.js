@@ -46,7 +46,7 @@ Radi.Earth = {
 
 
         // 添加要素图层
-        // this.addWorldTrans();
+        this.addWorldTrans();
          // 定义当前场景的画布元素的事件处理
         this.handler = new Cesium.ScreenSpaceEventHandler(g_earth_view.scene.canvas);
     },

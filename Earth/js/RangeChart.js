@@ -65,7 +65,12 @@ MapCloud.RangeChart = MapCloud.Class({
 		if(this.baseLayerFeatureType == null || this.chartLayerFeatureType == null){
 			return;
 		}
-		this.getFeatures();
+		if(this.baseFeatures == null){
+			this.getFeatures();
+		}else{
+			this.drawBaseLayerFeatures();
+		}
+		
 	},
 
 	getFeatures : function(){
