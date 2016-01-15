@@ -99,7 +99,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		this.timepoint = timepoint;
-		var timeStr = timepoint.slice(timepoint.lastIndexOf(" ")+1,timepoint.length)
+		var timeStr = timepoint.slice(timepoint.lastIndexOf(" ")+1,timepoint.length);
 		this.panel.find(".current-time span").html(timeStr);
 
 		// 获取该时刻的，当前城市的AQI
@@ -302,7 +302,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(poiList.length != 0){
 				that.searchPoi(poiList);
 			}
-
 			
 		});
 
@@ -1101,7 +1100,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				+	"</li>";
 		}
 		html += "</ul>";
-		this.panel.find(".result-content-div").html(html);
+		this.panel.find(".result-main-div").html(html);
 		this.panel.find(".search-content-tab-div").css("display","none");
 		this.panel.find(".result-div").css("display","block");
 	},
@@ -1122,7 +1121,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(values == null){
 				continue;
 			}
-			var color = Cesium.Color.fromRandom({alpha : 1.0});
+			var color = Cesium.Color.fromRandom({alpha : 0.4});
 
 			var geometry = values[geomFieldIndex];
 			var points = geometry.toPointsArray();

@@ -21,18 +21,18 @@ Radi.Earth = {
             navigationHelpButton:false,
             navigationInstructionsInitiallyVisible:false,
             scene3DOnly:true,
-            // imageryProvider : new Cesium.WebMapTileServiceImageryProvider({
-            //                               url : '/QuadServer/services/maps/wmts100',
-            //                               layer : 'world_image',
-            //                               style : 'default',
-            //                               format : 'image/jpeg',
-            //                               tileMatrixSetID : 'PGIS_TILE_STORE',
-            //                               // tileMatrixLabels : ['default028mm:0', 'default028mm:1', 'default028mm:2' ...],
-            //                               minimumLevel: 0,
-            //                               maximumLevel: 19,
-            //                               credit : new Cesium.Credit('world_country'),
-            //                               tilingScheme : new Cesium.GeographicTilingScheme({rectangle : extent})
-            //                     })
+            imageryProvider : new Cesium.WebMapTileServiceImageryProvider({
+                                          url : '/QuadServer/services/maps/wmts100',
+                                          layer : 'world_image',
+                                          style : 'default',
+                                          format : 'image/jpeg',
+                                          tileMatrixSetID : 'PGIS_TILE_STORE',
+                                          // tileMatrixLabels : ['default028mm:0', 'default028mm:1', 'default028mm:2' ...],
+                                          minimumLevel: 0,
+                                          maximumLevel: 19,
+                                          credit : new Cesium.Credit('world_country'),
+                                          tilingScheme : new Cesium.GeographicTilingScheme({rectangle : extent})
+                                })
             //  imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
             //     url : 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
             // }),            
