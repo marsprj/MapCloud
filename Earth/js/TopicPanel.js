@@ -42,34 +42,6 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		var that = this;
 
 		this.panel.find("[data-toggle='tooltip']").tooltip({container:'body'});
-		// this.panel.find(".mc-icon").click(function(){
-		// 	if($(this).hasClass("mc-stretch")){
-		// 		that.onStretch(this);
-		// 	}else if($(this).hasClass("mc-icon-enco")){
-		// 		that.showEncoRangeChart();
-		// 	}else if($(this).hasClass("mc-icon-aqi")){
-		// 		// MapCloud.searchPanel.showAQIChart();
-		// 		that.showAQIChart();
-		// 	}else if($(this).hasClass("mc-icon-pop")){
-		// 		that.showPopRangeChart();
-		// 	}else if($(this).hasClass("mc-icon-per")){
-		// 		that.showPerRangeChart();
-		// 	}else if($(this).hasClass("mc-icon-agro")){
-		// 		if(that.agroChartFlag){
-		// 			Radi.Earth.cleanup();
-		// 			that.agroChartFlag = false;
-		// 		}else{
-		// 			that.getAgroData();
-		// 		}
-				
-		// 	}else if($(this).hasClass("mc-icon-aqi-timeline")){
-		// 		that.showAQITimeLineChart();
-		// 	}else if($(this).hasClass("mc-icon-aqi-timeline-24")){
-		// 		that.show24AQITimeLineChart();
-		// 	}
-		// });
-
-		
 		this.panel.find(".mc-icon").each(function(i,element){
 			$(this).click(function(){
 				switch(i){
@@ -169,10 +141,6 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			var aqiChart = new MapCloud.AQIChart(server,chartField,timepoint);
 			aqiChart.show();
 			this.aqiChart = aqiChart;
-		// }else{
-		// 	this.aqiChart = null;
-		// 	Radi.Earth.cleanup();
-		// }
 		}else{
 			Radi.Earth.cleanup();
 			this.aqiChart.show();
@@ -201,10 +169,6 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			chart.show();
 			this.popRangeChart = chart;
 			this.setCameraPosition();
-		// }else{
-		// 	this.popRangeChart.cleanup();
-		// 	this.popRangeChart = null;
-		// }
 		}else{
 			Radi.Earth.cleanup();
 			this.popRangeChart.show();
@@ -236,10 +200,6 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			chart.show();
 			this.encoRangeChart = chart;
 			this.setCameraPosition();
-		// }else{
-		// 	this.encoRangeChart.cleanup();
-		// 	this.encoRangeChart = null;
-		// }
 		}else{
 			Radi.Earth.cleanup();
 			this.encoRangeChart.show();
@@ -269,10 +229,6 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			chart.show();
 			this.perRangeChart = chart;
 			this.setCameraPosition();
-		// }else{
-		// 	this.perRangeChart.cleanup();
-		// 	this.perRangeChart = null;
-		// }
 		}else{
 			Radi.Earth.cleanup();
 			this.perRangeChart.show();

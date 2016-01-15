@@ -120,12 +120,4 @@ $().ready(function(){
 		}		
 	}
 
-
-	// Radi.Earth.addEventListener(Cesium.ScreenSpaceEventType.MOUSE_MOVE,handler);
-
-	// function handler(obj){
-	// 	if(obj != null){
-	// 		console.log(obj.lon,obj.lat,obj.height);
-	// 	}
-	// }
 });

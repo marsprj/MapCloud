@@ -482,13 +482,16 @@ li {
   cursor: pointer;
 
 }
+#city_container .current-city .caret{
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+#city_container .current-city.open .caret{
+  transform: rotate(180deg);
+}
 .current-city-name{
-  /*width: 34px;*/
-/*  text-overflow:ellipsis;
-  overflow: hidden;
-  white-space: nowrap;*/
   color: #fff;
-
 }
 #city_container .current-city-aqi{
   display: inline-block;
@@ -575,6 +578,11 @@ li {
 #aqi_chart_container{
   height: 600px;
   width: 800px;
+  margin-top: 10px;
+  border: 1px solid #d1d1d1;
+}
+#aqi_chart_container.loading{
+  background: url(../../images/spin.gif) no-repeat center;
 }
 
 

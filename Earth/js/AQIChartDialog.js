@@ -34,18 +34,16 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 		MapCloud.Dialog.prototype.initialize.apply(this,arguments);
 
 		this.container = this.panel.find("#" + container)[0];
-
-		// this.server = "/ows/" + this.userName + "/mgr";
-		// var workspace = new GeoBeans.WFSWorkspace("tmp",this.server,"1.0.0");
-		// this.featureType = new GeoBeans.FeatureType(workspace,this.aqiStatLayer);
-
 		this.registerPanelEvent();
-
 	},
 
 	registerPanelEvent : function(){
 		var dialog = this;
 		dialog.panel.find(".btn-group .btn").click(function(){
+			if(dialog.chart != null){
+				dialog.chart.clear();
+			}
+			dialog.panel.find("#aqi_chart_container").addClass("loading");
 			dialog.panel.find(".btn-group .btn").attr("disabled",false);
 			if($(this).hasClass("aqi-24h")){
 				dialog.showAQI24hFeatures();
@@ -57,16 +55,6 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 			$(this).attr("disabled",true);
 		});
 	},
-
-	// showDialog : function(time,stationCode,stationName){
-	// 	MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
-	// 	this.time = time;
-	// 	this.stationCode = stationCode;
-	// 	// this.stationCode = "1011A";
-	// 	// this.time = "2015-11-01 11:00:00";
-	// 	this.showAQI24hFeatures();
-		
-	// },
 
 	showDialog : function(time,featureType,name,postionFilter){
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
@@ -213,6 +201,7 @@ MapCloud.AQIChartDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	setFeatures : function(features){
+		this.panel.find("#aqi_chart_container").removeClass("loading");
 		this.features = features;
 		if(this.chart == null){
 			var option = this.getOption();

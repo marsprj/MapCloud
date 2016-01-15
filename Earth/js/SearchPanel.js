@@ -53,9 +53,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	aqiRankingCurrentPage : null,
 
 
-	// // 当前城市
-	// currentCity : "北京",
-
 	// 时间
 	timepoint : null,
 

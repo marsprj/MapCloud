@@ -1,6 +1,6 @@
 MapCloud.PositionControl = MapCloud.Class({
 	// 距离限差
-	tolerance : 0.1,
+	tolerance : 0.03,
 
 	// 高度限差
 	heightTolerance : 150000,
@@ -75,44 +75,8 @@ MapCloud.PositionControl = MapCloud.Class({
 			// 先判断是否在中国
 			this.getPositionInChina(point);
 
-
-			// // 先判断高度
-			// // 如果高度大于一定值，则只需要判断是不是在中国
-			// if(height > this.heightTolerance){
-			// 	this.getPositionInChina(point);
-			// }else{
-			// 	var distance = Math.sqrt((this.lat - lat)*(this.lat - lat) + (this.lon - lon)*(this.lon - lon));
-				
-			// 	if(distance > this.tolerance){
-			// 		// 获取位置
-			// 		this.getPositionWithinCity(point);
-			// 	}
-			// }
-			// this.lat = lat;
-			// this.lon = lon;
-			// this.height = height;
 		}
 
-
-		// var lat = position.lat;
-		// var lon = position.lon;
-		// var height = position.height;
-
-		// if(this.lat == null || this.lon == null){
-		// 	this.lat = lat;
-		// 	this.lon = lon;
-		// }else{
-		// 	var distance = Math.sqrt((this.lat - lat)*(this.lat - lat) + (this.lon - lon)*(this.lon - lon));
-		// 	console.log(distance);
-		// 	if(distance > this.tolerance){
-		// 		// 获取位置
-		// 		var point = new GeoBeans.Geometry.Point(lon,lat);
-		// 		this.getPositionWithinCity(point);
-		// 	}
-		// 	this.lat = lat;
-		// 	this.lon = lon;
-		// 	this.height = height;
-		// }		
 	},	
 
 	getPositionWithinCity : function(point){
@@ -208,6 +172,7 @@ MapCloud.PositionControl = MapCloud.Class({
 			// 此时在国外
 			MapCloud.currentCity = null;
 			MapCloud.currentCityPanel.setCity("其它地区");
+			$(".current-city-aqi span").html("");
 		}else{
 			// 这一次的位置
 			var lat = this.position.lat;
@@ -218,6 +183,7 @@ MapCloud.PositionControl = MapCloud.Class({
 			if(height > this.heightTolerance){
 				MapCloud.currentCity = null;
 				MapCloud.currentCityPanel.setCity("全国");
+				$(".current-city-aqi span").html("");
 			}else{
 				// 具体是哪一个城市
 				var distance = Math.sqrt((this.lat - lat)*(this.lat - lat) + (this.lon - lon)*(this.lon - lon));
@@ -246,9 +212,5 @@ MapCloud.PositionControl = MapCloud.Class({
 			this.lon = lon;
 		}
 	},
-
-
-
-
 
 });

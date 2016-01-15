@@ -519,6 +519,6 @@ if(platform == "win32"){
 			.pipe(concat('guoan.min.js'))
 			.pipe(gulp.dest(guoanJsDest));
 	});		
-	gulp.task('default',['earth-task'],function(){
+	gulp.task('default',['guoan-task'],function(){
 
 	});

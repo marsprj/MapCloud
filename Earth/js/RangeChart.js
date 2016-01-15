@@ -1,3 +1,4 @@
+// 分级图
 MapCloud.RangeChart = MapCloud.Class({
 
 	server : null,

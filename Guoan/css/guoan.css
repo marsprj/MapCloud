@@ -248,7 +248,8 @@ ul{
 }
 .poi-hotel-item{
   /*background: url(../../images/poi_type_icons.png) 0px;*/
-  background: url(../../images/hospital_38.png) -38px;
+  /*background: url(../../images/hospital_38.png) -38px;*/
+  background: url(../../images/poi_type_icons_2.png) -114px 0px;
 }
 .poi-restaurant-item{
   background: url(../../images/poi_type_icons.png) -38px;
@@ -273,17 +274,23 @@ ul{
   background: url(../../images/poi_type_icons.png) -266px;
 }
 .poi-embassy-item{
-	background: url(../../images/bank_38.png) ;
+	/*background: url(../../images/bank_38.png);*/
+	background: url(../../images/poi_type_icons_2.png) 0px 0px;
 }
 .poi-bus-item{
-	background: url(../../images/bus_38.png) ;
+	/*background: url(../../images/bus_38.png) ;*/
+	background: url(../../images/poi_type_icons_2.png) -38px 0px;
 }
 .poi-gas-item{
-	background: url(../../images/car_38.png);
+	/*background: url(../../images/car_38.png);*/
+	background: url(../../images/poi_type_icons_2.png) -76px 0px;
 }
 .poi-factory-item{
-	background: url(../../images/setting_38.png);
+	/*background: url(../../images/setting_38.png);*/
+	background: url(../../images/poi_type_icons_2.png) -152px 0px;
 }
+
+
 #right_panel{
 	float: left;
 	width: calc( 100% - 330px);
@@ -1025,6 +1032,14 @@ ul{
     /* width: 60px; */
     padding: 8px;
     cursor: pointer;
+}
+#city_container .current-city .caret{
+    -webkit-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;	
+}
+#city_container .current-city.open .caret{
+	transform : rotate(180deg);
 }
 
 .float-coordinates{

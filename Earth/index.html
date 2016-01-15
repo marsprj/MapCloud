@@ -3,8 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="css/radi_earth.min.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/radi_earth.css">
 	<!-- <link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.min.css"/> -->
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
 	<script type="text/javascript" src="Cesium/Cesium.js"></script>
@@ -18,8 +18,8 @@
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 
-	<script type="text/javascript" src="js/earth.min.js"></script>
-<!--	<script type="text/javascript" src="js/RadiEarth1.js"></script>
+<!--	<script type="text/javascript" src="js/earth.min.js"></script>-->
+	<script type="text/javascript" src="js/RadiEarth1.js"></script>
 	<script type="text/javascript" src="js/view_init.js"></script>
 	<script type="text/javascript" src="js/SearchPanel.js"></script>
 	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
@@ -36,7 +36,7 @@
 	<script type="text/javascript" src="js/AQITimeList.js"></script>
 	<script type="text/javascript" src="js/AQITimeLinePanel.js"></script>
 	<script type="text/javascript" src="js/AQI24TimeLinePanel.js"></script>
-	<script type="text/javascript" src="js/ChartPanel.js"></script>-->
+	<script type="text/javascript" src="js/ChartPanel.js"></script>
 
 	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
@@ -647,13 +647,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="btn-group col-md-4" role="group" style="margin-left:10px">
+						<div class="btn-group col-md-4" role="group">
 							<button type="button" class="btn btn-default aqi-24h" disabled="disabled">24时</button>
 							<button type="button" class="btn btn-default aqi-7d">7天</button>
 							<button type="button" class="btn btn-default aqi-30d">30天</button>
 						</div>
 					</div>
-					<div id="aqi_chart_container">
+					<div id="aqi_chart_container" class="loading">
 				</div>
 			</div>
 		</div>

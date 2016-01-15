@@ -398,59 +398,7 @@ Radi.Earth = {
                                 }));
     },
 
-
-    addModel : function(){
-        // var entity = g_earth_view.entities.add({
-        //     position : Cesium.Cartesian3.fromDegrees(116, 39),
-        //     model : {
-        //         uri : 'data/CesiumGround/Cesium_Ground.gltf'
-        //     }
-        // });
-        // g_earth_view.trackedEntity = entity;    
-
-
-        // var scene = g_earth_view.scene;
-        // var modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
-        //     Cesium.Cartesian3.fromDegrees(-75.62898254394531, 40.02804946899414, 0.0));
-        // var model = scene.primitives.add(Cesium.Model.fromGltf({
-        //     url : './data/CesiumAir/Cesium_Air.glb',
-        //     // url : 'http://192.168.111.82/MapCloud/Earth/data/CesiumAir/Cesium_Air.glb',
-        //     modelMatrix : modelMatrix,
-        //     scale : 200.0
-        // }));
-
-        var model = g_earth_view.scene.primitives.add(Cesium.Model.fromGltf({
-            position : Cesium.Cartesian3.fromDegrees(116, 39),
-          url : 'data/CesiumGround/Cesium_Ground.gltf'
-            // url : 'data/duck.gltf'
-        }));
-    },
-
-
-    createModel : function(url, height) {
-        if(height == null){
-            height = 0;
-        }
-        var position = Cesium.Cartesian3.fromDegrees(109.482, 18.255, height);
-        var heading = Cesium.Math.toRadians(0);
-        var pitch = 0;
-        var roll = 0;
-        var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, heading, pitch, roll);
-
-        var entity = g_earth_view.entities.add({
-            name : url,
-            position : position,
-            orientation : orientation,
-            model : {
-                uri : url,
-                scale : 1
-                // minimumPixelSize : 128,
-                // maximumScale : 20000
-            }
-        });
-        g_earth_view.trackedEntity = entity;
-    },
-
+    // 添加模型
     addModel : function(url,x,y,height,scale){
         if(url == null || x == null || y == null || height == null){
             return;

@@ -25,7 +25,6 @@ MapCloud.CurrentCityPanel = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.searchPanel.showAQIPanel();
 		});
 
-		// 切换城市，显示AQI数值，及AQI城市
 	},
 
 	cleanup : function(){
@@ -51,6 +50,5 @@ MapCloud.CurrentCityPanel = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.positionPanel.setPosition(position);
 			MapCloud.positionControl.setPosition(position);
 		}
-
 	},
 });

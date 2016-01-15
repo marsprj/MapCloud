@@ -8,10 +8,12 @@ MapCloud.CityPanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	show : function(){
+		MapCloud.currentCityPanel.panel.find(".current-city").addClass("open");
 		this.panel.slideDown();
 	},
 
 	hide : function(){
+		MapCloud.currentCityPanel.panel.find(".current-city").removeClass("open");
 		this.panel.slideUp();
 	},
 	registerEvent : function(){
