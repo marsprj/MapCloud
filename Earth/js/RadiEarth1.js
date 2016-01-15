@@ -412,6 +412,8 @@ Radi.Earth = {
         if(scale == null){
             scale = 1;
         }
+
+
         var entity = g_earth_view.entities.add({
             name : url,
             position : position,
@@ -422,7 +424,16 @@ Radi.Earth = {
                 // minimumPixelSize : 128,
                 // maximumScale : 20000
             }
-        });
+        });       
         // g_earth_view.trackedEntity = entity;
-    }
+
+        // 两种加载方式
+        // var modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
+        //     Cesium.Cartesian3.fromDegrees(x, y, height));
+        // var model = g_earth_view.scene.primitives.add(Cesium.Model.fromGltf({
+        //     url : url,
+        //     modelMatrix : modelMatrix,
+        //     scale : scale
+        // }));   
+    }     
 };

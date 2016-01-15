@@ -709,6 +709,9 @@ li {
 .mc-icon-agro{
   background-image: url(../../images/agro_32.png);
 }
+.mc-icon-3d{
+  background-image: url(../../images/house_32.png);
+}
 .mc-icon-aqi-timeline,.mc-icon-aqi-timeline-24{
   background-image: url(../../images/chart_aqi_timeline_32.png);
 }
@@ -880,13 +883,11 @@ li {
 }
 #chart_container .chart-content-div{
   display: none;
-  /*height: 0px;*/
   width: 110px;
-  margin-top: 10px;
-  
   color: #fff;
   position: absolute;
-  right: 0px;
+  right: 45px;
+  top: -3px;
 }
 #chart_container .chart-content-div ul{
   margin: 0px;
@@ -894,7 +895,7 @@ li {
 #chart_container .chart-content-div li{
     text-align: center;
     cursor: pointer;
-    margin: 8px 0px;
+    margin: 4px 0px;
     background-color: rgba(0,0,0,0.6);
     position: relative;
     -webkit-transition: all .3s ease-in-out;
