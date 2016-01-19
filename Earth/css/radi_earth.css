@@ -835,7 +835,7 @@ li {
   width: 740px !important;
 }
 #aqi_timeline_container{
-  width: 322px;
+  width: 362px;
   top: 130px;
   right: 40px;
   /*height: 250px;*/
@@ -854,7 +854,7 @@ li {
 }
 
 #aqi_24_timeline_container{
-  width: 322px;
+  width: 362px;
   top: 130px;
   right: 40px;
   /*height: 250px;*/

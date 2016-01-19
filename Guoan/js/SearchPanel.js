@@ -4,9 +4,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 	poiCurrentPage : null,
 
-	// 标绘工具栏
-	overlayControlPanel : null,
-
 	trackOverlayControl : null,
 
 	// 专题图底图
@@ -38,8 +35,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		this.poiManager = user.getPoiManager();
 
-		this.overlayControlPanel = $("#map_overlay_wrapper");
-
 		this.trackOverlayControl = new GeoBeans.Control.TrackOverlayControl();
 		if(mapObj != null){
 			mapObj.controls.add(this.trackOverlayControl);	
@@ -60,7 +55,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				searchPanel.css("width","269px");
 				that.panel.css("width","330px");
 				$(this).css("left","329px");
-				$("#right_panel").css("width","calc( 100% - 360px)");
+				$("#right_panel").css("width","calc( 100% - 330px)");
 				$(this).find(".fa-angle-right").removeClass(".fa-angle-right").addClass("fa-angle-left");
 			}else{
 				searchPanel.css("width","0px");
@@ -78,9 +73,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			});		
 		});
 
-		this.panel.find(".menu li").mouseenter(function(){
-
-		});
 
 		// 切换面板
 		this.panel.find(".menu li").click(function(){
@@ -91,7 +83,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			that.panel.find(".menu li").removeClass("active");
 			$(this).addClass("active");
-			// that.overlayControlPanel.hide();
 
 			that.panel.find(".search-tab-panel").hide();
 			that.panel.find(".search-tab-panel[sname='" + sname + "']").show();
@@ -128,95 +119,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				case "hotel":{
 					poiList.push("hotel");
 					poiList.push("酒店");
-					break;
-				}
-				case "restaurant":{
-					poiList.push("饭店");
-					poiList.push("饭馆");
-					break
-				}
-				case "shop":{
-					poiList.push("商场");
-					poiList.push("商店");
-					break;
-				}
-				case "cinema":{
-					poiList.push("电影院");
-					break;
-				}
-				case "site":{
-					poiList.push("公园");
-					break;
-				}
-				case "bank":{
-					poiList.push("银行");
-					poiList.push("ATM");
-					break;
-				}
-				case "supermarker":{
-					poiList.push("超市");
-					break;
-				}
-				case "subway":{
-					poiList.push("地铁");
-					break;
-				}
-				// case "bus":{
-				// 	poiList.push("公交站");
-				// 	break;
-				// }
-				case "gas":{
-					poiList.push("加油站");
-					break;
-				}
-				case "park":{
-					poiList.push("停车场");
-					break;
-				}
-				case "ktv":{
-					poiList.push("ktv");
-					break;
-				}
-				case "bar":{
-					poiList.push("酒吧");
-					break;
-				}
-				case "hospital":{
-					poiList.push("医院");
-					break;
-				}
-				case "school":{
-					poiList.push("学校");
-					poiList.push("小学");
-					poiList.push("中学");
-					poiList.push("大学");
-					break;
-				}
-				case "harmacy":{
-					poiList.push("药店");
-					break;
-				}
-				case "atm":{
-					poiList.push("atm");
-					break;
-				}
-				case "chafing_dish":{
-					poiList.push("火锅");
-					break;
-				}
-				case "barbecue":{
-					poiList.push("烧烤");
-					poiList.push("烤串");
-					break;
-				}
-				case "snack":{
-					poiList.push("快餐");
-					poiList.push("麦当劳");
-					poiList.push("肯德基");
-					break;
-				}
-				case "sichuan":{
-					poiList.push("川菜");
 					break;
 				}
 				case "embassy":{
@@ -267,30 +169,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		// 开始标注
 		this.panel.find(".overlay-panel .current-layer-row").click(function(){
 			that.startDrawOverlay();
-		});
-
-		// 绘制点
-		this.overlayControlPanel.find("#track_marker").each(function(){
-			$(this).click(function(e){
-				e.preventDefault();
-				that.trackMarker();
-			});
-		});
-
-		// 绘制线
-		this.overlayControlPanel.find("#track_polyline").each(function(){
-			$(this).click(function(e){
-				e.preventDefault();
-				that.trackPolyline();
-			});
-		});
-
-		// 绘制面
-		this.overlayControlPanel.find("#track_polygon").each(function(){
-			$(this).click(function(e){
-				e.preventDefault();
-				that.trackPolygon();
-			});
 		});
 
 		// 清空overlays
@@ -419,6 +297,8 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 							chartField = "糖料产量_万吨";
 							break;
 						}
+						default:
+							break;
 					}
 					break;
 				}
@@ -548,11 +428,9 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		mapObj.clearOverlays();
 		var offset = page * this.poiPageCount;
 		this.poiManager.getPoi(keyword,this.poiPageCount,offset,null,this.searchPoi_callback);
-
 	},	
 
 	searchPoi_callback : function(features){
-		// console.log(features.length);
 		if(!$.isArray(features)){
 			return;
 		}
@@ -651,7 +529,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 
     showPoiInMap : function(pois){
-
 		var poi = null, name = null, x = null,y = null,address = null;
 		for(var i = 0; i < pois.length; ++i){
 			poi = pois[i];
@@ -699,14 +576,12 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
     // 标绘面板
     showOverlayPanel : function(){
     	mapObj.clearOverlays();
-    	// this.overlayControlPanel.show();
-    	// this.trackMarker();
     	this.panel.find(".overlay-tab-panel").hide();
     	this.panel.find(".overlay-list-tab").show();
     	this.panel.find(".overlay-list-div").empty();
     	// 显示当前图层
     	if(MapCloud.currentLayer != null){
-    		var dataSetName = MapCloud.mapLayersPanel.getDataSetName(MapCloud.currentLayer)
+    		var dataSetName = MapCloud.mapLayersPanel.getDataSetName(MapCloud.currentLayer);
     		this.panel.find(".overlay-panel .current-layer-row span").html(dataSetName);
     	}
     	
@@ -895,6 +770,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			});
 		});   		
 	},
+
 	getEditOverlayValuesHtml : function(kvMap){
 		var html =  "<div class='row left_row_wrapper' id='overlay_add_value_row'>"
 				+	"	 <button type='button' class='btn glyphicon glyphicon-plus "
@@ -942,8 +818,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		}
 		this.panel.find("#heatmap_layers").html(html);
 	},
-
-
 
 	// 删除地图中专题图
 	removeChart : function(){

@@ -523,6 +523,7 @@ ul{
 }
 .panel-header button.close {
     margin-top: 4px;
+    margin-right: 10px;
     font-size: 28px;
 }
 .panel-header .panel-header-content {

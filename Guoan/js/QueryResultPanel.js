@@ -31,17 +31,14 @@ MapCloud.QueryResultPanel = MapCloud.Class(MapCloud.Panel,{
 
 	showPanel : function(){
 		this.panel.animate({"height":"250px"},300);
-		// $("#map_container").animate({"bottom":"250px"},300,null,function(){
-		// 	mapObj.resize("height");
-		// });
-		
+		$(".map-nav-wrapper").animate({"bottom":"320px"},300);
+		$(".float-coordinates").animate({"bottom":"280px"},300);
 	},	
 
 	hidePanel : function(){
 		this.panel.animate({"height":"0px"},300);
-		// $("#map_container").animate({"bottom":"0px"},300,null,function(){
-		// 	mapObj.resize("height");
-		// });
+		$(".map-nav-wrapper").animate({"bottom":"70px"},300);
+		$(".float-coordinates").animate({"bottom":"30px"},300);		
 	},
 
 
@@ -168,9 +165,6 @@ MapCloud.QueryResultPanel = MapCloud.Class(MapCloud.Panel,{
 			html += "<tr index='" + i + "'>";
 			for(var j = 0; j < values.length; ++j){
 				value = values[j];
-				// if(value == null){
-				// 	continue;
-				// }
 				if(value instanceof GeoBeans.Geometry){
 					continue;
 				}
@@ -179,12 +173,9 @@ MapCloud.QueryResultPanel = MapCloud.Class(MapCloud.Panel,{
 			html += "</tr>";
 		}
 
-		this.panel
-			.find("#datagrid_content table tbody").html(html);
+		this.panel.find("#datagrid_content table tbody").html(html);
 		this.registerFeatureSelected();
 	},	
-
-
 
 	// 展示页码
 	setQuery : function(layer,count,query_function){
@@ -251,7 +242,6 @@ MapCloud.QueryResultPanel = MapCloud.Class(MapCloud.Panel,{
 			return;
 		}
 		var offset = ( page -1 ) * this.maxFeatures;
-		// var features = mapObj.queryByRectPage(this.maxFeatures,offset);
 		var features = this.query_function(this.maxFeatures,offset);
 		this.showFeatures(features);
 	},

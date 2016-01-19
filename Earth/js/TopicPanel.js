@@ -113,7 +113,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 						that.show24AQITimeLineChart();
 						break;
 					}
-					case 7:{
+					case 8:{
 						that.showAQITimeLineChart();
 						break;
 					}

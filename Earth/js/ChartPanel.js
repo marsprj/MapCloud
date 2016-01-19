@@ -35,7 +35,6 @@ MapCloud.ChartPanel = MapCloud.Class(MapCloud.Panel,{
 
 
 	showFenghuangModel : function(){
-		// Radi.Earth.flyTo(109.483, 18.248,0);
 		var modelUrl = './data/test/028.gltf';
 		var x = 109.482;
 		var y = 18.255;
