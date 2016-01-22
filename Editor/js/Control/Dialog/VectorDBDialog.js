@@ -67,6 +67,11 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
 					break;
 				}
+				case "symbol":{
+					parentDialog = MapCloud.symbol_chart_panel;
+					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);
+					break;
+				}
 				case "kmean":{
 					parentDialog = MapCloud.gps_kmean_dialog;
 					parentDialog.setDataSet(dialog.dataSourceCur.name,dataSet.name);

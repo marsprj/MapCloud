@@ -176,6 +176,8 @@ $().ready(function(){
 		= new MapCloud.BarChartPanel("bar_chart_wrapper");
 	MapCloud.pie_chart_panel
 		= new MapCloud.PieChartPanel("pie_chart_wrapper");
+	MapCloud.symbol_chart_panel
+		= new MapCloud.SymbolChartPanel("symbol_chart_wrapper");
 	MapCloud.aqi_chart_panel
 		= new MapCloud.AQIChartPanel("aqi_chart_wrapper");
 	MapCloud.aqi_timeline_chart_panel 

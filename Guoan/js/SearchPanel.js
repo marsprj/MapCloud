@@ -147,7 +147,6 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			if(poiList.length != 0){
 				that.searchPoi(poiList);
 			}
-
 			
 		});		
 		// 显示删除按钮

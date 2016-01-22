@@ -303,35 +303,41 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onAddPieChart();
 					break;
 				case 29:
+					// 等级符号图
+					that.onAddSymbolChart();
+					break;
+				case 30:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 30:
+				case 31:
 					that.onAQI();
 					break;
-				case 31:
+				case 32:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 32:
+				case 33:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 33:
+				case 34:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 34:
+				case 35:
 					// 工具箱
 					that.onTools();
 					break;
-				case 35:
+				case 36:
 					// 进程管理
 					that.onProcess();
 					break;
-				case 36:
+				case 37:
 					that.onVersion();
-					break
+					break;
+				default :
+					break;
 				};
 			});
         });
@@ -573,6 +579,14 @@ MapCloud.Ribbon = MapCloud.Class({
 			return;
 		}
 		MapCloud.pie_chart_panel.showPanel();
+	},
+
+	onAddSymbolChart : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		MapCloud.symbol_chart_panel.showPanel();
 	},
 
 	// 编辑图层

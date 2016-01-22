@@ -598,6 +598,11 @@ MapCloud.refresh = MapCloud.Class({
 					MapCloud.pie_chart_panel.setChartLayer(layer);
 					break;
 				}
+				case GeoBeans.Layer.ChartLayer.Type.SYMBOL:{
+					MapCloud.symbol_chart_panel.showPanel();
+					MapCloud.symbol_chart_panel.setChartLayer(layer);
+					break;
+				}
 				case GeoBeans.Layer.ChartLayer.Type.AQI:{
 					MapCloud.aqi_chart_panel.showPanel();
 					MapCloud.aqi_chart_panel.setChartLayer(layer);
