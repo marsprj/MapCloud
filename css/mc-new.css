@@ -155,6 +155,9 @@ ul {
 	background-image:url(../images/chart_heatmap_40.png);	
 }
 
+.mc-icon-cluster{
+	background-image: url(../images/cluster_40.png);
+}
 .mc-icon-chart-aqi{
 	background-image:url(../images/chart_aqi_40.png);	
 }
@@ -3275,7 +3278,7 @@ ul.layers_row li:before {
 /* AQI Dialog End  															*/
 /***************************************************************************/
 /***************************************************************************/
-/* Version Dialog Begin  															*/
+/* Version Dialog Begin  													*/
 /***************************************************************************/
 #version_dialog .modal-dialog{
 	width: 300px;
@@ -3287,5 +3290,20 @@ ul.layers_row li:before {
 	font-family: "微软雅黑"
 }
 /***************************************************************************/
-/* Version Dialog End  															*/
+/* Version Dialog End  													*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Cluster Panel Begin  													*/
+/***************************************************************************/
+#cluster_chart_wrapper{
+	height: 260px;
+    width: 280px;
+}
+#cluster_chart_wrapper .form-group{
+	margin: 6px 0px;
+}
+
+/***************************************************************************/
+/* Version Dialog End  														*/
 /***************************************************************************/

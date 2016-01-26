@@ -183,6 +183,8 @@ MapCloud.refresh = MapCloud.Class({
 				html += this.getDBLayerHtml(i,layer);
 			}else if(layer instanceof GeoBeans.Layer.ChartLayer){
 				html += this.getChartLayerHtml(i,layer);
+			}else if(layer instanceof GeoBeans.Layer.ClusterLayer){
+				html += this.getClusterLayer(i,layer);
 			}
 		}
 
@@ -595,7 +597,7 @@ MapCloud.refresh = MapCloud.Class({
 				}
 				case GeoBeans.Layer.ChartLayer.Type.PIE:{
 					MapCloud.pie_chart_panel.showPanel();
-					MapCloud.pie_chart_panel.setChartLayer(layer);
+					MapCloud.pie_chart_panel.setChartLareyer(layer);
 					break;
 				}
 				case GeoBeans.Layer.ChartLayer.Type.SYMBOL:{
@@ -616,6 +618,18 @@ MapCloud.refresh = MapCloud.Class({
 				default:
 					break;
 			}
+		});
+
+		// cluster layer 
+		this.panel.find(".mc-icon-cluster-layer").click(function(){
+			var li = $(this).parents("li");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			MapCloud.cluster_chart_panel.showPanel();
+			MapCloud.cluster_chart_panel.setLayer(layer);
 		});
 	},
 
@@ -1553,5 +1567,55 @@ MapCloud.refresh = MapCloud.Class({
 		MapCloud.notify.showInfo(result,"全图显示");
 		// mapObj.draw();
 		MapCloud.refresh_panel.refreshPanel();
+	},
+
+	// 聚合图
+	getClusterLayer : function(i,layer){
+		if(layer == null){
+			return;
+		}
+		var name = layer.name;
+		var html = 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<a href='javascript:void(0)' class='mc-icon-cluster-layer'>"
+				+	"			<i class='fa fa-bar-chart'></i>"
+				+	"		</a>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-5 col-xs-1 layer_name\">"
+				+	"		<strong title='" + name + "'>" + name + "</strong>"
+				+	"	</div>"
+				+   "	<div class=\"col-md-1\">"
+				+	"	</div>"
+				+   "	<div class=\"col-md-1\">"
+				+	"	</div>"				
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"javascript:void(0)\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
+				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_layer_info\"><i class='dropdown-menu-icon fa fa-list-ul'></i>图层属性</a></li>"	
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
+		html += "</li>";
+		return html;
 	}
 });

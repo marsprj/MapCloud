@@ -178,6 +178,8 @@ $().ready(function(){
 		= new MapCloud.PieChartPanel("pie_chart_wrapper");
 	MapCloud.symbol_chart_panel
 		= new MapCloud.SymbolChartPanel("symbol_chart_wrapper");
+	MapCloud.cluster_chart_panel
+		= new MapCloud.ClusterChartPanel("cluster_chart_wrapper");
 	MapCloud.aqi_chart_panel
 		= new MapCloud.AQIChartPanel("aqi_chart_wrapper");
 	MapCloud.aqi_timeline_chart_panel 

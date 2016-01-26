@@ -15,7 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/jquery-ui.min.css" type="text/css">
 	
 
-	<link rel="stylesheet" type="text/css" href="../css/mc-new.min.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="../css/mc-new.min.css"/> -->
+	<link rel="stylesheet" type="text/css" href="../css/mc-new.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/common.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
@@ -167,6 +168,7 @@
 <script type="text/javascript" src="js/Control/Dialog/VersionDialog.js"></script>
 
 <script type="text/javascript" src="js/Control/Panel/SymbolChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/ClusterChartPanel.js"></script>
 
 <title>MapEditor</title>
 </head>
@@ -423,6 +425,12 @@
 							<div class="ribbon-item">
 								<div class="ribbon_image mc-icon-ribbon mc-icon-chart-pie"></div>
 								<div class="ribbon_label">等级符号图</div>
+							</div>
+						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-cluster"></div>
+								<div class="ribbon_label">点聚合图</div>
 							</div>
 						</div>
 						<div class="ribbon_group mc-border-right-light">
@@ -1278,6 +1286,7 @@
 								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
 							</div>
 						</div>
+						<!-- 等级符号图 -->
 						<div id="symbol_chart_wrapper" class="mc-panel chart-panel">
 							<div class="panel-header">
 								<button type="button" class="close">
@@ -1423,6 +1432,68 @@
 									    </div>
 									</div>
 								</div>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<!-- 点聚合图 -->
+						<div id="cluster_chart_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-circle fa-2"></i>&nbsp;点聚合图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-9">
+								      		<input class="form-control chart-table-name" type="text" value="点聚合图">
+								    	</div>
+								  	</div>
+								  	<div class="form-group form-group-sm">
+								  		<label class="control-label col-md-3">点图层:</label>
+								  		<div class="col-md-9">
+								  			<select class="form-control chart-layers-field">
+								  			</select>
+								  		</div>
+								  	</div>
+				  					<div class="form-group form-group-sm form-group-color">
+					      				<label class="control-label col-md-3">颜色:
+					      				</label>
+					      				<div class="col-md-1" style="padding-top:6px">
+					      					<div class="btn btn-default colorSelector" title="填充颜色" data-toggle="tooltip" data-placement="top">
+												<div style="background-color: #EEEEEE"></div>
+											</div>
+					      				</div>
+					      				<div class="col-md-6 control-label">
+											<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<label class="control-label col-md-1 color-opacity">1</label>
+									</div>
+					      			<div class="form-group form-group-sm form-group-border">
+					      				<label class="control-label col-md-3">边界:
+					      				</label>
+					      				<div class="col-md-1" style="padding-top:6px">
+					      					<div class="btn btn-default colorSelector" title="线段颜色" data-toggle="tooltip" data-placement="top">
+												<div style="background-color: #EEEEEE"></div>
+											</div>
+					      				</div>
+					      				<div class="col-md-6 control-label">
+											<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<label class="control-label col-md-1 border-color-opacity">1</label>
+					      			</div>
+								  </form>
 							</div>
 							<div class="panel-bottom">
 								<button type="button" class="btn btn-default btn-cancel">关闭</button>
