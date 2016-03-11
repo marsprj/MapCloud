@@ -307,36 +307,41 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onAddSymbolChart();
 					break;
 				case 30:
-					that.onAddClusterLayer();
+					// 分级+等级符号
+					that.onAddRangeSymbolChart();
 					break;
 				case 31:
+					// 点聚合图
+					that.onAddClusterLayer();
+					break;
+				case 32:
 					// 热力图
 					that.onHeatMap();
 					break;
-				case 32:
+				case 33:
 					that.onAQI();
 					break;
-				case 33:
+				case 34:
 					that.onAQITimeline();
 					break;
 				// Tools Events
-				case 34:
+				case 35:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 35:
+				case 36:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 36:
+				case 37:
 					// 工具箱
 					that.onTools();
 					break;
-				case 37:
+				case 38:
 					// 进程管理
 					that.onProcess();
 					break;
-				case 38:
+				case 39:
 					that.onVersion();
 					break;
 				default :
@@ -584,6 +589,7 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.pie_chart_panel.showPanel();
 	},
 
+	// 等级符号图
 	onAddSymbolChart : function(){
 		if(mapObj == null){
 			MapCloud.notify.showInfo("当前地图为空","Warning");
@@ -592,6 +598,16 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.symbol_chart_panel.showPanel();
 	},
 
+	// 分级+等级符号
+	onAddRangeSymbolChart : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		MapCloud.range_symbol_chart_panel.showPanel();
+	},
+
+	// 聚合图
 	onAddClusterLayer : function(){
 		if(mapObj == null){
 			MapCloud.notify.showInfo("当前地图为空","Warning");

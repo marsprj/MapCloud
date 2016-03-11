@@ -63,6 +63,8 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 	poiCurrentPage : null,
 
 	poiPageCount : 20,
+	// poi搜索范围
+	poiExent : null,
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
@@ -193,6 +195,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 
 		// 返回列表
 		this.panel.find(".return-search-list-btn").click(function(){
+			Radi.Earth.cleanup();
 			that.panel.find(".search-content-tab-div").css("display","none");
 			that.panel.find(".search-list-div").css("display","block");
 		});	
@@ -372,7 +375,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 				return;
 			}
 			that.poiCurrentPage = page - 1;
-			that.searchPoiByPage(that.keyword,that.poiCurrentPage);
+			that.searchPoiByPage(that.keyword,that.poiCurrentPage,that.poiExent);
 		});
 
 		this.panel.find(".result-content-div .next-page").click(function(){
@@ -382,7 +385,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			}
 			var page = that.poiCurrentPage;
 			that.poiCurrentPage = page + 1;
-			that.searchPoiByPage(that.keyword,that.poiCurrentPage);
+			that.searchPoiByPage(that.keyword,that.poiCurrentPage,that.poiExent);
 		});
 
 	},
@@ -392,36 +395,46 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		if(keyword == null){
 			return;
 		}
+		// 后端有问题，待解决
 		this.keyword = keyword;
+		// this.keyword = keyword[0];
 		// Radi.Earth.cleanup();
 		// this.panel.find(".result-main-div").empty();
-
+		var extent = Radi.Earth.getExtentView();
+		if(extent == null){
+			alert("请设定有效的范围");
+			return;
+		}
 		this.poiCurrentPage = 0;
-		this.searchPoiByPage(this.keyword,this.poiCurrentPage);
+		this.poiExent = extent;
+		this.searchPoiByPage(this.keyword,this.poiCurrentPage,extent);
 
 		// this.poiManager.getPoi(keyword,this.poiPageCount,0,null,this.searchPoi_callback);
 
 	},
 
-	searchPoiByPage : function(keyword,page){
-		if(page < 0 || keyword == null){
+	searchPoiByPage : function(keyword,page,extent){
+		if(page < 0 || keyword == null || extent == null){
 			return;
 		}
-
+		this.panel.find(".search-content-tab-div").css("display","none");
+		this.panel.find(".result-div").css("display","block")
+		this.panel.find(".result-content-div").addClass("loading");
 		Radi.Earth.cleanup();
 		this.panel.find(".result-main-div").empty();
 		var offset = page * this.poiPageCount;
-		this.poiManager.getPoi(keyword,this.poiPageCount,offset,null,this.searchPoi_callback);
-
+		this.poiManager.getPoi(keyword,this.poiPageCount,offset,extent,this.searchPoi_callback);
 	},
 
 	searchPoi_callback : function(pois){
+		var that = MapCloud.searchPanel;
+		that.panel.find(".result-content-div").removeClass("loading");
 		console.log(pois.length);
 		if(!$.isArray(pois)){
 			return;
 		}
 
-		var that = MapCloud.searchPanel;
+		
 		that.showPoisResult(pois);
 		that.showPoisIn3D(pois);
 
@@ -468,8 +481,8 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		}
 		html += "</ul>";
 		this.panel.find(".result-main-div").html(html);
-		this.panel.find(".search-content-tab-div").css("display","none");
-		this.panel.find(".result-div").css("display","block");
+		// this.panel.find(".search-content-tab-div").css("display","none");
+		// this.panel.find(".result-div").css("display","block");
 
 		// 点击定位
 		this.panel.find(".result-div ul li").click(function(){
@@ -508,7 +521,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 			poi3D = Radi.Earth.addBillboard(x,y,name,url);
 			poi3DList.push(poi3D);
 		}
-		Radi.Earth.zoom(poi3DList);		
+		// Radi.Earth.zoom(poi3DList);		
 	},
 
 	// 显示AQI面板

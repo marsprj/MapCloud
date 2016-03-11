@@ -370,7 +370,6 @@ MapCloud.CityPosition = MapCloud.Class({
 		]
 	},
 
-
 	getCityPosition : function(name){
 		if(name == null){
 			return null;

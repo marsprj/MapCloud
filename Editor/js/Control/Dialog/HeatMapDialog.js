@@ -9,17 +9,38 @@ MapCloud.HeatMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		
 		var dialog = this;
 
-		this.panel.find(".btn-confirm").click(function(){
-			dialog.closeDialog();
+		this.panel.find(".field-enable").change(function(){
+			var parent = $(this).parents(".form-group");
+			if(this.checked){
+				parent.find("#heat_map_field").prop("disabled",false);
+			}else{
+				parent.find("#heat_map_field").prop("disabled",true);
+			}
+		});
 
-			// 选中的字段
-			var field = dialog.panel.find("#heat_map_field").val();
+		this.panel.find(".btn-confirm").click(function(){
 			if(dialog.layer == null){
+				MapCloud.notify.showInfo("请先设置点图层","Warning");
 				return;
 			}
 
+			dialog.closeDialog();
 
-			mapObj.addHeatMap(dialog.layer.name,field);
+			var checked = dialog.panel.find(".field-enable").prop("checked");
+			var field = null;
+			var uniqueValue = null;
+			if(checked){
+				field = dialog.panel.find("#heat_map_field").val();
+			}else{
+				uniqueValue = 1;
+			}
+
+			if(field == null && uniqueValue == null){
+				MapCloud.notify.showInfo("请设置有效的字段","Warning");
+				return;
+			}
+	
+			mapObj.addHeatMap(dialog.layer.name,field,uniqueValue);
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
 		});
@@ -36,12 +57,19 @@ MapCloud.HeatMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(heatMapLayer == null){
 			this.showFields(layer);
 		}else{
-			var field = heatMapLayer.getField();
 			this.showFields(layer);
-			this.panel.find("#heat_map_field option[value='"
-				+ field + "']").attr("selected",true);
+			var uniqueValue = heatMapLayer.getUniqueValue();
+			var field = heatMapLayer.getField();
+			if(uniqueValue == null && field != null){
+				this.panel.find(".field-enable").prop("checked",true);
+				this.panel.find("#heat_map_field").prop("disabled",false);
+				this.panel.find("#heat_map_field option[value='" + field + "']").attr("selected",true);
+			}
+			if(uniqueValue != null){
+				this.panel.find(".field-enable").prop("checked",false);
+				this.panel.find("#heat_map_field").prop("disabled",true);
+			}
 		}
-
 	},
 
 	//展示字段
@@ -66,5 +94,11 @@ MapCloud.HeatMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			}
 		}
 		this.panel.find("#heat_map_field").html(html);
-	}
+	},
+
+	cleanup : function(){
+		this.layer = null;
+		this.panel.find("#heat_map_field").empty().prop("disabled",false);
+		this.panel.find(".field-enable").prop("checked",true);
+	},
 });

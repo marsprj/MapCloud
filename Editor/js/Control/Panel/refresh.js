@@ -605,6 +605,11 @@ MapCloud.refresh = MapCloud.Class({
 					MapCloud.symbol_chart_panel.setChartLayer(layer);
 					break;
 				}
+				case GeoBeans.Layer.ChartLayer.Type.RANGESYMBOL:{
+					MapCloud.range_symbol_chart_panel.showPanel();
+					MapCloud.range_symbol_chart_panel.setChartLayer(layer);
+					break;
+				}
 				case GeoBeans.Layer.ChartLayer.Type.AQI:{
 					MapCloud.aqi_chart_panel.showPanel();
 					MapCloud.aqi_chart_panel.setChartLayer(layer);

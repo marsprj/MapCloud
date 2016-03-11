@@ -435,5 +435,29 @@ Radi.Earth = {
         //     modelMatrix : modelMatrix,
         //     scale : scale
         // }));   
-    }     
+    },
+
+    getExtentView : function(){
+        var scene = g_earth_view.scene;
+        var ellipsoid = g_earth_view.scene.globe.ellipsoid;
+        var c2 = new Cesium.Cartesian2(0,0);
+        var leftTop = this.camera().pickEllipsoid(c2, ellipsoid);
+        
+        c2 = new Cesium.Cartesian2(scene.canvas.width, scene.canvas.height);
+        var rightDown = this.camera().pickEllipsoid(c2, ellipsoid);
+        
+        if(leftTop != null && rightDown != null){
+            leftTop = ellipsoid.cartesianToCartographic(leftTop);
+            rightDown = ellipsoid.cartesianToCartographic(rightDown);
+            var xmin = Number(Cesium.Math.toDegrees(leftTop.longitude).toFixed(6));
+            var ymin = Number(Cesium.Math.toDegrees(rightDown.latitude).toFixed(6));
+            var xmax = Number(Cesium.Math.toDegrees(rightDown.longitude).toFixed(6));
+            var ymax = Number(Cesium.Math.toDegrees(leftTop.latitude).toFixed(6));
+            return new GeoBeans.Envelope(xmin,ymin,xmax,ymax);
+        }else{//The sky is visible in 3D
+            return null;
+        }
+    }
+
+
 };

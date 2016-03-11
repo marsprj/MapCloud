@@ -173,6 +173,10 @@ li {
   overflow-x : hidden;
 }
 
+.result-content-div.loading{
+  background: url(../../images/spin_black.gif) no-repeat;
+  background-position: center;  
+}
 .result-content-div::-webkit-scrollbar { width: 0 !important }
 .result-main-div{
   min-height: 498px;

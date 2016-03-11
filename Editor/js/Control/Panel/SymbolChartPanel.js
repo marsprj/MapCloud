@@ -410,6 +410,13 @@ MapCloud.SymbolChartPanel = MapCloud.Class(MapCloud.Panel,{
 			this.chartLayer.setTableName(this.tableName);
 		}
 
+		var tableField = this.panel.find(".chart-table-fields").val();
+		if(tableField == null || tableField == ""){
+			MapCloud.notify.showInfo("请设置关联字段","Warning");
+			return;
+		}
+		this.chartLayer.setTableField(tableField);
+
 		var chartField = this.panel.find("#symbol_chart_style_fields").val();
 		if(chartField == null || chartField == ""){
 			MapCloud.notify.showInfo("请设置专题图字段","Warning");
