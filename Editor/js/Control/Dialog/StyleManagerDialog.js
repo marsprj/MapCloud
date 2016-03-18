@@ -1094,9 +1094,9 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var rules = style.rules;
 		if(rules != null){
-			var rule = rules[0];
+			var singleRule = rules[0];
 			if(rule != null){
-				var symbolizer = rule.symbolizer;
+				var symbolizer = singleRule.symbolizer;
 				if(symbolizer != null){
 					var fill = symbolizer.fill;
 					var stroke = symbolizer.stroke;
