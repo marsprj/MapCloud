@@ -114,6 +114,7 @@ $().ready(function(){
 		var mapExtent = null;
 		var mapSrid = null;
 		var mapExtentHtml = "";
+		var thumb = null;
 		for(var i = 0; i < maps.length; ++i){
 			map = maps[i];
 			if(map == null){
@@ -126,8 +127,9 @@ $().ready(function(){
 				mapExtentHtml = mapExtent.xmin.toFixed(2) + " , " + mapExtent.ymin.toFixed(2)
 					+ " , " + mapExtent.xmax.toFixed(2) + " , " + mapExtent.ymax.toFixed(2);
 			}
+			
 			html += '<div class="row" mname="' + mapName + '">'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 order">'
 				+	(i+1)		
 				+	'	</div>'
 				+	'	<div class="col-md-3">'
@@ -145,7 +147,20 @@ $().ready(function(){
 				+	'		<a href="javascript:void(0)" class="oper enter-map">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-map">删除</a>'
 				+	'	</div>'
-				+	'</div>';
+				+	'</div>'
+				// + 	'<div class="row info-row" mname="' + name + '">'
+				// +	'	<div class="col-md-1 col-order">'
+				// +	'	</div>'
+				// +	'	<div class="col-md-3 thumb-div" style="background-image:url(' + thumb + ')">'
+				// +	'	</div>'
+				// +	'	<div class="col-md-4">'
+				// +	'		<div class="row info-row-item">'
+				// +	'			<div class="col-md-3">名称:</div>'
+				// +	'			<div class="col-md-5">' + name + '</div>'
+				// +	'		</div>'
+				// +	'	</div>'
+				// + 	'</div>';
+
 		}
 		$(".map-list").html(html);	
 
