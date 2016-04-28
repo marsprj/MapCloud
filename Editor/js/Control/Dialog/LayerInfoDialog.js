@@ -33,6 +33,8 @@ MapCloud.LayerInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			mapObj.describeLayer(layer.name,this.describeLayer_callback);
 		}else if(layer instanceof GeoBeans.Layer.ChartLayer){
 			this.showChartLayer(layer);
+		}else{
+			this.showLayer(layer);
 		}
 	},
 
@@ -162,6 +164,8 @@ MapCloud.LayerInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			default:
 				break;
 		}
+
+
 		 var html = '<table class="table table-hover table-bordered">'
 			+ '<tbody>'
 			+ '	<tr>'
@@ -311,6 +315,33 @@ MapCloud.LayerInfoDialog = MapCloud.Class(MapCloud.Dialog,{
 			+ '	</tr>'			
 			+ '</tbody>'
 			+ '</table>';
+		this.panel.find(".modal-body").html(html);
+	},
+
+
+	showLayer : function(layer){
+
+
+		var layerType = "";
+		if(layer instanceof GeoBeans.Layer.RippleLayer){
+			layerType = "波纹图";
+		}else if(layer instanceof GeoBeans.Layer.AirLineLayer){
+			layerType = "航线图";
+		}else if(layer instanceof GeoBeans.Layer.ClusterLayer){
+			layerType = "聚合图";
+		}		
+		var html = '<table class="table table-hover table-bordered">'
+			+ '<tbody>'
+			+ '	<tr>'
+			+ '		<td>名称</td>'
+			+ '		<td>' + layer.name  + '</td>'
+			+ '	</tr>';
+		if(layerType != null ){
+			html += '	<tr>'
+			+ '		<td>类型</td>'
+			+ '		<td>' + layerType  + '</td>'
+			+ '	</tr>';
+		}
 		this.panel.find(".modal-body").html(html);
 	}
 

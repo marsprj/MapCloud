@@ -59,7 +59,26 @@
 <script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
 
 
-<script type="text/javascript" src="../js/common.min.js"></script>
+<!-- <script type="text/javascript" src="../js/common.min.js"></script> -->
+
+<script type="text/javascript" src="../js/MapCloud.js"></script>
+<script type="text/javascript" src="../js/Class/Class.js"></script>
+<script type="text/javascript" src="../js/Cookie.js"></script>
+<script type="text/javascript" src="../js/Control/Panel.js"></script>
+<script type="text/javascript" src="../js/Control/Panel/Notify.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/AQICityDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/CreateDataSetDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/CreateFolderDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/CreateTileStoreDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/FileDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportCSVDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportCSVDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportRasterDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/ImportVectorDialog.js"></script>
+<script type="text/javascript" src="../js/Control/Dialog/PGISConnectDialog.js"></script>
+
 <!-- <script type="text/javascript" src="js/Editor.min.js"></script> -->
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -82,6 +101,7 @@
 <script type="text/javascript" src="js/Control/Panel/PieChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AQIChartPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/AQITimelineChartPanel.js"></script>
+<script type="text/javascript" src="js/Control/Panel/AirlinePanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/GPSOperPanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/DataSourcePanel.js"></script>
 <script type="text/javascript" src="js/Control/Panel/UserToolBar.js"></script>
@@ -106,7 +126,8 @@
 <script type="text/javascript" src="js/Control/Dialog/WFSDatasourceDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMTSDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/WMSDialog.js"></script>
-<script type="text/javascript" src="js/Control/Dialog/StyleManagerDialog.js"></script>
+<!-- <script type="text/javascript" src="js/Control/Dialog/StyleManagerDialog.js"></script> -->
+<script type="text/javascript" src="js/Control/Dialog/StyleManagerDialog_a.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/StyleDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/StyleNameDialog.js"></script>
 <script type="text/javascript" src="js/Control/Dialog/HeatMapDialog.js"></script>
@@ -454,6 +475,12 @@
 								<div class="ribbon_label">AQI序列图</div>
 							</div>
 						</div>
+						<div class="ribbon_group mc-border-right-light">
+							<div class="ribbon-item">
+								<div class="ribbon_image mc-icon-ribbon mc-icon-airline"></div>
+								<div class="ribbon_label">航线图</div>
+							</div>
+						</div>
 					</div>
 					<div id="tool_ribbon" class="ribbon_panel">
 						<div class="ribbon_group mc-border-right-light">
@@ -487,8 +514,13 @@
 				<div class="left-panel">
 					<div id="left_panel" class="left-panel-tab">
 						<div class="row" id="map_row">
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<a href="javascript:void(0)" id="map_name">Sample</a>
+							</div>
+							<div class="col-md-1">
+								<a href="javascript:void(0)" id="create_service_btn"data-toggle="tooltip" data-placement="top" data-original-title="发布">
+									<i class="mc-icon mc-icon-pyramid"></i>
+								</a>
 							</div>
 							<div class="col-md-1">
 								<a href="javascript:void(0)" id="cut_map_btn"data-toggle="tooltip" data-placement="top" data-original-title="切图">
@@ -843,7 +875,7 @@
 									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
 									      	<h4 class="panel-title">
 									        	<a role="button" data-toggle="collapse" data-parent="#chart_accordion" href="#chart_base_layer_coll" aria-expanded="true" aria-controls="chart_base_layer_coll">
-									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									          		<i class="fa fa-globe"></i>&nbsp;关联图层
 									        	</a>
 									      	</h4>
 									    </div>
@@ -999,7 +1031,7 @@
 									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
 									      	<h4 class="panel-title">
 									        	<a role="button" data-toggle="collapse" data-parent="#bar_chart_accordion" href="#bar_chart_base_layer_coll" aria-expanded="true" aria-controls="bar_chart_base_layer_coll">
-									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									          		<i class="fa fa-globe"></i>&nbsp;关联图层
 									        	</a>
 									      	</h4>
 									    </div>
@@ -1171,7 +1203,7 @@
 									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
 									      	<h4 class="panel-title">
 									        	<a role="button" data-toggle="collapse" data-parent="#pie_chart_accordion" href="#pie_chart_base_layer_coll" aria-expanded="true" aria-controls="pie_chart_base_layer_coll">
-									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									          		<i class="fa fa-globe"></i>&nbsp;关联图层
 									        	</a>
 									      	</h4>
 									    </div>
@@ -1321,7 +1353,7 @@
 									    <div class="panel-heading" role="tab" id="chart_base_layer_head">
 									      	<h4 class="panel-title">
 									        	<a role="button" data-toggle="collapse" data-parent="#chart_accordion" href="#symbol_chart_base_layer_coll" aria-expanded="true" aria-controls="symbol_chart_base_layer_coll">
-									          		<i class="fa fa-globe"></i>&nbsp;底图设置
+									          		<i class="fa fa-globe"></i>&nbsp;关联图层
 									        	</a>
 									      	</h4>
 									    </div>
@@ -1473,7 +1505,7 @@
 										 <div class="panel-heading" role="tab" id="rs_chart_base_layer_head">
 											<h4 class="panel-title">
 												<a role="button" data-toggle="collapse" data-parent="#rs_chart_accordion" href="#rs_chart_base_layer_coll" aria-expanded="true" aria-controls="rs_chart_base_layer_coll">
-													<i class="fa fa-globe"></i>&nbsp;底图设置
+													<i class="fa fa-globe"></i>&nbsp;关联图层
 												</a>
 											</h4>
 										</div>
@@ -1812,6 +1844,36 @@
 											</ul>
 										</div>
 					      			</div>
+					      			<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">样式:
+					      				</label>
+					      				<div class="col-md-9">
+					      					<div class="aqi-style-div" astyle="ripple_effect">
+					      						<img src="../images/aqi_ripple.png">
+					      						<p>波纹点</p>
+					      					</div>
+					      				</div>
+					      			</div>
+									<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">
+					      				</label>
+					      				<div class="col-md-9">
+					      					<div class="aqi-style-div" astyle="ripple">
+					      						<img src="../images/aqi_point.png">
+					      						<p>点</p>
+					      					</div>
+					      				</div>
+					      			</div>
+					      			<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">
+					      				</label>
+					      				<div class="col-md-9">
+					      					<div class="aqi-style-div" astyle="info">
+					      						<img src="../images/aqi_info.png">
+					      						<p>信息框</p>
+					      					</div>
+					      				</div>
+					      			</div>
 								</form>
 							</div>
 							<div class="panel-bottom">
@@ -1928,6 +1990,138 @@
 								    	毫秒
 								    	</label>
 					      			</div>
+					      			<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">样式:
+					      				</label>
+					      				<div class="col-md-9">
+					      					<div class="aqi-style-div" astyle="point">
+					      						<img src="../images/aqi_point.png">
+					      						<p>点</p>
+					      					</div>
+					      				</div>
+					      			</div>
+					      			<div class="form-group form-group-sm">
+					      				<label class="control-label col-md-3">
+					      				</label>
+					      				<div class="col-md-9">
+					      					<div class="aqi-style-div" astyle="tip">
+					      						<img src="../images/aqi_info.png">
+					      						<p>信息框</p>
+					      					</div>
+					      				</div>
+					      			</div>
+								</form>
+							</div>
+							<div class="panel-bottom">
+								<button type="button" class="btn btn-default btn-cancel">关闭</button>
+								<button type="button" class="btn btn-primary btn-add-chart">添加</button>
+							</div>
+						</div>
+						<!-- 航线图 -->
+						<div id="airline_wrapper" class="mc-panel chart-panel">
+							<div class="panel-header">
+								<button type="button" class="close">
+									<span aria-hidden="true">×</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<div class="panel-header-content float_left">
+									<h5>
+										<i class="fa fa-plane fa-2"></i>&nbsp;
+										航线图
+									</h5>
+								</div>
+							</div>
+							<div class="panel-content">
+								<form class="form-horizontal" role="form" style="">
+									<div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">名称:
+								    	</label>
+								    	<div class="col-md-7">
+								      		<input class="form-control chart-table-name" type="text" value="航线图">
+								    	</div>
+								  	</div>
+								  	<!-- <div class="form-group form-group-sm">
+								    	<label class="control-label col-md-3">机场
+								    	</label>
+								    </div> -->
+								     <div class="title-div">
+								    	<div class="title-inner">
+								    		<img src="../images/tv.png">
+								    		<span>机场</span>
+								    	</div>
+								    </div>
+								    <div class="airport-div">
+								    <div class="form-group form-group-sm">
+								    	<label class="control-label col-md-2">半径:
+								    	</label>
+								    	<div class="col-md-4" style="margin-left:14px">
+					      					<input class="form-control chart-table-radius" type="text" value="3" data-toggle="tooltip" data-placement="top" data-original-title="半径">
+					      				</div>
+								    </div>
+								    <div class="form-group form-group-sm airport-fill-div">
+								    	<label class="control-label col-md-2">填充:
+								    	</label>
+								    	<label class="col-md-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked="">
+										</label>
+								    	<div class="col-md-1" style="padding-top:6px">
+					      					<div class="btn btn-default colorSelector" title="填充颜色" data-toggle="tooltip" data-placement="top">
+												<div style="background-color: #EEEEEE"></div>
+											</div>
+					      				</div>
+					      				<div class="col-md-6 control-label">
+											<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<label class="control-label col-md-1 color-opacity">1</label>
+								    </div>
+								    <div class="form-group form-group-sm airport-stroke-div">
+								    	<label class="control-label col-md-2">边框:
+								    	</label>
+								    	<label class="col-md-1 control-label style_enable_label col0-md-right-0">
+											<input type="checkbox" class="style_enable" checked="">
+										</label>
+								    	<div class="col-md-1" style="padding-top:6px">
+					      					<div class="btn btn-default colorSelector" title="填充颜色" data-toggle="tooltip" data-placement="top">
+												<div style="background-color: #EEEEEE"></div>
+											</div>
+					      				</div>
+					      				<div class="col-md-6 control-label">
+											<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<label class="control-label col-md-1 color-opacity">1</label>
+								    </div>
+								    </div>
+								    <div class="title-div">
+								    	<div class="title-inner">
+								    		<img src="../images/curve.png">
+								    		<span>航线</span>
+								    	</div>
+								    </div>
+								    <div class="airport-div">
+								    <div class="form-group form-group-sm  airline-stroke-div">
+								    	<label class="control-label col-md-2">颜色:
+								    	</label>
+								    	<label class="col-md-1 control-label style_enable_label col0-md-right-0" >
+											<input type="checkbox" class="style_enable" checked="true" style="display:none">
+										</label>
+								    	<div class="col-md-1" style="padding-top:6px">
+					      					<div class="btn btn-default colorSelector" title="填充颜色" data-toggle="tooltip" data-placement="top">
+												<div style="background-color: #EEEEEE"></div>
+											</div>
+					      				</div>
+					      				<div class="col-md-6 control-label">
+											<input  type="text" class="form-control slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+										</div>
+										<label class="control-label col-md-1 color-opacity">1</label>
+								    </div>
+								    <div class="form-group form-group-sm">
+								    	<label class="control-label col-md-2">线宽:
+								    	</label>
+								    	<div class="col-md-4" style="margin-left:14px;">
+					      					<input class="form-control line-width" type="text" value="1" data-toggle="tooltip" data-placement="top" data-original-title="">
+					      				</div>
+								    </div>
+								    </div>
 								</form>
 							</div>
 							<div class="panel-bottom">
@@ -1991,6 +2185,7 @@
 								</div>
 							</div>
 						</div>
+
 						<!-- 工具栏 -->
 						<div id="map_bar_wrapper" class="mc-border" >
 							<div class="mc-icon control-icon">
@@ -7860,6 +8055,12 @@
 							<label class="col-md-2 control-label">空间参考:</label>
 							<div class="col-md-4">
 								<input type="text" class="form-control map-srid" disabled>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-2 control-label">格式:</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" disabled value="png">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">

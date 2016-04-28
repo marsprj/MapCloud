@@ -9,6 +9,7 @@ var rasterDBManager = null;
 var tileDBManger = null;
 var poiManager = null;
 var subManager = null;
+var serviceManager = null;
 // var url = "/ows/user1/mgr";
 var authServer = "/ows/admin/mgr";
 var authManager = new GeoBeans.AuthManager(authServer);
@@ -186,6 +187,8 @@ $().ready(function(){
 		= new MapCloud.AQIChartPanel("aqi_chart_wrapper");
 	MapCloud.aqi_timeline_chart_panel 
 		= new MapCloud.AQITimelineChartPanel("aqi_timeline_chart_wrapper");
+	MapCloud.airline_panel 
+		= new MapCloud.AirlinePanel("airline_wrapper");
 
 	MapCloud.gps_oper_panel 
 		= new MapCloud.GPSOperPanel("gps_oper_wrapper");

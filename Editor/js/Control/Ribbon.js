@@ -324,24 +324,28 @@ MapCloud.Ribbon = MapCloud.Class({
 				case 34:
 					that.onAQITimeline();
 					break;
-				// Tools Events
 				case 35:
+					// 航线图
+					that.onAirline();
+					break;
+				// Tools Events
+				case 36:
 					// 标注
 					that.onLayerAddVector();
 					break;
-				case 36:
+				case 37:
 					// 图层样式
 					that.onStyleManager();
 					break;
-				case 37:
+				case 38:
 					// 工具箱
 					that.onTools();
 					break;
-				case 38:
+				case 39:
 					// 进程管理
 					that.onProcess();
 					break;
-				case 39:
+				case 40:
 					that.onVersion();
 					break;
 				default :
@@ -755,6 +759,14 @@ MapCloud.Ribbon = MapCloud.Class({
 		MapCloud.aqi_timeline_chart_panel.showPanel();
 	},
 
+	onAirline : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		MapCloud.airline_panel.showPanel();		
+	},
+
 	// 标注
 	onLayerAddVector : function(){
 		MapCloud.overlay_panel.show();
@@ -1101,6 +1113,36 @@ MapCloud.Ribbon = MapCloud.Class({
 		var extent = null;
 		var geomType = null;
 		var html = "";
+		var baseLayer = map.baseLayer;
+		if(baseLayer != null){
+			var name = baseLayer.name;
+			var type = null;
+			if(baseLayer.type == GeoBeans.Layer.TileLayer.Type.QS){
+				type = "QuadServer";
+			}else if(baseLayer.type == GeoBeans.Layer.TileLayer.Type.WMTS){
+				type = "WMTS";
+			}
+
+			html += '<div class="map-info-layer-heading">'
+				+	'	<span>' + name +  '</span>'
+				+	'</div>';
+			if(type != null){
+				html +=	'<div class="map-info-row">'
+						+ 	'	<span class="map-info-item">类型：</span>'
+						+	'	<span class="map-info-name">' + type + '</span>'
+						+	'</div>';
+			}
+			extent = baseLayer.extent;
+			if(extent != null){
+				var extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
+					+ " , " + extent.xmax.toFixed(2) + " , " + extent.ymax.toFixed(2);
+				html +=	'<div class="map-info-row">'
+					+ 	'	<span class="map-info-item">范围：</span>'
+					+	'	<span class="map-info-name">' + extentStr + '</span>'
+					+	'</div>';
+			}	
+
+		}
 		for(var i = 0; i < layers.length; ++i){
 			layer = layers[i];
 			if(layer == null){

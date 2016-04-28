@@ -25,7 +25,39 @@ MapCloud.CutMapDialog = MapCloud.Class(MapCloud.Dialog,{
 		this.panel.find(".btn-create-tile-store").click(function(){
 			dialog.createTileStoreName = null; 
 			var sourceName = dialog.panel.find(".db-list").val();
-			MapCloud.create_tile_store_dialog.showDialog("cutMap",sourceName);
+			var startLevel = dialog.panel.find(".map-start-level").val();
+			startLevel = parseInt(startLevel);
+			if(!$.isNumeric(startLevel) || startLevel < 1 || startLevel > 5){
+				MapCloud.notify.showInfo("请输入有效的起始级别","Warning");
+				dialog.panel.find(".map-start-level").focus();
+				return;
+			}
+			
+			var endLevel = dialog.panel.find(".map-end-level").val();
+			endLevel = parseInt(endLevel);
+			if(!$.isNumeric(endLevel)){
+				MapCloud.notify.showInfo("请输入有效的终止级别","Warning");
+				dialog.panel.find(".map-end-level").focus();
+				return;
+			}
+			if(endLevel > 11){
+				MapCloud.notify.showInfo("最大级别为11","Warning");
+				dialog.panel.find(".map-end-level").focus();
+				return;
+			}
+
+			var xmin = dialog.panel.find(".map-extent-xmin").val();
+			var xmax = dialog.panel.find(".map-extent-xmax").val();
+			var ymin = dialog.panel.find(".map-extent-ymin").val();
+			var ymax = dialog.panel.find(".map-extent-ymax").val();
+
+			var extent = new GeoBeans.Envelope(xmin,ymin,xmax,ymax);
+			var option = {
+				startLevel : startLevel,
+				endLevel : endLevel,
+				extent : extent
+			};
+			MapCloud.create_tile_store_dialog.showDialog("cutMap",sourceName,option);
 		});		
 
 		// 切图
@@ -59,8 +91,8 @@ MapCloud.CutMapDialog = MapCloud.Class(MapCloud.Dialog,{
 				dialog.panel.find(".map-end-level").focus();
 				return;
 			}
-			if(endLevel > 5){
-				MapCloud.notify.showInfo("最大级别为5","Warning");
+			if(endLevel > 11){
+				MapCloud.notify.showInfo("最大级别为11","Warning");
 				dialog.panel.find(".map-end-level").focus();
 				return;
 			}

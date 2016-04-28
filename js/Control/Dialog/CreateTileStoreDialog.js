@@ -6,6 +6,9 @@ MapCloud.CreateTileStoreDialog = MapCloud.Class(MapCloud.Dialog,{
 	// 数据库
 	sourceName  : null,
 
+	// 传递的参数
+	option : null,
+
 	initialize : function(id){
 		MapCloud.Dialog.prototype.initialize.apply(this, arguments);
 		var dialog = this;
@@ -38,25 +41,36 @@ MapCloud.CreateTileStoreDialog = MapCloud.Class(MapCloud.Dialog,{
 				return;
 			}
 			var sourceName = dialog.sourceName;
-			dialog.createTileStore(sourceName,name,type);
+
+			var startLevel = 1;
+			var endLevel = 4;
+			var extent = new GeoBeans.Envelope(-180,-90,180,90);
+			if(dialog.option != null){
+				startLevel = dialog.option.startLevel;
+				endLevel = dialog.option.endLevel;
+				extent = dialog.option.extent;
+			}
+			dialog.createTileStore(sourceName,name,type,startLevel,endLevel,extent);
 			
 		});
 	},	
 
-	showDialog : function(source,sourceName){
+	showDialog : function(source,sourceName,option){
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
 		this.source = source;
 		this.sourceName = sourceName;
 
+		this.option = option;
 	},
 
 	cleanup : function(){
 		this.panel.find(".tile-store-name").val("");
 	},
 
-	createTileStore : function(sourceName,storeName,type){
+	createTileStore : function(sourceName,storeName,type,startLevel,endLevel,extent){
 		MapCloud.notify.loading();
-		dbsManager.createTileStore(sourceName,storeName,type,this.createTileStore_callback);
+		dbsManager.createTileStore(sourceName,storeName,type,extent,
+			startLevel,endLevel,this.createTileStore_callback);
 	},
 
 	createTileStore_callback : function(result){

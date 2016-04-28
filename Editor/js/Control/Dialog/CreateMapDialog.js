@@ -154,11 +154,12 @@ MapCloud.CreateMapDialog = MapCloud.Class(MapCloud.Dialog,{
 			mapObj = map;
 			// 绘制底图
 			if(url != null){
-				var center = new GeoBeans.Geometry.Point(0,0);	
+				// var center = new GeoBeans.Geometry.Point(0,0);	
 				var layer = new GeoBeans.Layer.QSLayer("base",url);
-				mapObj.setBaseLayer(layer);
-				mapObj.setCenter(center);
-				mapObj.setLevel(2);	
+				// mapObj.setBaseLayer(layer);
+				// mapObj.setCenter(center);
+				// mapObj.setLevel(2);	
+				mapObj.insertLayer(layer,null);
 			}else{
 				mapObj.setViewer(mapObj.extent);
 			}

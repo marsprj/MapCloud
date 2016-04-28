@@ -112,6 +112,12 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 					var tileStore = dialog.tileStore;
 					var layer = new GeoBeans.Layer.WMTSLayer(tileStore.name,dbsManager.server,tileStore.name,
 					tileStore.extent,tileStore.tms,tileStore.format,tileStore.sourceName);
+					if(tileStore.startLevel != null){
+						layer.MIN_ZOOM_LEVEL = tileStore.startLevel;
+					}
+					if(tileStore.endLevel != null){
+						layer.MAX_ZOOM_LEVEL = tileStore.endLevel;
+					}
 					MapCloud.wmts_dialog.setWMTSLayer(sourceName,layer)
 				}
 				
@@ -319,15 +325,15 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		+ "		</div>"
 		+ "		<div class='row'>"
 		+ "			<div class='col-md-4'>投影</div>"
-		+ "			<div class='col-md-8'>" + "" + "</div>"
+		+ "			<div class='col-md-8'>" + tileStore.srid + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
 		+ "			<div class='col-md-4'>起始级别</div>"
-		+ "			<div class='col-md-8'>" + "" + "</div>"
+		+ "			<div class='col-md-8'>" + tileStore.startLevel + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
 		+ "			<div class='col-md-4'>终止级别</div>"
-		+ "			<div class='col-md-8'>" + "" + "</div>"
+		+ "			<div class='col-md-8'>" + tileStore.endLevel + "</div>"
 		+ "		</div>"	;
 		this.panel.find(".layer-infos-pane").html(html);
 	},
@@ -367,18 +373,36 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 		}
 		var layer = new GeoBeans.Layer.WMTSLayer(tileStore.name,dbsManager.server,tileStore.name,
 			tileStore.extent,tileStore.tms,tileStore.format,tileStore.sourceName);
+		var extent = tileStore.extent;
+		var startLevel = tileStore.startLevel;
+		var endLevel = tileStore.endLevel;
+		if(startLevel != null){
+			layer.MIN_ZOOM_LEVEL = startLevel;
+		}
+		if(endLevel != null){
+			layer.MAX_ZOOM_LEVEL = endLevel;
+		}
+
 		if(this.map != null){
-			this.map.removeBaseLayer("tile");
+			this.map.removeBaseLayer();
 			this.map.draw();
-			this.map.insertLayer(layer);
-			this.map.draw();
+			// this.map.insertLayer(layer);
+			this.map.setBaseLayer(layer);
+			
 		}else{
 			var extent = layer.extent;
 			var srid = 4326;
 			this.map = new GeoBeans.Map(user.server,"tile_canvas_wrapper","tile",extent,srid,extent);
-			this.map.insertLayer(layer);
-			this.map.draw();
+			// this.map.insertLayer(layer);
+			this.map.setBaseLayer(layer);
+			
 		}
+		if(extent != null){
+			var center = extent.getCenter();
+			this.map.setCenter(center);
+		}
+		this.map.draw();
+
 	},
 
 	// 删除瓦片库

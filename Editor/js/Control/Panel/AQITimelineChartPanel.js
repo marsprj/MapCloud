@@ -164,6 +164,12 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.tools.showToolBox("aqiTimeline");
 		});
 
+		// 切换效果
+		this.panel.find(".aqi-style-div").click(function(){
+			that.panel.find(".aqi-style-div").removeClass("selected");
+			$(this).addClass("selected");
+		});
+
 	},
 
 	displayTimeList : function(startTime,endTime,div){
@@ -232,10 +238,23 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 			MapCloud.notify.showInfo("请选择少于20个时间点的时间段","Warning");
 			return;
 		}
-
+		var selectedStyle = this.panel.find(".aqi-style-div.selected");
+    	if(selectedStyle.length == 0){
+    		MapCloud.notify.showInfo("请选择一个样式","Warning");
+    		return;
+    	}		
+    	var styleName = selectedStyle.attr("astyle");
+    	var type = null;
+    	if(styleName == "point"){
+    		type = "point";
+    	}else if(styleName == "tip"){
+    		type = "tip";
+    	}
     	var colorMapID = this.panel.find(".select-color-ramp li").attr("cid");
+
     	var option = {
-    		colorMapID : colorMapID
+    		colorMapID : colorMapID,
+    		type : type
     	};
 
 
@@ -320,9 +339,13 @@ MapCloud.AQITimelineChartPanel = MapCloud.Class(MapCloud.Panel,{
 		this.chartLayer.setInterval(interval);
 
 		var colorMapID = this.panel.find(".select-color-ramp li").attr("cid");
-    	if(this.chartLayer.getChartOption().colorMapID != colorMapID){
+		var layerType = this.chartLayer.getChartOption().type;
+		var type = this.panel.find(".aqi-style-div.selected").attr("astyle");
+    	if(this.chartLayer.getChartOption().colorMapID != colorMapID
+    		|| type != layerType){
     		var option = {
-	    		colorMapID : colorMapID
+	    		colorMapID : colorMapID,
+	    		type : type
 	    	};
 	    	this.chartLayer.setChartOption(option);
     	}

@@ -271,14 +271,15 @@ $().ready(function(){
 			html += '<div class="map-info-row">'
 				+	'	<span class="map-info-layer-name">' + name +  '</span>'
 				+ 	'	<span class="map-info-item">类型：</span>';
+			var type = "";
 			if(geomType != null){
-					html +=	'	<span class="map-info-name">' + geomType + '</span>';
+				type =  geomType;
 			}else{
 				if(layer.type == "raster"){
-					
-					html +=	'	<span class="map-info-name">' + "Raster" + '</span>';
+					type = "Raster";
 				}
 			}
+			html +=	'	<span class="map-info-name">' + type + '</span>';
 			extent = layer.extent;
 			if(extent != null){
 				var extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)

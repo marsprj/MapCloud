@@ -141,6 +141,7 @@ MapCloud.Account = MapCloud.Class({
 		gpsManager = user.getGPSManager();
 		poiManager = user.getPoiManager();
 		subManager = user.getSubManager();
+		serviceManager = user.getServiceManager();
 
 		// 设置参数
 		// subManager.setSubParams("base","gc_aqi_ranking","time_point","area",MapCloud.topicPanel.getSub_callback);

@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+
+	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/common.min.css"/>
+
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/common.min.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>	
+	<script type="text/javascript" src="js/mc-user-service.js"></script>
+	<script type="text/javascript" src="js/mc-service-panel.js"></script>
+	<title>服务管理</title>
+</head>
+	
+<body id="user_map_panel">
+	<div id="service_panel" class="common-panel">
+		<div id="title_wrapper">
+			<div class="title_box">
+				服务管理
+			</div>
+		</div>
+		<div class="main-panel">
+			<div class="left-panel">
+				<div class="left-title-bar">
+					<div class="left-title-icon"></div>
+					<div>服务列表</div>
+				</div>
+				<div class="left-panel-content">
+					<div class="service-tree list-tree">
+					</div>
+				</div>
+			</div>
+			<div class="right-panel">
+				<!-- 服务列表面板 -->
+				<div class="right-panel-tab" id="services_tab">
+					<div class="right-panel-bar">
+						<span class="float-left">服务列表</span>
+					</div>
+					<div class="right-panel-content">
+						<div class="row header-row">
+							<div class="col-md-1">
+								序号
+							</div>
+							<div class="col-md-2">
+								名称
+							</div>
+							<div class="col-md-2">
+								地图名称
+							</div>
+							<div class="col-md-2">
+								空间参考
+							</div>
+							<div class="col-md-3">
+								范围
+							</div>
+							<div class="col-md-2">
+								操作
+							</div>											
+						</div>
+						<div class="services-list">
+
+						</div>
+					</div>
+				</div>
+				<div class="right-panel-tab" id="service_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-tree-list">服务列表</a>
+						>>
+						<span class="current-service"></span>
+						<div class="btn-group btn-group-xs pull-right" role="group">
+							<button type="button" class="btn btn-default" id="show_service_info" disabled="">信息</button>
+							<button type="button" class="btn btn-default" id="show_service_view">地图</button>
+						</div>
+					</div>
+					<div class="right-panel-content">
+						<div class="right-panel-content-tab" id="service_info_tab">
+							<div class="page-heading">
+								<span class="fa-stack fa-lg">
+								  <i class="fa fa-circle-thin fa-stack-2x"></i>
+								  <i class="fa fa-info fa-stack-1x"></i>
+								</span>
+								<span style="font-size:14px">基本信息</span>
+							</div>
+							<div class="map-info-row">
+								<span class="map-info-item">名称：</span>
+								<span class="map-info-name"></span>
+							</div>
+							<div class="map-info-row">
+								<span class="map-info-item">地图：</span>
+								<span class="map-info-map"></span>
+							</div>
+							<div class="map-info-row">
+								<span class="map-info-item">空间参考：</span>
+								<span class="map-info-srid"></span>
+							</div>
+							<!-- <div class="map-info-row">
+								<span class="map-info-item">空间范围：</span>
+								<span class="map-info-extent"></span>
+							</div>
+							 -->
+							<div class="page-heading">
+								<span class="fa-stack fa-lg">
+								  <i class="fa fa-circle-thin fa-stack-2x"></i>
+								  <i class="fa fa-info fa-stack-1x"></i>
+								</span>
+								<span style="font-size:14px">图层</span>
+							</div>
+							<div class="map-info-layers">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="map_view_tab">
+						</div>
+					</div>
+				</div>
+				<!-- 数据库面板 -->
+				<div class="right-panel-tab" id="datasource_tab">
+					<div class="right-panel-bar">
+						
+						<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
+						<span class="float-left">>></span>
+						<span class="current-db float-left"></span>
+						<div class="data_title_bar">
+							<a href="javascript:void(0)" class="create-tilestroe">新建瓦片库</a>
+						</div>
+
+					</div>
+					<div class="right-panel-content">
+						<div class="right-panel-content-tab" id="datasets_list_tab">
+							<div class="row header-row">
+								<div class="col-md-1">
+									序号
+								</div>
+								<div class="col-md-2">
+									名称
+								</div>
+								<div class="col-md-2">
+									格式
+								</div>
+								<div class="col-md-2">
+									切图标准
+								</div>
+								<div class="col-md-3">
+									范围
+								</div>	
+								<div class="col-md-2">
+									操作
+								</div>											
+							</div>
+							<div class="tilestore-list">
+							</div>
+						</div>
+						<div class="right-panel-content-tab" id="datasets_thumb_tab">
+						</div>
+					</div>
+				</div>
+
+				<!-- 图层面板 -->
+				<div class="right-panel-tab" id="tilestore_tab">
+					<div class="right-panel-bar">
+						<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
+						>>
+						<a href="javascript:void(0)" class="return-datasource"></a>
+						>>
+						<span class="current-tilestore"></span>
+						<div class="btn-group btn-group-xs pull-right" role="group">
+							<button type="button" class="btn btn-default" id="show_tilestore_infos" disabled="disabled">信息</button>
+							<button type="button" class="btn btn-default" id="show_tilestore_preview">预览</button>
+						</div>
+					</div>
+					<div class="right-panel-content">
+						<div class="right-panel-content-tab" id="tilestore_infos_tab">
+							
+						</div>
+						<div class="right-panel-content-tab" id="tilestore_preview_tab">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Notify  -->
+		<div id="container" style="display:none">
+			<div id="default">
+				<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+				<span>#{title}</span>
+				<span>:</span>
+				<span>#{text}</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
+	</div>
+
+
+	<!-- DataSource Connect panel -->
+	<div class="modal fade" id="pgisConnDialog" tabindex="-1" role="dialog" aria-labelledby="style-name-dialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">数据源添加</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group form-group-sm">
+							<label for="" class="col-md-3 control-label">名称
+							</label>
+							<div class="col-md-8">
+								<input class="form-control" id="data_source_conn_name">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="" class="col-md-3 control-label">地址
+							</label>
+							<div class="col-md-8">
+								<input class="form-control" id="data_source_conn_server" value="192.168.111.160">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="" class="col-md-3 control-label">端口
+							</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="data_source_conn_instance" value="5432">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="" class="col-md-3 control-label">数据库
+							</label>
+							<div class="col-md-8">
+								<input class="form-control" id="data_source_conn_db" value="gisdb">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label for="" class="col-md-3 control-label">用户
+							</label>
+							<div class="col-md-8">
+								<input class="form-control" id="data_source_conn_user" value="postgres">
+							</div>
+						</div>	
+						<div class="form-group form-group-sm">
+							<label for="" class="col-md-3 control-label">密码
+							</label>
+							<div class="col-md-8">
+								<input class="form-control" type="password" id="data_source_conn_password" value="qwer1234">
+							</div>
+						</div>
+						<!-- <div class="form-group form-group-sm" style="margin-top:20px">
+							<div class="col-md-4 col-md-offset-4">
+								<button type="button" id="data_source_conn_test" class="btn btn-success btn-sm">连接测试</button>
+							</div>
+						</div> -->
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="data_source_conn_test" class="btn btn-success">连接测试</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div> 
+	</div>
+
+	<!-- create tile store -->
+	<div class="modal fade" id="create_tile_store_dialog" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h5 class="modal-title">新增瓦片库</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">名称</label>
+							<div class="col-md-7">
+								<input type="text" class="form-control tile-store-name">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-md-3 control-label">切图方式</label>
+							<div class="col-md-7">
+								<select class="form-control tile-store-type">
+									<option value="PGIS">PGIS</option>
+									<option value="GoogleCRS84Quad">GoogleCRS84Quad</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>
+

@@ -174,7 +174,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 				chartField : "人口_万人"
 			};
 
-			var colorMapID = 12;
+			var colorMapID = 2;
 			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
 			chart.show();
 			this.popRangeChart = chart;
@@ -205,7 +205,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 				chartField : "gdp_亿元"
 			};
 
-			var colorMapID = 12;
+			var colorMapID = 2;
 			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
 			chart.show();
 			this.encoRangeChart = chart;
@@ -234,7 +234,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 				chartField : "人均gdp_元"
 			};
 
-			var colorMapID = 12;
+			var colorMapID = 2;
 			var chart = new MapCloud.RangeChart(server,baseLayerOption,chartLayerOption,colorMapID);
 			chart.show();
 			this.perRangeChart = chart;

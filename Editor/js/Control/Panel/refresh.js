@@ -54,6 +54,11 @@ MapCloud.refresh = MapCloud.Class({
 			}
 		});
 
+		// 发布服务
+		this.panel.find("#create_service_btn").click(function(){
+			that.createService();
+		});
+
 		// 切图
 		this.panel.find("#cut_map_btn").click(function(){
 			if(mapObj == null){
@@ -185,6 +190,10 @@ MapCloud.refresh = MapCloud.Class({
 				html += this.getChartLayerHtml(i,layer);
 			}else if(layer instanceof GeoBeans.Layer.ClusterLayer){
 				html += this.getClusterLayer(i,layer);
+			}else if(layer instanceof GeoBeans.Layer.RippleLayer){
+				html += this.getRippleLayer(i,layer);
+			}else if(layer instanceof GeoBeans.Layer.AirLineLayer){
+				html += this.getAirlineLayer(i,layer);
 			}
 		}
 
@@ -484,9 +493,7 @@ MapCloud.refresh = MapCloud.Class({
 				if(!confirm("确定要删除底图吗？")){
 					return;
 				}
-				mapObj.removeBaseLayer();
-				mapObj.draw();
-				that.refreshPanel();
+				mapObj.unRegisterBaseLayer(that.removeBaseLayer_callback);
 			});
 		});
 
@@ -635,6 +642,30 @@ MapCloud.refresh = MapCloud.Class({
 			}
 			MapCloud.cluster_chart_panel.showPanel();
 			MapCloud.cluster_chart_panel.setLayer(layer);
+		});
+
+		// ripple layer
+		this.panel.find(".mc-icon-ripple-layer").click(function(){
+			var li = $(this).parents("li");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			MapCloud.aqi_chart_panel.showPanel();
+			MapCloud.aqi_chart_panel.setChartLayer(layer);
+		});
+
+		// ripple layer
+		this.panel.find(".mc-icon-airline-layer").click(function(){
+			var li = $(this).parents("li");
+			var layerName = li.attr("lname");
+			var layer = mapObj.getLayer(layerName);
+			if(layer == null){
+				return;
+			}
+			MapCloud.airline_panel.showPanel();
+			MapCloud.airline_panel.setLayer(layer);
 		});
 	},
 
@@ -840,12 +871,14 @@ MapCloud.refresh = MapCloud.Class({
 		html    +=	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"glyphicon glyphicon-chevron-down mc-icon\"></div>"							
 				+	"	</div>"
-				// +	"	<div class=\"col-md-1 col-xs-1\">"
-				// +	"		<div class=\"glyphicon glyphicon-ok mc-icon\"></div>"							
-				// +	"	</div>"
-				+	"	<div class=\"col-md-1 col-xs-1\">"
-				+	"		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"							
-				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(baseLayer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		 						
+		html    +=	"	</div>"
 				+	"	<div class=\"col-md-1 col-xs-1\">"
 				+	"		<div class=\"mc-icon " + icon + "\"></div>"	
 				+	"	</div>"
@@ -1357,6 +1390,14 @@ MapCloud.refresh = MapCloud.Class({
 		mapObj.draw();
 	},
 
+	// 删除底图结果
+	removeBaseLayer_callback : function(result){
+		MapCloud.notify.showInfo(result,"删除底图");
+		var panel = MapCloud.refresh_panel;
+		panel.refreshPanel();
+		mapObj.draw();
+	},
+
 	// 专题图
 	getChartLayerHtml : function(index,layer){
 		if(layer == null){
@@ -1622,5 +1663,119 @@ MapCloud.refresh = MapCloud.Class({
 				+	"	<br/>";
 		html += "</li>";
 		return html;
-	}
+	},
+
+	getRippleLayer : function(i,layer){
+		if(layer == null){
+			return;
+		}
+		var name = layer.name;
+		var html = 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<a href='javascript:void(0)' class='mc-icon-ripple-layer'>"
+				+	"			<i class='fa fa-bar-chart'></i>"
+				+	"		</a>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-5 col-xs-1 layer_name\">"
+				+	"		<strong title='" + name + "'>" + name + "</strong>"
+				+	"	</div>"
+				+   "	<div class=\"col-md-1\">"
+				+	"	</div>"
+				+   "	<div class=\"col-md-1\">"
+				+	"	</div>"				
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"javascript:void(0)\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
+				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_layer_info\"><i class='dropdown-menu-icon fa fa-list-ul'></i>图层属性</a></li>"	
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
+		html += "</li>";
+		return html;
+	},
+
+	getAirlineLayer :function(i,layer){
+		if(layer == null){
+			return;
+		}
+		var name = layer.name;
+		var html = 	"<li class=\"row layer_row\" lname=\"" + name + "\">"				
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<div class=\"glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate\"></div>"							
+				+	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">";
+		if(layer.visible){
+			html += "		<div class=\"glyphicon glyphicon-eye-open mc-icon\"></div>"	;
+		}else{
+			html += "		<div class=\"glyphicon glyphicon-eye-close mc-icon\"></div>";	
+		}
+		html	+=	"	</div>"
+				+	"	<div class=\"col-md-1 col-xs-1\">"
+				+	"		<a href='javascript:void(0)' class='mc-icon-airline-layer'>"
+				+	"			<i class='fa fa-bar-chart'></i>"
+				+	"		</a>"
+				+	"	</div>"
+				+	"	<div class=\"col-md-5 col-xs-1 layer_name\">"
+				+	"		<strong title='" + name + "'>" + name + "</strong>"
+				+	"	</div>"
+				+   "	<div class=\"col-md-1\">"
+				+	"	</div>"
+				+   "	<div class=\"col-md-1\">"
+				+	"	</div>"				
+				+	"	<div class=\"col-md-1 col-xs-1 layer_row_quick_tool\">"
+				+   "		<ul class=\"layer_row_quick_tool_ul\">"
+				+	"			<li class=\"dropdown pull-right\">"
+				+	"				<a href=\"javascript:void(0)\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">"
+				+	"					<b class=\"glyphicon glyphicon-cog\"></b>"
+				+	"				</a>"
+				+	"				<ul class=\"dropdown-menu\">"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_zoom\"><i class='dropdown-menu-icon glyphicon glyphicon-zoom-in'></i>放大到图层</a></li>"
+				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_layer_info\"><i class='dropdown-menu-icon fa fa-list-ul'></i>图层属性</a></li>"	
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_edit\"><i class='dropdown-menu-icon glyphicon glyphicon-edit'></i>编辑图层</a></li>"
+				// +	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_share\"><i class='dropdown-menu-icon glyphicon glyphicon-share'></i>分享图层</a></li>"
+				+	"					<li><a href=\"javascript:void(0)\" class=\"layer_row_quick_tool_remove\"><i class='dropdown-menu-icon glyphicon glyphicon-remove'></i>删除图层</a></li>"
+				+	"				</ul>"
+				+	"			</li>"
+				+	"		</ul>"
+				+	"	</div>"
+				+	"	<br/>";
+		html += "</li>";
+		return html;
+	},
+
+	// 发布服务
+	createService : function(){
+		if(mapObj == null){
+			MapCloud.notify.showInfo("当前地图为空","Warning");
+			return;
+		}
+		var name = mapObj.name;
+		var url = "http://www.radi.ac.cn/" + name;
+		serviceManager.createService(name,name,url,this.createService_callback);
+	},
+
+	createService_callback : function(result){
+		MapCloud.notify.showInfo(result,"发布服务");
+		// var that = MapCloud.refresh_panel;
+	},
 });
