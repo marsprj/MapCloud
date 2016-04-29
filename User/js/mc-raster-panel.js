@@ -346,6 +346,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 		}
 		MapCloud.notify.loading();
 		rasterDBManager.getList(sourceName,path,this.getList_callback);
+		rasterDBManager.getThumbnails(sourceName,path,this.getThumbnails_callback);
 	},
 
 
@@ -450,6 +451,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 	getListTreeClick : function(sourceName,path){
 		MapCloud.notify.loading();
 		rasterDBManager.getList(sourceName,path,this.getListTreeClick_callback);
+		rasterDBManager.getThumbnails(sourceName,path,this.getThumbnails_callback);
 	},
 
 	getListTreeClick_callback : function(list){
@@ -457,6 +459,13 @@ MapCloud.RasterPanel = MapCloud.Class({
 		var that = MapCloud.rasterPanel;
 		that.list = list;
 		that.showListPanel(list);
+	},
+
+	// 获取缩略图列表
+	getThumbnails_callback : function(list){
+		MapCloud.notify.hideLoading();
+		var that = MapCloud.rasterPanel;
+		that.showThumbnailList(list);
 	},
 
 	// 右侧列表
@@ -508,11 +517,11 @@ MapCloud.RasterPanel = MapCloud.Class({
 				var imagePath = this.panel.find(".current-path").val();
 				var url = rasterDBManager.getRasterUrl(sourceName,name,imagePath);
 				var prevName = name.slice(0,name.lastIndexOf("."));
-				thumbHtml += "<li class='map-thumb'>"
-						+	 "<a href='javascript:void(0)' class='map-thumb-a' style='" 
-						+    "background-image:url(" + url + ")'></a>"
-						+	 "<div class='caption text-center'><h6 sname='" + name + "'>" + prevName + "</h6></div>"
-						+	"</li>";
+				// thumbHtml += "<li class='map-thumb'>"
+				// 		+	 "<a href='javascript:void(0)' class='map-thumb-a' style='" 
+				// 		+    "background-image:url(" + url + ")'></a>"
+				// 		+	 "<div class='caption text-center'><h6 sname='" + name + "'>" + prevName + "</h6></div>"
+				// 		+	"</li>";
 			}else if(l instanceof GeoBeans.Folder){
 				var name = l.name;
 				var accessTime = l.accessTime;
@@ -551,7 +560,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 		this.panel.find(".raster-folder-list").html(html);
 
 		thumbHtml += "</ul>";
-		this.panel.find("#raster_thumb_tab").html(thumbHtml);
+		// this.panel.find("#raster_thumb_tab").html(thumbHtml);
 
 
 		var that = this;
@@ -578,10 +587,34 @@ MapCloud.RasterPanel = MapCloud.Class({
 			that.showRasterTab(sourceName,rasterName,rasterPath);
 		});
 
+	},
+
+	// 缩略图列表
+	showThumbnailList : function(list){
+		if(!$.isArray(list)){
+			return;
+		}
+		var l = null;
+		var thumbHtml = "<ul id='maps_thumb_ul'>";
+		for(var i = 0; i < list.length;++i){
+			l = list[i];
+			if(l == null){
+				return;
+			}
+			var name = l.name;
+			var prevName = name.slice(0,name.lastIndexOf("."));
+			thumbHtml += "<li class='map-thumb'>"
+			+	 "<a href='javascript:void(0)' class='map-thumb-a' style='" 
+			+    "background-image:url(" + l.thumb + ")'></a>"
+			+	 "<div class='caption text-center'><h6 sname='" + name + "'>" + prevName + "</h6></div>"
+			+	"</li>";
+		}
+		this.panel.find("#raster_thumb_tab").html(thumbHtml);
 		// 双击缩略图
+		var that = this;
 		this.panel.find("#raster_thumb_tab a").dblclick(function(){
 			var sourceName = that.panel.find("#datasource_tab .current-db").html();
-			var rasterName = $(this).parent().find("h6").html();
+			var rasterName = $(this).parent().find("h6").attr("sname");
 			var rasterPath = that.panel.find(".current-path").val();
 			that.rasterName = rasterName;
 			that.rasterPath = rasterPath;

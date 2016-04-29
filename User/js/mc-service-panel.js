@@ -45,11 +45,16 @@ MapCloud.ServicePanel = MapCloud.Class({
 		});
 
 		this.panel.find(".service-oper").click(function(){
-			var name = that.panel.find(".current-service").html();
-			if($(this).hasClass("service-oper-start")){
-				that.startService(name);
-			}else if($(this).hasClass("service-oper-stop")){
-				that.stopService(name);
+			// var name = that.panel.find(".current-service").html();
+			if(that.currentService == null){
+				MapCloud.notify.showInfo("当前服务为空","Warning");
+				return;
+			}
+			var state = that.currentService.state;
+			if(state == "Started"){
+				that.stopService(that.currentService.name);
+			}else if(state == "Stopped"){
+				that.startService(that.currentService.name);
 			}
 		});
 	},
@@ -132,9 +137,9 @@ MapCloud.ServicePanel = MapCloud.Class({
 			state = service.state;
 			operations = service.operations;
 			if(state == "Started"){
-				stateHtml = '<span class="service-oper-small service-oper-stop-small"></span>'
+				stateHtml = '<button class="btn btn-xs btn-primary btn-state">停止服务</button>'
 			}else{
-				stateHtml = '<span class="service-oper-small service-oper-start-small"></span>'
+				stateHtml = '<button class="btn btn-xs btn-primary btn-state">启动服务</button>'
 			}
 			var layersHtml = '<div class="row info-row-item">'
 				+	'		<div class="col-md-3">图层:</div>'
@@ -162,10 +167,19 @@ MapCloud.ServicePanel = MapCloud.Class({
 						+	'	</div>';
 				}
 			}
+			var stateIconHtml = "";
+			if(state == "Started"){
+				stateIconHtml = '<span class="state-icon service-state-start"></span>';
+			}else{
+				stateIconHtml = '<span class="state-icon service-state-stop"></span>';
+			}
 
 			html += '<div class="row service-row" sname="' + name + '">'
 				+	'	<div class="col-md-1 col-order">'
 				+		(i+1)
+				+	'	</div>'
+				+	'	<div class="col-md-1 col-order">'
+				+		stateIconHtml
 				+	'	</div>'
 				+	'	<div class="col-md-2">'
 				+	     	name
@@ -176,7 +190,7 @@ MapCloud.ServicePanel = MapCloud.Class({
 				+	'	<div class="col-md-2">'
 				+			srid
 				+	'	</div>'
-				+	'	<div class="col-md-3">'
+				+	'	<div class="col-md-2">'
 				+			extentStr
 				+	'	</div>'
 				+	'	<div class="col-md-2">'
@@ -232,6 +246,18 @@ MapCloud.ServicePanel = MapCloud.Class({
 			that.removeService(name);
 		});
 
+
+		this.panel.find(".btn-state").click(function(){
+			var name = $(this).parents(".info-row").attr("sname");
+			// var stateIcon = 
+			var stateIcon = that.panel.find(".service-row[sname='" +　name  +"']").find(".state-icon");
+			if(stateIcon.hasClass("service-state-start")){
+				that.stopService(name);
+			}else if(stateIcon.hasClass("service-state-stop")){
+				that.startService(name);
+			}
+		});
+
 		// // 停止
 		// this.panel.find(".service-oper-stop-small").click(function(){
 		// 	var name = $(this).parents(".info-row").attr("sname");
@@ -245,15 +271,16 @@ MapCloud.ServicePanel = MapCloud.Class({
 		// 	that.startService(name);
 		// });
 
-		this.panel.find(".service-oper-small").click(function(){
-			var name = $(this).parents(".info-row").attr("sname");
-			if($(this).hasClass("service-oper-start-small")){
-				that.startService(name);
-			}else if($(this).hasClass("service-oper-stop-small")){
-				that.stopService(name);
-			}
+		// this.panel.find(".service-oper-small").click(function(){
+		// 	var name = $(this).parents(".info-row").attr("sname");
+		// 	if($(this).hasClass("service-oper-start-small")){
+		// 		that.startService(name);
+		// 	}else if($(this).hasClass("service-oper-stop-small")){
+		// 		that.stopService(name);
+		// 	}
 			
-		});
+		// });
+
 	},
 
 	// 获取一个服务
@@ -323,9 +350,9 @@ MapCloud.ServicePanel = MapCloud.Class({
 					+	'</div>';
 
 			this.panel.find(".map-info-srid").parent().after(extentHtml);
-			var thumb = service.thumb;
-			this.panel.find(".thumb-big-div").css("background-image","url(" + thumb + ")");
 		}
+		var thumb = service.thumb;
+		this.panel.find(".thumb-big-div").css("background-image","url(" + thumb + ")");
 
 		var layer = null,extent = null,type = null,srid = null,extent;
 		var html = "";
@@ -355,6 +382,18 @@ MapCloud.ServicePanel = MapCloud.Class({
 		}
 
 		this.panel.find(".map-info-layers").html(html);
+
+		// 设置状态样式
+		var state = service.state;
+		if(state == "Stopped"){
+			this.panel.find(".service-state").addClass("service-state-stop").removeClass("service-state-start");
+			this.panel.find(".service-oper").html("启动服务");
+			this.panel.find("#show_service_view").attr("disabled",true);
+		}else if(state == "Started"){
+			this.panel.find(".service-state").addClass("service-state-start").removeClass("service-state-stop");
+			this.panel.find(".service-oper").html("停止服务");
+			this.panel.find("#show_service_view").attr("disabled",false);
+		}
 	},
 
 	// 删除服务
@@ -382,15 +421,6 @@ MapCloud.ServicePanel = MapCloud.Class({
 		var url = "/ows/user1/" + service.name + "/ims?";
 		var layerArray = service.getWMSLayers();
 
-		// layers = service.layers;
-
-		// var layerArray = [];
-		// for(var j = 0; j < layers.length;++j){
-		// 	layer = layers[j];
-		// 	if(layer != null){
-		// 		layerArray.push(layer.name);
-		// 	}
-		// }
 		
 		if(this.map == null){
 			this.map = new GeoBeans.Map(null,"map_view_tab","name",extent,4326);
@@ -414,9 +444,17 @@ MapCloud.ServicePanel = MapCloud.Class({
 	stopService_callback : function(result){
 		var that = MapCloud.servicePanel;
 		MapCloud.notify.showInfo(result,"停止服务" + that.operService);
-		that.panel.find(".services-list .service-oper-small").removeClass("service-oper-stop-small")
-			.addClass("service-oper-start-small");
-		that.panel.find(".service-oper").removeClass("service-oper-stop").addClass("service-oper-start");
+		if(result == "success"){
+			that.panel.find(".service-state").addClass("service-state-stop").removeClass("service-state-start");
+			that.panel.find(".service-oper").html("启动服务");
+			that.panel.find("#show_service_view").attr("disabled",true);
+			if(that.currentService != null){
+				that.currentService.state = "Stopped";
+			}
+			that.panel.find(".service-row[sname='" + that.operService + "'] .state-icon")
+				.addClass("service-state-stop").removeClass("service-state-start");
+			that.panel.find(".info-row[sname='" + that.operService + "'] .btn-primary").html("启动服务");
+		}
 		that.operService = null;
 	},
 
@@ -429,9 +467,17 @@ MapCloud.ServicePanel = MapCloud.Class({
 	startService_callback : function(result){
 		var that = MapCloud.servicePanel;
 		MapCloud.notify.showInfo(result,"启动服务" + that.operService);
-		that.panel.find(".services-list .service-oper-small").removeClass("service-oper-start-small")
-			.addClass("service-oper-stop-small");
-		that.panel.find(".service-oper").removeClass("service-oper-start").addClass("service-oper-stop");
+		if(result == "success"){
+			that.panel.find(".service-state").removeClass("service-state-stop").addClass("service-state-start");
+			that.panel.find(".service-oper").html("停止服务");
+			that.panel.find("#show_service_view").attr("disabled",false);
+			if(that.currentService != null){
+				that.currentService.state = "Started";
+			}
+			that.panel.find(".service-row[sname='" + that.operService + "'] .state-icon")
+				.removeClass("service-state-stop").addClass("service-state-start");
+			that.panel.find(".info-row[sname='" + that.operService + "'] .btn-primary").html("停止服务");
+		}
 		that.operService = null;
 	}
 });

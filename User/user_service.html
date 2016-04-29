@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
 
-	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="css/mc-user.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/common.min.css"/>
 
 	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
@@ -16,8 +16,11 @@
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>	
+<!--
 	<script type="text/javascript" src="js/mc-user-service.js"></script>
 	<script type="text/javascript" src="js/mc-service-panel.js"></script>
+-->
+	<script type="text/javascript" src="js/mc-user-service.min.js"></script>
 	<title>服务管理</title>
 </head>
 	
@@ -50,6 +53,9 @@
 							<div class="col-md-1 col-order">
 								序号
 							</div>
+							<div class="col-md-1 col-order">
+								状态
+							</div>
 							<div class="col-md-2">
 								名称
 							</div>
@@ -59,7 +65,7 @@
 							<div class="col-md-2">
 								空间参考
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								范围
 							</div>
 							<div class="col-md-2">
@@ -90,7 +96,10 @@
 								  <i class="fa fa-info fa-stack-1x"></i>
 								</span>
 								<span style="font-size:14px">基本信息</span>
-								<span class='service-oper service-oper-start'></span>
+								<span class="service-state service-state-stop"></span>
+								<!-- <span class='service-oper service-oper-stop'></span>
+								<span class='service-oper service-oper-start'></span> -->
+								<button type="buton" class="service-oper btn btn-primary">启动服务</button>
 							</div>
 							<div class="row">
 
@@ -129,70 +138,6 @@
 							<!-- </div> -->
 						</div>
 						<div class="right-panel-content-tab" id="map_view_tab">
-						</div>
-					</div>
-				</div>
-				<!-- 数据库面板 -->
-				<div class="right-panel-tab" id="datasource_tab">
-					<div class="right-panel-bar">
-						
-						<a href="javascript:void(0)" class="return-datasources-list float-left">数据库列表</a>
-						<span class="float-left">>></span>
-						<span class="current-db float-left"></span>
-						<div class="data_title_bar">
-							<a href="javascript:void(0)" class="create-tilestroe">新建瓦片库</a>
-						</div>
-
-					</div>
-					<div class="right-panel-content">
-						<div class="right-panel-content-tab" id="datasets_list_tab">
-							<div class="row header-row">
-								<div class="col-md-1">
-									序号
-								</div>
-								<div class="col-md-2">
-									名称
-								</div>
-								<div class="col-md-2">
-									格式
-								</div>
-								<div class="col-md-2">
-									切图标准
-								</div>
-								<div class="col-md-3">
-									范围
-								</div>	
-								<div class="col-md-2">
-									操作
-								</div>											
-							</div>
-							<div class="tilestore-list">
-							</div>
-						</div>
-						<div class="right-panel-content-tab" id="datasets_thumb_tab">
-						</div>
-					</div>
-				</div>
-
-				<!-- 图层面板 -->
-				<div class="right-panel-tab" id="tilestore_tab">
-					<div class="right-panel-bar">
-						<a href="javascript:void(0)" class="return-datasources-list">数据库列表</a>
-						>>
-						<a href="javascript:void(0)" class="return-datasource"></a>
-						>>
-						<span class="current-tilestore"></span>
-						<div class="btn-group btn-group-xs pull-right" role="group">
-							<button type="button" class="btn btn-default" id="show_tilestore_infos" disabled="disabled">信息</button>
-							<button type="button" class="btn btn-default" id="show_tilestore_preview">预览</button>
-						</div>
-					</div>
-					<div class="right-panel-content">
-						<div class="right-panel-content-tab" id="tilestore_infos_tab">
-							
-						</div>
-						<div class="right-panel-content-tab" id="tilestore_preview_tab">
-
 						</div>
 					</div>
 				</div>

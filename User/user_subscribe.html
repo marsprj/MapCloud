@@ -5,8 +5,8 @@
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/mc-user.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/common.min.css"/>
 
 	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
@@ -15,6 +15,10 @@
 	<script type="text/javascript" src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
 	<script type="text/javascript" src="js/mc-user-subscribe.min.js"></script>
+<!--
+	<script type="text/javascript" src="js/mc-user-subscribe.js"></script>
+	<script type="text/javascript" src="js/mc-sub-panel.js"></script>
+-->
 	<title>用户信息</title>
 </head>
 	
@@ -23,8 +27,6 @@
 		<div id="title_wrapper">
 			<div class="title_box">用户订阅</div>
 			<div class="title_bar_warpper">
-<!-- 				<a href="javascript:void(0)" class="use-info-btn">用户信息</a>
-				<a href="javascript:void(0)" class="user-password-btn">修改密码</a> -->
 			</div>
 		</div>
 		<div id="user_sub_wrapper">
@@ -56,7 +58,7 @@
 							<label class="aqi-city">
 								
 							</label>
-							<a href="javascript:void(0)" class="oper select-city">编辑</a>
+							<!-- <a href="javascript:void(0)" class="oper select-city">编辑</a> -->
 						</div>
 					</div>
 					<!-- <div class="form-group form-group-sm">
@@ -65,6 +67,44 @@
 				</form>
 			</div>
 		</div>
+		<div id="aqi_city_wrapper">
+				<!-- <div class="row">
+					选择的城市有：
+					<span class="selected-city-div"></span>
+				</div> -->
+				<div class="row">
+					<input type="text" class="query-city-name" style="padding-bottom:3px;">	
+					<button class="btn btn-default btn-sm query-city" type="button" style="padding:3px 10px;">查询</button>
+					<button class="btn btn-default btn-sm return-list" type="button" style="padding:3px 10px;">返回首页</button>
+				</div>
+				<div class="aqi-city-list-wrapper">
+					<div class="row header-row">
+						<div class="col-md-1">
+						</div>
+						<div class="col-md-2">
+							序号
+						</div>
+						<div class="col-md-3">
+							名称
+						</div>
+						<div class="col-md-4">
+							拼音
+						</div>
+						<div class="col-md-2">
+							类型
+						</div>
+					</div>
+					<div class="aqi-city-list-div">
+					</div>
+				</div>
+				<ul class="pagination" style="margin:1px 0px">
+				</ul>
+			<div class="btn-group-div">
+                <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary btn-confirm">订阅</button>
+            </div>
+		</div>
+
 	</div>
 
 	<!-- Notify  -->

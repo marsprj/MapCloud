@@ -6,7 +6,7 @@ $().ready(function(){
  	cookieObj = new MapCloud.Cookie();
  	var cookiedUserName = cookieObj.getCookie("username");
     if(cookiedUserName != null){
-    	$("#title_panel").html("[" + cookiedUserName + "]管理页面" );
+    	$("#title_panel").html("[" + cookiedUserName + "]管理系统" );
     	user = new GeoBeans.User(cookiedUserName);
     }
 

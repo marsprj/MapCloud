@@ -625,7 +625,7 @@
 /***************************************************************************/
 /* Login Panel Begin                                                 */
 /***************************************************************************/
-.login-panel{
+/*.login-panel{
   background-image: url(../images/bg.png);
   background-repeat: repeat-x;
   width: 100%;
@@ -726,10 +726,96 @@
   text-align: center;
   font-size: 14px;
   color: #000;
-}
+}*/
 /***************************************************************************/
 /* Login Panel End                                                     */
 /***************************************************************************/
+.login-panel{
+    background-image: url(../images/hh.png);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0A6CFF;
+}
+
+.title-container{
+  margin-top: 80px;
+}
+.title-container h1{
+  width: 924px;
+  margin: 0 auto;
+}
+
+.login-wrapper{
+  background-image: url(../images/cc.png);
+  height: 400px;
+  background-repeat: no-repeat;
+  padding-left: 0px;
+}
+
+.login-form-container{
+  margin-top: 140px;
+}
+
+.login-wrapper form{
+  margin-top: 100px;
+  width: 360px;
+}
+.login-wrapper form input{
+    width: 300px;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 6px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    font-size: 16px;
+    margin: 0 30px 35px;
+    padding:6px;
+}
+.btn-login-group{
+  margin: 0px 30px;
+}
+.btn-login-group a{
+  display: block;
+  width: 137px;
+  height: 42px;
+  float: left;
+  cursor: pointer;
+  border-radius: 10px;
+  overflow: hidden;
+  /*margin-right: 40px;*/
+}
+.login-btn{
+  background-image: url(../images/dd.png);
+  margin-right: 23px;
+}
+.login-btn:hover{
+  background-image: url(../images/ee.png);
+}
+.register-btn{
+  background-image: url(../images/ff.png);
+}
+.register-btn:hover{
+  background-image: url(../images/gg.png);
+}
+
+.login-wrapper form input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;  
+}
+
+.login-wrapper form input ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;  
+}
+
+.login-wrapper form input:-ms-input-placeholder{
+    color: #fff;  
+}
+
+.login-wrapper form input::-webkit-input-placeholder{
+    color: #fff;  
+}
 /***************************************************************************/
 /* AQI city  Panel Begin                                                     */
 /***************************************************************************/
