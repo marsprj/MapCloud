@@ -242,7 +242,7 @@
 
 #fileDialog .file-tree-div{
   height: 100%;
-  border: 1px dashed #ccc;
+  border: 1px solid #ccc;
   padding: 0px;
   border-radius:4px;
 }
