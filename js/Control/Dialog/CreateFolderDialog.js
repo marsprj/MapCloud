@@ -40,7 +40,7 @@ MapCloud.CreateFolderDialog = MapCloud.Class(MapCloud.Dialog,{
 			return;
 		}
 		//var nameReg = /^[0-9a-zA-Z_]+$/;
-		var nameReg = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9])*$/;
+		var nameReg = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]|[_])*$/;
 		if(!nameReg.test(name)){
 			MapCloud.notify.showInfo("请输入有效的名称","Warning");
 			dialog.panel.find("#create_folder_name").focus();

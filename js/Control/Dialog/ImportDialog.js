@@ -192,7 +192,7 @@ MapCloud.ImportDialog = MapCloud.Class(MapCloud.Dialog,{
 		var srid = null;
 
 		//var nameReg = /^[a-zA-Z][a-zA-Z0-9_]*$/;
-		var nameReg = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9])*$/;
+		var nameReg = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]|[_])*$/;
 		var sridReg = /^[0-9]+$/;
 		for(var i = 0; i < rows.length; ++i){
 			row = rows[i];
