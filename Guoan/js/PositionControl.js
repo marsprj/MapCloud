@@ -66,7 +66,7 @@ MapCloud.PositionControl = MapCloud.Class({
 		this.chinaFeatureType.getFeaturesWithinAsync(null,this.sourceName,point,this.getPositionInChina_callback,fields);
 	},
 	
-	getPositionInChina_callback : function(features){
+	getPositionInChina_callback : function(obj,features){
 		if(!$.isArray(features)){
 			return;
 		}

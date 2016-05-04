@@ -53,6 +53,7 @@ MapCloud.BaseLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 			// mapObj.setCenter(center);
 			// mapObj.setLevel(level);	
 			// mapObj.draw();
+			layer.MAX_ZOOM_LEVEL = 18;
 			MapCloud.notify.loading();
 			mapObj.insertLayer(layer,dialog.insertLayer_callback);
 			dialog.closeDialog();

@@ -89,7 +89,7 @@ MapCloud.PositionControl = MapCloud.Class({
 	},
 
 
-	getPositionWithinCity_callback : function(features){
+	getPositionWithinCity_callback : function(obj,features){
 		if(!$.isArray(features)){
 			return;
 		}

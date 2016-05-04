@@ -245,6 +245,7 @@
   border: 1px solid #ccc;
   padding: 0px;
   border-radius:4px;
+  overflow-y: auto;
 }
 #fileDialog .file-tree{
 }
@@ -740,14 +741,14 @@
     background-color: #0A6CFF;
 }
 
-.title-container{
+/*.title-container{
   margin-top: 80px;
 }
 .title-container h1{
   width: 924px;
   margin: 0 auto;
 }
-
+*/
 .login-wrapper{
   background-image: url(../images/cc.png);
   height: 400px;
@@ -756,7 +757,7 @@
 }
 
 .login-form-container{
-  margin-top: 140px;
+  margin-top: 240px;
 }
 
 .login-wrapper form{

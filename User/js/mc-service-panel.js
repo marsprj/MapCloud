@@ -131,7 +131,8 @@ MapCloud.ServicePanel = MapCloud.Class({
 			srid = service.srid;
 			extent = service.extent;
 			if(extent != null){
-				extentStr = extent.toString();
+				extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
+					+ " , " + extent.xmax.toFixed(2) + " , " + extent.ymax.toFixed(2);
 			}
 			thumb = service.thumb;
 			state = service.state;
@@ -181,16 +182,16 @@ MapCloud.ServicePanel = MapCloud.Class({
 				+	'	<div class="col-md-1 col-order">'
 				+		stateIconHtml
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-width-name">'
 				+	     	name
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-width-name">'
 				+			mapName
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-width-name">'
 				+			srid
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-3">'
 				+			extentStr
 				+	'	</div>'
 				+	'	<div class="col-md-2">'

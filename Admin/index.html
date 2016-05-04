@@ -16,16 +16,16 @@
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>	
 	<script type="text/javascript" src="js/mc-admin.min.js"></script>
 
-	<title>管理员页面</title>
+	<title>管理员系统</title>
 </head>
 
 <body scroll="no">
 	<div style="padding:0px;height:100%;background: #fff; display:none" class="user-panel">
 		<div id="header_panel" class="container mc-theme-color">
 			<div id="logo_panel"></div>
-			<div id="title_panel" class="title_font">管理员页面</div>
+			<div id="title_panel" class="title_font">管理员系统</div>
 			<div id="login_panel">
-				<a href="../Editor" target="_blank">MapEditor</a>
+				<a href="../Editor" target="_blank">Editor</a>
 				<a id="user_logout" href="javascript:void(0)">退出</a>
 			</div>
 		</div>
@@ -43,40 +43,20 @@
 	
 
 	<div class="login-panel">
-		<div class="grid">
-			<div class="col fluid">
-			</div>
-			<div class="login-center-panel col fixed">
-				<div class="login-left-panel">
-					<img src="../images/earth.png">
-				</div>
-				<div class="login-right-panel">
-					<div class="login-title">
-						<img src="../images/title.png">
-					</div>
-					<div class="login-form-wrapper">
-						<div class="login-form">
-							<form>
-								<label class="login-form-label">用户名</label>
-								<input class="login-form-input" type="text" name="username"><br/>
-								<label class="login-form-label">密&nbsp;&nbsp;&nbsp;码</label>
-								<input class="login-form-input" type="password" name="password">
-								<div class="btn-login-group">
-									<a href="javascript:void(0)"  class="login-btn btn-account"></a>
-									<a href="javascript:void(0)" class="register-btn"></a>
-								</div>
-							</form>
+		<div class="container login-form-container">
+			<div class="row">
+				<div class="col-md-5 col-md-offset-7 login-wrapper col-xs-5 col-xs-offset-7">
+					<form>
+						<input class="login-form-input" type="text" name="username" placeholder="用户名"><br/>
+						<input class="login-form-input" type="password" name="password" placeholder="密码">
+						<div class="btn-login-group">
+							<a href="javascript:void(0)"  class="login-btn btn-account"></a>
+							<a href="javascript:void(0)" class="register-btn btn-register"></a>
 						</div>
-						
-					</div>
+					</form>
 				</div>
-			</div>	
-			<div class="col fluid login-grid-right">
 			</div>
 		</div>
-		<div class="copyright">
-			版权所有:中国科学院遥感与数字地球所
-		</div>		
 	</div>
 
 	<!-- register panel -->

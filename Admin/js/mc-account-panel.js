@@ -147,7 +147,7 @@ MapCloud.AccountPanel = MapCloud.Class({
 
 		MapCloud.cookieObj.setCookie("username",username,"/MapCloud");
 		loadCatalog();
-		$("#title_panel").html("[" + username + "]管理页面" );
+		$("#title_panel").html("[" + username + "]管理系统" );
 
 		// MapCloud.userPanel.getUserInfo(username);
 		MapCloud.userPanel = new MapCloud.UsersPanel("user_panel");

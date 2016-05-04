@@ -17,6 +17,7 @@ $().ready(function(){
 	MapCloud.aqiTimelinePanel = new MapCloud.AQITimeLinePanel("aqi_timeline_container");
 	MapCloud.aqi24TimelinePanel = new MapCloud.AQI24TimeLinePanel("aqi_24_timeline_container");
 	MapCloud.chartPanel = new MapCloud.ChartPanel("chart_container");
+	MapCloud.addressService = new MapCloud.AddressService();
 
 	
 	MapCloud.currentCity = "北京";

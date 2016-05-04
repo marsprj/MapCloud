@@ -57,6 +57,11 @@ MapCloud.MapBar = MapCloud.Class({
 						break;
 					}
 					case 11:{
+						that.onZoomIn();
+						break;
+					}
+					case 12:{
+						that.onZoomOut();
 						break;
 					}
 					case 12 :{
@@ -205,7 +210,7 @@ MapCloud.MapBar = MapCloud.Class({
 		if(values == null){
 			return;
 		}
-		var html = "<div style='width:220px;max-height:280px'>"
+		var html = "<div style='width:220px;max-height:280px;overflow-x:hidden'>"
 				+ "<table class='table table-striped' >"
 				+ 	"<thead>"
 				+ 	"<tr>"
@@ -248,6 +253,7 @@ MapCloud.MapBar = MapCloud.Class({
 		this.panel.find(".mc-icon-mouse").addClass("active");
 		mapObj.endQuery();
 		MapCloud.dataGrid.cleanup();
+		mapObj.endZoom();
 	},
 
 	// 全图显示
@@ -271,7 +277,7 @@ MapCloud.MapBar = MapCloud.Class({
 			i.removeClass("fa-angle-double-right");
 			i.addClass("fa-angle-double-left");
 			this.panel.children().not(".control-icon").css("display","block");
-			this.panel.css("width","392px");
+			this.panel.css("width","422px");
 		}
 	},
 
@@ -287,6 +293,18 @@ MapCloud.MapBar = MapCloud.Class({
 		MapCloud.notify.showInfo(result,"全图显示");
 		// mapObj.draw();
 		MapCloud.refresh_panel.refreshPanel();
+	},
+
+	// 放大
+	onZoomIn : function(){
+		if(mapObj == null){
+			return;
+		}
+		mapObj.zoomIn();
+	},
+	// 缩小
+	onZoomOut : function(){
+		mapObj.zoomOut();
 	}
 
 });

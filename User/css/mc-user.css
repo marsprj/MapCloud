@@ -891,8 +891,14 @@ div{
 .service-oper-stop-small{
 	background-image: url(../images/stop_16.png);	
 }
+.col-width-name{
+	width: 130px;
+}
 .info-row-item{
 	padding: 2px !important;
+}
+.info-row-item .col-md-3{
+	width: 60px !important;
 }
 
 .info-row-item:hover{

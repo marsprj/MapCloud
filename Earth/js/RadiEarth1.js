@@ -39,7 +39,7 @@ Radi.Earth = {
         });
         var terrainProvider = new Cesium.CesiumTerrainProvider({
                                       // url : '//assets.agi.com/stk-terrain/world',
-                                    url : '/dem',
+                                    url : '/aster',
                                     requestVertexNormals: true
                                   });
         g_earth_view.terrainProvider = terrainProvider;
