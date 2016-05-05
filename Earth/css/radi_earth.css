@@ -748,8 +748,11 @@ li {
 .mc-icon-3d{
   background-image: url(../../images/house_32.png);
 }
-.mc-icon-aqi-timeline,.mc-icon-aqi-timeline-24{
+.mc-icon-aqi-timeline-24{
   background-image: url(../../images/chart_aqi_timeline_32.png);
+}
+.mc-icon-aqi-timeline{
+  background-image: url(../../images/analytics.png); 
 }
 /*timeline*/
 
@@ -908,7 +911,8 @@ li {
   height:40px;
   top: 140px;
   border-radius: 4px;
-  box-shadow: 1px 2px 10px 0px #828e9a;  
+  box-shadow: 1px 2px 10px 0px #828e9a;
+  display: none; 
 }
 
 #chart_container .mc-stretch{

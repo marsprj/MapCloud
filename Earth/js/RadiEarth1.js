@@ -224,6 +224,8 @@ Radi.Earth = {
         return cylinder;
     },
 
+
+
     addLabel : function(x,y,z,text){
         var label = g_earth_view.entities.add({
             position : Cesium.Cartesian3.fromDegrees(x, y,z),

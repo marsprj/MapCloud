@@ -54,6 +54,12 @@ MapCloud.AQI24TimeLinePanel = MapCloud.Class(MapCloud.Panel,{
 	},
 
 	show : function(){
+		// 获取时刻
+		var timepoint = MapCloud.searchPanel.timepoint;
+		if(timepoint != null){
+			var date = timepoint.slice(timepoint.lastIndexOf(" ")+1,timepoint.length);
+			this.panel.find(".last-time").html(date);
+		}
 		this.panel.slideDown();
 	},
 

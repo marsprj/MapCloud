@@ -24,7 +24,11 @@ $().ready(function(){
 
 
 
-	Radi.Earth.flyTo(116.39,39.90,50000);
+	var camera = Radi.Earth.camera();
+	camera.setView({
+   	 destination : Cesium.Cartesian3.fromDegrees(106,31.69,26221083)
+	});
+
 
 
 	// 日期相加

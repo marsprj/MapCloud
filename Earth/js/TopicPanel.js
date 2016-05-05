@@ -366,8 +366,8 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		};
 		var that = this;
 		Radi.Earth.camera().moveEnd.addEventListener(that.addTianjinModel);
-		Radi.Earth.flyTo(117.186,39.119,30000);
-		
+		// Radi.Earth.flyTo(117.186,39.119,30000);
+		Radi.Earth.flyTo(117.170,39.092,3151,27,-49,-12);
 	},
 
 	addTianjinModel : function(){

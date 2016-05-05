@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.min.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/radi_earth.css">
+	<link rel="stylesheet" type="text/css" href="css/radi_earth.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.min.css"/> -->
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
 	<script type="text/javascript" src="Cesium/Cesium.js"></script>
@@ -18,8 +18,8 @@
 	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 
-	<script type="text/javascript" src="js/earth.min.js"></script>
-<!--	<script type="text/javascript" src="js/RadiEarth1.js"></script>
+<!--	<script type="text/javascript" src="js/earth.min.js"></script>-->
+	<script type="text/javascript" src="js/RadiEarth1.js"></script>
 	<script type="text/javascript" src="js/view_init.js"></script>
 	<script type="text/javascript" src="js/SearchPanel.js"></script>
 	<script type="text/javascript" src="js/CurrentCityPanel.js"></script>
@@ -38,7 +38,7 @@
 	<script type="text/javascript" src="js/AQI24TimeLinePanel.js"></script>
 	<script type="text/javascript" src="js/ChartPanel.js"></script>
 	<script type="text/javascript" src="js/AddressService.js"></script>
--->
+
 	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/jquery.nouislider.js"></script>
@@ -583,7 +583,7 @@
 	<div class="float-panel" id="aqi_24_timeline_container">
 		<form class="form-horizontal" role="form" style="width: 90%;margin: 10px auto;">
 			<div class="form-group form-group-sm">
-				<label class="control-label col-md-6" style="margin-top:6px">最后更新时刻: <span>12:00:00</span></label>
+				<label class="control-label col-md-6" style="margin-top:6px">最后更新时刻: <span class="last-time">12:00:00</span></label>
 				<div class="col-md-6">
 					<button class="btn btn-default aqi-24h" type="button">24小时变化趋势</button>
 				</div>
