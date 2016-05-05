@@ -26,7 +26,7 @@ var g_catalog =
         "link": "user_file.html"
     },
     {
-        "name": "数据库管理",
+        "name": "矢量数据",
         "icon": "db.png",
         "link": "user_vector.html"
     },    

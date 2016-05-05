@@ -697,40 +697,59 @@ MapCloud.RasterPanel = MapCloud.Class({
 
 	// 显示预览图
 	showRasterPreview : function(sourceName,rasterName,rasterPath){
-		var url = rasterDBManager.getRasterUrl(sourceName,rasterName,rasterPath);
-		if(url != null){
-			// this.panel.find("#raster_preview_tab img").attr("src",url);
-		}
-		this.panel.find("#raster_preview_tab").empty();
-		this.panel.find("#raster_infos_tab").css("display","none");
-		this.panel.find("#raster_preview_tab").css("display","block");
 
-		var image = new Image();
-		image.src = url;
-		image.onload = function(){
-			var width = $("#raster_preview_tab").width();
-			var height = $("#raster_preview_tab").height();
-			var scale_m = image.width/image.height;
-			var scale_s = width/height;
-			var marginTop = null;
-			var marginWidth = null;
-			if(scale_m > scale_s){
-				marginTop = (height - width /scale_m)/2;
-				height = width /scale_m;
-			}else{
-				marginWidth = (width - height*scale_m)/2 ;
-				width = height*scale_m;
-			}
-			var html = "<img src='" + url + "' width='" 
-				+ width + "'  height='" + height +"'>";
-			$("#raster_preview_tab").html(html);
-			if(marginTop != null){
-				$("#raster_preview_tab img").css("margin-top",marginTop);
-			}
-			if(marginWidth != null){
-				$("#raster_preview_tab img").css("margin-left",marginWidth);
-			}
-		};
+		// var url = rasterDBManager.getRasterUrl(sourceName,rasterName,rasterPath);
+		// if(url != null){
+		// 	// this.panel.find("#raster_preview_tab img").attr("src",url);
+		// }
+		// this.panel.find("#raster_preview_tab").empty();
+		// this.panel.find("#raster_infos_tab").css("display","none");
+		// this.panel.find("#raster_preview_tab").css("display","block");
+
+		// var image = new Image();
+		// image.src = url;
+		// image.onload = function(){
+		// 	var width = $("#raster_preview_tab").width();
+		// 	var height = $("#raster_preview_tab").height();
+		// 	var scale_m = image.width/image.height;
+		// 	var scale_s = width/height;
+		// 	var marginTop = null;
+		// 	var marginWidth = null;
+		// 	if(scale_m > scale_s){
+		// 		marginTop = (height - width /scale_m)/2;
+		// 		height = width /scale_m;
+		// 	}else{
+		// 		marginWidth = (width - height*scale_m)/2 ;
+		// 		width = height*scale_m;
+		// 	}
+		// 	var html = "<img src='" + url + "' width='" 
+		// 		+ width + "'  height='" + height +"'>";
+		// 	$("#raster_preview_tab").html(html);
+		// 	if(marginTop != null){
+		// 		$("#raster_preview_tab img").css("margin-top",marginTop);
+		// 	}
+		// 	if(marginWidth != null){
+		// 		$("#raster_preview_tab img").css("margin-left",marginWidth);
+		// 	}
+		// };
+		rasterDBManager.getThumbnail(sourceName,rasterPath,rasterName,this.getThumbnail_callback)
+	},
+	getThumbnail_callback : function(obj){
+		if(obj == null){
+			return;
+		}
+		var thumb = obj.thumb;
+		if(thumb == null){
+			return;
+		}
+		var that = MapCloud.rasterPanel;
+		that.panel.find("#raster_preview_tab img").attr("src",thumb);
+		that.panel.find("#raster_infos_tab").css("display","none");
+		var width = that.panel.find("#raster_preview_tab").parent().width();
+		var height = that.panel.find("#raster_preview_tab").parent().height();
+		that.panel.find("#raster_preview_tab").css("width",width + "px");
+		that.panel.find("#raster_preview_tab").css("height",height + "px");
+		that.panel.find("#raster_preview_tab").css("display","table-cell");
 	},
 
 	// 新建文件夹

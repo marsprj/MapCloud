@@ -810,13 +810,25 @@ MapCloud.RasterDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	showRasterPreview : function(sourceName,rasterName,rasterPath){
-		var url = rasterDBManager.getRasterUrl(sourceName,rasterName,rasterPath);
-		if(url != null){
-			this.panel.find(".raster-preview-div img").attr("src",url);
-		}
-		this.panel.find(".raster-info-div").css("display","none");
-		this.panel.find(".raster-preview-div").css("display","table-cell");
+		rasterDBManager.getThumbnail(sourceName,rasterPath,rasterName,this.getThumbnail_callback);
 	},
+
+	getThumbnail_callback : function(obj){
+		if(obj == null){
+			return;
+		}
+		var thumb = obj.thumb;
+		if(thumb == null){
+			return;
+		}
+
+		var dialog = MapCloud.raster_db_dialog;
+		dialog.panel.find(".raster-preview-div img").attr("src",thumb);
+		dialog.panel.find(".raster-info-div").css("display","none");
+		dialog.panel.find(".raster-preview-div").css("display","table-cell");
+	},
+
+
 
 	// 获取raster
 	returnExtractRaster : function(sourceName,rasterName,rasterPath){

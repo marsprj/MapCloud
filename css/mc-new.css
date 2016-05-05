@@ -884,6 +884,7 @@ ul#ribbon_tabs li{
 	bottom: 0px;
 	width: 100%;
 	display: none;
+	z-index: 99;
 }
 #datagrid_control{
 	/*position: absolute;*/

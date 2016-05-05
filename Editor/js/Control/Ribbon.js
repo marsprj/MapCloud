@@ -1047,6 +1047,9 @@ MapCloud.Ribbon = MapCloud.Class({
 				console.log("Double Click");  //perform double-click action
 				var name = $(this).parent().attr("name");
 				MapCloud.notify.loading();
+				if(mapObj != null){
+					mapObj.close();
+				}
 				mapObj = null;
 				// that.showMapPanel();
 				that.showMapTab();

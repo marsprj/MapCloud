@@ -419,7 +419,7 @@ MapCloud.ServicePanel = MapCloud.Class({
 
 		var extent = new GeoBeans.Envelope(-180,-90,180,90);
 		var srid = 4326;
-		var url = "/ows/user1/" + service.name + "/ims?";
+		var url = "/ows/" + user.name + "/" + service.name + "/ims?";
 		var layerArray = service.getWMSLayers();
 
 		

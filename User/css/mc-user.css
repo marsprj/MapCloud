@@ -682,6 +682,8 @@ div{
 	height: 100%;
 	width:100%;
 	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
 }
 #raster_infos_tab{
 	height: 100%;
@@ -733,6 +735,13 @@ div{
 }
 .mc-icon-tilestore{
 	background-image: url(../images/tile.png);
+}
+.tilestore-list{
+	height: calc(100% - 35px);
+	overflow-y:auto; 
+}
+#tilestore_preview_tab{
+	position: relative;
 }
 /***************************************************************************/
 /* User Tile End			                                               */

@@ -1,7 +1,7 @@
 MapCloud.AirlinePanel = MapCloud.Class(MapCloud.Panel,{
 	chartLayer : null,
 
-	dbName : "osm",
+	dbName : "base",
 	typeName : "osm_airports",
 
 	option : {

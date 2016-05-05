@@ -493,6 +493,9 @@ html, body {
 .mc-base-layer-icon{
 	background-image: url(../images/map.png);
 }
+#base_layer_canvas_wrapper{
+	position: relative;
+}
 /***************************************************************************/
 /* Admin data End 			                                           		*/
 /***************************************************************************/
