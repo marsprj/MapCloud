@@ -39,8 +39,17 @@ MapCloud.HeatMapDialog = MapCloud.Class(MapCloud.Dialog,{
 				MapCloud.notify.showInfo("请设置有效的字段","Warning");
 				return;
 			}
-	
-			mapObj.addHeatMap(dialog.layer.name,field,uniqueValue);
+			// var config = {
+			// 	gradient :{
+			// 		'.1': 'blue',
+			// 		'.7': 'green',
+			// 		// '.9': 'yellow',
+			// 		'0.8' : '#ebaeb8',
+			// 	    '.9': 'red'
+			// 	    // '.95': 'white'
+			// 	}
+			// };
+			mapObj.addHeatMap(dialog.layer.name,field,uniqueValue,null);
 			mapObj.draw();
 			MapCloud.refresh_panel.refreshPanel();
 		});
