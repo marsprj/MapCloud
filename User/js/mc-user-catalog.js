@@ -3,7 +3,7 @@ var g_catalog =
     {
         "name": "用户管理",
         "icon": "user.png",
-        "link": "user_info.html"
+        "link": "user_infos.html"
     },
     {
         "name": "用户订阅",

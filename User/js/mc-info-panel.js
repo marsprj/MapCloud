@@ -70,7 +70,6 @@ MapCloud.UserPanel = MapCloud.Class({
 		this.panel.find(".user-info-alias").val(alias);
 		this.panel.find(".user-info-email").val(email);
 		this.panel.find(".user-info-role").val(role);
-
 		this.panel.find(".user-passwd-name").val(name);
 	},
 

@@ -13,5 +13,8 @@ $().ready(function(){
 	authManager = new GeoBeans.AuthManager(authServer);
     MapCloud.notify	= new MapCloud.Notify("container","alert_loading");
 
-    MapCloud.userPanel = new MapCloud.UserPanel("user_panel");
+    jobManager = user.getJobManager();
+    // MapCloud.userPanel = new MapCloud.UserPanel("user_panel");
+    MapCloud.userPanel = new MapCloud.UserPanel("user_info_panel");
+    
 });
