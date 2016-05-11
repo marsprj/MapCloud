@@ -91,10 +91,10 @@ MapCloud.ServicePanel = MapCloud.Class({
 			}
 			name = service.name;
 			html += '<div class="row" sname="' + name + '">'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+	'		<i class="service-icon list-icon"></i>'
 				+	'	</div>'
-				+	'	<div class="col-md-9 map-tree-name">'
+				+	'	<div class="col-md-9 col-xs-9 map-tree-name">'
 				+		name
 				+	'	</div>'
 				+	'</div>';
@@ -143,28 +143,28 @@ MapCloud.ServicePanel = MapCloud.Class({
 				stateHtml = '<button class="btn btn-xs btn-primary btn-state">启动服务</button>'
 			}
 			var layersHtml = '<div class="row info-row-item">'
-				+	'		<div class="col-md-3">图层:</div>'
-				+	'		<div class="col-md-5">' + (layers[0] == null?"":layers[0].name)  + '</div>'
+				+	'		<div class="col-md-3 col-xs-3">图层:</div>'
+				+	'		<div class="col-md-5 col-xs-5">' + (layers[0] == null?"":layers[0].name)  + '</div>'
 				+	'	</div>';
 			for(var j = 1; j < layers.length;++j){
 				layer = layers[j];
 				if(layer != null){
 					layersHtml += '<div class="row info-row-item">'
-						+	'		<div class="col-md-3"></div>'
-						+	'		<div class="col-md-5">' + (layers[j] == null?"":layers[j].name)  + '</div>'
+						+	'		<div class="col-md-3 col-md-3"></div>'
+						+	'		<div class="col-md-5 col-xs-5">' + (layers[j] == null?"":layers[j].name)  + '</div>'
 						+	'	</div>';
 				}
 			}
 			var operationsHtml = '<div class="row info-row-item">'
-				+	'		<div class="col-md-3">类型:</div>'
-				+	'		<div class="col-md-5">' + (operations[0] == null?"":operations[0])  + '</div>'
+				+	'		<div class="col-md-3 col-xs-3">类型:</div>'
+				+	'		<div class="col-md-5 col-xs-5">' + (operations[0] == null?"":operations[0])  + '</div>'
 				+	'	</div>';
 			for(var j = 1; j < operations.length;++j){
 				operation = operations[j];
 				if(operation != null){
 					operationsHtml += '<div class="row info-row-item">'
-						+	'		<div class="col-md-3"></div>'
-						+	'		<div class="col-md-5">' + (operation == null?"":operation)  + '</div>'
+						+	'		<div class="col-md-3 col-xs-3"></div>'
+						+	'		<div class="col-md-5 col-xs-5">' + (operation == null?"":operation)  + '</div>'
 						+	'	</div>';
 				}
 			}
@@ -176,25 +176,25 @@ MapCloud.ServicePanel = MapCloud.Class({
 			}
 
 			html += '<div class="row service-row" sname="' + name + '">'
-				+	'	<div class="col-md-1 col-order">'
+				+	'	<div class="col-md-1 col-xs-1 col-order">'
 				+		(i+1)
 				+	'	</div>'
-				+	'	<div class="col-md-1 col-order">'
+				+	'	<div class="col-md-1 col-xs-1 col-order">'
 				+		stateIconHtml
 				+	'	</div>'
-				+	'	<div class="col-md-2 col-width-name">'
+				+	'	<div class="col-md-2 col-xs-2 col-width-name">'
 				+	     	name
 				+	'	</div>'
-				+	'	<div class="col-md-2 col-width-name">'
+				+	'	<div class="col-md-2 col-xs-2 col-width-name">'
 				+			mapName
 				+	'	</div>'
-				+	'	<div class="col-md-2 col-width-name">'
+				+	'	<div class="col-md-2 col-xs-2 col-width-name">'
 				+			srid
 				+	'	</div>'
-				+	'	<div class="col-md-3">'
+				+	'	<div class="col-md-3 col-xs-3">'
 				+			extentStr
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				// +	'		<a href="javascript:void(0)" class="oper more-service">详细</a>'
 				+	'		<a href="javascript:void(0)" class="oper enter-service">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-service">删除</a>'
@@ -202,18 +202,18 @@ MapCloud.ServicePanel = MapCloud.Class({
 				+	'</div>'
 
 				+ 	'<div class="row info-row" sname="' + name + '">'
-				+	'	<div class="col-md-1 col-order">'
+				+	'	<div class="col-md-1 col-xs-1 col-order">'
 				+	'	</div>'
-				+	'	<div class="col-md-3 thumb-div" style="background-image:url(' + thumb + ')">'
+				+	'	<div class="col-md-3 col-xs-3 thumb-div" style="background-image:url(' + thumb + ')">'
 				+	'	</div>'
-				+	'	<div class="col-md-4">'
+				+	'	<div class="col-md-4 col-xs-4">'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">名称:</div>'
-				+	'			<div class="col-md-5">' + name + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">名称:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + name + '</div>'
 				+	'		</div>'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">状态:</div>'
-				+	'			<div class="col-md-5">' + stateHtml + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">状态:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + stateHtml + '</div>'
 				+	'		</div>'
 				+ 			operationsHtml
 				+ 			layersHtml

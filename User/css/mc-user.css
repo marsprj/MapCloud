@@ -512,11 +512,17 @@ div{
     color: #767676;
     margin: 12px;
 }
+.map-info-head-row{
+	padding: 0px 4px;
+	margin: 4px;
+}
+
 .map-info-row span {
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .map-info-item {
     width: 60px;
     text-align: right;

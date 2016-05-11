@@ -498,7 +498,7 @@ MapCloud.SubPanel = MapCloud.Class({
 				checked = true;
 			}
 			html += "<div class='row' cname='" + name + "'>"
-				+ 	"	<div class='col-md-1'>";
+				+ 	"	<div class='col-md-1 col-xs-1'>";
 			if(checked){
 				html += "		<input type='checkbox' checked>";
 			}else{
@@ -506,10 +506,10 @@ MapCloud.SubPanel = MapCloud.Class({
 			}
 				
 				html+=	"	</div>"
-				+	"	<div class='col-md-2'>" + gid + "</div>"
-				+	"	<div class='col-md-3'>" + name + "</div>"
-				+	"	<div class='col-md-4'>" + pyname + "</div>"
-				+	"	<div class='col-md-2'>" + type + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>" + gid + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>" + name + "</div>"
+				+	"	<div class='col-md-4 col-xs-4'>" + pyname + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>" + type + "</div>"
 				+	"</div>";
 		}
 		this.panel.find(".aqi-city-list-div").html(html);

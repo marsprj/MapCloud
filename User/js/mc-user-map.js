@@ -92,10 +92,10 @@ $().ready(function(){
 			}
 			mapName = map.name;
 			html += '<div class="row" mname="' + mapName + '">'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+	'		<i class="map-icon list-icon"></i>'
 				+	'	</div>'
-				+	'	<div class="col-md-9 map-tree-name">'
+				+	'	<div class="col-md-9 col-xs-9 map-tree-name">'
 				+		mapName
 				+	'	</div>'
 				+	'</div>';
@@ -135,36 +135,36 @@ $().ready(function(){
 			}
 
 			html += '<div class="row map-row" mname="' + mapName + '">'
-				+	'	<div class="col-md-1 col-order">'
+				+	'	<div class="col-md-1  col-xs-1 col-order">'
 				+	(i+1)		
 				+	'	</div>'
-				+	'	<div class="col-md-3">'
+				+	'	<div class="col-md-3 col-xs-3">'
 				+			mapName
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+			mapSrid
 				+	'	</div>'
-				+	'	<div class="col-md-4">'
+				+	'	<div class="col-md-4 col-xs-4">'
 				+			mapExtentHtml
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	'		<a href="javascript:void(0)" class="oper enter-map">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-map">删除</a>'
 				+	'	</div>'
 				+	'</div>'
 				+ 	'<div class="row info-row" mname="' + mapName + '">'
-				+	'	<div class="col-md-1 col-order">'
+				+	'	<div class="col-md-1 col-xs-1 col-order">'
 				+	'	</div>'
-				+	'	<div class="col-md-3 thumb-div" style="background-image:url(' + thumb + ')">'
+				+	'	<div class="col-md-3 col-xs-3 thumb-div" style="background-image:url(' + thumb + ')">'
 				+	'	</div>'
-				+	'	<div class="col-md-4">'
+				+	'	<div class="col-md-4 col-xs-4">'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">名称:</div>'
-				+	'			<div class="col-md-5">' + mapName + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">名称:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + mapName + '</div>'
 				+	'		</div>'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">空间参考:</div>'
-				+	'			<div class="col-md-5">' + mapSrid + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">空间参考:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + mapSrid + '</div>'
 				+	'		</div>'
 				+	'	</div>'
 				+ 	'</div>';
@@ -237,39 +237,39 @@ $().ready(function(){
 		var extentHtml = "";
 		if(extent != null){
 			extentHtml += 	'<div class="row info-row-item">'
-					+	'	<span class="col-md-3">空间范围 :</span>'
-					+	'	<span class="col-md-5">东 : ' + extent.xmax + '</span>'
+					+	'	<span class="col-md-3 col-xs-3">空间范围 :</span>'
+					+	'	<span class="col-md-5 col-xs-5">东 : ' + extent.xmax + '</span>'
 					+	'</div>'
 					+	'<div class="row info-row-item">'
-					+	'	<span class="col-md-3"></span>'
-					+	'	<span class="col-md-5">南 : ' + extent.ymin + '</span>'
+					+	'	<span class="col-md-3 col-xs-3"></span>'
+					+	'	<span class="col-md-5 col-xs-5">南 : ' + extent.ymin + '</span>'
 					+	'</div>'
 					+	'<div class="row info-row-item">'
-					+	'	<span class="col-md-3"></span>'
-					+	'	<span class="col-md-5">西 : ' + extent.xmin + '</span>'
+					+	'	<span class="col-md-3 col-xs-3"></span>'
+					+	'	<span class="col-md-5 col-xs-5">西 : ' + extent.xmin + '</span>'
 					+	'</div>'
 					+	'<div class="row info-row-item">'
-					+	'	<span class="col-md-3"></span>'
-					+	'	<span class="col-md-5">北 : ' + extent.ymax + '</span>'
+					+	'	<span class="col-md-3 col-xs-3"></span>'
+					+	'	<span class="col-md-5 col-xs-5">北 : ' + extent.ymax + '</span>'
 					+	'</div>';
 		}
 
-		var html = 	'	<div class="col-md-1 col-order">'
+		var html = 	'	<div class="col-md-1 col-xs-1 col-order">'
 				+	'	</div>'
-				+	'	<div class="col-md-3 thumb-div" style="background-image:url(' + thumb + ')">'
+				+	'	<div class="col-md-3 col-xs-3 thumb-div" style="background-image:url(' + thumb + ')">'
 				+	'	</div>'
-				+	'	<div class="col-md-4">'
+				+	'	<div class="col-md-4 col-xs-4">'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">名称:</div>'
-				+	'			<div class="col-md-5">' + mapName + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">名称:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + mapName + '</div>'
 				+	'		</div>'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">空间参考:</div>'
-				+	'			<div class="col-md-5">' + mapSrid + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">空间参考:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + mapSrid + '</div>'
 				+	'		</div>'
 				+	'		<div class="row info-row-item">'
-				+	'			<div class="col-md-3">图层个数:</div>'
-				+	'			<div class="col-md-5">' + layers.length + '</div>'
+				+	'			<div class="col-md-3 col-xs-3">图层个数:</div>'
+				+	'			<div class="col-md-5 col-xs-5">' + layers.length + '</div>'
 				+	'		</div>'
 				+			extentHtml
 				+	'	</div>';
@@ -371,7 +371,6 @@ $().ready(function(){
 					+	'	<span class="map-info-item"></span>'
 					+	'	<span class="map-info-extent">北 : ' + extent.ymax + '</span>'
 					+	'</div>';
-
 			$(".map-info-srid").parent().after(extentHtml);
 		}
 		// 通过名称查找
@@ -396,8 +395,7 @@ $().ready(function(){
 			
 
 			html += '<div class="map-info-row">'
-				+	'	<span class="map-info-layer-name">' + name +  '</span>'
-				+ 	'	<span class="map-info-item">类型：</span>';
+				+	'	<span class="map-info-layer-name">' + name +  '</span>';
 			var type = "";
 			if(geomType != null){
 				type =  geomType;
@@ -412,12 +410,18 @@ $().ready(function(){
 				var extentStr = extent.xmin.toFixed(2) + " , " + extent.ymin.toFixed(2)
 					+ " , " + extent.xmax.toFixed(2) + " , " + extent.ymax.toFixed(2);
 				// html +=	'<div class="map-info-row">'
-				html += 	'	<span class="map-info-item">范围：</span>'
-					+	'	<span class="map-info-extent">' + extentStr + '</span>';
+				html +=	'	<span class="map-info-extent">' + extentStr + '</span>'
+					+ 	'<span class="map-info-layer-name pull-right">'
+					+	'	<input type="checkbox" name="my-checkbox" data-size="mini" data-on-color="info" disabled>'
+					+	'</span>'
+					+ 	'<span class="map-info-layer-name pull-right">'
+					+	'	<input type="checkbox" name="my-checkbox" checked data-size="mini" data-on-color="info">'
+					+	'</span>';
 			}
 			html += "</div>";	
 		}
 		$("#map_info_tab .map-info-layers").append(html);		
+		$("[name='my-checkbox']").bootstrapSwitch();
 	}
 
 	// 绘制地图

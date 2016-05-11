@@ -617,8 +617,46 @@
   padding: 0px 6px;
   display: inline-block;
 }
-
-
+.register-panel-div{
+  width: 620px;
+  margin: 0 auto;
+}
+input[type='password'].correct
+{
+  border: 1px solid green;
+}
+input[type='password'].error
+{
+  border: 1px solid red;
+}
+#tips{
+    margin: 7px 0px;
+    padding: 0px;
+    display: none;
+}
+#tips span{
+  float: left;
+  width: 36px;
+  height: 20px;
+  color: #fff;
+  overflow: hidden;
+  background: #ccc;
+  margin-right: 2px;
+  line-height: 20px;
+  text-align: center;
+}
+#tips.s1 .active{
+  background: #f30;
+}
+#tips.s2 .active{
+  background: #fc0;
+}
+#tips.s3 .active{
+  background: #cc0;
+}
+#tips.s4 .active{
+  background: #090;
+}
 /***************************************************************************/
 /* Login  Panel End                             */
 /***************************************************************************/

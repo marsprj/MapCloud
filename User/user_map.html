@@ -4,16 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-switch.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
 
-	<link rel="stylesheet" type="text/css" href="css/mc-user.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/mc-user.css"/>
 
 	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-switch.min.js"></script>
 
-	<script type="text/javascript" src="js/mc-user-map.min.js"></script>
+	<script type="text/javascript" src="js/mc-user-map.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
 
@@ -50,19 +52,19 @@
 				<div class="right-panel-content">
 					<div class="right-panel-content-tab" id="map_list_tab">
 						<div class="row header-row">
-							<div class="col-md-1 col-order">
+							<div class="col-md-1 col-xs-1 col-order">
 								序号
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 col-xs-3">
 								名称
 							</div>
-							<div class="col-md-2">
+							<div class="col-md-2 col-xs-2">
 								空间参考
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4 col-xs-4">
 								范围
 							</div>
-							<div class="col-md-2">
+							<div class="col-md-2 col-xs-2">
 								操作
 							</div>
 						</div>
@@ -93,8 +95,8 @@
 							</span>
 							<span style="font-size:14px">基本信息</span>
 						</div>
-						<div class="row">
-							<div class="col-md-5">
+						<div class="row" style="cursor:default">
+							<div class="col-md-5 col-xs-5">
 								<div class="map-info-row">
 									<span class="map-info-item">名称：</span>
 									<span class="map-info-name"></span>
@@ -105,18 +107,27 @@
 								</div>
 								
 							</div>
-							<div class="col-md-7" style="height:250px">
+							<div class="col-md-7 col-xs-7" style="height:250px">
 								<div class="thumb-big-div">
 								</div>
 							</div>
 						</div>
 						<div class="page-heading">
-									<span class="fa-stack fa-lg">
-									  <i class="fa fa-circle-thin fa-stack-2x"></i>
-									  <i class="fa fa-info fa-stack-1x"></i>
-									</span>
-									<span style="font-size:14px">图层</span>
-								</div>
+							<span class="fa-stack fa-lg">
+							  <i class="fa fa-circle-thin fa-stack-2x"></i>
+							  <i class="fa fa-info fa-stack-1x"></i>
+							</span>
+							<span style="font-size:14px">图层</span>
+						</div>
+						<div class="row">
+							<div class="map-info-row map-info-head-row" style="cursor:default">
+								<span class="map-info-layer-name">名称</span>
+								<span class="map-info-layer-name">类型</span>
+								<span class="map-info-extent">范围</span>
+								<span class="map-info-layer-name pull-right">可写</span>
+								<span class="map-info-layer-name pull-right">可查询</span>
+							</div>
+						</div>
 						<div class="map-info-layers">
 						</div>
 					</div>

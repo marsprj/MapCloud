@@ -191,9 +191,8 @@ MapCloud.FilePanel = MapCloud.Class({
 				
 
 				html += "<div class='row row-file' fpath='" + path + "'>"
-				// + "<div class='col-md-1'>";
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>"
+				+ "<div class='col-md-1 col-xs-1 row'>"
+				+ "<div class='col-md-6 col-xs-6'>"
 
 				if(this.flag == "choose-shp"){
 					var fileFix = name.slice(name.lastIndexOf(".")+1,name.length);
@@ -222,19 +221,19 @@ MapCloud.FilePanel = MapCloud.Class({
 					html += "		<input type='checkbox' name='" + name + "'>";
 				}
 				html += "</div>"
-				+ 	"<div class='col-md-6'>"
+				+ 	"<div class='col-md-6 col-xs-6'>"
 				+ 	"<i class='fa fa-file-o'></i>"
 				+ 	"</div>";
 
 				html+= "</div>"
-				+ "<div class='col-md-3 row-fname'>"
+				+ "<div class='col-md-3 col-xs-3 row-fname'>"
 				// + "		<i class='fa fa-file-o'></i>"
 				+ "		<span>" + name + "</span>"
 				+ "</div>"
-				+ "<div class='col-md-1'>文件</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'>" + size + "</div>"
+				+ "<div class='col-md-1 col-xs-1'>文件</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + accessTime + "</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + lastTime + "</div>"
+				+ "<div class='col-md-1 col-xs-1'>" + size + "</div>"
 				+ "</div>";
 			}else if(l instanceof GeoBeans.Folder){
 				var name = l.name;
@@ -242,8 +241,8 @@ MapCloud.FilePanel = MapCloud.Class({
 				var lastTime = l.lastTime;
 				var path = l.path;
 				html += "<div class='row row-folder' fpath='" + path + "'>"
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>";
+				+ "<div class='col-md-1 col-xs-1 row'>"
+				+ "<div class='col-md-6 col-xs-6'>";
 
 				if(this.flag == null ){
 					html += "	<input type='checkbox' name='" + name + "'>"
@@ -251,19 +250,19 @@ MapCloud.FilePanel = MapCloud.Class({
 					html += "	<input type='checkbox' name='" + name + "' disabled>"
 				}
 				html += "</div>"
-				+ 	"<div class='col-md-6'>"
+				+ 	"<div class='col-md-6 col-xs-6'>"
 				+ 	"<i class='fa fa-folder-o'></i>"
 				+ 	"</div>";
 				
 				html += "</div>"
-				+ "<div class='col-md-3 row-fname'>"
+				+ "<div class='col-md-3 col-xs-3 row-fname'>"
 				// + "		<i class='fa fa-folder-o'></i>"
 				+ "		<span>" + name + "</span>"
 				+ "</div>"
-				+ "<div class='col-md-1'>文件夹</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'></div>"
+				+ "<div class='col-md-1 col-xs-1'>文件夹</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + accessTime + "</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + lastTime + "</div>"
+				+ "<div class='col-md-1 col-xs-1'></div>"
 				+ "</div>";			
 			}
 		}

@@ -56,6 +56,26 @@ MapCloud.AccountPanel = MapCloud.Class({
 				that.register();
 			}
 		});
+
+		this.registerPanel.find("input[name='password']").bind('keyup onfocus onblur', function () {
+			var oTips = document.getElementById('tips');
+			var aSpan = oTips.getElementsByTagName("span");
+	        var index = that.checkStrong(this.value);
+	        var aStr = ["弱", "中", "强", "非常好"];
+	       	oTips.style.display = "block";
+	        
+	        oTips.className = "s" + index;
+	        for (var i = 0; i < aSpan.length; i++) {
+	            //先清空在赋值
+	            aSpan[i].className = aSpan[i].innerHTML = "";
+	            //赋值
+	            if (this.value != "") {
+	                aSpan[index - 1].className = "active";
+	                aSpan[index - 1].innerHTML = aStr[index - 1];
+	            }
+
+	        }
+	    });
 	},
 
 
@@ -235,4 +255,32 @@ MapCloud.AccountPanel = MapCloud.Class({
 			that.initUser(that.registerName);
 		}
 	},	
+
+	// 1) 任何在1-6之间的字符的组合，弱；例如： win
+	// 2) 任何字符数的两类字符组合，中； 例如： win123
+	// 3) 12位字符数以下的三类或四类字符组合，强；  例如： win123abcABC
+	// 4) 12位字符数以上的三类或四类字符组合，非常好。 例如：win123abcABC!
+
+	checkStrong : function(sValue) {
+	    var modes = 0;
+	    //正则表达式验证符合要求的
+	    if (sValue.length < 1) return modes;
+	    if (/\d/.test(sValue)) modes++; //数字
+	    if (/[a-z]/.test(sValue)) modes++; //小写
+	    if (/[A-Z]/.test(sValue)) modes++; //大写  
+	    if (/\W/.test(sValue)) modes++; //特殊字符
+	   
+	   //逻辑处理
+	    switch (modes) {
+	        case 1:
+	            return 1;
+	            break;
+	        case 2:
+	            return 2;
+	        case 3:
+	        case 4:
+	            return sValue.length < 12 ? 3 : 4
+	            break;
+	    }
+	}
 });
