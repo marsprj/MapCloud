@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui/ui.notify.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/mc-admin.css"/>
+	<script type="text/javascript" src="../js/3rd/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/jquery-ui/jquery.notify.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="../js/3rd/bootstrap-3.2.0-dist/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
+	<script type="text/javascript" src="../js/common.min.js"></script>
+	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
+<!--	<script type="text/javascript" src="js/mc-user-info.min.js"></script>-->
+	
+	<script type="text/javascript" src="js/mc-job-panel.js"></script>
+	<script type="text/javascript" src="js/mc-admin-job.js"></script>
+	
+	<title>访问统计</title>
+</head>
+	
+<body>
+	<div class="common-panel" id="job_panel">
+		<div id="title_wrapper">
+			<div class="title_box">[全部用户]访问统计</div>
+			<div class="title_bar_warpper" style="width:120px">
+				<a href="javascript:void(0)" class="all-user">全部用户</a>
+			</div>
+			<div class="search-wrapper">
+				<div class="input-group input-group-sm" style="width:220px">
+				  	<input type="text" class="form-control" placeholder="输入查询的用户">
+				  	<span class="input-group-btn">
+				        <button class="btn btn-default search-user" type="button">查询</button>
+				    </span>
+				</div>
+			</div>
+				
+		</div>
+		<div id="job_main_wrapper">
+			<div class="user-panel-tab" id="user_job_tab">
+				<div class="row">
+					<div class="col-md-12 col-xs-12" id="job_list">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2>
+									<i class="fa fa-list"></i>
+									<strong>请求列表</strong>
+								</h2>
+								<div class="panel-actions">
+									<a href="javascript:void(0)" class="pre-page" data-toggle="tooltip" data-placement="top" data-original-title="上一页"><i class="glyphicon glyphicon-step-backward disabled"></i></a>
+									<a href="javascript:void(0)" class="next-page" data-toggle="tooltip" data-placement="top" data-original-title="下一页"><i class="glyphicon glyphicon-step-forward disabled"></i></a>
+									<a href="javascript:void(0)" class="btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a>
+								</div>
+							</div>
+							<div class="panel-body">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th class="td-width-15">用户IP</th>
+											<th class="td-width-15">服务器</th>
+											<th class="td-width-20">请求</th>
+											<th class="td-width-20">开始日期</th>
+											<th class="td-width-20">结束时间</th>
+											<th class="td-width-10">状态</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-xs-12" id="ip_list">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2>
+									<i class="fa fa-list"></i>
+									<strong>IP请求</strong>
+								</h2>
+								<div class="panel-actions">
+									<a href="javascript:void(0)"><label>选择时间:</label></a>
+									<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="起始时间">
+										<input type="text" id="ip_start_date" class="form-control date-picker">
+									</a>
+									<a href="javascript:void(0)"><label>--</label></a>
+									<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="终止时间">
+										<input type="text"  id="ip_end_date" class="form-control date-picker">
+									</a>
+									<a href="javascript:void(0)" class="btn-icon btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a>
+									<a href="javascript:void(0)" class="btn-icon btn-chart-table" data-toggle="tooltip" data-placement="top" data-original-title="图表"><i class="fa fa-table"></i></a>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="tab-div ip-table-div">
+									<table class="table">
+										<thead>
+											<tr>
+												<th class="td-width-50">IP</th>
+												<th class="td-width-50">请求次数</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+										</tbody>
+									</table>
+								</div>
+								<div class="tab-div ip-chart-div active" id="ip_chart_div">
+								</div>
+									
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-xs-12" id="service_list">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2>
+									<i class="fa fa-list"></i>
+									<strong>服务请求--<span>192.168.111.156</span></strong>
+								</h2>
+								<div class="panel-actions">
+									<!-- <a href="javascript:void(0)" style="width:340px" data-toggle="tooltip" data-placement="top" data-original-title="起始时间">
+										<input type="text" id="service_date_picker" class="form-control">
+									</a> -->
+									<a href="javascript:void(0)"><label>类型:</label></a>
+									<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="">
+										<select class="form-control service-field">
+											<option value="operation">请求</option>
+											<option value="service">服务</option>
+										</select>
+									</a>
+									<a href="javascript:void(0)"><label>选择时间:</label></a>
+									<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="起始时间">
+										<input type="text" id="service_start_date" class="form-control date-picker">
+									</a>
+									<a href="javascript:void(0)"><label>--</label></a>
+									<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="终止时间">
+										<input type="text"  id="service_end_date" class="form-control date-picker">
+									</a>
+									<a href="javascript:void(0)" class="btn-icon btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a>
+									<a href="javascript:void(0)" class="btn-chart-table btn-icon" data-toggle="tooltip" data-placement="top" data-original-title="图表"><i class="fa fa-table"></i></a>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="tab-div service-table-div">
+									<table class="table">
+										<thead>
+											<tr>
+												<th class="td-width-50">服务类型</th>
+												<th class="td-width-50">请求次数</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+								<div class="tab-div service-chart-div active" id="service_chart_div">
+								</div>
+									
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Notify  -->
+	<div id="container" style="display:none">
+		<div id="default">
+			<a class="ui-notify-close ui-notify-cross" href="javascript:void(0)">x</a>
+			<span>#{title}</span>
+			<span>:</span>
+			<span>#{text}</span>
+		</div>
+	</div>
+
+	<!-- loading panel -->
+	<div class="screen-alert" id="alert_loading">
+		<span>Please wait ...</span>
+	</div>
+</body>

@@ -39,7 +39,7 @@ div{
 }
 
 .col-order{
-	width: 40px;
+	width: 30px;
 }
 
 .btn-margin-top{
@@ -285,6 +285,7 @@ div{
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
+	min-width: 800px;
 }
 .right-panel-content{
 	width: 100%;

@@ -82,12 +82,12 @@ MapCloud.UsersPanel = MapCloud.Class({
 			email = user.email;
 			role = user.role;
 			html += "<div class='row' uname='" + name + "'>"
-				+ 	"	<div class='col-md-1'>" + (i+1) + "</div>"
-				+	"	<div class='col-md-2'>" + name + "</div>"
-				+	"	<div class='col-md-2'>"	+ alias + "</div>"
-				+	"	<div class='col-md-3'>"	+ email + "</div>"
-				+	"	<div class='col-md-2'>"	+ role + "</div>"
-				+	"	<div class='col-md-2'>"
+				+ 	"	<div class='col-md-1 col-xs-1'>" + (i+1) + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>" + name + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>"	+ alias + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>"	+ email + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>"	+ role + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>"
 				+	"		<a href='javascript:void(0)' class='oper enter-user'>访问</a>"
 				+	"		<a href='javascript:void(0)' class='oper remove-user'>删除</a>"
 				+	"	</div>"
@@ -415,8 +415,8 @@ MapCloud.UsersPanel = MapCloud.Class({
 				continue;
 			}
 			html += "<div class='row'>"
-				+ 	"	<div class='col-md-1'>" + (i+1) + "</div>"
-				+	"	<div class='col-md-2'>" + name + "</div>"
+				+ 	"	<div class='col-md-1 col-xs-1'>" + (i+1) + "</div>"
+				+	"	<div class='col-md-2 col-xs-2'>" + name + "</div>"
 				+	"</div>";
 		}
 		that.panel.find(".online-user-list").html(html);

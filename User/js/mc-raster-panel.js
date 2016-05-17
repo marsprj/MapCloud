@@ -165,13 +165,13 @@ MapCloud.RasterPanel = MapCloud.Class({
 			}
 			name = dataSource.name;
 			html += '<div class="row" dname="' + name + '">'
-				+	'	<div class="col-md-1 col-md-20px">'
+				+	'	<div class="col-md-1 col-xs-1 col-md-20px">'
 				+	'		<div class="glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate"></div>'
 				+	'	</div>'
-				+	'	<div class="col-md-1 col-md-20px">'
+				+	'	<div class="col-md-1 col-xs-1 col-md-20px">'
 				+	'		<i class="db-icon list-icon"></i>'
 				+	'	</div>'
-				+	'	<div class="col-md-7 db-tree-name">' + name  + '</div>'
+				+	'	<div class="col-md-7 col-xs-7 db-tree-name">' + name  + '</div>'
 				+	'</div>'
 				+ 	'<ul class="nav folder-tree" dname="' + name + '">'
 				+	'	<li>'
@@ -226,28 +226,28 @@ MapCloud.RasterPanel = MapCloud.Class({
 			engine = dataSource.engine;
 			var conObj = this.getDataSourceInfo(constr);
 			html += '<div class="row" dname="' + name + '">'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+		(i+1)
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	     	name
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+			conObj.server
 				+	'	</div>'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+			conObj.instance
 				+	'	</div>'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+			conObj.database
 				+	'	</div>'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+			conObj.user
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+			conObj.password
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	'		<a href="javascript:void(0)" class="oper enter-db">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-db">删除</a>'
 				+	'	</div>'
@@ -491,8 +491,8 @@ MapCloud.RasterPanel = MapCloud.Class({
 				
 
 				html += "<div class='row row-file' fpath='" + path + "'>"
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>"
+				+ "<div class='col-md-1 col-xs-1 row'>"
+				+ "<div class='col-md-6 col-xs-6'>"
 
 				if(this.source != null){
 					html += "	<input type='radio' name='chooseRaster'>";
@@ -500,18 +500,18 @@ MapCloud.RasterPanel = MapCloud.Class({
 					html += "		<input type='checkbox' name='" + name + "'>";
 				}
 				html += "</div>"
-				+ 	"<div class='col-md-6'>"
+				+ 	"<div class='col-md-6 col-xs-6'>"
 				+ 	"<i class='fa fa-file-o'></i>"
 				+ 	"</div>";
 
 				html+= "</div>"
-				+ "<div class='col-md-3 row-fname'>"
+				+ "<div class='col-md-3 col-xs-3 row-fname'>"
 				+ "		<span>" + name + "</span>"
 				+ "</div>"
-				+ "<div class='col-md-1'>文件</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'>" + size + "</div>"
+				+ "<div class='col-md-1 col-xs-1'>文件</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + accessTime + "</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + lastTime + "</div>"
+				+ "<div class='col-md-1 col-xs-1'>" + size + "</div>"
 				+ "</div>";
 				var sourceName = this.panel.find("#datasource_tab .current-db").html();
 				var imagePath = this.panel.find(".current-path").val();
@@ -528,8 +528,8 @@ MapCloud.RasterPanel = MapCloud.Class({
 				var lastTime = l.lastTime;
 				var path = l.path;
 				html += "<div class='row row-folder' fpath='" + path + "'>"
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>";
+				+ "<div class='col-md-1 col-xs-1 row'>"
+				+ "<div class='col-md-6 col-xs-6'>";
 
 				if(this.source != null){
 					html += "	<input type='radio' name='chooseRaster' disabled>";
@@ -538,19 +538,19 @@ MapCloud.RasterPanel = MapCloud.Class({
 					html += "	<input type='checkbox' name='" + name + "'>"
 				}
 				html += "</div>"
-				+ 	"<div class='col-md-6'>"
+				+ 	"<div class='col-md-6 col-xs-6'>"
 				+ 	"<i class='fa fa-folder-o'></i>"
 				+ 	"</div>";
 				
 				html += "</div>"
-				+ "<div class='col-md-3 row-fname'>"
+				+ "<div class='col-md-3 col-xs-3 row-fname'>"
 				// + "		<i class='fa fa-folder-o'></i>"
 				+ "		<span>" + name + "</span>"
 				+ "</div>"
-				+ "<div class='col-md-1'>文件夹</div>"
-				+ "<div class='col-md-3'>" + ((accessTime == null)?(" "):accessTime) +  "</div>"
-				+ "<div class='col-md-3'>" + ((lastTime == null)?(" "):lastTime) + "</div>"
-				+ "<div class='col-md-1'></div>"
+				+ "<div class='col-md-1 col-xs-1'>文件夹</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + ((accessTime == null)?(" "):accessTime) +  "</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + ((lastTime == null)?(" "):lastTime) + "</div>"
+				+ "<div class='col-md-1 col-xs-1'></div>"
 				+ "</div>";			
 			}			
 		}
@@ -656,35 +656,35 @@ MapCloud.RasterPanel = MapCloud.Class({
 		}
 		var html = "";
 		html += "<div class='row'>"
-		+ "		<div class='col-md-3'>名称</div>"
-		+ "		<div class='col-md-8'>" + raster.name + "</div>"
+		+ "		<div class='col-md-3 col-xs-3'>名称</div>"
+		+ "		<div class='col-md-8 col-xs-8'>" + raster.name + "</div>"
 		+ "	</div>"
 		+ "	<div class='row'>"
-		+ "		<div class='col-md-3'>格式</div>"
-		+ "		<div class='col-md-8'>" + raster.format + "</div>"
+		+ "		<div class='col-md-3 col-xs-3'>格式</div>"
+		+ "		<div class='col-md-8 col-xs-8'>" + raster.format + "</div>"
 		+ "	</div>"
 		+ "	<div class='row'>"
-		+ "		<div class='col-md-3'>波段</div>"
-		+ "		<div class='col-md-8'>" + raster.bands + "</div>"
+		+ "		<div class='col-md-3 col-xs-3'>波段</div>"
+		+ "		<div class='col-md-8 col-xs-8'>" + raster.bands + "</div>"
 		+ "	</div>"
 		+ "	<div class='row'>"
-		+ "		<div class='col-md-3'>空间参考</div>"
-		+ "		<div class='col-md-8'>" + raster.srid + "</div>"
+		+ "		<div class='col-md-3 col-xs-3'>空间参考</div>"
+		+ "		<div class='col-md-8 col-xs-8'>" + raster.srid + "</div>"
 		+ "	</div>"
 		+ "	<div class='row'>"
-		+ "		<div class='col-md-3'>宽度</div>"
-		+ "		<div class='col-md-8'>" + raster.width + "</div>"
+		+ "		<div class='col-md-3 col-xs-3'>宽度</div>"
+		+ "		<div class='col-md-8 col-xs-8'>" + raster.width + "</div>"
 		+ "	</div>"		
 		+ "	<div class='row'>"
-		+ "		<div class='col-md-3'>高度</div>"
-		+ "		<div class='col-md-8'>" + raster.height + "</div>"
+		+ "		<div class='col-md-3  col-xs-3'>高度</div>"
+		+ "		<div class='col-md-8 col-xs-8'>" + raster.height + "</div>"
 		+ "	</div>"	;
 
 		var extent = raster.extent;
 		if(extent != null){
 			html += "	<div class='row'>"
-			+ "		<div class='col-md-3'>范围</div>"
-			+ "		<div class='col-md-8'>" + extent.xmin + "," + extent.ymin + ","
+			+ "		<div class='col-md-3 col-xs-3'>范围</div>"
+			+ "		<div class='col-md-8 col-xs-8'>" + extent.xmin + "," + extent.ymin + ","
 			+ 		extent.xmax + "," + extent.ymax +  "</div>"
 			+ "	</div>"	;
 		}

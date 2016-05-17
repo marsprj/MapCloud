@@ -397,11 +397,11 @@ MapCloud.DataPanel = MapCloud.Class({
 				srid = "";
 			}
 			html += "<div class='row' sname='" + name +"'>"
-				+	'	<div class="col-md-1">' + (i+1) + "</div>"
-				+	'	<div class="col-md-4">' + name + "</div>"
-				+	'	<div class="col-md-3">' + geomType + "</div>"
-				+	'	<div class="col-md-2">' + srid + "</div>"
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-1 col-xs-1">' + (i+1) + "</div>"
+				+	'	<div class="col-md-4 col-xs-4">' + name + "</div>"
+				+	'	<div class="col-md-3 col-xs-3">' + geomType + "</div>"
+				+	'	<div class="col-md-2 col-xs-2">' + srid + "</div>"
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	'		<a href="javascript:void(0)" class="oper enter-dataset">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-dataset">删除</a>'
 				+	'	</div>'
@@ -590,50 +590,50 @@ MapCloud.DataPanel = MapCloud.Class({
 		}
 		var html = "";
 		html += "<div class='row'>"
-			+ 	"	<div class='col-md-3'>名称</div>" 
-			+	"	<div class='col-md-6'>" + dataSet.name + "</div>"
+			+ 	"	<div class='col-md-3 col-xs-3'>名称</div>" 
+			+	"	<div class='col-md-6 col-xs-6'>" + dataSet.name + "</div>"
 			+	"</div>";
 		if(dataSet.type != null){
 			html+=  "<div class='row'>"
-				+	"	<div class='col-md-3'>类型</div>"
-				+	"	<div class='col-md-6'>" + dataSet.type + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>类型</div>"
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.type + "</div>"
 				+	"</div>";
 		}
 		if(dataSet.geometryType != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>几何类型</div>"			
-				+	"	<div class='col-md-6'>" + dataSet.geometryType + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>几何类型</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.geometryType + "</div>"
 				+	"</div>";
 		}
 		if(dataSet.count != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>个数</div>"			
-				+	"	<div class='col-md-6'>" + dataSet.count + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>个数</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.count + "</div>"
 				+	"</div>";
 		}
 		if(dataSet.srid != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>空间参考</div>"			
-				+	"	<div class='col-md-6'>" + dataSet.srid + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>空间参考</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.srid + "</div>"
 				+	"</div>";
 		}
 		var extent = dataSet.extent;
 		if(extent != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>范围</div>"			
-				+	"	<div class='col-md-6'>东 :" + extent.xmax + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>范围</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>东 :" + extent.xmax + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
-				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>西 :" + extent.xmin + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'></div>"
+				+	"	<div class='col-md-6 col-xs-6'>西 :" + extent.xmin + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
-				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>南 :" + extent.ymin + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'></div>"
+				+	"	<div class='col-md-6 col-xs-6'>南 :" + extent.ymin + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
-				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>北 :" + extent.ymax + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'></div>"
+				+	"	<div class='col-md-6 col-xs-6'>北 :" + extent.ymax + "</div>"
 				+	"</div>";		
 		}
 
@@ -663,13 +663,13 @@ MapCloud.DataPanel = MapCloud.Class({
 			type = field.type;
 			length = field.length;
 			html += "<div class='row'>"
-				+ 	"	<div class='col-md-4'>"
+				+ 	"	<div class='col-md-4 col-xs-4'>"
 				+ 			name 
 				+ 	"	</div>"
-				+ 	"	<div class='col-md-3'>"
+				+ 	"	<div class='col-md-3 col-xs-3'>"
 				+ 			type
 				+ 	"	</div>"
-				+ 	"	<div class='col-md-3'>"
+				+ 	"	<div class='col-md-3 col-xs-3'>"
 				+ 			((length == null)?"":length)
 				+ 	"	</div>"				
 				+	"</div>";
@@ -869,18 +869,18 @@ MapCloud.DataPanel = MapCloud.Class({
 
 		// 右侧列表
 		html = 	"<div class='row' sname='world_vector' tname='矢量地图'>"
-			+	"	<div class='col-md-1'>1</div>"
-			+	"	<div class='col-md-3'>矢量地图</div>"
-			+	"	<div class='col-md-4'>矢量地图</div>"
-			+	"	<div class='col-md-3'>"
+			+	"	<div class='col-md-1 col-xs-1'>1</div>"
+			+	"	<div class='col-md-3 col-xs-3'>矢量地图</div>"
+			+	"	<div class='col-md-4 col-xs-4'>矢量地图</div>"
+			+	"	<div class='col-md-3 col-xs-3'>"
 			+	"		<a href='javascript:void(0)' class='oper enter-tile'>进入</a>"
 			+	"	</div>"
 			+	"</div>"
 			+ 	"<div class='row' sname='world_image' tname='影像地图'>"
-			+	"	<div class='col-md-1'>2</div>"
-			+	"	<div class='col-md-3'>影像地图</div>"
-			+	"	<div class='col-md-4'>影像地图</div>"
-			+	"	<div class='col-md-3'>"
+			+	"	<div class='col-md-1 col-xs-1'>2</div>"
+			+	"	<div class='col-md-3 col-xs-3'>影像地图</div>"
+			+	"	<div class='col-md-4 col-xs-4'>影像地图</div>"
+			+	"	<div class='col-md-3 col-xs-3'>"
 			+	"		<a href='javascript:void(0)' class='oper enter-tile'>进入</a>"
 			+	"	</div>"
 			+	"</div>";

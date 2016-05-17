@@ -1242,6 +1242,7 @@ ul#ribbon_tabs li{
 	float: right;
 	width: 400px;
 	border-left: 1px solid #ccc;
+	min-width: 400px;
 }
 .page-heading{
 	margin-bottom: 20px;
@@ -1253,12 +1254,15 @@ ul#ribbon_tabs li{
 	margin-right: 10px;
 }
 .map-info-row{
-	padding: 0px 10px;
+	/*padding: 0px 10px;*/
 	color: #767676;
 	margin: 12px;
 }
 .map-info-row span{
 	display: inline-block;
+}
+.map-info-row [class*="col-"]{
+	padding: 4px;
 }
 .map-info-layer-heading{
 	color: #767676;
@@ -1267,6 +1271,7 @@ ul#ribbon_tabs li{
 	width: 60px;
 	text-align: right;
 	margin-right: 6px;	
+
 }
 
 #map-infos{
@@ -1926,7 +1931,7 @@ ul.layers_row li:before {
 	display: block;
 	width: 200px;
 	height: 200px;
-	margin: 10px;
+	margin: 5px;
 }
 
 .map-thumb{

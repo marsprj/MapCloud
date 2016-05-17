@@ -812,7 +812,7 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	setMaps : function(maps){
 		this.maps = maps;
-		var mapSize = 220;
+		var mapSize = 210;
 		var rowCount = Math.floor($(".map-list-col").height()/mapSize);
 		var colCount = Math.floor($("#maps_list_ul").width()/mapSize);
 
@@ -826,29 +826,35 @@ MapCloud.Ribbon = MapCloud.Class({
 		rightWidthB = parseInt(rightWidthB.slice(0,rightWidthB.lastIndexOf("px")));
 		var colCountFloor = Math.floor(leftWidthB/mapSize);
 		// 四舍五入的
-		var colCountRound = Math.round(leftWidthB/mapSize);
-		if(colCountFloor == colCountRound){
-			// 右边往左边
-			var leftWidth = mapSize * colCountRound; 
-			var addWidth =  leftWidthB - leftWidth;
-			var rightWidth = rightWidthB + addWidth;
-			$(".map-list-info").css("width",rightWidth + "px");
-			var leftWidth = "calc( 100% - " + rightWidth + "px)";
-			$(".map-list-thum").css("width",leftWidth);
+		// var colCountRound = Math.round(leftWidthB/mapSize);
+		// if(colCountFloor == colCountRound){
+		// 	// 右边往左边
+		// 	var leftWidth = mapSize * colCountRound; 
+		// 	var addWidth =  leftWidthB - leftWidth;
+		// 	var rightWidth = rightWidthB + addWidth;
+		// 	$(".map-list-info").css("width",rightWidth + "px");
+		// 	var leftWidth = "calc( 100% - " + rightWidth + "px)";
+		// 	$(".map-list-thum").css("width",leftWidth);
 
 
-		}else if(colCountFloor < colCountRound){
-			//左边往右边挪
-			var leftWidth = mapSize * colCountRound;
-			var addWidth =  leftWidth - leftWidthB;
-			// var rightWidthB
-			var rightWidth = rightWidthB - addWidth;
-			$(".map-list-info").css("width",rightWidth + "px");
-			var leftWidth = "calc( 100% - " + rightWidth + "px)";
-			$(".map-list-thum").css("width",leftWidth);
-		}
+		// }else if(colCountFloor < colCountRound){
+		// 	//左边往右边挪
+		// 	var leftWidth = mapSize * colCountRound;
+		// 	var addWidth =  leftWidth - leftWidthB;
+		// 	// var rightWidthB
+		// 	var rightWidth = rightWidthB - addWidth;
+		// 	$(".map-list-info").css("width",rightWidth + "px");
+		// 	var leftWidth = "calc( 100% - " + rightWidth + "px)";
+		// 	$(".map-list-thum").css("width",leftWidth);
+		// }
+		var floorCountLeftWidth = mapSize * colCountFloor;
+		var delta = leftWidthB - floorCountLeftWidth;
+		var marginWidth = Math.floor(delta / colCountFloor);
+		var mapSizeMarginRight = 5 + marginWidth;
+		this.mapSizeMarginRight = mapSizeMarginRight;
 
-		var count = rowCount * colCountRound;
+
+		var count = rowCount * colCountFloor;
 		this.maxCount = count;
 		var pageCount = Math.ceil(maps.length / this.maxCount);
 		// 页数
@@ -1015,6 +1021,9 @@ MapCloud.Ribbon = MapCloud.Class({
 				+ 	"</li>";	
 		}
 		$("#maps_list_ul").html(html);
+		if(this.mapSizeMarginRight != null){
+			$("#maps_list_ul li").css("margin-right",this.mapSizeMarginRight + "px");
+		}
 
 		//  展示第一个
 		var firstMap = $("#maps_list_ul").find("li").first();

@@ -194,7 +194,7 @@ MapCloud.ServicePanel = MapCloud.Class({
 				+	'	<div class="col-md-3 col-xs-3">'
 				+			extentStr
 				+	'	</div>'
-				+	'	<div class="col-md-1 col-xs-1">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				// +	'		<a href="javascript:void(0)" class="oper more-service">详细</a>'
 				+	'		<a href="javascript:void(0)" class="oper enter-service">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-service">删除</a>'

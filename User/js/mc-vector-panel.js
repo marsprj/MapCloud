@@ -180,13 +180,13 @@ MapCloud.VectorPanel = MapCloud.Class({
 			}
 			name = dataSource.name;
 			html += '<div class="row" dname="' + name + '">'
-				+	'	<div class="col-md-1 col-md-20px">'
+				+	'	<div class="col-md-1 col-xs-1 col-md-20px">'
 				+	'		<div class="glyphicon glyphicon-chevron-right mc-icon mc-icon-right mc-icon-rotate"></div>'
 				+	'	</div>'
-				+	'	<div class="col-md-1 col-md-20px">'
+				+	'	<div class="col-md-1 col-xs-1 col-md-20px">'
 				+	'		<i class="db-icon list-icon"></i>'
 				+	'	</div>'
-				+	'	<div class="col-md-7 db-tree-name">' + name  + '</div>'
+				+	'	<div class="col-md-7 col-xs-7 db-tree-name">' + name  + '</div>'
 				+	'</div>';
 		}
 		this.panel.find(".vector-db-tree").html(html);
@@ -230,28 +230,28 @@ MapCloud.VectorPanel = MapCloud.Class({
 			engine = dataSource.engine;
 			var conObj = this.getDataSourceInfo(constr);
 			html += '<div class="row" dname="' + name + '">'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+		(i+1)
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	     	name
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+			conObj.server
 				+	'	</div>'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+			conObj.instance
 				+	'	</div>'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+			conObj.database
 				+	'	</div>'
-				+	'	<div class="col-md-1">'
+				+	'	<div class="col-md-1 col-xs-1">'
 				+			conObj.user
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+			conObj.password
 				+	'	</div>'
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	'		<a href="javascript:void(0)" class="oper enter-db">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-db">删除</a>'
 				+	'	</div>'
@@ -466,11 +466,11 @@ MapCloud.VectorPanel = MapCloud.Class({
 				srid = "";
 			}
 			html += "<div class='row' sname='" + name +"'>"
-				+	'	<div class="col-md-1">' + (i+1) + "</div>"
-				+	'	<div class="col-md-4">' + name + "</div>"
-				+	'	<div class="col-md-3">' + geomType + "</div>"
-				+	'	<div class="col-md-2">' + srid + "</div>"
-				+	'	<div class="col-md-2">'
+				+	'	<div class="col-md-1 col-xs-1">' + (i+1) + "</div>"
+				+	'	<div class="col-md-4 col-xs-4">' + name + "</div>"
+				+	'	<div class="col-md-3 col-xs-3">' + geomType + "</div>"
+				+	'	<div class="col-md-2 col-xs-2">' + srid + "</div>"
+				+	'	<div class="col-md-2 col-xs-2">'
 				+	'		<a href="javascript:void(0)" class="oper enter-dataset">进入</a>'
 				+	'		<a href="javascript:void(0)" class="oper remove-dataset">删除</a>'
 				+	'	</div>'
@@ -659,50 +659,50 @@ MapCloud.VectorPanel = MapCloud.Class({
 		}
 		var html = "";
 		html += "<div class='row'>"
-			+ 	"	<div class='col-md-3'>名称</div>" 
-			+	"	<div class='col-md-6'>" + dataSet.name + "</div>"
+			+ 	"	<div class='col-md-3 col-xs-3'>名称</div>" 
+			+	"	<div class='col-md-6 col-xs-6'>" + dataSet.name + "</div>"
 			+	"</div>";
 		if(dataSet.type != null){
 			html+=  "<div class='row'>"
-				+	"	<div class='col-md-3'>类型</div>"
-				+	"	<div class='col-md-6'>" + dataSet.type + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>类型</div>"
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.type + "</div>"
 				+	"</div>";
 		}
 		if(dataSet.geometryType != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>几何类型</div>"			
-				+	"	<div class='col-md-6'>" + dataSet.geometryType + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>几何类型</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.geometryType + "</div>"
 				+	"</div>";
 		}
 		if(dataSet.count != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>个数</div>"			
-				+	"	<div class='col-md-6'>" + dataSet.count + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>个数</div>"			
+				+	"	<div class='col-md-6 col-xs-3'>" + dataSet.count + "</div>"
 				+	"</div>";
 		}
 		if(dataSet.srid != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>空间参考</div>"			
-				+	"	<div class='col-md-6'>" + dataSet.srid + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>空间参考</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>" + dataSet.srid + "</div>"
 				+	"</div>";
 		}
 		var extent = dataSet.extent;
 		if(extent != null){
 			html+=	"<div class='row'>"
-				+	"	<div class='col-md-3'>范围</div>"			
-				+	"	<div class='col-md-6'>东 :" + extent.xmax + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'>范围</div>"			
+				+	"	<div class='col-md-6 col-xs-6'>东 :" + extent.xmax + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
-				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>西 :" + extent.xmin + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'></div>"
+				+	"	<div class='col-md-6 col-xs-6'>西 :" + extent.xmin + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
-				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>南 :" + extent.ymin + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'></div>"
+				+	"	<div class='col-md-6 col-xs-6'>南 :" + extent.ymin + "</div>"
 				+	"</div>"
 				+	"<div class='row'>"
-				+	"	<div class='col-md-3'></div>"
-				+	"	<div class='col-md-6'>北 :" + extent.ymax + "</div>"
+				+	"	<div class='col-md-3 col-xs-3'></div>"
+				+	"	<div class='col-md-6 col-xs-6'>北 :" + extent.ymax + "</div>"
 				+	"</div>";		
 		}
 
@@ -732,13 +732,13 @@ MapCloud.VectorPanel = MapCloud.Class({
 			type = field.type;
 			length = field.length;
 			html += "<div class='row'>"
-				+ 	"	<div class='col-md-4'>"
+				+ 	"	<div class='col-md-4 col-xs-4'>"
 				+ 			name 
 				+ 	"	</div>"
-				+ 	"	<div class='col-md-3'>"
+				+ 	"	<div class='col-md-3 col-xs-3'>"
 				+ 			type
 				+ 	"	</div>"
-				+ 	"	<div class='col-md-3'>"
+				+ 	"	<div class='col-md-3 col-xs-3'>"
 				+ 			((length == null)?"":length)
 				+ 	"	</div>"				
 				+	"</div>";
