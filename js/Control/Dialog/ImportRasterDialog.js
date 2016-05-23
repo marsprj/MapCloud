@@ -143,8 +143,8 @@ MapCloud.ImportRasterDialog = MapCloud.Class(MapCloud.Dialog,{
 			var tmp = path.lastIndexOf("/");
 			rasterName = path.slice(tmp+1,path.length);
 			html += "<div class='row'>"
-			+ "<div class='col-md-6 fpath'>" + path + "</div>"
-			+ "<div class='col-md-6 col-md-edit rname'><span>" + rasterName + "</span></div>"
+			+ "<div class='col-md-6 col-xs-6 fpath'>" + path + "</div>"
+			+ "<div class='col-md-6 col-xs-6 col-md-edit rname'><span>" + rasterName + "</span></div>"
 			+ "</div>";
 		}
 		this.panel.find(".import-list-div").html(html);

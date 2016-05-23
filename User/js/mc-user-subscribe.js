@@ -17,8 +17,5 @@ $().ready(function(){
     
     subManager = user.getSubManager();
     MapCloud.subPanel = new MapCloud.SubPanel("user_sub_panel");
-    MapCloud.aqi_city_dialog = new MapCloud.AQICityDialog("aqi_city_dialog");
-    
-    // subManager.setSubParams("base","gc_aqi_ranking","time_point","area",MapCloud.subPanel.getSub_callback);
 
 });

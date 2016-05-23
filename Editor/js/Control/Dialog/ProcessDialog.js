@@ -71,10 +71,10 @@ MapCloud.ProcessDialog = MapCloud.Class(MapCloud.Dialog,{
 			var startTime = job.startTime;
 			var endTime = job.endTime;
 			html +=  "<div class='row'>"
-				+	 "<div class='col-md-3 text-ellip' title='" + oper + "'>" + oper + "</div>"
-				+ 	 "<div class='col-md-3'>" + server + "</div>"
-				+ 	 "<div class='col-md-3'>" + startTime + "</div>"
-				+ 	 "<div class='col-md-3'>" + endTime + "</div>"
+				+	 "<div class='col-md-3 col-xs-3 text-ellip' title='" + oper + "'>" + oper + "</div>"
+				+ 	 "<div class='col-md-3 col-xs-3'>" + server + "</div>"
+				+ 	 "<div class='col-md-3 col-xs-3'>" + startTime + "</div>"
+				+ 	 "<div class='col-md-3 col-xs-3'>" + endTime + "</div>"
 				+ "</div>";
 		}
 		this.panel.find(".job-list").html(html);

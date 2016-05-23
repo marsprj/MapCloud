@@ -140,6 +140,13 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	showDialog : function(source){
+		var bodyWidth = $("body").width();
+		var width = this.panel.find(".modal-dialog").width();
+		if(bodyWidth < width){
+			width = bodyWidth - 40;
+			this.panel.find(".modal-dialog").css("width",width + "px");
+		}
+		
 		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
 		this.getDataSources();
 		this.source = source;
@@ -308,32 +315,32 @@ MapCloud.TileDBDialog = MapCloud.Class(MapCloud.Dialog,{
 
 		var html = "";
 		html += "<div class='row'>"
-		+ "			<div class='col-md-4'>瓦片库名称</div>"
-		+ "			<div class='col-md-8'>" + tileStore.name + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>瓦片库名称</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + tileStore.name + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
-		+ "			<div class='col-md-4'>格式</div>"
-		+ "			<div class='col-md-8'>" + tileStore.format + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>格式</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + tileStore.format + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
-		+ "			<div class='col-md-4'>切图标准</div>"
-		+ "			<div class='col-md-8'>" + tileStore.tms + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>切图标准</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + tileStore.tms + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
-		+ "			<div class='col-md-4'>范围</div>"
-		+ "			<div class='col-md-8'>" + (tileStore.extent!=null ? tileStore.extent.toString() : "") + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>范围</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + (tileStore.extent!=null ? tileStore.extent.toString() : "") + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
-		+ "			<div class='col-md-4'>投影</div>"
-		+ "			<div class='col-md-8'>" + tileStore.srid + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>投影</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + tileStore.srid + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
-		+ "			<div class='col-md-4'>起始级别</div>"
-		+ "			<div class='col-md-8'>" + tileStore.startLevel + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>起始级别</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + tileStore.startLevel + "</div>"
 		+ "		</div>"
 		+ "		<div class='row'>"
-		+ "			<div class='col-md-4'>终止级别</div>"
-		+ "			<div class='col-md-8'>" + tileStore.endLevel + "</div>"
+		+ "			<div class='col-md-4 col-xs-4'>终止级别</div>"
+		+ "			<div class='col-md-8 col-xs-8'>" + tileStore.endLevel + "</div>"
 		+ "		</div>"	;
 		this.panel.find(".layer-infos-pane").html(html);
 	},

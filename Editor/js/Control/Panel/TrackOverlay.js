@@ -128,11 +128,11 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		var valuesHtml = this.getEditOverlayValuesHtml(kvMap);
 
 		html =  "<div class=\"row left_row\">"
-			+	"	<button type=\"button\" class=\"btn btn-default col-md-offset-3 btn-cancel\">撤销</button>"
-			+	"	<button type=\"button\" class=\"btn btn-primary btn-confirm col-md-offset-1\">保存</button>"
+			+	"	<button type=\"button\" class=\"btn btn-default col-md-offset-3 col-xs-offset-3 btn-cancel\">撤销</button>"
+			+	"	<button type=\"button\" class=\"btn btn-primary btn-confirm col-md-offset-1 col-xs-offset-1\">保存</button>"
 			+	"</div>"
 			+	"<div class=\"row left_row_wrapper left_row_title\">"
-			+  	"	<div class=\"col-md-3 left_row_title\">名称</div>"
+			+  	"	<div class=\"col-md-3 col-xs-3 left_row_title\">名称</div>"
 			+	"</div>"
 			+	"<div class=\"row left_row overlay_row\">"
 			+	"	<div class=\"input-group\">"
@@ -142,7 +142,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			+	"	</div>"						
 			+	"</div>	" 
 			+ 	"<div class=\"row left_row_wrapper left_row_title\">"
-			+	"	<div class=\"col-md-3 left_row_title\">属性</div>"
+			+	"	<div class=\"col-md-3 col-xs-3 left_row_title\">属性</div>"
 			+	"</div>"
 			+ 	valuesHtml;
 		this.panel.html(html);
@@ -152,10 +152,10 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		this.panel.find(".glyphicon-plus").each(function(){
 			$(this).click(function(){
 				var html = "<li class=\"row left_row\">"
-					+	"	<div class=\"col-md-4 overlay_key\">"
+					+	"	<div class=\"col-md-4 col-xs-4 overlay_key\">"
 					+	"		<input type=\"text\" class=\"form-control\" placeholder=\"key\" value=\"\">"
 					+	"	</div>"
-					+	"	<div class=\"input-group col-md-8 overlay_value\">"
+					+	"	<div class=\"input-group col-md-8 col-xs-8 overlay_value\">"
 					+	"		<input type=\"text\" class=\"form-control\" placeholder=\"Value\" value=\"\">"
 					+	"		<span class=\"input-group-addon glyphicon glyphicon-trash span-overlay-marker\"></span>"
 					+	"	</div>"
@@ -224,7 +224,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		var valuesHtml = this.getHitOverlayValuesHtml(kvMap);
 
 		html += "<div class=\"row left_row_wrapper left_row_title\">"
-			+  	"	<div class=\"col-md-3 left_row_title\">名称</div>"
+			+  	"	<div class=\"col-md-3 col-xs-3 left_row_title\">名称</div>"
 			+	"</div>"
 		 	+	"<div class=\"row left_row overlay_row\">"
 			+	"	<div class=\"input-group\">"
@@ -234,7 +234,7 @@ MapCloud.TrackOverlay = MapCloud.Class({
 			+	"	</div>"						
 			+	"</div>	"
 			+ 	"<div class=\"row left_row_wrapper left_row_title\">"
-			+	"	<div class=\"col-md-3 left_row_title\">属性</div>"
+			+	"	<div class=\"col-md-3 col-xs-3 left_row_title\">属性</div>"
 			+	"</div>"
 			+ 	valuesHtml;
 		this.panel.html(html);
@@ -244,8 +244,8 @@ MapCloud.TrackOverlay = MapCloud.Class({
 	showOverlaysList : function(overlays){
 		var that = this;
 		var html = 	"<div class=\"row left_row_wrapper\" style=\"margin-top: 10px\">"
-				+	"	<button type=\"button\" class=\"btn btn-default col-md-offset-3 btn-cancel\">清空</button>"
-				+	"	<button type=\"button\" class=\"btn btn-primary btn-confirm col-md-offset-1\">返回</button>"
+				+	"	<button type=\"button\" class=\"btn btn-default col-md-offset-3 col-xs-offset-3 btn-cancel\">清空</button>"
+				+	"	<button type=\"button\" class=\"btn btn-primary btn-confirm col-md-offset-1 col-xs-offset-1\">返回</button>"
 				+	"</div>";
 		html += "<ul class=\"row left_row_wrapper\" id=\"overlays_row\">";
 		for(var i = 0; i < overlays.length;++i){
@@ -280,6 +280,9 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		// 删除
 		this.panel.find(".btn-remove").each(function(){
 			$(this).click(function(){
+				if(!confirm("确定删除该标注吗？")){
+					return;
+				}
 				var index = $(this).parents(".overlay_row").attr("value");
 				mapObj.removeOverlay(parseInt(index));
 				mapObj.draw();
@@ -358,10 +361,10 @@ MapCloud.TrackOverlay = MapCloud.Class({
 		for(var key in kvMap){
 			var value = kvMap[key];
 			html += "<li class=\"row left_row\">"
-				+	"	<div class=\"col-md-5 overlay_key\">"
+				+	"	<div class=\"col-md-5 col-xs-5 overlay_key\">"
 				+	"		<input type=\"text\" class=\"form-control\" value=\"" +  key + "\" readonly>"
 				+	"	</div>"
-				+	"	<div class=\"col-md-7 overlay_value\">"
+				+	"	<div class=\"col-md-7 col-xs-7 overlay_value\">"
 				+	"		<input type=\"text\" class=\"form-control\" value=\"" + value + "\" readonly>"
 				+	"	</div>"
 				+	"</li>";
@@ -373,16 +376,16 @@ MapCloud.TrackOverlay = MapCloud.Class({
 	getEditOverlayValuesHtml : function(kvMap){
 		var html =  "<div class=\"row left_row_wrapper\" id=\"overlay_add_value_row\">"
 				+	"	 <button type=\"button\" class=\"btn glyphicon glyphicon-plus "
-				+	"		col-md-4 col-md-offset-4\"></button>"
+				+	"		col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4\"></button>"
 				+	"</div>"
 				+	"<ul class=\"row left_row_wrapper\" id=\"overlay_edit_values_row\">";
 		for(var key in kvMap){
 			var value = kvMap[key];
 			html += "<li class=\"row left_row\">"
-				+	"	<div class=\"col-md-4 overlay_key\">"
+				+	"	<div class=\"col-md-4  col-xs-4 overlay_key\">"
 				+	"		<input type=\"text\" class=\"form-control\" value=\"" + key + "\">"
 				+	"	</div>"
-				+	"	<div class=\"input-group col-md-8 overlay_value\">"
+				+	"	<div class=\"input-group col-md-8 col-xs-8 overlay_value\">"
 				+	"		<input type=\"text\" class=\"form-control\" value=\"" + value + "\">"
 				+	"		<span class=\"input-group-addon glyphicon glyphicon-trash span-overlay-marker\"></span>"
 				+	"	</div>"

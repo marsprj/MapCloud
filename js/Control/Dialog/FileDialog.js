@@ -153,17 +153,23 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 	},
 
 	showDialog : function(flag){
+		var bodyWidth = $("body").width();
+		var width = this.panel.find(".modal-dialog").width();
+		if(bodyWidth < width){
+			width = bodyWidth - 40;
+			this.panel.find(".modal-dialog").css("width",width + "px");
+		}
 		this.cleanup();
 
 		this.flag = flag;
 		if(this.flag != null){
 			this.panel.find(".btn-confirm").html("选择");
 			this.panel.find(".btn-group-tool").css("display","none");
-			this.panel.find("#current_path").parent().removeClass("col-md-8").addClass("col-md-12");
+			this.panel.find("#current_path").parent().removeClass("col-md-8").addClass("col-md-12 col-xs-12");
 		}else{
 			this.panel.find(".btn-confirm").html("确定");
 			this.panel.find(".btn-group-tool").css("display","block");
-			this.panel.find("#current_path").parent().addClass("col-md-8").removeClass("col-md-12");
+			this.panel.find("#current_path").parent().addClass("col-md-8 col-xs-8").removeClass("col-md-12 col-xs-12");
 		}
 
 		this.panel.modal();
@@ -323,9 +329,8 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 				
 
 				html += "<div class='row row-file' fpath='" + path + "'>"
-				// + "<div class='col-md-1'>";
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>"
+				+ "<div class='col-md-1 col-xs-1 row'>"
+				+ "<div class='col-md-6 col-xs-6'>"
 
 				if(this.flag == "choose-shp"){
 					var fileFix = name.slice(name.lastIndexOf(".")+1,name.length);
@@ -354,19 +359,19 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					html += "		<input type='checkbox' name='" + name + "'>";
 				}
 				html += "</div>"
-				+ 	"<div class='col-md-6'>"
+				+ 	"<div class='col-md-6 col-xs-6'>"
 				+ 	"<i class='fa fa-file-o'></i>"
 				+ 	"</div>";
 
 				html+= "</div>"
-				+ "<div class='col-md-3 row-fname'>"
+				+ "<div class='col-md-3 col-xs-3 row-fname'>"
 				// + "		<i class='fa fa-file-o'></i>"
 				+ "		<span>" + name + "</span>"
 				+ "</div>"
-				+ "<div class='col-md-1'>文件</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'>" + size + "</div>"
+				+ "<div class='col-md-1 col-xs-1'>文件</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + accessTime + "</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + lastTime + "</div>"
+				+ "<div class='col-md-1 col-xs-1'>" + size + "</div>"
 				+ "</div>";
 			}else if(l instanceof GeoBeans.Folder){
 				var name = l.name;
@@ -374,8 +379,8 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 				var lastTime = l.lastTime;
 				var path = l.path;
 				html += "<div class='row row-folder' fpath='" + path + "'>"
-				+ "<div class='col-md-1 row'>"
-				+ "<div class='col-md-6'>";
+				+ "<div class='col-md-1 col-xs-1 row'>"
+				+ "<div class='col-md-6 col-xs-6'>";
 
 				if(this.flag == null ){
 					html += "	<input type='checkbox' name='" + name + "'>"
@@ -383,19 +388,19 @@ MapCloud.FileDialog = MapCloud.Class(MapCloud.Dialog, {
 					html += "	<input type='checkbox' name='" + name + "' disabled>"
 				}
 				html += "</div>"
-				+ 	"<div class='col-md-6'>"
+				+ 	"<div class='col-md-6 col-xs-6'>"
 				+ 	"<i class='fa fa-folder-o'></i>"
 				+ 	"</div>";
 				
 				html += "</div>"
-				+ "<div class='col-md-3 row-fname'>"
+				+ "<div class='col-md-3 col-xs-3 row-fname'>"
 				// + "		<i class='fa fa-folder-o'></i>"
 				+ "		<span>" + name + "</span>"
 				+ "</div>"
-				+ "<div class='col-md-1'>文件夹</div>"
-				+ "<div class='col-md-3'>" + accessTime + "</div>"
-				+ "<div class='col-md-3'>" + lastTime + "</div>"
-				+ "<div class='col-md-1'></div>"
+				+ "<div class='col-md-1 col-xs-1'>文件夹</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + accessTime + "</div>"
+				+ "<div class='col-md-3 col-xs-3'>" + lastTime + "</div>"
+				+ "<div class='col-md-1 col-xs-1'></div>"
 				+ "</div>";			
 			}
 		}

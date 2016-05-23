@@ -79,6 +79,13 @@ MapCloud.BaseLayerDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	showDialog : function(type){
+		var bodyWidth = $("body").width();
+		var width = this.panel.find(".modal-dialog").width();
+		if(bodyWidth < width){
+			width = bodyWidth - 40;
+			this.panel.find(".modal-dialog").css("width",width + "px");
+		}
+		
 		MapCloud.Dialog.prototype.showDialog.apply(this, arguments);
 		this.showMap(type);
 	},

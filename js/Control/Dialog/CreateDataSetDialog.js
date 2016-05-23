@@ -83,26 +83,26 @@ MapCloud.CreateDataSetDialog = MapCloud.Class(MapCloud.Dialog,{
 		if(count == 0){
 			this.panel.find(".fields-form").empty();
 			html += '<div class="form-group form-group-header">'
-				+	'	<div class="col-md-4">名称</div>'
-				+	'	<div class="col-md-4">类型</div>'
-				+	'	<div class="col-md-4">长度</div>'
+				+	'	<div class="col-md-4 col-xs-4">名称</div>'
+				+	'	<div class="col-md-4 col-xs-4">类型</div>'
+				+	'	<div class="col-md-4 col-xs-4">长度</div>'
 				+	'</div>';
 		}
 		html += '<div class="form-group form-group-sm">'
-			+	'	<div class="col-md-4">'
+			+	'	<div class="col-md-4 col-xs-4">'
 			+	'		<input class="form-control field-name" type="text">'
 			+	'	</div>'
-			+	'	<div class="col-md-4">'
+			+	'	<div class="col-md-4 col-xs-4">'
 			+	'		<select class="form-control field-type">'
 			+	'			<option>int</option>'
 			+	'			<option>string</option>'
 			+	'			<option>double</option>'
 			+	'		</select>'
 			+	'	</div>'
-			+	'	<div class="col-md-2">'
+			+	'	<div class="col-md-2 col-xs-2">'
 			+	'		<input class="form-control field-length" value="32" type="text" readonly="">'
 			+	'	</div>'			
-			+	'	<div class="col-md-2">'
+			+	'	<div class="col-md-2 col-xs-2">'
 			+	'		<button class="btn btn-link btn-remove-field">删除</button>'
 			+	'	</div>'
 			+	'</div>';

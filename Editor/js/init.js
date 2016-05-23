@@ -20,12 +20,8 @@ $().ready(function(){
 
 	MapCloud.account = new MapCloud.Account("login-panel","register-panel");
 
-	MapCloud.notify
-		= new MapCloud.Notify("container","alert_loading");
-	MapCloud.get_maps_dlg 
-		= new MapCloud.GetMapsDialog("getMapsDialog");
-	MapCloud.map_mgr_dialog 
-		= new MapCloud.MapMgrDialog("mapMgrDialog");
+	MapCloud.notify	= new MapCloud.Notify("container","alert_loading");
+
 	MapCloud.create_map_dlg 
 		= new MapCloud.CreateMapDialog("createMapDialog");
 

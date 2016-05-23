@@ -75,7 +75,7 @@ MapCloud.SearchPanel = MapCloud.Class(MapCloud.Panel,{
 		this.registerEvent();
 
 		this.server = "/ows/" + this.userName + "/mgr";
-		this.poiManager = new GeoBeans.PoiManager("/ows/user1");
+		this.poiManager = new GeoBeans.PoiManager("user1");
 		var workspace = new GeoBeans.WFSWorkspace("tmp",this.server,"1.0.0");
 		this.aqiRankingFeatureType = new GeoBeans.FeatureType(workspace, this.aqiRankingLayer);
 		this.aqiStatFeatureType = new GeoBeans.FeatureType(workspace,this.aqiStatLayer);

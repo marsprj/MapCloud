@@ -175,8 +175,8 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 				var name = selected.text();
 				var style = styleManager.getStyle(name);
 				if(style != null){
-					styleManager.getStyleXML(name,
-					dialog.getStyleXML_callback);
+					MapCloud.notify.loading();
+					styleManager.getStyleXML(name,dialog.getStyleXML_callback);
 				}
 			});
 		});
@@ -565,6 +565,7 @@ MapCloud.StyleManagerDialog = MapCloud.Class(MapCloud.Dialog,{
 
 	//获取到的XML解析出style进行展示
 	getStyleXML_callback : function(style){
+		MapCloud.notify.hideLoading();
 		if(style == null){
 			return;
 			this.panel.find(".style-pane").css("display","none");

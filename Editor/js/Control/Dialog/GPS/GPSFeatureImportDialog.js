@@ -116,11 +116,11 @@ MapCloud.GPSFeatureImportDialog = MapCloud.Class(MapCloud.Dialog,{
 			var tmp2 = path.lastIndexOf("/");
 			tableName = path.slice(tmp2+1,tmp1);
 			html += "<div class='row'>"
-				+  "<div class='col-md-4 fpath'>" + path + "</div>"
-				+  "<div class='col-md-2'>public</div>"
-				+  "<div class='col-md-3 col-md-edit fname'><span>" + tableName + "</span></div>"
-				+  "<div class='col-md-2 col-md-edit fgeom'><span>" + "shape" + "</span></div>"
-				+  "<div class='col-md-1 col-md-edit fsrid'><span>" + "4326" + "</span></div>"
+				+  "<div class='col-md-4 col-xs-4 fpath'>" + path + "</div>"
+				+  "<div class='col-md-2 col-xs-2'>public</div>"
+				+  "<div class='col-md-3 col-xs-3 col-md-edit fname'><span>" + tableName + "</span></div>"
+				+  "<div class='col-md-2 col-xs-2 col-md-edit fgeom'><span>" + "shape" + "</span></div>"
+				+  "<div class='col-md-1 col-xs-1 col-md-edit fsrid'><span>" + "4326" + "</span></div>"
 				+ "</div>";
 		}
 

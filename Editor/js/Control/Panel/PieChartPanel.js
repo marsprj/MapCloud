@@ -377,12 +377,12 @@ MapCloud.PieChartPanel = MapCloud.Class(MapCloud.Panel,{
 			name = field.name;
 			html += "<div class='form-group form-group-sm form-group-field' fname='" 
 			+ 		name + "'>"
-			+	"	<div class='col-md-1 col-md-offset-3'>"
+			+	"	<div class='col-md-1 col-xs-1 col-md-offset-3 col-xs-offset-3'>"
 			+	"		<div class='btn btn-default colorSelector'>"
 			+	"			<div></div>"
 			+	"		</div>"
 			+	"	</div>"
-			+	"	<div class='col-md-6'>"
+			+	"	<div class='col-md-6 col-xs-6'>"
 			+	"		<span>"
 			+			name
 			+	"		</span>"

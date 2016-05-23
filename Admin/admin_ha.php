@@ -16,11 +16,11 @@
 	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
-<!--	<script type="text/javascript" src="js/mc-user-info.min.js"></script>-->
+	<script type="text/javascript" src="js/mc-admin-ha.min.js"></script>
 	
-	<script type="text/javascript" src="js/mc-ha-panel.js"></script>
+<!--	<script type="text/javascript" src="js/mc-ha-panel.js"></script>
 	<script type="text/javascript" src="js/mc-admin-ha.js"></script>
-	
+-->	
 	<title>负载均衡</title>
 </head>
 	
@@ -28,35 +28,14 @@
 	<div class="common-panel" id="ha_panel">
 		<div id="title_wrapper">
 			<div class="title_box">负载均衡</div>
-			<div class="title_bar_warpper" style="width:120px">
-				
-			</div>
 		</div>
 		<div id="ha_main_wrapper">
 			<?php
 				include_once('simple_html_dom.php');
 
-
-				// 2. create HTML Dom
 				$html = file_get_html('http://ourgis.digitalearth.cn/haproxy-stats');
 
 				$table = $html->find(".tbl");
-
-				
-
-				// echo count($table);
-
-				// $table0 = $html->find(".tbl",0);
-				// echo $table0;
-				// $table1 = $html->find(".tbl",1);
-
-				// // echo $table1;
-				// // echo count($table1->find(".tips"));
-				// $tips = $table1->find(".tips");
-				// foreach($table1->find('.tips') as $element) 
-    //   				 echo $element->outertext= '';
-    //   			$table1->class = "table table-striped";
-				// echo $table1;
 
 				$titleHtml = '';
 				foreach($html->find(".tbl") as $element)
@@ -74,7 +53,6 @@
 						$element->find(".titre",1)->innertext = '<th></th>'.$element->find(".titre",1)->innertext;
 						echo $element;
 					}
-				// echo $titleHtml;
 				?>
 		</div>
 	</div>

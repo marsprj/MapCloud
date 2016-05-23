@@ -357,6 +357,12 @@ MapCloud.VectorDBDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	showDialog : function(flag){
+		var bodyWidth = $("body").width();
+		var width = this.panel.find(".modal-dialog").width();
+		if(bodyWidth < width){
+			width = bodyWidth - 40;
+			this.panel.find(".modal-dialog").css("width",width + "px");
+		}
 		MapCloud.notify.loading();
 		this.cleanup();
 		this.panel.modal();

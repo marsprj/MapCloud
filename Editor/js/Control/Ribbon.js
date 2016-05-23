@@ -158,8 +158,6 @@ MapCloud.Ribbon = MapCloud.Class({
 				switch(index){
 				// Map Events
 				case 0:
-					// // 打开地图
-					// that.onGetMaps();
 					// 新建地图
 					that.onCreateMap();
 					break;
@@ -168,8 +166,6 @@ MapCloud.Ribbon = MapCloud.Class({
 					that.onCloseMap();
 					break;
 				case 2:
-					// // 管理地图
-					// that.onMapMgr();
 					// 删除地图
 					that.onRemoveMap();
 					break;
@@ -358,10 +354,6 @@ MapCloud.Ribbon = MapCloud.Class({
 	/**************************************************************/
 	/* Map Event                                                  */
 	/**************************************************************/
-	// 打开地图
-	onGetMaps : function(){
-		MapCloud.get_maps_dlg.showDialog();
-	},
 
 	// 新建地图
 	onCreateMap : function(){
@@ -429,11 +421,6 @@ MapCloud.Ribbon = MapCloud.Class({
 
 	saveMap_callback : function(result){
 		MapCloud.notify.showInfo(result,"保存地图");
-	},
-
-	// 管理地图
-	onMapMgr : function(){
-		MapCloud.map_mgr_dialog.showDialog();
 	},
 
 	// 地图属性

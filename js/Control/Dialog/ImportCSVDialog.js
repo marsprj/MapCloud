@@ -155,17 +155,17 @@ MapCloud.ImportCSVDialog = MapCloud.Class(MapCloud.Dialog,{
 				continue;
 			}
 			html += "<div class='row'>"
-				+ 	"	<div class='col-md-5'>"
+				+ 	"	<div class='col-md-5 col-xs-5'>"
 				+ 	"		<input class='form-control input-sm csv-field-name' type='text' value='" + field + "' disabled=''>"
 				+ 	"	</div>"
-				+	"	<div class='col-md-4'>"
+				+	"	<div class='col-md-4 col-xs-4'>"
 				+	"		<select class='form-control input-sm csv-field-type'>"
 				+ 	"			<option>int</option>"
 				+ 	"			<option>string</option>"
 				+ 	"			<option>double</option>"
 				+	"		</select>"
 				+	"	</div>"
-				+	"	<div class='col-md-3'>"
+				+	"	<div class='col-md-3 col-xs-3'>"
 				+	"		<input class='form-control input-sm csv-field-length' type='text' value='32' readonly=''>"
 				+	"	</div>"
 				+	"</div>";

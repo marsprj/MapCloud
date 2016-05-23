@@ -452,10 +452,10 @@ Radi.Earth = {
         if(leftTop != null && rightDown != null){
             leftTop = ellipsoid.cartesianToCartographic(leftTop);
             rightDown = ellipsoid.cartesianToCartographic(rightDown);
-            var xmin = Number(Cesium.Math.toDegrees(leftTop.longitude).toFixed(6));
-            var ymin = Number(Cesium.Math.toDegrees(rightDown.latitude).toFixed(6));
-            var xmax = Number(Cesium.Math.toDegrees(rightDown.longitude).toFixed(6));
-            var ymax = Number(Cesium.Math.toDegrees(leftTop.latitude).toFixed(6));
+            var xmin = Number(Cesium.Math.toDegrees(leftTop.longitude).toFixed(3));
+            var ymin = Number(Cesium.Math.toDegrees(rightDown.latitude).toFixed(3));
+            var xmax = Number(Cesium.Math.toDegrees(rightDown.longitude).toFixed(3));
+            var ymax = Number(Cesium.Math.toDegrees(leftTop.latitude).toFixed(3));
             return new GeoBeans.Envelope(xmin,ymin,xmax,ymax);
         }else{//The sky is visible in 3D
             return null;

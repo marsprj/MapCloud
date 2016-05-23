@@ -1183,26 +1183,6 @@ ul#ribbon_tabs li{
     transition: all .5s ease-in-out;
 }
 
-/*伸缩按钮*/
-#map_btn{
-	position: absolute;
-	width: 12px;
-  	height: 70px;
-  	background-color: #fff;
-  	z-index: 1000;
-  	top: 50%;
-  	margin-top: -35px;
-  	border: 1px solid #ccc;
-  	border-radius: 4px;
-  	cursor: pointer;
-  	left: 320px;
-  	display: none;
-}
-
-#map_btn_img{
-	margin-top: 30px;
-}
-
 /*map list panel*/
 #map_list_panel{
 	position: absolute;
@@ -1233,7 +1213,40 @@ ul#ribbon_tabs li{
 #maps_list_ul{
 	margin:0px;
 }
+.maps-thumb{
+	position: relative;
+	float: left;
+	display: block;
+	width: 200px;
+	height: 200px;
+	margin: 5px;
+}
 
+.map-thumb{
+	display: block;
+	width: 200px;
+	height: 160px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	background-color: #fff;
+	border: 1px solid #ddd;	
+	border-radius: 4px;
+
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+.map-thumb.selected{
+	border: 4px solid #428bca !important;
+}
+.map-thumb.enter{
+	border: 1px solid #428bca;
+}
+.map-thumb:hover{
+	border: 1px solid #428bca;
+}
 .map-list-info{
 	font-family: microsoft yahei;
 	/*padding-right: 60px;*/
@@ -1274,24 +1287,6 @@ ul#ribbon_tabs li{
 
 }
 
-#map-infos{
-	margin: 40px 40px 0 0;
-	color: #21759b;
-	display: none;
-	overflow-y: auto;
-	max-height: calc(100% - 60px);
-
-}
-
-#map-infos li{
-	margin-bottom: 6px;
-}
-#map-infos li [class*="col-"]{
-	padding: 0px 3px;
-}
-#map-infos .map-layer-info-extent{
-	min-width: 38px;
-}
 /***************************************************************************/
 /* Body End                                                    */
 /***************************************************************************/
@@ -1915,83 +1910,7 @@ ul.layers_row li:before {
 /* WMSStyleName Dialog End   														*/
 /***************************************************************************/
 
-/***************************************************************************/
-/* GetMaps Dialog Begin   														*/
-/***************************************************************************/
-#getMapsDialog .modal-body{
-	height: 600px;
-	overflow-y: auto;
-}
-#getMapsDialog .modal-dialog{
-	width: 740px;
-}
-.maps-thumb{
-	position: relative;
-	float: left;
-	display: block;
-	width: 200px;
-	height: 200px;
-	margin: 5px;
-}
 
-.map-thumb{
-	display: block;
-	width: 200px;
-	height: 160px;
-	background-size: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	
-	background-color: #fff;
-	border: 1px solid #ddd;	
-	border-radius: 4px;
-
-	-webkit-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
-}
-.map-thumb.selected{
-	border: 4px solid #428bca !important;
-}
-.map-thumb.enter{
-	border: 1px solid #428bca;
-}
-.map-thumb:hover{
-	border: 1px solid #428bca;
-}
-/***************************************************************************/
-/* GetMaps Dialog End   														*/
-/***************************************************************************/
-
-/***************************************************************************/
-/* MapMgr Dialog Begin   														*/
-/***************************************************************************/
-#mapMgrDialog .modal-body{
-	height: 600px;
-}
-
-#mapMgrDialog .modal-dialog{
-	width: 740px;
-}
-
-#mapMgrDialog .map-check{
-	position: absolute;
-	top: 60px;
-	left: 80px;
-	text-align: center;
-	display: none;
-}
-.selected .map-check{
-	display: block !important;
-}
-
-#mapMgrDialog #maps_list{
-	overflow-y: auto;
-	height: 550px;
-}
-/***************************************************************************/
-/* MapMgr Dialog End   														*/
-/***************************************************************************/
 
 /***************************************************************************/
 /* Create Map Dialog Begin   														*/
@@ -2168,7 +2087,8 @@ ul.layers_row li:before {
 .table-tree li a span,#vector_db_dialog .db-thum-pane li h6{
 	word-break: break-all;
 	display: inline-block;
-	max-width: 140px;
+	/*max-width: 140px;*/
+	max-width: calc(100% - 24px);
 	white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -2670,7 +2590,7 @@ ul.layers_row li:before {
 
 #base_layer_canvas_wrapper{
 	height: 340px;
-	width: 660px;
+	/*width: 660px;*/
 	position: relative;
 }
 #base_layer_dialog canvas{

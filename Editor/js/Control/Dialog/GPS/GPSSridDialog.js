@@ -72,6 +72,13 @@ MapCloud.GPSSridDialog = MapCloud.Class(MapCloud.Dialog,{
 	},
 
 	showDialog : function(source){
+		var bodyWidth = $("body").width();
+		var width = this.panel.find(".modal-dialog").width();
+		if(bodyWidth < width){
+			width = bodyWidth - 40;
+			this.panel.find(".modal-dialog").css("width",width + "px");
+		}
+
 		MapCloud.Dialog.prototype.showDialog.apply(this,arguments);
 		
 		this.source = source;
@@ -254,8 +261,8 @@ MapCloud.GPSSridDialog = MapCloud.Class(MapCloud.Dialog,{
 				continue;
 			}
 			html += "<div class='row' sname='" + srid.srid + "'>"
-			+ "<div class='col-md-1'>" + srid.srid + "</div>"
-			+ "<div class='col-md-11 text-ellip'>" + srid.srtext + "</div>"
+			+ "<div class='col-md-1 col-xs-1'>" + srid.srid + "</div>"
+			+ "<div class='col-md-11 col-xs-11 text-ellip'>" + srid.srtext + "</div>"
 			+ "</div>";
 		}
 		this.panel.find(".srid-list-div").html(html);

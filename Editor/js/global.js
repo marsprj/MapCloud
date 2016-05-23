@@ -1,12 +1,6 @@
 //提示对话框
 MapCloud.alert_info = null;
 
-// 打开地图
-MapCloud.get_maps_dlg = null;
-
-//管理地图
-MapCloud.map_mgr_dialog = null;
-
 //创建地图
 MapCloud.create_map_dlg = null;
 

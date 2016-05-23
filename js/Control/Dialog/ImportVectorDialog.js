@@ -201,17 +201,17 @@ MapCloud.ImportVectorDialog = MapCloud.Class(MapCloud.Dialog,{
 		var typeName = file.name.slice(0,file.name.indexOf(".zip"));
 	    
 	    var html = "<li class='list-group-item row' id='" + file.id + "'>"
-	        +      	"    <div class='col-md-3 info'>"
+	        +      	"    <div class='col-md-3 col-xs-3 info'>"
 	        +               file.name
 	        +      	"    </div>";
 
 	        
-	    html +=	"    <div class='col-md-6 progress-div'>"
+	    html +=	"    <div class='col-md-6 col-xs-6 progress-div'>"
 	        +      	"        <div class='progress progress-striped active'>"
 	        +      	"            <div class='progress-bar' role='progressbar' style='width: 0%;''></div>"
 	        +      	"        </div>"
 	        +      	"    </div>";
-	    html +=  	"   <div class='col-md-3 state'>等待上传</div>"
+	    html +=  	"   <div class='col-md-3 col-xs-3 state'>等待上传</div>"
 	        +		"</li>";
 	    return html;	          
 	},
