@@ -1,6 +1,11 @@
 var g_catalog = 
 [
     {
+        "name": "基本信息",
+        "icon": "info_36.png",
+        "link": "admin_use.php"
+    },
+    {
         "name": "用户管理",
         "icon": "user.png",
         "link": "admin_users.html"

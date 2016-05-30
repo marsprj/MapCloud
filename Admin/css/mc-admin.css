@@ -677,6 +677,25 @@ html, body {
 }
 
 
+#use_panel .panel-body{
+	height: 300px;
+	position: relative;
+}
+#use_chart{
+	height: 100%;
+}
+#use_list{
+    position: absolute;
+    right: 10px;
+    bottom: 70px;
+    width: 200px;
+    font-size: 14px;
+}
+#use_list .row{
+	margin: 10px;
+	color: #333;
+}
+
 /***************************************************************************/
 /* Admin Job End 			                                           		*/
 /***************************************************************************/

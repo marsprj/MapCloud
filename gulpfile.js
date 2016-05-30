@@ -55,6 +55,7 @@ if(platform == "win32"){
 
 	// 压缩Map5
 	var map5List = ["Map5/lib/GeoBeans.js",
+			"Map5/lib/requestNextAnimationFrame.js", 
 			'Map5/lib/GeoBeans/BaseTypes/*.js',
 			'Map5/lib/GeoBeans/*.js',
 			'Map5/lib/GeoBeans/AQI/*.js',
@@ -85,6 +86,10 @@ if(platform == "win32"){
 			'Map5/lib/GeoBeans/Layer/TileLayer.js',
 			'Map5/lib/GeoBeans/Layer/WFSLayer.js',
 			'Map5/lib/GeoBeans/Layer/WMSLayer.js',
+			'Map5/lib/GeoBeans/Layer/ClusterLayer.js',
+			'Map5/lib/GeoBeans/Layer/ImageLayer.js',
+			'Map5/lib/GeoBeans/Layer/RippleLayer.js',
+			'Map5/lib/GeoBeans/Layer/AirlineLayer.js',
 			'Map5/lib/GeoBeans/Layer/*/*.js',
 			'Map5/lib/GeoBeans/Overlay/*.js',
 			'Map5/lib/GeoBeans/Poi/*.js',
@@ -95,6 +100,7 @@ if(platform == "win32"){
 			'Map5/lib/GeoBeans/WFS/*.js',
 			'Map5/lib/GeoBeans/WMS/*.js',
 			'Map5/lib/GeoBeans/WMTS/*.js',
+			'Map5/lib/GeoBeans/Service/*.js',
 			];
 	var map5Dest = 'Map5/lib/';	
 	if(platform == "linux"){
@@ -153,6 +159,7 @@ if(platform == "win32"){
 			'MapCloud/Earth/js/AQITimeLinePanel.js',
 			'MapCloud/Earth/js/AQI24TimeLinePanel.js',
 			'MapCloud/Earth/js/ChartPanel.js',
+			'MapCloud/Earth/js/AddressService.js',
 			];
 	var earthDest = 'MapCloud/Earth/js/';
 	if(platform == "linux"){
@@ -267,7 +274,7 @@ if(platform == "win32"){
 /***************************************************************************/
 	// 统一压缩User
 	gulp.task('user-task',['user-css','user-index','user-info','user-subscribe','user-map',
-		'user-file','user-vector','user-raster','user-tile'],function(){
+		'user-file','user-vector','user-raster','user-tile','user-service'],function(){
 
 	});
 	
@@ -303,7 +310,7 @@ if(platform == "win32"){
 
 	// 压缩User info
 	var userInfoList = ["MapCloud/User/js/mc-user-info.js",
-			"MapCloud/User/js/mc-info-panel.js"
+			"MapCloud/User/js/mc-user-panel.js"
 			];
 	var userInfoDest = 'MapCloud/User/js';
 	if(platform == "linux"){
@@ -406,12 +413,26 @@ if(platform == "win32"){
 			.pipe(gulp.dest(userTileDest));
 	});
 
-
+	// 压缩User service 
+	var userServiceList = ['MapCloud/User/js/mc-user-service.js',
+			'MapCloud/User/js/mc-service-panel.js'];
+	var userServiceDest = 'MapCloud/User/js';
+	if(platform == "linux"){
+		userServiceList = changeToLinuxList(linuxPath,userServiceList);
+		userServiceDest = linuxPath + userRasterDest;
+	}
+	gulp.task('user-service',function(){
+		return gulp.src(userServiceList)
+			.pipe(uglify())
+			.pipe(concat('mc-user-service.min.js'))
+			.pipe(gulp.dest(userServiceDest));
+	});
 /***************************************************************************/
 /*		 Admin                                                     		*/
 /***************************************************************************/
 	// 统一Admin压缩
-	gulp.task('admin-task',['admin-index','admin-css','admin-users','admin-data'],function(){
+	gulp.task('admin-task',['admin-index','admin-css','admin-users','admin-data',
+		'admin-ha','admin-use'],function(){
 
 	});
 
@@ -475,6 +496,35 @@ if(platform == "win32"){
 			.pipe(gulp.dest(adminDataDest));
 	});	
 
+	// 压缩Admin ha
+	var adminFaList = ['MapCloud/Admin/js/mc-admin-ha.js',
+			'MapCloud/Admin/js/mc-ha-panel.js'];
+	var adminFaDest = 'MapCloud/Admin/js';
+	if(platform == "linux"){
+		adminFaList = changeToLinuxList(linuxPath,adminFaList);
+		adminFaDest = linuxPath + adminFaDest;
+	}
+	gulp.task('admin-ha',function(){
+		return gulp.src(adminFaList)
+			.pipe(uglify())
+			.pipe(concat('mc-admin-ha.min.js'))
+			.pipe(gulp.dest(adminFaDest));
+	});	
+
+	// 压缩Admin use
+	var adminUseList = ['MapCloud/Admin/js/mc-admin-use.js',
+			'MapCloud/Admin/js/mc-use-panel.js'];
+	var adminUseDest = 'MapCloud/Admin/js';
+	if(platform == "linux"){
+		adminUseList = changeToLinuxList(linuxPath,adminUseList);
+		adminUseDest = linuxPath + adminUseDest;
+	}
+	gulp.task('admin-use',function(){
+		return gulp.src(adminUseList)
+			.pipe(uglify())
+			.pipe(concat('mc-admin-use.min.js'))
+			.pipe(gulp.dest(adminUseDest));
+	});		
 
 /***************************************************************************/
 /*		 Guoan                                                     		*/
@@ -519,6 +569,12 @@ if(platform == "win32"){
 			.pipe(concat('guoan.min.js'))
 			.pipe(gulp.dest(guoanJsDest));
 	});		
-	gulp.task('default',['guoan-task'],function(){
+
+	// 所有
+	gulp.task('all-task',['map5-task','earth-task','common-task','editor-task',
+		'user-task','admin-task'],function(){
+
+	});
+	gulp.task('default',['all-task'],function(){
 
 	});

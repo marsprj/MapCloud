@@ -119,6 +119,7 @@ MapCloud.JobPanel = MapCloud.Class({
 		this.panel.find(".title_box").html(text);
 		this.getJobList();
 		this.setDeafaultIpStat();
+		this.getUseStat();
 	},
 
 	getJobList : function(){
@@ -320,7 +321,6 @@ MapCloud.JobPanel = MapCloud.Class({
 				this.ipChart.setOption(option);
 			}
 		}
-
 		
 
 		var that = this;
@@ -559,4 +559,37 @@ MapCloud.JobPanel = MapCloud.Class({
 		var that = MapCloud.jobPanel;
 		that.setCurrentUser(result.name);
 	},
+
+	// 获得使用情况
+	getUseStat : function(){
+
+
+	},
+
+	getUseStat : function(){
+		var that = this;
+		var params = "service=" + this.service + "&version="
+					+ this.version + "&request=RemoveMap"
+					+ "&name=" + name;
+		this.removeMapResult = null;
+		$.ajax({
+			type 	: "get",
+			url 	: this.server,
+			data 	: encodeURI(params),
+			dataType:"xml",
+			async : false,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(xml, textStatus){
+				var result = that.parseRemoveMap(xml);
+				that.removeMapResult = result;
+			},			 
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
+		});
+	}
+
+
 });
