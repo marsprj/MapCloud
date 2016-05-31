@@ -175,7 +175,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 				+	'</div>'
 				+ 	'<ul class="nav folder-tree" dname="' + name + '">'
 				+	'	<li>'
-				+	'		<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">'				+	'			<i class="fa fa-folder-o"></i>'
+				+	'		<a href="javascript:void(0)" class="file-tree tree-folder selected" fpath="/">'				+	'			<i class="fa fa-folder"></i>'
 				+	'			<span>/</span>'
 				+	'		</a>'
 				+	'	</li>'
@@ -373,7 +373,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 				var name = l.name;
 				html += "<li>"
 				+ "<a href='javascript:void(0)' class='tree-folder' fpath=\"" + l.path + "\">"
-				+ "<i class=\"fa fa-folder-o\"></i>"
+				+ "<i class=\"fa fa-folder\"></i>"
 				+ "<span>" + name + "</span>"
 				+ "</a>"
 				+ "</li>";
@@ -383,8 +383,8 @@ MapCloud.RasterPanel = MapCloud.Class({
 		currentPath = this.panel.find(".current-path").val();
 		var dbName = this.panel.find("#datasource_tab .current-db").html();
 		var node = this.panel.find(".nav[dname='" + dbName + "'] a[fpath='" + currentPath +"']");
-		node.find("i").removeClass("fa-folder-o");
-		node.find("i").addClass("fa-folder-open-o");
+		node.find("i").removeClass("fa-folder");
+		node.find("i").addClass("fa-folder-open");
 		node.parent().find("ul.nav").remove();
 		node.after(html);
 
@@ -417,8 +417,8 @@ MapCloud.RasterPanel = MapCloud.Class({
 				if(parent.find("ul.nav").length != 0 &&
 					parent.find("ul.nav").first().css("display") == "none"){
 					parent.find("ul.nav").first().css("display","block");
-					$(this).find("i").removeClass("fa-folder-o");
-					$(this).find("i").addClass("fa-folder-open-o");
+					$(this).find("i").removeClass("fa-folder");
+					$(this).find("i").addClass("fa-folder-open");
 					// var sourceName = that.panel.find("#datasource_tab .current-db").html();
 					var sourceName = $(this).parents(".folder-tree").prev().attr("dname");
 					that.panel.find("#datasource_tab .current-db").html(sourceName);
@@ -426,8 +426,8 @@ MapCloud.RasterPanel = MapCloud.Class({
 				}else if(parent.find("ul.nav").length != 0 && 
 					parent.find("ul.nav").first().css("display") == "block"){
 					parent.find("ul.nav").first().css("display","none");
-					$(this).find("i").addClass("fa-folder-o");
-					$(this).find("i").removeClass("fa-folder-open-o");
+					$(this).find("i").addClass("fa-folder");
+					$(this).find("i").removeClass("fa-folder-open");
 					// var sourceName = that.panel.find("#datasource_tab .current-db").html();
 					var sourceName = $(this).parents(".folder-tree").prev().attr("dname");
 					that.panel.find("#datasource_tab .current-db").html(sourceName);
@@ -539,7 +539,7 @@ MapCloud.RasterPanel = MapCloud.Class({
 				}
 				html += "</div>"
 				+ 	"<div class='col-md-6 col-xs-6'>"
-				+ 	"<i class='fa fa-folder-o'></i>"
+				+ 	"<i class='fa fa-folder'></i>"
 				+ 	"</div>";
 				
 				html += "</div>"

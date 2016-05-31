@@ -267,6 +267,7 @@
 }
 #fileDialog .nav>li>a>i{
   margin-right: 6px;
+  color: #FC6;
 }
 
 #fileDialog .file-list-div{
@@ -328,6 +329,9 @@
 
 #fileDialog .row-file i,#fileDialog .row-folder i{
   margin-top: 4px;
+}
+#fileDialog .row-folder .fa-folder{
+  color: #FC6;
 }
 /***************************************************************************/
 /* File dialog End                                                         */

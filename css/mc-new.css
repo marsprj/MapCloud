@@ -2447,6 +2447,7 @@ ul.layers_row li:before {
 }
 #raster_db_dialog .nav>li>a>i{
 	margin-right: 6px;
+	color: #FC6;
 }
 
 #raster_db_dialog .tool-row .btn{
@@ -2521,6 +2522,9 @@ ul.layers_row li:before {
 }
 #raster_db_dialog .row-file i, #raster_db_dialog .row-folder i {
     margin-top: 4px;
+}
+#raster_db_dialog .row-folder .fa{
+	color: #FC6;
 }
 #raster_db_dialog .raster-list-wrapper .row-fname {
     cursor: pointer;

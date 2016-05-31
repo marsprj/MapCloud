@@ -697,6 +697,9 @@ div{
 #raster_panel .row .row .col-md-6 i{
 	margin-top: 4px;
 }
+#raster_panel .row-folder .fa-folder{
+	color: #FC6;
+}
 #raster_preview_tab{
 	height: 100%;
 	width:100%;
