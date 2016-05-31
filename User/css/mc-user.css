@@ -651,6 +651,7 @@ div{
 }
 .list-tree-ul-div .nav>li>a>i{
 	margin-right: 6px;
+	color: #FFCC66;
 }
 .path-div{
 	width: 300px;
@@ -669,6 +670,14 @@ div{
 }
 #raster_panel .file-list-content-div .row .row .col-md-6 i{
 	margin-top: 4px;
+}
+
+.file-list-content-div .fa-folder{
+	margin-top: 2px;
+	color: #FFCC66;
+}
+.file-list-content-div .fa-file-o{
+	margin-top: 2px;
 }
 /***************************************************************************/
 /* User File End			                                               */

@@ -677,24 +677,6 @@ html, body {
 }
 
 
-#use_panel .panel-body{
-	height: 300px;
-	position: relative;
-}
-#use_chart{
-	height: 100%;
-}
-#use_list{
-    position: absolute;
-    right: 10px;
-    bottom: 70px;
-    width: 200px;
-    font-size: 14px;
-}
-#use_list .row{
-	margin: 10px;
-	color: #333;
-}
 
 /***************************************************************************/
 /* Admin Job End 			                                           		*/
@@ -742,4 +724,62 @@ html, body {
 }
 /***************************************************************************/
 /* Admin Ha End 			                                           		*/
+/***************************************************************************/
+
+/***************************************************************************/
+/* Admin Use Begin 			                                           		*/
+/***************************************************************************/
+
+#use_panel .panel-body{
+	height: 300px;
+	position: relative;
+}
+#use_chart{
+	height: 100%;
+}
+#use_list{
+    position: absolute;
+    right: 10px;
+    bottom: 70px;
+    width: 200px;
+    font-size: 14px;
+}
+#use_list .row{
+	margin: 10px;
+	color: #333;
+}
+
+#gluster_panel .panel-body{
+	height: 300px;
+}
+#gluster_panel .panel-body table{
+	width: 100%;
+    height: calc(100% - 30px);
+    margin-bottom: 0px;
+}
+.td-width-20{
+	width: 20%;
+}
+.td-width-45{
+	width: 45%;
+}
+.td-width-35{
+	width: 35%;
+}
+#gluster_node{
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+}
+#gluster_node span{
+	display: inline-block;
+    background: #2EC7C9;
+    padding: 0px 16px;
+    margin-left: 10px;
+    border-radius: 4px;
+    color: #fff;
+    box-shadow: 2px 2px #cdcdcd;
+}
+/***************************************************************************/
+/* Admin Use End 			                                           		*/
 /***************************************************************************/

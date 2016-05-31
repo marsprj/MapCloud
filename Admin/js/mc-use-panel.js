@@ -11,7 +11,7 @@ MapCloud.UsePanel = MapCloud.Class({
 
 	registerPanelEvent : function(){
 		var that = this;
-
+		that.loadGluster();
 	},
 
 
@@ -84,5 +84,65 @@ MapCloud.UsePanel = MapCloud.Class({
 		this.panel.find("#free_size").html(free);
 		this.panel.find("#usage_size").html(usage);
 
+	},
+
+	loadGluster : function(){
+		var path = "js/gluster.xml";
+		var that = this;
+		$.get(path,function(xml){
+			that.praseXML(xml);
+		});
+	},
+
+	praseXML : function(xml){
+		if(xml == null){
+			return;
+		}
+
+		var count = $(xml).find("Count").text();
+		var nodes = [];
+		$(xml).find("Nodes>Node").each(function(){
+			var host = $(this).find("Host").text();
+			var uuid = $(this).find("Uuid").text();
+			var state = $(this).find("State").text();
+			var obj = {
+				host : host,
+				uuid : uuid,
+				state : state
+			};
+			nodes.push(obj);
+		});
+		var glusterObj = {
+			count : count,
+			nodes : nodes
+		};
+		var that = MapCloud.usePanel;
+		that.showGluster(glusterObj);
+	},
+
+	showGluster : function(glusterObj){
+		if(glusterObj == null){
+			return;
+		}
+		var count = glusterObj.count;
+		this.panel.find("#gluster_node span").html(count);
+		var nodes = glusterObj.nodes;
+		if(nodes == null){
+			return;
+		}
+		var node = null;
+		var html = "";
+		for(var i = 0; i < nodes.length;++i){
+			node = nodes[i];
+			if(node == null){
+				continue;
+			}
+			html += "<tr>"
+				+ 	"	<td class='td-width-20'>" + node.host + "</td>"
+				+	"	<td  class='td-width-45'>" + node.uuid + "</td>"
+				+	"	<td  class='td-width-35'>" + node.state + "</td>"
+				+	"</tr>";
+		}
+		this.panel.find("#gluster_panel tbody").html(html);
 	},
 })

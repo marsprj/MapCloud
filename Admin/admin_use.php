@@ -19,8 +19,8 @@
  	<script type="text/javascript" src="js/mc-admin-use.min.js"></script>
 	
 <!--	<script type="text/javascript" src="js/mc-use-panel.js"></script>
-	<script type="text/javascript" src="js/mc-admin-use.js"></script>-->
-	
+	<script type="text/javascript" src="js/mc-admin-use.js"></script>
+-->	
 	<title>使用情况</title>
 </head>
 	
@@ -90,7 +90,35 @@
 				}
 				getGluster();
 			?>
-				
+			<div class="row"  style="width:760px">
+				<div class="col-md-12 col-xs-12" id="gluster_panel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>
+								<i class="fa fa-list"></i>
+								<strong>gluster</strong>
+							</h2>
+							<div class="panel-actions">
+								<!-- <a href="javascript:void(0)" class="btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a> -->
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="gluster_node">节点数:<span></span></div>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th class="td-width-20">主机名</th>
+										<th class="td-width-45">UUID</th>
+										<th class="td-width-35">状态</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>				
 		</div>
 	</div>
 

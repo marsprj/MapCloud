@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<Gluster>
+	<Count>24</Count>
+	<Nodes>
+		<Node>
+			<Host>192.168.111.151</Host>
+			<Uuid>ef2131ef-17a3-4b65-a9b8-51267361855c</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>192.168.111.152</Host>
+			<Uuid>48fd74b0-fc55-414e-987a-a3f4dbb14e12</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>192.168.111.153</Host>
+			<Uuid>4627bd4b-ffac-477e-ac24-6f936f798588</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>192.168.111.154</Host>
+			<Uuid>d9fc97bc-f347-44dd-8ec8-ee9891912b0c</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>192.168.111.155</Host>
+			<Uuid>84a13b0b-593b-468c-84b4-b0d387d4c38a</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>192.168.111.157</Host>
+			<Uuid>6e0bf919-545c-4756-a61c-23ec0ee060b2</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>192.168.111.160</Host>
+			<Uuid>c6721616-62e9-4a7e-950b-3cab99832a16</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.11</Host>
+			<Uuid>8361dd60-1444-4e11-9d57-5557c7305d3b</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.12</Host>
+			<Uuid>ba1d4ad3-c5df-4b18-8f0f-0f6825e93fde</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.14</Host>
+			<Uuid>e780f842-fd10-41a5-ba0b-b8d2190e9dc7</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.15</Host>
+			<Uuid>bf6fc7d7-0b5b-45a8-a012-c7cd830ef36e</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.17</Host>
+			<Uuid>19a9353a-3e58-4aed-8e27-3f162330b246</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.18</Host>
+			<Uuid>a69f792b-5f60-4262-a16f-4caf0095dd01</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.20</Host>
+			<Uuid>f56edb2c-73c8-400e-a3c5-dfa84eff4ff2</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.21</Host>
+			<Uuid>ca7c7cd3-56cb-4815-990c-1d04e09e4cf2</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.22</Host>
+			<Uuid>61cbf93c-6f9e-426a-ba22-57548035d52e</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.23</Host>
+			<Uuid>dfbc6fc9-a55c-4cb1-90cf-d0aff4e51aff</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.24</Host>
+			<Uuid>5fcf82e4-7583-40e5-9fe6-b6a0d01d3cab</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.25</Host>
+			<Uuid>d522cdaf-23f7-4932-9521-175d5072d9f5</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.26</Host>
+			<Uuid>b0d0b288-2d11-48b5-a165-2380e3b719ed</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.27</Host>
+			<Uuid>aa13c736-4a20-4e71-a242-026bb8e630ce</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.28</Host>
+			<Uuid>956479fa-7fac-4030-9fbd-084ae86ec6d1</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.29</Host>
+			<Uuid>5fde9b6b-ae10-4c4c-9a05-7b6bc44c6db5</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+		<Node>
+			<Host>172.32.72.30</Host>
+			<Uuid>b74749c7-a477-49cc-a37e-871f665f862e</Uuid>
+			<State>Peer in Cluster (Connected)</State>
+		</Node>
+	</Nodes>
+	
+		
+	
+</Gluster>
