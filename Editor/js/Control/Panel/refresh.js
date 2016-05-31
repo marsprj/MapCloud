@@ -1455,7 +1455,7 @@ MapCloud.refresh = MapCloud.Class({
 	registerAQILayerHitEvent : function(preLayerName,curLayerName){
 		var preLayer = mapObj.getLayer(preLayerName);
 		var curLayer = mapObj.getLayer(curLayerName);
-		if(curLayer == null || preLayer == curLayer){
+		if(curLayer == null){
 			return;
 		}
 		if(preLayer instanceof GeoBeans.Layer.AQIChartLayer){
