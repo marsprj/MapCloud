@@ -147,7 +147,7 @@ MapCloud.UserPanel = MapCloud.Class({
 		    grid: {
 		        x: 100,
 		        y :40,
-		        y2 : 30
+		        y2 : 90
 		    },
 		    yAxis : [
 		        {
@@ -161,6 +161,7 @@ MapCloud.UserPanel = MapCloud.Class({
 		            data : keyList,
 		            axisLabel :{
 		            	interval : 0,
+		            	rotate : 45
 		            }
 		        }
 		    ],
@@ -464,6 +465,9 @@ MapCloud.UserPanel = MapCloud.Class({
 			if(obj == null){
 				continue;
 			}
+			if(obj.key == "192.168.111.82"){
+				continue;
+			}
 			html += "<tr>"
 				+	"	<td class='td-width-50'>" + obj.key + "</td>"
 				+	"	<td class='td-width-50'>" + obj.count + "</td>"
@@ -481,6 +485,9 @@ MapCloud.UserPanel = MapCloud.Class({
 		var valueList = [];
 		for(var i = 0; i < list.length;++i){
 			if(list[i] != null){
+				if(list[i].key == "192.168.111.82"){
+					continue;
+				}
 				fieldList.push(list[i].key);
 				valueList.push(list[i].count);
 			}

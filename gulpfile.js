@@ -404,7 +404,7 @@ if(platform == "win32"){
 	var userTileDest = 'MapCloud/User/js';
 	if(platform == "linux"){
 		userTileList = changeToLinuxList(linuxPath,userTileList);
-		userTileDest = linuxPath + userRasterDest;
+		userTileDest = linuxPath + userTileDest;
 	}
 	gulp.task('user-tile',function(){
 		return gulp.src(userTileList)
@@ -419,7 +419,7 @@ if(platform == "win32"){
 	var userServiceDest = 'MapCloud/User/js';
 	if(platform == "linux"){
 		userServiceList = changeToLinuxList(linuxPath,userServiceList);
-		userServiceDest = linuxPath + userRasterDest;
+		userServiceDest = linuxPath + userServiceDest;
 	}
 	gulp.task('user-service',function(){
 		return gulp.src(userServiceList)
@@ -427,12 +427,13 @@ if(platform == "win32"){
 			.pipe(concat('mc-user-service.min.js'))
 			.pipe(gulp.dest(userServiceDest));
 	});
+
 /***************************************************************************/
 /*		 Admin                                                     		*/
 /***************************************************************************/
 	// 统一Admin压缩
 	gulp.task('admin-task',['admin-index','admin-css','admin-users','admin-data',
-		'admin-ha','admin-use'],function(){
+		'admin-ha','admin-use','admin-job'],function(){
 
 	});
 
@@ -524,6 +525,21 @@ if(platform == "win32"){
 			.pipe(uglify())
 			.pipe(concat('mc-admin-use.min.js'))
 			.pipe(gulp.dest(adminUseDest));
+	});		
+
+	// 压缩Admin job
+	var adminJobList = ['MapCloud/Admin/js/mc-admin-job.js',
+			'MapCloud/Admin/js/mc-job-panel.js'];
+	var adminJobDest = 'MapCloud/Admin/js';
+	if(platform == "linux"){
+		adminJobList = changeToLinuxList(linuxPath,adminJobList);
+		adminJobDest = linuxPath + adminJobDest;
+	}
+	gulp.task('admin-job',function(){
+		return gulp.src(adminJobList)
+			.pipe(uglify())
+			.pipe(concat('mc-admin-job.min.js'))
+			.pipe(gulp.dest(adminJobDest));
 	});		
 
 /***************************************************************************/

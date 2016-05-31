@@ -220,6 +220,9 @@ MapCloud.JobPanel = MapCloud.Class({
 			if(obj == null){
 				continue;
 			}
+			if(obj.key == "192.168.111.82"){
+				continue;
+			}
 			html += "<tr>"
 				+	"	<td class='td-width-50'>" + obj.key + "</td>"
 				+	"	<td class='td-width-50'>" + obj.count + "</td>"
@@ -237,6 +240,9 @@ MapCloud.JobPanel = MapCloud.Class({
 		var valueList = [];
 		for(var i = 0; i < list.length;++i){
 			if(list[i] != null){
+				if(list[i].key == "192.168.111.82"){
+					continue;
+				}
 				fieldList.push(list[i].key);
 				valueList.push(parseFloat(list[i].count));
 			}

@@ -16,10 +16,10 @@
 	<script type="text/javascript" src="../../Map5/lib/echarts-all.js"></script>
 	<script type="text/javascript" src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
-<!-- <script type="text/javascript" src="js/mc-admin-ha.min.js"></script>-->
+ 	<script type="text/javascript" src="js/mc-admin-use.min.js"></script>
 	
-	<script type="text/javascript" src="js/mc-use-panel.js"></script>
-	<script type="text/javascript" src="js/mc-admin-use.js"></script>
+<!--	<script type="text/javascript" src="js/mc-use-panel.js"></script>
+	<script type="text/javascript" src="js/mc-admin-use.js"></script>-->
 	
 	<title>使用情况</title>
 </head>
