@@ -65,7 +65,7 @@ $().ready(function(){
     if(user == null){
     	return;
     }
-
+    mapObj = null;
 	var mapManager = user.getMapManager();
 
 	mapManager.getMaps(getMaps_callback);
@@ -429,11 +429,15 @@ $().ready(function(){
 		if(name == null){
 			return;
 		}
-		var map = mapManager.getMap("map_view_tab",name);
-		if(map == null){
+		if(mapObj != null){
+			mapObj.close();
+			mapObj = null;
+		}
+		mapObj = mapManager.getMap("map_view_tab",name);
+		if(mapObj == null){
 
 		}else{
-			map.draw();
+			mapObj.draw();
 		}
 	}
 

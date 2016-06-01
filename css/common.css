@@ -774,7 +774,7 @@ input[type='password'].error
 /* Login Panel End                                                     */
 /***************************************************************************/
 .login-panel{
-    background-image: url(../images/hh.png);
+    background-image: url(../images/hh.jpg);
     height: 100%;
     width: 100%;
     overflow: hidden;
