@@ -703,7 +703,7 @@ li {
   border: 1px solid rgba(29,28,28,0.6);
 }
 
-#topic_container .mc-icon{
+.icon-container .mc-icon{
   float: right;
   /*margin: 4px;*/
   height: 39px;
@@ -711,7 +711,7 @@ li {
   border-right: 1px solid rgba(29,28,28,0.6);
   background-color: rgba(0,0,0,0.6);
 }
-#topic_container .mc-icon:first-child{
+.icon-container .mc-icon:first-child{
   border-right: none;
 }
 .mc-icon{
@@ -967,4 +967,41 @@ li {
 }
 #chart_container .chart-content-div li:hover span{
   font-weight: bold;
+}
+
+
+/*project panel*/
+#project_container{
+    right: 40px;
+    top: 140px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(29,28,28,.6);
+    box-shadow: 1px 2px 10px 0px #828e9a;
+    border: 1px solid rgba(29,28,28,0.6);
+}
+.mc-icon-earthquake{
+  background-image: url(../../images/item2.png);
+}
+.mc-icon-exercise{
+  background-image: url(../../images/item1.png);
+}
+.mc-icon-flu{
+  background-image: url(../../images/item3.png);
+}
+.mc-icon-africa{
+  background-image: url(../../images/item4.png); 
+}
+
+.mc-icon-usa{
+  background-image: url(../../images/item5.png); 
+}
+.mc-icon-china{
+  background-image: url(../../images/item6.png); 
+}
+#project_container .mc-icon-left{
+  background-image: url(../../images/left_narrow_2.png); 
+}
+#project_container .mc-icon-right{
+  background-image: url(../../images/right_narrow_2.png); 
 }

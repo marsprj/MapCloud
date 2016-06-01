@@ -21,7 +21,7 @@ var g_catalog =
         "link": "admin_data.html"
     },
     {
-        "name": "节点管理",
+        "name": "系统监控",
         "icon": "monitor.png",
         "link": "http://ourgis.digitalearth.cn/monitor/"
     },

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<!-- <link rel="stylesheet" type="text/css" href="css/radi_earth.min.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/radi_earth.min.css">
+	<link rel="stylesheet" type="text/css" href="css/radi_earth.css">
 	<!-- <link rel="stylesheet" type="text/css" href="../../../Map5/css/Map5.min.css"/> -->
 	<link rel="stylesheet" type="text/css" href="../../../Map5/css/custom_slider.css"/>
 	<script type="text/javascript" src="Cesium/Cesium.js"></script>
@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="../js/common.min.js"></script>
 
 	<script type="text/javascript" src="js/earth.min.js"></script>
+
 <!--	<script type="text/javascript" src="js/RadiEarth1.js"></script>
 	<script type="text/javascript" src="js/view_init.js"></script>
 	<script type="text/javascript" src="js/SearchPanel.js"></script>
@@ -30,6 +31,7 @@
 	<script type="text/javascript" src="js/CityPosition.js"></script>
 	<script type="text/javascript" src="js/RangeChart.js"></script>
 	<script type="text/javascript" src="js/TopicPanel.js"></script>
+	<script type="text/javascript" src="js/ProjectPanel.js"></script>
 	<script type="text/javascript" src="js/AQIChart.js"></script>
 	<script type="text/javascript" src="js/AQITimeLineBar.js"></script>
 	<script type="text/javascript" src="js/AQITimeLineChart.js"></script>
@@ -497,7 +499,7 @@
 	</div>
 
 	<!-- topic panel -->
-	<div class="float-panel" id="topic_container">
+	<div class="float-panel icon-container" id="topic_container">
 		<div class="mc-icon mc-icon-left mc-stretch" data-toggle="tooltip" data-placement="top" data-original-title="专题数据"></div>
 		<div class="mc-icon mc-icon-per" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="人均GDP"></div>
 		<div class="mc-icon mc-icon-enco" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="经济数据"></div>
@@ -509,6 +511,16 @@
 		<div class="mc-icon mc-icon-aqi-timeline" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="AQI定制序列"></div>
 	</div>
 
+	<!-- project panel -->
+	<div class="float-panel icon-container" id="project_container">
+		<div class="mc-icon mc-icon-left mc-stretch" data-toggle="tooltip" data-placement="top" data-original-title="课题数据"></div>
+		<div class="mc-icon mc-icon-earthquake" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="地震数据"></div>
+		<div class="mc-icon mc-icon-exercise" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="演习数据"></div>
+		<div class="mc-icon mc-icon-flu" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="流感数据"></div>
+		<div class="mc-icon mc-icon-africa" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="非洲地名"></div>
+		<div class="mc-icon mc-icon-usa" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="美日东盟会议"></div>
+		<div class="mc-icon mc-icon-china" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="中国东盟会议"></div>
+	</div>
 	<!-- AQI timline  -->
 	<div class="float-panel" id="aqi_timeline_container">
 		<!-- <button class="btn btn-default aqi-24h">24小时变化趋势</button> -->

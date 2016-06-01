@@ -13,6 +13,7 @@ $().ready(function(){
 	MapCloud.positionPanel = new MapCloud.PositionPanel("position_container");
 	MapCloud.cityPosition = new MapCloud.CityPosition();
 	MapCloud.topicPanel = new MapCloud.TopicPanel("topic_container");
+	MapCloud.projectPanel = new MapCloud.ProjectPanel("project_container");
 	MapCloud.aqiTimeList = new MapCloud.AQITimeList(MapCloud.server);
 	MapCloud.aqiTimelinePanel = new MapCloud.AQITimeLinePanel("aqi_timeline_container");
 	MapCloud.aqi24TimelinePanel = new MapCloud.AQI24TimeLinePanel("aqi_24_timeline_container");
