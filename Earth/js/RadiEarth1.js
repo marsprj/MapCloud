@@ -467,7 +467,12 @@ Radi.Earth = {
         var that = this;
         that.preObj = null;
         var scene = g_earth_view.scene;
+        var eventAction = this.handler.getInputAction(Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
         this.handler.setInputAction(function(movement) {
+            if(eventAction != null){
+                eventAction(movement);
+            }
             var pickedObject = scene.pick(movement.endPosition);
             if(!MapCloud.showProject){
                 return;

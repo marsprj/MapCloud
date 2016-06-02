@@ -131,7 +131,7 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 			this.panel.children().not(".mc-stretch").css("display","block");
 			$(item).removeClass("mc-icon-left");
 			$(item).addClass("mc-icon-right");
-			this.panel.animate({'width':'362px'},300);
+			this.panel.animate({'width':'363px'},300);
 		}else{
 			this.panel.children().not(".mc-stretch").css("display","none");
 			$(item).removeClass("mc-icon-right");
@@ -391,47 +391,47 @@ MapCloud.TopicPanel = MapCloud.Class(MapCloud.Panel,{
 		var height = 0;
 		Radi.Earth.addModel(modelUrl,x,y,height,1);	
 
-		var modelUrl = "./data/tj/hepingqu/4331516/4331516.gltf";
-		var x = 117.188;
-		var y = 39.1261;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,1);		
+		// var modelUrl = "./data/tj/hepingqu/4331516/4331516.gltf";
+		// var x = 117.188;
+		// var y = 39.1261;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,1);		
 
-		var modelUrl = "./data/tj/hepingqu/4331517/4331517.gltf";
-		var x = 117.19305;
-		var y = 39.11028;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,1);		
+		// var modelUrl = "./data/tj/hepingqu/4331517/4331517.gltf";
+		// var x = 117.19305;
+		// var y = 39.11028;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,1);		
 
-		var modelUrl = "./data/tj/hepingqu/4331518/4331518.gltf";
-		var x = 117.20988;
-		var y = 39.1113;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,2.5);	
+		// var modelUrl = "./data/tj/hepingqu/4331518/4331518.gltf";
+		// var x = 117.20988;
+		// var y = 39.1113;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,2.5);	
 
-		var modelUrl = "./data/tj/hepingqu/4332515/4332515.gltf";
-		var x = 117.180775;
-		var y = 39.12379;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,1);		
+		// var modelUrl = "./data/tj/hepingqu/4332515/4332515.gltf";
+		// var x = 117.180775;
+		// var y = 39.12379;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,1);		
 
-		var modelUrl = "./data/tj/hepingqu/4332516/4332516.gltf";
-		var x = 117.1878;
-		var y = 39.12658;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,1);	
+		// var modelUrl = "./data/tj/hepingqu/4332516/4332516.gltf";
+		// var x = 117.1878;
+		// var y = 39.12658;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,1);	
 
-		var modelUrl = "./data/tj/hepingqu/4332517/4332517.gltf";
-		var x = 117.1985;
-		var y = 39.131025;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,1);	
+		// var modelUrl = "./data/tj/hepingqu/4332517/4332517.gltf";
+		// var x = 117.1985;
+		// var y = 39.131025;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,1);	
 
-		var modelUrl = "./data/tj/hepingqu/4333515-7/4333515-7.gltf";
-		var x = 117.1849;
-		var y = 39.1331;
-		var height = 0;
-		Radi.Earth.addModel(modelUrl,x,y,height,1);
+		// var modelUrl = "./data/tj/hepingqu/4333515-7/4333515-7.gltf";
+		// var x = 117.1849;
+		// var y = 39.1331;
+		// var height = 0;
+		// Radi.Earth.addModel(modelUrl,x,y,height,1);
 
 		var that = MapCloud.topicPanel;
 		Radi.Earth.camera().moveEnd.removeEventListener(that.addTianjinModel);				

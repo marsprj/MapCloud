@@ -999,6 +999,15 @@ li {
 .mc-icon-china{
   background-image: url(../../images/item6.png); 
 }
+.mc-icon-plane{
+  background-image: url(../../images/plane_32.png); 
+}
+.mc-icon-islands{
+  background-image: url(../../images/islands_32.png); 
+}
+.mc-icon-zhibei{
+  background-image: url(../../images/zhibei.png); 
+}
 #project_container .mc-icon-left{
   background-image: url(../../images/left_narrow_2.png); 
 }
