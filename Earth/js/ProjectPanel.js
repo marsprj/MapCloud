@@ -7,42 +7,48 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 	baseSourceName : "base",
 
 	// 地震
-	earthquakeLayerName : "x3_地震",
-	earthquakeFeatures : null,
-	earthquakeFeatureType : null,
-	earthquakeFields : ["location","shape"],
+	// earthquakeLayerName : "x3_地震",
+	// earthquakeFeatures : null,
+	// earthquakeFeatureType : null,
+	// earthquakeFields : ["title","shape"],
+	earthquakeNodes : null,
 
 	// 演习
-	exerciseLayerName : "x3_演习",
-	exerciseFeatures : null,
-	exerciseFeatureType : null,
-	exerciseFields : ["title","shape"],
+	// exerciseLayerName : "x3_演习",
+	// exerciseFeatures : null,
+	// exerciseFeatureType : null,
+	// exerciseFields : ["title","shape"],
+	exerciseNodes : null,
 
 	// 流感
-	fluLayerName : "流感",
-	fluFeatures : null,
-	fluFeatureType : null,
-	fluFields : ['shape'],
+	// fluLayerName : "流感",
+	// fluFeatures : null,
+	// fluFeatureType : null,
+	// fluFields : ['shape',"title"],
+	fluNodes : null,
 
 
 	// 非洲地名
 	// africaLayerName : "非洲地名",
-	africaLayerName : "gz_africa",
-	africaFeatures : null,
-	africaFeatureType : null,
-	africaFields : ["cnname","shape"],
+	// africaLayerName : "gz_africa",
+	// africaFeatures : null,
+	// africaFeatureType : null,
+	// africaFields : ["cnname","shape"],
+	africaNodes: null,
 
 	// 美日东盟会议
-	usaLayerName : "x3_美日东盟会议",
-	usaFeatures : null,
-	usaFeatureType : null,
-	usaFields : ["title","shape"],
+	// usaLayerName : "x3_美日东盟会议",
+	// usaFeatures : null,
+	// usaFeatureType : null,
+	// usaFields : ["title","shape"],
+	usaNodes : null,
 
 	// 中国东盟会议
-	chinaLayerName : "x3_中国东盟会议",
-	chinaFeatures : null,
-	chinaFeatureType : null,
-	chinaFields : ["title","shape"],
+	// chinaLayerName : "x3_中国东盟会议",
+	// chinaFeatures : null,
+	// chinaFeatureType : null,
+	// chinaFields : ["title","shape"],
+	chinaNodes: null,
 
 	initialize : function(id){
 		MapCloud.Panel.prototype.initialize.apply(this,arguments);
@@ -50,13 +56,14 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 
 		this.showFlag = MapCloud.topicPanel.showFlag;
 
-		var workspace = new GeoBeans.WFSWorkspace("tmp",this.server,"1.0.0");
-		this.earthquakeFeatureType = new GeoBeans.FeatureType(workspace,this.earthquakeLayerName);
-		this.exerciseFeatureType = new GeoBeans.FeatureType(workspace,this.exerciseLayerName);
-		this.fluFeatureType = new GeoBeans.FeatureType(workspace,this.fluLayerName);
-		this.africaFeatureType = new GeoBeans.FeatureType(workspace,this.africaLayerName);
-		this.usaFeatureType = new GeoBeans.FeatureType(workspace,this.usaLayerName);
-		this.chinaFeatureType = new GeoBeans.FeatureType(workspace,this.chinaLayerName);
+		// var workspace = new GeoBeans.WFSWorkspace("tmp",this.server,"1.0.0");
+		// this.earthquakeFeatureType = new GeoBeans.FeatureType(workspace,this.earthquakeLayerName);
+		// this.exerciseFeatureType = new GeoBeans.FeatureType(workspace,this.exerciseLayerName);
+		// this.fluFeatureType = new GeoBeans.FeatureType(workspace,this.fluLayerName);
+		// this.africaFeatureType = new GeoBeans.FeatureType(workspace,this.africaLayerName);
+		// this.usaFeatureType = new GeoBeans.FeatureType(workspace,this.usaLayerName);
+		// this.chinaFeatureType = new GeoBeans.FeatureType(workspace,this.chinaLayerName);
+		Radi.Earth.addMoveModelEventListener();
 	},
 
 	registerEvent : function(){
@@ -75,7 +82,8 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 							Radi.Earth.cleanup();
 							that.showFlag = false;
 						}else{
-							that.getEarthquake();
+							// that.getEarthquake();
+							that.getEarthquakeJson();
 							that.showFlag = true;
 						}
 						break;
@@ -85,7 +93,8 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 							Radi.Earth.cleanup();
 							that.showFlag = false;
 						}else{
-							that.getExercise();
+							// that.getExercise();
+							that.getExerciseJson();
 							that.showFlag = true;
 						}
 						break;
@@ -95,7 +104,8 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 							Radi.Earth.cleanup();
 							that.showFlag = false;
 						}else{
-							that.getFlu();
+							// that.getFlu();
+							that.getFluJson();
 							that.showFlag = true;
 						}
 						break;
@@ -105,7 +115,8 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 							Radi.Earth.cleanup();
 							that.showFlag = false;
 						}else{
-							that.getAfrica();
+							// that.getAfrica();
+							that.getAfricaJson();
 							that.showFlag = true;
 						}
 						break;
@@ -115,7 +126,8 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 							Radi.Earth.cleanup();
 							that.showFlag = false;
 						}else{
-							that.getUsa();
+							// that.getUsa();
+							that.getUsaJson();
 							that.showFlag = true;
 						}
 						break;
@@ -125,7 +137,8 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 							Radi.Earth.cleanup();
 							that.showFlag = false;
 						}else{
-							that.getChina();
+							// that.getChina();
+							that.getChinaJson();
 							that.showFlag = true;
 						}
 						break;
@@ -152,52 +165,125 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 		}
 	},
 
-	// 地震数据
-	getEarthquake : function(){
-		if(this.earthquakeFeatures != null){
-			this.showEarthquake(this.earthquakeFeatures);
+	// // 地震数据
+	// getEarthquake : function(){
+	// 	if(this.earthquakeFeatures != null){
+	// 		this.showEarthquake(this.earthquakeFeatures);
+	// 		return;
+	// 	}
+	// 	this.earthquakeFeatureType.fields = this.earthquakeFeatureType.getFields(null,this.baseSourceName);
+	// 	this.earthquakeFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,5000,0,
+	// 		this.earthquakeFields,null,this.getEarthquake_callback);
+	// 	// var path = "js/data/earthquake.xml"; 
+	// 	// var that = this;
+	// 	// this.earthquakeFeatureType.fields = this.earthquakeFeatureType.getFields(null,this.baseSourceName);
+	// 	// $.get(path,function(xml){
+	// 	// 	var features = that.earthquakeFeatureType.parseFeatures(xml);
+	// 	// 	that.earthquakeFeatures = features;
+	// 	// 	that.showEarthquake(features);
+	// 	// });
+	// },
+
+	// showEarthquake : function(features){
+	// 	if(features == null){
+	// 		return;
+	// 	}
+	// 	Radi.Earth.cleanup();
+	// 	var url = "../images/flag_2.png";
+	// 	var feature = null,values = null, geometry = null,x = null,y = null;
+		
+	// 	for(var i = 0; i < features.length; ++i){
+	// 		feature = features[i];
+	// 		if(feature == null){
+	// 			continue;
+	// 		}
+	// 		values = feature.values;
+	// 		if(values == null){
+	// 			continue;
+	// 		}
+	// 		geometry = feature.geometry;
+	// 		if(geometry == null){
+	// 			continue;
+	// 		}
+	// 		x = geometry.x;
+	// 		y = geometry.y;
+	// 		if(x != null && y != null){
+	// 			Radi.Earth.addBillboard(x,y,"",url);
+	// 		}
+	// 	}	
+	// 	var cx = 107;
+	// 	var cy = 30;
+	// 	var cz = 8260681;
+	// 	var heading = 360;
+	// 	var pitch = -90;
+	// 	var roll = 0;
+	// 	Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);	
+
+		// var titleFieldIndex = this.earthquakeFeatureType.getFieldIndex("title");
+		// var f = null;
+		// var nodes = [];
+		// for(var i = 0; i < features.length;++i){
+		// 	f = features[i];
+		// 	geometry = f .geometry;
+		// 	var title = f.values[titleFieldIndex];
+		// 	var obj = {
+		// 		x : geometry.x,
+		// 		y : geometry.y,
+		// 		title : title
+		// 	};
+		// 	nodes.push(obj);
+		// }
+		// var json = {
+		// 	nodes : nodes
+		// };
+		// var a = JSON.stringify(json);
+	// },
+
+
+	// getEarthquake_callback : function(features){
+	// 	console.log(features.length);
+	// 	var that = MapCloud.projectPanel;
+	// 	that.showEarthquake(features);
+	// },
+
+	getEarthquakeJson : function(){
+		
+		if(this.earthquakeNodes != null){
+			this.showEarthquakeJson(this.earthquakeNodes);
 			return;
 		}
-		// this.earthquakeFeatureType.fields = this.earthquakeFeatureType.getFields(null,this.baseSourceName);
-		// this.earthquakeFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,10000,0,
-		// 	this.earthquakeFields,null,this.getEarthquake_callback);
-		var path = "js/data/earthquake.xml"; 
+		
+		var url = "js/data/earthquake.json";
 		var that = this;
-		this.earthquakeFeatureType.fields = this.earthquakeFeatureType.getFields(null,this.baseSourceName);
-		$.get(path,function(xml){
-			var features = that.earthquakeFeatureType.parseFeatures(xml);
-			that.earthquakeFeatures = features;
-			that.showEarthquake(features);
+		$.ajax({
+			type	:"get",
+			url		: url,
+			dataType: "json",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(json, textStatus){
+				that.earthquakeNodes = json.nodes;
+				that.showEarthquakeJson(that.earthquakeNodes);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
 		});
 	},
 
-	showEarthquake : function(features){
-		if(features == null){
-			return;
-		}
+	showEarthquakeJson : function(nodes){
 		Radi.Earth.cleanup();
+		MapCloud.showProject = true;
 		var url = "../images/flag_2.png";
-		var feature = null,values = null, geometry = null,x = null,y = null;
-		
-		for(var i = 0; i < features.length; ++i){
-			feature = features[i];
-			if(feature == null){
-				continue;
-			}
-			values = feature.values;
-			if(values == null){
-				continue;
-			}
-			geometry = feature.geometry;
-			if(geometry == null){
-				continue;
-			}
-			x = geometry.x;
-			y = geometry.y;
-			if(x != null && y != null){
-				Radi.Earth.addBillboard(x,y,"",url);
-			}
-		}	
+		for(var i = 0; i < nodes.length;++i){
+			var node = nodes[i];
+			var x = node.x;
+			var y = node.y;
+			var a = Radi.Earth.addBillboard(x,y,"",url);
+			a.billboard.text = node.title;
+		}
 		var cx = 107;
 		var cy = 30;
 		var cz = 8260681;
@@ -205,11 +291,6 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 		var pitch = -90;
 		var roll = 0;
 		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);	
-	},
-
-
-	getEarthquake_callback : function(features){
-		console.log(features.length);
 	},
 
 	// 演习
@@ -275,63 +356,199 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 		var pitch = -90;
 		var roll = 0;
 		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
+
+		var titleFieldIndex = this.exerciseFeatureType.getFieldIndex("title");
+		var f = null;
+		var nodes = [];
+		for(var i = 0; i < features.length;++i){
+			f = features[i];
+			geometry = f .geometry;
+			var title = f.values[titleFieldIndex];
+			var obj = {
+				x : geometry.x,
+				y : geometry.y,
+				title : title
+			};
+			nodes.push(obj);
+		}
+		var json = {
+			nodes : nodes
+		};
+		var a = JSON.stringify(json);
 	},
 
-	// 流感
-	getFlu : function(){
-		if(this.fluFeatures != null){
-			this.showFlu(this.fluFeatures);
+	getExerciseJson : function(){
+		MapCloud.showProject = true;
+		if(this.exerciseNodes != null){
+			this.showExerciseJson(this.exerciseNodes);
 			return;
 		}
-
-		// this.fluFeatureType.fields = this.fluFeatureType.getFields(null,this.baseSourceName);
-		// this.fluFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,null,0,
-		// 	this.fluFields,null,this.getFlu_callback);
-		var path = "js/data/flu.xml"; 
+		
+		var url = "js/data/exercise.json";
 		var that = this;
-		this.fluFeatureType.fields = this.fluFeatureType.getFields(null,this.baseSourceName);
-		$.get(path,function(xml){
-			var features = that.fluFeatureType.parseFeatures(xml);
-			that.fluFeatures = features;
-			that.showFlu(features);
+		$.ajax({
+			type	:"get",
+			url		: url,
+			dataType: "json",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(json, textStatus){
+				that.exerciseNodes = json.nodes;
+				that.showExerciseJson(that.exerciseNodes);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
 		});
 	},
 
-	getFlu_callback : function(features){
-		if(!$.isArray(features)){
-			return;
+	showExerciseJson : function(nodes){
+		Radi.Earth.cleanup();
+		MapCloud.showProject = true;
+		var url = "../images/marker.png";
+		for(var i = 0; i < nodes.length;++i){
+			var node = nodes[i];
+			var x = node.x;
+			var y = node.y;
+			var a = Radi.Earth.addBillboard(x,y,"",url);
+			a.billboard.text = node.title;
 		}
-		var that = MapCloud.projectPanel;
-		that.fluFeatures = features;
-		that.showFlu(features);
+		var cx = 107;
+		var cy = 30;
+		var cz = 8260681;
+		var heading = 360;
+		var pitch = -90;
+		var roll = 0;
+		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
 	},
 
-	showFlu : function(features){
-		if(features == null){
+	// 流感
+	// getFlu : function(){
+	// 	this.time = new Date();
+	// 	if(this.fluFeatures != null){
+	// 		this.showFlu(this.fluFeatures);
+	// 		return;
+	// 	}
+
+	// 	this.fluFeatureType.fields = this.fluFeatureType.getFields(null,this.baseSourceName);
+	// 	this.fluFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,null,0,
+	// 		this.fluFields,null,this.getFlu_callback);
+	// 	// var path = "js/data/flu.xml"; 
+	// 	// var that = this;
+	// 	// this.fluFeatureType.fields = this.fluFeatureType.getFields(null,this.baseSourceName);
+	// 	// $.get(path,function(xml){
+	// 	// 	var features = that.fluFeatureType.parseFeatures(xml);
+	// 	// 	that.fluFeatures = features;
+	// 	// 	that.showFlu(features);
+	// 	// });
+	// },
+
+	// getFlu_callback : function(features){
+	// 	if(!$.isArray(features)){
+	// 		return;
+	// 	}
+	// 	var that = MapCloud.projectPanel;
+	// 	that.fluFeatures = features;
+	// 	that.showFlu(features);
+	// },
+
+	// showFlu : function(features){
+	// 	if(features == null){
+	// 		return;
+	// 	}
+	// 	Radi.Earth.cleanup();
+	// 	var url = "../images/virus-red.png";
+	// 	var feature = null,values = null, geometry = null,lon = null,lat = null;
+	// 	var titleFieldIndex = this.fluFeatureType.getFieldIndex("title");
+	// 	for(var i = 0; i < features.length; ++i){
+	// 		feature = features[i];
+	// 		if(feature == null){
+	// 			continue;
+	// 		}
+	// 		values = feature.values;
+	// 		if(values == null){
+	// 			continue;
+	// 		}
+	// 		geometry = feature.geometry;
+	// 		if(geometry == null){
+	// 			continue;
+	// 		}
+	// 		lon = geometry.x;
+	// 		lat = geometry.y;
+	// 		if(lon != null && lat != null){
+	// 			Radi.Earth.addBillboard(lon,lat,"",url);
+	// 		}
+	// 	}
+	// 	var cx = 107.2598;
+	// 	var cy = 34.4148;
+	// 	var cz = 4633881;
+	// 	var heading = 360;
+	// 	var pitch = -90;
+	// 	var roll = 0;
+	// 	Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
+	// 	var delta = new Date() - this.time;
+	// 	console.log(delta);
+
+	// 	//  生成json
+	// 	// var json
+	// 	var f = null;
+	// 	var nodes = [];
+	// 	for(var i = 0; i < features.length;++i){
+	// 		f = features[i];
+	// 		geometry = f .geometry;
+	// 		var title = f.values[titleFieldIndex];
+	// 		var obj = {
+	// 			x : geometry.x,
+	// 			y : geometry.y,
+	// 			title : title
+	// 		};
+	// 		nodes.push(obj);
+	// 	}
+	// 	var json = {
+	// 		nodes : nodes
+	// 	};
+	// 	var a = JSON.stringify(json);
+	// },
+
+	getFluJson : function(){
+		MapCloud.showProject = true;
+		if(this.fluNodes != null){
+			this.showFluJson(this.fluNodes);
 			return;
 		}
-		Radi.Earth.cleanup();
-		var url = "../images/virus-red.png";
-		var feature = null,values = null, geometry = null,lon = null,lat = null;
 		
-		for(var i = 0; i < features.length; ++i){
-			feature = features[i];
-			if(feature == null){
-				continue;
+		var url = "js/data/flu.json";
+		var that = this;
+		$.ajax({
+			type	:"get",
+			url		: url,
+			dataType: "json",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(json, textStatus){
+				that.fluNodes = json.nodes;
+				that.showFluJson(that.fluNodes);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
 			}
-			values = feature.values;
-			if(values == null){
-				continue;
-			}
-			geometry = feature.geometry;
-			if(geometry == null){
-				continue;
-			}
-			lon = geometry.x;
-			lat = geometry.y;
-			if(lon != null && lat != null){
-				Radi.Earth.addBillboard(lon,lat,"",url);
-			}
+		});
+	},
+
+	showFluJson : function(nodes){
+		Radi.Earth.cleanup();
+		MapCloud.showProject = true;
+		var url = "../images/flag_2.png";
+		for(var i = 0; i < nodes.length;++i){
+			var node = nodes[i];
+			var x = node.x;
+			var y = node.y;
+			var a = Radi.Earth.addBillboard(x,y,"",url);
+			a.billboard.text = node.title;
 		}
 		var cx = 107.2598;
 		var cy = 34.4148;
@@ -344,68 +561,113 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 
 
 	// 非洲地名
-	getAfrica : function(){
-		if(this.africaFeatures != null){
-			this.showAfrica(this.africaFeatures);
+	// getAfrica : function(){
+	// 	if(this.africaFeatures != null){
+	// 		this.showAfrica(this.africaFeatures);
+	// 		return;
+	// 	}
+	// 	// this.time = new Date();
+	// 	// var sourceName = "gisdb";
+	// 	// this.africaFeatureType.fields = this.africaFeatureType.getFields(null,sourceName);
+	// 	// this.africaFeatureType.getFeaturesFilterAsync(null,sourceName,null,null,0,
+	// 	// 	this.africaFields,null,this.getAfrica_callback);
+	// 	var path = "js/data/africa.xml"; 
+	// 	var that = this;
+	// 	var sourceName = "gisdb";
+	// 	this.africaFeatureType.fields = this.africaFeatureType.getFields(null,sourceName);
+	// 	$.get(path,function(xml){
+	// 		var features = that.africaFeatureType.parseFeatures(xml);
+	// 		that.africaFeatures = features;
+	// 		that.showAfrica(features);
+	// 	});
+	// },
+
+	// getAfrica_callback : function(features){
+	// 	if(!$.isArray(features)){
+	// 		return;
+	// 	}
+	// 	var that = MapCloud.projectPanel;
+	// 	that.africaFeatures = features;
+	// 	that.showAfrica(features);
+	// },
+
+	// showAfrica : function(features){
+	// 	if(features == null){
+	// 		return;
+	// 	}
+	// 	Radi.Earth.cleanup();
+	// 	var url = "../images/marker.png";
+	// 	var feature = null,values = null, geometry = null,lon = null,lat = null,name = null;
+	// 	var nameFieldIndex = this.africaFeatureType.getFieldIndex("cnname");
+	// 	for(var i = 0; i < features.length; ++i){
+	// 		feature = features[i];
+	// 		if(feature == null){
+	// 			continue;
+	// 		}
+	// 		values = feature.values;
+	// 		if(values == null){
+	// 			continue;
+	// 		}
+	// 		name = values[nameFieldIndex];
+	// 		if(name == null){
+	// 			name = "";
+	// 		}
+	// 		geometry = feature.geometry;
+	// 		if(geometry == null){
+	// 			continue;
+	// 		}
+	// 		lon = geometry.x;
+	// 		lat = geometry.y;
+	// 		if(lon != null && lat != null){
+	// 			Radi.Earth.addBillboard(lon,lat,name,url);
+	// 		}
+	// 	}
+	// 	var cx = 7.2598;
+	// 	var cy = 15.4148;
+	// 	var cz = 4633881;
+	// 	var heading = 360;
+	// 	var pitch = -90;
+	// 	var roll = 0;
+	// 	Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
+	// },
+
+	getAfricaJson : function(){
+		MapCloud.showProject = true;
+		if(this.africaNodes != null){
+			this.showAfricaJson(this.africaNodes);
 			return;
 		}
-		// this.time = new Date();
-		// var sourceName = "gisdb";
-		// this.africaFeatureType.fields = this.africaFeatureType.getFields(null,sourceName);
-		// this.africaFeatureType.getFeaturesFilterAsync(null,sourceName,null,null,0,
-		// 	this.africaFields,null,this.getAfrica_callback);
-		var path = "js/data/africa.xml"; 
+		
+		var url = "js/data/africa.json";
 		var that = this;
-		var sourceName = "gisdb";
-		this.africaFeatureType.fields = this.africaFeatureType.getFields(null,sourceName);
-		$.get(path,function(xml){
-			var features = that.africaFeatureType.parseFeatures(xml);
-			that.africaFeatures = features;
-			that.showAfrica(features);
+		$.ajax({
+			type	:"get",
+			url		: url,
+			dataType: "json",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(json, textStatus){
+				that.africaNodes = json.nodes;
+				that.showAfricaJson(that.africaNodes);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
 		});
 	},
 
-	getAfrica_callback : function(features){
-		if(!$.isArray(features)){
-			return;
-		}
-		var that = MapCloud.projectPanel;
-		that.africaFeatures = features;
-		that.showAfrica(features);
-	},
-
-
-
-	showAfrica : function(features){
-		if(features == null){
-			return;
-		}
+	showAfricaJson : function(nodes){
 		Radi.Earth.cleanup();
+		MapCloud.showProject = true;
 		var url = "../images/marker.png";
-		var feature = null,values = null, geometry = null,lon = null,lat = null,name = null;
-		var nameFieldIndex = this.africaFeatureType.getFieldIndex("cnname");
-		for(var i = 0; i < features.length; ++i){
-			feature = features[i];
-			if(feature == null){
-				continue;
-			}
-			values = feature.values;
-			if(values == null){
-				continue;
-			}
-			name = values[nameFieldIndex];
-			if(name == null){
-				name = "";
-			}
-			geometry = feature.geometry;
-			if(geometry == null){
-				continue;
-			}
-			lon = geometry.x;
-			lat = geometry.y;
-			if(lon != null && lat != null){
-				Radi.Earth.addBillboard(lon,lat,name,url);
-			}
+		for(var i = 0; i < nodes.length;++i){
+			var node = nodes[i];
+			var x = node.x;
+			var y = node.y;
+			var a = Radi.Earth.addBillboard(x,y,"",url);
+			a.billboard.text = node.title;
 		}
 		var cx = 7.2598;
 		var cy = 15.4148;
@@ -414,59 +676,107 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 		var pitch = -90;
 		var roll = 0;
 		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
-
 	},
 
 	// 美日东盟会议
-	getUsa : function(){
-		if(this.usaFeatures != null){
-			this.showUsa(this.usaFeatures);
+	// getUsa : function(){
+	// 	if(this.usaFeatures != null){
+	// 		this.showUsa(this.usaFeatures);
+	// 		return;
+	// 	}
+
+	// 	// this.usaFeatureType.fields = this.usaFeatureType.getFields(null,this.baseSourceName);
+	// 	// this.usaFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,null,0,
+	// 	// 	this.usaFields,null,this.getFlu_callback);
+	// 	var path = "js/data/usa.xml"; 
+	// 	var that = this;
+	// 	this.usaFeatureType.fields = this.usaFeatureType.getFields(null,this.baseSourceName);
+	// 	$.get(path,function(xml){
+	// 		var features = that.usaFeatureType.parseFeatures(xml);
+	// 		that.usaFeatures = features;
+	// 		that.showUsa(features);
+	// 	});
+	// },
+
+	// showUsa : function(features){
+	// 	if(features == null){
+	// 		return;
+	// 	}
+	// 	Radi.Earth.cleanup();
+	// 	var url = "../images/flag_1.png";
+	// 	var feature = null,values = null, geometry = null,lon = null,lat = null,title = null;
+	// 	var titleFieldIndex = this.usaFeatureType.getFieldIndex("title");
+	// 	for(var i = 0; i < features.length; ++i){
+	// 		feature = features[i];
+	// 		if(feature == null){
+	// 			continue;
+	// 		}
+	// 		values = feature.values;
+	// 		if(values == null){
+	// 			continue;
+	// 		}
+	// 		title = values[titleFieldIndex];
+	// 		if(title == null){
+	// 			title = "";
+	// 		}
+	// 		geometry = feature.geometry;
+	// 		if(geometry == null){
+	// 			continue;
+	// 		}
+	// 		lon = geometry.x;
+	// 		lat = geometry.y;
+	// 		if(lon != null && lat != null){
+	// 			Radi.Earth.addBillboard(lon,lat,"",url);
+	// 		}
+	// 	}
+	// 	var cx = 107;
+	// 	var cy = 30;
+	// 	var cz = 8260681;
+	// 	var heading = 360;
+	// 	var pitch = -90;
+	// 	var roll = 0;
+	// 	Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
+
+	// },
+
+
+	getUsaJson : function(){
+		MapCloud.showProject = true;
+		if(this.usaNodes != null){
+			this.showUsaJson(this.usaNodes);
 			return;
 		}
-
-		// this.usaFeatureType.fields = this.usaFeatureType.getFields(null,this.baseSourceName);
-		// this.usaFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,null,0,
-		// 	this.usaFields,null,this.getFlu_callback);
-		var path = "js/data/usa.xml"; 
+		
+		var url = "js/data/usa.json";
 		var that = this;
-		this.usaFeatureType.fields = this.usaFeatureType.getFields(null,this.baseSourceName);
-		$.get(path,function(xml){
-			var features = that.usaFeatureType.parseFeatures(xml);
-			that.usaFeatures = features;
-			that.showUsa(features);
+		$.ajax({
+			type	:"get",
+			url		: url,
+			dataType: "json",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(json, textStatus){
+				that.usaNodes = json.nodes;
+				that.showUsaJson(that.usaNodes);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
 		});
 	},
 
-	showUsa : function(features){
-		if(features == null){
-			return;
-		}
+	showUsaJson : function(nodes){
 		Radi.Earth.cleanup();
+		MapCloud.showProject = true;
 		var url = "../images/flag_1.png";
-		var feature = null,values = null, geometry = null,lon = null,lat = null,title = null;
-		var titleFieldIndex = this.usaFeatureType.getFieldIndex("title");
-		for(var i = 0; i < features.length; ++i){
-			feature = features[i];
-			if(feature == null){
-				continue;
-			}
-			values = feature.values;
-			if(values == null){
-				continue;
-			}
-			title = values[titleFieldIndex];
-			if(title == null){
-				title = "";
-			}
-			geometry = feature.geometry;
-			if(geometry == null){
-				continue;
-			}
-			lon = geometry.x;
-			lat = geometry.y;
-			if(lon != null && lat != null){
-				Radi.Earth.addBillboard(lon,lat,"",url);
-			}
+		for(var i = 0; i < nodes.length;++i){
+			var node = nodes[i];
+			var x = node.x;
+			var y = node.y;
+			var a = Radi.Earth.addBillboard(x,y,"",url);
+			a.billboard.text = node.title;
 		}
 		var cx = 107;
 		var cy = 30;
@@ -475,59 +785,106 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 		var pitch = -90;
 		var roll = 0;
 		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
-
 	},
 
 	// 中国东盟会议
-	getChina : function(){
-		if(this.chinaFeatures != null){
-			this.showChina(this.chinaFeatures);
+	// getChina : function(){
+	// 	if(this.chinaFeatures != null){
+	// 		this.showChina(this.chinaFeatures);
+	// 		return;
+	// 	}
+
+	// 	// this.chinaFeatureType.fields = this.chinaFeatureType.getFields(null,this.baseSourceName);
+	// 	// this.chinaFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,null,0,
+	// 	// 	this.chinaFields,null,this.getFlu_callback);
+	// 	var path = "js/data/china.xml"; 
+	// 	var that = this;
+	// 	this.chinaFeatureType.fields = this.chinaFeatureType.getFields(null,this.baseSourceName);
+	// 	$.get(path,function(xml){
+	// 		var features = that.chinaFeatureType.parseFeatures(xml);
+	// 		that.chinaFeatures = features;
+	// 		that.showChina(features);
+	// 	});
+	// },
+
+	// showChina : function(features){
+	// 	if(features == null){
+	// 		return;
+	// 	}
+	// 	Radi.Earth.cleanup();
+	// 	var url = "../images/flag_1.png";
+	// 	var feature = null,values = null, geometry = null,lon = null,lat = null,title = null;
+	// 	var titleFieldIndex = this.chinaFeatureType.getFieldIndex("title");
+	// 	for(var i = 0; i < features.length; ++i){
+	// 		feature = features[i];
+	// 		if(feature == null){
+	// 			continue;
+	// 		}
+	// 		values = feature.values;
+	// 		if(values == null){
+	// 			continue;
+	// 		}
+	// 		title = values[titleFieldIndex];
+	// 		if(title == null){
+	// 			title = "";
+	// 		}
+	// 		geometry = feature.geometry;
+	// 		if(geometry == null){
+	// 			continue;
+	// 		}
+	// 		lon = geometry.x;
+	// 		lat = geometry.y;
+	// 		if(lon != null && lat != null){
+	// 			Radi.Earth.addBillboard(lon,lat,"",url);
+	// 		}
+	// 	}
+	// 	var cx = 107;
+	// 	var cy = 30;
+	// 	var cz = 8260681;
+	// 	var heading = 360;
+	// 	var pitch = -90;
+	// 	var roll = 0;
+	// 	Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
+
+	// },
+
+	getChinaJson : function(){
+		MapCloud.showProject = true;
+		if(this.chinaNodes != null){
+			this.showUsaJson(this.chinaNodes);
 			return;
 		}
-
-		// this.chinaFeatureType.fields = this.chinaFeatureType.getFields(null,this.baseSourceName);
-		// this.chinaFeatureType.getFeaturesFilterAsync(null,this.baseSourceName,null,null,0,
-		// 	this.chinaFields,null,this.getFlu_callback);
-		var path = "js/data/china.xml"; 
+		
+		var url = "js/data/china.json";
 		var that = this;
-		this.chinaFeatureType.fields = this.chinaFeatureType.getFields(null,this.baseSourceName);
-		$.get(path,function(xml){
-			var features = that.chinaFeatureType.parseFeatures(xml);
-			that.chinaFeatures = features;
-			that.showChina(features);
+		$.ajax({
+			type	:"get",
+			url		: url,
+			dataType: "json",
+			async	: true,
+			beforeSend: function(XMLHttpRequest){
+			},
+			success	: function(json, textStatus){
+				that.chinaNodes = json.nodes;
+				that.showChinaJson(that.chinaNodes);
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			},
+			error	: function(){
+			}
 		});
 	},
 
-	showChina : function(features){
-		if(features == null){
-			return;
-		}
+	showChinaJson : function(nodes){
 		Radi.Earth.cleanup();
+		MapCloud.showProject = true;
 		var url = "../images/flag_1.png";
-		var feature = null,values = null, geometry = null,lon = null,lat = null,title = null;
-		var titleFieldIndex = this.chinaFeatureType.getFieldIndex("title");
-		for(var i = 0; i < features.length; ++i){
-			feature = features[i];
-			if(feature == null){
-				continue;
-			}
-			values = feature.values;
-			if(values == null){
-				continue;
-			}
-			title = values[titleFieldIndex];
-			if(title == null){
-				title = "";
-			}
-			geometry = feature.geometry;
-			if(geometry == null){
-				continue;
-			}
-			lon = geometry.x;
-			lat = geometry.y;
-			if(lon != null && lat != null){
-				Radi.Earth.addBillboard(lon,lat,"",url);
-			}
+		for(var i = 0; i < nodes.length;++i){
+			var node = nodes[i];
+			var x = node.x;
+			var y = node.y;
+			var a = Radi.Earth.addBillboard(x,y,"",url);
+			a.billboard.text = node.title;
 		}
 		var cx = 107;
 		var cy = 30;
@@ -536,7 +893,6 @@ MapCloud.ProjectPanel = MapCloud.Class(MapCloud.Panel,{
 		var pitch = -90;
 		var roll = 0;
 		Radi.Earth.flyTo(cx,cy,cz,heading,pitch,roll);
-
-	}
+	},
 
 });

@@ -208,6 +208,7 @@ Radi.Earth = {
     cleanup : function(){
         g_earth_view.entities.removeAll();
         $("#legend_container").empty();
+        MapCloud.showProject = false;
     },
 
     addCylinder : function(x,y,z,radius,color){
@@ -460,7 +461,47 @@ Radi.Earth = {
         }else{//The sky is visible in 3D
             return null;
         }
-    }
+    },
+
+    addMoveModelEventListener: function(){
+        var that = this;
+        that.preObj = null;
+        var scene = g_earth_view.scene;
+        this.handler.setInputAction(function(movement) {
+            var pickedObject = scene.pick(movement.endPosition);
+            if(!MapCloud.showProject){
+                return;
+            }
+            if (Cesium.defined(pickedObject)) {
+                if(that.preObj != null){
+                    if(that.preObj.billboard != null){
+                         that.preObj.billboard.scale = 1.0;
+                    }
+                    if(that.preObj.label!= null){
+                         that.preObj.label.text.setValue("");
+                    }
+                }
+                if(pickedObject.id.billboard != null){
+                     pickedObject.id.billboard.scale = 1.3;
+                }
+                if(pickedObject.id.label != null){
+                    pickedObject.id.label.pixelOffset.setValue(new Cesium.Cartesian2(20,0));
+                    pickedObject.id.label.text.setValue(pickedObject.id.billboard.text);
+                }
+                
+                that.preObj = pickedObject.id;
+            }else {
+                if(that.preObj != null){
+                    if(that.preObj.billboard != null){
+                         that.preObj.billboard.scale = 1.0;
+                    }
+                    if(that.preObj.label!= null){
+                         that.preObj.label.text.setValue("");
+                    }
+                }
+            }
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+    },
 
 
 };
