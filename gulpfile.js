@@ -54,55 +54,55 @@ if(platform == "win32"){
 	});
 
 	// 压缩Map5
-	var map5List = ["Map5/lib/GeoBeans.js",
-			"Map5/lib/requestNextAnimationFrame.js", 
-			'Map5/lib/GeoBeans/BaseTypes/*.js',
-			'Map5/lib/GeoBeans/*.js',
-			'Map5/lib/GeoBeans/AQI/*.js',
-			'Map5/lib/GeoBeans/Auth/*.js',
-			'Map5/lib/GeoBeans/Control/*.js',
-			'Map5/lib/GeoBeans/Control/*/*.js',
-			'Map5/lib/GeoBeans/DBS/*.js',
-			'Map5/lib/GeoBeans/File/*.js',
-			'Map5/lib/GeoBeans/Filter/*.js',
-			'Map5/lib/GeoBeans/Filter/*/*.js',
-			'Map5/lib/GeoBeans/Geometry/*.js',
-			'Map5/lib/GeoBeans/Geometry/*/*.js',
-			'Map5/lib/GeoBeans/GPS/*.js',
-			'Map5/lib/GeoBeans/Label/*.js',
-			'Map5/lib/GeoBeans/Layer/DBLayer.js',
-			'Map5/lib/GeoBeans/Layer/FeatureDBLayer.js',
-			'Map5/lib/GeoBeans/Layer/FeatureLayer.js',
-			'Map5/lib/GeoBeans/Layer/ChartLayer.js',
-			'Map5/lib/GeoBeans/Layer/GroupLayer.js',
-			'Map5/lib/GeoBeans/Layer/HeatMapLayer.js',
-			'Map5/lib/GeoBeans/Layer/MapLayer.js',
-			'Map5/lib/GeoBeans/Layer/OverlayLayer.js',
-			'Map5/lib/GeoBeans/Layer/PanoramaLayer.js',
-			'Map5/lib/GeoBeans/Layer/QueryLayer.js',
-			'Map5/lib/GeoBeans/Layer/RasterDBLayer.js',
-			'Map5/lib/GeoBeans/Layer/Tile.js',
-			'Map5/lib/GeoBeans/Layer/TileCache.js',
-			'Map5/lib/GeoBeans/Layer/TileLayer.js',
-			'Map5/lib/GeoBeans/Layer/WFSLayer.js',
-			'Map5/lib/GeoBeans/Layer/WMSLayer.js',
-			'Map5/lib/GeoBeans/Layer/ClusterLayer.js',
-			'Map5/lib/GeoBeans/Layer/ImageLayer.js',
-			'Map5/lib/GeoBeans/Layer/RippleLayer.js',
-			'Map5/lib/GeoBeans/Layer/AirlineLayer.js',
-			'Map5/lib/GeoBeans/Layer/*/*.js',
-			'Map5/lib/GeoBeans/Overlay/*.js',
-			'Map5/lib/GeoBeans/Poi/*.js',
-			'Map5/lib/GeoBeans/RasterDB/*.js',
-			'Map5/lib/GeoBeans/Style/*.js',
-			'Map5/lib/GeoBeans/Subscribe/*.js',
-			'Map5/lib/GeoBeans/TileDB/*.js',
-			'Map5/lib/GeoBeans/WFS/*.js',
-			'Map5/lib/GeoBeans/WMS/*.js',
-			'Map5/lib/GeoBeans/WMTS/*.js',
-			'Map5/lib/GeoBeans/Service/*.js',
+	var map5List = ["Map5-1019/lib/GeoBeans.js",
+			"Map5-1019/lib/requestNextAnimationFrame.js", 
+			'Map5-1019/lib/GeoBeans/BaseTypes/*.js',
+			'Map5-1019/lib/GeoBeans/*.js',
+			'Map5-1019/lib/GeoBeans/AQI/*.js',
+			'Map5-1019/lib/GeoBeans/Auth/*.js',
+			'Map5-1019/lib/GeoBeans/Control/*.js',
+			'Map5-1019/lib/GeoBeans/Control/*/*.js',
+			'Map5-1019/lib/GeoBeans/DBS/*.js',
+			'Map5-1019/lib/GeoBeans/File/*.js',
+			'Map5-1019/lib/GeoBeans/Filter/*.js',
+			'Map5-1019/lib/GeoBeans/Filter/*/*.js',
+			'Map5-1019/lib/GeoBeans/Geometry/*.js',
+			'Map5-1019/lib/GeoBeans/Geometry/*/*.js',
+			'Map5-1019/lib/GeoBeans/GPS/*.js',
+			'Map5-1019/lib/GeoBeans/Label/*.js',
+			'Map5-1019/lib/GeoBeans/Layer/DBLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/FeatureDBLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/FeatureLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/ChartLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/GroupLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/HeatMapLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/MapLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/OverlayLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/PanoramaLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/QueryLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/RasterDBLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/Tile.js',
+			'Map5-1019/lib/GeoBeans/Layer/TileCache.js',
+			'Map5-1019/lib/GeoBeans/Layer/TileLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/WFSLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/WMSLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/ClusterLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/ImageLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/RippleLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/AirlineLayer.js',
+			'Map5-1019/lib/GeoBeans/Layer/*/*.js',
+			'Map5-1019/lib/GeoBeans/Overlay/*.js',
+			'Map5-1019/lib/GeoBeans/Poi/*.js',
+			'Map5-1019/lib/GeoBeans/RasterDB/*.js',
+			'Map5-1019/lib/GeoBeans/Style/*.js',
+			'Map5-1019/lib/GeoBeans/Subscribe/*.js',
+			'Map5-1019/lib/GeoBeans/TileDB/*.js',
+			'Map5-1019/lib/GeoBeans/WFS/*.js',
+			'Map5-1019/lib/GeoBeans/WMS/*.js',
+			'Map5-1019/lib/GeoBeans/WMTS/*.js',
+			'Map5-1019/lib/GeoBeans/Service/*.js',
 			];
-	var map5Dest = 'Map5/lib/';	
+	var map5Dest = 'Map5-1019/lib/';	
 	if(platform == "linux"){
 		map5List = changeToLinuxList(linuxPath,map5List);
 		map5Dest = linuxPath + map5Dest;
@@ -117,8 +117,8 @@ if(platform == "win32"){
 
 
 	// 压缩Map5 css
-	var map5cssList = ['Map5/css/Map5.css'];
-	var map5cssDest = 'Map5/css';
+	var map5cssList = ['Map5-1019/css/Map5.css'];
+	var map5cssDest = 'Map5-1019/css';
 	if(platform == "linux"){
 		map5cssList = changeToLinuxList(linuxPath,map5cssList);
 		map5cssDest = linuxPath + map5cssDest;
@@ -140,28 +140,29 @@ if(platform == "win32"){
 	});
 
 	// 压缩Earth
-	var earthList = ["MapCloud/Earth/js/RadiEarth1.js",
-			"MapCloud/Earth/js/view_init.js",
-			'MapCloud/Earth/js/SearchPanel.js',
-			'MapCloud/Earth/js/CurrentCityPanel.js',
-			'MapCloud/Earth/js/CityPanel.js',
-			'MapCloud/Earth/js/AQIChartDialog.js',
-			'MapCloud/Earth/js/PositionControl.js',
-			'MapCloud/Earth/js/PositionPanel.js',
-			'MapCloud/Earth/js/CityPosition.js',
-			'MapCloud/Earth/js/RangeChart.js',
-			'MapCloud/Earth/js/TopicPanel.js',
-			'MapCloud/Earth/js/AQIChart.js',
-			'MapCloud/Earth/js/AQIChart.js',
-			'MapCloud/Earth/js/AQITimeLineBar.js',
-			'MapCloud/Earth/js/AQITimeLineChart.js',
-			'MapCloud/Earth/js/AQITimeList.js',
-			'MapCloud/Earth/js/AQITimeLinePanel.js',
-			'MapCloud/Earth/js/AQI24TimeLinePanel.js',
-			'MapCloud/Earth/js/ChartPanel.js',
-			'MapCloud/Earth/js/AddressService.js',
+	var earthList = ["Earth/js/RadiEarth1.js",
+			"Earth/js/view_init.js",
+			'Earth/js/SearchPanel.js',
+			'Earth/js/CurrentCityPanel.js',
+			'Earth/js/CityPanel.js',
+			'Earth/js/AQIChartDialog.js',
+			'Earth/js/PositionControl.js',
+			'Earth/js/ProjectPanel.js',
+			'Earth/js/PositionPanel.js',
+			'Earth/js/CityPosition.js',
+			'Earth/js/RangeChart.js',
+			'Earth/js/TopicPanel.js',
+			'Earth/js/AQIChart.js',
+			'Earth/js/AQIChart.js',
+			'Earth/js/AQITimeLineBar.js',
+			'Earth/js/AQITimeLineChart.js',
+			'Earth/js/AQITimeList.js',
+			'Earth/js/AQITimeLinePanel.js',
+			'Earth/js/AQI24TimeLinePanel.js',
+			'Earth/js/ChartPanel.js',
+			'Earth/js/AddressService.js',
 			];
-	var earthDest = 'MapCloud/Earth/js/';
+	var earthDest = 'Earth/js/';
 	if(platform == "linux"){
 		earthList = changeToLinuxList(linuxPath, earthList);
 		earthDest = linuxPath + earthDest;
@@ -175,8 +176,8 @@ if(platform == "win32"){
 
 	
 	// 压缩Earth css
-	var earthCssList = ["MapCloud/Earth/css/radi_earth.css"];
-	var earthCssDest = "MapCloud/Earth/css";
+	var earthCssList = ["Earth/css/radi_earth.css"];
+	var earthCssDest = "Earth/css";
 	if(platform == "linux"){
 		earthCssList = changeToLinuxList(linuxPath,earthCssList);
 		earthCssDest = linuxPath + earthCssDest;
@@ -197,8 +198,8 @@ if(platform == "win32"){
 	});
 
 	// 压缩公有 css
-	var commonCssList = ['MapCloud/css/common.css'];
-	var commonCssDest = 'MapCloud/css';
+	var commonCssList = ['css/common.css'];
+	var commonCssDest = 'css';
 	if(platform == "linux"){
 		commonCssList = changeToLinuxList(linuxPath,commonCssList);
 		commonCssDest = linuxPath + commonCssDest;
@@ -211,14 +212,14 @@ if(platform == "win32"){
 	});
 
 	// 压缩公有的js
-	var commonJsList = ["MapCloud/js/MapCloud.js",
-			"MapCloud/js/Class/Class.js",
-			"MapCloud/js/Cookie.js",
-			'MapCloud/js/CityPosition.js',
-			'MapCloud/js/Control/*.js',
-			'MapCloud/js/Control/*/*.js'
+	var commonJsList = ["js/MapCloud.js",
+			"js/Class/Class.js",
+			"js/Cookie.js",
+			'js/CityPosition.js',
+			'js/Control/*.js',
+			'js/Control/*/*.js'
 			];
-	var commonJsDest = 'MapCloud/js';
+	var commonJsDest = 'js';
 	if(platform == "linux"){
 		commonJsList = changeToLinuxList(linuxPath,commonJsList);
 		commonJsDest = linuxPath + commonJsDest;
@@ -239,11 +240,11 @@ if(platform == "win32"){
 	});
 
 	// 压缩Editor的js
-	var editorJsList = ["MapCloud/Editor/js/global.js",
-			"MapCloud/Editor/js/init.js",
-			"MapCloud/Editor/js/Control/**/*js"
+	var editorJsList = ["Editor/js/global.js",
+			"Editor/js/init.js",
+			"Editor/js/Control/**/*js"
 			];
-	var editorJsDest = 'MapCloud/Editor/js';
+	var editorJsDest = 'Editor/js';
 	if(platform == "linux"){
 		editorJsList = changeToLinuxList(linuxPath,editorJsList);
 		editorJsDest = linuxPath + editorJsDest;
@@ -256,8 +257,8 @@ if(platform == "win32"){
 	});	
 
 	// 压缩MapEditor css
-	var editorCssList = ['MapCloud/css/mc-new.css'];
-	var editorCssDest = 'MapCloud/css';
+	var editorCssList = ['css/mc-new.css'];
+	var editorCssDest = 'css';
 	if(platform == "linux"){
 		editorCssList = changeToLinuxList(linuxPath,editorCssList);
 		editorCssDest = linuxPath + editorCssDest;
@@ -279,8 +280,8 @@ if(platform == "win32"){
 	});
 	
 	// 压缩User css
-	var userCssList = ['MapCloud/User/css/mc-user.css'];
-	var userCssDest = 'MapCloud/User/css';
+	var userCssList = ['User/css/mc-user.css'];
+	var userCssDest = 'User/css';
 	if(platform == "linux"){
 		userCssList = changeToLinuxList(linuxPath, userCssList);
 		userCssDest = linuxPath + userCssDest;
@@ -293,10 +294,10 @@ if(platform == "win32"){
 	});
 
 	// 压缩User index
-	var userIndexList = ['MapCloud/User/js/mc-user-catalog.js',
-			'MapCloud/User/js/mc-account-panel.js',
-			'MapCloud/User/js/mc-user.js'];
-	var userIndexDest = 'MapCloud/User/js';
+	var userIndexList = ['User/js/mc-user-catalog.js',
+			'User/js/mc-account-panel.js',
+			'User/js/mc-user.js'];
+	var userIndexDest = 'User/js';
 	if(platform == "linux"){
 		userIndexList = changeToLinuxList(linuxPath, userIndexList);
 		userIndexDest = linuxPath + userIndexDest;
@@ -309,10 +310,10 @@ if(platform == "win32"){
 	});
 
 	// 压缩User info
-	var userInfoList = ["MapCloud/User/js/mc-user-info.js",
-			"MapCloud/User/js/mc-user-panel.js"
+	var userInfoList = ["User/js/mc-user-info.js",
+			"User/js/mc-user-panel.js"
 			];
-	var userInfoDest = 'MapCloud/User/js';
+	var userInfoDest = 'User/js';
 	if(platform == "linux"){
 		userInfoList = changeToLinuxList(linuxPath,userInfoList);
 		userInfoDest = linuxPath + userInfoDest;
@@ -325,9 +326,9 @@ if(platform == "win32"){
 	});	
 
 	// 压缩User subscribe 
-	var userSubList = ['MapCloud/User/js/mc-user-subscribe.js',
-			'MapCloud/User/js/mc-sub-panel.js'];
-	var userSubDest = 'MapCloud/User/js';
+	var userSubList = ['User/js/mc-user-subscribe.js',
+			'User/js/mc-sub-panel.js'];
+	var userSubDest = 'User/js';
 	if(platform == "linux"){
 		userSubList = changeToLinuxList(linuxPath,userSubList);
 		userSubDest = linuxPath + userSubDest;
@@ -340,8 +341,8 @@ if(platform == "win32"){
 	});
 
 	// 压缩User map
-	var  userMapList = ['MapCloud/User/js/mc-user-map.js'];
-	var userMapDest = 'MapCloud/User/js';
+	var  userMapList = ['User/js/mc-user-map.js'];
+	var userMapDest = 'User/js';
 	if(platform == "linux"){
 		userMapList = changeToLinuxList(linuxPath,userMapList);
 		userMapDest = linuxPath + userMapDest;
@@ -354,9 +355,9 @@ if(platform == "win32"){
 	});
 
 	// 压缩User file
-	var userFileList =  ['MapCloud/User/js/mc-user-file.js',
-			'MapCloud/User/js/mc-file-panel.js'];
-	var userFileDest = 'MapCloud/User/js';
+	var userFileList =  ['User/js/mc-user-file.js',
+			'User/js/mc-file-panel.js'];
+	var userFileDest = 'User/js';
 	if(platform == "linux"){
 		userFileList = changeToLinuxList(linuxPath, userFileList);
 		userFileDest = linuxPath + userFileDest;
@@ -369,9 +370,9 @@ if(platform == "win32"){
 	});
 
 	// 压缩User vector 
-	var userVectorList = ['MapCloud/User/js/mc-user-vector.js',
-			'MapCloud/User/js/mc-vector-panel.js'];
-	var userVecotrDest = 'MapCloud/User/js';
+	var userVectorList = ['User/js/mc-user-vector.js',
+			'User/js/mc-vector-panel.js'];
+	var userVecotrDest = 'User/js';
 	if(platform == "linux"){
 		userVectorList = changeToLinuxList(linuxPath,userVectorList);
 		userVecotrDest = linuxPath + userVecotrDest;
@@ -384,9 +385,9 @@ if(platform == "win32"){
 	});
 
 	// 压缩User raster 
-	var userRasterList = ['MapCloud/User/js/mc-user-raster.js',
-			'MapCloud/User/js/mc-raster-panel.js'];
-	var userRasterDest = 'MapCloud/User/js';
+	var userRasterList = ['User/js/mc-user-raster.js',
+			'User/js/mc-raster-panel.js'];
+	var userRasterDest = 'User/js';
 	if(platform == "linux"){
 		userRasterList = changeToLinuxList(linuxPath,userRasterList);
 		userRasterDest = linuxPath + userRasterDest;
@@ -399,9 +400,9 @@ if(platform == "win32"){
 	});
 
 	// 压缩User tile 
-	var userTileList = ['MapCloud/User/js/mc-user-tile.js',
-			'MapCloud/User/js/mc-tile-panel.js'];
-	var userTileDest = 'MapCloud/User/js';
+	var userTileList = ['User/js/mc-user-tile.js',
+			'User/js/mc-tile-panel.js'];
+	var userTileDest = 'User/js';
 	if(platform == "linux"){
 		userTileList = changeToLinuxList(linuxPath,userTileList);
 		userTileDest = linuxPath + userTileDest;
@@ -414,9 +415,9 @@ if(platform == "win32"){
 	});
 
 	// 压缩User service 
-	var userServiceList = ['MapCloud/User/js/mc-user-service.js',
-			'MapCloud/User/js/mc-service-panel.js'];
-	var userServiceDest = 'MapCloud/User/js';
+	var userServiceList = ['User/js/mc-user-service.js',
+			'User/js/mc-service-panel.js'];
+	var userServiceDest = 'User/js';
 	if(platform == "linux"){
 		userServiceList = changeToLinuxList(linuxPath,userServiceList);
 		userServiceDest = linuxPath + userServiceDest;
@@ -438,10 +439,10 @@ if(platform == "win32"){
 	});
 
 	// 压缩Amidn index
-	var adminIndexList = ['MapCloud/Admin/js/mc-admin-catalog.js',
-			'MapCloud/Admin/js/mc-admin.js',
-			'MapCloud/Admin/js/mc-account-panel.js'];
-	var adminIndexDest = 'MapCloud/Admin/js';
+	var adminIndexList = ['Admin/js/mc-admin-catalog.js',
+			'Admin/js/mc-admin.js',
+			'Admin/js/mc-account-panel.js'];
+	var adminIndexDest = 'Admin/js';
 	if(platform == "linux"){
 		adminIndexList = changeToLinuxList(linuxPath,adminIndexList);
 		adminIndexDest = linuxPath + adminIndexDest;
@@ -454,8 +455,8 @@ if(platform == "win32"){
 	});
 
 	// 压缩Amidn css
-	var amdinCssList = ['MapCloud/Admin/css/mc-admin.css'];
-	var adminCssDest = 'MapCloud/Admin/css';
+	var amdinCssList = ['Admin/css/mc-admin.css'];
+	var adminCssDest = 'Admin/css';
 	if(platform == "linux"){
 		amdinCssList = changeToLinuxList(linuxPath,amdinCssList);
 		adminCssDest = linuxPath + adminCssDest;
@@ -468,9 +469,9 @@ if(platform == "win32"){
 	});
 
 	// 压缩Amidn users 
-	var adminUsersList = ['MapCloud/Admin/js/mc-admin-user.js',
-			'MapCloud/Admin/js/mc-user-panel.js'];
-	var adminUsersDest = 'MapCloud/Admin/js';
+	var adminUsersList = ['Admin/js/mc-admin-user.js',
+			'Admin/js/mc-user-panel.js'];
+	var adminUsersDest = 'Admin/js';
 	if(platform == "linux"){
 		adminUsersList = changeToLinuxList(linuxPath,adminUsersList);
 		adminUsersDest = linuxPath + adminUsersDest;
@@ -483,9 +484,9 @@ if(platform == "win32"){
 	});	
 
 	// 压缩Amidn data
-	var adminDataList = ['MapCloud/Admin/js/mc-admin-data.js',
-			'MapCloud/Admin/js/mc-data-panel.js'];
-	var adminDataDest = 'MapCloud/Admin/js';
+	var adminDataList = ['Admin/js/mc-admin-data.js',
+			'Admin/js/mc-data-panel.js'];
+	var adminDataDest = 'Admin/js';
 	if(platform == "linux"){
 		adminDataList = changeToLinuxList(linuxPath,adminDataList);
 		adminDataDest = linuxPath + adminDataDest;
@@ -498,9 +499,9 @@ if(platform == "win32"){
 	});	
 
 	// 压缩Admin ha
-	var adminFaList = ['MapCloud/Admin/js/mc-admin-ha.js',
-			'MapCloud/Admin/js/mc-ha-panel.js'];
-	var adminFaDest = 'MapCloud/Admin/js';
+	var adminFaList = ['Admin/js/mc-admin-ha.js',
+			'Admin/js/mc-ha-panel.js'];
+	var adminFaDest = 'Admin/js';
 	if(platform == "linux"){
 		adminFaList = changeToLinuxList(linuxPath,adminFaList);
 		adminFaDest = linuxPath + adminFaDest;
@@ -513,9 +514,9 @@ if(platform == "win32"){
 	});	
 
 	// 压缩Admin use
-	var adminUseList = ['MapCloud/Admin/js/mc-admin-use.js',
-			'MapCloud/Admin/js/mc-use-panel.js'];
-	var adminUseDest = 'MapCloud/Admin/js';
+	var adminUseList = ['Admin/js/mc-admin-use.js',
+			'Admin/js/mc-use-panel.js'];
+	var adminUseDest = 'Admin/js';
 	if(platform == "linux"){
 		adminUseList = changeToLinuxList(linuxPath,adminUseList);
 		adminUseDest = linuxPath + adminUseDest;
@@ -528,9 +529,9 @@ if(platform == "win32"){
 	});		
 
 	// 压缩Admin job
-	var adminJobList = ['MapCloud/Admin/js/mc-admin-job.js',
-			'MapCloud/Admin/js/mc-job-panel.js'];
-	var adminJobDest = 'MapCloud/Admin/js';
+	var adminJobList = ['Admin/js/mc-admin-job.js',
+			'Admin/js/mc-job-panel.js'];
+	var adminJobDest = 'Admin/js';
 	if(platform == "linux"){
 		adminJobList = changeToLinuxList(linuxPath,adminJobList);
 		adminJobDest = linuxPath + adminJobDest;
@@ -551,8 +552,8 @@ if(platform == "win32"){
 	});
 
 	// 压缩Guoan css
-	var guoanCssList = ['MapCloud/Guoan/css/guoan.css'];
-	var guoanCssDest = 'MapCloud/Guoan/css';
+	var guoanCssList = ['Guoan/css/guoan.css'];
+	var guoanCssDest = 'Guoan/css';
 	if(platform == "linux"){
 		guoanCssList = changeToLinuxList(linuxPath,guoanCssList);
 		guoanCssDest = linuxPath + guoanCssDest;
@@ -565,16 +566,16 @@ if(platform == "win32"){
 	});
 
 	// 压缩Guoan index
-	var guoanJsList = ['MapCloud/Guoan/js/init.js',
-			'MapCloud/Guoan/js/SearchPanel.js',
-			'MapCloud/Guoan/js/BaseLayerPanel.js',
-			'MapCloud/Guoan/js/MapBar.js',
-			'MapCloud/Guoan/js/QueryResultPanel.js',
-			'MapCloud/Guoan/js/MapLayersPanel.js',
-			'MapCloud/Guoan/js/CurrentCityPanel.js',
-			'MapCloud/Guoan/js/CityPanel.js',
-			'MapCloud/Guoan/js/PositionControl.js'];
-	var guoanJsDest = 'MapCloud/Guoan/js';
+	var guoanJsList = ['Guoan/js/init.js',
+			'Guoan/js/SearchPanel.js',
+			'Guoan/js/BaseLayerPanel.js',
+			'Guoan/js/MapBar.js',
+			'Guoan/js/QueryResultPanel.js',
+			'Guoan/js/MapLayersPanel.js',
+			'Guoan/js/CurrentCityPanel.js',
+			'Guoan/js/CityPanel.js',
+			'Guoan/js/PositionControl.js'];
+	var guoanJsDest = 'Guoan/js';
 	if(platform == "linux"){
 		guoanJsList = changeToLinuxList(linuxPath,guoanJsList);
 		guoanJsDest = linuxPath + guoanJsDest;
@@ -591,6 +592,6 @@ if(platform == "win32"){
 		'user-task','admin-task'],function(){
 
 	});
-	gulp.task('default',['all-task'],function(){
+	gulp.task('default',['map5-task'],function(){
 
 	});

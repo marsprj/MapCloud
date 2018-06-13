@@ -122,7 +122,7 @@ MapCloud.StyleDialog = MapCloud.Class(MapCloud.Dialog,{
 	cleanup : function(){
 		var first = this.panel.find("ul.nav-tabs li a").first();
 		first.tab("show");
-		this.panel.find(".text-text  input[type='text']").val("自定义文本");
+		// this.panel.find(".text-text  input[type='text']").val("自定义文本");
 	},
 
 	setFontEnable : function(checked){

@@ -304,6 +304,9 @@ MapCloud.MapBar = MapCloud.Class({
 	},
 	// 缩小
 	onZoomOut : function(){
+		if(mapObj == null){
+			return;
+		}
 		mapObj.zoomOut();
 	}
 
