@@ -33,7 +33,8 @@
 			<?php
 				include_once('simple_html_dom.php');
 
-				$html = file_get_html('http://ourgis.digitalearth.cn/haproxy-stats');
+				#$html = file_get_html('http://ourgis.digitalearth.cn/haproxy-stats');
+				$html = file_get_html('http://192.168.111.159/haproxy-stats');
 
 				$table = $html->find(".tbl");
 

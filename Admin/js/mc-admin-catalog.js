@@ -23,7 +23,8 @@ var g_catalog =
     {
         "name": "系统监控",
         "icon": "monitor.png",
-        "link": "http://ourgis.digitalearth.cn/monitor/"
+        "link": "http://ourgis.digitalearth.cn/smonitor/"
+    //    "link": "/smonitor/"
     },
     {
         "name": "负载均衡",

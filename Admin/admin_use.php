@@ -72,7 +72,8 @@
 				include_once('simple_html_dom.php');
 
 				function getGluster(){
-					$html = file_get_html('http://192.168.111.156:8088/test/gluster.php');
+					//$html = file_get_html('http://192.168.111.156:8088/test/gluster.php');
+					$html = file_get_html('gluster.xml');
 				
 					foreach($html->find("total") as $element)
 						$text = $element->text();
