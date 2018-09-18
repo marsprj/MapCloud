@@ -850,7 +850,19 @@ MapCloud.DataPanel = MapCloud.Class({
 				+	'			<i class="mc-icon mc-base-layer-icon"></i>'
 				+	'			<span title="影像底图">影像底图</span>'
 				+	'		</a>'
-				+	'	</li>'							
+				+	'	</li>'
+				+	'	<li sname="6m" tname="6米地图">'
+				+	'		<a href="#" class="tree-table">'
+				+	'			<i class="mc-icon mc-base-layer-icon"></i>'
+				+	'			<span title="6米地图">6米地图</span>'
+				+	'		</a>'
+				+	'	</li>'	
+				+	'	<li sname="zy3" tname="资三地图">'
+				+	'		<a href="#" class="tree-table">'
+				+	'			<i class="mc-icon mc-base-layer-icon"></i>'
+				+	'			<span title="资三地图">资三地图</span>'
+				+	'		</a>'
+				+	'	</li>'								
 				+	'</ul>';
 		this.panel.find(".db-tree .row").removeClass("selected");
 		this.panel.find(".db-tree .row[dname='tile']").addClass("selected");
@@ -883,6 +895,22 @@ MapCloud.DataPanel = MapCloud.Class({
 			+	"	<div class='col-md-3 col-xs-3'>"
 			+	"		<a href='javascript:void(0)' class='oper enter-tile'>进入</a>"
 			+	"	</div>"
+			+	"</div>"
+			+ 	"<div class='row' sname='6m' tname='6米地图'>"
+			+	"	<div class='col-md-1 col-xs-1'>2</div>"
+			+	"	<div class='col-md-3 col-xs-3'>6米地图</div>"
+			+	"	<div class='col-md-4 col-xs-4'>6米地图</div>"
+			+	"	<div class='col-md-3 col-xs-3'>"
+			+	"		<a href='javascript:void(0)' class='oper enter-tile'>进入</a>"
+			+	"	</div>"
+			+	"</div>"
+			+ 	"<div class='row' sname='zy3' tname='资三地图'>"
+			+	"	<div class='col-md-1 col-xs-1'>2</div>"
+			+	"	<div class='col-md-3 col-xs-3'>资三地图</div>"
+			+	"	<div class='col-md-4 col-xs-4'>资三地图</div>"
+			+	"	<div class='col-md-3 col-xs-3'>"
+			+	"		<a href='javascript:void(0)' class='oper enter-tile'>进入</a>"
+			+	"	</div>"
 			+	"</div>";
 		this.panel.find(".tiles-list").html(html);
 
@@ -897,7 +925,40 @@ MapCloud.DataPanel = MapCloud.Class({
 	},
 
 	// 展示底图
-	showBaseLayer : function(name,title){
+	// showBaseLayer : function(name,title){
+	// 	if(name == null){
+	// 		return;
+	// 	}
+	// 	this.panel.find(".right-panel-tab").css("display","none");
+	// 	this.panel.find("#qs_tab").css("display","block");
+	// 	this.panel.find(".nav[dname='tile'] li").removeClass("selected");
+	// 	this.panel.find(".nav[dname='tile'] li[sname='" + name + "']").addClass("selected");
+	// 	this.panel.find(".current-qs").html(title);
+
+	// 	var center = new GeoBeans.Geometry.Point(0,0);	
+	// 	var level = 2;
+
+	// 	var layer = null;
+	// 	var url = this.baseLayerUrl + name;
+	// 	if(this.map == null){
+	// 		var extent = new GeoBeans.Envelope(-180,-90,180,90);
+	// 		this.map = new GeoBeans.Map(admin.server,"base_layer_canvas_wrapper","tmp",extent,4326,extent);
+	// 	}else{
+	// 		this.map.removeBaseLayer();
+	// 		this.map.draw();
+	// 		center = this.map.center;
+	// 		level = this.map.level;
+	// 	}
+	// 	layer = new GeoBeans.Layer.QSLayer("base",url);
+		
+	// 	this.map.setBaseLayer(layer);
+		
+	// 	this.map.setCenter(center);
+	// 	this.map.setLevel(level);	
+	// 	this.map.draw();			
+	// },
+
+	showBaseLayer : function(name,title) {
 		if(name == null){
 			return;
 		}
@@ -906,28 +967,41 @@ MapCloud.DataPanel = MapCloud.Class({
 		this.panel.find(".nav[dname='tile'] li").removeClass("selected");
 		this.panel.find(".nav[dname='tile'] li[sname='" + name + "']").addClass("selected");
 		this.panel.find(".current-qs").html(title);
-
-		var center = new GeoBeans.Geometry.Point(0,0);	
-		var level = 2;
-
-		var layer = null;
-		var url = this.baseLayerUrl + name;
-		if(this.map == null){
+		var center = null;
+		var level = null;
+		if(!this.map){
 			var extent = new GeoBeans.Envelope(-180,-90,180,90);
 			this.map = new GeoBeans.Map(admin.server,"base_layer_canvas_wrapper","tmp",extent,4326,extent);
 		}else{
 			this.map.removeBaseLayer();
 			this.map.draw();
-			center = this.map.center;
-			level = this.map.level;
 		}
-		layer = new GeoBeans.Layer.QSLayer("base",url);
+		switch (name) {
+			case "world_vector":
+			case "world_image":
+				center = new GeoBeans.Geometry.Point(0,0);	
+				level = 2;
+				break;
+			case "zy3":
+				center = new GeoBeans.Geometry.Point(117.75,39);
+				level = 13;	
+				break;
+			case "6m":
+				center = new GeoBeans.Geometry.Point(164.87,60.125);
+				level = 11;	
+				break;
+			default:
+				break;
+		}
+		var url = this.baseLayerUrl + name;
+
+		var layer = new GeoBeans.Layer.QSLayer("base",url);
 		
 		this.map.setBaseLayer(layer);
 		
 		this.map.setCenter(center);
 		this.map.setLevel(level);	
-		this.map.draw();			
+		this.map.draw();	
 	},
 	showPoiDataSource : function(){
 
