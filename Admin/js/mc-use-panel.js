@@ -12,6 +12,8 @@ MapCloud.UsePanel = MapCloud.Class({
 	registerPanelEvent : function(){
 		var that = this;
 		that.loadGluster();
+
+		this.panel.find("[data-toggle='tooltip']").tooltip();
 	},
 
 

@@ -730,11 +730,11 @@ html, body {
 /* Admin Use Begin 			                                           		*/
 /***************************************************************************/
 
-#use_panel .panel-body{
+#use_panel .panel-body,#db_panel .panel-body{
 	height: 300px;
 	position: relative;
 }
-#use_chart{
+#use_chart,#db_chart{
 	height: 100%;
 }
 #use_list{
@@ -744,7 +744,7 @@ html, body {
     width: 200px;
     font-size: 14px;
 }
-#use_list .row{
+#use_list .row,#db_list .row{
 	margin: 10px;
 	color: #333;
 }
@@ -779,6 +779,100 @@ html, body {
     border-radius: 4px;
     color: #fff;
     box-shadow: 2px 2px #cdcdcd;
+}
+
+#db_list{
+	position: absolute;
+	right: 10px;
+	top: 100px;
+	width: 220px;
+	font-size: 14px;
+}
+
+#db_list .row [class*='col-md']{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.db-circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    box-shadow: 1px 1px #cdcdcd;
+    font-size: 15px;
+    line-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    color: #fff;
+}
+
+.db-circle:hover{
+	box-shadow: 1px 1px 2px 0.1px #828e9a;
+}
+
+#circle_1{
+	background-color: #2ec7c9;
+	left: 30px;
+	top: 60px;
+}
+
+#circle_2{
+	background-color: #b6a2de;
+    top: 100px;
+    left: 80px;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	line-height: 80px;
+}
+
+#circle_3{
+	background-color: #3e93c0;
+	top: 170px;
+    left: 150px;
+}
+
+#circle_4{
+	background-color: #70fa87;
+    top: 182px;
+    left: 88px;
+    width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	line-height: 50px;
+}
+
+#circle_5{
+	background-color: #f58585;
+	top: 154px;
+	left: 15px;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	line-height: 70px;
+}
+
+#circle_6{
+	background-color: #CDDC39;
+    top: 54px;
+    left: 142px;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    line-height: 70px;
+}
+
+#db_panel .center-block{
+	width: 200px;
+	text-align: center;
+	color: #57b2de;
+	margin-top: 2px;
+	font-size: 20px;
 }
 /***************************************************************************/
 /* Admin Use End 			                                           		*/

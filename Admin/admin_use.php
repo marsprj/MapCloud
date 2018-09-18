@@ -18,9 +18,9 @@
 	<script type="text/javascript" src="../../Map5/lib/Map5.min.js"></script>
  	<script type="text/javascript" src="js/mc-admin-use.min.js"></script>
 	
-<!--	<script type="text/javascript" src="js/mc-use-panel.js"></script>
-	<script type="text/javascript" src="js/mc-admin-use.js"></script>
--->	
+<!-- 	<script type="text/javascript" src="js/mc-use-panel.js"></script>
+	<script type="text/javascript" src="js/mc-admin-use.js"></script> -->
+	
 	<title>使用情况</title>
 </head>
 	
@@ -30,44 +30,138 @@
 			<div class="title_box">基本信息</div>
 		</div>
 		<div id="ha_main_wrapper">
-			<div class="row"  style="width:500px">
-				<div class="col-md-12 col-xs-12" id="use_panel">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h2>
-									<i class="fa fa-list"></i>
-									<strong>使用情况</strong>
-								</h2>
-								<div class="panel-actions">
-									<!-- <a href="javascript:void(0)" class="btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a> -->
-								</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-6" id="use_panel" style="width:500px">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>
+								<i class="fa fa-list"></i>
+								<strong>使用情况</strong>
+							</h2>
+							<div class="panel-actions">
+								<!-- <a href="javascript:void(0)" class="btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a> -->
 							</div>
-							<div class="panel-body" >
-								<div id="use_chart"></div>
-								<div  id="use_list">
-									<div>
-										<div class="row">
-										<div class="col-md-6">总空间:</div>
-										<div class="col-md-6" id="total_size"></div>
-									</div>
+						</div>
+						<div class="panel-body" >
+							<div id="use_chart"></div>
+							<div  id="use_list">
+								<div>
 									<div class="row">
-										<div class="col-md-6">使用:</div>
-										<div class="col-md-6" id="used_size"></div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">空余:</div>
-										<div class="col-md-6" id="free_size"></div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">使用率:</div>
-										<div class="col-md-6" id="usage_size"></div>
-									</div>
-									</div>
+									<div class="col-md-6">总空间:</div>
+									<div class="col-md-6" id="total_size"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">使用:</div>
+									<div class="col-md-6" id="used_size"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">空余:</div>
+									<div class="col-md-6" id="free_size"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">使用率:</div>
+									<div class="col-md-6" id="usage_size"></div>
+								</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-6 col-xs-6" id="db_panel" style="width:500px">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>
+								<i class="fa fa-list"></i>
+								<strong>数据库使用情况</strong>
+							</h2>
+							<div class="panel-actions">
+
+							</div>
+						</div>
+						<div class="panel-body" >
+							<div class="row">
+								<div class="center-block">
+									数据库统计
+								</div>
+							</div>
+							<div id="db_chart">
+								<div class="db-circle" id="circle_1" data-toggle="tooltip" data-placement="auto" title="91G">
+									gidb
+								</div>
+								<div class="db-circle" id="circle_2" data-toggle="tooltip" data-placement="auto" title="1.51T">
+									postgis
+								</div>
+								<div class="db-circle" id="circle_3" data-toggle="tooltip" data-placement="auto" title="60G">
+									osm
+								</div>
+								<div class="db-circle" id="circle_4" data-toggle="tooltip" data-placement="auto" title="20G">
+									poidb
+								</div>
+								<div class="db-circle" id="circle_5" data-toggle="tooltip" data-placement="auto" title="169G">
+									base
+								</div>
+								<div class="db-circle" id="circle_6" data-toggle="tooltip" data-placement="auto" title="" data-original-title="56G">
+									sicence
+								</div>
+							</div>
+							<div  id="db_list">
+								<div>
+									<div class="row">
+									<div class="col-md-7">数据库个数:</div>
+									<div class="col-md-5">26个</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">数据库总大小:
+</div>
+									<div class="col-md-5">1.93T</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">最大数据库:</div>
+									<div class="col-md-5">1.51T</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="row"  style="width:500px">
+				<div class="col-md-12 col-xs-12" id="use_panel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>
+								<i class="fa fa-list"></i>
+								<strong>使用情况</strong>
+							</h2>
+							<div class="panel-actions">
+							</div>
+						</div>
+						<div class="panel-body" >
+							<div id="use_chart"></div>
+							<div  id="use_list">
+								<div>
+									<div class="row">
+									<div class="col-md-6">总空间:</div>
+									<div class="col-md-6" id="total_size"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">使用:</div>
+									<div class="col-md-6" id="used_size"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">空余:</div>
+									<div class="col-md-6" id="free_size"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">使用率:</div>
+									<div class="col-md-6" id="usage_size"></div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
 			<?php
 				include_once('simple_html_dom.php');
 
