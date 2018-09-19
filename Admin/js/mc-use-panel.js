@@ -53,7 +53,7 @@ MapCloud.UsePanel = MapCloud.Class({
 		        {
 		            name:'分布式文件系统',
 		            type:'pie',
-		            radius : '55%',
+		            radius : '50%',
 		            center: ['30%', '60%'],
 		            data:[
 		                {value:usedSize, name:'已使用空间'},

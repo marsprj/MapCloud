@@ -729,22 +729,30 @@ html, body {
 /***************************************************************************/
 /* Admin Use Begin 			                                           		*/
 /***************************************************************************/
+#use_body{
+	overflow-y: auto;
+	overflow-x: auto;
+	/*min-width: 1220px;*/
+}
 
-#use_panel .panel-body,#db_panel .panel-body{
+
+#use_panel .panel-body,#db_panel .panel-body,#tile_panel .panel-body{
 	height: 300px;
 	position: relative;
 }
 #use_chart,#db_chart{
 	height: 100%;
+	padding: 0px;
 }
 #use_list{
     position: absolute;
     right: 10px;
     bottom: 70px;
-    width: 200px;
+    /*width: 200px;*/
     font-size: 14px;
+    text-align: right;
 }
-#use_list .row,#db_list .row{
+.panel-info-list .row{
 	margin: 10px;
 	color: #333;
 }
@@ -785,13 +793,16 @@ html, body {
 	position: absolute;
 	right: 10px;
 	top: 100px;
-	width: 220px;
+	min-width: 180px;
 	font-size: 14px;
 }
 
-#db_list .row [class*='col-md']{
-	padding-left: 10px;
-	padding-right: 10px;
+.panel-info-list{
+	text-align: right;
+}
+.panel-info-list .row [class*='col-md']{
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .db-circle{
@@ -823,7 +834,7 @@ html, body {
 
 #circle_2{
 	background-color: #b6a2de;
-    top: 100px;
+    top: 110px;
     left: 80px;
 	width: 80px;
 	height: 80px;
@@ -839,7 +850,7 @@ html, body {
 
 #circle_4{
 	background-color: #70fa87;
-    top: 182px;
+    top: 202px;
     left: 88px;
     width: 50px;
 	height: 50px;
@@ -867,12 +878,46 @@ html, body {
     line-height: 70px;
 }
 
-#db_panel .center-block{
+#admin_use_panel .center-block{
 	width: 200px;
 	text-align: center;
 	color: #57b2de;
 	margin-top: 2px;
 	font-size: 20px;
+}
+
+#tile_list{
+    position: absolute;
+    right: 10px;
+    top: 140px;
+    width: 220px;
+    font-size: 14px;
+}
+
+#tile_image{
+	background: url("../images/tile.png") no-repeat center center;
+    width: 160px;
+    height: 160px;
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 10px;    
+}
+
+#db_panel{
+	padding: 0px;
+}
+
+.list-panel{
+	width: 390px;
+}
+
+#db_image{
+	background: url("../images/db.png") no-repeat center center;
+    width: 160px;
+    height: 160px;
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 10px;    
 }
 /***************************************************************************/
 /* Admin Use End 			                                           		*/

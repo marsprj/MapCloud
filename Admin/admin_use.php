@@ -24,55 +24,55 @@
 	<title>使用情况</title>
 </head>
 	
-<body id="ha_body">
-	<div class="common-panel" id="use_panel">
+<body id="use_body">
+	<div class="common-panel" id="admin_use_panel">
 		<div id="title_wrapper">
 			<div class="title_box">基本信息</div>
 		</div>
 		<div id="ha_main_wrapper">
 			<div class="row">
-				<div class="col-md-6 col-xs-6" id="use_panel" style="width:500px">
+				<div class="col-md-4 col-xs-4 list-panel" id="use_panel">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h2>
 								<i class="fa fa-list"></i>
-								<strong>使用情况</strong>
+								<strong>文件</strong>
 							</h2>
 							<div class="panel-actions">
 								<!-- <a href="javascript:void(0)" class="btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a> -->
 							</div>
 						</div>
 						<div class="panel-body" >
-							<div id="use_chart"></div>
-							<div  id="use_list">
+							<div id="use_chart" class="col-md-12"></div>
+							<div  id="use_list" class="panel-info-list">
 								<div>
 									<div class="row">
-									<div class="col-md-6">总空间:</div>
-									<div class="col-md-6" id="total_size"></div>
+									<div class="col-md-6 col-xs-6">总空间:</div>
+									<div class="col-md-6 col-xs-6" id="total_size"></div>
 								</div>
 								<div class="row">
-									<div class="col-md-6">使用:</div>
-									<div class="col-md-6" id="used_size"></div>
+									<div class="col-md-6 col-xs-6">使用:</div>
+									<div class="col-md-6 col-xs-6" id="used_size"></div>
 								</div>
 								<div class="row">
-									<div class="col-md-6">空余:</div>
-									<div class="col-md-6" id="free_size"></div>
+									<div class="col-md-6 col-xs-6">空余:</div>
+									<div class="col-md-6 col-xs-6" id="free_size"></div>
 								</div>
 								<div class="row">
-									<div class="col-md-6">使用率:</div>
-									<div class="col-md-6" id="usage_size"></div>
+									<div class="col-md-6 col-xs-6">使用率:</div>
+									<div class="col-md-6 col-xs-6" id="usage_size"></div>
 								</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-xs-6" id="db_panel" style="width:500px">
+				<div class="col-md-4 col-xs-4 list-panel" id="db_panel">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h2>
 								<i class="fa fa-list"></i>
-								<strong>数据库使用情况</strong>
+								<strong>数据库</strong>
 							</h2>
 							<div class="panel-actions">
 
@@ -84,7 +84,7 @@
 									数据库统计
 								</div>
 							</div>
-							<div id="db_chart">
+<!-- 							<div id="db_chart">
 								<div class="db-circle" id="circle_1" data-toggle="tooltip" data-placement="auto" title="91G">
 									gidb
 								</div>
@@ -103,65 +103,59 @@
 								<div class="db-circle" id="circle_6" data-toggle="tooltip" data-placement="auto" title="" data-original-title="56G">
 									sicence
 								</div>
+							</div> -->
+							<div id="db_image">
 							</div>
-							<div  id="db_list">
+							<div  id="db_list" class="panel-info-list">
 								<div>
 									<div class="row">
-									<div class="col-md-7">数据库个数:</div>
-									<div class="col-md-5">26个</div>
+									<div class="col-md-7 col-xs-7">数据库个数:</div>
+									<div class="col-md-5 col-xs-5">26个</div>
 								</div>
 								<div class="row">
-									<div class="col-md-7">数据库总大小:
-</div>
-									<div class="col-md-5">1.93T</div>
+									<div class="col-md-7 col-xs-7">数据库总大小:
+									</div>
+									<div class="col-md-5 col-xs-5">1.93T</div>
 								</div>
 								<div class="row">
-									<div class="col-md-7">最大数据库:</div>
-									<div class="col-md-5">1.51T</div>
+									<div class="col-md-7 col-xs-7">最大数据库:</div>
+									<div class="col-md-5 col-xs-5">1.51T</div>
 								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 list-panel" id="tile_panel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>
+								<i class="fa fa-list"></i>
+								<strong>瓦片</strong>
+							</h2>
+							<div class="panel-actions">
+
+							</div>
+						</div>
+						<div class="panel-body" >
+							<div class="row">
+								<div class="center-block">
+									瓦片统计
+								</div>
+							</div>
+							<div id="tile_image"></div>
+							<div  id="tile_list" class="panel-info-list">
+								<div>
+									<div class="row">
+										<div class="col-md-7 col-xs-7">瓦片总数:</div>
+										<div class="col-md-5 col-xs-5" id="total_size">21亿</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-<!-- 			<div class="row"  style="width:500px">
-				<div class="col-md-12 col-xs-12" id="use_panel">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h2>
-								<i class="fa fa-list"></i>
-								<strong>使用情况</strong>
-							</h2>
-							<div class="panel-actions">
-							</div>
-						</div>
-						<div class="panel-body" >
-							<div id="use_chart"></div>
-							<div  id="use_list">
-								<div>
-									<div class="row">
-									<div class="col-md-6">总空间:</div>
-									<div class="col-md-6" id="total_size"></div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">使用:</div>
-									<div class="col-md-6" id="used_size"></div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">空余:</div>
-									<div class="col-md-6" id="free_size"></div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">使用率:</div>
-									<div class="col-md-6" id="usage_size"></div>
-								</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
 			<?php
 				include_once('simple_html_dom.php');
 
