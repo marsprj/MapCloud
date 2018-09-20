@@ -748,7 +748,7 @@ html, body {
     position: absolute;
     right: 10px;
     bottom: 70px;
-    /*width: 200px;*/
+    width: 150px;
     font-size: 14px;
     text-align: right;
 }
@@ -889,7 +889,7 @@ html, body {
 #tile_list{
     position: absolute;
     right: 10px;
-    top: 140px;
+    top: 135px;
     width: 220px;
     font-size: 14px;
 }

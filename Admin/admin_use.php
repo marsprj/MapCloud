@@ -36,7 +36,7 @@
 						<div class="panel-heading">
 							<h2>
 								<i class="fa fa-list"></i>
-								<strong>文件</strong>
+								<strong>分布式文件系统</strong>
 							</h2>
 							<div class="panel-actions">
 								<!-- <a href="javascript:void(0)" class="btn-refresh" data-toggle="tooltip" data-placement="top" data-original-title="刷新"><i class="fa fa-rotate-right"></i></a> -->
@@ -72,7 +72,7 @@
 						<div class="panel-heading">
 							<h2>
 								<i class="fa fa-list"></i>
-								<strong>数据库</strong>
+								<strong>空间数据库集群</strong>
 							</h2>
 							<div class="panel-actions">
 
@@ -81,34 +81,17 @@
 						<div class="panel-body" >
 							<div class="row">
 								<div class="center-block">
-									数据库统计
+									空间数据库集群
 								</div>
 							</div>
-<!-- 							<div id="db_chart">
-								<div class="db-circle" id="circle_1" data-toggle="tooltip" data-placement="auto" title="91G">
-									gidb
-								</div>
-								<div class="db-circle" id="circle_2" data-toggle="tooltip" data-placement="auto" title="1.51T">
-									postgis
-								</div>
-								<div class="db-circle" id="circle_3" data-toggle="tooltip" data-placement="auto" title="60G">
-									osm
-								</div>
-								<div class="db-circle" id="circle_4" data-toggle="tooltip" data-placement="auto" title="20G">
-									poidb
-								</div>
-								<div class="db-circle" id="circle_5" data-toggle="tooltip" data-placement="auto" title="169G">
-									base
-								</div>
-								<div class="db-circle" id="circle_6" data-toggle="tooltip" data-placement="auto" title="" data-original-title="56G">
-									sicence
-								</div>
-							</div> -->
 							<div id="db_image">
 							</div>
 							<div  id="db_list" class="panel-info-list">
-								<div>
-									<div class="row">
+								<div class="row">
+									<div class="col-md-7 col-xs-7">节点数:</div>
+									<div class="col-md-5 col-xs-5">8个</div>
+								</div>
+								<div class="row">
 									<div class="col-md-7 col-xs-7">数据库个数:</div>
 									<div class="col-md-5 col-xs-5">6个</div>
 								</div>
@@ -121,7 +104,6 @@
 									<div class="col-md-7 col-xs-7">最大数据库:</div>
 									<div class="col-md-5 col-xs-5">1.51T</div>
 								</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -131,7 +113,7 @@
 						<div class="panel-heading">
 							<h2>
 								<i class="fa fa-list"></i>
-								<strong>瓦片</strong>
+								<strong>NoSQL数据库集群</strong>
 							</h2>
 							<div class="panel-actions">
 
@@ -140,15 +122,21 @@
 						<div class="panel-body" >
 							<div class="row">
 								<div class="center-block">
-									瓦片统计
+									NoSQL数据库集群
 								</div>
 							</div>
 							<div id="tile_image"></div>
 							<div  id="tile_list" class="panel-info-list">
 								<div>
 									<div class="row">
+										<div class="col-md-7 col-xs-7">节点数:</div>
+										<div class="col-md-5 col-xs-5" id="total_size">16个</div>
+									</div>
+								</div>
+								<div>
+									<div class="row">
 										<div class="col-md-7 col-xs-7">瓦片总数:</div>
-										<div class="col-md-5 col-xs-5" id="total_size">21亿</div>
+										<div class="col-md-5 col-xs-5" id="total_size">21.6亿</div>
 									</div>
 								</div>
 							</div>
