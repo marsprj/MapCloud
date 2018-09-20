@@ -110,7 +110,7 @@
 								<div>
 									<div class="row">
 									<div class="col-md-7 col-xs-7">数据库个数:</div>
-									<div class="col-md-5 col-xs-5">26个</div>
+									<div class="col-md-5 col-xs-5">6个</div>
 								</div>
 								<div class="row">
 									<div class="col-md-7 col-xs-7">数据库总大小:
