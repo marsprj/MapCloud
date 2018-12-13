@@ -334,10 +334,18 @@ div{
 	margin-top: 2px;
 }
 .list-tree{
+
 	overflow-y : auto;
-	height: 100%;
+	height: 300px;
 }
-.list-tree .row{
+
+.dataset-tree{
+	overflow-y : auto;
+	height: calc(100% - 300px);
+	border-top: 3px solid #ccc;
+	/*background: red;*/
+}
+.list-tree .row,.dataset-tree .row{
     padding: 6px;
     margin-left: 0px;
     margin-right: 0px;
@@ -584,8 +592,13 @@ div{
 .vector-db-tree .nav>li.selected{
 	background-color:#E7F1F5
 }
-.vector-db-tree .nav>li>a{
+
+.list-tree .nav>li>a{
 	padding: 4px 6px 4px 34px;
+}
+
+.dataset-tree .nav>li>a{
+	padding: 4px 6px 4px 20px;
 }
 .vector-db-tree li a span{
     word-break: break-all;

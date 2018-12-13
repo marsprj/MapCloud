@@ -163,6 +163,7 @@ MapCloud.VectorPanel = MapCloud.Class({
 		var that = MapCloud.vectorPanel;
 		that.showDataSourcesTree(dataSources);
 		that.showDataSourcesList(dataSources);
+
 	},
 
 	// 左侧树
@@ -189,23 +190,24 @@ MapCloud.VectorPanel = MapCloud.Class({
 				+	'	<div class="col-md-7 col-xs-7 db-tree-name">' + name  + '</div>'
 				+	'</div>';
 		}
-		this.panel.find(".vector-db-tree").html(html);
+		this.panel.find(".dataset-tree").html(html);
 
+	
 		var that = this;
-		this.panel.find(".vector-db-tree .glyphicon-chevron-right").click(function(){
+		this.panel.find(".dataset-tree .glyphicon-chevron-right").click(function(){
 			var name = $(this).parents(".row").first().attr("dname");
 			if($(this).hasClass("mc-icon-right")){
 				// 展开
 				$(this).removeClass("mc-icon-right");
 				$(this).addClass("mc-icon-down");
 				$(this).css("transform","rotate(90deg) translate(3px,0px)");
-				that.panel.find(".vector-db-tree .nav[dname='" + name + "']").remove();
+				that.panel.find(".dataset-tree .nav[dname='" + name + "']").remove();
 				that.getDataSource(name);
 			}else{
 				$(this).css("transform","rotate(0deg) translate(0px,0px)");
 				$(this).addClass("mc-icon-right");
 				$(this).removeClass("mc-icon-down");	
-				that.panel.find(".vector-db-tree .nav[dname='" + name + "']").slideUp(500);	
+				that.panel.find(".dataset-tree .nav[dname='" + name + "']").slideUp(500);	
 			}
 		});
 	},
@@ -264,14 +266,14 @@ MapCloud.VectorPanel = MapCloud.Class({
 		// 进入数据库
 		$(".vector-db-list .enter-db").click(function(){
 			var name = $(this).parents(".row").first().attr("dname");
-			if(name == null){
+			if(name == null || name == "temp"){
 				return;
 			}
-			var icon = that.panel.find(".vector-db-tree .row[dname='" + name + "'] .glyphicon-chevron-right");
+			var icon = that.panel.find(".dataset-tree .row[dname='" + name + "'] .glyphicon-chevron-right");
 			icon.removeClass("mc-icon-right");
 			icon.addClass("mc-icon-down");
 			icon.css("transform","rotate(90deg) translate(3px,0px)");
-			that.panel.find(".vector-db-tree .nav[dname='" + name +"']").remove();
+			that.panel.find(".dataset-tree .nav[dname='" + name +"']").remove();
 			that.getDataSource(name);
 		});
 
@@ -339,9 +341,9 @@ MapCloud.VectorPanel = MapCloud.Class({
 		this.panel.find("#datasource_tab").css("display","block");
 		this.panel.find("#show_datasets_list").css("disabled",false);
 		this.panel.find("#show_datasets_thumb").css("disabled",true);
-		this.panel.find(".vector-db-tree .row").removeClass("selected");
-		this.panel.find(".vector-db-tree .row[dname='" + name + "']").addClass("selected");
-		this.panel.find(".vector-db-tree .nav[dname='" + name + "']").remove();
+		this.panel.find(".dataset-tree .row").removeClass("selected");
+		this.panel.find(".dataset-tree .row[dname='" + name + "']").addClass("selected");
+		this.panel.find(".dataset-tree .nav[dname='" + name + "']").remove();
 		this.panel.find(".current-db").html(name);
 		this.panel.find(".datasets-list").empty();
 		this.panel.find(".datasets_thumb_tab").empty();
@@ -364,9 +366,9 @@ MapCloud.VectorPanel = MapCloud.Class({
 	},
 
 	getDataSets : function(dataSource){
-		this.panel.find(".vector-db-tree .row").removeClass("selected");
-		this.panel.find(".vector-db-tree .row[dname='" + dataSource.name + "']").addClass("selected");
-		this.panel.find(".vector-db-tree .nav[dname='" + dataSource.name + "']").remove();
+		this.panel.find(".dataset-tree .row").removeClass("selected");
+		this.panel.find(".dataset-tree .row[dname='" + dataSource.name + "']").addClass("selected");
+		this.panel.find(".dataset-tree .nav[dname='" + dataSource.name + "']").remove();
 		this.panel.find(".current-db").html(dataSource.name);
 		this.panel.find(".datasets-list").empty();
 		this.panel.find(".datasets_thumb_tab").empty();
@@ -426,7 +428,7 @@ MapCloud.VectorPanel = MapCloud.Class({
 				+	"</li>";
 		}
 		
-		var dataSourceTreeItem = this.panel.find(".vector-db-tree .row[dname='" +  dataSourceName + "']");
+		var dataSourceTreeItem = this.panel.find(".dataset-tree .row[dname='" +  dataSourceName + "']");
 		dataSourceTreeItem.after(html);
 
 		var that = this;
@@ -589,8 +591,8 @@ MapCloud.VectorPanel = MapCloud.Class({
 
 	// 进入图层
 	getDataSet : function(dataSource,name){
-		this.panel.find(".vector-db-tree li").removeClass("selected");
-		this.panel.find(".vector-db-tree li[sname='" + name + "']").addClass("selected");
+		this.panel.find(".dataset-tree li").removeClass("selected");
+		this.panel.find(".dataset-tree li[sname='" + name + "']").addClass("selected");
 
 		if(dataSource == null || name == null){
 			return;
