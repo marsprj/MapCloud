@@ -612,8 +612,8 @@
 }
 
 .btn-account{
-    letter-spacing: 2em;
-    text-indent: 2em;
+/*    letter-spacing: 2em;
+    text-indent: 2em;*/
     font-family: "Microsoft YaHei";
 }
 #user_tool_bar li a{
@@ -774,7 +774,7 @@ input[type='password'].error
 /* Login Panel End                                                     */
 /***************************************************************************/
 .login-panel{
-    background-image: url(../images/hh.jpg);
+    background-image: url(../images/bg.jpg);
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -783,82 +783,150 @@ input[type='password'].error
     background-color: #0A6CFF;
 }
 
-/*.title-container{
-  margin-top: 80px;
-}
-.title-container h1{
-  width: 924px;
-  margin: 0 auto;
-}
-*/
-.login-wrapper{
-  background-image: url(../images/cc.png);
-  height: 400px;
-  background-repeat: no-repeat;
-  padding-left: 0px;
+
+#main_div{
+    width: 1024px;
+    height: 100%;
+    
+    margin: 0 auto;
+    position: relative;
 }
 
-.login-form-container{
-  margin-top: 240px;
+#map_div{
+    background-image: url("../images/bg_map.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 140px;
+    left: 0px;
+    width: 560px;
+    height: 500px;
+}
+#header{
+    position: absolute;
+    left: 80px;
+    top: 80px;
+}
+#header_1{
+    font-size: 24px;
+    color: #fef286;
+    font-family: "STKait","KaiTi";
+    text-shadow: 1px 3px 3px #000;
 }
 
-.login-wrapper form{
-  margin-top: 100px;
-  width: 360px;
+#header_2{
+    font-size: 28px;
+    color: #fff;
+    margin-top: 20px;
+    text-shadow: 2px 3px 3px #000;
 }
-.login-wrapper form input{
-    width: 300px;
-    height: 42px;
-    line-height: 42px;
-    border-radius: 6px;
-    border: 2px solid #fff;
-    background-color: transparent;
+
+.login-panel #form{
+    position: absolute;
+    right: 100px;
+    top: 210px;
+    background-image: url("../images/bg_form.png");
+    width: 350px;
+    height: 348px;
+    background-size: 100%;
+
+}
+
+.login-panel  .inner-div{
+    margin: 20px;
+}
+.login-panel  #title{
+    margin-top: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 26px;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 30px;
+    line-height: 50px;
+    padding-bottom: 20px;
+    letter-spacing: 10px;
+}
+
+
+.login-panel .form-item{
+    margin-top: 20px;
+    color: #fff;
+}
+
+.login-panel  label{
+    font-size: 14px;
+    display: inline-block;
+    width: 80px;
+}
+
+.login-panel  input[type="text"],.login-panel  input[type="password"]{
+    width: 204px;
+    /*height: 20px;*/
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 4px 7px;
+    border: 1px solid #dcdee2;
+    border-radius: 4px;
+    color: #515a6e;
+    background-color: #fff;
+    background-image: none;
+    position: relative;
+    cursor: text;
+    transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+}
+
+.login-panel  input:hover{
+    border-color: #57a3f3;
+}
+.login-panel .btn-group a{
+    margin-top: 30px;
+    display: inline-block;
+    width: 130px;
+    height: 44px;
+    border: none;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
     font-size: 16px;
-    margin: 0 30px 35px;
-    padding:6px;
+    letter-spacing: 12px;
+    padding: 0px 0px 4px 12px;
+    margin: 0px;
+    background-color: #fff;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 40px;
+    text-align: center;
+    transition: color .2s linear,background-color .2s linear,border .2s linear,box-shadow .2s linear;
 }
-.btn-login-group{
-  margin: 0px 30px;
+
+.login-panel .btn-group a.active,.login-panel .btn-group a:hover{
+    border: #fff;
+    color: #ccc;
 }
-.btn-login-group a{
-  display: block;
-  width: 137px;
-  height: 42px;
-  float: left;
-  cursor: pointer;
-  border-radius: 10px;
-  overflow: hidden;
-  /*margin-right: 40px;*/
+
+
+.login-panel .btn-group{
+    margin-left:0px;
+    margin-top: 40px;
 }
 .login-btn{
-  background-image: url(../images/dd.png);
-  margin-right: 23px;
+    background-image: url("../images/button1.png") !important;
 }
-.login-btn:hover{
-  background-image: url(../images/ee.png);
-}
+
 .register-btn{
-  background-image: url(../images/ff.png);
-}
-.register-btn:hover{
-  background-image: url(../images/gg.png);
+    background-image: url("../images/button2.png") !important;
+    margin-left:36px !important;
 }
 
-.login-wrapper form input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #fff;  
-}
 
-.login-wrapper form input ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #fff;  
-}
 
-.login-wrapper form input:-ms-input-placeholder{
-    color: #fff;  
-}
 
-.login-wrapper form input::-webkit-input-placeholder{
-    color: #fff;  
-}
+
+
 /***************************************************************************/
 /* AQI city  Panel Begin                                                     */
 /***************************************************************************/
